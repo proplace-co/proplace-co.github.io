@@ -12,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind (Play CDN — same Tailwind base as proplace.co main app) -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind (Play CDN with typography plugin) -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -24,7 +24,7 @@
           },
           colors: {
             ink: { DEFAULT: '#0a0a0a', soft: '#1f1f1f', muted: '#525252' },
-            accent: { DEFAULT: '#0066ff', light: '#e6f0ff', deep: '#003ea6' },
+            accent: { DEFAULT: '#4ac67f', light: '#e8f7ee', deep: '#1f8d5b' },
             paper: { DEFAULT: '#fafafa', soft: '#f5f5f5' }
           },
         }
@@ -36,31 +36,81 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
 
   <style>
-    /* Touches custom on top of Tailwind */
-    body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    /* Base typography */
+    body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #1f2937; }
     code, pre { font-family: 'JetBrains Mono', ui-monospace, monospace; }
-    .nav-link.active { color: #0066ff; font-weight: 600; }
-    .nav-link.active::before { content: ''; position: absolute; left: -1rem; top: 0; bottom: 0; width: 2px; background: #0066ff; border-radius: 2px; }
-    pre[class*="language-"] { padding: 1.25rem 1.5rem; border-radius: 0.75rem; font-size: 0.875rem; line-height: 1.6; margin: 0; }
+
+    /* Code blocks */
+    pre[class*="language-"] { padding: 1.5rem 1.75rem; border-radius: 0.75rem; font-size: 0.875rem; line-height: 1.7; margin: 0; background: #1f2937 !important; }
+    code:not(pre code) { background: #f5f5f5; color: #0a0a0a; padding: 0.125rem 0.375rem; border-radius: 4px; font-size: 0.85em; font-weight: 500; }
+
+    /* Navigation */
+    .nav-link.active { color: #4ac67f; font-weight: 600; }
+    .nav-link.active::before { content: ''; position: absolute; left: -1rem; top: 0; bottom: 0; width: 2px; background: #4ac67f; border-radius: 2px; }
+    .toc-link.active { color: #4ac67f; }
+
+    /* Copy buttons */
     .copy-btn { transition: all 0.15s ease; }
     .copy-btn:hover { background: rgba(255,255,255,0.1); }
-    .copy-btn.copied { background: #16a34a !important; color: white !important; }
+    .copy-btn.copied { background: #4ac67f !important; color: white !important; }
+
+    /* Collapsible details */
     details > summary { cursor: pointer; list-style: none; }
     details > summary::-webkit-details-marker { display: none; }
+
     /* Tabs */
     .tabs { display: flex; gap: 0.25rem; border-bottom: 1px solid #e5e5e5; margin-bottom: 0; }
-    .tab-btn { padding: 0.5rem 1rem; font-size: 0.875rem; color: #525252; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.15s; }
-    .tab-btn[aria-selected="true"] { color: #0066ff; border-color: #0066ff; font-weight: 600; }
+    .tab-btn { padding: 0.6rem 1rem; font-size: 0.875rem; color: #525252; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.15s; background: transparent; border-top: none; border-left: none; border-right: none; font-family: inherit; }
+    .tab-btn[aria-selected="true"] { color: #4ac67f; border-bottom-color: #4ac67f; font-weight: 600; }
     .tab-panel { display: none; }
     .tab-panel[data-active="true"] { display: block; }
+
     /* Method badges */
-    .method-get { background: #dbeafe; color: #1e40af; }
-    .method-post { background: #dcfce7; color: #166534; }
-    /* Scroll spy active highlight */
-    .toc-link.active { color: #0066ff; }
-    /* Smoothing & transitions */
-    .endpoint-card { transition: box-shadow 0.2s ease; }
-    .endpoint-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+    .method-get { background: #e8f7ee; color: #1f8d5b; }
+    .method-post { background: #fef3c7; color: #92400e; }
+
+    /* Endpoint cards */
+    .endpoint-card { transition: box-shadow 0.2s ease, border-color 0.2s ease; }
+    .endpoint-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-color: #d4d4d4; }
+
+    /* ─── Aérations & spacing custom ────────────────────────────── */
+    .doc-content > section { padding: 2.5rem 0 3.5rem; border-bottom: 1px solid #f0f0f0; }
+    .doc-content > section:last-child { border-bottom: none; }
+
+    /* Heading hierarchy with breathing room */
+    .doc-content h2 { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 0.5rem; color: #0a0a0a; scroll-margin-top: 5rem; }
+    .doc-content h2 + p { font-size: 1.0625rem; color: #525252; line-height: 1.65; margin: 0.5rem 0 2rem; max-width: 56ch; }
+    .doc-content h3 { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; margin: 2.5rem 0 0.75rem; color: #0a0a0a; scroll-margin-top: 5rem; }
+    .doc-content h3 code { font-size: 0.9em; background: #f5f5f5; color: #0a0a0a; padding: 0.125rem 0.4rem; border-radius: 4px; font-weight: 600; }
+    .doc-content h3 + p { margin: 0.5rem 0 1rem; }
+
+    /* Paragraphs */
+    .doc-content p { font-size: 0.9375rem; line-height: 1.75; color: #404040; margin: 0 0 1.25rem; max-width: 70ch; }
+    .doc-content p code { background: #f5f5f5; }
+
+    /* Lists */
+    .doc-content ul, .doc-content ol { margin: 0.5rem 0 1.5rem; padding-left: 1.5rem; }
+    .doc-content ul { list-style: disc; }
+    .doc-content ol { list-style: decimal; }
+    .doc-content li { font-size: 0.9375rem; line-height: 1.75; color: #404040; margin-bottom: 0.5rem; padding-left: 0.25rem; }
+    .doc-content li::marker { color: #a0a0a0; }
+    .doc-content li > strong { color: #0a0a0a; }
+
+    /* Links */
+    .doc-content a:not(.endpoint-card a):not(.tab-btn) { color: #1f8d5b; text-decoration: none; border-bottom: 1px solid rgba(31,141,91,0.3); transition: border-color 0.15s; }
+    .doc-content a:hover { border-bottom-color: #1f8d5b; }
+
+    /* Tables */
+    .doc-content table { width: 100%; font-size: 0.875rem; border: 1px solid #e5e5e5; border-radius: 0.5rem; overflow: hidden; margin: 1rem 0 2rem; border-collapse: separate; border-spacing: 0; }
+    .doc-content thead { background: #fafafa; }
+    .doc-content th { text-align: left; padding: 0.75rem 1rem; font-weight: 600; color: #0a0a0a; border-bottom: 1px solid #e5e5e5; font-size: 0.8125rem; }
+    .doc-content td { padding: 0.75rem 1rem; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+    .doc-content tr:last-child td { border-bottom: none; }
+
+    /* Wider section gap on large screens */
+    @media (min-width: 1024px) {
+      .doc-content > section { padding: 3.5rem 0 4.5rem; }
+    }
   </style>
 </head>
 <body class="bg-white text-ink antialiased">
@@ -204,7 +254,7 @@
   </aside>
 
   <!-- Content -->
-  <main class="lg:col-span-9 prose prose-neutral max-w-none prose-headings:scroll-mt-20 prose-headings:tracking-tight prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-16 prose-h2:mb-4 prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-10 prose-h3:mb-3 prose-p:text-neutral-700 prose-p:leading-relaxed prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-code:before:content-[''] prose-code:after:content-[''] prose-code:bg-paper prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-medium prose-code:text-ink prose-pre:!bg-[#1f2937]">
+  <main class="lg:col-span-9 doc-content max-w-none">
 
     <!-- ── QUICKSTART ─────────────────────────────────────────────────────── -->
     <section id="quickstart">
@@ -609,34 +659,70 @@ async function triggerAndWait(fundType, companyName) {
       </div>
 
       <h3 id="recipe-make">Make.com</h3>
-      <p>HTTP module configuration:</p>
-      <ul>
-        <li><strong>URL</strong>: <code>https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos</code></li>
-        <li><strong>Method</strong>: <code>POST</code></li>
-        <li><strong>Headers</strong>: <code>Authorization: Bearer YOUR_TOKEN</code> + <code>Content-Type: application/json</code></li>
-        <li><strong>Body type</strong>: Raw / JSON</li>
-        <li><strong>Body</strong>: <code class="text-xs">{"fund_type":"{{1.fund_type}}","company":{"name":"{{1.company_name}}"},"memo_type":"detailed"}</code></li>
-        <li><strong>Parse response</strong>: Yes</li>
-      </ul>
-      <p>Then chain a <em>Sleep</em> + HTTP <em>GET</em> on <code>/v1/memos/{{2.slug}}</code> in a <em>Repeater</em> until <code>status === "ready"</code>.</p>
+      <p>HTTP module configuration — paste these fields into a Make HTTP module:</p>
+      <div class="rounded-lg border border-neutral-200 overflow-hidden not-prose">
+        <pre class="!m-0 !rounded-none"><code class="language-yaml">URL:           https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos
+Method:        POST
+Headers:
+  Authorization: Bearer YOUR_TOKEN
+  Content-Type:  application/json
+Body type:     Raw
+Content-type:  JSON (application/json)
+Request body:  {"fund_type":"{{1.fund_type}}","company":{"name":"{{1.company_name}}"},"memo_type":"detailed"}
+Parse response: Yes</code></pre>
+      </div>
+      <p>Then chain a <em>Sleep (30s)</em> + HTTP <em>GET</em> on <code>/v1/memos/{{2.slug}}</code> inside a <em>Repeater</em> until <code>status === "ready"</code>.</p>
 
       <h3 id="recipe-n8n">n8n</h3>
-      <p>HTTP Request node, identical fields. Use n8n's built-in <em>Wait</em> + <em>IF</em> nodes for the polling loop.</p>
+      <p>Use the HTTP Request node with these settings:</p>
+      <div class="rounded-lg border border-neutral-200 overflow-hidden not-prose">
+        <pre class="!m-0 !rounded-none"><code class="language-yaml">Method:        POST
+URL:           https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos
+Authentication: Header Auth
+  Name:        Authorization
+  Value:       Bearer YOUR_TOKEN
+Body Content Type: JSON
+Body (JSON):
+  {
+    "fund_type": "{{ $json.fund_type }}",
+    "company": { "name": "{{ $json.company_name }}" },
+    "memo_type": "detailed"
+  }</code></pre>
+      </div>
+      <p>For the polling loop, chain a <em>Wait</em> node (30s) + an <em>IF</em> node checking <code>status === "ready"</code>, looping back to a second HTTP Request node on <code>/v1/memos/{{slug}}</code>.</p>
 
       <h3 id="recipe-zapier">Zapier</h3>
-      <p>Use the <em>Webhooks by Zapier</em> action. Choose <em>POST</em>, paste the URL + headers + JSON body. The 202 response gives you a <code>slug</code> you can pass to a follow-up <em>Webhook GET</em> step.</p>
+      <p>Use the <strong>Webhooks by Zapier</strong> action with these fields:</p>
+      <div class="rounded-lg border border-neutral-200 overflow-hidden not-prose">
+        <pre class="!m-0 !rounded-none"><code class="language-yaml">Action:    POST (Webhooks by Zapier)
+URL:       https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos
+Payload Type: JSON
+Data:
+  fund_type:  {{fund_type}}
+  company:    {"name": "{{company_name}}"}
+  memo_type:  detailed
+Headers:
+  Authorization: Bearer YOUR_TOKEN
+  Content-Type:  application/json
+Unflatten: Yes</code></pre>
+      </div>
+      <p>The 202 response includes a <code>slug</code> you can pass to a follow-up <em>Custom Request → GET</em> step on <code>/v1/memos/&lt;slug&gt;</code>.</p>
 
       <h3 id="recipe-chatgpt">ChatGPT (Custom GPT Actions)</h3>
-      <p>Open your Custom GPT, scroll to <em>Actions</em>, click <em>Create new action</em>, then:</p>
-      <ol>
-        <li>Schema → <em>Import from URL</em>: <code>https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json</code></li>
-        <li>Authentication → <em>API Key</em>, type <em>Bearer</em>, paste your token</li>
-        <li>Done. The 6 actions appear: <code>listFunds</code>, <code>getFund</code>, <code>screenDeal</code>, <code>triggerMemo</code>, <code>getMemo</code>, <code>patchMemo</code>.</li>
-      </ol>
+      <p>In your Custom GPT editor, scroll to <em>Actions</em> → <em>Create new action</em>, then:</p>
+      <div class="rounded-lg border border-neutral-200 overflow-hidden not-prose">
+        <pre class="!m-0 !rounded-none"><code class="language-yaml">Schema:           Import from URL
+URL:              https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json
+Authentication:   API Key
+  Auth Type:      Bearer
+  API Key:        YOUR_TOKEN
+Privacy Policy:   https://proplace.co/privacy</code></pre>
+      </div>
+      <p>The 6 actions appear in the GPT: <code>listFunds</code>, <code>getFund</code>, <code>screenDeal</code>, <code>triggerMemo</code>, <code>getMemo</code>, <code>patchMemo</code>.</p>
       <p class="text-sm text-neutral-600">Sample prompt to test: <em>"List the funds I can target, then run a screen on Thrust Carbon for the first one."</em></p>
 
       <h3 id="recipe-mcp">Claude Desktop / Cursor / Windsurf (MCP)</h3>
-      <p>Add this to your MCP config (e.g. <code>~/.claude/mcp.json</code> for Claude Desktop):</p>
+      <p>Add this to your MCP config (e.g. <code>~/.claude/mcp.json</code> for Claude Desktop, or your Cursor/Windsurf settings):</p>
       <div class="rounded-lg border border-neutral-200 overflow-hidden not-prose">
         <pre class="!m-0 !rounded-none"><code class="language-json">{
   "mcpServers": {
@@ -648,7 +734,7 @@ async function triggerAndWait(fundType, companyName) {
 }</code></pre>
       </div>
       <p>Restart your client. The 6 tools (<code>list_funds</code>, <code>get_fund</code>, <code>screen_deal</code>, <code>trigger_memo</code>, <code>get_memo_status</code>, <code>patch_memo</code>) are now callable in natural language: <em>"Trigger a detailed memo for Thrust Carbon under fund_type s4bt."</em></p>
-      <p class="text-sm text-neutral-500">Transport: streamable HTTP (JSON-RPC over POST). Protocol: MCP 2024-11-05.</p>
+      <p class="text-sm text-neutral-500">Transport: streamable HTTP (JSON-RPC over POST). Protocol version: MCP 2024-11-05.</p>
     </section>
 
     <!-- ── ERRORS & RATE LIMITS ──────────────────────────────────────────── -->
