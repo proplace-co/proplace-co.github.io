@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proplace API · The investment memo API</title>
+  <meta name="description" content="Compounding fund knowledge into 30-page IC memos in 8 minutes. REST + MCP + Custom GPT. Drop into Make, n8n, Claude Desktop, or any HTTP client." />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+  <!-- Fonts: same Inter stack as proplace.co -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind (Play CDN — same Tailwind base as proplace.co main app) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+          },
+          colors: {
+            ink: { DEFAULT: '#0a0a0a', soft: '#1f1f1f', muted: '#525252' },
+            accent: { DEFAULT: '#0066ff', light: '#e6f0ff', deep: '#003ea6' },
+            paper: { DEFAULT: '#fafafa', soft: '#f5f5f5' }
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Prism for code highlighting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+
+  <style>
+    /* Touches custom on top of Tailwind */
+    body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    code, pre { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    .nav-link.active { color: #0066ff; font-weight: 600; }
+    .nav-link.active::before { content: ''; position: absolute; left: -1rem; top: 0; bottom: 0; width: 2px; background: #0066ff; border-radius: 2px; }
+    pre[class*="language-"] { padding: 1.25rem 1.5rem; border-radius: 0.75rem; font-size: 0.875rem; line-height: 1.6; margin: 0; }
+    .copy-btn { transition: all 0.15s ease; }
+    .copy-btn:hover { background: rgba(255,255,255,0.1); }
+    .copy-btn.copied { background: #16a34a !important; color: white !important; }
+    details > summary { cursor: pointer; list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    /* Tabs */
+    .tabs { display: flex; gap: 0.25rem; border-bottom: 1px solid #e5e5e5; margin-bottom: 0; }
+    .tab-btn { padding: 0.5rem 1rem; font-size: 0.875rem; color: #525252; border-bottom: 2px solid transparent; cursor: pointer; transition: all 0.15s; }
+    .tab-btn[aria-selected="true"] { color: #0066ff; border-color: #0066ff; font-weight: 600; }
+    .tab-panel { display: none; }
+    .tab-panel[data-active="true"] { display: block; }
+    /* Method badges */
+    .method-get { background: #dbeafe; color: #1e40af; }
+    .method-post { background: #dcfce7; color: #166534; }
+    /* Scroll spy active highlight */
+    .toc-link.active { color: #0066ff; }
+    /* Smoothing & transitions */
+    .endpoint-card { transition: box-shadow 0.2s ease; }
+    .endpoint-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+  </style>
+</head>
+<body class="bg-white text-ink antialiased">
+
+<!-- ─── NAVBAR ────────────────────────────────────────────────────────────── -->
+<nav class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-neutral-200">
+  <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a href="https://proplace.co" class="flex items-center gap-2 font-semibold tracking-tight">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-accent"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+      <span>Proplace API</span>
+      <span class="text-xs font-normal px-2 py-0.5 rounded-full bg-accent-light text-accent-deep ml-1">v1</span>
+    </a>
+    <div class="hidden md:flex items-center gap-7 text-sm text-neutral-600">
+      <a href="#quickstart" class="hover:text-ink">Quickstart</a>
+      <a href="#concepts" class="hover:text-ink">Concepts</a>
+      <a href="#reference" class="hover:text-ink">Reference</a>
+      <a href="#recipes" class="hover:text-ink">Integrations</a>
+      <a href="https://proplace.co" class="hover:text-ink">Proplace.co ↗</a>
+    </div>
+    <a href="mailto:alexandre@proplace.co?subject=Proplace%20API%20token%20request" class="text-sm bg-ink text-white px-4 py-1.5 rounded-full hover:bg-accent transition">Get a token</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ──────────────────────────────────────────────────────────────── -->
+<header class="border-b border-neutral-200">
+  <div class="max-w-7xl mx-auto px-6 py-20 lg:py-28 grid lg:grid-cols-12 gap-10 items-center">
+    <div class="lg:col-span-7">
+      <div class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-full bg-accent-light text-accent-deep mb-6">
+        <span class="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
+        v1 — Live · 6 endpoints · MCP & Custom GPT ready
+      </div>
+      <h1 class="text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-6">
+        The <span class="text-accent">investment&nbsp;memo</span> API.
+      </h1>
+      <p class="text-xl text-neutral-600 leading-relaxed max-w-2xl mb-8">
+        Compounding fund knowledge into 30-page IC memos in 8 minutes.
+        Drop into Make, n8n, ChatGPT, Claude Desktop, Cursor or any HTTP client.
+        Your fund_thesis stays at home — only verdicts ship.
+      </p>
+      <div class="flex flex-wrap gap-3 mb-10">
+        <a href="#quickstart" class="bg-ink text-white px-6 py-3 rounded-full font-medium hover:bg-accent transition flex items-center gap-2">
+          Start in 60 seconds
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"></path></svg>
+        </a>
+        <a href="#reference" class="px-6 py-3 rounded-full font-medium border border-neutral-300 hover:border-ink transition">View reference</a>
+        <a href="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json" target="_blank" class="px-6 py-3 rounded-full font-medium text-neutral-600 hover:text-ink transition">OpenAPI spec ↗</a>
+      </div>
+
+      <!-- Quick stats -->
+      <div class="grid grid-cols-3 gap-6 max-w-lg">
+        <div>
+          <div class="text-2xl font-bold">6</div>
+          <div class="text-xs text-neutral-500 uppercase tracking-wider">Endpoints</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold">~8 min</div>
+          <div class="text-xs text-neutral-500 uppercase tracking-wider">Detailed memo</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold">MCP</div>
+          <div class="text-xs text-neutral-500 uppercase tracking-wider">Native</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero code -->
+    <div class="lg:col-span-5">
+      <div class="rounded-xl border border-neutral-200 shadow-sm overflow-hidden">
+        <div class="bg-neutral-50 px-4 py-2.5 border-b border-neutral-200 flex items-center justify-between text-xs">
+          <div class="flex items-center gap-2 text-neutral-500"><span class="w-2 h-2 rounded-full bg-red-400"></span><span class="w-2 h-2 rounded-full bg-yellow-400"></span><span class="w-2 h-2 rounded-full bg-green-400"></span><span class="ml-3 font-mono">trigger-memo.sh</span></div>
+          <button class="copy-btn px-2 py-1 rounded text-neutral-500 hover:text-ink" data-copy-target="hero-curl">Copy</button>
+        </div>
+        <pre class="!m-0 !rounded-none"><code id="hero-curl" class="language-bash">curl -X POST https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos \
+  -H "Authorization: Bearer $PROPLACE_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fund_type": "s4bt",
+    "company": { "name": "Thrust Carbon" },
+    "memo_type": "detailed"
+  }'
+
+# 202 Accepted
+{
+  "slug": "thrust-carbon-v2",
+  "url": "https://analysis.proplace.co/thrust-carbon-v2",
+  "status": "queued",
+  "estimated_seconds": 540,
+  "poll_url": "/v1/memos/thrust-carbon-v2"
+}</code></pre>
+      </div>
+      <p class="text-xs text-neutral-500 text-center mt-3">
+        ↳ Memo published at <span class="font-mono text-ink">analysis.proplace.co/&lt;slug&gt;</span> when ready.
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- ─── MAIN CONTAINER ───────────────────────────────────────────────────── -->
+<div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 py-16">
+
+  <!-- TOC sidebar -->
+  <aside class="lg:col-span-3 hidden lg:block">
+    <div class="sticky top-20">
+      <div class="text-xs uppercase tracking-wider text-neutral-500 font-semibold mb-3">On this page</div>
+      <nav class="text-sm space-y-1.5 text-neutral-600">
+        <a href="#quickstart" class="toc-link block py-1 hover:text-ink">Quickstart</a>
+        <a href="#concepts" class="toc-link block py-1 hover:text-ink">Concepts</a>
+        <a href="#auth" class="toc-link block py-1 hover:text-ink">Authentication</a>
+        <a href="#reference" class="toc-link block py-1 hover:text-ink font-medium text-ink">Reference</a>
+        <div class="pl-3 space-y-1 text-neutral-500">
+          <a href="#endpoint-list-funds" class="block py-0.5 hover:text-ink">listFunds</a>
+          <a href="#endpoint-get-fund" class="block py-0.5 hover:text-ink">getFund</a>
+          <a href="#endpoint-screen" class="block py-0.5 hover:text-ink">screenDeal</a>
+          <a href="#endpoint-trigger-memo" class="block py-0.5 hover:text-ink">triggerMemo</a>
+          <a href="#endpoint-get-memo" class="block py-0.5 hover:text-ink">getMemo</a>
+          <a href="#endpoint-patch-memo" class="block py-0.5 hover:text-ink">patchMemo</a>
+        </div>
+        <a href="#recipes" class="toc-link block py-1 hover:text-ink">Integrations</a>
+        <div class="pl-3 space-y-1 text-neutral-500">
+          <a href="#recipe-curl" class="block py-0.5 hover:text-ink">curl</a>
+          <a href="#recipe-python" class="block py-0.5 hover:text-ink">Python</a>
+          <a href="#recipe-node" class="block py-0.5 hover:text-ink">Node.js</a>
+          <a href="#recipe-make" class="block py-0.5 hover:text-ink">Make.com</a>
+          <a href="#recipe-n8n" class="block py-0.5 hover:text-ink">n8n</a>
+          <a href="#recipe-zapier" class="block py-0.5 hover:text-ink">Zapier</a>
+          <a href="#recipe-chatgpt" class="block py-0.5 hover:text-ink">ChatGPT GPT</a>
+          <a href="#recipe-mcp" class="block py-0.5 hover:text-ink">Claude / MCP</a>
+        </div>
+        <a href="#errors" class="toc-link block py-1 hover:text-ink">Errors & limits</a>
+        <a href="#changelog" class="toc-link block py-1 hover:text-ink">Changelog</a>
+      </nav>
+
+      <div class="mt-8 p-4 rounded-lg bg-paper border border-neutral-200">
+        <div class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Need a token?</div>
+        <p class="text-sm text-neutral-600 mb-3">Email to get provisioned in 5 minutes.</p>
+        <a href="mailto:alexandre@proplace.co?subject=Proplace%20API%20token%20request" class="inline-flex items-center gap-1 text-sm text-accent font-medium">
+          alexandre@proplace.co →
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Content -->
+  <main class="lg:col-span-9 prose prose-neutral max-w-none prose-headings:scroll-mt-20 prose-headings:tracking-tight prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-16 prose-h2:mb-4 prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-10 prose-h3:mb-3 prose-p:text-neutral-700 prose-p:leading-relaxed prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-code:before:content-[''] prose-code:after:content-[''] prose-code:bg-paper prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-medium prose-code:text-ink prose-pre:!bg-[#1f2937]">
+
+    <!-- ── QUICKSTART ─────────────────────────────────────────────────────── -->
+    <section id="quickstart">
+      <h2>Quickstart — 60 seconds to your first memo</h2>
+      <p>Four steps. You'll have an institutional-grade investment memo at <code>analysis.proplace.co/&lt;slug&gt;</code> in roughly 8 minutes.</p>
+
+      <ol class="list-none pl-0 space-y-6 not-prose mt-8">
+        <li class="flex gap-4">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent-light text-accent-deep font-semibold flex items-center justify-center text-sm">1</div>
+          <div>
+            <div class="font-semibold mb-1">Get an API token</div>
+            <p class="text-neutral-600 text-sm">Email <a class="text-accent" href="mailto:alexandre@proplace.co">alexandre@proplace.co</a>. We provision a personal token + onboard your <code class="bg-paper px-1.5 py-0.5 rounded text-xs">fund_type</code> in Airtable.</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent-light text-accent-deep font-semibold flex items-center justify-center text-sm">2</div>
+          <div class="flex-1">
+            <div class="font-semibold mb-1">List the funds you can target</div>
+            <p class="text-neutral-600 text-sm mb-3">Confirm your <code class="bg-paper px-1.5 py-0.5 rounded text-xs">fund_type</code> is live:</p>
+            <div class="rounded-lg border border-neutral-200 overflow-hidden">
+              <pre class="!m-0 !rounded-none"><code class="language-bash">curl -H "Authorization: Bearer $PROPLACE_TOKEN" \
+  https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/funds</code></pre>
+            </div>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent-light text-accent-deep font-semibold flex items-center justify-center text-sm">3</div>
+          <div class="flex-1">
+            <div class="font-semibold mb-1">Trigger a memo</div>
+            <div class="not-prose">
+              <div class="tabs flex gap-1 mb-0" data-tabs="qs-trigger">
+                <button class="tab-btn" aria-selected="true" data-tab="curl">curl</button>
+                <button class="tab-btn" aria-selected="false" data-tab="python">Python</button>
+                <button class="tab-btn" aria-selected="false" data-tab="node">Node.js</button>
+              </div>
+              <div class="rounded-b-lg border border-t-0 border-neutral-200 overflow-hidden">
+                <div class="tab-panel" data-active="true" data-tab="curl">
+                  <pre class="!m-0 !rounded-none"><code class="language-bash">curl -X POST https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos \
+  -H "Authorization: Bearer $PROPLACE_TOKEN" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: $(uuidgen)" \
+  -d '{
+    "fund_type": "s4bt",
+    "company": { "name": "Thrust Carbon", "website": "https://thrustcarbon.com" },
+    "memo_type": "detailed"
+  }'</code></pre>
+                </div>
+                <div class="tab-panel" data-active="false" data-tab="python">
+                  <pre class="!m-0 !rounded-none"><code class="language-python">import os, uuid, httpx
+
+resp = httpx.post(
+    "https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos",
+    headers={
+        "Authorization": f"Bearer {os.environ['PROPLACE_TOKEN']}",
+        "Idempotency-Key": str(uuid.uuid4()),
+    },
+    json={
+        "fund_type": "s4bt",
+        "company": {"name": "Thrust Carbon", "website": "https://thrustcarbon.com"},
+        "memo_type": "detailed",
+    },
+    timeout=30,
+)
+print(resp.json())  # {"slug": "thrust-carbon-v2", "poll_url": "/v1/memos/thrust-carbon-v2", ...}</code></pre>
+                </div>
+                <div class="tab-panel" data-active="false" data-tab="node">
+                  <pre class="!m-0 !rounded-none"><code class="language-javascript">import { randomUUID } from "node:crypto";
+
+const r = await fetch("https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos", {
+  method: "POST",
+  headers: {
+    "Authorization": `Bearer ${process.env.PROPLACE_TOKEN}`,
+    "Content-Type": "application/json",
+    "Idempotency-Key": randomUUID(),
+  },
+  body: JSON.stringify({
+    fund_type: "s4bt",
+    company: { name: "Thrust Carbon", website: "https://thrustcarbon.com" },
+    memo_type: "detailed",
+  }),
+});
+console.log(await r.json());</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent-light text-accent-deep font-semibold flex items-center justify-center text-sm">4</div>
+          <div class="flex-1">
+            <div class="font-semibold mb-1">Poll, then read your memo</div>
+            <p class="text-neutral-600 text-sm mb-3">Poll every 30 seconds — when <code class="bg-paper px-1.5 py-0.5 rounded text-xs">status</code> flips to <code class="bg-paper px-1.5 py-0.5 rounded text-xs">ready</code>, the memo is published at <code class="bg-paper px-1.5 py-0.5 rounded text-xs">url</code>.</p>
+            <div class="rounded-lg border border-neutral-200 overflow-hidden">
+              <pre class="!m-0 !rounded-none"><code class="language-bash">curl -H "Authorization: Bearer $PROPLACE_TOKEN" \
+  https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos/thrust-carbon-v2
+
+# {"status": "ready", "url": "https://analysis.proplace.co/thrust-carbon-v2", "verdict": "CONSIDER", ...}</code></pre>
+            </div>
+          </div>
+        </li>
+      </ol>
+
+      <div class="mt-10 p-5 rounded-xl bg-accent-light/40 border border-accent-light flex gap-4 not-prose">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent flex-shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+        <div>
+          <div class="font-semibold text-ink mb-1">Pre-flight first with <code class="bg-white px-1.5 py-0.5 rounded text-sm">/v1/screen</code></div>
+          <p class="text-sm text-neutral-700 m-0">Get a verdict + thesis-fit score in 10 seconds before committing 8 minutes to a full memo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONCEPTS ──────────────────────────────────────────────────────── -->
+    <section id="concepts">
+      <h2>Concepts</h2>
+      <p>Four objects you'll encounter. Worth 60 seconds.</p>
+
+      <h3 id="concept-fund-type"><code>fund_type</code> — the compounding key</h3>
+      <p>Every memo is written through the lens of a specific fund. The <code>fund_type</code> identifier resolves (server-side) to the full fund thesis, sector profile, return hurdles, M&A acquirer context, and language preference. You never send the thesis itself — your IP stays at home. Discover available <code>fund_type</code>s with <a href="#endpoint-list-funds"><code>GET /v1/funds</code></a>.</p>
+
+      <h3 id="concept-memo"><code>memo</code> — the artifact</h3>
+      <p>A memo is a 30-page institutional investment dossier (market sizing, value chain, competitive positioning, financial model, conviction, risk register, deal rationale). It runs three flavors:</p>
+      <ul class="not-prose space-y-2 my-4">
+        <li class="flex gap-3 items-start"><span class="font-mono text-xs px-2 py-1 rounded bg-paper">fast</span><span class="text-sm text-neutral-700">~3 min · executive summary + verdict only</span></li>
+        <li class="flex gap-3 items-start"><span class="font-mono text-xs px-2 py-1 rounded bg-paper">quick</span><span class="text-sm text-neutral-700">~5 min · core analysis without value-chain deep dive</span></li>
+        <li class="flex gap-3 items-start"><span class="font-mono text-xs px-2 py-1 rounded bg-paper">detailed</span><span class="text-sm text-neutral-700">~8 min · full pipeline (recommended)</span></li>
+      </ul>
+
+      <h3 id="concept-slug"><code>slug</code> — the URL key</h3>
+      <p>The slug is derived deterministically from the company name (NFKD normalize → lowercase → kebab-case). A company called <em>"Thrust Carbon"</em> becomes <code>thrust-carbon-v2</code>, published at <code>analysis.proplace.co/thrust-carbon-v2</code>. The same company name will always produce the same slug — re-triggering overwrites the memo.</p>
+
+      <h3 id="concept-verdict"><code>verdict</code> — the decision</h3>
+      <p>The synthetic GP returns one of: <code>MUST_CALL</code>, <code>CONSIDER</code>, <code>MONITOR</code>, <code>PASS</code>, <code>HARD_BLOCK</code>. The verdict is consistent across <a href="#endpoint-screen"><code>/screen</code></a> (10s pre-flight) and the full memo's <a href="#endpoint-get-memo"><code>/memos/{slug}</code></a> response.</p>
+    </section>
+
+    <!-- ── AUTH ───────────────────────────────────────────────────────────── -->
+    <section id="auth">
+      <h2>Authentication</h2>
+      <p>Every endpoint requires a Bearer token in the <code>Authorization</code> header.</p>
+      <div class="rounded-lg border border-neutral-200 overflow-hidden not-prose">
+        <pre class="!m-0 !rounded-none"><code class="language-bash">Authorization: Bearer pk_live_3f4a...e9c2</code></pre>
+      </div>
+      <p>Tokens are scoped to your fund(s) and rate-limited per token. Rotation: email us — we issue a new token, revoke the old one.</p>
+      <h3>Token best practices</h3>
+      <ul>
+        <li><strong>Never commit tokens.</strong> Use environment variables or your secret manager.</li>
+        <li><strong>One token per integration.</strong> Easier to rotate when you offboard a service.</li>
+        <li><strong>Use Idempotency-Key on POST requests.</strong> Safe to retry without duplicating memos. See <a href="#errors">error handling</a>.</li>
+      </ul>
+    </section>
+
+    <!-- ── REFERENCE ──────────────────────────────────────────────────────── -->
+    <section id="reference">
+      <h2>API reference</h2>
+      <p>Six endpoints. All under <code>https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1</code>. Full machine-readable spec: <a href="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json" target="_blank">openapi.json</a>.</p>
+
+      <!-- Endpoint: listFunds -->
+      <div id="endpoint-list-funds" class="endpoint-card border border-neutral-200 rounded-xl p-6 my-6 not-prose">
+        <div class="flex items-start justify-between flex-wrap gap-3 mb-3">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="method-get text-xs font-mono font-semibold px-2 py-1 rounded">GET</span>
+              <code class="font-semibold text-base">/v1/funds</code>
+            </div>
+            <p class="text-sm text-neutral-600 m-0">List every <code>fund_type</code> the caller can target.</p>
+          </div>
+          <span class="text-xs text-neutral-500">operationId: <code>listFunds</code></span>
+        </div>
+        <details class="mt-4">
+          <summary class="text-sm font-medium text-accent">Show example ↓</summary>
+          <pre class="!mt-3"><code class="language-json">[
+  {
+    "fund_type": "s4bt",
+    "display_name": "Solutions for Business Travel",
+    "lang": "en",
+    "supports_synergy_model": true,
+    "logo_url": "https://..."
+  }
+]</code></pre>
+        </details>
+      </div>
+
+      <!-- Endpoint: getFund -->
+      <div id="endpoint-get-fund" class="endpoint-card border border-neutral-200 rounded-xl p-6 my-6 not-prose">
+        <div class="flex items-start justify-between flex-wrap gap-3 mb-3">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="method-get text-xs font-mono font-semibold px-2 py-1 rounded">GET</span>
+              <code class="font-semibold text-base">/v1/funds/{fund_type}</code>
+            </div>
+            <p class="text-sm text-neutral-600 m-0">Fetch a fund's metadata + a redacted summary of its thesis (sectors, stage, ticket size). Full thesis stays internal.</p>
+          </div>
+          <span class="text-xs text-neutral-500">operationId: <code>getFund</code></span>
+        </div>
+      </div>
+
+      <!-- Endpoint: screenDeal -->
+      <div id="endpoint-screen" class="endpoint-card border border-neutral-200 rounded-xl p-6 my-6 not-prose">
+        <div class="flex items-start justify-between flex-wrap gap-3 mb-3">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="method-post text-xs font-mono font-semibold px-2 py-1 rounded">POST</span>
+              <code class="font-semibold text-base">/v1/screen</code>
+            </div>
+            <p class="text-sm text-neutral-600 m-0">10-second pre-flight verdict. Returns <code>verdict</code>, <code>score</code>, estimated ARR. Use before committing to a full memo.</p>
+          </div>
+          <span class="text-xs text-neutral-500">operationId: <code>screenDeal</code></span>
+        </div>
+        <details class="mt-4">
+          <summary class="text-sm font-medium text-accent">Show request/response ↓</summary>
+          <div class="grid md:grid-cols-2 gap-4 mt-3">
+            <div>
+              <div class="text-xs font-semibold text-neutral-500 uppercase mb-2">Request</div>
+              <pre class="!m-0"><code class="language-json">{
+  "fund_type": "s4bt",
+  "company": {
+    "name": "Thrust Carbon",
+    "website": "https://thrustcarbon.com"
+  }
+}</code></pre>
+            </div>
+            <div>
+              <div class="text-xs font-semibold text-neutral-500 uppercase mb-2">Response</div>
+              <pre class="!m-0"><code class="language-json">{
+  "fund_type": "s4bt",
+  "company_name": "Thrust Carbon",
+  "verdict": "CONSIDER",
+  "score": 75.0,
+  "arr_mid_eur": 1000000.0,
+  "next_step": "Call POST /v1/memos for full memo"
+}</code></pre>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Endpoint: triggerMemo -->
+      <div id="endpoint-trigger-memo" class="endpoint-card border border-neutral-200 rounded-xl p-6 my-6 not-prose">
+        <div class="flex items-start justify-between flex-wrap gap-3 mb-3">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="method-post text-xs font-mono font-semibold px-2 py-1 rounded">POST</span>
+              <code class="font-semibold text-base">/v1/memos</code>
+              <span class="text-xs px-2 py-0.5 rounded bg-yellow-100 text-yellow-800">202 async</span>
+            </div>
+            <p class="text-sm text-neutral-600 m-0">Trigger the full memo pipeline. Returns immediately with a <code>slug</code> + <code>poll_url</code>.</p>
+          </div>
+          <span class="text-xs text-neutral-500">operationId: <code>triggerMemo</code></span>
+        </div>
+        <details class="mt-4">
+          <summary class="text-sm font-medium text-accent">Show request/response ↓</summary>
+          <div class="grid md:grid-cols-2 gap-4 mt-3">
+            <div>
+              <div class="text-xs font-semibold text-neutral-500 uppercase mb-2">Request body</div>
+              <pre class="!m-0"><code class="language-json">{
+  "fund_type": "s4bt",
+  "company": {
+    "name": "Thrust Carbon",
+    "website": "https://thrustcarbon.com",
+    "linkedin": "https://linkedin.com/company/...",
+    "pitch_deck_url": "https://drive.google.com/..."
+  },
+  "memo_type": "detailed",
+  "synergies_with": "rec123abc",
+  "callback_url": null
+}</code></pre>
+            </div>
+            <div>
+              <div class="text-xs font-semibold text-neutral-500 uppercase mb-2">Response (202)</div>
+              <pre class="!m-0"><code class="language-json">{
+  "memo_id": "thrust-carbon-v2",
+  "slug": "thrust-carbon-v2",
+  "url": "https://analysis.proplace.co/thrust-carbon-v2",
+  "status": "queued",
+  "fund_type": "s4bt",
+  "memo_type": "detailed",
+  "estimated_seconds": 540,
+  "poll_url": "/v1/memos/thrust-carbon-v2"
+}</code></pre>
+            </div>
+          </div>
+          <p class="text-xs text-neutral-500 mt-3 mb-0">⚡ Pass <code>Idempotency-Key</code> header (any UUID) to safely retry without duplicating work.</p>
+        </details>
+      </div>
+
+      <!-- Endpoint: getMemo -->
+      <div id="endpoint-get-memo" class="endpoint-card border border-neutral-200 rounded-xl p-6 my-6 not-prose">
+        <div class="flex items-start justify-between flex-wrap gap-3 mb-3">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="method-get text-xs font-mono font-semibold px-2 py-1 rounded">GET</span>
+              <code class="font-semibold text-base">/v1/memos/{slug}</code>
+            </div>
+            <p class="text-sm text-neutral-600 m-0">Poll memo status. Returns <code>queued</code> → <code>building</code> → <code>ready</code> (or <code>failed</code>).</p>
+          </div>
+          <span class="text-xs text-neutral-500">operationId: <code>getMemo</code></span>
+        </div>
+        <details class="mt-4">
+          <summary class="text-sm font-medium text-accent">Show example ↓</summary>
+          <pre class="!mt-3"><code class="language-json">{
+  "slug": "thrust-carbon-v2",
+  "url": "https://analysis.proplace.co/thrust-carbon-v2",
+  "status": "ready",
+  "fund_type": "s4bt",
+  "company_name": "Thrust Carbon",
+  "memo_type": "detailed",
+  "verdict": "CONSIDER",
+  "summary": "Strong CSRD compliance moat..."
+}</code></pre>
+        </details>
+      </div>
+
+      <!-- Endpoint: patchMemo -->
+      <div id="endpoint-patch-memo" class="endpoint-card border border-neutral-200 rounded-xl p-6 my-6 not-prose">
+        <div class="flex items-start justify-between flex-wrap gap-3 mb-3">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="method-post text-xs font-mono font-semibold px-2 py-1 rounded">POST</span>
+              <code class="font-semibold text-base">/v1/memos/{slug}/patch</code>
+            </div>
+            <p class="text-sm text-neutral-600 m-0">Surgically edit a published memo. 5 operation types: <code>replace_section</code>, <code>replace_section_inner</code>, <code>append_to_section</code>, <code>prepend_to_section</code>, <code>replace_text</code>.</p>
+          </div>
+          <span class="text-xs text-neutral-500">operationId: <code>patchMemo</code></span>
+        </div>
+        <details class="mt-4">
+          <summary class="text-sm font-medium text-accent">Show example ↓</summary>
+          <pre class="!mt-3"><code class="language-json">{
+  "operations": [
+    {
+      "type": "replace_section_inner",
+      "section_id": "conviction",
+      "html": "<h2 class='section-title'>Conviction</h2><p>New analysis...</p>"
+    },
+    {
+      "type": "replace_text",
+      "find": "ARR €1M",
+      "replace": "ARR €1.5M"
+    }
+  ],
+  "dry_run": false,
+  "commit_message": "Update conviction post-call"
+}</code></pre>
+          <p class="text-xs text-neutral-500 mt-2 mb-0">Set <code>dry_run: true</code> to preview the diff without pushing.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ── INTEGRATION RECIPES ──────────────────────────────────────────── -->
+    <section id="recipes">
+      <h2>Integration recipes</h2>
+      <p>Ten ways to plug Proplace into your stack. Pick one, ship in 5 minutes.</p>
+
+      <h3 id="recipe-curl">curl</h3>
+      <p>The lowest common denominator. Runs from any shell, CI job, or server.</p>
+      <div class="rounded-lg border border-neutral-200 overflow-hidden not-prose">
+        <pre class="!m-0 !rounded-none"><code class="language-bash">export PROPLACE_TOKEN=pk_live_...
+curl -X POST https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos \
+  -H "Authorization: Bearer $PROPLACE_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"fund_type":"s4bt","company":{"name":"Acme"},"memo_type":"detailed"}'</code></pre>
+      </div>
+
+      <h3 id="recipe-python">Python (httpx)</h3>
+      <div class="rounded-lg border border-neutral-200 overflow-hidden not-prose">
+        <pre class="!m-0 !rounded-none"><code class="language-python">import os, time, httpx
+
+API = "https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1"
+HEADERS = {"Authorization": f"Bearer {os.environ['PROPLACE_TOKEN']}"}
+
+def trigger_and_wait(fund_type: str, company_name: str) -> dict:
+    r = httpx.post(f"{API}/memos", headers=HEADERS, json={
+        "fund_type": fund_type,
+        "company": {"name": company_name},
+        "memo_type": "detailed",
+    }).raise_for_status().json()
+    slug = r["slug"]
+    while True:
+        time.sleep(30)
+        s = httpx.get(f"{API}/memos/{slug}", headers=HEADERS).json()
+        if s["status"] in ("ready", "failed"): return s
+
+print(trigger_and_wait("s4bt", "Thrust Carbon"))</code></pre>
+      </div>
+
+      <h3 id="recipe-node">Node.js (fetch)</h3>
+      <div class="rounded-lg border border-neutral-200 overflow-hidden not-prose">
+        <pre class="!m-0 !rounded-none"><code class="language-javascript">const API = "https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1";
+const TOKEN = process.env.PROPLACE_TOKEN;
+
+async function triggerAndWait(fundType, companyName) {
+  const r = await fetch(`${API}/memos`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${TOKEN}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ fund_type: fundType, company: { name: companyName }, memo_type: "detailed" }),
+  }).then(r => r.json());
+
+  while (true) {
+    await new Promise(r => setTimeout(r, 30_000));
+    const s = await fetch(`${API}/memos/${r.slug}`, { headers: { Authorization: `Bearer ${TOKEN}` } }).then(r => r.json());
+    if (["ready", "failed"].includes(s.status)) return s;
+  }
+}</code></pre>
+      </div>
+
+      <h3 id="recipe-make">Make.com</h3>
+      <p>HTTP module configuration:</p>
+      <ul>
+        <li><strong>URL</strong>: <code>https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos</code></li>
+        <li><strong>Method</strong>: <code>POST</code></li>
+        <li><strong>Headers</strong>: <code>Authorization: Bearer YOUR_TOKEN</code> + <code>Content-Type: application/json</code></li>
+        <li><strong>Body type</strong>: Raw / JSON</li>
+        <li><strong>Body</strong>: <code class="text-xs">{"fund_type":"{{1.fund_type}}","company":{"name":"{{1.company_name}}"},"memo_type":"detailed"}</code></li>
+        <li><strong>Parse response</strong>: Yes</li>
+      </ul>
+      <p>Then chain a <em>Sleep</em> + HTTP <em>GET</em> on <code>/v1/memos/{{2.slug}}</code> in a <em>Repeater</em> until <code>status === "ready"</code>.</p>
+
+      <h3 id="recipe-n8n">n8n</h3>
+      <p>HTTP Request node, identical fields. Use n8n's built-in <em>Wait</em> + <em>IF</em> nodes for the polling loop.</p>
+
+      <h3 id="recipe-zapier">Zapier</h3>
+      <p>Use the <em>Webhooks by Zapier</em> action. Choose <em>POST</em>, paste the URL + headers + JSON body. The 202 response gives you a <code>slug</code> you can pass to a follow-up <em>Webhook GET</em> step.</p>
+
+      <h3 id="recipe-chatgpt">ChatGPT (Custom GPT Actions)</h3>
+      <p>Open your Custom GPT, scroll to <em>Actions</em>, click <em>Create new action</em>, then:</p>
+      <ol>
+        <li>Schema → <em>Import from URL</em>: <code>https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json</code></li>
+        <li>Authentication → <em>API Key</em>, type <em>Bearer</em>, paste your token</li>
+        <li>Done. The 6 actions appear: <code>listFunds</code>, <code>getFund</code>, <code>screenDeal</code>, <code>triggerMemo</code>, <code>getMemo</code>, <code>patchMemo</code>.</li>
+      </ol>
+      <p class="text-sm text-neutral-600">Sample prompt to test: <em>"List the funds I can target, then run a screen on Thrust Carbon for the first one."</em></p>
+
+      <h3 id="recipe-mcp">Claude Desktop / Cursor / Windsurf (MCP)</h3>
+      <p>Add this to your MCP config (e.g. <code>~/.claude/mcp.json</code> for Claude Desktop):</p>
+      <div class="rounded-lg border border-neutral-200 overflow-hidden not-prose">
+        <pre class="!m-0 !rounded-none"><code class="language-json">{
+  "mcpServers": {
+    "proplace": {
+      "url": "https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/mcp/mcp",
+      "headers": { "Authorization": "Bearer YOUR_TOKEN" }
+    }
+  }
+}</code></pre>
+      </div>
+      <p>Restart your client. The 6 tools (<code>list_funds</code>, <code>get_fund</code>, <code>screen_deal</code>, <code>trigger_memo</code>, <code>get_memo_status</code>, <code>patch_memo</code>) are now callable in natural language: <em>"Trigger a detailed memo for Thrust Carbon under fund_type s4bt."</em></p>
+      <p class="text-sm text-neutral-500">Transport: streamable HTTP (JSON-RPC over POST). Protocol: MCP 2024-11-05.</p>
+    </section>
+
+    <!-- ── ERRORS & RATE LIMITS ──────────────────────────────────────────── -->
+    <section id="errors">
+      <h2>Errors & rate limits</h2>
+
+      <h3>HTTP status codes</h3>
+      <div class="not-prose overflow-x-auto">
+        <table class="w-full text-sm border border-neutral-200 rounded-lg">
+          <thead class="bg-paper text-left">
+            <tr>
+              <th class="px-4 py-2 font-semibold border-b border-neutral-200">Code</th>
+              <th class="px-4 py-2 font-semibold border-b border-neutral-200">Meaning</th>
+              <th class="px-4 py-2 font-semibold border-b border-neutral-200">What to do</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">200/202</td><td class="px-4 py-2 border-b border-neutral-100">Success</td><td class="px-4 py-2 border-b border-neutral-100">—</td></tr>
+            <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">400</td><td class="px-4 py-2 border-b border-neutral-100">Invalid <code>fund_type</code> or missing field</td><td class="px-4 py-2 border-b border-neutral-100">Check the <code>available_funds</code> field in the response body</td></tr>
+            <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">401 / 403</td><td class="px-4 py-2 border-b border-neutral-100">Token missing or invalid</td><td class="px-4 py-2 border-b border-neutral-100">Verify your <code>Authorization</code> header</td></tr>
+            <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">404</td><td class="px-4 py-2 border-b border-neutral-100">Slug or fund_type not found</td><td class="px-4 py-2 border-b border-neutral-100">Spelling — slug is case-sensitive, fund_type is not</td></tr>
+            <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">409</td><td class="px-4 py-2 border-b border-neutral-100">Idempotency-key replay</td><td class="px-4 py-2 border-b border-neutral-100">You're seeing the cached original response — safe</td></tr>
+            <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">429</td><td class="px-4 py-2 border-b border-neutral-100">Rate limit hit</td><td class="px-4 py-2 border-b border-neutral-100">Honor the <code>Retry-After</code> header</td></tr>
+            <tr><td class="px-4 py-2 font-mono">502</td><td class="px-4 py-2">Upstream (Make / GitHub / Airtable) failed</td><td class="px-4 py-2">Retry. If persistent, email us.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Rate limits</h3>
+      <p>Default: <strong>60 requests/minute</strong> and <strong>1,000/day</strong> per token. Custom quotas available on request. Every response includes:</p>
+      <ul>
+        <li><code>X-RateLimit-Remaining-Minute</code></li>
+        <li><code>X-RateLimit-Remaining-Daily</code></li>
+        <li><code>X-RateLimit-Reset-Minute</code> (unix timestamp)</li>
+        <li><code>X-RateLimit-Reset-Daily</code> (unix timestamp)</li>
+      </ul>
+
+      <h3>Idempotency</h3>
+      <p>Pass any unique key in the <code>Idempotency-Key</code> header on POST requests. We cache the response for 24 hours — retries with the same key return the original response without re-executing the operation.</p>
+    </section>
+
+    <!-- ── CHANGELOG ──────────────────────────────────────────────────────── -->
+    <section id="changelog">
+      <h2>Changelog</h2>
+      <div class="not-prose space-y-4">
+        <div class="border-l-2 border-accent pl-4">
+          <div class="text-xs text-neutral-500">v1.0.0 · launched</div>
+          <div class="font-medium">Initial public release</div>
+          <p class="text-sm text-neutral-600 mt-1 mb-0">Six endpoints (<code>listFunds</code>, <code>getFund</code>, <code>screenDeal</code>, <code>triggerMemo</code>, <code>getMemo</code>, <code>patchMemo</code>). MCP server live. ChatGPT Custom GPT compatible.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 p-6 rounded-xl bg-ink text-white not-prose">
+        <h3 class="text-xl font-semibold mb-2 mt-0">Ready to plug Proplace into your stack?</h3>
+        <p class="text-neutral-300 text-sm mb-4 leading-relaxed">Email <a class="text-accent-light underline" href="mailto:alexandre@proplace.co">alexandre@proplace.co</a> with your fund name + use case. Most clients are live in 10 minutes — token + onboarded fund_type + one example memo.</p>
+        <a href="mailto:alexandre@proplace.co?subject=Proplace%20API%20token%20request" class="inline-block bg-white text-ink px-5 py-2.5 rounded-full font-medium hover:bg-neutral-100 transition">Get your token →</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ─── FOOTER ────────────────────────────────────────────────────────────── -->
+<footer class="border-t border-neutral-200 mt-20">
+  <div class="max-w-7xl mx-auto px-6 py-10 flex flex-wrap gap-6 items-start justify-between text-sm text-neutral-600">
+    <div class="flex items-center gap-2">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-accent"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+      <span class="font-semibold text-ink">Proplace</span>
+      <span class="text-neutral-400">© 2026</span>
+    </div>
+    <div class="flex flex-wrap gap-6">
+      <a href="https://proplace.co" class="hover:text-ink">Home</a>
+      <a href="https://analysis.proplace.co" class="hover:text-ink">Memos</a>
+      <a href="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json" class="hover:text-ink">OpenAPI</a>
+      <a href="mailto:alexandre@proplace.co" class="hover:text-ink">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Stan chat widget (loaded site-wide) -->
+<script src="https://proplace-co.github.io/wargame/proplace-chat-memo.js" defer></script>
+
+<!-- Prism for syntax highlighting -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<!-- Tabs + copy buttons + scroll-spy -->
+<script>
+  // Tabs
+  document.querySelectorAll('[data-tabs]').forEach(tabBar => {
+    const group = tabBar.dataset.tabs;
+    tabBar.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+        tabBar.querySelectorAll('.tab-btn').forEach(b => b.setAttribute('aria-selected', b === btn ? 'true' : 'false'));
+        const wrapper = tabBar.parentElement;
+        wrapper.querySelectorAll(`.tab-panel[data-tab]`).forEach(p => {
+          p.dataset.active = (p.dataset.tab === tab) ? 'true' : 'false';
+        });
+      });
+    });
+  });
+
+  // Copy buttons
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const targetId = btn.dataset.copyTarget;
+      const target = targetId ? document.getElementById(targetId) : btn.closest('.relative,div')?.querySelector('code');
+      if (!target) return;
+      try {
+        await navigator.clipboard.writeText(target.innerText);
+        const orig = btn.innerText;
+        btn.innerText = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.innerText = orig; btn.classList.remove('copied'); }, 1500);
+      } catch (e) {}
+    });
+  });
+
+  // Scroll-spy for TOC
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const sections = document.querySelectorAll('main section[id]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        tocLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
