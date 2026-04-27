@@ -507,18 +507,11 @@ console.log(await r.json());</code></pre>
           <summary class="text-sm font-medium text-accent">Show request/response ↓</summary>
           <div class="grid md:grid-cols-2 gap-4 mt-3">
             <div>
-              <div class="text-xs font-semibold text-neutral-500 uppercase mb-2">Request body</div>
+              <div class="text-xs font-semibold text-neutral-500 uppercase mb-2">Request body — minimum</div>
               <pre class="!m-0"><code class="language-json">{
   "fund_type": "s4bt",
-  "company": {
-    "name": "Thrust Carbon",
-    "website": "https://thrustcarbon.com",
-    "linkedin": "https://linkedin.com/company/...",
-    "pitch_deck_url": "https://drive.google.com/..."
-  },
-  "memo_type": "detailed",
-  "synergies_with": "rec123abc",
-  "callback_url": null
+  "company": { "name": "Thrust Carbon" },
+  "memo_type": "detailed"
 }</code></pre>
             </div>
             <div>
@@ -535,6 +528,69 @@ console.log(await r.json());</code></pre>
 }</code></pre>
             </div>
           </div>
+
+          <div class="mt-5">
+            <div class="text-xs font-semibold text-neutral-500 uppercase mb-2">Request body — all supported fields</div>
+            <pre class="!m-0"><code class="language-json">{
+  "fund_type": "s4bt",
+  "company": {
+    "name": "Thrust Carbon",
+    "website": "https://thrustcarbon.com",
+    "linkedin": "https://linkedin.com/in/founder",
+    "tagline": "Carbon accounting for travel managers",
+    "country": "United Kingdom",
+    "company_stage": "seed",
+    "founders_cofounders": "Kit Aspen (CEO, ex-GoCardless), ...",
+    "funding": "€4M",
+    "funding_date": "2024-03-15",
+    "vc_funds": "Seedcamp, Octopus Ventures",
+    "pitch_deck_url": "https://drive.google.com/...",
+    "product_url": "https://thrustcarbon.com/product",
+    "pricing_url": "https://thrustcarbon.com/pricing",
+    "team_url": "https://thrustcarbon.com/team",
+    "first_name": "Kit",
+    "last_name": "Aspen"
+  },
+  "memo_type": "detailed",
+  "lang": "en",
+  "synergies_with": "rec123abc",
+  "publish": "yes",
+  "motive": "Strategic bolt-on for CSRD compliance moat",
+  "source": "linkedin",
+  "callback_url": "https://yourapp.example/proplace-callback"
+}</code></pre>
+          </div>
+
+          <div class="mt-5">
+            <div class="text-xs font-semibold text-neutral-500 uppercase mb-2">Field reference</div>
+            <table class="!m-0">
+              <thead><tr><th>Field</th><th>Type</th><th>Required</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td><code>fund_type</code></td><td>string</td><td>Yes</td><td>From <code>GET /v1/funds</code></td></tr>
+                <tr><td><code>company.name</code></td><td>string</td><td>Yes</td><td>Drives the slug</td></tr>
+                <tr><td><code>company.website</code></td><td>string</td><td>—</td><td>Recommended for accurate research</td></tr>
+                <tr><td><code>company.linkedin</code></td><td>string</td><td>—</td><td>CEO LinkedIn URL (used for founder DNA scoring)</td></tr>
+                <tr><td><code>company.tagline</code></td><td>string</td><td>—</td><td>One-line value prop</td></tr>
+                <tr><td><code>company.country</code></td><td>string</td><td>—</td><td>HQ country, full name</td></tr>
+                <tr><td><code>company.company_stage</code></td><td>string</td><td>—</td><td>seed / series_a / series_b…</td></tr>
+                <tr><td><code>company.founders_cofounders</code></td><td>string</td><td>—</td><td>Free text on the founding team</td></tr>
+                <tr><td><code>company.funding</code></td><td>string</td><td>—</td><td>Latest round (e.g. <code>€4M</code>)</td></tr>
+                <tr><td><code>company.funding_date</code></td><td>string</td><td>—</td><td>Date or free text</td></tr>
+                <tr><td><code>company.vc_funds</code></td><td>string</td><td>—</td><td>Existing investors (comma-separated)</td></tr>
+                <tr><td><code>company.pitch_deck_url</code></td><td>string</td><td>—</td><td>Public PDF URL</td></tr>
+                <tr><td><code>company.product_url</code> / <code>pricing_url</code> / <code>team_url</code></td><td>string</td><td>—</td><td>Override deep-research targets</td></tr>
+                <tr><td><code>company.first_name</code> / <code>last_name</code></td><td>string</td><td>—</td><td>CEO name hint</td></tr>
+                <tr><td><code>memo_type</code></td><td>enum</td><td>—</td><td><code>fast</code> · <code>quick</code> · <code>detailed</code> (default)</td></tr>
+                <tr><td><code>lang</code></td><td>string</td><td>—</td><td>Defaults to <code>fund.lang</code></td></tr>
+                <tr><td><code>synergies_with</code></td><td>string</td><td>—</td><td>Airtable record_id of a portfolio company</td></tr>
+                <tr><td><code>publish</code></td><td>string</td><td>—</td><td>Set to <code>"yes"</code> for the Open Deal Flow</td></tr>
+                <tr><td><code>motive</code></td><td>string</td><td>—</td><td>Strategic motive (free text)</td></tr>
+                <tr><td><code>source</code></td><td>string</td><td>—</td><td>Where the deal came from (twitter, linkedin, inbound…)</td></tr>
+                <tr><td><code>callback_url</code></td><td>string</td><td>—</td><td>Experimental — POST'd when the memo is ready</td></tr>
+              </tbody>
+            </table>
+          </div>
+
           <p class="text-xs text-neutral-500 mt-3 mb-0">⚡ Pass <code>Idempotency-Key</code> header (any UUID) to safely retry without duplicating work.</p>
         </details>
       </div>
