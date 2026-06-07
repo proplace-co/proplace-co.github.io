@@ -163,8 +163,9 @@ function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.
 function verdict(res,fund){
  if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
  if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
- var m=res.verdict==="MATCH";
- var o='<div class="ev-v '+(m?"ev-yes":"ev-no")+'">'+(m?"✅ MATCH":"❌ NO MATCH")+(res.score?(" · "+res.score+"/100"):"")+'</div>';
+ if(res.needs_disambiguation)return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — précisez le nom ou l’URL exacte.")+'</div>';
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
  if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
  if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
  else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
