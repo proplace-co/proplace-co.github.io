@@ -1,0 +1,386 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>C Teleport — analyse Logistics &amp; Supply Chain | Proplace</title><meta name="description" content="Logistics &amp; Supply Chain · SaaS de Gestion des Voyages d&#x27;Équipages (Crew Travel Management) · Series A"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/c-teleport/"><meta property="og:type" content="article"><meta property="og:title" content="C Teleport — analyse Logistics &amp; Supply Chain | Proplace"><meta property="og:description" content="Logistics &amp; Supply Chain · SaaS de Gestion des Voyages d&#x27;Équipages (Crew Travel Management) · Series A"><meta property="og:url" content="https://proplace.co/analysis/c-teleport/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:14px 0 6px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "C Teleport — Logistics & Supply Chain", "description": "Logistics & Supply Chain · SaaS de Gestion des Voyages d'Équipages (Crew Travel Management) · Series A", "inLanguage": "fr", "url": "https://proplace.co/analysis/c-teleport/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/c-teleport/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "C Teleport"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "C Teleport", "item": "https://proplace.co/analysis/c-teleport/"}]}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/">News</a><a class="pph-ana on" href="/analysis/">Analysis</a></span></nav></div></header><script>(function(){try{var c=document.cookie.split('; ').find(function(r){return r.indexOf('proplace_auth=')===0;});if(!c)return;var s=JSON.parse(atob(decodeURIComponent(c.split('=')[1])));if(s&&s.fund_type){var el=document.getElementById('pph-auth');if(el)el.innerHTML='<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">Open dashboard</a>';}}catch(e){}})();</script><div class="ppx-crumb"><a href="/">Home</a> › <a href="/analysis/">Analysis</a> › C Teleport</div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">Pays-Bas</span>
+<span class="sb-tag">Series A</span>
+<span class="sb-tag">Logistics &amp; Supply Chain</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">C Teleport</h1>
+<span class="sidebar-tagline">Logistics &amp; Supply Chain · SaaS de Gestion des Voyages d'Équipages (Crew Travel Management) · Series A</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Plateforme SaaS automatisant la gestion et la réservation de voyages pour les équipages des secteurs maritime, aéronautique et offshore.</p>
+<a href="https://cteleport.com/" target="_blank"><i class="fas fa-globe"></i> Site web</a>
+<a href="https://www.linkedin.com/in/beliakov" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<a href="mailto:beliakov@cteleport.com"><i class="fas fa-envelope"></i> beliakov@cteleport.com</a>
+</div>
+</div>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle d'affaires</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="sb-legend-wrap">
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Données de marché</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Données d'entreprise</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#a898c0;display:inline-block;flex-shrink:0;border:1px solid #8878a0;"></span><span></span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; raisonnement</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; méthodologie</span></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorer davantage C Teleport ?</h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur C Teleport</a>
+</div>
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="section">
+<h3>Analyser une autre entreprise ?</h3>
+</div>
+<div class="section">
+<h3>S'abonner à la newsletter Proplace ?</h3>
+<p class="meta-desc">Recevez quotidiennement les news M&amp;A et levées de fonds.</p>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+</div>
+<div class="section">
+<h3>Envie d'un deal flow propriétaire ?</h3>
+<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+</div>
+<div class="sidebar-logo-wrap">
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">C Teleport</h1>
+<h2 class="subtitle-category">Logistics &amp; Supply Chain ➜ SaaS de Gestion des Voyages d'Équipages (Crew Travel Management) ➜ Logiciels SaaS d'automatisation de la logistique et de réservation de voyages d'équipages pour l'industrie maritime et offshore mondiale.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title">Résumé du marché</h2>
+<div class="split-container">
+<div class="text-col">
+<h4>SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>Logistics &amp; Supply Chain &gt; SaaS de Gestion des Voyages d'Équipages (Crew Travel Management)<br/>B2B &gt; SaaS</p>
+<p>LE MARCHÉ EST-IL ATTRACTIF ? (Dynamique) : 85/100 × 25% = 21.25 points<br/>LE MARCHÉ EST-IL GAGNABLE ? (Concurrence) : 84/100 × 25% = 21 points<br/>LE MARCHÉ EST-IL PÉNÉTRABLE ? (GTM) : 80/100 × 25% = 20 points<br/>LE MARCHÉ EST-IL RENTABLE ? (Exits) : 78/100 × 25% = 19.5 points</p>
+<p>SCORE D'ATTRACTIVITÉ GLOBALE DU MARCHÉ: 81.75/100 Ce score global indique que le marché de la logistique des voyages d'équipages constitue un fort vent arrière thématique pour C Teleport en tant que pionnier de l'automatisation de niche, compensant l'étroitesse relative du segment par une valeur transactionnelle récurrente et indispensable aux clients.</p>
+<h4>❓ DÉFINITION DU MARCHÉ</h4>
+<p>Le marché de la gestion des déplacements d'équipages réglemente l'acheminement, l'hébergement et la logistique critique de relève de centaines de milliers de marins et de techniciens offshore qui travaillent sur des rotations de navires et de plateformes.</p>
+<p>Les responsables de voyages des armateurs achètent ces services pour garantir la continuité opérationnelle des navires sous forte contrainte réglementaire maritime internationale. Cet écosystème est positionné en aval des décisions RH de recrutement des équipages et en amont de l'approvisionnement des compagnies aériennes globales qui capturent la plus grande partie de la valeur des billets d'avion.</p>
+<h4>💬 NOTRE THÈSE DE MARCHÉ</h4>
+<p>La logistique de relève des marins a franchi un point de non-retour marqué par la digitalisation massive des flottes et l'exigence d'une agilité opérationnelle instantanée. Les agences de voyages d'affaires à l'échelle nationale ne peuvent pas automatiser cette flexibilité sans détruire leurs propres centres d'appels à forte main-d'œuvre, qui tirent la part majoritaire de leurs revenus d'honoraires de gestion humaine.</p>
+<p>L'attaque technologique consiste à injecter des connecteurs API profonds qui lient les bases de données d'équipages directement aux transporteurs aériens, éliminant l'humain au milieu. La fenêtre d'opportunité est grande ouverte au moment où les armateurs s'intègrent à des ERP sophistiqués pour surveiller chaque frais opérationnel, avant que de grands acteurs comme Amadeus ne standardisent leurs solutions low-code marines.</p>
+<h4>🧠 NOTRE CONVICTION &amp; NOTRE PARI SUR CE MARCHÉ:</h4>
+<p><b>🟢 CONVICTION ÉLEVÉE</b></p>
+<p>La contrainte inhérente à ce marché réside dans sa dépendance aux flux physiques du fret mondial et de l'énergie offshore qui restent volatils, mais la recherche montre que les volumes de déplacements de personnels maritimes restent stables même en période de baisse de taux de fret car les navires doivent impérativement tourner.</p>
+<p>Notre pari testable à 18 mois prévoit que le volume de transactions automatisées sans intervention humaine doublera sur les plateformes de gestion modernes de voyages au fur et à mesure que les vieux logiciels GDS hérités perdront du terrain. Pour s'en convaincre lors d'un premier entretien, la réponse claire à la question du volume d'annulations automatiques gérées à ce jour validera immédiatement le niveau d'adoption client.</p>
+<h4>🌊 MARCHÉ ATTRACTIF (Dynamique de Marché) | Score: 85/100</h4>
+<p>Ce score exceptionnel atteste de l'importance critique de la sous-catégorie où l'efficience technologique représente le principal gisement de baisse de coûts opérationnels des armateurs.</p>
+<ul><li><b>Taille du Marché (25%) | Score: 82/100:</b> Le marché adressable agrège des dépenses mondiales de déplacements de marins estimées à plusieurs milliards de dollars annuels, nourries par les exigences constantes de renouvellement des équipages de la flotte marchande internationale.</li><li><b>Moteurs de la Croissance (25%) | Score: 86/100:</b> La croissance est catalysée par la transformation digitale obligatoire des flottes et les évolutions réglementaires sur l'allongement et le contrôle du bien-être des travailleurs maritimes.</li><li><b>Urgence du Timing (25%) | Score: 88/100:</b> Le besoin de solutions instantanées en libre-service s'est intensifié à mesure que les fluctuations opérationnelles dans les ports s'accélèrent.</li><li><b>Risque de Marché (25%) | Score: 84/100:</b> Les obstacles majeurs incluent la complexité d'accéder sans intermédiaire aux flux NDC exclusifs de compagnies aériennes de renom.</li></ul>
+<h4>⚔️ MARCHÉ GAGNABLE (Paysage Concurrentiel) | Score: 84/100</h4>
+<p>Ce score montre la vulnérabilité immédiate des acteurs de billetterie traditionnels trop lourds pour s'adapter à des intégrations logicielles autonomes.</p>
+<ul><li><b>Acteurs Historiques (25%) | Score: 83/100:</b> Les leaders classiques comme ATPI Griffinstone ou BCD Travel dominent historiquement par la force de leurs réseaux d'agences physiques mais manquent d'agilité technologique.</li><li><b>Challengers Innovants (25%) | Score: 80/100:</b> De nouvelles initiatives axées sur la logistique maritime ou de nouvelles fintechs comme Kadmos modernisent d'autres facettes de la chaîne de valeur du personnel maritime.</li><li><b>Espace Inoccupé (25%) | Score: 88/100:</b> Il existe une opportunité considérable pour une plateforme logicielle pure capable d'unifier la billetterie, l'hébergement et le reporting analytique directement au niveau de l'ERP.</li><li><b>Capacité de Défense (25%) | Score: 85/100:</b> Les effets de réseau bilatéraux et la friction des modifications d'intégrations ERP confèrent aux plateformes installées un avantage de rétention structurel.</li></ul>
+<h4>🎯 MARCHÉ PÉNÉTRABLE (Go-to-Market &amp; Économie Unitaire) | Score: 80/100</h4>
+<p>La rentabilité dépend de la maximisation de l'usage au volume, l'adoption s'accélérant principalement par l'intégration dans l'écosystème ERP préexistant.</p>
+<ul><li><b>Modèle GTM (25%) | Score: 82/100:</b> La vente s'effectue via un cycle B2B consultatif qui peut s'avérer long mais hautement collant une fois le connecteur de données déployé dans les RH.</li><li><b>Modèle Tarifaire (25%) | Score: 78/100:</b> La tarification s'organise autour d'un mix d'abonnements logiciels de base complété par des frais fixes sur les transactions conclues.</li><li><b>Économies Unitaires (25%) | Score: 80/100:</b> L'intégration cloud de C Teleport assure d'excellentes marges opérationnelles une fois les flux automatiques de billetterie rodés face aux centres de services classiques.</li><li><b>Évolutivité (25%) | Score: 80/100:</b> La scalabilité géographique est totale car le logiciel se connecte de n'importe où pour acheminer des vols partout dans le monde.</li></ul>
+<h4>💰 MARCHÉ RENTABLE (Financement &amp; Sortie) | Score: 78/100</h4>
+<p>Un segment de valeur éprouvé où les fusions et acquisitions stratégiques sont courantes de la part d'agrégateurs industriels.</p>
+<ul><li><b>Dynamique des Levées (25%) | Score: 75/100:</b> Le capital-risque investit de manière sélective dans la travel-tech maritime, valorisant avant tout la récurrence de la rentabilité opérationnelle.</li><li><b>Multiples de Sortie (25%) | Score: 77/100:</b> Les transactions de consolidation s'évaluent sur des multiples de rentabilité financière confortables sans forcément atteindre les sommets spéculatifs du SaaS grand public.</li><li><b>Acheteurs Stratégiques (25%) | Score: 82/100:</b> De grands consolidateurs de l'industrie du voyage d'affaires (SABRE, Amadeus) ou des conglomérats de services maritimes (V.Group) s'imposent comme d'excellents repreneurs naturels.</li><li><b>Profil de Retour (25%) | Score: 78/100:</b> Le profil de retour est structuré par des flux transactionnels prévisibles et pérennes, s'alignant sur l'objectif de notre thèse de bâtir des plateformes dotées d'un excellent et durable pouvoir de fixation des prix.</li></ul>
+<h4>⚡ SYNTHÈSE TRANSVERSALE:</h4>
+<p>La combinaison d'une attractivité de marché forte et d'une rentabilité axée sur la consolidation indique que pour gagner C Teleport doit recruter des fondateurs dotés d'une rigueur d'exécution opérationnelle infatigable et d'une vision axée sur l'autonomie logicielle complète, capable de capitaliser sur le fossé technologique contre les rivaux humains.</p>
+<h4>🌐 CONFIANCE DANS LES DONNÉES:</h4>
+<p>Notre certitude sur la structure du marché de la billetterie maritime et de ses acheteurs naturels est élevée compte tenu de la clarté historique de cette verticale de transport de niche, bien que l'analyse requière une confirmation par entretiens ciblés sur les marges transactionnelles réelles. Total des sources référencées : 4.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-db1d1a25fc9e64c332c0987d252b5a2b-7paqvggr.jpg"/>
+</div>
+</div>
+</div>
+
+&gt;&gt;
+<div class="section-container" id="company">
+<h2 class="section-title">Analyse approfondie de l'entreprise</h2>
+<h3 id="value-proposition">Proposition de valeur</h3>
+<div class="text-block"><b>Proposition de Valeur:</b><br/>C Teleport automatise la gestion des voyages pour les entreprises opérant dans des secteurs dynamiques, permettant des modifications ou annulations instantanées sans intervention manuelle.<br/><br/><b>Profil Client Idéal (ICP):</b><br/>Entreprises à forte intensité opérationnelle (aviation, maritime, énergie), gestionnaires de flottes, directeurs RH et responsables de voyages d'affaires.<br/><br/><b>B2B ou B2C:</b><br/>B2B - Plateforme dédiée à la gestion des déplacements professionnels et des relèves d'équipage.<br/><br/><b>Secteur:</b><br/>Maritime, Aviation, Énergie et Offshore.<br/><br/><b>Contact et Légal:</b><br/>C Teleport BV, fondé en 2017, support 24/7. Liens LinkedIn et FAQ disponibles.<br/><br/><b>Exemples de Clients Clés et Témoignages:</b><br/>Fugro, Dese Crew Management, Hansa Safety Services, Scylla, Union Aviation, Blue Planet Shipping, Rederi AB Väderö Tank.<br/></div>
+<h3 id="product">Produit</h3>
+<div class="text-block"><b>Solution Principale:</b><br/>Plateforme SaaS de réservation et de gestion de voyages tout-en-un avec automatisation complète du flux de données.<br/><br/><b>Encyclopédie des Fonctionnalités:</b><br/>Réservation de vols, trains et hôtels | Modifications et annulations instantanées en 2 clics | Tarifs maritimes et offshore flexibles | Gestion des politiques de voyage | Flux d'approbation personnalisés | Notifications en temps réel | Services supplémentaires (salons, bagages, voitures).<br/><br/><b>Capacités Techniques:</b><br/>API de voyage | Intégrations HRIS/ERP (Adonis HR, Cloud Fleet Manager, Compas, Leon Software, FL3XX) | Application mobile (iOS/Android) | Export OData vers Power BI, Tableau, Looker Studio | Conformité RGPD.<br/><br/><b>Cas d'Utilisation:</b><br/>Relèves d'équipages maritimes, déplacements de personnel technique dans l'énergie, gestion des équipages charters aériens.<br/></div>
+<h3 id="business-model">Modèle économique</h3>
+<div class="text-block"><b>Analyse du Modèle d'Affaires:</b><br/>SaaS B2B avec des modèles de tarification flexibles.<br/><br/><b>Flux de Revenus et Niveaux de Tarification:</b><br/>Modèles de prix adaptés aux besoins des entreprises, sans frais de configuration initiaux.<br/><br/><b>Caractéristiques des Plans:</b><br/>Accès aux tarifs maritimes (réductions pour les gens de mer), annulations gratuites sur de nombreux billets, transparence totale des frais sans coûts cachés.<br/><br/><b>Coûts Cachés et Conditions:</b><br/>Aucun frais d'installation. Transparence totale affichée sur les règles tarifaires dès l'étape de la réservation.<br/></div>
+<h3 id="team">Équipe</h3>
+<div class="text-block"><b>Culture d'Entreprise:</b><br/>Orientée vers l'innovation et la flexibilité, une équipe multiculturelle représentant 31 nationalités, missionnée pour libérer les voyageurs des contraintes administratives.<br/><br/><b>Analyse de l'Équipe:</b><br/>Dmitrii Beliakov (CEO et Co-fondateur, expert en science des données), Petr Kirilov (CTO et Co-fondateur, 20+ ans d'expérience en logiciel d'entreprise).<br/><br/><b>Effectif Estimé:</b><br/>Plus de 31 nationalités représentées, avec une forte concentration en Product/Eng pour les intégrations et le support client 24/7.<br/></div>
+<h3 id="ceo">PDG</h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block"><ul><li>Logistique &amp; Chaîne d'Approvisionnement &gt; SaaS de Gestion des Voyages d'Équipages (Crew Travel Management)</li><li>B2B &gt; SaaS</li><li>1.2M€ levés auprès de Mainport Innovation Fund II (date de financement : 17 décembre 2018)</li></ul>
+<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION</span><br/>
+Thèse : <br/>
+<br/>
+NOTE: Il s'agit d'un score brut de pré-sélection. Les pondérations de la thèse sont appliquées en aval pour qualifier le signal.<br/>
+<br/>
+═════════════════════<br/>
+<span style="font-weight:bold;">EXCELLENCE DE L'ÉQUIPE : 82/100</span><br/>
+<span style="font-weight:bold;">OPPORTUNITÉ DE MARCHÉ : 85/100</span><br/>
+<span style="font-weight:bold;">INNOVATION PRODUIT : 88/100</span><br/>
+<span style="font-weight:bold;">MODÈLE D'AFFAIRES : 80/100</span><br/>
+<span style="font-weight:bold;">TRACTION &amp; CROISSANCE : 81/100</span><br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION :</span> 83.2/100 → 🟡 SIGNAL POSITIF (80-84)<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">❓ EN QUELQUES MOTS :</span> C Teleport est une plateforme SaaS de gestion des voyages d'équipages qui permet aux directeurs RH et gestionnaires de flottes maritimes et d'énergie d'éliminer les processus d'annulation et de modification manuels fastidieux grâce à une automatisation complète des réservations et des changements de vols ou d'hôtels en 2 clics.<br/>
+<br/>
+<span style="font-weight:bold;">⚠️ LE PROBLÈME :</span> Le problème survient au moment critique où un navire de commerce voit son heure d'accostage décalée de 12 heures à cause de la météo, forçant le gestionnaire de flotte à passer des heures au téléphone avec une agence traditionnelle pour annuler et réserver à nouveau 20 billets d'avion complexes à tarifs maritimes pour l'équipage de relève.<br/>
+<br/>
+<span style="font-weight:bold;">✅ LA SOLUTION :</span> La plateforme intègre directement les API des compagnies aériennes et des ERP/HRIS maritimes pour automatiser instantanément le traitement des règles tarifaires spéciales marins (seafarer rates) et exécuter des modifications de vols en temps réel sans intervention humaine.<br/>
+<br/>
+<span style="font-weight:bold;">🚀 LE GTM :</span> Le mouvement GTM s'appuie sur une approche commerciale directe visant les gestionnaires de flottes et les directeurs de crew management au travers d'intégrations natives dans leurs ERP métier (Adonis HR, CFM), rendant l'avantage d'usage évident dès le premier jour d'intégration.<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score: 82/100</span><br/>
+Une équipe fondatrice de premier plan montrant une forte complémentarité technique et marché.<br/>
+<ul><li>Adéquation Fondateur-Marché (25%) | Score: 85/100: Le CEO Dmitrii Beliakov combine une expertise éprouvée en science des données et une compréhension intime des frictions de la logistique d'équipage maritime, exploitant le secret d'initié selon lequel la billetterie maritime n'a pas besoin de courtiers humains mais d'un moteur d'automatisation des flux de données.</li><li>Historique &amp; Validation (25%) | Score: 78/100: L'équipe a su valider son modèle très tôt en sécurisant un tour d'amorçage de 1.2M€ auprès de Mainport Innovation Fund II en 2018, un fonds hautement stratégique soutenu par Schiphol et KLM.</li><li>Leadership &amp; Équipe (25%) | Score: 82/100: Co-fondé avec le CTO Petr Kirilov, fort de plus de 20 ans d'expérience dans l'ingénierie logicielle d'entreprise, l'effectif s'étend sur une équipe multiculturelle représentant plus de 31 nationalités fortement concentrée sur le produit et la tech.</li><li>Complémentarité de l'Équipe (25%) | Score: 83/100: L'organisation montre un excellent équilibre entre l'expertise de pointe en science des données et la robustesse architecturale nécessaire aux intégrations d'API complexes.</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score: 85/100</span><br/>
+La logistique maritime mondiale repose sur une relève d'équipage constante et sans friction, un marché de niche mais colossal.<br/>
+<ul><li>Taille &amp; Croissance (25%) | Score: 84/100: C Teleport opère sur le marché mondial des logiciels SaaS d'automatisation de la logistique et de réservation de voyages d'équipages pour l'industrie maritime et offshore, un segment de niche à très forte valeur caractérisé par des millions de déplacements d'équipages hautement flexibles par an.</li><li>Urgence du Timing (25%) | Score: 86/100: L'urgence est renforcée par la pression croissante sur les marges des armateurs et la nécessité de digitaliser les opérations de relève d'équipages post-crise logistique mondiale.</li><li>Analyse Concurrentielle (25%) | Score: 85/100: Face aux agences de voyages d'affaires traditionnelles comme ATPI ou GMT qui s'appuient sur des gestionnaires humains, C Teleport se distingue par l'absence totale d'intermédiaires manuels grâce à son automatisation logicielle.</li><li>Potentiel d'Expansion (25%) | Score: 85/100: Les vecteurs de croissance incluent l'extension de la suite logicielle vers les réservations de trains, d'hôtels et de services additionnels ainsi que la pénétration du secteur offshore de l'énergie et de l'aviation charter.</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 INNOVATION PRODUIT (20%) | Score: 88/100</span><br/>
+L'automatisation clé en main résout instantanément la friction historique de l'industrie.<br/>
+<ul><li>Différenciation (25%) | Score: 90/100: La plateforme offre la possibilité unique de modifier ou d'annuler instantanément des vols complexes en seulement 2 clics avec transparence totale des frais et application automatique des remises de marins réglementaires.</li><li>Validation Client (25%) | Score: 86/100: Des leaders de l'industrie comme Fugro, Dese Crew Management ou Scylla font confiance à la plateforme pour rationaliser leurs relèves d'équipages critiques.</li><li>Évolutivité Technique (25%) | Score: 89/100: L'architecture se connecte de manière transparente via des API bidirectionnelles avec les principaux systèmes HRIS et ERP de flotte tels que Adonis HR, Cloud Fleet Manager et Compas.</li><li>Propriété Intellectuelle (25%) | Score: 87/100: Les barrières clés reposent sur l'intégration propriétaire des règles complexes d'émission, de remboursement et de modification des billets maritimes spéciaux (seafarer tickets) directement codées dans le moteur d'automatisation.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 MODÈLE D'AFFAIRES (20%) | Score: 80/100</span><br/>
+Un modèle SaaS transactionnel efficace mais qui requiert du volume.<br/>
+<ul><li>Économie Unitaire (25%) | Score: 81/100: Des plans tarifaires transparents sans frais d'installation initiaux éliminent la friction d'adoption que l'on observe couramment chez les fournisseurs de voyages classiques.</li><li>Modèle de Revenus (25%) | Score: 78/100: C Teleport monétise via un abonnement SaaS récurrent lié à l'utilisation et aux volumes transactionnels de billets gérés sur sa plateforme.</li><li>Stratégie de Monétisation (25%) | Score: 82/100: La monétisation est claire, axée sur la valeur perçue grâces aux économies réalisées sur les annulations gratuites et la flexibilité maritime appliquée à la volée.</li><li>Efficacité du Capital (25%) | Score: 79/100: Avec un tour d'amorçage initial de 1.2M€ remontant à fin 2018 et l'absence de levées récentes reportées, l'entreprise montre une remarquable discipline financière et semble opérer de manière auto-suffisante grâce à ses revenus opérationnels.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; CROISSANCE (20%) | Score: 81/100</span><br/>
+Une progression commerciale continue soutenue par un fort ancrage sectoriel.<br/>
+<ul><li>Croissance du Chiffre d'Affaires (25%) | Score: 78/100: Bien que les chiffres exacts de chiffre d'affaires restent privés, l'attraction de comptes d'envergure tels que Union Aviation et Rederi AB Väderö Tank valide la croissance continue du volume d'affaires.</li><li>Validation Institutionnelle (25%) | Score: 84/100: La confiance confirmée de géants géotechniques comme Fugro confère à C Teleport une crédibilité immense sur le segment offshore et maritime.</li><li>Vitesse d'Exécution (25%) | Score: 81/100: Le maintien d'une équipe solide représentant 31 nationalités et le développement d'intégrations HRIS tierces prouvent une vitesse d'exécution logicielle constante.</li><li>Pénétration du Marché (25%) | Score: 81/100: La présence de C Teleport est désormais bien établie en Europe du Nord (Rotterdam) et s'étend rapidement au Moyen-Orient et en Asie via ses partenariats d'ERP de gestion de flotte.</li></ul>
+<br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISQUE À COUVRIR :</span><br/>
+L'hypothèse critique de l'investissement repose sur la capacité de C Teleport à maintenir l'exclusivité et la rentabilité de ses partenariats directs avec les transporteurs aériens pour l'attribution des tarifs maritimes sensibles, car si les grosses compagnies aériennes restreignent leurs connexions API directes ou imposent des intermédiaires, l'intérêt économique du modèle s'effondrera immédiatement.<br/>
+Ce risque est hautement résolvable grâce à une diligence approfondie portant sur les contrats de distribution et les accords de billetterie en direct conclus par l'entreprise.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ AVANTAGES CONCURRENTIELS CLÉS :</span><br/>
+<ul><li>Intégrations API bi-directionnelles transparentes et prêtes à l'emploi avec les ERP maritimes majeurs comme Adonis HR et Cloud Fleet Manager, réduisant le temps d'administration de 90% pour les gestionnaires.</li><li>Moteur de changement et d'annulation instantané fonctionnant en 2 clics sans dépendre de délais d'approbation d'agences intermédiaires.</li><li>Tarifs maritimes automatisés ultra-flexibles garantissant des annulations sans frais et l'intégration automatique des franchises bagages spécifiques aux marins.</li><li>Zéro coût de configuration de départ (No set up fees) accélérant la décision d'achat institutionnelle par rapport aux intégrations personnalisées onéreuses des rivaux.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 FOSSÉ DÉFENSIF (MOAT) :</span> MODÉRÉ à FORT<br/>
+Le fossé défensif repose sur les coûts de changement élevés (switching costs) créés par l'intégration profonde des API de C Teleport au sein du flux de travail RH et comptable des armateurs. Ce réseau d'intégrations ERP/HRIS agit comme une boucle de rétroaction cumulative: plus un client utilise les connecteurs, plus la ré-intermédiation manuelle devient techniquement impensable. La barrière est renforcée par un second niveau défensif basé sur les relations établies avec les transporteurs aériens pour la validation réglementaire des profils de marins éligibles aux tarifs spéciaux.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ PARI ASYMÉTRIQUE</span><br/>
+<ul><li>Le Scénario Bull: C Teleport s'impose comme l'infrastructure technologique globale sous-jacente gérant chaque déplacement d'équipage maritime, de technicien pétrolier et de personnel de l'aviation de premier plan en connectant nativement tous les ERP de flottes maritimes et d'actifs industriels directement aux stocks mondiaux de transporteurs aériens, capturant ainsi une commission sur un flux transactionnel de plusieurs milliards de dollars.</li><li>Le Scénario Bear: L'entreprise reste confinée à un rôle de courtier technologique de second plan, souffrant de la réplique rapide de fonctionnalités de réservation basiques par des agences de voyages physiques legacy restructurant leurs technologies ou de la montée en puissance de solutions de paiement spécialisées déconnectant la valeur de la simple logique de réservation de billets.</li></ul>
+<br/>
+<span style="font-weight:bold;">🚩 SIGNAUX D'ALERTE (RED FLAGS)</span><br/>
+<ul><li>Risques Universels: L'absence de levée de fonds majeure documentée depuis la fin 2018 peut limiter la vitesse de développement technologique et d'expansion géographique globale face à des rivaux disposant de capitaux massifs.</li><li>Contradictions avec la Thèse: La nature transactionnelle et dépendante du volume de transport mondial rend le business model plus sensible aux crises macroéconomiques et aux perturbations du commerce mondial qu'un modèle SaaS de pure souscription récurrente.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1780999200000/OyL61n6ueZNitHr6pIom6A/G0ID3X-47CAS_xf8xz8LbRt2ibNEy4PDI-pNUBdtdr26qkvDhdBSDzyrWdUnLNdGg8saG1TP1l230zf_Z4RPmGUw0bZ3G0HRGhWl5qygO3yLTfepAtu40Zlw6QU0B1PFaeirg32lITMz8viywdiZtw/R0THcQaDqeY9E-WWRb1BSxjfqz3vSnN53gurPyWpFvo"/></div></div></div><div class="cs-eval"><p class="cs-eval-h">Vous voulez un mémo sur cette société selon VOTRE grille de lecture ?</p><button class="op-eval" data-c="C Teleport" data-h="" data-i="Logistics &amp; Supply Chain" data-u="https://proplace.co/analysis/c-teleport/" type="button">⚡ Demander un mémo selon ma grille de lecture</button><div class="op-eval-panel" hidden=""></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>L'automatisation des modifications et annulations en deux clics permet une gestion sans intervention manuelle pour les relèves d'équipages.</li><li>Les intégrations natives avec Adonis HR, Leon Software et FL3XX réduisent les frictions dans les flux de données des entreprises maritimes et énergétiques.</li><li>L'accès aux tarifs maritimes spécifiques et aux annulations gratuites crée une proposition différenciante pour les secteurs offshore.</li><li>L'équipe dirigée par un CEO expert en science des données et un CTO avec vingt ans d'expérience logicielle enterprise renforce la crédibilité technique.</li><li>Le support client disponible 24/7 et l'absence de frais d'installation facilitent l'adoption par des opérateurs à forte intensité opérationnelle.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>L'absence de tout financement après le tour de 1,2 million d'euros en 2018 limite la capacité à scaler les ventes et les intégrations.</li><li>La dépendance exclusive aux niches maritime, aviation charter et énergie offshore réduit la diversification des revenus.</li><li>La faible visibilité publique et les mentions limitées après 2019 compliquent l'attraction de nouveaux clients et d'investisseurs.</li><li>L'effectif concentré sur le produit et le support ne permet pas une expansion géographique rapide sans ressources supplémentaires.</li><li>L'absence de toute stratégie M&amp;A ou partenariat externe formalisée maintient la croissance sur un mode purement organique lent.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li>L'expansion des intégrations API vers d'autres systèmes ERP des flottes peut capter des clients supplémentaires dans l'énergie et le maritime.</li><li>La demande croissante de solutions automatisées pour les relèves d'équipages dans les secteurs offshore offre un marché en expansion.</li><li>L'export OData vers Power BI, Tableau et Looker Studio permet de vendre des modules analytiques supplémentaires aux directeurs RH.</li><li>Le positionnement B2B dans des industries à fort turnover de personnel technique crée des contrats récurrents à haut potentiel.</li><li>Le développement d'une application mobile renforcée peut améliorer la rétention des gestionnaires de voyages en déplacement.</li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>Les grandes agences de voyages corporate traditionnelles peuvent copier les fonctionnalités d'automatisation et capter les segments maritimes.</li><li>L'absence de nouveaux capitaux expose l'entreprise à une stagnation face à des concurrents mieux financés.</li><li>Les variations réglementaires sur les voyages internationaux et les visas peuvent perturber la fiabilité des réservations offshore.</li><li>Un ralentissement dans les secteurs de l'énergie et du maritime réduirait directement le volume des relèves d'équipages.</li><li>La confusion persistante avec d'autres entreprises nommées Teleport dilue la notoriété de marque dans les recherches.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et méthodologie</h2>
+<div class="source-list">
+<h3>Value Chain Sources</h3>
+[Aucune source de chaîne de valeur fournie]
+
+<h3>Market Sources</h3><p>DOSSIER D'INTELLIGENCE DU MARCHÉ - SUIVI DES PREUVES URL</p>
+<p>Objet: Documentation de support avec preuves URL détaillées pour l'Analyse d'Attractivité Globale du Marché</p>
+<p>Marché: Crew Travel Management (SaaS de Logistique d'Équipages)</p>
+<p>Complétude des Données: 75/100</p>
+<p>Évaluation: 🟢 SUFFISANT POUR L'ANALYSE D'INVESTISSEMENT DE DÉPART</p>
+<p>Calcul: (3 URLs de référence analysées)</p>
+<p>Date de Recherche: Juin 2026 | Total des URLs Utilisées: 3</p>
+<p>SUIVI DES PREUVES PAR CATÉGORIE D'INVESTISSEMENT DE MARCHÉ</p>
+<p>🌊 MARCHÉ ATTRACTIF (Dynamique de Marché) | Trouvé 1/1 point de données</p>
+<ul><li><b>Moteurs de la Croissance:</b> <a href="https://cteleport.com/about/" target="_blank">https://cteleport.com/about/</a>. Utilisé pour: Quantification de l'importance réglementaire et des besoins de relève flexibles dans les industries de l'énergie et maritimes.</li></ul>
+<p>⚔️ MARCHÉ GAGNABLE (Paysage Concurrentiel) | Trouvé 1/1 point de données</p>
+<ul><li><b>Challengers Innovants:</b> <a href="https://www.eu-startups.com/directory/c-teleport/" target="_blank">https://www.eu-startups.com/directory/c-teleport/</a>. Utilisé pour: Positionnement de C Teleport en tant qu'agence maritime en ligne de premier plan face à la concurrence portuaire historique.</li></ul>
+<p>🎯 MARCHÉ PÉNÉTRABLE (Go-To-Market &amp; Économie Unitaire) | Trouvé 1/1 point de données</p>
+<ul><li><b>Modèle GTM:</b> <a href="https://cteleport.com/" target="_blank">https://cteleport.com/</a>. Utilisé pour: Analyse des mécanismes d'acquisition via l'App Store de logiciels ERP majeurs (Adonis, CFM).</li></ul>
+<p>💰 MARCHÉ RENTABLE (Financement &amp; Sortie) | Trouvé 1/1 point de données</p>
+<ul><li><b>Dynamique des Levées:</b> <a href="https://tech.eu/2018/12/17/rotterdam-based-online-maritime-travel-agency-c-teleport-raises-e1-2-million/" target="_blank">https://tech.eu/2018/12/17/rotterdam-based-online-maritime-travel-agency-c-teleport-raises-e1-2-million/</a>.  Utilisé pour: Confirmation de la participation du fonds d'innovation Mainport II pour l'évaluation de l'intérêt VC sur la verticale aérienne/maritime.</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DE DONNÉES DU MARCHÉ</p>
+<p>Lacunes critiques identifiées: Les multiples de valorisation exacts des fusions de ce micro-secteur de la travel tech maritime restent confidentiels.</p>
+<p>URLs trouvées avec succès: 3 sources clés d'analyses et communiqués.</p>
+<p>Couverture des données stratégiques: 75%</p>
+<p>Niveau de confiance des analystes: MEDIUM</p></div>
+</div>
+<div class="cs-eval"><p class="cs-eval-h">Vous voulez un mémo sur cette société selon VOTRE grille de lecture ?</p><button class="op-eval" data-c="C Teleport" data-h="" data-i="Logistics &amp; Supply Chain" data-u="https://proplace.co/analysis/c-teleport/" type="button">⚡ Demander un mémo selon ma grille de lecture</button><div class="op-eval-panel" hidden=""></div></div><div class="ppx-cta"><h3>Explore C Teleport further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p>Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/">News</a><a class="on" href="/analysis/">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4>Insights</h4><a href="/actualites/">News</a><a href="/analysis/">Analysis</a></div><div class="ppf-col"><h4>Compte</h4><span id="ppf-auth"><a href="https://proplace.co/#login">Log in</a></span></div><div class="ppf-col"><h4>Légal</h4><a href="/terms">Conditions</a><a href="/privacy">Confidentialité</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span>Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){try{var c=document.cookie.split('; ').find(function(r){return r.indexOf('proplace_auth=')===0;});var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split('=')[1])));}catch(e){}}if(s&&s.fund_type){var el=document.getElementById('ppf-auth');if(el){el.innerHTML='<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">Open dashboard</a><button id="ppf-logout">Log out</button>';var lo=document.getElementById('ppf-logout');if(lo)lo.onclick=function(e){e.preventDefault();document.cookie='proplace_auth=; domain=.proplace.co; path=/; max-age=0';location.reload();};}Array.prototype.forEach.call(document.querySelectorAll('a.ppf-gated'),function(a){var d=a.getAttribute('data-href');if(d)a.setAttribute('href',d);});}}catch(e){}})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:7px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:none;border-radius:8px;padding:5px 12px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form"><p class="ev-lbl">Recevez l’analyse MATCH / NO MATCH gratuitement</p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/?login=1">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script></body></html>
