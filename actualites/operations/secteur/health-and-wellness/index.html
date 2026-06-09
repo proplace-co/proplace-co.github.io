@@ -38,15 +38,17 @@ margin:42px 0 4px;padding-top:22px;border-top:2px solid var(--line);scroll-margi
 article h3{font-size:20px;line-height:1.3;font-weight:700;margin:28px 0 8px;scroll-margin-top:74px}
 article p{margin:0 0 16px}
 article hr{border:none;border-top:1px solid var(--line);margin:30px 0}
-/* Sommaire de l'article (TOC ancré) */
-.toc{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:26px 0}
-.toc-h{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:0 0 12px}
-.toc-grp{margin:0 0 14px}.toc-grp:last-child{margin-bottom:0}
-.toc-g{display:block;font-size:14px;font-weight:700;color:var(--ink);margin:0 0 6px}
-.toc ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:1px 18px}
-.toc li{margin:0}
-.toc li a{font-size:14px;color:var(--accent-dk);line-height:1.7}
-.toc li a:hover{text-decoration:underline}
+/* Sommaire de l'article (TOC ancré) — liens clairement cliquables, libellés courts */
+.toc{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:26px 0}
+.toc-h{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:0 0 14px}
+.toc-grp{margin:0 0 16px}.toc-grp:last-child{margin-bottom:0}
+.toc-g{display:block;font-size:13px;font-weight:800;color:var(--ink);margin:0 0 8px;letter-spacing:-.01em}
+.toc ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:4px 26px}
+.toc li{margin:0;min-width:0}
+.toc li a{display:flex;align-items:baseline;gap:8px;font-size:14px;font-weight:600;color:var(--accent-dk);line-height:1.4;padding:4px 8px;margin:0 -8px;border-radius:7px;text-decoration:none;transition:background .12s}
+.toc li a::before{content:"→";flex:none;color:var(--accent);font-weight:800;font-size:13px}
+.toc li a:hover{background:var(--white);text-decoration:none}
+.toc li a span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:560px){.toc ul{grid-template-columns:1fr}}
 /* CTA newsletter */
 .cta-box{background:var(--bg);border:1px solid var(--line);border-radius:14px;
