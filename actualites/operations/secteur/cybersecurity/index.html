@@ -67,9 +67,13 @@ article hr{border:none;border-top:1px solid var(--line);margin:30px 0}
 .pros-il{font-size:13px;font-weight:800;color:var(--accent-dk);margin:0 0 8px;letter-spacing:-.01em}
 .pros-il span{font-weight:500;color:var(--mid);font-style:italic}
 .pros-inline ul{list-style:none;margin:0;padding:0}
-.pros-inline li{font-size:14.5px;line-height:1.5;color:var(--ink);margin:0 0 6px;padding-left:20px;position:relative}
-.pros-inline li::before{content:"→";position:absolute;left:0;color:var(--accent-dk);font-weight:800}
+.pros-inline li{font-size:14.5px;line-height:1.5;color:var(--ink);margin:0 0 9px;padding-left:20px;position:relative;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-inline li::before{content:"→";position:absolute;left:0;top:0;color:var(--accent-dk);font-weight:800}
 .pros-inline li strong{color:var(--accent-dk)}
+.pros-t{flex:1 1 auto;min-width:0}
+.pros-w{color:var(--mid);font-weight:400}
+.pros-inline li .op-eval,.pros-row .op-eval{flex:0 0 auto;margin-top:0;font-size:11px;font-weight:700;padding:3px 10px;background:var(--accent-dk);border-color:var(--accent-dk)}
+.pros-inline li .op-eval-panel,.pros-row .op-eval-panel{flex:1 1 100%;margin-top:6px}
 /* CTA newsletter */
 .cta-box{background:var(--bg);border:1px solid var(--line);border-radius:14px;
 padding:24px 26px;margin:34px 0}
@@ -484,9 +488,8 @@ border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;tr
 .op-pros:hover{background:var(--bg)}
 .op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
 .op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
-.pros-row{font-size:13.5px;color:var(--ink);padding:4px 0;line-height:1.45}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
 .pros-row strong{color:var(--accent-dk);font-weight:700}
-.pros-row span{color:var(--mid);font-weight:400}
 .comp-row{padding:5px 0}
 .comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
 .comp-row a:hover{color:var(--accent-dk)}
@@ -516,6 +519,9 @@ font-size:13px;margin:0 0 7px;font-family:inherit}
 border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
 .ev-submit:hover{opacity:.82}
 .ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:0 0 20px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
 </style><script>(function(){
 var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
 function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
@@ -566,6 +572,23 @@ function leadForm(panel,b){
     +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
  };
 }
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
 // Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
 // /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
 // les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
