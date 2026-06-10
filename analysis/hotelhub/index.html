@@ -1,0 +1,414 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HotelHub — analyse Exited (Acquired / Buyout) | Proplace</title><meta name="description" content="B2B Software &amp; Cloud · SaaS d&#x27;optimisation et d&#x27;agrégation d&#x27;hôtels pour TMC · Exited (Acquired / Buyout)"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/hotelhub/"><meta property="og:type" content="article"><meta property="og:title" content="HotelHub — analyse Exited (Acquired / Buyout) | Proplace"><meta property="og:description" content="B2B Software &amp; Cloud · SaaS d&#x27;optimisation et d&#x27;agrégation d&#x27;hôtels pour TMC · Exited (Acquired / Buyout)"><meta property="og:url" content="https://proplace.co/analysis/hotelhub/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:14px 0 6px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "HotelHub — Exited (Acquired / Buyout)", "description": "B2B Software & Cloud · SaaS d'optimisation et d'agrégation d'hôtels pour TMC · Exited (Acquired / Buyout)", "inLanguage": "fr", "url": "https://proplace.co/analysis/hotelhub/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/hotelhub/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "HotelHub"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/">News</a><a class="pph-ana on" href="/analysis/">Analysis</a></span></nav></div></header><script>(function(){try{var c=document.cookie.split('; ').find(function(r){return r.indexOf('proplace_auth=')===0;});if(!c)return;var s=JSON.parse(atob(decodeURIComponent(c.split('=')[1])));if(s&&s.fund_type){var el=document.getElementById('pph-auth');if(el)el.innerHTML='<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">Open dashboard</a>';}}catch(e){}})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">HotelHub</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "HotelHub"}]}</script></div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">Royaume-Uni</span>
+<span class="sb-tag">Exited (Acquired / Buyout)</span>
+<span class="sb-tag">B2B Software &amp; Cloud</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">HotelHub</h1>
+<span class="sidebar-tagline">B2B Software &amp; Cloud · SaaS d'optimisation et d'agrégation d'hôtels pour TMC · Exited (Acquired / Buyout)</span>
+<p class="meta-desc" style="margin-bottom: 15px;">La plateforme d'agrégation de contenu hôtelier et de gestion de réservations de référence pour les TMC mondiales.</p>
+<a href="https://www.hotelhub.com/" target="_blank"><i class="fas fa-globe"></i> Site web</a>
+<a href="https://www.linkedin.com/in/jay-virdee-48924b1" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<a href="mailto:jay.virdee@hotelhub.com"><i class="fas fa-envelope"></i> jay.virdee@hotelhub.com</a>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="sb-legend-wrap">
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Market data</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Company data</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#a898c0;display:inline-block;flex-shrink:0;border:1px solid #8878a0;"></span><span></span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; reasoning</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; methodology</span></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorez HotelHub plus en détail ?</h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Réserver un appel stratégique sur HotelHub</a>
+</div>
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="section">
+<h3>Analyser une autre entreprise ?</h3>
+</div>
+<div class="section">
+<h3>Abonnez-vous à la newsletter Proplace ?</h3>
+<p class="meta-desc">Recevez les dernières nouvelles en M&amp;A et levées de fonds.</p>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+</div>
+<div class="section">
+<h3>Vous souhaitez un deal flow propriétaire ?</h3>
+<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Réserver un appel stratégique</a>
+</div>
+<div class="sidebar-logo-wrap">
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">HotelHub</h1>
+<h2 class="subtitle-category">B2B Software &amp; Cloud ➜ SaaS d'optimisation et d'agrégation d'hôtels pour TMC ➜ Logiciel SaaS d'agrégation de contenu multi-sources et d'optimisation automatisée des tarifs hôteliers pour les agences de gestion de voyages d'affaires.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title">Résumé du marché</h2>
+<div class="split-container">
+<div class="text-col">
+<p>CORE VALUE SEGMENTATION:</p>
+<ul><li>Logiciels B2B &amp; Cloud &gt; SaaS d'optimisation et d'agrégation d'hôtels pour TMC</li><li>B2B &gt; SaaS</li></ul>
+<p>ATTRACTIVITÉ DU MARCHÉ (Dynamique): 80/100 × 25% = 20 pts MANIABILITÉ DU MARCHÉ (Concurrence): 75/100 × 25% = 18.75 pts PÉNÉTRABILITÉ DU MARCHÉ (GTM): 85/100 × 25% = 21.25 pts RENTABILITÉ DU MARCHÉ (Sorties): 90/100 × 25% = 22.5 pts</p>
+<p></p>
+<h4>❓ DÉFINITION DU MARCHÉ</h4>
+<p>Le marché cible est celui de l'agrégation de contenus d'hébergement hôtelier et de l'automatisation des flux de réservation pour les Agences de Gestion de Voyages (TMC) et les plateformes d'analyse de dépenses d'entreprise.</p>
+<p>Les acheteurs recherchent une brique d'intégration unifiée permettant de contourner la complexité technique et le coût exorbitant de la connexion individuelle à des centaines d'API d'hôtels et de GDS. L'essentiel de la marge se concentre aujourd'hui sur l'optimisation tarifaire post-réservation et la gestion de la conformité des politiques de voyage.</p>
+<h4>💬 NOTRE THÈSE DE MARCHÉ</h4>
+<p>Le paysage des technologies du voyage d'affaires a franchi un point de non-retour marqué par la fragmentation irrémédiable du contenu GDS traditionnel et l'essor des solutions NDC et d'accès direct API. Les distributeurs legacy sont paralysés par leur architecture de base héritée des années 1990, incapable de concilier en temps réel des flux de tarifs dynamiques avec des exigences de paiement virtuel sophistiquées.</p>
+<p>L'angle d'attaque gagnant consiste à s'installer comme une plateforme de routage agnostique et ultrarapide, capturant la donnée de réservation à la source. Cette fenêtre d'opportunité se refermera à mesure que les grands acquéreurs industriels auront finalisé leur propre transition vers d'immenses plateformes technologiques consolidées verticalement.</p>
+<h4>🧠 NOTRE CONVICTION &amp; PARI</h4>
+<p><b>🟢 CONVICTION ÉLEVÉE</b></p>
+<p>Notre pari fondamental est que le marché de l'hébergement d'affaires ne sera plus jamais dominé par les seuls GDS traditionnels et qu'un agrégateur neutre et robuste est absolument indispensable pour maintenir la rentabilité des TMC.</p>
+<p>Nous prédisons que les TMC n'ayant pas intégré d'outils de re-shopping automatisé d'ici 18 mois perdront leurs clients corporate face à des plateformes pure-players de gestion des frais professionnels. Le signal clé que nous chercherons lors de notre premier appel est la vitesse d'activation de nouveaux connecteurs tiers et la croissance des volumes de transactions transitant hors GDS traditionnels.</p>
+<h4>🌊 MARCHÉ ATTRACTIF (Moteur de Croissance) | Score: 80/100</h4>
+<p>Ce score reflète un marché porté par une refonte structurelle des processus plutôt que par une simple croissance organique des volumes de voyages.</p>
+<ul><li><b>Taille du Marché (25%) | Score: 78/100:</b> Le marché de la TravelTech d'entreprise représente des milliards de dollars de flux financiers, le segment hôtelier affichant la plus forte rentabilité unitaire.</li><li><b>Facteurs de Croissance (25%) | Score: 82/100:</b> Intensification du besoin d'automatisation pour contrer la hausse des coûts opérationnels et la complexité tarifaire accrue.</li><li><b>Timing (25%) | Score: 85/100:</b> La phase actuelle est propice en raison de l'ouverture des grands acteurs comme SAP Concur aux connecteurs indépendants en 2025/2026.</li><li><b>Risques (25%) | Score: 75/100:</b> Le risque macroéconomique de réduction globale des budgets voyages d'affaires reste la principale menace à surveiller.</li></ul>
+<h4>⚔️ MARCHÉ MANIABLE (Concurrence) | Score: 75/100</h4>
+<p>Le paysage concurrentiel est dense mais fragmenté, favorisant les acteurs dotés d'intégrations déjà éprouvées et certifiées par de grands noms.</p>
+<ul><li><b>Acteurs Historiques (25%) | Score: 72/100:</b> Des GDS dominants (Amadeus, Sabre) qui peinent à offrir la flexibilité tarifaire requise sur le pur hors-GDS.</li><li><b>Nouveaux Entrants (25%) | Score: 75/100:</b> Présence de solutions spécialisées dans le re-shopping, mais souvent dépourvues de connecteurs globaux.</li><li><b>Espaces Vierges (25%) | Score: 78/100:</b> Une opportunité majeure de capture de valeur sur la couche de réconciliation financière automatisée post-séjour.</li><li><b>Défendabilité (25%) | Score: 75/100:</b> Les barrières clés reposent sur l'interfaçage complexe des outils de paiement et le support 24/7 des agents de voyage.</li></ul>
+<h4>🎯 MARCHÉ PÉNÉTRABLE (Opérations &amp; GTM) | Score: 85/100</h4>
+<p>La distribution B2B par intégration API offre des leviers d'échelle massifs une fois les premiers grands contrats cadres TMC sécurisés.</p>
+<ul><li><b>Modèle Commercial (25%) | Score: 88/100:</b> Vente consultative hautement stratégique impliquant de longs cycles d'intégration mais offrant des taux de rétention de premier plan.</li><li><b>Modèle de Prix (25%) | Score: 84/100:</b> Combinaison d'abonnements annuels pour l'usage technologique et de clauses à la transaction.</li><li><b>Rentabilité Unitaire (25%) | Score: 82/100:</b> Ratios d'efficacité économique préservés par la récurrence des flux d'affaires et la fidélité des grands réseaux.</li><li><b>Évolutivité (25%) | Score: 86/100:</b> L'intégration de nouvelles API d'hôtels s'effectue sans surcoût d'infrastructure majeur grâce à des architectures cloud flexibles.</li></ul>
+<h4>💰 MARCHÉ RENTABLE (Sorties &amp; Financement) | Score: 90/100</h4>
+<p>Le niveau de consolidation industrielle actuel fait de la TravelTech B2B l'un des espaces M&amp;A les plus dynamiques du logiciel.</p>
+<ul><li><b>Activité d'Investissement (25%) | Score: 80/100:</b> Intérêt marqué des fonds de capital-investissement pour les agrégateurs de flux résilients générant de l'EBITDA.</li><li><b>Multiples de Sortie (25%) | Score: 85/100:</b> Ratios de transactions avantageux pour les briques technologiques indispensables à l'architecture globale.</li><li><b>Acquéreurs Stratégiques (25%) | Score: 95/100:</b></li><li><b>Profil de Retour (25%) | Score: 90/100:</b></li></ul>
+<h4>⚡ SYNTHÈSE TRANSVERSALE :</h4>
+<p></p>
+<h4>🌐 CONFIANCE DE RECHERCHE:</h4>
+<p>Notre analyse s'appuie sur un corpus documentaire suffisant de 8 sources directes validant le mouvement stratégique récent.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-ad6757304ea31fb442c0f971d71696bd-fgqh4cdb.jpg"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title">Analyse approfondie de l'entreprise</h2>
+<h3 id="value-proposition">Proposition de valeur</h3>
+<div class="text-block"><b>Proposition de Valeur:</b><br/>Technologie pionnière de réservation d'hôtels qui consolide l'ensemble du stack technologique hôtelier en une plateforme unique et intuitive pour les agences de gestion de voyages (TMC).<br/><br/><b>Profil Client Idéal (ICP):</b><br/>Agences de gestion de voyages (TMC) mondiales, gestionnaires de voyages d'affaires, grandes entreprises nécessitant une gestion optimisée des réservations hôtelières.<br/><br/><b>B2B ou B2C:</b><br/>B2B - HotelHub se positionne exclusivement comme un partenaire technologique pour les professionnels du voyage d'affaires.<br/><br/><b>Industrie:</b><br/>Technologies du voyage (TravelTech / SaaS pour le secteur hôtelier).<br/><br/><b>Contact &amp; Legal:</b><br/>Siège social à Londres (Royaume-Uni), bureaux à Bengaluru et Goa (Inde). Fondée en 2008.<br/><br/><b>Exemples de Clients Clés &amp; Témoignages:</b><br/>AMEX Global Business Travel, CTM, Flight Centre Travel Group, Reed &amp; Mackay, CWT, Travelodge, CDS Groupe. Amex GBT rapporte une augmentation de 25% des revenus de vente dès la première année.<br/></div>
+<h3 id="product">Produit</h3>
+<div class="text-block"><b>Solution Centrale:</b><br/>Plateforme de réservation hôtelière intelligente qui agrège le contenu multi-sources (GDS et non-GDS) avec des outils d'automatisation.<br/><br/><b>Encyclopédie des Fonctionnalités:</b><br/>Agrégation de contenu GDS/non-GDS | Rate Optimiser (re-shopping automatique) | Moteur de recherche personnalisé selon les politiques de voyage | Rapports et analyses de revenus | Gestion automatisée des segments PNR | Plateformes dédiées pour agents et voyageurs.<br/><br/><b>Capacités Techniques:</b><br/>API de connexion | Intégration complète avec SAP Concur, Amadeus, Sabre, Travelport | Support des solutions de paiement (AirPlus, Conferma, eNett) | IA et Machine Learning pour l'optimisation des tarifs.<br/><br/><b>Cas d'Usage:</b><br/>Augmentation du taux d'attachement hôtelier, réduction du temps de réservation manuelle, optimisation des économies après réservation via le suivi des prix.<br/></div>
+<h3 id="business-model">Business Model</h3>
+<div class="text-block"><b>Analyse du Modèle d'Affaires:</b><br/>SaaS B2B (Software as a Service) basé sur un abonnement ou un modèle transactionnel pour les TMC.<br/><br/><b>Flux de Revenus &amp; Niveaux de Tarification:</b><br/>Contrats pluriannuels, frais d'accès à l'API, commissions optimisées via l'outil Rate Optimiser.<br/><br/><b>Caractéristiques des Plans:</b><br/>Solutions personnalisées selon les besoins exacts de la TMC. Inclusion de l'outil Rate Optimiser permettant d'économiser plus de 1,5 million de dollars par mois collectivement.<br/><br/><b>Coûts Cachés &amp; Conditions:</b><br/>Non mentionnés explicitement, mais l'intégration via API et la configuration personnalisée peuvent impliquer des frais de mise en œuvre initiaux.<br/></div>
+<h3 id="team">Équipe</h3>
+<div class="text-block"><b>Culture d'Entreprise:</b><br/>Vision axée sur la révolution de l'industrie du voyage d'affaires par la technologie. Esprit d'innovation et ambition de devenir leader mondial.<br/><br/><b>Analyse de l'Équipe:</b><br/>Fondée par deux vétérans de l'industrie du voyage en 2008. CEO Jay Virdee. L'équipe compte plus de 200 collaborateurs répartis entre le Royaume-Uni et l'Inde.<br/><br/><b>Offres d'Emploi &amp; Titres:</b><br/>Non listées spécifiquement dans le texte, mais présence de mentions de recrutement de 'talents' pour incarner les valeurs de la marque.<br/><br/><b>Effectif Estimé:</b><br/>Total de 200+ employés. Répartition estimée :<br/>Produit &amp; Ingénierie: 60%<br/>Marketing: 7.5%<br/>Ventes: 7.5%<br/>Support &amp; IT: 15%<br/>Général &amp; Admin (G&amp;A): 10%<br/></div>
+<h3 id="ceo">PDG</h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block"><ul><li>Logiciels B2B &amp; Cloud &gt; SaaS d'optimisation et d'agrégation d'hôtels pour TMC</li><li>B2B &gt; SaaS</li></ul>
+<br/>
+<span style="font-weight:bold;">ÉVALUATION DU PRE-SCREENING</span><br/>
+Thèse : <br/>
+<br/>
+NOTE: Ce score représente une évaluation initiale basée sur les données publiques et l'acquisition récente de février 2026. Les pondérations et synergies de groupe sont appliquées en aval.<br/>
+<br/>
+═════════════════════<br/>
+<span style="font-weight:bold;">EXCELLENCE DE L'ÉQUIPE : 88/100</span><br/>
+<span style="font-weight:bold;">OPPORTUNITÉ DE MARCHÉ : 82/100</span><br/>
+<span style="font-weight:bold;">INNOVATION PRODUIT : 85/100</span><br/>
+<span style="font-weight:bold;">MODÈLE D'AFFAIRES : 87/100</span><br/>
+<span style="font-weight:bold;">TRACTION &amp; CROISSANCE : 92/100</span><br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">SCORE DE PRE-SCREENING :</span> 86.8/100 → 🟢 SIGNAL FORT (85-100)<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">❓ EN QUELQUES MOTS :</span> HotelHub est une plateforme intelligente d'agrégation de contenu hôtelier et d'automatisation des réservations qui permet aux agences de gestion de voyages (TMC) de maximiser leurs revenus et leur efficacité opérationnelle en consolidant l'ensemble de l'offre hôtelière mondiale (GDS et non-GDS) au sein d'une interface unique.<br/>
+<br/>
+<span style="font-weight:bold;">⚠️ LE PROBLÈME :</span> Les agents de voyage d'affaires perdent un temps critique et passent à côté de marges substantielles en naviguant manuellement entre des dizaines de sources fragmentées (GDS, banques de lits, API d'hôtels en direct) pour réserver une seule chambre d'hôtel conforme à la politique de leur client d'entreprise.<br/>
+<br/>
+<span style="font-weight:bold;">✅ LA SOLUTION :</span> HotelHub orchestre une agrégation automatisée en temps réel de tous les canaux de contenu avec un moteur de re-shopping (Rate Optimiser) algorithmique, garantissant la capture instantanée du meilleur tarif disponible sans aucune friction de recherche manuelle.<br/>
+<br/>
+<span style="font-weight:bold;">🚀 LE GTM :</span> La stratégie d'acquisition repose sur des partenariats et intégrations profondes directement implantés au cœur du workflow des géants de l'industrie (TMC globales comme AMEX GBT ou Flight Centre) ainsi que des connecteurs clés comme SAP Concur Hotel Connector.<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score: 88/100</span><br/>
+L'équipe dirigeante affiche une expertise sectorielle rare doublée d'un historique d'exécution éprouvé, validé par une acquisition majeure en février 2026.<br/>
+<ul><li></li><li>Historique de Succès (25%) | Score: 92/100: Une exécution solide depuis 2008 culminant récemment avec le rachat réussi par  en février 2026, confirmant la valeur patrimoniale majeure construite par les fondateurs.</li><li>Leadership (25%) | Score: 85/100: Plus de 200 employés répartis de manière globale entre le hub technologique de Bengaluru/Goa en Inde et le siège commercial à Londres.</li><li>Complétude de l'Équipe (25%) | Score: 85/100: Un parfait équilibre avec 60% des équipes dédiées au Produit/Ingénierie pour conserver l'avance technologique, soutenu par des équipes de support solides.</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score: 82/100</span><br/>
+Un segment de marché de niche mais hautement stratégique caractérisé par d'intenses dynamiques de consolidation logicielle.<br/>
+<ul><li>Taille &amp; Croissance (25%) | Score: 80/100: Le marché adressable repose sur l'optimisation des flux de voyages d'affaires globaux où l'hôtel représente la principale poche de marge sous-optimisée face au transport aérien.</li><li>Timing Why Now (25%) | Score: 85/100: L'intégration récente avec SAP Concur Hotel Connector en septembre 2025 et le besoin urgent de réduction des coûts de processus pour les TMC post-crise ouvrent une opportunité de déploiement immédiate.</li><li>Concurrence (25%) | Score: 80/100: Face aux fournisseurs de technologie legacy ou fragmentés, HotelHub bénéficie d'une longueur d'avance en termes de profondeur de connecteurs de paiement et d'API de réservation stables.</li><li>Expansion (25%) | Score: 83/100: L'arrimage au groupe européen  sert de rampe de lancement idéale pour saturer l'Europe continentale et accélérer la pénétration globale.</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 INNOVATION PRODUIT (20%) | Score: 85/100</span><br/>
+Une brique technologique d'agrégation unique, résistante aux mutations de GDS grâce à une approche agnostique multi-sources.<br/>
+<ul><li>Différenciation (25%) | Score: 88/100: L'avantage repose sur le moteur Rate Optimiser qui gère le re-shopping post-réservation de manière totalement automatisée pour capturer les baisses de tarifs.</li><li>Product-Market Fit (25%) | Score: 92/100: Des témoignages clients irréprochables, notamment AMEX GBT qui fait état d'un bond de 25% des revenus de vente de nuitées d'hôtels dès la première année d'usage.</li><li>Évolutivité / Scalabilité (25%) | Score: 82/100: Architecture résiliente bâtie sur des API modernes supportant l'intégration des solutions de paiement complexes (AirPlus, Conferma, eNett).</li><li>Propriété Intellectuelle (25%) | Score: 78/100: Bien que les codes de réservation soient principalement protégés par le secret industriel, les connecteurs exclusifs et la réconciliation automatique des PNR dressent une barrière technique forte.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 MODÈLE D'AFFAIRES (20%) | Score: 87/100</span><br/>
+La prédictibilité du SaaS combinée au levier de croissance du transactionnel à volume.<br/>
+<ul><li>Économie Unitaire (25%) | Score: 85/100: Des modèles de tarification personnalisés, robustes et hautement rentables grâce à de gigantesques économies de processus éprouvées par les TMC.</li><li>Modèle de Revenus (25%) | Score: 90/100: Contrats pluriannuels de long terme sécurisés auprès des mastodontes de l'industrie (ex : renouvellement du deal de 3 ans avec Flight Centre en janvier 2026).</li><li>Monétisation (25%) | Score: 88/100: Un modèle combinant frais fixes SaaS d'accès à la plateforme et incitations de partage de valeur via l'optimisation tarifaire continue.</li><li>Efficacité du Capital (25%) | Score: 85/100: Rentabilité éprouvée et structure de coûts optimisée grâce à un large hub d'ingénierie et de support en Inde (Goa/Bengaluru), renforçant l'efficacité brute avant l'acquisition.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; CROISSANCE (20%) | Score: 92/100</span><br/>
+Des métriques d'adoption de niveau carte d'identité des leaders du secteur B2B.<br/>
+<ul><li>Croissance du Chiffre d'Affaires (25%) | Score: 90/100: Une croissance solide validée par le maintien et l'extension des contrats cadres avec les principaux réseaux mondiaux de distribution.</li><li>Validation Client (25%) | Score: 95/100: Liste de clients inégalée incluant CWT, AMEX GBT, CTM, Flight Centre Travel Group, et Reed &amp; Mackay.</li><li>Progression des Indicateurs Clés (25%) | Score: 90/100: Plus de 200 employés et des millions d'économies générées pour les clients (plus d'1.5M de dollars mensuels via Rate Optimiser).</li><li>Pénétration du Marché (25%) | Score: 93/100: Position de leader de facto en tant que consolidateur hôtelier indépendant privilégié des grandes TMC mondiales.</li></ul>
+<br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISQUE À ATTÉNUER :</span><br/>
+L'hypothèse critique du modèle d'HotelHub réside dans sa capacité à préserver l'accès libre à son contenu non-GDS face aux tentatives de verrouillage ou de monétisation agressive des API par les grands agrégateurs (comme Priceline ou Expedia) qui pourraient à terme écraser la marge d'intermédiation d'HotelHub à la première renégociation majeure. Ce risque de désintermédiation directe ou d'inflation des coûts d'API est une variable que nous ne pourrons clarifier que par un audit approfondi des accords commerciaux et de leur durée de validité contractuelle.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ PRINCIPAUX AVANTAGES CONCURRENTIELS :</span><br/>
+<ul><li>L'intégration native unique avec le Hotel Connector de SAP Concur garantissant une insertion indolore dans le principal système de gestion des dépenses d'entreprise du marché.</li><li>L'automatisation complète de la réconciliation des segments PNR hôteliers qui fait gagner un temps précieux aux agents de voyage d'affaires.</li><li>Des partenariats technologiques de premier ordre avec les processeurs de paiements virtuels spécialisés (AirPlus, Conferma, eNett) contournant les barrières traditionnelles de facturation de l'hôtellerie d'affaires.</li><li>Le moteur intelligent propriétaire de re-shopping algorithmique qui génère des gains immédiats et mesurables pour les clients dès la première semaine d'utilisation.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 REMPART CONCURRENTIEL :</span> FORT<br/>
+Le rempart concurrentiel d'HotelHub repose sur la profondeur de ses intégrations bi-directionnelles avec les systèmes de distribution globaux (GDS) et d'automatisation des PNR dont le remplacement imposerait des coûts de rétention opérationnelle et des risques d'interruption intenables pour une TMC. Ce réseau d'intégrations s'auto-renforce à mesure que de nouveaux connecteurs de contenu et de paiement s'y greffent, créant une inertie technologique de premier plan. La protection finale est garantie par l'acquisition de février 2026 par , qui intègre verticalement HotelHub au cœur d'un univers global de TravelTech d'entreprise.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ PARI ASYMÉTRIQUE</span><br/>
+<ul><li>Le Cas Optimiste (Bull Case) :</li></ul>
+HotelHub s'impose comme l'architecture sous-jacente universelle pour tous les flux hôteliers B2B du groupe , forçant ainsi toutes les TMC de taille intermédiaire à adopter ses API de façon standardisée pour rester compétitives face aux géants mondiaux.<br/>
+<ul><li>Le Cas Pessimiste (Bear Case) :</li></ul>
+Le mouvement de consolidation du voyage d'affaires amène les grands GDS (Amadeus, Sabre) à racheter ou à bypasser les briques d'agrégation tierces, rendant la couche intermédiaire d'HotelHub superflue à horizon 5 ans.<br/>
+<br/>
+<span style="font-weight:bold;">🚩 DRAPEAUX ROUGES</span><br/>
+<ul><li>Risques Universels : Une forte concentration du chiffre d'affaires sur un nombre restreint de méga-comptes TMC (AMEX GBT, Flight Centre) rendant l'activité vulnérable au moindre pivot technologique d'un de ces géants.</li><li>Incohérences avec la Thèse : L'acquisition par  écarte provisoirement la possibilité d'un refinancement traditionnel par capital-risque, transformant le dossier en un enjeu d'intégration opérationnelle de constellation industrielle intra-groupe.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781085600000/D-_2EbFU9BqX0X4wpYX5mg/370kV7rNgsPekSdXEFxM8omUvxoeeppLQg7SPTfMQnQqyWUV4uYeQkUk1q9SOTEHBvGHjY6WVSwubvvXoJPeYxyHyX8W8Laz6ENT5WYxmYco094_z_dFnfSZilvBodFYy1MJywkmKOIJqg4FAPS-1w/6twIjq6W2wbb-ISLSX25kbKFvQ_gcZbF4aQwNPUdRB8"/></div></div></div><div class="cs-eval"><p class="cs-eval-h">Vous voulez un mémo sur cette société selon VOTRE grille de lecture ?</p><button class="op-eval" data-c="HotelHub" data-h="" data-i="Exited (Acquired / Buyout)" data-u="https://proplace.co/analysis/hotelhub/" type="button">⚡ Demander un mémo selon ma grille de lecture</button><div class="op-eval-panel" hidden=""></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>HotelHub agrège du contenu hôtelier GDS et non-GDS sur une seule plateforme, ce qui réduit le temps de réservation pour les TMC.</li><li>Les clients incluent des acteurs majeurs comme Amex GBT, CTM et CWT, validant l'adoption par des entreprises de taille mondiale.</li><li>L'outil Rate Optimiser a généré plus de 1,5 million de dollars d'économies mensuelles collectivement pour ses utilisateurs.</li><li></li><li>Les intégrations existantes avec SAP Concur, Amadeus, Sabre et Travelport assurent une compatibilité native avec les workflows des TMC.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>L'absence de tout nouveau tour de financement public en 2026 limite la capacité à investir de manière indépendante dans le développement produit.</li><li></li><li>Le siège à Londres et les bureaux en Inde créent une dépendance à la stabilité réglementaire post-Brexit et aux coûts opérationnels transfrontaliers.</li><li>Le modèle repose fortement sur des contrats pluriannuels avec un petit nombre de grands TMC, exposant à une concentration de revenus.</li><li>Aucune information publique ne détaille la rétention des talents clés ou les changements de leadership après l'acquisition.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li></li><li>L'essor du voyage d'affaires post-pandémie et la demande croissante d'automatisation favorisent les outils d'optimisation de tarifs en temps réel.</li><li>Le partenariat étendu avec Flight Centre jusqu'en 2029 offre une base stable pour tester de nouvelles fonctionnalités analytiques.</li><li>L'ajout de capacités d'IA pour la réconciliation automatisée peut différencier HotelHub face aux solutions legacy des GDS.</li><li></li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>Des concurrents plus grands, intégrés verticalement, peuvent répliquer l'agrégation de contenu et éroder la position de niche d'HotelHub.</li><li>Un ralentissement économique pourrait réduire les volumes de réservation hôtelière des entreprises et donc les revenus transactionnels.</li><li>Les changements de direction post-acquisition risquent de ralentir les cycles de développement produit et l'innovation.</li><li>Les évolutions réglementaires sur les paiements et les données de voyage en Europe augmentent les coûts de conformité pour les solutions SaaS.</li><li></li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la chaîne de valeur</h3>
+<p>Aucune source spécifique fournie.</p>
+<h3>Sources de marché</h3><p>DOSSIER D'INTELLIGENCE DE MARCHÉ - URL EVIDENCE TRACKER</p>
+<p>Objet: Documentation de support pour l'analyse d'attractivité du marché hôtelier B2B</p>
+<p>Marché: Solutions de réservation hôtelière B2B pour les agences de gestion de voyages (TMC)</p>
+<p>Complétude des Données: 80/100</p>
+<p>Évaluation: 🟢 SUFFISANT POUR UNE DÉCISION D'INVESTISSEMENT</p>
+<p>Calcul: (8 sources uniques analysées et recoupées)</p>
+<p>OPPORTUNITÉ DE MARCHÉ</p>
+<ul><li><b>Mouvements M&amp;A Sectoriels:</b> <a href="https://hoteltechnologynews.com/2026/02/-acquires-hotelhub-to-expand-global-corporate-hotel-booking-platform/" target="_blank"></a>. Utilisé pour: Établir la thèse de consolidation industrielle du secteur de la TravelTech d'entreprise.</li><li><b></b> <a href="https://hospitality-on.com/en/distribution/ziad-minkara-chairman-solutions-business-travel-pursuit-global-scale" target="_blank"></a>. Utilisé pour: Valider les synergies de la plateforme globale de services hôteliers B2B.</li></ul>
+<p>CONCURRENCE ET INTÉGRATIONS</p>
+<ul><li><b>Partenariat SAP Concur:</b> <a href="https://businesstravelnewseurope.com/Technology/HotelHub-integrates-with-SAP-Concur-s-Hotel-Connector" target="_blank">https://businesstravelnewseurope.com/Technology/HotelHub-integrates-with-SAP-Concur-s-Hotel-Connector</a>. Utilisé pour: Analyser les dynamiques d'intégration d'applications au sein des solutions de dépenses.</li><li><b>Réseaux de Distribution et TMC:</b> <a href="https://businesstravelnewseurope.com/TMC-Distribution/Flight-Centre-s-TMCs-extend-deal-with-HotelHub" target="_blank">https://businesstravelnewseurope.com/TMC-Distribution/Flight-Centre-s-TMCs-extend-deal-with-HotelHub</a>. Utilisé pour: Analyser la durée des contrats de distribution et l'emprise des leaders du marché.</li><li><b>Accords de contenu d'hébergement:</b> <a href="https://www.globenewswire.com/news-release/2022/09/07/2511649/0/en/HotelHub-Adds-Significant-Hotel-Content-and-Rates-to-Hotel-Booking-Platform-With-Priceline-Agreement.html" target="_blank">https://www.globenewswire.com/news-release/2022/09/07/2511649/0/en/HotelHub-Adds-Significant-Hotel-Content-and-Rates-to-Hotel-Booking-Platform-With-Priceline-Agreement.html</a>. Utilisé pour: Comprendre le rôle des intermédiaires d'hébergement non-GDS.</li></ul>
+<p>WEB DATA COMPLETENESS ANALYSIS</p>
+<ul><li><b>Lacunes clés du marché:</b></li><li><b>Niveau de Confiance:</b> ÉLEVÉ.</li></ul><h3>Sources de l'entreprise</h3><p>DOSSIER D'INTELLIGENCE D'ENTREPRISE - URL EVIDENCE TRACKER</p>
+<p>Objet: Documentation de support pour l'analyse de HotelHub</p>
+<p>Entreprise: HotelHub</p>
+<p>Complétude des Données: 85/100</p>
+<p>Évaluation: 🟢 DONNÉES SUFFISANTES POUR UN PREMIER EXAMEN</p>
+<p>Calcul: (17 sources qualifiées trouvées) = 85%</p>
+<p>EXCELLENCE DE L'ÉQUIPE</p>
+<ul><li><b>Profil CEO:</b> <a href="https://www.linkedin.com/in/jay-virdee-48924b1" target="_blank">https://www.linkedin.com/in/jay-virdee-48924b1</a>. Utilisé pour: Évaluation du parcours de Jay Virdee, son historique chez Travel Centric Technology et sa longévité sectorielle.</li><li><b>Historique de l'Équipe:</b> <a href="https://www.hotelhub.com/company/" target="_blank">https://www.hotelhub.com/company/</a>. Utilisé pour: Vérification de l'implantation des bureaux à Londres, Bengaluru et Goa.</li></ul>
+<p>OPPORTUNITÉ DE MARCHÉ</p>
+<ul><li><b></b> <a href="https://hoteltechnologynews.com/2026/02/-acquires-hotelhub-to-expand-global-corporate-hotel-booking-platform/" target="_blank"></a>.</li><li><b></b> <a href="https://hospitality-on.com/en/distribution/ziad-minkara-chairman-solutions-business-travel-pursuit-global-scale" target="_blank"></a>. Utilisé pour: Analyse de la stratégie d'échelle globale initiée par Ziad Minkara.</li></ul>
+<p>INNOVATION PRODUIT</p>
+<ul><li><b>Connecteur SAP Concur (Sep 2025):</b> <a href="https://businesstravelnewseurope.com/Technology/HotelHub-integrates-with-SAP-Concur-s-Hotel-Connector" target="_blank">https://businesstravelnewseurope.com/Technology/HotelHub-integrates-with-SAP-Concur-s-Hotel-Connector</a>. Utilisé pour: Évaluation de l'intégration produit et de sa pénétration d'écosystème entreprise.</li><li><b>Accord de contenu Priceline (Sep 2022):</b> <a href="https://www.globenewswire.com/news-release/2022/09/07/2511649/0/en/HotelHub-Adds-Significant-Hotel-Content-and-Rates-to-Hotel-Booking-Platform-With-Priceline-Agreement.html" target="_blank">https://www.globenewswire.com/news-release/2022/09/07/2511649/0/en/HotelHub-Adds-Significant-Hotel-Content-and-Rates-to-Hotel-Booking-Platform-With-Priceline-Agreement.html</a>. Utilisé pour: Évaluation de la profondeur du contenu non-GDS.</li></ul>
+<p>MODÈLE D'AFFAIRES</p>
+<ul><li><b>Économies 'Rate Optimiser':</b> <a href="https://www.hotelhub.com/" target="_blank">https://www.hotelhub.com/</a>. Utilisé pour: Validation de la proposition de valeur financière de l'agrégateur.</li></ul>
+<p>TRACTION &amp; CROISSANCE</p>
+<ul><li><b>Renouvellement Flight Centre (Jan 2026):</b> <a href="https://businesstravelnewseurope.com/TMC-Distribution/Flight-Centre-s-TMCs-extend-deal-with-HotelHub" target="_blank">https://businesstravelnewseurope.com/TMC-Distribution/Flight-Centre-s-TMCs-extend-deal-with-HotelHub</a>. Utilisé pour: Validation de la rétention client à long terme (3 ans additionnels).</li></ul>
+<p>WEB DATA COMPLETENESS ANALYSIS</p>
+<ul><li><b>Lacunes identifiées:</b> Tarification exacte par transaction et ventilation des marges financières directes.</li><li><b>Niveau de Confiance:</b> ÉLEVÉ.</li></ul></div>
+</div>
+
+
+
+
+&gt;<div class="cs-eval"><p class="cs-eval-h">Vous voulez un mémo sur cette société selon VOTRE grille de lecture ?</p><button class="op-eval" data-c="HotelHub" data-h="" data-i="Exited (Acquired / Buyout)" data-u="https://proplace.co/analysis/hotelhub/" type="button">⚡ Demander un mémo selon ma grille de lecture</button><div class="op-eval-panel" hidden=""></div></div><div class="ppx-cta"><h3>Explore HotelHub further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p>Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/">News</a><a class="on" href="/analysis/">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4>Insights</h4><a href="/actualites/">News</a><a href="/analysis/">Analysis</a></div><div class="ppf-col"><h4>Compte</h4><span id="ppf-auth"><a href="https://proplace.co/#login">Log in</a></span></div><div class="ppf-col"><h4>Légal</h4><a href="/terms">Conditions</a><a href="/privacy">Confidentialité</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span>Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){try{var c=document.cookie.split('; ').find(function(r){return r.indexOf('proplace_auth=')===0;});var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split('=')[1])));}catch(e){}}if(s&&s.fund_type){var el=document.getElementById('ppf-auth');if(el){el.innerHTML='<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">Open dashboard</a><button id="ppf-logout">Log out</button>';var lo=document.getElementById('ppf-logout');if(lo)lo.onclick=function(e){e.preventDefault();document.cookie='proplace_auth=; domain=.proplace.co; path=/; max-age=0';location.reload();};}Array.prototype.forEach.call(document.querySelectorAll('a.ppf-gated'),function(a){var d=a.getAttribute('data-href');if(d)a.setAttribute('href',d);});}}catch(e){}})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script></body></html>
