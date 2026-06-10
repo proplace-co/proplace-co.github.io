@@ -72,8 +72,15 @@ article hr{border:none;border-top:1px solid var(--line);margin:30px 0}
 .pros-inline li strong{color:var(--accent-dk)}
 .pros-t{flex:1 1 auto;min-width:0}
 .pros-w{color:var(--mid);font-weight:400}
-.pros-inline li .op-eval,.pros-row .op-eval{flex:0 0 auto;margin-top:0;font-size:11px;font-weight:700;padding:3px 10px;background:var(--accent-dk);border-color:var(--accent-dk)}
+.pros-inline li .op-eval,.pros-row .op-eval{flex:0 0 auto;margin-top:0;font-size:11px;font-weight:700;padding:3px 10px;background:var(--ink);border-color:var(--ink);color:#fff}
 .pros-inline li .op-eval-panel,.pros-row .op-eval-panel{flex:1 1 100%;margin-top:6px}
+/* Visuel de section dans l'article (carte / heatmap du type, illustration) */
+.art-secviz{display:block;margin:16px 0 24px;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+line-height:0;transition:border-color .15s,transform .15s}
+.art-secviz:hover{border-color:var(--accent);transform:translateY(-1px)}
+.art-secviz img{width:100%;height:auto;display:block;cursor:zoom-in}
+.art-viz2{display:flex;gap:16px;flex-wrap:wrap;margin:18px 0 22px}
+.art-viz2 .art-secviz{flex:1 1 320px;margin:0}
 /* CTA newsletter */
 .cta-box{background:var(--bg);border:1px solid var(--line);border-radius:14px;
 padding:24px 26px;margin:34px 0}
@@ -613,5 +620,30 @@ document.addEventListener("click",function(ev){
  if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
  var a=auth();
  if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
 });
 })();</script></body></html>
