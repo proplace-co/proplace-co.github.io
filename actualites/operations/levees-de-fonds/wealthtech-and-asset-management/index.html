@@ -428,10 +428,20 @@ var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button
 var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
 function go(l){
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
 if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+var en=altUrl("en");
+if(en&&en!==here){location.href=en;return;}
+if(en&&en===here){apply("en");return;}
 location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
 if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+if(l==="fr"){try{localStorage.setItem("proplace_lang","fr");}catch(e){}
+var fr=altUrl("fr");
+if(fr&&fr!==here){location.href=fr;return;}
+apply("fr");return;}
 try{localStorage.setItem("proplace_lang",l);}catch(e){}
 apply(l);}
 function init(){apply(getLang());
@@ -467,10 +477,20 @@ var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button
 var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
 function go(l){
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
 if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+var en=altUrl("en");
+if(en&&en!==here){location.href=en;return;}
+if(en&&en===here){apply("en");return;}
 location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
 if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+if(l==="fr"){try{localStorage.setItem("proplace_lang","fr");}catch(e){}
+var fr=altUrl("fr");
+if(fr&&fr!==here){location.href=fr;return;}
+apply("fr");return;}
 try{localStorage.setItem("proplace_lang",l);}catch(e){}
 apply(l);}
 function init(){apply(getLang());
