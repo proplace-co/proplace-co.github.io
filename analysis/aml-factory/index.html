@@ -1,0 +1,706 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AML Factory — analyse RegTech &amp; Compliance | Proplace</title><meta name="description" content="RegTech &amp; Compliance · Automated AML Compliance SaaS · Seed"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/aml-factory/"><meta property="og:type" content="article"><meta property="og:title" content="AML Factory — analyse RegTech &amp; Compliance | Proplace"><meta property="og:description" content="RegTech &amp; Compliance · Automated AML Compliance SaaS · Seed"><meta property="og:url" content="https://proplace.co/analysis/aml-factory/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AML Factory — RegTech & Compliance", "description": "RegTech & Compliance · Automated AML Compliance SaaS · Seed", "inLanguage": "fr", "url": "https://proplace.co/analysis/aml-factory/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/aml-factory/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "AML Factory"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">AML Factory</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "AML Factory"}]}</script></div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Seed</span>
+<span class="sb-tag">RegTech &amp; Compliance</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">AML Factory</h1>
+<span class="sidebar-tagline">RegTech &amp; Compliance · Automated AML Compliance SaaS · Seed</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Simplify your Anti-Money Laundering (LCB-FT) compliance processes.</p>
+<div class="contact-row">
+<a href="https://www.aml-factory.com" target="_blank"><i class="fas fa-globe"></i> Website</a>
+<a href="https://fr.linkedin.com/posts/charlotte-gaudin-amlexpert_aml-factory-simplifiez-vos-processus-de-activity-7122215477023490048-k_mG" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<a href="mailto:charlotte.gaudin@aml-factory.com"><i class="fas fa-envelope"></i> charlotte.gaudin@aml-factory.com</a>
+</div>
+</div>
+</div>
+<span class="sb-nav-heading">Market</span>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<span class="sb-nav-heading">Company</span>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="sb-legend-wrap">
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Market data</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Company data</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; reasoning</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; methodology</span></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Explore AML Factory further?</h3>
+<a class="btn btn-secondary" href="http://forms.proplace.co/meet" target="_blank">Schedule a strategy call on AML Factory</a>
+</div>
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="section">
+<h3>Want to follow our deal flow?</h3>
+<p class="meta-desc">Receive European AI startups we assess every day from a VC perspective.</p>
+<a class="btn btn-primary" href="https://77f02b89.sibforms.com/serve/MUIFAMr0ADjDfIUWLc56STos70j4OXPiOTJqugyAa45YfGyt9zW6Tokz3iXWLNiTAw6oxjbrMnjs424k46IvwOQlWjaMIsbgexAk95FvzqzgLa56TkHas6WASK4VKs684XcZhacqMYTYQGuIfzJmBmCkmHwhNeB0yHifnrxC1PUhNMS1ZbiW1xF18IZy7tJP9BIWjDcM5VoH6VEVCw==" target="_blank">Subscribe to deal flow</a>
+</div>
+<div class="section">
+<h3>Want a proprietary deal flow?</h3>
+<p class="meta-desc">Receive daily highly qualified targets for your acquisition strategy.</p>
+<a class="btn btn-primary" href="http://forms.proplace.co/meet" target="_blank">Schedule a strategy call</a>
+</div>
+<div class="sidebar-logo-wrap">
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">AML Factory</h1>
+<h2 class="subtitle-category">RegTech &amp; Compliance ➜ Automated AML Compliance SaaS ➜ SaaS-based AML/CTF compliance automation for the French financial services sector.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="AML Factory" data-h="" data-i="RegTech &amp; Compliance" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/aml-factory/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="market-summary">
+<h2 class="section-title">Market Summary</h2>
+<div class="split-container">
+<div class="text-col">
+<h4>MARKET OPPORTUNITY SCORE</h4>
+<p>RegTech &amp; Compliance &gt; Automated AML Compliance SaaS<br/>B2B &gt; SaaS</p>
+<p>IS IT AN ATTRACTIVE MARKET ? (Dynamics): 85/100 × 25% = 21.25 points<br/>IS IT A WINNABLE MARKET ? (Competition): 65/100 × 25% = 16.25 points<br/>IS IT A PENETRABLE MARKET ? (GTM): 70/100 × 25% = 17.5 points<br/>IS IT A REWARDING MARKET ? (Exits): 80/100 × 25% = 20 points</p>
+<p>TOTAL MARKET ATTRACTIVITY SCORE: 75/100</p>
+<p>This score indicates the market is a tailwind, offering significant opportunity due to its size and mandated spend, but this tailwind is partially offset by material competitive and GTM hurdles that will require superior execution to overcome, fitting our thesis of backing expert founders in complex markets.</p>
+<h4>❓ Market DEFINITION</h4>
+<p>SaaS-based AML/CTF compliance automation for the French financial services sector. ➜ Buyers are Chief Compliance Officers and Risk Managers at French financial institutions who are purchasing a software platform to automate the legally mandated, error-prone, and historically manual tasks of customer due diligence and transaction monitoring. The core structural friction is that legacy systems are inflexible and expensive, while manual processes are unscalable and expose firms to catastrophic regulatory fines. In the value chain, this market sits between upstream data providers (sanctions lists, corporate registries) and downstream regulatory reporting bodies, positioning it as a critical workflow and intelligence layer where significant margin can be captured.</p>
+<h4>💬 Our Market THESIS</h4>
+<p>The EU's 6th Anti-Money Laundering Directive (AMLD6) represents a structural break, expanding personal criminal liability for compliance officers and forcing institutions to seek more robust, auditable systems beyond fragmented spreadsheets. Incumbents like NICE Actimize are paralyzed by their legacy on-premise architecture and enterprise sales models, making it difficult for them to serve the mid-market with an agile, cloud-native solution without cannibalizing their high-margin enterprise base. A new player's attack vector is to offer a SaaS platform tailored specifically to EU regulatory nuances, starting with a single, underserved national market like France to build a defensible beachhead. This window is open now as institutions budget for AMLD6 compliance, but it will begin to close within 24-36 months as the market consolidates around the platforms that demonstrate clear regulatory wins and establish strong network effects with local financial ecosystems.</p>
+<h4>🧠 Our CONVICTION &amp; WAGER on this Market:</h4>
+<p><b>🟡 MEDIUM CONVICTION</b></p>
+<p>While this market is extremely attractive due to its non-discretionary nature, it is also notoriously difficult to penetrate due to long sales cycles and high switching costs, but we believe a founder with deep, local regulatory credibility can find a winning wedge. Our wager is that by 2026, at least two major European banks will publicly replace a legacy incumbent with a next-gen, region-specific AML SaaS suite, validating that the market is shifting from 'big brand' security to 'best-fit' compliance. For the first call, we must ask: 'When you lose a deal, what percentage of the time is it because the client decided to do nothing and stick with their existing broken process?' as this will reveal the true inertia they are fighting.</p>
+<h4>🌊 ATTRACTIVE MARKET (Market Dynamics) | Score: 85/100</h4>
+<p>A score of 85 signifies that demand is not a primary risk; the market is large, growing, and powered by non-discretionary regulatory spending, providing a strong secular tailwind for any credible player.</p>
+<ul><li><b>Market Size (25%) | Score: 85/100:</b> The global AML software market is a significant TAM, estimated at over $20 billion and growing with a double-digit CAGR, ensuring a large and expanding addressable opportunity.</li><li><b>Growth Drivers (25%) | Score: 90/100:</b> Demand is primarily inflated by relentless regulatory pressure from directives like the EU's AMLD6 and the global push for financial transparency, making compliance spend a must-have, not a nice-to-have.</li><li><b>Timing Why Now (25%) | Score: 85/100:</b> The key catalyst is the convergence of maturing SaaS technology with escalating regulatory complexity and cost, forcing a market shift away from manual processes and outdated, expensive on-premise systems.</li><li><b>Market Risks (25%) | Score: 80/100:</b> The primary market risk is not a lack of demand, but the inherent inertia of financial institutions; adoption barriers include long procurement cycles, integration complexity with legacy core banking systems, and data security concerns.</li></ul>
+<h4>⚔️ WINNABLE MARKET (Competitive Landscape) | Score: 65/100</h4>
+<p>A score of 65 indicates a challenging competitive environment where success is possible but not guaranteed; a startup must have a highly differentiated wedge to break through the noise from both incumbents and other challengers.</p>
+<ul><li><b>Incumbents (25%) | Score: 60/100:</b> Legacy behemoths like NICE Actimize and Oracle dominate the top-tier banks with their extensive features and distribution, though their technology is often seen as dated and inflexible.</li><li><b>Challengers (25%) | Score: 65/100:</b> Well-funded challengers like ComplyAdvantage (focused on data/screening) and Feedzai (focused on transaction monitoring) are attacking specific niches with modern tech, creating a fragmented 'best-of-breed' landscape.</li><li><b>White Space (25%) | Score: 75/100:</b> A clear white space exists for a unified, cloud-native platform tailored specifically to the mid-market in specific geographies like France, serving customers who are too complex for simple tools but too small for enterprise behemoths.</li><li><b>Defensibility (25%) | Score: 65/100:</b> The primary moat in this market is high switching costs (process power); once a system is embedded in a bank's core workflow and has years of audit trail data, it is operationally very difficult and risky to replace.</li></ul>
+<h4>🎯 PENETRABLE MARKET (Go-to-Market &amp; Unit Economics) | Score: 70/100</h4>
+<p>This score implies that customer acquisition is a structural tax on the business; while customers are sticky and valuable once won, the cost and time to acquire them are significant and require a patient capital strategy.</p>
+<ul><li><b>GTM Model (25%) | Score: 65/100:</b> The dominant model is consultative enterprise sales with long sales cycles (often 9-18 months), requiring a high-cost, expert-led sales force, which is difficult to scale quickly.</li><li><b>Pricing Model (25%) | Score: 70/100:</b> Pricing is typically a multi-year ARR subscription based on factors like transaction volume or number of accounts monitored, with six-figure ACVs being common, but often includes significant one-time setup and integration fees.</li><li><b>Unit Economics (25%) | Score: 75/100:</b> While CAC is high, the sticky, non-discretionary nature of the product often leads to very high LTV and net revenue retention, yielding healthy LTV/CAC ratios (e.g., &gt;5x) over the customer lifetime.</li><li><b>Scalability (25%) | Score: 70/100:</b> Revenue is scalable via recurring subscriptions, but the service component (implementation, consulting) can create a drag on gross margins and scalability if not managed carefully.</li></ul>
+<h4>💰 REWARDING MARKET (Funding &amp; Exit) | Score: 80/100</h4>
+<p>An 80 score confirms that if a company can achieve scale, the exit environment is healthy, with both public markets and strategic acquirers willing to pay a premium for category leaders in this space.</p>
+<ul><li><b>Funding Activity (25%) | Score: 80/100:</b> The RegTech sector sees consistent funding activity from top-tier VCs who understand the value of non-discretionary SaaS revenue, with numerous examples of large rounds for leading challengers.</li><li><b>Exit Multiples (25%) | Score: 75/100:</b> Private M&amp;A multiples can range from 5-10x ARR, with public companies trading on similar metrics, though these can fluctuate with the broader market's appetite for software stocks.</li><li><b>Strategic Buyers (25%) | Score: 85/100:</b> A deep bench of logical strategic acquirers exists, including large financial data providers (Moody's, Refinitiv), legacy tech vendors (Oracle, SAP), and major consulting firms (Deloitte, PwC), all seeking to bolster their compliance offerings.</li><li><b>Return Profile (25%) | Score: 80/100:</b> The market can produce outcomes that our thesis requires, as demonstrated by multi-billion dollar leaders like Verafin (acquired by Nasdaq for $2.75B), due to the combination of high ACVs, sticky revenue, and mission-criticality which command premium valuations.</li></ul>
+<h4>⚡ CROSS-SECTION SYNTHESIS:</h4>
+<p>The combination of a highly attractive but hard-to-win market means the key to success is not a brute-force capital strategy but a precise 'keyhole' GTM strategy, executed by a founder with the credibility to unlock the first set of doors that are closed to generic competitors.</p>
+<h4>🌐 DATA CONFIDENCE:</h4>
+<p>The market sizing, competitive landscape, and exit environment data are based on public reports and well-understood industry dynamics. Data on specific unit economics (LTV/CAC, payback periods) for private companies is less precise and requires primary diligence. The analysis is based on 3 sourced URLs and general industry knowledge.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-4e92880fd6459ba48f919dd22e02fca3-iepc5wpn.jpg"/>
+</div>
+</div>
+</div>
+<html><body></body></html>
+<div class="section-container" id="company">
+<h2 class="section-title">Company Deep Dive</h2>
+<div class="split-container">
+<div class="text-col">
+<h3 id="value-proposition">Value Proposition</h3>
+<div class="text-block"><b>Value Proposition:</b><br/>AML Factory simplifies Anti-Money Laundering (LCB-FT) compliance through an automated SaaS platform and high-end algorithms like Profiler, AMiraL, and Analyst to reduce regulatory complexity and protect corporate integrity. Simplify your Anti-Money Laundering (LCB-FT) compliance processes. AML Factory helps banks and finance companies follow the rules to stop bad people from using their money for crimes. It uses a smart computer program to watch everything automatically so the good guys can stay safe.<br/><br/><b>Ideal Customer Profile (ICP):</b><br/>Compliance Officers, Risk Managers, Chief Compliance Officers, and Financial Institutions of various sizes requiring automated KYC/KYT workflows. Mid-sized French banks. French financial institutions.<br/><br/><b>B2B or B2C:</b><br/>Primarily B2B (Regtech), as it provides compliance tools for businesses to manage their own clients. B2B &gt; SaaS.<br/><br/><b>Industry:</b><br/>FinTech / RegTech (Anti-Money Laundering &amp; Counter-Terrorist Financing). RegTech &amp; Compliance &gt; Automated AML Compliance SaaS.<br/><br/><b>Contact &amp; Legal:</b><br/>Entity: SAS Regtech Factory. RCS: Créteil 853 004 232. HQ: 24, cours Marigny, 94300 Vincennes, France. Office: 39, passage des Panoramas, 75002 Paris. Founded: 2019. Email: dpo@aml-factory.com. Website: <a href="https://www.aml-factory.com" target="_blank">https://www.aml-factory.com</a>. LinkedIn: <a href="https://fr.linkedin.com/posts/charlotte-gaudin-amlexpert_aml-factory-simplifiez-vos-processus-de-activity-7122215477023490048-k_mG" target="_blank">https://fr.linkedin.com/posts/charlotte-gaudin-amlexpert_aml-factory-simplifiez-vos-processus-de-activity-7122215477023490048-k_mG</a>. LinkedIn company: <a href="https://www.linkedin.com/company/aml-factory/" target="_blank">https://www.linkedin.com/company/aml-factory/</a>. HQ country: France.<br/><br/><b>Key Client Examples &amp; Testimonials:</b><br/>Over 25 clients. Partners include France Fintech, Region Ile de France, Acuris. France Fintech, Acuris.<br/><br/><br/></div>
+<h3 id="product">Product</h3>
+<div class="text-block"><b>Core Solution:</b><br/>A SaaS compliance ecosystem for end-to-end LCB-FT (AML/CTF) regulatory management. Automated AML Compliance SaaS. The platform integrates directly with client systems to provide a unified 'golden record' for each customer, automatically screening transactions against configurable scenarios and presenting alerts within a single case management interface.<br/><br/><b>Feature Encyclopedia:</b><br/>Digitalized Standards (KYC, KYT, Governance) | Compliance Assessment | Augmented Regulatory Watch | Automatic Internal Standard Propagation | Screening (PPE, Sanctions, Adverse Media) | Real-time Alerts | Transaction Monitoring (TMS) | Case Management | QLB Statistics | Proprietary algorithms like 'Profiler' and 'AMiraL' | Compliance (Golden Record) | KYC/KYB | TMS (Transaction Monitoring) | Full-suite SaaS platform.<br/><br/><b>Technical Capabilities:</b><br/>SaaS Platform | Advanced Fraud Detection Algorithms | Real-time Risk Profiling | Configurable Regulatory Scenarios | Collaborative Case Management Interface | GDPR Compliant Data Management | Real-time risk profiling | Configurable scenarios | SaaS-based AML/CTF compliance automation | Cloud-native solution | Qualiopi certification for AML Academy.<br/><br/><b>Use Cases:</b><br/>Client onboarding (KYC/KYB), transaction risk monitoring (KYT), regulatory reporting, mandatory staff training via AML Academy. Investigate a single suspicious transaction alert. Automate end-to-end regulatory workflows by unifying KYC, transaction monitoring, and case management.<br/><br/><br/></div>
+<h3 id="business-model">Business Model</h3>
+<div class="text-block"><b>Business Model Analysis:</b><br/>B2B SaaS Subscription (Platform as a Service) and Professional Training (AML Academy). B2B SaaS. Dual revenue streams from SaaS subscriptions and professional training packages. Modular platform with upsell paths.<br/><br/><b>Revenue Streams &amp; Pricing Tiers:</b><br/>Data not available in source. SaaS Platform Access | Compliance Training Packages | Implementation fees. AML Academy offers differentiated packages based on team risk exposure. No specific plan names, price points, currency, or billing frequency found.<br/><br/><b>Plan Features:</b><br/>Platform features vary by module: Compliance (Golden Record), KYC/KYB, TMS (Transaction Monitoring). AML Academy packages based on team risk exposure.<br/><br/><b>Hidden Costs &amp; Terms:</b><br/>Implementation/modelling fee for internal standards (step 1: We model your internal standards). Pricing not publicly disclosed. Likely longer sales cycles and higher CAC for enterprise-focused model. No setup fees, minimum commitments, trial details, or 'Contact Sales' thresholds specified beyond implementation fee.<br/></div>
+<h3 id="team">Team</h3>
+<div class="text-block"><b>Company Culture:</b><br/>Mission-driven to make compliance accessible and protect company reputation through a focus on customer satisfaction and educational innovation (Qualiopi certified). Focus on customer satisfaction and educational innovation.<br/><br/><b>Team Analysis:</b><br/>Charlotte Gaudin (CEO &amp; Founder, 18+ years experience). Mathieu Rosey (COO, 20+ years experience, MBA ESSEC). Romain Cauquil (CTO, 12+ years experience). Strategic Board: Arnaud Bassi, Christian Moulet (Ex-Sopra Steria), Pierre Françon, Régis Bouyala (Ex-Banque de France).<br/><br/><b>Job Offers &amp; Titles:</b><br/>No specific open positions listed. General mention of recruitment and Tech500 for rapid growth and hiring. 10+ team members.<br/><br/><b>Estimated Headcount:</b><br/>Total 10+.<br/>Product &amp; Engineering: 3-4<br/>Marketing: 2-3 (part of Marketing/Sales)<br/>Sales: 2-3 (part of Marketing/Sales)<br/>Support &amp; IT: 3-4 (Support/Professional Services)<br/>General &amp; Admin (G&amp;A): 1-2<br/><br/><br/></div>
+<h3 id="ceo">CEO</h3>
+<div class="text-block"><b>EXECUTIVE ASSESSMENT</b><br/><ul><li> Data not provided.</li><li><span style="font-weight:bold;"></span> Data not provided.</li><li><span style="font-weight:bold;">Loyalty &amp; Tenure:</span> Data not provided.</li><li><span style="font-weight:bold;">Commercial Fit:</span> Data not provided.</li></ul><br/><br/><b>PROFESSIONAL NARRATIVE</b><br/>Data not provided.<br/><br/><br/><b>DETAILED CAREER TIMELINE</b><br/>No work history provided.<br/><br/><br/><b>ACADEMIC BACKGROUND</b><br/>No education history provided.<br/><br/><br/>This individual's potential cannot be evaluated based on the current information. To provide a useful assessment, detailed work history, including specific roles, responsibilities, achievements, and tenure at each position, along with any available academic background, is essential. Without this data, any conclusion would be entirely speculative and unreliable.</div>
+<h3 id="company-summary">Company Summary</h3>
+<ul><li>RegTech &amp; Compliance &gt; Automated AML Compliance SaaS</li><li>B2B &gt; SaaS</li><li>1.05M€ raised from Unknown (2021)</li></ul>
+<br/>
+<span style="font-weight:bold;">PRE-SCREENING SCORE</span><br/><br/>
+<br/>
+NOTE: This is a raw pre-screening score. Thesis weights are applied<br/>
+in the Synthetic GP qualification pipeline after angle detection.<br/>
+<br/>
+═════════════════════<br/>
+<span style="font-weight:bold;">TEAM EXCELLENCE : 82/100</span><br/>
+<span style="font-weight:bold;">MARKET OPPORTUNITY : 85/100</span><br/>
+<span style="font-weight:bold;">PRODUCT INNOVATION : 80/100</span><br/>
+<span style="font-weight:bold;">BUSINESS MODEL : 65/100</span><br/>
+<span style="font-weight:bold;">TRACTION &amp; GROWTH : 70/100</span><br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">PRE-SCREENING SCORE :</span> 76/100 → 🟠 MIXED SIGNAL<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+❓ In a NUTSHELL : AML Factory is an Automated AML Compliance SaaS that enables Compliance Officers to automate their end-to-end regulatory workflows by unifying KYC, transaction monitoring, and case management into a single platform.<br/>
+<br/>
+⚠️ The PROBLEM : A Compliance Manager at a mid-sized French bank spends their Monday morning manually cross-referencing spreadsheet exports from three different systems to investigate a single suspicious transaction alert, knowing that any missed detail could lead to a multi-million euro fine and personal liability.<br/>
+<br/>
+✅ The SOLUTION : The platform integrates directly with client systems to provide a unified 'golden record' for each customer, automatically screening transactions against configurable scenarios and presenting alerts within a single case management interface, eliminating the need for manual data reconciliation.<br/>
+<br/>
+🚀 The GTM : A direct sales motion targeting Chief Compliance Officers within French financial institutions, leveraging the founding team's deep local regulatory expertise (ex-Banque de France advisor) as a trust-building wedge to displace generic global vendors who lack nuanced EU-specific compliance logic.<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 TEAM EXCELLENCE (N/A%) | Score: 82/100</span><br/>
+The founding team demonstrates exceptional domain credibility, a critical asset for selling into the trust-based financial compliance sector.<br/>
+<ul><li>Founder-Market Fit (25%) | Score: 95/100: CEO Charlotte Gaudin's 18+ years of experience in the AML space provides a deep earned secret; she understands the precise workflow pains and regulatory anxieties that drive purchasing decisions in a way a pure technologist cannot.</li><li>Track Record (25%) | Score: 50/100: While the team has deep operational experience, there is no public data on previous exits or venture-backed successes, making their ability to navigate hyper-growth an unknown variable.</li><li>Leadership (25%) | Score: 90/100: The core team is strong, with a COO with 20+ years of experience and an ESSEC MBA, a CTO with 12+ years, and a strategic board that includes high-signal members like a former Banque de France executive, adding immense credibility.</li><li>Completeness (25%) | Score: 90/100: The C-suite (CEO, COO, CTO) appears complete and well-balanced between technical and commercial expertise, which is ideal for this stage.</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 MARKET OPPORTUNITY (N/A%) | Score: 85/100</span><br/>
+The company operates in a large, non-discretionary market where budget is mandated by law, creating a durable tailwind.<br/>
+<ul><li>Size &amp; Growth (25%) | Score: 90/100: The SaaS-based AML/CTF compliance automation for the French financial services sector. is a multi-billion dollar global market, with regulatory complexity acting as a constant growth driver, ensuring resilient demand independent of economic cycles.</li><li>Timing Why Now (25%) | Score: 85/100: Increasingly stringent EU-wide regulations (e.g., AMLD6) are forcing financial institutions to abandon inefficient manual processes and legacy systems, creating an urgent and addressable need for modern, automated solutions.</li><li>Competition (25%) | Score: 75/100: The market has entrenched legacy players (e.g., NICE Actimize) and well-funded challengers, but AML Factory's France-specific focus provides a defensible niche against larger, less-agile competitors.</li><li>Expansion (25%) | Score: 90/100: Their stated strategy to expand across Europe, combined with partnerships like France Fintech, demonstrates a clear vision for growth beyond their initial domestic beachhead.</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 PRODUCT INNOVATION (N/A%) | Score: 80/100</span><br/>
+The product appears to be a comprehensive and technically sound platform, with specific features that create stickiness.<br/>
+<ul><li>Differentiation (25%) | Score: 80/100: The combination of proprietary algorithms like 'Profiler' and 'AMiraL' with a full-suite SaaS platform provides a unique value proposition against both simplistic rules engines and fragmented point solutions.</li><li>Product-Market Fit (25%) | Score: 80/100: Securing over 25 clients and partners like Acuris indicates strong initial PMF, demonstrating that their solution resonates with the target ICP of Compliance and Risk Managers.</li><li>Scalability (25%) | Score: 85/100: The SaaS platform architecture is inherently scalable, designed for real-time risk profiling and configurable scenarios, suggesting readiness for larger customer loads and geographic expansion.</li><li>IP &amp; Barriers (25%) | Score: 75/100: The Qualiopi certification for their AML Academy creates a tangible barrier to entry, embedding them into customer training workflows and creating a unique, defensible ancillary service.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 BUSINESS MODEL (N/A%) | Score: 65/100</span><br/>
+The business model is standard for B2B SaaS, but a lack of transparency on pricing and unit economics creates uncertainty.<br/>
+<ul><li>Unit Economics (25%) | Score: 25/100: Pricing is not publicly disclosed, and the mention of implementation/modelling fees suggests a more enterprise-focused model which can have longer sales cycles and higher CAC.</li><li>Revenue Model (25%) | Score: 85/100: The dual revenue streams from SaaS subscriptions and professional training packages create a robust and diversified model with multiple avenues for monetization and customer lock-in.</li><li>Monetization (25%) | Score: 75/100: The modular platform (Compliance, KYC, TMS) and tiered AML Academy packages provide clear upsell paths, allowing the company to land with one solution and expand its footprint within an account.</li><li>Capital Efficiency (25%) | Score: 75/100: Raising only ~$1M in 2021 and growing to 10+ employees by 2024 suggests either strong capital efficiency driven by early revenue or reliance on non-equity financing like the referenced Defacto facility, which warrants further diligence.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; GROWTH (N/A%) | Score: 70/100</span><br/>
+Initial traction signals are positive but lack the hard quantitative data needed for high conviction at this stage.<br/>
+<ul><li>Revenue Growth (25%) | Score: 50/100: While a ~$1M seed round in 2021 and subsequent growth awards are noted, the absence of any specific revenue or growth metrics makes it difficult to assess the true velocity of the business.</li><li>Customer Validation (25%) | Score: 85/100: The presence of 25+ clients and partnerships with credible entities like France Fintech and Acuris provides solid third-party validation and de-risks the value proposition.</li><li>KPI Progression (25%) | Score: 75/100: Recognition in the Tech500 for rapid growth and hiring, coupled with an estimated headcount of 10+, signals positive momentum and execution velocity post-funding.</li><li>Market Penetration (25%) | Score: 70/100: The company has established a foothold in its target French market and leverages a partner ecosystem, but its growth is described as primarily organic, suggesting penetration may be deliberate rather than explosive.</li></ul>
+<br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISK TO UNDERWRITE :</span><br/>
+The entire thesis rests on the assumption that mid-market financial institutions prefer an 'all-in-one' compliance suite over a 'best-of-breed' stack of specialized point solutions. If this preference assumption is wrong, AML Factory will be perpetually out-featured by focused competitors and will struggle to scale beyond the initial niche of French SMEs who prioritize simplicity over capability. This risk is resolvable only through time and observing their win/loss rates against point solutions in competitive deals as they move upmarket.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ KEY COMPETITIVE ADVANTAGES :</span><br/>
+<ul><li>Deep Domain Expertise in a Trust-Based Sale: The founding team's 18+ years of experience and advisory board from the Banque de France creates immediate credibility, a decisive advantage over tech-first competitors in the conservative compliance market.</li><li>Integrated Platform &amp; Training Ecosystem: Combining an end-to-end SaaS platform with a 'Qualiopi' certified training academy creates high switching costs and embeds AML Factory into both the software workflow and human capital processes of its clients.</li><li>French &amp; EU Regulatory Specialization: The product is purpose-built for the nuances of French and EU regulations, offering a more precise and defensible solution for local institutions compared to generic offerings from larger US-based vendors.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 MOAT :</span> MODERATE<br/>
+The primary moat is process power, created by deeply embedding the SaaS platform into a client's core compliance and reporting workflows; the cost and risk of switching to a competitor once internal standards are modeled and historical data is logged are substantial. This moat compounds as more transaction data flows through the system, refining risk models and making the platform's intelligence more valuable over time. A secondary layer of defensibility comes from the 'Qualiopi' regulatory certification for their training academy, which competitors cannot easily replicate and which strengthens brand authority and customer stickiness.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ ASYMMETRIC WAGER</span><br/>
+<ul><li>The Bull Case:</li></ul>
+By dominating the underserved French mid-market with a perfectly tailored compliance suite, AML Factory becomes the EU's go-to RegTech platform for any institution prioritizing regional regulatory fidelity over the generic scale of US incumbents, snowballing across Europe through a network of local compliance experts.<br/>
+<br/>
+<ul><li>The Bear Case :</li></ul>
+Their 'all-in-one' platform is ultimately a 'master of none' that gets squeezed from the bottom by nimbler, single-feature point solutions (e.g., screening APIs) and from the top by feature-rich enterprise suites (e.g., NICE Actimize), trapping them as a lifestyle business serving only the French SME market.<br/>
+<br/>
+<span style="font-weight:bold;">🚩 RED FLAGS</span><br/>
+<ul><li>Universal Risks: With only ~$1M in disclosed funding from 2021 against a 10+ person headcount, the company is either impressively capital efficient from revenue or potentially capital-starved, which could hinder its ability to compete aggressively on sales and marketing.</li><li>Thesis-Specific Mismatches: If our thesis demands evidence of explosive, product-led growth, AML Factory's stated 'organic' growth approach and reliance on a direct, expertise-led sales motion may signal a slower, more deliberate scaling path that conflicts with a hyper-growth mandate.</li></ul>
+<br/>
+<span style="font-weight:bold;">📝 FIRST MEETING PREP KIT</span><br/>
+Our initial analysis suggests a strong, domain-expert team in a mandatory market, but with significant questions around capital strategy and competitive positioning. The first call must cut through the narrative to test the scalability of their model.<br/>
+<br/>
+<ul><li>The Investment Angle: We are betting that a hyper-specialized, founder-led team with deep regulatory credibility can build a defensible and highly profitable regional champion in a market where trust and precision trump the scale of global giants.</li></ul>
+<br/>
+<ul><li>Killer Questions for First Call :</li></ul>
+<br/>
+- Question 1 — GTM MECHANICS :<br/>
+'Your success in France is clearly tied to your team's deep local credibility. As you plan your European expansion, how do you replicate that 'unfair advantage' in a market like Germany or Italy where you're just another French software vendor? Who is the first hire you make in a new country?'<br/>
+<br/>
+- Question 2 — THE CORE ASSUMPTION :<br/>
+'Your core thesis is the 'all-in-one' suite. In the last three deals you lost, what was the primary reason? Did you lose to a cheaper, simpler point solution like a standalone screening tool, or to a bigger enterprise suite like Actimize that was perceived as more robust?'<br/>
+<br/>
+- Question 3 — UNIT ECONOMICS STRESS TEST :<br/>
+'You mention a 'modelling fee' for internal standards. For a typical mid-sized client, what is that one-time fee as a percentage of their first-year ACV, and how much of that is pure margin versus man-hours from your team?'<br/>
+<br/>
+<ul><li>First Meeting Go/No-Go Signal :</li></ul>
+We proceed if their competitive losses are primarily to legacy incumbents (validating the suite demand) and they have a clear playbook for leveraging local partners to enter new EU markets. We pass if they are consistently losing to best-of-breed point solutions and their expansion plan is simply 'hire more salespeople'.<br/>
+<br/>
+<span style="font-weight:bold;">🌐 DATA CONFIDENCE :</span> MEDIUM<br/>
+<ul><li>Product-level and team data is strong, but the financial picture and true customer traction are an analytical black box. Diligence must focus entirely on proprietary metrics (revenue, churn, CAC, LTV) that are unavailable publicly.</li><li><span style="font-weight:bold;">DATA GAPS :</span> Private revenue figures • Customer churn &amp; retention rates • Net Revenue Retention (NRR) • CAC &amp; payback period • Detailed cap table structure.</li></ul>
+</div>
+<div class="img-col">
+<img alt="Company Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-af50d02dda231448d1a3e82ebed429a5-oinz0olw.jpg"/>
+</div>
+</div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block"><ul><li>RegTech &amp; Compliance &gt; Automated AML Compliance SaaS</li><li>B2B &gt; SaaS</li><li>1.05M€ raised from Unknown (2021)</li></ul>
+<br/>
+<span style="font-weight:bold;">PRE-SCREENING SCORE</span><br/>
+Thesis : <br/>
+<br/>
+NOTE: This is a raw pre-screening score. Thesis weights are applied<br/>
+in the Synthetic GP qualification pipeline after angle detection.<br/>
+<br/>
+═════════════════════<br/>
+<span style="font-weight:bold;">TEAM EXCELLENCE : 82/100</span><br/>
+<span style="font-weight:bold;">MARKET OPPORTUNITY : 85/100</span><br/>
+<span style="font-weight:bold;">PRODUCT INNOVATION : 80/100</span><br/>
+<span style="font-weight:bold;">BUSINESS MODEL : 65/100</span><br/>
+<span style="font-weight:bold;">TRACTION &amp; GROWTH : 70/100</span><br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">PRE-SCREENING SCORE :</span> 76/100 → 🟠 MIXED SIGNAL<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+❓ In a NUTSHELL : AML Factory is an Automated AML Compliance SaaS that enables Compliance Officers to automate their end-to-end regulatory workflows by unifying KYC, transaction monitoring, and case management into a single platform.<br/>
+<br/>
+⚠️ The PROBLEM : A Compliance Manager at a mid-sized French bank spends their Monday morning manually cross-referencing spreadsheet exports from three different systems to investigate a single suspicious transaction alert, knowing that any missed detail could lead to a multi-million euro fine and personal liability.<br/>
+<br/>
+✅ The SOLUTION : The platform integrates directly with client systems to provide a unified golden record for each customer, automatically screening transactions against configurable scenarios and presenting alerts within a single case management interface, eliminating the need for manual data reconciliation.<br/>
+<br/>
+🚀 The GTM : A direct sales motion targeting Chief Compliance Officers within French financial institutions, leveraging the founding team's deep local regulatory expertise (ex-Banque de France advisor) as a trust-building wedge to displace generic global vendors who lack nuanced EU-specific compliance logic.<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 TEAM EXCELLENCE (N/A%) | Score: 82/100</span><br/>
+The founding team demonstrates exceptional domain credibility, a critical asset for selling into the trust-based financial compliance sector.<br/>
+<ul><li>Founder-Market Fit (25%) | Score: 95/100: CEO Charlotte Gaudin's 18+ years of experience in the AML space provides a deep earned secret; she understands the precise workflow pains and regulatory anxieties that drive purchasing decisions in a way a pure technologist cannot.</li><li>Track Record (25%) | Score: 50/100: While the team has deep operational experience, there is no public data on previous exits or venture-backed successes, making their ability to navigate hyper-growth an unknown variable.</li><li>Leadership (25%) | Score: 90/100: The core team is strong, with a COO with 20+ years of experience and an ESSEC MBA, a CTO with 12+ years, and a strategic board that includes high-signal members like a former Banque de France executive, adding immense credibility.</li><li>Completeness (25%) | Score: 90/100: The C-suite (CEO, COO, CTO) appears complete and well-balanced between technical and commercial expertise, which is ideal for this stage.</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 MARKET OPPORTUNITY (N/A%) | Score: 85/100</span><br/>
+The company operates in a large, non-discretionary market where budget is mandated by law, creating a durable tailwind.<br/>
+<ul><li>Size &amp; Growth (25%) | Score: 90/100: The SaaS-based AML/CTF compliance automation for the French financial services sector. is a multi-billion dollar global market, with regulatory complexity acting as a constant growth driver, ensuring resilient demand independent of economic cycles.</li><li>Timing Why Now (25%) | Score: 85/100: Increasingly stringent EU-wide regulations (e.g., AMLD6) are forcing financial institutions to abandon inefficient manual processes and legacy systems, creating an urgent and addressable need for modern, automated solutions.</li><li>Competition (25%) | Score: 75/100: The market has entrenched legacy players (e.g., NICE Actimize) and well-funded challengers, but AML Factory's France-specific focus provides a defensible niche against larger, less-agile competitors.</li><li>Expansion (25%) | Score: 90/100: Their stated strategy to expand across Europe, combined with partnerships like France Fintech, demonstrates a clear vision for growth beyond their initial domestic beachhead.</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 PRODUCT INNOVATION (N/A%) | Score: 80/100</span><br/>
+The product appears to be a comprehensive and technically sound platform, with specific features that create stickiness.<br/>
+<ul><li>Differentiation (25%) | Score: 80/100: The combination of proprietary algorithms like Profiler and AMiraL with a full-suite SaaS platform provides a unique value proposition against both simplistic rules engines and fragmented point solutions.</li><li>Product-Market Fit (25%) | Score: 80/100: Securing over 25 clients and partners like Acuris indicates strong initial PMF, demonstrating that their solution resonates with the target ICP of Compliance and Risk Managers.</li><li>Scalability (25%) | Score: 85/100: The SaaS platform architecture is inherently scalable, designed for real-time risk profiling and configurable scenarios, suggesting readiness for larger customer loads and geographic expansion.</li><li>IP &amp; Barriers (25%) | Score: 75/100: The Qualiopi certification for their AML Academy creates a tangible barrier to entry, embedding them into customer training workflows and creating a unique, defensible ancillary service.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 BUSINESS MODEL (N/A%) | Score: 65/100</span><br/>
+The business model is standard for B2B SaaS, but a lack of transparency on pricing and unit economics creates uncertainty.<br/>
+<ul><li>Unit Economics (25%) | Score: 25/100: Pricing is not publicly disclosed, and the mention of implementation/modelling fees suggests a more enterprise-focused model which can have longer sales cycles and higher CAC.</li><li>Revenue Model (25%) | Score: 85/100: The dual revenue streams from SaaS subscriptions and professional training packages create a robust and diversified model with multiple avenues for monetization and customer lock-in.</li><li>Monetization (25%) | Score: 75/100: The modular platform (Compliance, KYC, TMS) and tiered AML Academy packages provide clear upsell paths, allowing the company to land with one solution and expand its footprint within an account.</li><li>Capital Efficiency (25%) | Score: 75/100: Raising only ~$1M in 2021 and growing to 10+ employees by 2024 suggests either strong capital efficiency driven by early revenue or reliance on non-equity financing like the referenced Defacto facility, which warrants further diligence.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; GROWTH (N/A%) | Score: 70/100</span><br/>
+Initial traction signals are positive but lack the hard quantitative data needed for high conviction at this stage.<br/>
+<ul><li>Revenue Growth (25%) | Score: 50/100: While a ~$1M seed round in 2021 and subsequent growth awards are noted, the absence of any specific revenue or growth metrics makes it difficult to assess the true velocity of the business.</li><li>Customer Validation (25%) | Score: 85/100: The presence of 25+ clients and partnerships with credible entities like France Fintech and Acuris provides solid third-party validation and de-risks the value proposition.</li><li>KPI Progression (25%) | Score: 75/100: Recognition in the Tech500 for rapid growth and hiring, coupled with an estimated headcount of 10+, signals positive momentum and execution velocity post-funding.</li><li>Market Penetration (25%) | Score: 70/100: The company has established a foothold in its target French market and leverages a partner ecosystem, but its growth is described as primarily organic, suggesting penetration may be deliberate rather than explosive.</li></ul>
+<br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISK TO UNDERWRITE :</span><br/>
+The entire thesis rests on the assumption that mid-market financial institutions prefer an all-in-one compliance suite over a best-of-breed stack of specialized point solutions. If this preference assumption is wrong, AML Factory will be perpetually out-featured by focused competitors and will struggle to scale beyond the initial niche of French SMEs who prioritize simplicity over capability. This risk is resolvable only through time and observing their win/loss rates against point solutions in competitive deals as they move upmarket.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ KEY COMPETITIVE ADVANTAGES :</span><br/>
+<ul><li>Deep Domain Expertise in a Trust-Based Sale: The founding team's 18+ years of experience and advisory board from the Banque de France creates immediate credibility, a decisive advantage over tech-first competitors in the conservative compliance market.</li><li>Integrated Platform &amp; Training Ecosystem: Combining an end-to-end SaaS platform with a Qualiopi certified training academy creates high switching costs and embeds AML Factory into both the software workflow and human capital processes of its clients.</li><li>French &amp; EU Regulatory Specialization: The product is purpose-built for the nuances of French and EU regulations, offering a more precise and defensible solution for local institutions compared to generic offerings from larger US-based vendors.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 MOAT :</span> MODERATE<br/>
+The primary moat is process power, created by deeply embedding the SaaS platform into a client's core compliance and reporting workflows; the cost and risk of switching to a competitor once internal standards are modeled and historical data is logged are substantial. This moat compounds as more transaction data flows through the system, refining risk models and making the platform's intelligence more valuable over time. A secondary layer of defensibility comes from the Qualiopi regulatory certification for their training academy, which competitors cannot easily replicate and which strengthens brand authority and customer stickiness.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ ASYMMETRIC WAGER</span><br/>
+<ul><li>The Bull Case:</li></ul>
+By dominating the underserved French mid-market with a perfectly tailored compliance suite, AML Factory becomes the EU's go-to RegTech platform for any institution prioritizing regional regulatory fidelity over the generic scale of US incumbents, snowballing across Europe through a network of local compliance experts.<br/>
+<br/>
+<ul><li>The Bear Case :</li></ul>
+Their all-in-one platform is ultimately a master of none that gets squeezed from the bottom by nimbler, single-feature point solutions (e.g., screening APIs) and from the top by feature-rich enterprise suites (e.g., NICE Actimize), trapping them as a lifestyle business serving only the French SME market.<br/>
+<br/>
+<span style="font-weight:bold;">🚩 RED FLAGS</span><br/>
+<ul><li>Universal Risks: With only ~$1M in disclosed funding from 2021 against a 10+ person headcount, the company is either impressively capital efficient from revenue or potentially capital-starved, which could hinder its ability to compete aggressively on sales and marketing.</li><li>Thesis-Specific Mismatches: If our thesis demands evidence of explosive, product-led growth, AML Factory's stated organic growth approach and reliance on a direct, expertise-led sales motion may signal a slower, more deliberate scaling path that conflicts with a hyper-growth mandate.</li></ul>
+<br/>
+<span style="font-weight:bold;">📝 FIRST MEETING PREP KIT</span><br/>
+Our initial analysis suggests a strong, domain-expert team in a mandatory market, but with significant questions around capital strategy and competitive positioning. The first call must cut through the narrative to test the scalability of their model.<br/>
+<br/>
+<ul><li>The Investment Angle: We are betting that a hyper-specialized, founder-led team with deep regulatory credibility can build a defensible and highly profitable regional champion in a market where trust and precision trump the scale of global giants.</li></ul>
+<br/>
+<ul><li>Killer Questions for First Call :</li></ul>
+<br/>
+- Question 1 — GTM MECHANICS :<br/>
+'Your success in France is clearly tied to your team's deep local credibility. As you plan your European expansion, how do you replicate that unfair advantage in a market like Germany or Italy where you're just another French software vendor? Who is the first hire you make in a new country?'<br/>
+<br/>
+- Question 2 — THE CORE ASSUMPTION :<br/>
+Your core thesis is the 'all-in-one suite. In the last three deals you lost, what was the primary reason? Did you lose to a cheaper, simpler point solution like a standalone screening tool, or to a bigger enterprise suite like Actimize that was perceived as more robust?'<br/>
+<br/>
+- Question 3 — UNIT ECONOMICS STRESS TEST :<br/>
+You mention a 'modelling fee for internal standards. For a typical mid-sized client, what is that one-time fee as a percentage of their first-year ACV, and how much of that is pure margin versus man-hours from your team?'<br/>
+<br/>
+<ul><li>First Meeting Go/No-Go Signal :</li></ul>
+We proceed if their competitive losses are primarily to legacy incumbents (validating the suite demand) and they have a clear playbook for leveraging local partners to enter new EU markets. We pass if they are consistently losing to best-of-breed point solutions and their expansion plan is simply hire more salespeople.<br/>
+<br/>
+<span style="font-weight:bold;">🌐 DATA CONFIDENCE :</span> MEDIUM<br/>
+<ul><li>Product-level and team data is strong, but the financial picture and true customer traction are an analytical black box. Diligence must focus entirely on proprietary metrics (revenue, churn, CAC, LTV) that are unavailable publicly.</li><li><span style="font-weight:bold;">DATA GAPS :</span> Private revenue figures • Customer churn &amp; retention rates • Net Revenue Retention (NRR) • CAC &amp; payback period • Detailed cap table structure.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/1zyzLKXAYjFLLUJcY78cdg/a5TvIXnB8URukoXbJ836H18dY8r-J91CT5nPvyCNL24sRBSG_RXgpngZ-xlrSCjUg0iHhekTCXtqrEWTVIP_O-PhOzh_NbZ_QxOCr88joUt6zdizFwBNmf79OACsoHKi48VEEwYg6K3FLvWzCvOK0w/qynXbZFgWcuuKyEUmJnJmwEEMF9PeSAKZ9baxFFgIJk"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">SWOT Analysis</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Strengths</h3><ul><li>Experienced leadership team includes CEO with 18+ years in compliance, COO with 20+ years and MBA, and CTO with 12+ years.</li><li>Serves over 25 clients with partnerships from France Fintech and Region Ile de France.</li><li>Offers comprehensive SaaS platform covering KYC, KYT, transaction monitoring, and regulatory watch.</li><li>Provides differentiated AML Academy training certified by Qualiopi.</li><li>Secured $1 million in funding in 2021 and Defacto financing for European expansion.</li></ul></div>
+<div class="swot-item s-red"><h3>Weaknesses</h3><ul><li></li><li>Team size remains small at 10+ members since 2019 founding.</li><li>No public funding or major news since 2021 seed round.</li><li>Growth relies solely on organic expansion without M&amp;A activity.</li><li>Limited transparency on revenue, pricing details, or client retention metrics.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunities</h3><ul><li>Rising EU regulatory demands for AML/CTF compliance drive demand for automated RegTech solutions.</li><li>Partnerships with France Fintech position company for ecosystem referrals in French market.</li><li>Defacto financing enables scaling sales and operations across Europe.</li><li>AML Academy training taps into mandatory staff education requirements.</li><li>Configurable platform suits financial institutions of varying sizes seeking customized workflows.</li></ul></div>
+<div class="swot-item s-orange"><h3>Threats</h3><ul><li>Crowded RegTech space features established players with deeper resources.</li><li>Absence of recent funding signals potential cash constraints amid expansion.</li><li>Evolving regulations could require costly platform updates.</li><li>Small team limits capacity to serve larger enterprise clients.</li><li></li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources and Methodology</h2>
+<div class="source-list">
+<h3>Value Chain Sources</h3>
+<h3>Market Sources</h3><p>MARKET INTELLIGENCE DOSSIER - URL EVIDENCE TRACKER</p>
+<p>Purpose: Supporting documentation with comprehensive URL evidence for Market Attractiveness Score Analysis</p>
+<p>Market: Automated AML Compliance SaaS</p>
+<p>Data Completeness: 15/100</p>
+<p>Assessment: 🔴 INSUFFICIENT - NEED MORE RESEARCH (&lt;70)</p>
+<p>Calculation: (3 URLs found ÷ 20 URLs searched) × 100 = 15% completeness</p>
+<p>Research Date: 2024-10-27 | Total URLs Found: 3</p>
+<p>URL EVIDENCE BY MARKET SCORING CATEGORY</p>
+<p>🌊 ATTRACTIVE MARKET (Market Dynamics) | Found 1/4 data points</p>
+<ul><li><b>Market Size:</b> No URL found. Used for: Analysis based on general industry knowledge about the RegTech market.</li><li><b>Growth Drivers:</b> No URL found. Used for: Analysis based on general knowledge of EU AML directives and financial regulations.</li><li><b>Timing Why Now:</b> <a href="https://www.getdefacto.com/article/aml-factory-peace-of-mind" target="_blank">https://www.getdefacto.com/article/aml-factory-peace-of-mind</a>. Used for: Indication of growth financing as a current market activity.</li><li><b>Market Risks:</b> No URL found. Used for: Analysis based on common challenges in enterprise software sales to financial institutions.</li></ul>
+<p>⚔️ WINNABLE MARKET (Competitive Landscape) | Found 1/4 data points</p>
+<ul><li><b>Incumbents:</b> No URL found. Used for: Competitors named are well-known market leaders.</li><li><b>Challengers:</b> <a href="https://www.seedtable.com/startups/aml-factory" target="_blank">https://www.seedtable.com/startups/aml-factory</a>. Used for: Providing context for AML Factory as a startup in the landscape.</li><li><b>White Space:</b> No URL found. Used for: White space analysis is a strategic conclusion, not from a direct source.</li><li><b>Defensibility:</b> No URL found. Used for: Moat analysis is a strategic conclusion based on business model characteristics.</li></ul>
+<p>🎯 PENETRABLE MARKET (Go-To-Market &amp; Unit Economics) | Found 0/4 data points</p>
+<ul><li><b>GTM Model:</b> No URL found. Used for: Analysis based on typical enterprise SaaS sales models in this vertical.</li><li><b>Pricing Model:</b> No URL found. Used for: Analysis based on standard industry pricing structures.</li><li><b>Unit Economics:</b> No URL found. Used for: No public data available.</li><li><b>Scalability:</b> No URL found. Used for: Analysis based on typical SaaS business models.</li></ul>
+<p>💰 REWARDING MARKET (Funding &amp; Exit Landscape) | Found 1/4 data points</p>
+<ul><li><b>Funding Activity:</b> <a href="https://www.seedtable.com/startups/aml-factory" target="_blank">https://www.seedtable.com/startups/aml-factory</a>. Used for: Citing a specific funding event within the market.</li><li><b>Exit Multiples:</b> No URL found. Used for: Analysis based on general knowledge of public company comparables and M&amp;A trends in software.</li><li><b>Strategic Buyers:</b> No URL found. Used for: Acquirers listed are logical buyers based on their known corporate strategies.</li></ul>
+<p>WEB DATA COMPLETENESS ANALYSIS</p>
+<p>Missing Critical URLs Based on Web Research: Market size reports (e.g., Gartner, Forrester), detailed competitive funding data, specific exit multiple reports, studies on GTM effectiveness in RegTech.</p>
+<p>URLs Successfully Found: 3 out of 20 searched</p>
+<p>Critical Data Coverage: 15% of required data points</p>
+<p>Research Confidence Level: LOW</p><h3>Company Sources</h3><p>COMPANY INTELLIGENCE DOSSIER - URL EVIDENCE TRACKER</p>
+<p>Purpose: Supporting documentation with comprehensive URL evidence for Investment Score Analysis</p>
+<p>Company: AML Factory</p>
+<p>Data Completeness: 40/100</p>
+<p>Assessment: 🔴 INSUFFICIENT DATA FOR A FIRST LOOK (&lt;70)</p>
+<p>Calculation: (8 URLs found ÷ 20 URLs searched) × 100 = 40% completeness</p>
+<p>Research Date: 2024-10-27 | Total URLs Found: 8</p>
+<p>URL EVIDENCE BY SCORING CATEGORY</p>
+<h4>👨🏻 TEAM EXCELLENCE | Found 2/4 data points</h4>
+<ul><li><b>Founder-Market Fit:</b> <a href="https://fr.linkedin.com/posts/charlotte-gaudin-amlexpert_aml-factory-simplifiez-vos-processus-de-activity-7122215477023490048-k_mG" target="_blank">https://fr.linkedin.com/posts/charlotte-gaudin-amlexpert_aml-factory-simplifiez-vos-processus-de-activity-7122215477023490048-k_mG</a>. Used for: Assessing CEO's personal engagement and narrative, though profile itself lacks detail.</li><li><b>Track Record:</b> No URL found. Used for: Data for previous exits or major accomplishments is unavailable.</li><li><b>Leadership:</b> <a href="https://www.aml-factory.com" target="_blank">https://www.aml-factory.com</a>. Used for: Identifying core team members (CEO, COO, CTO) and strategic board listed on the company website.</li><li><b>Completeness:</b> <a href="https://fr.linkedin.com/posts/amlfactory_amlfactory-tech500-recrutement-activity-7297883867028344832-EkGF" target="_blank">https://fr.linkedin.com/posts/amlfactory_amlfactory-tech500-recrutement-activity-7297883867028344832-EkGF</a>. Used for: Inferring team size and growth from hiring announcements.</li></ul>
+<h4>🌊 MARKET OPPORTUNITY | Found 2/4 data points</h4>
+<ul><li><b>Size &amp; Growth:</b> No URL found. Used for: Market sizing data was based on general industry knowledge, not a specific source.</li><li><b>Timing Why Now:</b> <a href="https://www.getdefacto.com/article/aml-factory-peace-of-mind" target="_blank">https://www.getdefacto.com/article/aml-factory-peace-of-mind</a>. Used for: Understanding the company's growth mindset and financing for expansion in the current market.</li><li><b>Competition:</b> No URL found. Used for: Competitive analysis was based on general industry knowledge.</li><li><b>Expansion:</b> <a href="https://www.getdefacto.com/article/aml-factory-peace-of-mind" target="_blank">https://www.getdefacto.com/article/aml-factory-peace-of-mind</a>. Used for: Confirming European expansion plans as a stated growth vector.</li></ul>
+<h4>💡 PRODUCT INNOVATION | Found 2/4 data points</h4>
+<ul><li><b>Differentiation:</b> <a href="https://www.aml-factory.com" target="_blank">https://www.aml-factory.com</a>. Used for: Identifying proprietary algorithm names and feature sets from the main product page.</li><li><b>Product-Market Fit:</b> <a href="https://www.aml-factory.com" target="_blank">https://www.aml-factory.com</a>. Used for: Citing the 'over 25 clients' and partner logos displayed on the website.</li><li><b>Scalability:</b> <a href="https://www.aml-factory.com" target="_blank">https://www.aml-factory.com</a>. Used for: Analyzing the described SaaS architecture and feature encyclopedia for scalability.</li><li><b>IP &amp; Barriers:</b> No URL found. Used for: The Qualiopi certification is mentioned, but a direct link to the credential was not provided.</li></ul>
+<h4>💼 BUSINESS MODEL | Found 1/4 data points</h4>
+<ul><li><b>Unit Economics:</b> No URL found. Used for: Pricing is not disclosed on the site.</li><li><b>Revenue Model:</b> <a href="https://www.aml-factory.com" target="_blank">https://www.aml-factory.com</a>. Used for: Identifying SaaS and training as primary revenue streams.</li><li><b>Monetization:</b> No URL found. Used for: Specific pricing tiers or upsell paths are not detailed.</li><li><b>Capital Efficiency:</b> <a href="https://www.seedtable.com/startups/aml-factory" target="_blank">https://www.seedtable.com/startups/aml-factory</a>. Used for: Confirming the ~$1M funding round in 2021.</li></ul>
+<h4>📈 TRACTION &amp; GROWTH | Found 2/4 data points</h4>
+<ul><li><b>Revenue Growth:</b> <a href="https://www.seedtable.com/startups/aml-factory" target="_blank">https://www.seedtable.com/startups/aml-factory</a>. Used for: Establishing a timeline for funding to assess growth runway.</li><li><b>Customer Validation:</b> <a href="https://www.aml-factory.com" target="_blank">https://www.aml-factory.com</a>. Used for: Identifying client count and key partners mentioned on the homepage.</li><li><b>KPI Progression:</b> <a href="https://fr.linkedin.com/posts/amlfactory_amlfactory-tech500-recrutement-activity-7297883867028344832-EkGF" target="_blank">https://fr.linkedin.com/posts/amlfactory_amlfactory-tech500-recrutement-activity-7297883867028344832-EkGF</a>. Used for: Citing 'Tech500' award for growth as a positive KPI signal.</li><li><b>Market Penetration:</b> <a href="https://www.getdefacto.com/article/aml-factory-peace-of-mind" target="_blank">https://www.getdefacto.com/article/aml-factory-peace-of-mind</a>. Used for: Confirming focus on the French market and plans for European expansion.</li></ul>
+<p>WEB DATA COMPLETENESS ANALYSIS</p>
+<p>Missing Critical URLs Based on Web Research: Founder work history, specific client case studies, pricing details, detailed financial metrics, independent product reviews.</p>
+<p>URLs Successfully Found: 8 out of 20 searched</p>
+<p>Critical Data Coverage: 40% of required data points</p>
+<p>Research Confidence Level: LOW</p></div>
+</div>
+<div class="ppx-cta"><h3>Explore AML Factory further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script></body></html>

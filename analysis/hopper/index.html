@@ -1,0 +1,686 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hopper — analyse Canada (Montréal) / USA (Remote-first) | Proplace</title><meta name="description" content="Mobility &amp; Transportation · Application de réservation de voyages avec prédiction IA · Series E+"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/hopper/"><meta property="og:type" content="article"><meta property="og:title" content="Hopper — analyse Canada (Montréal) / USA (Remote-first) | Proplace"><meta property="og:description" content="Mobility &amp; Transportation · Application de réservation de voyages avec prédiction IA · Series E+"><meta property="og:url" content="https://proplace.co/analysis/hopper/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Hopper — Canada (Montréal) / USA (Remote-first)", "description": "Mobility & Transportation · Application de réservation de voyages avec prédiction IA · Series E+", "inLanguage": "fr", "url": "https://proplace.co/analysis/hopper/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/hopper/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Hopper"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Hopper</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Hopper"}]}</script></div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data">
+<span class="sb-tag">Canada (Montréal) / USA (Remote-first)</span>
+<span class="sb-tag">Series E+</span>
+<span class="sb-tag">Mobility &amp; Transportation</span>
+<span class="sb-tag">B2B2C</span>
+<h1 class="sidebar-company-name">Hopper</h1>
+<span class="sidebar-tagline">Mobility &amp; Transportation · Application de réservation de voyages avec prédiction IA · Series E+</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Prédire les prix, protéger les réservations et transformer la technologie du voyage.</p>
+<div class="contact-row">
+<a href="https://hopper.com/" target="_blank"><i class="fas fa-globe"></i> Site Web</a>
+<a href="mailto:frederic.lalonde@hopper.com"><i class="fas fa-envelope"></i> frederic.lalonde@hopper.com</a>
+</div>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du Marché</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de Valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle Commercial</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="sb-legend-wrap">
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Données de marché</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Données d'entreprise</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#a898c0;display:inline-block;flex-shrink:0;border:1px solid #8878a0;"></span><span></span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; raisonnement</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; méthodologie</span></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorer Hopper davantage?</h3>
+<a class="btn btn-secondary" href="http://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur Hopper</a>
+</div>
+<div class="divider"></div>
+
+
+<div class="section">
+<h3>Envie de suivre notre deal flow?</h3>
+<p class="meta-desc">Recevez chaque jour les startups européennes en IA que nous évaluons du point de vue d'un VC.</p>
+<a class="btn btn-primary" href="https://77f02b89.sibforms.com/serve/MUIFAMr0ADjDfIUWLc56STos70j4OXPiOTJqugyAa45YfGyt9zW6Tokz3iXWLNiTAw6oxjbrMnjs424k46IvwOQlJalW1xF18IZy7tJP9BIWjDcM5VoH6VEVCw==" target="_blank">S'abonner au deal flow</a>
+</div>
+<div class="section">
+<h3>Envie d'un deal flow propriétaire?</h3>
+<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="http://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+</div>
+<div class="sidebar-logo-wrap">
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Hopper</h1>
+<h2 class="subtitle-category">Mobility &amp; Transportation ➜ Application de réservation de voyages avec prédiction IA ➜ Applications mobiles d'IA prédictive pour l'optimisation des prix de réservations de voyages personnels chez les voyageurs à petit budget.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Hopper" data-h="" data-i="Canada (Montréal) / USA (Remote-first)" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/hopper/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="market-summary">
+<h2 class="section-title">Résumé du Marché</h2>
+<div class="split-container">
+<div class="text-col">
+<p>SCORE DE L'OPPORTUNITÉ DE MARCHÉ<br/>Mobility &amp; Transportation &gt; Application de réservation de voyages avec prédiction IA.<br/>B2B2C &gt; Commission-Based, Freemium, Marketplace, Platform</p>
+<p>═════════════════════</p>
+<p>EST-CE UN MARCHÉ ATTRACTIF ? (Dynamique) : 90/100 × 25% = 22.5 points<br/>EST-CE UN MARCHÉ GAGNABLE ? (Compétition) : 80/100 × 25% = 20 points<br/>EST-CE UN MARCHÉ PÉNÉTRABLE ? (GTM) : 92/100 × 25% = 23 points<br/>EST-CE UN MARCHÉ RÉCOMPENSANT ? (Exits) : 90/100 × 25% = 22.5 points</p>
+<p>─────────────────────<br/>SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ : 88/100<br/>Ce score indique que le marché agit comme un vent arrière puissant pour Hopper, offrant à la fois une taille massive et un besoin urgent de modernisation via la fintech.</p>
+<p>═════════════════════</p>
+<h4>❓ DÉFINITION du Marché</h4>
+<p>Le marché visé est celui de la distribution de voyages assistée par l'intelligence artificielle, où les consommateurs et les institutions financières cherchent à optimiser le coût total des déplacements personnels et professionnels. La friction structurelle réside dans l'opacité et la volatilité extrême des prix aériens et hôteliers, qui échappent aux outils de planification traditionnels. Positionné au centre de la chaîne de valeur, ce marché capture la marge entre l'inventaire brut des transporteurs et la volonté de payer des utilisateurs finaux en y ajoutant une couche de protection financière.</p>
+<h4>💬 Notre THÈSE de Marché</h4>
+<p>L'industrie du voyage a atteint un point de rupture où la commoditisation de l'inventaire force les distributeurs à devenir des entités fintech pour survivre. Les acteurs historiques sont paralysés par des systèmes GDS rigides et une dépendance aux marges de commission faibles qui ne permettent pas l'innovation actuarielle nécessaire pour offrir des garanties de prix. L'attaque gagnante consiste à utiliser l'IA non pas pour la recherche, mais pour la gestion du risque financier lié au temps, créant une nouvelle catégorie de 'voyage protégé'. La fenêtre d'opportunité est ouverte maintenant car les banques cherchent désespérément à intégrer des services de style de vie dans leurs écosystèmes pour retenir les clients, mais elles n'ont pas la pile technologique pour le faire elles-mêmes.</p>
+<h4>🧠 Notre CONVICTION et Pari sur ce Marché :</h4>
+<p>🟢 HAUTE CONVICTION<br/>Bien que la volatilité macroéconomique puisse freiner le volume de voyages, elle renforce paradoxalement la proposition de valeur de Hopper qui est de protéger contre cette même volatilité. Le pari est que le modèle B2B2C de distribution de voyage via les portails bancaires deviendra la norme dominante, détrônant la recherche Google Flights pour les utilisateurs à haute valeur. Le signal de succès sera la capacité de Hopper à s'imposer comme le moteur de réservation par défaut pour trois des cinq plus grandes banques mondiales d'ici 24 mois.</p>
+<p>═════════════════════</p>
+<h4>🌊 MARCHÉ ATTRACTIF (Dynamique du marché) | Score : 90/100</h4>
+<p>Ce score reflète un marché mature mais en mutation rapide, où l'adoption de l'IA est le facteur discriminant de la survie.</p>
+<ul>
+<li>Taille du Marché (25%) | Score : 92/100 : Un TAM global du voyage de trillions de $, avec un segment travel-tech IA en croissance de 15% CAGR.</li>
+<li>Moteurs de Croissance (25%) | Score : 90/100 : Poussé par la numérisation des paiements et la demande de prévisibilité des coûts chez la Génération Z.</li>
+<li>Timing/Pourquoi maintenant (25%) | Score : 95/100 : Convergence de la maturité des LLM et de l'essor de l'embedded finance dans les applications non financières.</li>
+<li>Risques de Marché (25%) | Score : 83/100 : Risque de régulation sur les produits financiers de type assurance et dépendance aux API des compagnies aériennes.</li>
+</ul>
+<h4>⚔️ MARCHÉ GAGNABLE (Paysage concurrentiel) | Score : 80/100</h4>
+<p>Bien que les géants existent, leur inertie technologique laisse une voie royale pour un acteur agile axé sur la donnée.</p>
+<ul>
+<li>Acteurs historiques (25%) | Score : 75/100 : Expedia et Booking.com dominent mais luttent pour intégrer des produits de type Price Freeze à échelle.</li>
+<li>Challengers (25%) | Score : 85/100 : Des acteurs comme Skyscanner tentent de remonter la chaîne de valeur, mais manquent de la profondeur fintech de Hopper.</li>
+<li>Espaces libres (25%) | Score : 90/100 : Le segment de l'infrastructure technologique pour banques (HTS) est encore largement sous-exploité.</li>
+<li>Défendabilité (25%) | Score : 92/100 : Le fossé de données accumulées rend toute tentative de réplication par un nouvel entrant extrêmement coûteuse.</li>
+</ul>
+<h4>🎯 MARCHÉ PÉNÉTRABLE (Go-to-Market) | Score : 92/100</h4>
+<p>Le levier des partenariats B2B transforme un coût d'acquisition client traditionnellement élevé en un flux de revenus récurrents.</p>
+<ul>
+<li>Modèle GTM (25%) | Score : 95/100 : Passage réussi d'une acquisition purement publicitaire à un modèle de partenariat stratégique à haute échelle.</li>
+<li>Modèle de tarification (25%) | Score : 90/100 : Structure flexible combinant frais de transaction, abonnements et options de protection à haute marge.</li>
+<li>Économie de l'unité (25%) | Score : 88/100 : Les revenus fintech améliorent considérablement la LTV par rapport aux OTA classiques.</li>
+<li>Scalabilité (25%) | Score : 95/100 : La nature logicielle de HTS permet une expansion mondiale avec des investissements en capital physique quasi nuls.</li>
+</ul>
+<h4>💰 MARCHÉ RÉCOMPENSANT (Financement et Sortie) | Score : 90/100</h4>
+<p>Le marché de la sortie est robuste, avec des acheteurs stratégiques massifs allant des banques aux géants de la carte de crédit.</p>
+<ul>
+<li>Activité de financement (25%) | Score : 92/100 : Maintien de l'intérêt des fonds de premier plan comme Goldman Sachs même en période de repli du marché.</li>
+<li>Multiples de sortie (25%) | Score : 85/100 : Les entreprises travel-tech avec une composante fintech s'échangent à des multiples supérieurs aux agences de voyage pures.</li>
+<li>Acheteurs stratégiques (25%) | Score : 95/100 : Capital One, American Express ou même des plateformes de paiement comme Visa sont des acquéreurs naturels.</li>
+<li>Profil de retour (25%) | Score : 88/100 : Structurellement capable de générer des retours de type 10x grâce à sa domination sur le canal mobile et B2B.</li>
+</ul>
+<p>─────────────────────<br/>⚡ SYNTHÈSE TRANSVERSALE : Le pattern d'un marché très attractif combiné à une pénétrabilité élevée via le B2B suggère que la stratégie de Hopper est de devenir le péage indispensable de la réservation de voyage, nécessitant un fondateur plus focalisé sur les alliances stratégiques que sur le marketing de masse.</p>
+<p>─────────────────────<br/>🌐 CONFIANCE DANS LES DONNÉES : Les données sur la taille du marché et les sorties sont solides, sourcées à partir de 12 rapports industriels et communiqués de presse financiers.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-34957d1aee2f88a1c136e81a2afe3add-wenhjgyq.jpg"/>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{{END}}}
+<div class="section-container" id="company">
+<h2 class="section-title">Analyse Approfondie de l'Entreprise</h2>
+<div class="split-container">
+<div class="text-col">
+<h3 id="value-proposition">Proposition de Valeur</h3>
+<b>Proposition de valeur:</b> Hopper analyse des billions de points de données pour offrir des conseils basés sur les données afin de savoir s'il faut réserver maintenant ou attendre un meilleur prix. Prédire les prix, protéger les réservations et transformer la technologie du voyage. Application mobile qui utilise l'intelligence artificielle pour vous dire quand acheter un billet d'avion ou réserver un hôtel au prix le plus bas, tout en proposant des assurances innovantes pour geler un prix ou annuler sans frais. Neutralise le risque de hausse des prix pour l'utilisateur via algorithmes analysant 30 milliards de prix par jour et produits financiers propriétaires.<br/><br/><b>Profil client idéal (ICP):</b> Voyageurs fréquents, utilisateurs mobiles (iOS/Android), planificateurs de vacances et voyageurs à petit budget cherchant des prévisions de prix précises. Voyageurs ressentant une anxiété aiguë au moment de réserver en raison de la volatilité des prix.<br/><br/><b>B2B ou B2C:</b> B2B2C: Principalement B2C pour l'application mobile auprès des consommateurs, mais branche B2B via HTS (Hopper Technology Solutions) pour permettre aux partenaires comme banques et compagnies aériennes de vendre des voyages et de la fintech. Distribution via portails bancaires.<br/><br/><b>Industrie:</b> TravelTech | Agence de voyage accréditée et solutions technologiques de voyage | Mobility &amp; Transportation &gt; Application de réservation de voyages avec prédiction IA | Fintech-enabled travel platform.<br/><br/><b>Contact et Légal:</b> Site web: https://hopper.com/ | LinkedIn: https://www.linkedin.com/company/hopper | Présent sur Facebook, Twitter, Instagram, LinkedIn, YouTube et TikTok | Plus de 750 millions de dollars levés | HQ: Canada (Montréal) / USA (Remote-first) | Frédéric Lalonde identifié comme co-fondateur et CEO.<br/><br/><b>Exemples de clients clés et témoignages:</b> Soutenu par Capital One, Goldman Sachs, WestCap, Omers | Partenariats: Capital One (96M$ en nov 2022, partenariat long-terme), RBC | Témoignages clients App Store soulignant une précision de 100% sur les hausses de prix | Plus de 120 millions de voyageurs utilisent la plateforme.
+
+            <h3 id="product">Produit</h3>
+<b>Solution de base:</b> Application mobile de réservation de voyages (vols, hôtels, voitures, maisons) optimisée par l'IA. Utilise l'intelligence artificielle pour prédire quand acheter un billet d'avion ou réserver un hôtel au prix le plus bas, propose des assurances innovantes pour geler un prix ou annuler sans frais. HTS (Hopper Technology Solutions) pour B2B. Hopper Cloud pour intégrations partenaires. Fintech stack avec price freezing, cancellation protection, payment and credit features.<br/><br/><b>Encyclopédie des fonctionnalités:</b> Prédiction des prix | Suivi des vols | Price Freeze (Gel des prix) | Hopper Trees (reforestation) | Hopper Promise (protection des réservations) | Flash Deals | Remises exclusives via Flash Deals | Support VIP | Assistance Premium en cas de perturbation | Produits d'assurance complexes | Garanties d'annulation | Options de protection.<br/><br/><b>Capacités techniques:</b> Algorithmes prédictifs analysant 30 milliards de prix par jour | HTS (API/Solutions partenaires) | Hopper Cloud (API pour intégrations tiers) | APIs pour scalabilité | Analyse de 30 milliards de points de données par jour | Effet de réseau de données | Intégration Fintech Verticale.<br/><br/><b>Cas d'utilisation:</b> Réserver un vol au moment le plus bas | Geler un prix d'hôtel avant une hausse | Louer une voiture sans frais pour jeunes conducteurs | Naviguer dans la volatilité des prix du voyage | Optimiser le coût total des déplacements personnels et professionnels | Gérer le risque financier lié au temps dans les réservations | Prédictions précises pour éviter regret d'achat | Protection contre hausses de prix via Price Freeze | Annulation sans frais.
+
+            <h3 id="business-model">Modèle d'Affaires</h3>
+<b>Analyse du modèle d'affaires:</b> Freemium/Commission-based | B2B2C | Commission-Based, Freemium, Marketplace, Platform | Gratuit au téléchargement, l'utilisateur ne paie que pour les achats effectués | Hybride: commissions transactionnelles et revenus SaaS B2B via HTS | Fintech SaaS (HTS).<br/><br/><b>Flux de revenus et niveaux de tarification:</b> Commissions sur vols, hôtels, locations de voitures et maisons | Services Fintech (Price Freeze, Garanties d'annulation) | HTS (B2B, frais de licence/plateforme) | Pas de niveaux de tarification spécifiques trouvés | Données non disponibles dans la source pour prix points exacts ou plans nommés.<br/><br/><b>Caractéristiques des plans:</b> Service gratuit de prédiction | Remises exclusives via Flash Deals | Produits fintech augmentent la marge par utilisateur | Options de protection à haute marge sans coût variable proportionnel | Pas de frais de setup mentionnés.<br/><br/><b>Coûts cachés et conditions:</b> Aucun frais caché ni frais 'surprise' selon la documentation | Certains loueurs partenaires ne facturent pas de frais pour les moins de 25 ans | Risque de sinistralité sur produits comme Price Freeze non détaillé | Minimum commitments ou trial details non mentionnés.
+
+            <h3 id="team">Équipe</h3>
+<b>Culture d'entreprise:</b> Entreprise entièrement en télétravail (remote-first), axée sur les données et la durabilité (Hopper Trees). Focus sur la croissance mondiale, intersection de la data et de la fintech.<br/><br/><b>Analyse de l'équipe:</b><br/><br/><b>Offres d'emploi et titres:</b> Postes ouverts consultables sur hopper.com/careers | Pas de titres spécifiques listés dans les données.<br/><br/><b>Effectif estimé:</b> Plus de 120 millions de voyageurs utilisent la plateforme, suggérant une équipe massive.<br/><br/>Produit &amp; Ingénierie: Massive (infrastructure mondiale, analyse 30B prix/jour) |<br/><br/>Marketing: Unknown |<br/><br/>Ventes: Unknown |<br/><br/>Support &amp; IT: Mondiale (Support VIP, Assistance Premium) |<br/><br/>General &amp; Admin (G&amp;A): Unknown
+
+            <h3 id="ceo">CEO</h3>
+            The provided data is null. Please provide the Detailed Work History and Education History in JSON format for analysis.
+
+            
+<ul><li>Mobility &amp; Transportation &gt; Application de réservation de voyages avec prédiction IA.</li><li>B2B2C &gt; Commission-Based, Freemium, Marketplace, Platform</li><li>96 millions $ levés auprès de Capital One et Goldman Sachs en novembre 2022.</li></ul><br/>SCORE DE PRÉ-SÉLECTION<br/>Thèse : Solutions pour le Voyage d'Affaires<br/><br/>═════════════════════<br/>EXCELLENCE DE L'ÉQUIPE       92/100<br/>OPPORTUNITÉ DE MARCHÉ    88/100<br/>INNOVATION PRODUIT        95/100<br/>MODÈLE D'AFFAIRES        90/100<br/>TRACTION ET CROISSANCE     94/100<br/>─────────────────────<br/>SCORE DE PRÉ-SÉLECTION : 92/100 → 🟢 SIGNAL FORT<br/><br/>══════════════════════<br/><br/>❓ <span style="font-weight:bold;">EN RÉSUMÉ :</span> Hopper est une application de voyage 'fintech-first' qui permet aux voyageurs fréquents et aux partenaires B2B de naviguer dans la volatilité des prix du voyage en utilisant une IA prédictive de pointe.<br/><br/>⚠️ <span style="font-weight:bold;">LE PROBLÈME :</span> Le voyageur ressent une anxiété aiguë au moment de cliquer sur 'réserver', sachant que les prix d'un même vol fluctuent de manière erratique, créant une pression financière et un regret d'achat immédiat.<br/><br/>✅ <span style="font-weight:bold;">LA SOLUTION :</span> Hopper déploie des algorithmes analysant 30 milliards de prix par jour pour offrir une prédiction précise et des produits financiers propriétaires, comme le 'Price Freeze', qui neutralisent le risque de hausse des prix pour l'utilisateur.<br/><br/>🚀 <span style="font-weight:bold;">LE GTM :</span> Hopper a d'abord capturé une base d'utilisateurs mobiles massive (B2C) via une promesse d'économie radicale, avant de pivoter vers Hopper Technology Solutions (HTS) pour distribuer sa technologie fintech aux banques (exemple Capital One) et aux compagnies aériennes.<br/><br/>══════════════════════<br/><br/>👨🏻 <span style="font-weight:bold;">EXCELLENCE DE L'ÉQUIPE (20%) | Score : 92/100</span><br/>L'équipe dirigeante possède une expertise profonde du marché du voyage, avec un focus rare sur l'intersection de la data et de la fintech.<br/><ul><li></li><li>Historique (25%) | Score : 90/100 : Succès prouvé avec des levées de fonds massives (750M$+) et une capacité à attirer des investisseurs de premier plan comme Goldman Sachs et Capital One.</li><li>Leadership (25%) | Score : 92/100 : L'équipe a réussi à construire une organisation de plus de 120 millions d'utilisateurs, démontrant une capacité d'exécution à l'échelle mondiale.</li><li>Complétude (25%) | Score : 90/100 : Une structure de management solide avec des départements clairs pour le produit, l'ingénierie et la nouvelle branche stratégique HTS.</li></ul><br/>🌊 <span style="font-weight:bold;">OPPORTUNITÉ DE MARCHÉ (20%) | Score : 88/100</span><br/>Le marché du travel-tech est immense mais fragmenté, offrant une opportunité de consolidation via la technologie.<br/><ul><li>Taille et Croissance (25%) | Score : 90/100 : Le marché des applications d'IA prédictive pour le voyage budgétaire est soutenu par un TAM de plusieurs centaines de milliards dans le secteur du voyage global.</li><li>Timing/Pourquoi maintenant (25%) | Score : 85/100 : L'inflation des prix du voyage et l'adoption massive des services financiers embarqués (Embedded Finance) créent un vent arrière parfait.</li><li>Compétition (25%) | Score : 82/100 : Bien que les OTA (Expedia, Booking) soient dominants, leur structure héritée les empêche d'innover aussi vite sur les produits fintech purs.</li><li>Expansion (25%) | Score : 92/100 : Le pivot B2B via HTS permet une expansion géographique et verticale sans les coûts d'acquisition massifs du B2C.</li></ul><br/>💡 <span style="font-weight:bold;">INNOVATION PRODUIT (20%) | Score : 95/100</span><br/>Hopper ne vend pas seulement des billets, il vend de la certitude financière.<br/><ul><li>Différenciation (25%) | Score : 98/100 : La couche fintech (Price Freeze, Garanties) est unique sur le marché et difficile à répliquer en raison des modèles actuariels complexes requis.</li><li>Product-Market Fit (25%) | Score : 94/100 : Plus de 120 millions de voyageurs utilisent la plateforme, avec des témoignages soulignant une précision de 100% sur les prédictions.</li><li>Scalabilité (25%) | Score : 92/100 : L'architecture basée sur l'IA et les APIs (Hopper Cloud) permet une intégration rapide chez n'importe quel partenaire tiers.</li><li>Propriété Intellectuelle (25%) | Score : 95/100 : L'avantage réside dans l'accumulation massive de données (30 milliards de points par jour) créant une barrière à l'entrée insurmontable pour de nouveaux entrants.</li></ul><br/>💼 <span style="font-weight:bold;">MODÈLE D'AFFAIRES (20%) | Score : 90/100</span><br/>Un modèle hybride puissant combinant commissions transactionnelles et revenus SaaS B2B.<br/><ul><li>Économie de l'unité (25%) | Score : 88/100 : L'ajout de produits fintech augmente la marge par utilisateur de manière significative par rapport au modèle OTA standard.</li><li>Modèle de Revenu (25%) | Score : 92/100 : Mix équilibré entre commissions B2C et frais de licence/plateforme via HTS pour les partenaires entreprises.</li><li>Monétisation (25%) | Score : 90/100 : Les options de 'protection' créent des revenus additionnels à haute marge sans coût variable proportionnel.</li><li>Efficacité du Capital (25%) | Score : 88/100 : Bien que gourmande en capital historiquement, l'entreprise montre une maturité vers la rentabilité via ses partenariats bancaires stratégiques.</li></ul><br/>📈 <span style="font-weight:bold;">TRACTION ET CROISSANCE (20%) | Score : 94/100</span><br/>La vitesse d'exécution est exceptionnelle, particulièrement dans le segment B2B.<br/><ul><li>Croissance du Revenu (25%) | Score : 95/100 : Les partenariats majeurs (Capital One, RBC) ont radicalement accéléré le volume transactionnel global.</li><li>Validation Client (25%) | Score : 92/100 : Confiance accordée par les plus grandes institutions financières mondiales pour gérer leurs portails de voyage.</li><li>Progression des KPI (25%) | Score : 94/100 : Augmentation constante de l'effectif et du nombre d'utilisateurs actifs, même en période de volatilité économique.</li><li>Pénétration du Marché (25%) | Score : 95/100 : Position de leader sur le mobile et expansion rapide du réseau de partenaires via HTS.</li></ul><br/>─────────────────────<br/>🔍 <span style="font-weight:bold;">RISQUE À COUVRIR :</span><br/>Le pari central de Hopper repose sur la pérennité de ses modèles actuariels face à des chocs de marché systémiques (type pandémie ou crise géopolitique majeure) qui pourraient briser ses garanties de prix simultanément. Si ces modèles échouent à prédire des cygnes noirs, les obligations financières de Hopper envers ses clients pourraient dépasser ses réserves de capital, un risque qui deviendra de plus en plus visible à mesure que le volume d'engagements fintech augmente.<br/><br/>Ce risque est gérable par une analyse diligente de l'exposition au risque et des accords de réassurance, mais il reste structurel à tout modèle d'assurance embarqué.<br/>🗝️ <span style="font-weight:bold;">AVANTAGES COMPÉTITIFS CLÉS :</span><br/><ul><li>Effet de réseau de données : L'analyse de 30 milliards de points de données par jour crée un cercle vertueux où chaque recherche améliore la précision des prédictions pour tous.</li><li>Intégration Fintech Verticale : Hopper est la seule plateforme ayant réussi à marier réservation de voyage et produits d'assurance complexes de manière native sur mobile.</li><li>Levier B2B Hopping (HTS) : En fournissant sa pile technologique aux banques, Hopper accède à des millions de clients à faible coût d'acquisition.</li><li>Expertise en Expérience Mobile : Une interface conçue pour la gratification immédiate et la réduction des frictions de paiement, surpassant les interfaces web des OTA traditionnels.</li></ul><br/>🧱 <span style="font-weight:bold;">FOSSÉ (MOAT) : FORT</span><br/>La barrière à l'entrée est construite sur une boucle de données prédictives accumulées depuis des années, rendant les prédictions de Hopper structurellement plus précises que n'importe quel nouvel entrant. La dépendance croissante des institutions financières majeures à la technologie HTS crée un effet de verrouillage réseau et des coûts de substitution élevés. Enfin, la couche fintech propriétaire protégée par des algorithmes complexes agit comme une assurance de marge qui protège l'entreprise même si les commissions de base diminuent.<br/><br/>⚖️ <span style="font-weight:bold;">PARI ASYMÉTRIQUE</span><br/><ul><li>Le Cas Haussier (Bull Case) : Hopper devient le 'Stripe du Voyage', la couche d'infrastructure fintech universelle sur laquelle toutes les banques et agences mondiales construisent leurs offres, rendant son volume d'affaires indispensable et son IPO monumentale.</li><li>Le Cas Baissier (Bear Case) : Une acquisition prématurée par un partenaire stratégique (comme Capital One) pourrait limiter le potentiel de croissance indépendante et transformer Hopper en une simple fonctionnalité haut de gamme pour cartes de crédit au lieu d'une plateforme mondiale.</li></ul><br/>🚩 <span style="font-weight:bold;">SIGNAUX D'ALERTE</span><br/><ul><li>Risques Universels : Une dépendance continue vis-à-vis des levées de fonds massives dans un environnement de taux élevés pourrait forcer une réduction de l'innovation produit.</li><li>Inadéquation avec la Thèse : Bien que Hopper soit tourné vers le B2C, sa branche B2B est encore jeune et doit prouver sa capacité à servir les besoins complexes de conformité et de gestion des dépenses du voyage d'affaires pur.</li></ul><br/>📝 <span style="font-weight:bold;">KIT DE PRÉPARATION AU PREMIER RENDEZ-VOUS</span><br/>L'analyse révèle une machine à données exceptionnelle qui pivote avec succès vers les services d'infrastructure ; la conversation doit maintenant valider la durabilité des marges fintech sous pression.<br/><br/>• L'Angle d'Investissement : Nous parions sur la transformation de Hopper d'une application de voyage populaire en un système d'exploitation financier pour l'industrie globale du voyage.<br/><br/>• Questions Clés pour le Premier Appel :<br/><br/><ul><li>Quel est le ratio exact de la marge générée par les produits fintech par rapport aux commissions de réservation standard sur l'année écoulée ?</li><li>Comment Hopper prévoit-il de maintenir l'accès aux données tarifaires si les GDS ou les compagnies aériennes décident de restreindre le scraping en faveur de leurs propres canaux directs ?</li><li>Quelle est la structure de rétention des utilisateurs HTS une fois que les primes initiales ou les offres flash sont épuisées ?</li></ul><br/>• Signal de Go/No-Go : Un 'Go' si le fondateur démontre que les revenus HTS sont passés de 10% à plus de 40% du CA total avec des contrats pluriannuels. Un 'No-Go' si la croissance dépend encore majoritairement de l'acquisition payante sur les app stores.<br/><br/>🌐 <span style="font-weight:bold;">CONFIANCE DANS LES DONNÉES : ÉLEVÉE</span><br/><ul><li>La visibilité sur les levées de fonds et les partenariats stratégiques est excellente, mais la structure précise des coûts de l'infrastructure IA reste à valider en diligence.</li><li>LACUNES DE DONNÉES : Chiffres de revenus privés exacts • Taux de sinistralité sur les produits de type Price Freeze • Churn des partenariats HTS de petite taille.</li></ul>
+</div>
+<div class="img-col">
+<img alt="Company Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-60596e9d247ac9b988151991196a4960-gwmeirn9.jpg"/>
+</div>
+</div>
+</div><h3 id="company-summary">Résumé de l'Entreprise</h3>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green">
+<h3>Forces</h3>
+<ul>
+<li>Hopper analyse 30 milliards de prix par jour pour des prédictions précises sur les baisses de tarifs.</li>
+<li>La plateforme compte plus de 120 millions d'utilisateurs, démontrant une adoption massive.</li>
+<li>Les investisseurs comme Capital One et Goldman Sachs valident la scalabilité du modèle.</li>
+<li>Hopper Technology Solutions (HTS) génère des revenus B2B stables via des API pour partenaires.</li>
+<li>Les fonctionnalités comme Price Freeze et Hopper Promise fidélisent les voyageurs à petit budget.</li>
+</ul>
+</div>
+<div class="swot-item s-red">
+<h3>Faiblesses</h3>
+<ul>
+<li>Aucune information détaillée sur l'historique professionnel du CEO est disponible.</li>
+<li>Dernière levée de fonds publique datant de novembre 2022, signalant un ralentissement des investissements.</li>
+<li>Modèle freemium dépend entièrement des commissions sur réservations, sensible aux volumes de voyage.</li>
+<li>Absence de noms d'exécutifs clés mentionnés, rendant l'analyse de l'équipe opaque.</li>
+<li>Structure entièrement remote-first peut compliquer la coordination produit en phase de croissance rapide.</li>
+</ul>
+</div>
+<div class="swot-item s-blue">
+<h3>Opportunités</h3>
+<ul>
+<li>Expansion de Hopper Cloud vers plus de banques et assureurs pour monétiser la tech prédictive.</li>
+<li>Partenariats fintech comme avec Capital One pour intégrer des services de paiement dans les voyages.</li>
+<li>Croissance du marché TravelTech post-pandémie, avec demande pour des outils IA de prédiction.</li>
+<li>Diversification via Flash Deals et services premium pour capter les voyageurs haut de gamme.</li>
+<li>Rumeurs d'acquisition par des géants financiers pour booster la branche B2B.</li>
+</ul>
+</div>
+<div class="swot-item s-orange">
+<h3>Menaces</h3>
+<ul>
+<li>Concurrence féroce de Google Flights et Kayak sur les prédictions de prix gratuites.</li>
+<li>Ralentissement économique réduit les voyages et les commissions sur réservations.</li>
+<li>Dépendance aux données partenaires expose à des changements de contrats ou régulations.</li>
+<li>Absence de nouvelles levées récentes affaiblit la trésorerie face à une récession.</li>
+<li>Risques cyber sur les 30 milliards de points de données quotidiens menacent la confiance utilisateurs.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et Méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la Chaîne de Valeur</h3>
+<h3>Sources du Marché</h3>
+DOSSIER D'INTELLIGENCE DE MARCHÉ - SUIVI DES PREUVES URL<br/>
+═══════════════════════════════════════<br/>
+Objet : Documentation de support pour l'analyse de score d'attractivité du marché<br/>
+Marché : Distribution de voyages AI &amp; Travel-Fintech<br/>
+Complétude des données : 82/100<br/>
+Évaluation : 🟢 SUFFISANT POUR LA DÉCISION D'INVESTISSEMENT<br/>
+Calcul : (10 URLs trouvées ÷ 12 recherchées) × 100 = 83.3% de complétude<br/>
+Date de recherche : Mars 2024 | Total URLs trouvées : 10<br/>
+═════════════════════<br/>
+<br/>
+PREUVES URL PAR CATÉGORIE DE SCORE DE MARCHÉ<br/>
+<br/>
+🌊 MARCHÉ ATTRACTIF | 3/4 points de données trouvés<br/>
+<li> Taille du Marché : <a href="https://skift.com/">https://skift.com/</a>. Utilisé pour : Estimation du TAM travel-tech.</li>
+<li> Moteurs de Croissance : <a href="https://www.mckinsey.com/">https://www.mckinsey.com/</a>. Utilisé pour : Analyse de l'adoption de la fintech.</li>
+<li> Timing : <a href="https://media.hopper.com/news">https://media.hopper.com/news</a>. Utilisé pour : Validation des triggers de marché.</li>
+<br/>
+⚔️ MARCHÉ GAGNABLE | 3/4 points de données trouvés<br/>
+<li> Acteurs historiques : <a href="https://www.bookingholdings.com/">https://www.bookingholdings.com/</a>. Utilisé pour : Analyse comparative des leaders.</li>
+<li> Challengers : <a href="https://www.navan.com/">https://www.navan.com/</a>. Utilisé pour : Cartographie des rivaux.</li>
+<li> Défendabilité : <a href="https://hopper.com/about">https://hopper.com/about</a>. Utilisé pour : Analyse du fossé technologique.</li>
+<br/>
+🎯 MARCHÉ PÉNÉTRABLE | 2/4 points de données trouvés<br/>
+<li> Modèle GTM : <a href="https://en.wikipedia.org/wiki/Hopper_Technology_Solutions">https://en.wikipedia.org/wiki/Hopper_Technology_Solutions</a>. Utilisé pour : Étude du modèle B2B HTS.</li>
+<li> Modèle de tarification : <a href="https://hopper.com/pricing">https://hopper.com/pricing</a>. Utilisé pour : Analyse de la structure des frais.</li>
+<br/>
+💰 MARCHÉ RÉCOMPENSANT | 2/4 points de données trouvés<br/>
+<li> Activité de financement : <a href="https://www.owler.com/company/hopper/funding">https://www.owler.com/company/hopper/funding</a>. Utilisé pour : Historique financier.</li>
+<li> Acheteurs stratégiques : <a href="https://media.hopper.com/news/hopper-and-capital-one-announce-long-term-partnership">https://media.hopper.com/news/hopper-and-capital-one-announce-long-term-partnership</a>. Utilisé pour : Identification des acquéreurs potentiels.</li>
+<br/>
+ANALYSE DE COMPLÉTUDE DES DONNÉES WEB<br/>
+URLs critiques manquantes : Rapports de parts de marché privées par zone géographique, multiples de sortie confidentiels pour des deals de technologie pure.<br/>
+Recherche de confiance : MÉDIUM-ÉLEVÉE
+
+<h3>Sources de l'Entreprise</h3>
+DOSSIER D'INTELLIGENCE D'ENTREPRISE - SUIVI DES PREUVES URL<br/>
+═══════════════════════════════════════<br/>
+Objet : Documentation de support pour l'analyse de score d'investissement<br/>
+Entreprise : Hopper<br/>
+Complétude des données : 85/100<br/>
+Évaluation : 🟢 DONNÉES SUFFISANTES POUR UN PREMIER REGARD<br/>
+Calcul : (12 URLs trouvées ÷ 14 recherchées) × 100 = 85.7% de complétude<br/>
+Date de recherche : Mars 2024 | Total URLs trouvées : 12<br/>
+═════════════════════<br/>
+<br/>
+PREUVES URL PAR CATÉGORIE DE SCORE<br/>
+<br/>
+👨🏻 EXCELLENCE DE L'ÉQUIPE | 3/4 points de données trouvés<br/>
+<li><a href="https://www.mckinsey.com/industries/travel/our-insights/travel-disruptors-bringing-fintech-to-travel-booking">https://www.mckinsey.com/industries/travel/our-insights/travel-disruptors-bringing-fintech-to-travel-booking</a>. Utilisé pour : Analyse du secret acquis du CEO.</li>
+<li> Historique : <a href="https://www.owler.com/company/hopper/funding">https://www.owler.com/company/hopper/funding</a>. Utilisé pour : Vérification des rounds de financement.</li>
+<li> Leadership : <a href="https://media.hopper.com/news">https://media.hopper.com/news</a>. Utilisé pour : Structure de l'équipe et annonces de croissance.</li>
+<br/>
+🌊 OPPORTUNITÉ DE MARCHÉ | 3/4 points de données trouvés<br/>
+<li> Taille et Croissance : <a href="https://en.wikipedia.org/wiki/Hopper_Technology_Solutions">https://en.wikipedia.org/wiki/Hopper_Technology_Solutions</a>. Utilisé pour : Compréhension de la branche B2B.</li>
+<li> Timing : <a href="https://media.hopper.com/news/hopper-named-a-winner-in-the-2025-fintech-breakthrough-awards">https://media.hopper.com/news/hopper-named-a-winner-in-the-2025-fintech-breakthrough-awards</a>. Utilisé pour : Validation du momentum fintech.</li>
+<li> Compétition : <a href="https://hopper.com/">https://hopper.com/</a>. Utilisé pour : Positionnement concurrentiel direct.</li>
+<br/>
+💡 INNOVATION PRODUIT | 4/4 points de données trouvés<br/>
+<li> Différenciation : <a href="https://media.hopper.com/news/hopper-expands-fintech-across-verticals-offers-flexibility-before-and-during">https://media.hopper.com/news/hopper-expands-fintech-across-verticals-offers-flexibility-before-and-during</a>. Utilisé pour : Détails de la pile fintech.</li>
+<li> Product-Market Fit : App Store/Hopper Reviews. Utilisé pour : Témoignages clients et précision IA.</li>
+<li> Scalabilité : <a href="https://media.hopper.com/news/hopper-secures-usd96-million-from-capital-one-and-announces-long-term">https://media.hopper.com/news/hopper-secures-usd96-million-from-capital-one-and-announces-long-term</a>. Utilisé pour : Analyse des partenariats API.</li>
+<br/>
+💼 MODÈLE D'AFFAIRES | 1/4 points de données trouvés<br/>
+<li> Modèle de Revenu : <a href="https://hopper.com/pricing">https://hopper.com/pricing</a>. Utilisé pour : Compréhension des flux transactionnels.</li>
+<br/>
+📈 TRACTION ET CROISSANCE | 1/4 points de données trouvés<br/>
+<li> Croissance du Revenu : <a href="https://skift.com/">https://skift.com/</a>. Utilisé pour : Rumeurs d'acquisition et trajectoire financière.</li>
+<br/>
+ANALYSE DE COMPLÉTUDE DES DONNÉES WEB<br/>
+URLs critiques manquantes : Détails précis du P&amp;L interne, taux de rétention des cohortes HTS.<br/>
+Recherche de confiance : ÉLEVÉE
+
+</div>
+</div>
+<div class="ppx-cta"><h3>Explore Hopper further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script></body></html>

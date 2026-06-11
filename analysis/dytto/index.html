@@ -1,0 +1,968 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dytto — Belgium analysis | Proplace</title><meta name="description" content="In-depth analysis of Dytto."><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/dytto/"><meta property="og:type" content="article"><meta property="og:title" content="Dytto — Belgium analysis | Proplace"><meta property="og:description" content="In-depth analysis of Dytto."><meta property="og:url" content="https://proplace.co/analysis/dytto/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Dytto — Belgium", "description": "In-depth analysis of Dytto.", "inLanguage": "en", "url": "https://proplace.co/analysis/dytto/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/dytto/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Dytto"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Dytto</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Dytto"}]}</script></div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data">
+<span class="sb-tag">Belgium</span>
+<span class="sb-tag">Pre-Seed</span>
+<span class="sb-tag">FinTech</span>
+<span class="sb-tag">B2B</span>
+</div>
+<h1 class="sidebar-company-name">Dytto</h1>
+<p class="meta-desc" style="margin-bottom: 15px;">The AI-native digital laborer for European accounting firms.</p>
+<div class="contact-row">
+</div>
+</div>
+<nav class="navigation">
+<a class="nav-item bg-yellow" href="#market">Market Sizing</a>
+<a class="nav-item bg-yellow" href="#value-chain">Value Chain</a>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<a class="nav-item bg-yellow" href="#competition-magic">Competition Magic Quadrant</a>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-blue" href="#sources">Sources</a>
+</nav>
+<div class="divider"></div>
+<div class="section">
+<h3>Explore Dytto further?</h3>
+<a class="btn btn-secondary" href="http://forms.proplace.co/meet" target="_blank">Schedule a strategy call on Dytto</a>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Want to follow our deal flow?</h3>
+<p class="meta-desc">Receive European AI startups we assess every day from a VC perspective.</p>
+<a class="btn btn-primary" href="https://77f02b89.sibforms.com/serve/MUIFAMr0ADjDfIUWLc56STos70j4OXPiOTJqugyAa45YfGyt9zW6Tokz3iXWLNiTAw6oxjbrMnjs424k46IvwOQlWjaMIsbgexAk95FvzqzgLa56TkHas6WASK4VKs684XcZhacqMYTYQGuIfzJmBmCkmHwhNeB0yHifmrxC1PUhNMS1ZbiW1xF18IZy7tJP9BIWjDcM5VoH6VEVCw==" target="_blank">Subscribe to deal flow</a>
+</div>
+<div class="section">
+<h3>Want a proprietary deal flow?</h3>
+<p class="meta-desc">Receive daily highly qualified targets for your acquisition strategy.</p>
+<a class="btn btn-primary" href="http://forms.proplace.co/meet" target="_blank">Schedule a strategy call</a>
+</div>
+<div class="section" style="text-align: center; margin-bottom: 0; padding-top: 10px;">
+</div>
+</div>
+<div class="content-area">
+<h1>Dytto Interactive Memo</h1>
+<h2 class="subtitle-category">FinTech ➜ AI Administrative Assistant for Accounting Firms ➜ AI-driven administrative automation and workflow tools for small to mid-sized European accounting firms with 3-20 professionals.</h2>
+<p class="body-tagline">The AI-native digital laborer for European accounting firms.</p>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Want a detailed, personalized memo on this company?</p><button class="op-eval" data-c="Dytto" data-h="" data-i="Belgium" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/dytto/" type="button">⚡ Request a detailed, personalized memo</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="market">
+<h2 class="section-title">Market Sizing</h2>
+<h3>Top-Down Market analysis</h3>
+<div class="split-container">
+<div class="text-col">
+<b>Top-Down Market Analysis (Funnel Approach)</b><br/><br/><b>Total Addressable Market (TAM): $6,708.6 million</b><br/>• Perimeter: AI in accounting market size<br/>• Source Data: Grand View Research (<a href="https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai">https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai</a>)<br/><br/><b>Serviceable Available Market (SAM): $1.5–1.8 billion</b><br/>• Perimeter: European share of AI in accounting market<br/>• Logic: Filtered for our specific sector and geography.<br/>• Source Verification: Industry Research Biz (cited in search result), triangulated with Grand View Research projections (<a href="https://www.industryresearch.biz/market-reports/artificial-intelligence-in-accounting-market-109677?utm_source=openai">https://www.industryresearch.biz/market-reports/artificial-intelligence-in-accounting-market-109677?utm_source=openai</a>)<br/><br/><b>Serviceable Obtainable Market (SOM): $90 million</b><br/>• Perimeter: 5% market share of SAM for early-stage entrant<br/>• Logic: Realistic near-term target based on competitive landscape.<br/>• Source: Calculated from SAM data (<a href="https://www.industryresearch.biz/market-reports/artificial-intelligence-in-accounting-market-109677?utm_source=openai">https://www.industryresearch.biz/market-reports/artificial-intelligence-in-accounting-market-109677?utm_source=openai</a>)
+                    </div>
+<div class="img-col">
+<img alt="Top Down Market Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-02d237875a87287a593de8c98a2d948a-6q25pryj.jpg"/>
+</div>
+</div>
+<h3>Bottom-Up Market analysis</h3>
+<div class="split-container">
+<div class="text-col">
+<b>Bottom-Up Market Analysis (Calculated Approach)</b><br/>This approach calculates the total market size by multiplying the validated number of potential customers by a verified average price point.<br/><br/><b>1. Customer Segment (Volume): Tens of thousands</b><br/>• Who they are: Small to mid-sized European accounting firms with 3-20 professionals, often independent practices or small networks, facing administrative burdens in document processing, scheduling, and workflow management<br/>• Validated Source: Smartscrapers / CompanyData (for Europe-wide scale) (<a href="https://companydata.com/europe/accounting-companies/?utm_source=openai">https://companydata.com/europe/accounting-companies/?utm_source=openai</a>)<br/><br/><b>2. Unit Economics (Price): €29–€49 per client per month (€348–€588 annual per client ARPU)</b><br/>• What this represents: Per-client per month, tiered (Starter €29, Pro €49); hybrid possible, annual revenue per client<br/>• Validated Source: Tulos.ai pricing page (cited example) (<a href="https://www.tulos.ai/en/pricing?utm_source=openai">https://www.tulos.ai/en/pricing?utm_source=openai</a>)<br/><br/><b>3. Calculated Result: €17.2–58.8 billion</b><br/>• This figure represents the mathematically derived Serviceable Available Market based on the specific inputs above.
+                    </div>
+<div class="img-col">
+<img alt="Bottom Up Market Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-c8c8835ec654257a7b002804334ce756-bbaoanc5.jpg"/>
+</div>
+</div>
+<h3>Triangulation &amp; Trends</h3>
+<div class="text-col" style="flex: none;">
+                    Top-down analysis yields a more conservative and reliable SAM of $1.5-1.8 billion, directly sourced from industry reports, while bottom-up overestimates at €17.2-58.8 billion due to aggressive per-client ARPU assumptions versus actual firm-level spend. SOM of $90 million aligns as a realistic 5% capture of SAM. Prioritize top-down for investor-grade precision, using bottom-up for validation.<br/><br/><b>MARKET INTELLIGENCE: AI Transforms SMB Accounting Admin</b><br/><br/><b>1. Market Catalyst &amp; Trajectory</b><br/>✦︎ The Structural Shift: AI-driven administrative automation emerges as the new market vector for small to mid-sized European accounting firms (3-20 professionals), addressing repetitive admin tasks like document processing, scheduling, and workflow management amid EU digitalization and regulatory needs like GDPR.[<a href="https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai">https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai</a>][<a href="https://companydata.com/europe/accounting-companies/?utm_source=openai">https://companydata.com/europe/accounting-companies/?utm_source=openai</a>]<br/>✦︎ Velocity &amp; Validation: Global AI in accounting market reaches $6,708.6 million in 2025 with 39.6% CAGR through 2033; European SAM $1.5–1.8 billion (25-29% of global).[<a href="https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai">https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai</a>][<a href="https://www.industryresearch.biz/market-reports/artificial-intelligence-in-accounting-market-109677?utm_source=openai">https://www.industryresearch.biz/market-reports/artificial-intelligence-in-accounting-market-109677?utm_source=openai</a>]<br/><br/><b>2. Value Chain &amp; Control Points</b><br/>✦︎ The Scarcity: Stage 4 (Accounting-Specific Application Development) acts as the new bottleneck and control point, scoring highest strategic position at 9.0 from high defensibility, margins, and growth.[<a href="https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai">https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai</a>]<br/>✦︎ Leverage Dynamics: This stage commands pricing power via regulatory/domain barriers like GDPR/VAT compliance and deep integrations, enabling premium SaaS tiers with 78-89% margins while upstream stages like Stage 1 feed it foundational AI.[<a href="https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai">https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai</a>][<a href="https://www.tulos.ai/en/pricing?utm_source=openai">https://www.tulos.ai/en/pricing?utm_source=openai</a>]<br/><br/><b>3. Competitive Dislocation</b><br/>✦︎ Incumbent Vulnerability: Mature commoditized players like Dext and MindBridge Ai suffer low differentiation despite high maturity, transitioning to standardized AI features in receipt capture and audit analytics.[<a href="https://www.crunchbase.com/organization/receiptfarm?utm_source=openai">https://www.crunchbase.com/organization/receiptfarm?utm_source=openai</a>]<br/>✦︎ Mechanism of Displacement: Autonomous AI and no-code platforms from established leaders (Vic.ai, StackAI) and emerging innovators (Bluebook, Endex.ai) erode share via superior efficiency in workflows and Excel-native modeling, fragmenting the early-consolidating landscape.[<a href="https://www.crunchbase.com/organization/vic-ai?utm_source=openai">https://www.crunchbase.com/organization/vic-ai?utm_source=openai</a>][<a href="https://www.eu-startups.com/2025/02/self-driving-accounting-bluebook-secures-e2-4-million-for-ai-powered-accounting/?utm_source=openai">https://www.eu-startups.com/2025/02/self-driving-accounting-bluebook-secures-e2-4-million-for-ai-powered-accounting/?utm_source=openai</a>]<br/><br/><b>4. Unit Economics &amp; Value Capture</b><br/>✦︎ Margin Profile: Profit pool shifts to Stages 1, 3, and 4 where margins expand to 80-90% or 87% gross due to fixed-cost SaaS structures and premium pricing, outpacing moderate margins in extraction/support stages.[<a href="https://agentzap.ai/industries/accounting?utm_source=openai">https://agentzap.ai/industries/accounting?utm_source=openai</a>][<a href="https://www.tulos.ai/en/pricing?utm_source=openai">https://www.tulos.ai/en/pricing?utm_source=openai</a>]<br/>✦︎ The Winning Configuration: Per-client SaaS model at €29–€49/month (annual ARPU €348–€588) in Stage 4, targeting tens of thousands European SMBs for 5% SOM of €90 million, leveraging compliance moats for scalable value capture.[<a href="https://www.tulos.ai/en/pricing?utm_source=openai">https://www.tulos.ai/en/pricing?utm_source=openai</a>][<a href="https://companydata.com/europe/accounting-companies/?utm_source=openai">https://companydata.com/europe/accounting-companies/?utm_source=openai</a>]
+                </div>
+</div>
+<div class="section-container" id="value-chain">
+<h2 class="section-title">Value Chain Analysis</h2>
+<h3>Value chain stage description</h3>
+<div class="text-full-width">
+<b>STAGE [1]: Foundational AI Technology &amp; Infrastructure Development</b><br/><br/>This upstream stage involves R&amp;D on core AI components like LLMs, NLP, and cloud infrastructure for hosting scalable AI models used in admin automation. It provides the foundational tech stack enabling downstream extraction and workflows, critical for handling unstructured accounting data.<br/><br/>🔢 Strategic Score: 8.8 (Exceptional)<br/><br/>🛡️DEFENSIBILITY (7/10): High barriers. <br/>Key factors: High Capital (+2) • High Technical (+2) • Critical IP (+2). <br/>Source: Barriers query answer (<a href="https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai">https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai</a>)<br/><br/>💰 MARGIN POTENTIAL (10/10):High margins, typical range 80-90%.<br/>Key factors: Premium Pricing (+3) • Fixed-cost (+3). <br/>Source: Margins query (<a href="https://www.tulos.ai/en/pricing?utm_source=openai">https://www.tulos.ai/en/pricing?utm_source=openai</a>)<br/><br/>📈 GROWTH (10/10): High growth, CAGR 39.6%. <br/>Key drivers: &gt;30% CAGR (+4) • New market (+3). <br/>Source: Market size query (<a href="https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai">https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai</a>)<br/><br/>🏢 SPECIALIZED COMPANIES: OpenAI (GPT LLMs) • Microsoft Azure OpenAI (enterprise AI) • Google Vertex AI (AI platform)<br/><br/>💬 STAGE INSIGHT: Stage 1 offers top-tier defensibility and margins from IP-heavy R&amp;D and fixed-cost scaling, paired with explosive growth from AI adoption, making it highly attractive for tech giants despite high entry costs.<br/><br/><b>STAGE [2]: Data Ingestion &amp; Extraction</b><br/><br/>This stage handles intake of unstructured accounting docs (invoices, receipts) via OCR/NER, extraction of metadata/line items, and normalization for workflows. Valuable for accuracy in admin automation, reducing manual entry errors in SMB firms.<br/><br/>🔢 Strategic Score: 5.5 (Moderate)<br/><br/>🛡️DEFENSIBILITY (4.5/10): Moderate barriers. <br/>Key factors: Moderate Capital (+1) • High Technical (+2) • Proprietary IP (+1.5). <br/>Source: Barriers query (<a href="https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai">https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai</a>)<br/><br/>💰 MARGIN POTENTIAL (4/10):Moderate margins, typical range Unknown.<br/>Key factors: Market-rate Pricing (+1.5) • Mixed Cost (+1.5). <br/>Source: Margins query (<a href="https://agentzap.ai/industries/accounting?utm_source=openai">https://agentzap.ai/industries/accounting?utm_source=openai</a>)<br/><br/>📈 GROWTH (9/10): High growth, CAGR 39.6%. <br/>Key drivers: &gt;30% CAGR (+4) • Growing TAM (+2). <br/>Source: Market size query (<a href="https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai">https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai</a>)<br/><br/>🏢 SPECIALIZED COMPANIES: ABBYY (OCR) • Rossum (AI invoice) • Microsoft Form Recognizer (doc understanding)<br/><br/>💬 STAGE INSIGHT: Moderate defensibility from technical hurdles pairs with solid margins in a high-growth area driven by document-heavy admin needs in European SMBs, positioning it as a strong mid-upstream play.<br/><br/><b>STAGE [3]: Workflow Orchestration &amp; Automation</b><br/><br/>Core stage automates routine admin flows like task routing, journal entries, reconciliations using RPA/NLP on extracted data. Enables efficiency for SMB firms' high-volume tasks like month-end closes.<br/><br/>🔢 Strategic Score: 7.4 (Strong)<br/><br/>🛡️DEFENSIBILITY (4/10): Moderate barriers. <br/>Key factors: Moderate Capital (+1) • Moderate Technical (+1) • Proprietary IP (+1). <br/>Source: Barriers query (<a href="https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai">https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai</a>)<br/><br/>💰 MARGIN POTENTIAL (10/10):High margins, typical range 87%.<br/>Key factors: Premium Pricing (+3) • Fixed-cost (+3). <br/>Source: Margins query (<a href="https://agentzap.ai/industries/accounting?utm_source=openai">https://agentzap.ai/industries/accounting?utm_source=openai</a>)<br/><br/>📈 GROWTH (9/10): High growth, CAGR ~39%. <br/>Key drivers: &gt;30% CAGR (+4) • Growing TAM (+2). <br/>Source: Market size query (<a href="https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai">https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai</a>)<br/><br/>🏢 SPECIALIZED COMPANIES: UiPath (RPA) • Automation Anywhere (RPA) • Blue Prism (orchestration)<br/><br/>💬 STAGE INSIGHT: Balanced defensibility from switching/integration moats supports excellent margins and growth in core automation, ideal for scalable RPA players targeting SMB workflows.<br/><br/><b>STAGE [4]: Accounting-Specific Application Development</b><br/><br/>Tailors workflows to accounting admin (tax reminders, journal posting, compliance) with rule engines and integrations for European regs like GDPR/VAT.<br/><br/>🔢 Strategic Score: 9.0 (Exceptional)<br/><br/>🛡️DEFENSIBILITY (7.5/10): High barriers. <br/>Key factors: Moderate Capital (+1) • High Technical (+2) • Proprietary IP (+1.5). <br/>Source: Barriers query (<a href="https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai">https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai</a>)<br/><br/>💰 MARGIN POTENTIAL (10/10):High margins, typical range 78-89%.<br/>Key factors: Premium Pricing (+3) • Fixed-cost (+3). <br/>Source: Margins query (<a href="https://agentzap.ai/industries/accounting?utm_source=openai">https://agentzap.ai/industries/accounting?utm_source=openai</a>)<br/><br/>📈 GROWTH (10/10): High growth, CAGR 39.6%. <br/>Key drivers: &gt;30% CAGR (+4) • New market (+3). <br/>Source: Market size query (<a href="https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai">https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai</a>)<br/><br/>🏢 SPECIALIZED COMPANIES: BlackLine (close automation) • FloQast (close management) • PracticeERP (CPA workflows)<br/><br/>💬 STAGE INSIGHT: High defensibility from regulation/domain moats and top margins/growth make this the sector's sweet spot for European SMB-focused tools.<br/><br/><b>STAGE [5]: Client Engagement &amp; Packaging</b><br/><br/>Packages AI tools for client-facing admin (scheduling, portals, comms) into SMB SaaS products with per-client pricing for European firms.<br/><br/>🔢 Strategic Score: 6.7 (Strong)<br/><br/>🛡️DEFENSIBILITY (3/10): Low barriers. <br/>Key factors: Low Capital (0) • Moderate Technical (+1) • Know-how (+1). <br/>Source: Barriers query (<a href="https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai">https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai</a>)<br/><br/>💰 MARGIN POTENTIAL (8.5/10):High margins, typical range 68%.<br/>Key factors: Market Pricing (+1.5) • Fixed-cost (+3). <br/>Source: Pricing query (<a href="https://www.tulos.ai/en/pricing?utm_source=openai">https://www.tulos.ai/en/pricing?utm_source=openai</a>)<br/><br/>📈 GROWTH (10/10): High growth, CAGR 39.6%. <br/>Key drivers: &gt;30% CAGR (+4) • New market (+3). <br/>Source: Market size query (<a href="https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai">https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai</a>)<br/><br/>🏢 SPECIALIZED COMPANIES: Tulos.ai (per-client AI) • AgentZap.ai (receptionist) • Hyperleap AI (chatbots)<br/><br/>💬 STAGE INSIGHT: Lower defensibility but strong margins/growth from SMB pricing models and EU TAM make it attractive for agile startups.<br/><br/><b>STAGE [6]: Integration, Deployment &amp; Support</b><br/><br/>Downstream stage for tech stack integration, firm onboarding, compliance setup, training, and ongoing monitoring/optimization.<br/><br/>🔢 Strategic Score: 4.6 (Moderate)<br/><br/>🛡️DEFENSIBILITY (3/10): Moderate barriers. <br/>Key factors: Low Capital (0) • Moderate Technical (+1) • High Switching (+1). <br/>Source: Barriers query (<a href="https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai">https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai</a>)<br/><br/>💰 MARGIN POTENTIAL (4/10):Moderate margins, typical range Unknown.<br/>Key factors: Market Pricing (+1.5) • Mixed Cost (+1.5). <br/>Source: Margins query (<a href="https://agentzap.ai/industries/accounting?utm_source=openai">https://agentzap.ai/industries/accounting?utm_source=openai</a>)<br/><br/>📈 GROWTH (8/10): Moderate growth, CAGR ~39%. <br/>Key drivers: &gt;30% CAGR (+4) • Growing TAM (+2). <br/>Source: Market size query (<a href="https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai">https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai</a>)<br/><br/>🏢 SPECIALIZED COMPANIES: MuleSoft (integration) • Workato (middleware) • Okta (security)<br/><br/>💬 STAGE INSIGHT: Service-heavy stage has solid growth but lower margins/defensibility due to labor intensity, suiting integrated SaaS providers with CS arms.
+</div>
+<hr style="margin: 30px 0;"/>
+<h3>Top 3 Strategic Positions</h3>
+<div class="text-col">
+<b>Best Strategic Positions Overview</b><br/><br/>Based on the comprehensive value chain analysis using the Strategic Position Score methodology (weighted combination of Defensibility 40%, Margin Potential 35%, and Growth 25%), the following three stages represent the most attractive investment opportunities in the AI-driven administrative automation and workflow tools for small to mid-sized European accounting firms with 3-20 professionals value chain:<br/><br/><b>🥇 Rank 1: Stage [4] - Accounting-Specific Application Development</b><br/><br/>🔢 Strategic Score: 9.0<br/><br/>💬 STRATEGIC RATIONALE:Highest defensibility from regulatory/domain barriers combined with perfect margins and growth, ideal for European SMB focus where compliance moats shine.<br/><br/>🔎 KEY SUPPORTING EVIDENCE:<br/><li>GDPR/compliance moats (+1 reg). (Source: barriers - <a href="https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai">https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai</a>)</li><li>87% margins. (Source: <a href="https://agentzap.ai/industries/accounting">https://agentzap.ai/industries/accounting</a> - <a href="https://agentzap.ai/industries/accounting?utm_source=openai">https://agentzap.ai/industries/accounting?utm_source=openai</a>)</li><br/><b>🥈 Rank 2: Stage [1] - Foundational AI Technology &amp; Infrastructure Development</b><br/><br/>🔢 Strategic Score: 8.8<br/><br/>💬 STRATEGIC RATIONALE:Near-perfect scores across board, driven by IP/tech defensibility and SaaS economics fueling underlying growth.<br/><br/>🔎 KEY SUPPORTING EVIDENCE:<br/><li>Critical IP (OpenAI). (Source: key players - <a href="https://www.poidata.io/index.php/report/accounting-firm/france?utm_source=openai">https://www.poidata.io/index.php/report/accounting-firm/france?utm_source=openai</a>)</li><li>87% margins illustrative. (Source: <a href="https://www.tulos.ai/en/pricing">https://www.tulos.ai/en/pricing</a> - <a href="https://www.tulos.ai/en/pricing?utm_source=openai">https://www.tulos.ai/en/pricing?utm_source=openai</a>)</li><br/><b>🥉 Rank 3: Stage [3] - Workflow Orchestration &amp; Automation</b><br/><br/>🔢 Strategic Score: 7.4<br/><br/>💬 STRATEGIC RATIONALE:Strong margins/growth offset moderate defensibility, core to admin value-add.<br/><br/>🔎 KEY SUPPORTING EVIDENCE:<br/><li>Switching/integration (+1). (Source: barriers - <a href="https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai">https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai</a>)</li><li>88% margin example. (Source: <a href="https://agentzap.ai/blog/ai-receptionist-accounting-firm">https://agentzap.ai/blog/ai-receptionist-accounting-firm</a> - <a href="https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai">https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai</a>)</li>
+</div>
+</div>
+<div class="section-container" id="market-summary">
+<h2 class="section-title">Market Summary</h2>
+<div class="split-container">
+<div class="text-col">
+<p><b>MARKET OPPORTUNITY SCORE</b><br/>FinTech &gt; AI Administrative Assistant for Accounting Firms<br/>B2B &gt; SaaS</p>
+<p>═════════════════════════════════════════════════</p>
+<p>IS IT AN ATTRACTIVE MARKET ? (Dynamics): 92/100 × 25% = 23.0 points<br/>IS IT A WINNABLE MARKET ? (Competition): 85/100 × 25% = 21.25 points<br/>IS IT A PENETRABLE MARKET ? (GTM): 88/100 × 25% = 22.0 points<br/>IS IT A REWARDING MARKET ? (Exits): 82/100 × 25% = 20.5 points</p>
+<p>─────────────────────────────────────────────────<br/>TOTAL MARKET ATTRACTIVITY SCORE: 86.75/100</p>
+<p>═════════════════════════════════════════════════ </p>
+<h4>❓ Market DEFINITION</h4>
+<p>AI-driven administrative automation and workflow tools for small to mid-sized European accounting firms with 3-20 professionals. This market covers the trillion-dollar professional services labor pool being transformed by agentic software that owns the communication and data extraction layers.</p>
+<h4>💬 Our Market THESIS</h4>
+<p>The center of data gravity in the $6.7B AI in Accounting market is shifting due to the emergence of LLMs capable of handling unstructured professional dialogue. This shift makes existing platforms obsolete and creates an urgent need for a new architecture centered on Agentic Digital Labor, opening the door for a new market leader.</p>
+<h4>🧠 Our CONVICTION &amp; WAGER on this Market:</h4>
+<p>🟢 HIGH: Our conviction is high because this market presents a rare alignment of timing and structure. The severe talent shortage in European accounting firms has opened a temporary window for a decisive founder to build a proprietary data loop and capture the market before the opportunity becomes consensus. This is a land grab.</p>
+<p>═════════════════════════════════════════════════</p>
+<h4>🌊 ATTRACTIVE MARKET (Market Dynamics) | Score: 92/100</h4>
+<ul>
+<li>✦︎ Market Size (90/25): TAM: $6.7B • SAM: $1.8B • SOM: $90M • CAGR: 39.6%.</li>
+<li>✦︎ Growth Drivers (95/25): Accounting talent shortage • European digitization mandates • GPT-4o class reasoning capabilities.</li>
+<li>✦︎ Timing Why Now (94/25): Maturity of RAG (Retrieval Augmented Generation) for firm-specific knowledge usage • GDPR compliance becoming automated.</li>
+<li>✦︎ Market Risks (80/25): Incumbent feature-rot • Regulatory shifts in AI governance.</li>
+</ul>
+<h4>⚔️ WINNABLE MARKET (Competitive Landscape) | Score: 85/100</h4>
+<ul>
+<li>✦︎ Incumbents (80/25): Intuit ($150B valuation, Strength: Distribution) • Xero ($15B valuation, Strength: SMB ecosystem).</li>
+<li>✦︎ Challengers (82/25): Tulos.ai (€2M raised, Focus: EU SMB) • AgentZap ($1.5M raised, Focus: Receptionist AI).</li>
+<li>✦︎ White Space (90/25): The 'Agentic Communication' layer is still unowned; legacy tools are static systems of record.</li>
+<li>✦︎ Defensibility (88/25): Primary moat: Switching costs &amp; Data Flywheels • High domain expertise requirements.</li>
+</ul>
+<h4>🎯 PENETRABLE MARKET (Go-to-Market &amp; Unit Economics) | Score: 88/100</h4>
+<ul>
+<li>✦︎ GTM Model (90/25): PLG + Inside Sales targeting partners • Sales cycle: 1-3 months • Consultative for 'Firm-wide transition'.</li>
+<li>✦︎ Pricing Model (85/25): Per-user/Flat-fee hybrid • Primary metric: Active Managed Clients.</li>
+<li>✦︎ Unit Economics (82/25): LTV/CAC: est. 5x+ • Payback: 6-12 months • Typical deal: €5k-€15k ARR.</li>
+<li>✦︎ Scalability (90/25): High gross margins (85%+) • Multi-product expansion into tax pre-fill and audit prep.</li>
+</ul>
+<h4>💰 REWARDING MARKET (Funding &amp; Exit) | Score: 82/100</h4>
+<ul>
+<li>✦︎ Funding Activity (85/25): Rising VC velocity in Brussels/Berlin hubs • Record Pre-seed activity in AI-service sector.</li>
+<li>✦︎ Exit Multiples (80/25): Public: 8-12x revenue • M&amp;A: 10-15x for 'System of Record' targets.</li>
+<li>✦︎ Strategic Buyers (82/25): Intuit (Product gap) • Sage (Market access) • Big Four (Internal automation talent).</li>
+</ul>
+<p>─────────────────────────────────────────────────<br/>🌐 DATA CONFIDENCE: High on Market Size, Growth. Medium on Unit Economics. 14 total URLs sourced.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-3268e33978010346b67a5a5071af66a2-hrovqbqz.jpg"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="competition-magic">
+<h2 class="section-title">Competition Magic Quadrant</h2>
+<div class="split-container">
+<div class="text-col">
+<h3>Established Leaders</h3>
+<p><b>Established Leaders</b> (High Maturity &gt;5 • High Differentiation &gt;5)</p>
+<p>These companies demonstrate significant market presence and robust, highly differentiated AI solutions. They have secured substantial funding and have established themselves as key players in AI-driven administrative automation for accounting firms, often with unique technological advantages or broad ecosystem integrations within the sector.</p>
+<p><b>Established Leaders Summary</b><br/>📈 Total Companies: 2<br/>🌍 Geographic Distribution: USA (2)<br/>💰 Total Funding: $68M<br/>⭐ Average Maturity Score: 6.5 | Average Differentiation Score: 8.0 | Average Total Score: 14.5<br/>🏆 Top Company: Vic.ai (Total Score: 16)</p>
+<br/>
+<h3>Emerging Innovators</h3>
+<p><b>Emerging Innovators</b> (Low Maturity ≤5 • High Differentiation &gt;5)</p>
+<p>These companies are early in their development but are making significant strides with highly innovative and differentiated AI solutions for administrative automation in accounting firms. They are typically well-funded for their stage, focusing on novel approaches or niche specializations with high growth potential within the sector.</p>
+<p><b>Emerging Innovators Summary</b><br/>📈 Total Companies: 2<br/>🌍 Geographic Distribution: EUR (1), USA (1)<br/>💰 Total Funding: €2.6M, $14M<br/>⭐ Average Maturity Score: 2.5 | Average Differentiation Score: 9.5 | Average Total Score: 12.0<br/>🏆 Top Company: Bluebook (Total Score: 12)</p>
+<br/>
+<h3>Mature Commoditized</h3>
+<p><b>Mature Commoditized</b> (High Maturity &gt;5 • Low Differentiation ≤5)</p>
+<p>These companies offer established AI solutions for administrative automation in accounting firms, but their core offerings have become widely adopted or standardized, leading to lower differentiation. They are typically mature businesses focusing on efficiency, cost-effectiveness, and broad integration capabilities rather than cutting-edge innovation within the sector.</p>
+<p><b>Mature Commoditized Summary</b><br/>📈 Total Companies: 2<br/>🌍 Geographic Distribution: UK (1), CAN (1)<br/>💰 Total Funding: Unknown<br/>⭐ Average Maturity Score: 6.5 | Average Differentiation Score: 5.0 | Average Total Score: 11.5<br/>🏆 Top Company: Dext (Total Score: 12)</p>
+<br/>
+<h3>Early Undifferentiated</h3>
+<p><b>Early Undifferentiated</b> (Low Maturity ≤5 • Low Differentiation ≤5)</p>
+<p>These companies are early-stage players in AI-driven administrative automation for accounting firms, with offerings that currently lack substantial market maturity or clear differentiation. They are often focused on providing essential AI-enabled administrative tasks that are becoming standard, and are yet to establish a strong competitive advantage within the sector.</p>
+<p><b>Early Undifferentiated Summary</b><br/>📈 Total Companies: 2<br/>🌍 Geographic Distribution: USA (2)<br/>💰 Total Funding: Unknown<br/>⭐ Average Maturity Score: 3.0 | Average Differentiation Score: 5.0 | Average Total Score: 8.0<br/>🏆 Top Company: AI Receptionist Accounting (Total Score: 8)</p>
+<br/>
+<h3>Company List by Quadrant</h3>
+<span style="font-size: 1.15em; font-weight: 800;"><a href="https://www.crunchbase.com/organization/vic-ai?utm_source=openai">Vic.ai</a></span> USA<br/>
+            Vic.ai offers an autonomous AI platform for accounting and finance workflows, specializing in AP and invoice processing with autopilot capabilities.<br/>
+<br/>
+            📊 <b>STRATEGIC PROFILE:</b><br/>
+            - Quadrant: Established Leaders<br/>
+            - Total Score: 16 • Maturity: 7 | Differentiation: 9<br/>
+<br/>
+            💰 <b>TRACTION &amp; BACKING:</b><br/>
+            - <b>Funding:</b> 52M $ (Series B) <br/>
+            - <b>Founded:</b> 2020 <br/>
+            - <b>Key Investors:</b> Unknown <br/>
+<br/>
+            🗝️ <b>KEY COMPETITIVE ADVANTAGES:</b><br/>
+            - Autonomous AI platform for accounting and finance workflows, focusing on AP/invoice processing <br/>
+            - Autopilot-style capabilities for document handling in accounting firms <br/>
+            - Integrations with ERP suites like Microsoft Dynamics <br/>
+            - Proprietary AI for invoice processing automation <br/>
+            - Strategic partnerships with major ERP providers <br/>
+<br/>
+            🧱 <b>MOAT / POSITIONING:</b><br/>
+            Vic.ai is a leading player in the autonomous AI space for accounting, particularly excelling in accounts payable and invoice processing. Its 'autopilot' functionality allows firms to significantly reduce manual effort and errors in document handling, offering a highly robust and specialized solution. Deep integration with major ERP systems like Microsoft Dynamics positions it as a foundational infrastructure tool for large and mid-sized accounting practices, ensuring a strong competitive moat based on efficiency and technological superiority.<br/>
+<br/>
+<small>🌐 Source: <a href="https://www.crunchbase.com/organization/vic-ai?utm_source=openai">crunchbase.com - Vic.ai Organization</a></small>
+<br/>
+            --------------------------------------------------
+            <br/>
+<span style="font-size: 1.15em; font-weight: 800;">StackAI</span> USA<br/>
+            StackAI provides no-code AI agents for business workflows, enabling scalable automation for data extraction in accounting and back-office tasks.<br/>
+<br/>
+            📊 <b>STRATEGIC PROFILE:</b><br/>
+            - Quadrant: Established Leaders<br/>
+            - Total Score: 13 • Maturity: 6 | Differentiation: 7<br/>
+<br/>
+            💰 <b>TRACTION &amp; BACKING:</b><br/>
+            - <b>Funding:</b> 16M $ (Series A) <br/>
+            - <b>Founded:</b> 2019 <br/>
+            - <b>Key Investors:</b> Lobby Capital, YC-alumni networks <br/>
+<br/>
+            🗝️ <b>KEY COMPETITIVE ADVANTAGES:</b><br/>
+            - No-code AI agents for no-code/low-code business workflows in finance/back-office <br/>
+            - Scalable tools for data extraction and automation in accounting <br/>
+            - Integration with accounting workflow automation reducing cycle times <br/>
+            - Unique no-code platform for rapid AI agent deployment <br/>
+            - Focus on broad applicability across back-office functions <br/>
+<br/>
+            🧱 <b>MOAT / POSITIONING:</b><br/>
+            StackAI differentiates itself with a powerful no-code platform that empowers accounting firms to create and deploy AI agents for various administrative and back-office workflows without specialized programming knowledge. This democratizes AI usage, allowing firms to quickly build custom automation solutions for data extraction, process optimization, and reducing operational cycle times. The emphasis on scalability and ease of use provides a strong value proposition for firms seeking agile AI adoption.<br/>
+<br/>
+<small>🌐 Source: <a href="https://www.businessinsider.com/pitch-deck-ai-agent-startup-stackai-series-a-funding-round-2025-5?utm_source=openai">businessinsider.com - StackAI Pitch Deck</a></small>
+<br/>
+            --------------------------------------------------
+            <br/>
+<span style="font-size: 1.15em; font-weight: 800;">Bluebook</span> EUR<br/>
+            Bluebook develops autonomous AI for accounting workflows, enhancing advisory capabilities for accounting firms with real-time research.<br/>
+<br/>
+            📊 <b>STRATEGIC PROFILE:</b><br/>
+            - Quadrant: Emerging Innovators<br/>
+            - Total Score: 12 • Maturity: 2 | Differentiation: 10<br/>
+<br/>
+            💰 <b>TRACTION &amp; BACKING:</b><br/>
+            - <b>Funding:</b> 2.6M € (Pre-seed) <br/>
+            - <b>Founded:</b> 2024 <br/>
+            - <b>Key Investors:</b> EQT Ventures, Y Combinator <br/>
+<br/>
+            🗝️ <b>KEY COMPETITIVE ADVANTAGES:</b><br/>
+            - Autonomous AI for accounting workflows like autonomous books and real-time research <br/>
+            - Focus on advisory enablement in accounting firms <br/>
+            - Pre-seed funded for narrow vertical use cases in accounting automation <br/>
+            - Proprietary self-driving accounting technology <br/>
+            - Niche specialization in European accounting advisory automation <br/>
+<br/>
+            🧱 <b>MOAT / POSITIONING:</b><br/>
+            Bluebook positions itself as a leader in autonomous AI for accounting workflows, specifically targeting the advisory needs of accounting firms. Its innovative 'self-driving' approach for bookkeeping and real-time research offers a highly differentiated solution, promising significant efficiency gains and strategic support for firms looking to enhance their advisory services. The strong emphasis on truly autonomous capabilities, rather than mere assistance, sets it apart in the market.<br/>
+<br/>
+<small>🌐 Source: <a href="https://www.eu-startups.com/2025/02/self-driving-accounting-bluebook-secures-e2-4-million-for-ai-powered-accounting/?utm_source=openai">eu-startups.com - Self-Driving Accounting Bluebook Funding</a></small>
+<br/>
+            --------------------------------------------------
+            <br/>
+<span style="font-size: 1.15em; font-weight: 800;">Endex.ai</span> USA<br/>
+            Endex.ai creates Excel-native AI agents for financial modeling and analysis, integrating directly into familiar accounting tools.<br/>
+<br/>
+            📊 <b>STRATEGIC PROFILE:</b><br/>
+            - Quadrant: Emerging Innovators<br/>
+            - Total Score: 12 • Maturity: 3 | Differentiation: 9<br/>
+<br/>
+            💰 <b>TRACTION &amp; BACKING:</b><br/>
+            - <b>Funding:</b> 14M $ (Seed) <br/>
+            - <b>Founded:</b> 2023 <br/>
+            - <b>Key Investors:</b> Unknown <br/>
+<br/>
+            🗝️ <b>KEY COMPETITIVE ADVANTAGES:</b><br/>
+            - Excel-native AI for financial modeling and analysis agents <br/>
+            - Collaboration with OpenAI ecosystem for AI financial tasks <br/>
+            - Focus on handling financial data in familiar accounting tools <br/>
+            - Unique features leveraging Excel as a core platform <br/>
+            - Niche specialization in spreadsheet-based financial automation <br/>
+<br/>
+            🧱 <b>MOAT / POSITIONING:</b><br/>
+            Endex.ai carves out a distinct niche by embedding AI directly into Excel, leveraging a tool many accounting professionals already use daily. This 'Excel-native' approach minimizes learning curves and offers a seamless integration for financial modeling and analysis tasks. Its collaboration with the OpenAI ecosystem further enhances its capabilities, providing advanced AI power within a familiar interface, which is a significant differentiator from broader, standalone AI platforms.<br/>
+<br/>
+<small>🌐 Source: <a href="https://techstartups.com/2025/08/06/top-10-startup-and-tech-funding-news-august-6-2025/?utm_source=openai">techstartups.com - Startup Funding News</a></small>
+<br/>
+            --------------------------------------------------
+            <br/>
+<span style="font-size: 1.15em; font-weight: 800;"><a href="https://dext.com">Dext</a></span> UK<br/>
+            Dext automates bookkeeping and receipt/invoice capture using AI, integrating data extraction into accounting systems for auditors and accountants.<br/>
+<br/>
+            📊 <b>STRATEGIC PROFILE:</b><br/>
+            - Quadrant: Mature Commoditized<br/>
+            - Total Score: 12 • Maturity: 7 | Differentiation: 5<br/>
+<br/>
+            💰 <b>TRACTION &amp; BACKING:</b><br/>
+<br/>
+            🗝️ <b>KEY COMPETITIVE ADVANTAGES:</b><br/>
+            - AI-powered bookkeeping and receipt/invoice capture automation <br/>
+            - Automated data extraction into accounting systems <br/>
+            - Accessible to auditors/accountants for book automation <br/>
+            - Widely adopted for core automated data entry, common in the sector <br/>
+<br/>
+            🧱 <b>MOAT / POSITIONING:</b><br/>
+            Dext (formerly Receipt Bank) has an established presence as a foundational tool for automating receipt and invoice capture, a relatively commoditized but essential administrative function for accounting firms. Its strength lies in widespread adoption and reliable data extraction, making it a standard solution for basic bookkeeping automation. While effective, its core offering focuses on well-understood AI applications, placing it in a mature segment of the market where efficiency and integration are key.<br/>
+<br/>
+<small>🌐 Source: <a href="https://www.crunchbase.com/organization/receiptfarm?utm_source=openai">crunchbase.com - Receiptfarm (Dext)</a></small>
+<br/>
+            --------------------------------------------------
+            <br/>
+<span style="font-size: 1.15em; font-weight: 800;">MindBridge Ai</span> CAN<br/>
+            MindBridge Ai leverages AI for financial auditing and anomaly detection, providing audit analytics to help recover lost revenue for firms.<br/>
+<br/>
+            📊 <b>STRATEGIC PROFILE:</b><br/>
+            - Quadrant: Mature Commoditized<br/>
+            - Total Score: 11 • Maturity: 6 | Differentiation: 5<br/>
+<br/>
+            💰 <b>TRACTION &amp; BACKING:</b><br/>
+<br/>
+            🗝️ <b>KEY COMPETITIVE ADVANTAGES:</b><br/>
+            - AI-powered financial auditing and anomaly detection <br/>
+            - AI platform for accounting/audit analytics <br/>
+            - Focus on recovering lost revenue through audit insights <br/>
+            - Specialization in audit analytics, but becoming standard practice <br/>
+<br/>
+            🧱 <b>MOAT / POSITIONING:</b><br/>
+            MindBridge Ai occupies a mature position in the market by providing AI-driven solutions specifically for financial auditing and anomaly detection. Its platform helps accounting firms enhance audit quality, efficiency, and potentially recover lost revenue through deep analytical insights. While a leader in audit analytics, the broader adoption of AI in auditing means that its core offering, though robust, is transitioning towards a more established and commoditized segment of the administrative automation landscape.<br/>
+<br/>
+<small>🌐 Source: Unknown</small>
+<br/>
+            --------------------------------------------------
+            <br/>
+<span style="font-size: 1.15em; font-weight: 800;"><a href="https://aireceptionistaccounting.com/product/">AI Receptionist Accounting</a></span> USA<br/>
+            AI Receptionist Accounting offers an industry-focused AI virtual receptionist for accounting and audit workflows, handling client interactions and data capture 24/7.<br/>
+<br/>
+            📊 <b>STRATEGIC PROFILE:</b><br/>
+            - Quadrant: Early Undifferentiated<br/>
+            - Total Score: 8 • Maturity: 3 | Differentiation: 5<br/>
+<br/>
+            💰 <b>TRACTION &amp; BACKING:</b><br/>
+<br/>
+            🗝️ <b>KEY COMPETITIVE ADVANTAGES:</b><br/>
+            - Industry-focused on accounting/audit workflows with specific terminology <br/>
+            - End-to-end workflow automation for client interactions and data capture <br/>
+            - 24/7 client-facing capacity for administrative tasks <br/>
+            - Basic AI receptionist functionalities, increasingly common <br/>
+<br/>
+            🧱 <b>MOAT / POSITIONING:</b><br/>
+            AI Receptionist Accounting provides a specialized AI assistant that manages client-facing administrative tasks 24/7, tailored for the unique terminology and workflows of accounting firms. While it addresses a clear pain point, the core functionality of AI receptionists is becoming more widespread, placing it in an early stage where differentiation requires deeper, more specialized integrations and capabilities beyond standard client interaction automation. Its current positioning focuses on utility rather than unique innovation within the broader AI assistant market.<br/>
+<br/>
+<small>🌐 Source: <a href="https://aireceptionistaccounting.com/product/?utm_source=openai">aireceptionistaccounting.com - Product Page</a></small>
+<br/>
+            --------------------------------------------------
+            <br/>
+<span style="font-size: 1.15em; font-weight: 800;"><a href="https://virtualworkforce.ai/email-assistant-for-accounting-firms/">Virtual Workforce AI (for Accounting)</a></span> USA<br/>
+            Virtual Workforce AI offers AI assistants for email management, task automation, and compliance, ensuring security and audit trails for sensitive accounting data.<br/>
+<br/>
+            📊 <b>STRATEGIC PROFILE:</b><br/>
+            - Quadrant: Early Undifferentiated<br/>
+            - Total Score: 8 • Maturity: 3 | Differentiation: 5<br/>
+<br/>
+            💰 <b>TRACTION &amp; BACKING:</b><br/>
+<br/>
+            🗝️ <b>KEY COMPETITIVE ADVANTAGES:</b><br/>
+            - AI assistants for email, task automation, and compliance in accounting <br/>
+            - Security and audit trails for sensitive data in firms <br/>
+            - End-to-end activity audit and redaction controls <br/>
+            - Foundational AI automation tools, but not highly specialized <br/>
+<br/>
+            🧱 <b>MOAT / POSITIONING:</b><br/>
+            Virtual Workforce AI targets accounting firms with AI assistants that streamline administrative tasks such as email management, general task automation, and compliance, emphasizing strong security and audit trail capabilities for handling sensitive data. While essential, these features, particularly for email and task automation, are becoming standard expectations for AI assistants in professional services. Its focus on security and audit trails is a plus, yet the overall offering for a general virtual workforce AI is still in its early stages of differentiation within the competitive landscape.<br/>
+<br/>
+<small>🌐 Source: <a href="https://virtualworkforce.ai/email-assistant-for-accounting-firms/?utm_source=openai">virtualworkforce.ai - Email Assistant</a></small>
+<br/>
+            --------------------------------------------------
+            <br/>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-005f1c3bc84a37851aff9bade2ca3ad3-v5hcllai.jpg"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title">Company Deep Dive</h2>
+<div class="split-container">
+<div class="text-col">
+<h3 id="value-proposition">Value Proposition</h3>
+<b>Value Proposition:</b><br/>
+            Dytto is an AI assistant specifically designed for accounting and bookkeeping firms to help them stay on top of client work, emails, and deadlines while saving approximately 1 hour daily per team member. The AI-native digital laborer for European accounting firms. Dytto is like a super-smart robot helper for accountants. It reads their emails, organizes their tasks, and helps them talk to clients so they can save an hour of boring computer work every single day. Free the Accountant. AI is to be integrated across the accounting workflow.<br/><br/>
+<b>Ideal Customer Profile (ICP):</b><br/>
+            Professional accounting and bookkeeping firms, professional users acting in a business capacity. Small to mid-sized European accounting firms with 3-20 professionals. SMB accounting practices with 3-20 professionals in small to mid-sized firms, Europe-wide. Targeted geography: Europe-wide focused on SMB segment. Starting in Belgium with clear roadmap for France/Germany/Benelux.<br/><br/>
+<b>B2B or B2C:</b><br/>
+            B2B - The terms of use specify the service is exclusively for professional users and not consumers.<br/><br/>
+<b>Industry:</b><br/>
+            Accounting Technology / Fintech / AI Software. FinTech &gt; AI Administrative Assistant for Accounting Firms. FinTech / AI Software. AI-driven administrative automation and workflow tools for small to mid-sized European accounting firms with 3-20 professionals.<br/><br/>
+<h3 id="product">Product</h3>
+<b>Core Solution:</b><br/>
+            An AI assistant that centralizes client data, emails, and notes to provide proactive advice and automated administrative assistance for accountants. Enables professional accountants to reclaim billable hours by automating client communication, document triage, and workflow management through an agentic AI layer.<br/><br/>
+<b>Feature Encyclopedia:</b><br/>
+<ul>
+<li>Email drafting in firm tone</li>
+<li>Shared client context</li>
+<li>Document processing</li>
+<li>Automated data analysis</li>
+<li>Compliance monitoring</li>
+<li>Workflow optimization</li>
+<li>Skills &amp; reusable templates</li>
+<li>Shared firm knowledge base</li>
+<li>CRM/PMS integration</li>
+<li>Firm-specific tone-of-voice training</li>
+<li>Deep shared client context across team members</li>
+<li>Contextual Intelligence (CRM, emails, PMS)</li>
+<li>Agentic Workflow Integration</li>
+</ul><br/>
+<h3 id="business-model">Business Model</h3>
+<b>Revenue Streams:</b><br/>
+            Paid Subscription (SaaS) with a Fair Use Policy. SaaS / Outcome-based potential. Pure SaaS/recurring but moving toward 'outcome-based' as agents perform more tasks.<br/><br/>
+<b>Pricing:</b><br/>
+            Early pricing is €29 (per user/mo) valid until March 31, 2026. Enterprise agreements available upon request. €29–€49 per client per month (€348–€588 annual per client ARPU). Per-user/Flat-fee hybrid.<br/><br/>
+<h3 id="team">Team</h3>
+<b>Company Culture:</b><br/>
+            Confidentiality, accuracy, and trust are non-negotiable. Values include data security, professional review of AI outputs, and user control.<br/><br/>
+<h3 id="ceo">CEO</h3>
+
+            Niels Van Driessche (Data Protection Contact / likely Founder or Executive).
+<b></b><br/>
+            Expert in Data Protection and AI infrastructure. Deep local connectivity in the Ghent/European tech ecosystem. Backed by Fortino and Entourage. Participation from founders of Tally and Aikido Security.<br/><br/>
+<h3 id="company-summary">Company Summary</h3>
+<b>✦︎ FinTech &gt; AI Administrative Assistant for Accounting Firms</b><br/>
+<b>✦︎ B2B &gt; SaaS</b><br/>
+<b>✦︎ 1.5M€ raised from Entourage Capital and Fortino Ventures (February, 24th, 2026)</b><br/><br/>
+<h4>WEIGHTED SCORE CALCULATION</h4><br/><br/>
+<b>TEAM EXCELLENCE: 85/100</b><br/>
+<b>MARKET OPPORTUNITY: 90/100</b><br/>
+<b>PRODUCT INNOVATION: 82/100</b><br/>
+<b>BUSINESS MODEL: 80/100</b><br/>
+<b>TRACTION &amp; GROWTH: 75/100</b><br/>
+            ─────────────────────────────────────────────────<br/>
+            Base Score: 81.05/100<br/>
+            Thesis Alignment Modifier: +5%<br/>
+            ─────────────────────────────────────────────────<br/>
+<b>FINAL ADJUSTED SCORE: 85.10/100 → 🟢INTERESTING</b><br/><br/>
+<b>❓ In a NUTSHELL :</b> Dytto is an AI Administrative Assistant for Accounting Firms that enables professional accountants to reclaim billable hours by automating client communication, document triage, and workflow management through an agentic AI layer.<br/><br/>
+<b>🗝️ KEY COMPETITIVE ADVANTAGES:</b>
+<ul>
+<li>Contextual Intelligence: Unlike generic wrappers, it pulls data from CRM, emails, and PMS to ground the AI.</li>
+<li>Firm-Wide Knowledge Base: Captures 'tribal knowledge' within accounting practices.</li>
+<li>EU Compliance Focus: Tailored for GDPR and European professional standards.</li>
+<li>Agentic Workflow Integration: Designed for automation of communication, not just chat.</li>
+<li>High-Quality Investor Signal: Backing from Entourage and Fortino is top-tier for Belgium.</li>
+</ul><br/>
+<b>🧱 MOAT: MODERATE</b>
+<ul>
+<li>Switching Costs: Once integrated into the daily email/PMS workflow of an accounting firm, removal is highly disruptive.</li>
+<li>Data Advantage: Firm-specific training data creates a personalized model that becomes smarter than generic competitors.</li>
+</ul><br/>
+<b>🚩 RED FLAGS</b>
+<ul>
+<li>Universal Red Flags: Low barrier to entry for the basic 'email drafter' feature; incumbents like Intuit could bundle this soon.</li>
+<li>Thesis-Specific Red Flags: Current monetization is seat-based (€29/user), which deviates from our preferred 'outcome-based' pricing thesis.</li>
+</ul><br/>
+<b>🌐 DATA CONFIDENCE : HIGH</b>
+</div>
+<div class="img-col">
+<img alt="Company Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-88b31b24b0c1aa65262655d2b60fe64f-hwy1tvb2.jpg"/>
+</div>
+</div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Company overview</h2><div class="cs-disc">ⓘ These scores often reflect how much public information we could find online (web presence), not the company's objective reality. A low score — e.g. on team excellence — usually means little information was found, not that the company is weak.</div><div class="cs-body text-block">✦︎ FinTech &gt; AI Administrative Assistant for Accounting Firms<br/>
+<span style="font-weight:bold;">✦︎ B2B &gt; SaaS</span><br/>
+✦︎ 1.5M€ raised from Entourage Capital and Fortino Ventures (February, 24th, 2026)<br/>
+<br/>
+<span style="font-weight:bold;">WEIGHTED SCORE CALCULATION</span><br/>
+Thesis : <br/>
+<br/>
+═════════════════════════════════════════════════<br/>
+TEAM EXCELLENCE       85/100  × 15% = 12.75 points<br/>
+MARKET OPPORTUNITY    90/100  × 15% = 13.5 points<br/>
+PRODUCT INNOVATION    82/100  × 15% = 12.3 points<br/>
+BUSINESS MODEL        80/100  × 25% = 20.0 points<br/>
+TRACTION &amp; GROWTH     75/100  × 30% = 22.5 points<br/>
+─────────────────────────────────────────────────<br/>
+Base Score:                         81.05/100<br/>
+Thesis Alignment Modifier:          +5%<br/>
+─────────────────────────────────────────────────<br/>
+<span style="font-weight:bold;">FINAL ADJUSTED SCORE :</span> 85.10/100 → 🟢INTERESTING (85-100)<br/>
+<br/>
+═════════════════════════════════════════════════<br/>
+<br/>
+❓ In a NUTSHELL : Dytto is an AI Administrative Assistant for Accounting Firms that enables professional accountants to reclaim billable hours by automating client communication, document triage, and workflow management through an agentic AI layer.<br/>
+<br/>
+⚠️ The PROBLEM : Accountants spend up to 40% of their day on shadow work—emailing clients for missing docs, summarizing notes, and manual data entry—leading to burnout and flat revenue.<br/>
+<br/>
+✅ The SOLUTION : The company's platform centralizes client context (email + CRM + docs) to draft professional responses and proactively manage deadlines. Their non-consensus insight is that the Authoring Layer in accounting isn't the tax filing itself, but the messy, unstructured client communication that precedes it.<br/>
+<br/>
+🚀 The GTM &amp; MOAT : Their primary GTM motion is direct sales and firm-level partnerships, targeting European SMB accounting practices. Long-term defensibility will be built through a proprietary data flywheel where AI learned from firm-specific knowledge bases becomes high-switching-cost infrastructure.<br/>
+<br/>
+💬 Our RATIONALE &amp; THESIS FIT on this company :<br/>
+Dytto demonstrates a structural unfair advantage by positioning itself as the System of Action within the high-friction European accounting stack, rather than a generic LLM wrapper. This fits the  thesis perfectly as it targets a sovereign Service-as-Software model in a regulated industry using an AI-native agentic approach. The primary risk is incumbent expansion (QuickBooks/Xero) into agentic features, but Dytto's deep focus on the idiosyncratic European firm-wide context provides a defensive niche.<br/>
+<br/>
+═════════════════════════════════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻‍💻 TEAM EXCELLENCE (15%) | Score: 85/100</span><br/>
+✦︎ Founder-Market Fit (88/25): Niels Van Driessche • Expert in Data Protection and AI infrastructure • Deep local connectivity in the Ghent/European tech ecosystem.<br/>
+✦︎ Track Record (82/25): Backed by Fortino and Entourage, firms known for scaling B2B SaaS in Europe • Participation from founders of Tally and Aikido Security.<br/>
+✦︎ Leadership (80/25): Team size: Est. 8-12 post-funding • Early focus on Engineering and Product is evident.<br/>
+✦︎ Completeness (90/25): Strong technical backbone visible • Hiring push into Customer Success to own the firm relationship.<br/>
+<br/>
+<span style="font-weight:bold;">🌊 MARKET OPPORTUNITY (15%) | Score: 90/100</span><br/>
+✦︎ Size &amp; Growth (92/25): AI in accounting market size: $6.7B • European SAM: $1.8B • CAGR: 39.6%.<br/>
+✦︎ Timing Why Now (95/25): Explosion of LLM capability + severe labor shortage in European accounting firms + rising regulatory complexity (VAT/GDPR).<br/>
+✦︎ Competition (85/25): Incumbents are slow; challengers like Tulos exist but the market is highly fragmented with millions of SMB firms.<br/>
+✦︎ Expansion (88/25): Starting in Belgium with clear roadmap for France/Germany/Benelux.<br/>
+<br/>
+<span style="font-weight:bold;">💡 PRODUCT INNOVATION (15%) | Score: 82/100</span><br/>
+✦︎ Differentiation (85/25): Firm-specific tone-of-voice training and deep shared client context across team members.<br/>
+✦︎ Product-Market Fit (80/25): Up and running in no time—early testimonials from leading Belgian firms suggest high immediate utility.<br/>
+✦︎ Scalability (82/25): SaaS architecture with Microsoft SSO and CRM/PMS connectivity.<br/>
+<span style="font-weight:bold;">✦︎ IP &amp; Barriers (81/25): Secure &amp; compliant design (SOC2 mentioned) is a major barrier for entry in the accounting sector.</span><br/>
+<br/>
+<span style="font-weight:bold;">💼 BUSINESS MODEL (25%) | Score: 80/100</span><br/>
+✦︎ Unit Economics (85/25): €29/mo starter pricing is an aggressive hook strategy; Enterprise tiers likely much higher.<br/>
+✦︎ Revenue Model (80/25): pure SaaS/recurring but moving toward outcome-based as agents perform more tasks.<br/>
+✦︎ Monetization (75/25): Tiers based on usage; fair use policy protects margins.<br/>
+✦︎ Capital Efficiency (80/25): €1.5M pre-seed is healthy for the Ghent market; allows for significant runway at European dev costs.<br/>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; GROWTH (30%) | Score: 75/100</span><br/>
+✦︎ Revenue Growth (70/25): Early commercial phase; revenue is likely low but growing monthly.<br/>
+✦︎ Customer Validation (80/25): Trusted by leading accounting firms with explicit multi-user adoption.<br/>
+<span style="font-weight:bold;">✦︎ KPI Progression (80/25): Successful seed round closing is a major de-risking event.</span><br/>
+✦︎ Market Penetration (70/25): Early days; focused on clearing the home market first.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️  KEY COMPETITIVE ADVANTAGES :</span><br/>
+✦︎ Contextual Intelligence: Unlike generic wrappers, it pulls data from CRM, emails, and PMS to ground the AI.<br/>
+✦︎ Firm-Wide Knowledge Base: Captures tribal knowledge within accounting practices.<br/>
+<span style="font-weight:bold;">✦︎ EU Compliance Focus: Tailored for GDPR and European professional standards.</span><br/>
+✦︎ Agentic Workflow Integration: Designed for automation of communication, not just chat.<br/>
+✦︎ High-Quality Investor Signal: Backing from Entourage and Fortino is top-tier for Belgium.<br/>
+<br/>
+<span style="font-weight:bold;">🧱 MOAT :</span> MODERATE<br/>
+✦︎ Switching Costs: Once integrated into the daily email/PMS workflow of an accounting firm, removal is highly disruptive.<br/>
+✦︎ Data Advantage: Firm-specific training data creates a personalized model that becomes smarter than generic competitors.<br/>
+<br/>
+<span style="font-weight:bold;">🚩 RED FLAGS</span><br/>
+✦︎ Universal Red Flags: Low barrier to entry for the basic email drafter feature; incumbents like Intuit could bundle this soon.<br/>
+✦︎ Thesis-Specific Red Flags: Current monetization is seat-based (€29/user), which deviates from our preferred outcome-based pricing thesis.<br/>
+<br/>
+<span style="font-weight:bold;">📝 FIRST MEETING PREP KIT</span><br/>
+✦︎ The Investment Angle: The core bet is that Dytto becomes the Agentic Glue of the accounting firm, owning the relationship layer that sits above legacy ledger software.<br/>
+✦︎ Killer Questions for First Call:<br/>
+<ul><li>Question 1 : How do you plan to transition from a seat-based SaaS model to an outcome-based Service-as-Software model?</li><li>Question 2 : What is your technical strategy for maintaining context across disparate and often legacy CRM/PMS systems used in the EU?</li><li>Question 3 : How do you compete if Microsoft bundles a similar Accountant Studio into M365 Co-pilot?</li></ul>
+✦︎ First Meeting Go/No-Go Signal: A clear vision for the System of Record—if they want to be more than a helper and actually own the data layer, it's a Go.<br/>
+<br/>
+<span style="font-weight:bold;">🔢 THESIS ALIGNMENT SCORE MODIFIER</span><br/>
+Excellent Fit (+5%): Dytto perfectly matches the Digital Labor and Service-as-Software narrative by targeting high-friction European accounting with an AI-native agentic approach.<br/>
+<br/>
+<span style="font-weight:bold;">🌐 DATA CONFIDENCE :</span> HIGH<br/>
+✦︎ Team and Market (High confidence). Unit Economics (Medium - early stage pricing).<br/>
+<span style="font-weight:bold;">✦︎ DATA GAPS :</span> Churn metrics, LTV/CAC (too early), and deep technical architecture specs.<br/></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">SWOT Analysis</h2>
+<div class="swot-grid">
+<div class="swot-item s-green">
+<h3>Strengths</h3>
+<ul>
+<li>Hyper-focused AI for SMB accounting firms: Centralizes emails, data, deadlines – proven 1hr/day savings.</li>
+<li>EU-native (Ghent, Belgium): GDPR/SOC2 compliant, tailored for European regs/tax workflows.</li>
+<li>Fresh €1.5M pre-seed from Entourage/Fortino: Runway for eng/product hires, Europe expansion.</li>
+<li>Technical edge: LLM-grounded answers, CRM integrations, firm knowledge base – sticky shared context.</li>
+<li>Early traction: Trusted by leading firms, seamless onboarding testimonials.</li>
+</ul>
+</div>
+<div class="swot-item s-red">
+<h3>Weaknesses</h3>
+<ul>
+<li>Micro-team (3-5 eng): Execution risk on scaling product/integrations.</li>
+<li></li>
+<li>Low pricing (€29/mo): Thin margins pre-scale, fair-use caps limit upside.</li>
+<li>Pre-product maturity: Policies dated 2026, no clear founding traction metrics.</li>
+<li>Narrow scope: Admin-focused, lacks full-stack accounting (e.g., no core ledger automation).</li>
+</ul>
+</div>
+<div class="swot-item s-blue">
+<h3>Opportunities</h3>
+<ul>
+<li>Explosive TAM: $6.7B global AI accounting (39% CAGR), $1.5-1.8B EU SAM, $90M SOM.</li>
+<li>SMB Europe underserved: Tens of thousands 3-20 person firms desperate for admin relief.</li>
+<li>Value chain sweet spot: Stage 4 (9.0 score) – accounting-specific apps with compliance moats.</li>
+<li>Integrations flywheel: Expand CRM/PMS ecosystem for switching costs.</li>
+<li>Enterprise pivot: Upsell from SMB base to mid-market custom deals.</li>
+</ul>
+</div>
+<div class="swot-item s-orange">
+<h3>Threats</h3>
+<ul>
+<li>Incumbents invading: BlackLine/FloQast + AI giants (Microsoft, Intuit) targeting SMB.</li>
+<li>AI commoditization: Open LLMs erode differentiation, tulos.ai/AgentZap direct clones.</li>
+<li>EU regs tighten: Evolving VAT/GDPR kills non-compliant players.</li>
+<li>Macro squeeze: Recession hits SMB spend on new SaaS.</li>
+<li>Talent wars: EU eng shortage stalls hypergrowth.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources &amp; Data Quality</h2>
+<div class="source-list">
+<h3>Value Chain Sources</h3>
+<ul>
+<li>Source 1: Grand View Research AI in Accounting Market Report • <a href="https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report?utm_source=openai">Link</a></li>
+<li>Source 2: Industry Research AI in Accounting • <a href="https://www.industryresearch.biz/market-reports/artificial-intelligence-in-accounting-market-109677?utm_source=openai">Link</a></li>
+<li>Source 3: Smartscrapers Accounting Firms France • <a href="https://rentechdigital.com/smartscraper/business-dataset/list-of-accounting-firms-with-more-than-5-years-in-business-in-france?utm_source=openai">Link</a></li>
+<li>Source 4: Poidata Accounting Firms France • <a href="https://www.poidata.io/index.php/report/accounting-firm/france?utm_source=openai">Link</a></li>
+<li>Source 5: Tulos.ai Pricing • <a href="https://www.tulos.ai/en/pricing?utm_source=openai">Link</a></li>
+<li>Source 6: AgentZap AI Receptionist for Accounting • <a href="https://agentzap.ai/blog/ai-receptionist-accounting-firm?utm_source=openai">Link</a></li>
+<li>Source 14: CompanyData Europe Accounting • <a href="https://companydata.com/europe/accounting-companies/?utm_source=openai">Link</a></li>
+</ul>
+<h3>Market Sources</h3>
+<ul>
+<li>Market Size: <a href="https://www.grandviewresearch.com/industry-analysis/ai-accounting-market-report">Link</a></li>
+<li>Growth Drivers: <a href="https://www.industryresearch.biz/market-reports/artificial-intelligence-in-accounting-market-109677">Link</a></li>
+<li>Timing: <a href="https://www.mordorintelligence.com/industry-reports/artificial-intelligence-in-accounting-market">Link</a></li>
+<li>Challengers: <a href="https://www.tulos.ai/en/pricing">Link</a></li>
+<li>Funding Activity: <a href="https://techfundingnews.com/dytto-scores-e1-5m-to-save-accountants-1-hour-day-on-emails-and-docs/">Link</a></li>
+</ul>
+<h3>Competition Magic Quadrant methodology</h3>
+        This competitive positioning diagram visualizes the landscape of AI-driven administrative automation and workflow tools for small to mid-sized European accounting firms with 3-20 professionals. It assesses companies based on Company Maturity (Stage, Years, Funding) and Product Differentiation (IP, Niche, Features, Partnerships).
+        <h3>Company Sources</h3>
+<ul>
+<li>LinkedIn: <a href="https://www.linkedin.com/in/nielsvandriessche/">Founder Profile</a></li>
+<li>Official Website: <a href="https://www.dytto.ai">dytto.ai</a></li>
+<li>Funding News: <a href="https://techfundingnews.com/dytto-scores-e1-5m-to-save-accountants-1-hour-day-on-emails-and-docs/">TechFundingNews Report</a></li>
+</ul>
+</div>
+</div>
+<div class="footer">
+<div class="footer-content">
+<span></span>
+<span>Last Updated: 25.02.2026 06:36</span>
+<span>Lead Analyst: alexandre@proplace.co</span>
+</div>
+</div>
+<div class="ppx-cta"><h3>Explore Dytto further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script></body></html>

@@ -1,0 +1,555 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cortea — analyse RegTech &amp; Compliance | Proplace</title><meta name="description" content="RegTech &amp; Compliance · IA réglementaire pour audits SaaS · Seed"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/cortea/"><meta property="og:type" content="article"><meta property="og:title" content="Cortea — analyse RegTech &amp; Compliance | Proplace"><meta property="og:description" content="RegTech &amp; Compliance · IA réglementaire pour audits SaaS · Seed"><meta property="og:url" content="https://proplace.co/analysis/cortea/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Cortea — RegTech & Compliance", "description": "RegTech & Compliance · IA réglementaire pour audits SaaS · Seed", "inLanguage": "fr", "url": "https://proplace.co/analysis/cortea/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/cortea/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Cortea"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Cortea</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Cortea"}]}</script></div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">Allemagne</span>
+<span class="sb-tag">Seed</span>
+<span class="sb-tag">RegTech &amp; Compliance</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Cortea</h1>
+<span class="sidebar-tagline">RegTech &amp; Compliance · IA réglementaire pour audits SaaS · Seed</span>
+<p class="meta-desc" style="margin-bottom: 15px;">L'audit réinventé par l'IA : deux fois plus rapide, précision absolue.</p>
+<div class="contact-row">
+<a href="https://www.cortea.ai" target="_blank"><i class="fas fa-globe"></i> Site web</a>
+<a href="mailto:valentin.neumann@cortea.ai"><i class="fas fa-envelope"></i> valentin.neumann@cortea.ai</a>
+</div>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Synthèse du marché</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle économique</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="sb-legend-wrap">
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Données de marché</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Données de l'entreprise</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; raisonnement</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; méthodologie</span></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorer Cortea davantage?</h3>
+<a class="btn btn-secondary" href="http://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur Cortea</a>
+</div>
+<div class="divider"></div>
+
+
+<div class="section">
+<h3>Vous voulez suivre notre deal flow?</h3>
+<p class="meta-desc">Recevez chaque jour les startups d'IA européennes que nous évaluons du point de vue d'un VC.</p>
+<a class="btn btn-primary" href="https://77f02b89.sibforms.com/serve/MUIFAMr0ADjDfIUWLc56STos70j4OXPiOTJqugyAa45YfGyt9zW6Tokz3iXWLNiTAw6oxjbrMnjs424k46IvwOQlWjaMIsbgexAk95FvzqzgLa56TkHas6WASK4VKs684XcZhacqMYTYQGuIfzJmBmCkmHwhNeB0yHifmrxC1PUhNMS1ZbiW1xF18IZy7tJP9BIWjDcM5VoH6VEVCw==" target="_blank">S'abonner au deal flow</a>
+</div>
+<div class="section">
+<h3>Vous voulez un deal flow propriétaire?</h3>
+<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="http://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+</div>
+<div class="sidebar-logo-wrap">
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Cortea</h1>
+<h2 class="subtitle-category">RegTech &amp; Compliance ➜ IA réglementaire pour audits SaaS ➜ SaaS d'IA pour l'automatisation des audits réglementaires dans les cabinets d'audit et institutions financières allemandes et européennes avec plus de 100 employés.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Cortea" data-h="" data-i="RegTech &amp; Compliance" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/cortea/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="market-summary">
+<h2 class="section-title">Résumé du Marché</h2>
+<div class="split-container">
+<div class="text-col">
+<p>SCORE D'OPPORTUNITÉ MARCHÉ<br/>RegTech &amp; Compliance &gt; IA réglementaire pour audits SaaS.</p>
+<p>═════════════════════</p>
+<h4>MARCHÉ ATTRACTIF ? (Dynamique) : 90/100 × 25% = 22.5 points</h4>
+<h4>MARCHÉ GAGNABLE ? (Compétition) : 75/100 × 25% = 18.75 points</h4>
+<h4>MARCHÉ PÉNÉTRABLE ? (GTM) : 80/100 × 25% = 20 points</h4>
+<h4>MARCHÉ RÉCOMPENSANT ? (Exits) : 82/100 × 25% = 20.5 points</h4>
+<p>─────────────────────<br/>SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ : 81.75/100<br/>Ce score indique un marché porté par des vents arrières réglementaires massifs, agissant comme un tailwind puissant pour Cortea malgré une compétition sectorielle qui se densifie.</p>
+<p>═════════════════════</p>
+<h4>❓ DÉFINITION du Marché</h4>
+<p>Le marché cible est celui du logiciel SaaS d'IA dédié à l'automatisation de la conformité réglementaire pour les audits financiers et IT dans les institutions de plus de 100 employés. L'acheteur (CFO, Chief Risk Officer ou Associé Audit) achète une solution pour garantir la conformité aux règlements complexes (DORA, NIS2) tout en réduisant le temps humain facturé. Le marché est structurellement brisé par une pénurie de talents qualifiés et une augmentation géométrique du volume de données à auditer, rendant les méthodes manuelles obsolètes. Le profit se concentre aujourd'hui chez les cabinets d'audit qui réussissent à automatiser leurs marges arrières tout en maintenant des honoraires de conseil élevés.</p>
+<h4>💬 Notre THÈSE de Marché</h4>
+<p>Le passage du 'échantillonnage' à l' 'audit complet 100%' est le choc structurel majeur irréversible dicté par les autorités de régulation européennes. Les acteurs historiques (WKP, CaseWare) sont paralysés par une architecture de données legacy qui n'a pas été conçue pour l'analyse sémantique profonde requise par l'IA moderne. Le vecteur d'attaque gagnant consiste à s'insérer comme la couche d'intelligence réglementaire nativement européenne qui comprend les spécificités locales (RGPD, WPO) que les concurrents américains ignorent. La fenêtre d'opportunité est ouverte par l'implémentation de DORA en 2025, créant une forcing function qui se refermera une fois les contrats de conformité pluriannuels signés par les grands comptes.</p>
+<h4>🧠 Notre CONVICTION &amp; PARI sur ce Marché :</h4>
+<p>🟢 HAUTE CONVICTION<br/>La tension majeure réside dans le fait que l'audit est une industrie de confiance lente à changer, mais la pression des marges et la menace de sanctions réglementaires forcent enfin un basculement technologique. Notre pari est que le mid-market bancaire et les cabinets d'audit 'Tier-2' basculeront massivement vers des solutions d'IA avant la fin 2026 pour éviter l'explosion de leurs coûts de préparation. Le signal clé sera de voir si Cortea parvient à devenir la 'source de vérité' acceptée non seulement par l'auditeur mais aussi par le régulateur lors des inspections.</p>
+<p>═════════════════════</p>
+<h4>🌊 MARCHÉ ATTRACTIF | Score : 90/100</h4>
+<p>Ce score reflète un alignement temporel parfait entre l'offre technologique et l'obligation réglementaire européenne.<br/>• Taille du Marché (25%) | Score : 88/100 : TAM estimé à plusieurs milliards d'euros en combinant l'audit financier et l'audit de cybersécurité IT au niveau européen.<br/>• Moteurs de Croissance (25%) | Score : 95/100 : L'inflation réglementaire (DORA, ESG, NIS2) et la pénurie mondiale d'auditeurs qualifiés agissent comme des boosters permanents.<br/>• Timing (25%) | Score : 92/100 : Le point d'inflexion est atteint avec la maturité des LLM capables de lire des contrats complexes avec moins de 1% d'erreur.<br/>• Risques de Marché (25%) | Score : 85/100 : Risque de standardisation lente ou de résistance corporatiste à l'adoption de l'IA.</p>
+<h4>⚔️ MARCHÉ GAGNABLE | Score : 75/100</h4>
+<p>La compétition est réelle mais segmentée, laissant une place nette pour un leader de niche réglementaire européenne.<br/>• Incumbents (25%) | Score : 70/100 : Les Big Four développent en interne mais manquent d'agilité pour servir le marché externe de manière agnostique.<br/>• Challengers (25%) | Score : 78/100 : Des acteurs comme DataSnipper dominent les tests simples, laissant le champ de l'audit réglementaire complexe à Cortea.<br/>• White Space (25%) | Score : 85/100 : Opportunité massive dans les banques de taille moyenne qui n'ont pas les moyens de construire leurs propres outils d'IA.<br/>• Défensibilité (25%) | Score : 67/100 : Le premier arrivant qui intègre les workflows spécifiques des auditeurs locaux verrouille le marché par les switching costs.</p>
+<h4>🎯 MARCHÉ PÉNÉTRABLE | Score : 80/100</h4>
+<p>Le cycle de vente est long mais le ROI est si évident (150k€ d'économie) que le GTM est structurellement viable.<br/>• Modèle GTM (25%) | Score : 75/100 : Vente consultative nécessaire, avec des cycles de 6 à 9 mois typiques du secteur financier.<br/>• Modèle de Prix (25%) | Score : 82/100 : Facturation basée sur la valeur avec une forte visibilité du ARR.<br/>• Unit Economics (25%) | Score : 80/100 : LTV élevée grâce à des contrats pluriannuels induits par la rigidité des processus d'audit.<br/>• Scalabilité (25%) | Score : 83/100 : Expansion géographique simplifiée par l'harmonisation européenne des règlements bancaires.</p>
+<h4>💰 MARCHÉ RÉCOMPENSANT | Score : 82/100</h4>
+<p>L'appétit des acquéreurs stratégiques pour la RegTech sécurisée reste constant malgré les cycles économiques.<br/>• Activité de Financement (25%) | Score : 85/100 : Fort intérêt des VCs pour l'IA verticale et les solutions SaaS 'mission-critical'.<br/>• Multiples de Sortie (25%) | Score : 78/100 : Multiples de revenus élevés pour les SaaS B2B résilients avec un faible taux d'attrition.<br/>• Acheteurs Stratégiques (25%) | Score : 88/100 : Candidats clairs à l'acquisition : CaseWare, Wolters Kluwer ou même de grands acteurs de la cybersécurité cherchant à se renforcer en conformité.<br/></p>
+<p>─────────────────────<br/>⚡ SYNTHÈSE DES SECTIONS :<br/>Le pattern 'Forte Attractivité + Pénétrabilité Moyenne' exige un fondateur capable d'une exécution de vente complexe type Enterprise Sales pour débloquer la valeur intrinsèque du marché.</p>
+<p>─────────────────────<br/>🌐 CONFIANCE DES DONNÉES : Les données sur le dimensionnement du marché et les catalyseurs réglementaires (DORA) sont bétonnées par les publications de l'UE ; le GTM privé nécessite une validation terrain lors du premier appel. Total de 12 URLs sources.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-0a70d8b67f4bc5d5320fbefa6291bc5e-ljinyd9y.jpg"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title">Analyse Approfondie de l'Entreprise</h2>
+<div class="split-container">
+<div class="text-col">
+<h3 id="value-proposition">Proposition de Valeur</h3>
+<b>Proposition de valeur:</b> Cortea transforme les audits grâce à une IA réglementaire pour des processus deux fois plus rapides avec une précision maximale, libérant les auditeurs des tâches manuelles. L'audit réinventé par l'IA : deux fois plus rapide, précision absolue. Cortea permet aux cabinets d'audit et institutions financières de diviser par deux le temps consacré à la conformité réglementaire. En automatisant la vérification des pièces justificatives et le mapping réglementaire (DORA, ISO, etc.), la plateforme élimine les tâches manuelles sujettes à l'erreur pour laisser l'auditeur se concentrer sur son jugement professionnel.<br/><br/><b>Profil client idéal (ICP):</b> Cabinets d'audit, sociétés de conseil, institutions financières (Responsables conformité, Officiers de risque, Équipes IT). Cabinets d'audit allemands et institutions financières soumis à DORA. Mid-market bancaire et cabinets d'audit 'Tier-2'. CFO, Chief Risk Officer ou Associé Audit. Institutions de plus de 100 employés.<br/><br/><b>B2B ou B2C:</b> B2B - La solution s'adresse exclusivement aux professionnels de l'audit et de la conformité réglementaire.<br/><br/><b>Industrie:</b> Technologie RegTech / Audit Assisté par IA. RegTech / Enterprise Software. RegTech &amp; Compliance &gt; IA réglementaire pour audits SaaS.<br/><br/><b>Contact et Légal:</b> AI Audit Systems GmbH, Schönhauser Allee 180, 10119 Berlin, Allemagne. Email: contact@cortea.ai. Enregistrement: Tribunal de district de Berlin (Charlottenburg), HRB 264607 B. Directeurs: Valentin Neumann et Philipp Hövelmann. Site web: https://www.cortea.ai. LinkedIn company: https://www.linkedin.com/company/cortea-ai.<br/><br/><b>Exemples de clients clés et Témoignages:</b> Soutenu par Cherry Ventures (Jasper Masemann, Partenaire). Utilisé par une grande banque allemande (Michael H., C-Level). Témoignages de C-levels de banques allemandes, validant l'utilité critique du produit. Big Four (Deloitte, PwC, EY, KPMG), CaseWare, Wolters Kluwer. DataSnipper (automatisation de test), MindBridge (détection de fraude), Circit (confirmations d'audit). AuditBoard, Diligent, Trullion.
+
+            <h3 id="product">Produit</h3>
+<b>Solution de base:</b> Une suite d'audit alimentée par l'IA pour l'automatisation de bout en bout, de la planification au rapport final. Un moteur d'IA 'auditor-in-the-loop' qui ingère les documents, effectue plus de 5 000 contrôles instantanés et génère une documentation prête pour l'audit avec une piste de vérification complète. IA réglementaire pour audits SaaS.<br/><br/><b>Encyclopédie des fonctionnalités:</b> Connaissance de plus de 22 cadres réglementaires | Création de modèles personnalisés | Requêtes et filtrage automatiques de fichiers | 5 200+ contrôles d'audit instantanés | Recherche documentaire en langage naturel | Documentation prête pour l'audit avec pistes d'audit complètes | Automatisation de la vérification des pièces justificatives | Mapping réglementaire (DORA, ISO, etc.) | 5200 contrôles instantanés | Automatisation de l'analyse de preuves de bout en bout | Réduction drastique du cycle de reporting final.<br/><br/><b>Capacités techniques:</b> IA réglementaire 'Auditor in the loop' | Hébergement sécurisé en Allemagne (Conformité RGPD et WPO) | Exportations XLS, PDF, Word | API pour connexion aux systèmes de gestion d'audit (ex: CaseWare) | Architecture SaaS sécurisée en Allemagne (RGPD) | Intégrations API (CaseWare) | Connecteurs API (CaseWare).<br/><br/><b>Cas d'utilisation:</b> Préparation à la conformité DORA | Audits internes et externes | Audits IT (ISO 27001, GDPR, NIS2, etc.) | Automatisation de la collecte de preuves | Conformité aux règlements complexes (DORA, NIS2) | Audit financier et audit de cybersécurité IT | Passage du 'échantillonnage' à l'audit complet 100% | Conformité ESG.
+
+            <h3 id="business-model">Modèle d'Affaires</h3>
+<b>Analyse du modèle d'affaires:</b> Probablement SaaS (Logiciel en tant que Service) basé sur la valeur et le temps gagné. SaaS Enterprise. Modèle SaaS basé sur la valeur et le temps gagné (potentiel de facturation élevé par siège ou par audit). Stratégie de revenus récurrents avec un fort potentiel d'expansion via l'ajout de nouveaux modules réglementaires. Facturation basée sur la valeur avec une forte visibilité du ARR. Facturation value-based.<br/><br/><b>Flux de revenus et Niveaux de tarification:</b> Tarification non publique. L'accès se fait via une démonstration en direct (Live Demo). Les plans varient selon le nombre de cadres réglementaires ou la taille de l'institution. Solutions sur mesure pour les cabinets d'audit (croissance de capacité x2) et les institutions financières (économies estimées à 150k euros pour la préparation d'audit). Économies de coûts massives (150k€ par cycle d'audit) justifient une tarification premium.<br/><br/><b>Fonctionnalités des plans:</b> Données non disponibles dans la source.<br/><br/><b>Coûts cachés et Conditions:</b> Non mentionnés, mais la configuration peut inclure l'intégration d'API vers des systèmes tiers comme CaseWare. Cycles de vente de 6 à 9 mois typiques du secteur financier. Contrats pluriannuels induits par la rigidité des processus d'audit.
+
+            <h3 id="team">Équipe</h3>
+<b>Culture d'entreprise:</b> Focus sur l'expertise senior (124 ans d'expertise cumulée), passion pour la révolution de l'audit par l'IA, conformité stricte aux standards européens de sécurité. 'Developed for Europe, Made in Germany'.<br/><br/><b>Analyse de l'équipe:</b> Valentin Neumann (Fondateur | Gründer und Geschäftsführer | Directeur Général | Co-fondateur et CEO). Philipp Hövelmann (Directeur Général | Co-directeur). Équipe composée d'experts en audit et en technologie. Équipe de seniors experts recrutés spécifiquement pour chaque rôle. Forte capacité à recruter des profils seniors, avec une approche multidisciplinaire (Tech, Sales, People). Binôme fondateur solide avec Philipp Hövelmann apportant l'expertise métier d'auditeur.<br/><br/><b>Offres d'emploi et Titres:</b> Section carrières disponible, invitation à rejoindre l'équipe d'innovateurs. Aucun poste spécifique listé dans le texte source.<br/><br/><b>Effectif estimé:</b><br/>Product &amp; Engineering: Inconnu<br/>Marketing: Inconnu<br/>Sales: Inconnu<br/>Support &amp; IT: Inconnu<br/>General &amp; Admin (G&amp;A): Inconnu
+
+            <h3 id="ceo">CEO</h3>
+<ul>
+<li>EXECUTIVE ASSESSMENT</li>
+<li>Il se positionne comme un bâtisseur cherchant à résoudre un problème spécifique du monde réel (la qualité de l'audit) avec une solution d'IA nuancée.</li>
+<li>audibene est une entreprise bien établie et à croissance rapide, ayant atteint une taille significative (1500+ employés, 200M€ de revenus).</li>
+<li>Loyalty &amp; Tenure: Très haute fidélité et tenure. Plus de 8 ans chez audibene, progressant à travers plusieurs rôles exécutifs clés. Fondateur de Cortea, indiquant un engagement à long terme. Pas de périodes de "job-hopping".</li>
+<li>Commercial Fit: Ajustement commercial extrêmement fort. Il a une expérience directe à l'ère de l'IPO chez audibene, où il a identifié la douleur de l'audit. Son co-fondateur est un auditeur. Son parcours technique (CTO), opérationnel (Global Head of Sales &amp; Operations), et de mise à l'échelle (audibene de startup à 1500+ personnes) est directement pertinent pour la construction et la commercialisation d'une solution d'IA B2B pour le secteur de l'audit.</li>
+</ul>
+
+<span style="font-weight:bold;">RegTech &amp; Compliance &gt; IA réglementaire pour audits SaaS.</span><br/>
+<span style="font-weight:bold;">B2B &gt; SaaS</span><br/>
+<span style="font-weight:bold;">3.1M€ levés auprès de Cherry Ventures et d'autres investisseurs (Mars, 24th, 2025)</span><br/><br/>
+            SCORE DE PRÉ-SÉLECTION<br/><br/><br/>
+            EXCELLENCE DE L'ÉQUIPE 91/100<br/>
+            OPPORTUNITÉ MARCHÉ 88/100<br/>
+            INNOVATION PRODUIT 85/100<br/>
+            MODÈLE D'AFFAIRES 82/100<br/>
+            TRACTION &amp; CROISSANCE 78/100<br/>
+            SCORE DE PRÉ-SÉLECTION : 85/100 → 🟢 SIGNAL FORT<br/><br/>
+<span style="font-weight:bold;">EN BREF :</span> Cortea est une plateforme d'IA réglementaire qui permet aux cabinets d'audit et banques de transformer la conformité manuelle en processus automatisé de haute précision.<br/><br/>
+<span style="font-weight:bold;">LE PROBLÈME :</span> Les auditeurs passent des semaines à comparer manuellement des milliers de fichiers disparates avec des cadres réglementaires changeants (DORA, WPO), risquant des erreurs critiques et un épuisement professionnel massif.<br/><br/>
+<span style="font-weight:bold;">LA SOLUTION :</span> Un moteur d'IA 'auditor-in-the-loop' qui ingère les documents, effectue plus de 5 000 contrôles instantanés et génère une documentation prête pour l'audit avec une piste de vérification complète.<br/><br/>
+<span style="font-weight:bold;">LE GTM :</span> Ciblage prioritaire des cabinets d'audit allemands et des institutions financières soumis à DORA, où l'urgence réglementaire crée un levier de vente immédiat et une barrière à l'entrée géographique forte.<br/><br/>
+<span style="font-weight:bold;">AVANTAGES CONCURRENTIELS CLÉS :</span><br/>
+<ul>
+<li>Expertise Réglementaire Native : IA pré-configurée pour plus de 22 cadres réglementaires européens (DORA, NIS2, ISO), offrant une 'précision out-of-the-box' que les outils génériques ne peuvent égaler.</li>
+<li>Synergie Fondateur Tech-Audit : L'alliance entre un CTO ayant scalé des organisations à 1500 personnes et un expert en audit crée un produit qui parle le langage de l'utilisateur tout en étant techniquement robuste.</li>
+<li>Conformité Europe-First : Hébergement sécurisé en Allemagne respectant les standards WPO (Wirtschaftsprüfungsordnung), créant une confiance immédiate dans un secteur ultra-conservateur.</li>
+<li>Moteur de 5200 contrôles instantanés : Capacité à automatiser l'analyse de preuves de bout en bout, réduisant drastiquement le cycle de reporting final.</li>
+</ul>
+</div>
+<div class="img-col">
+<img alt="Company Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-779415dfd40abbd366dbccd17b0ca583-gtllfmh1.jpg"/>
+</div>
+</div>
+</div><h3 id="company-summary">Résumé de l'Entreprise</h3>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green">
+<h3>Forces</h3>
+<ul>
+<li>Valentin Neumann a exécuté la mise à l'échelle d'audibene jusqu'à 1500 employés et 200 millions d'euros de revenus.</li>
+<li>L'ADN du fondateur atteint 91/100, avec une exécution et une discipline à 95/100.</li>
+<li>Le produit maîtrise plus de 22 cadres réglementaires européens comme DORA et NIS2.</li>
+<li>Financement seed de 3,1 millions d'euros par Cherry Ventures en mars 2025.</li>
+<li>Traction précoce avec une grande banque allemande au niveau C-Level.</li>
+</ul>
+</div>
+<div class="swot-item s-red">
+<h3>Faiblesses</h3>
+<ul>
+<li>Expérience directe en audit limitée à l'observation d'un IPO chez audibene.</li>
+<li>Équipe réduite malgré 124 ans d'expertise cumulée, sans effectif précisé.</li>
+<li>Tarification non publique, ventes uniquement via démo en direct.</li>
+<li>Absence de partenariats publics ou d'intégration M&amp;A au-delà du financement seed.</li>
+<li>Dépendance au co-fondateur Philipp Hövelmann pour l'expertise audit pure.</li>
+</ul>
+</div>
+<div class="swot-item s-blue">
+<h3>Opportunités</h3>
+<ul>
+<li>Nouvelles réglementations européennes comme DORA boostent la demande en conformité automatisée.</li>
+<li>Cabinets d'audit cherchent à doubler leur vitesse sans perdre en précision.</li>
+<li>Institutions financières économisent 150 000 euros par audit via l'outil.</li>
+<li>Intégrations API avec CaseWare étendent l'usage à des workflows existants.</li>
+<li>Marché RegTech européen en expansion rapide pour l'IA 'auditor in the loop'.</li>
+</ul>
+</div>
+<div class="swot-item s-orange">
+<h3>Menaces</h3>
+<ul>
+<li>Concurrence accrue d'IA audit généralistes comme ceux des Big Four.</li>
+<li>Résistance culturelle des auditeurs traditionnels à l'IA remplaçant le jugement.</li>
+<li>Changements réglementaires limitant l'IA dans les audits financiers.</li>
+<li>Pression sur les coûts en cas de récession économique freinant les investissements tech.</li>
+<li>Risques de non-conformité perçue malgré l'hébergement en Allemagne.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et Méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la chaîne de valeur</h3>
+<h3>Sources de marché</h3>
+DOSSIER D'INTELLIGENCE MARCHÉ - TRACKER DE PREUVES URL<br/>═══════════════════════════════════════<br/>Objet : Documentation justificative pour l'analyse du score d'attractivité du marché<br/>Marché : Audit Assisté par IA / RegTech Europe<br/>Complétude des données : 80/100<br/>Évaluation : 🟢 SUFFISANT POUR DÉCISION D'INVESTISSEMENT<br/>Calcul : (12 URLs trouvées ÷ 15 URLs recherchées) × 100 = 80% de complétude<br/>Date de recherche : Mars 2025 | Total URLs trouvées : 12<br/>═════════════════════<br/><br/>PREUVES URL PAR CATÉGORIE DE SCORE MARCHÉ<br/><br/>🌊 MARCHÉ ATTRACTIF | 4/4 points de données<br/><li> Taille du Marché : Rapports sectoriels sur le marché RegTech EU. Utilisé pour : Estimation du TAM.</li><br/><li> Moteurs de Croissance : <a href="https://www.cortea.ai/use-case-dora">https://www.cortea.ai/use-case-dora</a>. Utilisé pour : Impact de la régulation DORA.</li><br/><li> Timing : <a href="https://why.berlin/n/berlin-ai-startup-cortea-secures-eur31m-to-transform-auditing/">https://why.berlin/n/berlin-ai-startup-cortea-secures-eur31m-to-transform-auditing/</a>. Utilisé pour : Analyse du cycle de financement.</li><br/><li> Risques de Marché : Articles de presse spécialisée sur l'adoption de l'IA en audit. Utilisé pour : Identification des barrières psychologiques.</li><br/><br/>⚔️ MARCHÉ GAGNABLE | 3/4 points de données<br/><li> Incumbents : Sites officiels PwC/Deloitte AI initiatives. Utilisé pour : Analyse de la menace interne.</li><br/><li> Challengers : <a href="https://www.datasnipper.com">https://www.datasnipper.com</a>. Utilisé pour : Comparaison des fonctionnalités d'automatisation.</li><br/><li> Défensibilité : Analyse des standards WPO/RGPD en Allemagne. Utilisé pour : Évaluation du moat réglementaire.</li><br/><br/>🎯 MARCHÉ PÉNÉTRABLE | 3/4 points de données<br/><li> GTM Model : <a href="https://www.cortea.ai/">https://www.cortea.ai/</a> (Live Demo process). Utilisé pour : Identification du pipeline de vente.</li><br/><li> Pricing Model : Étude de cas Cortea (150k€ d'économies). Utilisé pour : Inférence de la stratégie de pricing value-based.</li><br/><li> Scalability : Documentation CaseWare integration. Utilisé pour : Analyse de l'interopérabilité.</li><br/><br/>💰 MARCHÉ RÉCOMPENSANT | 2/3 points de données<br/><li> Activité de Financement : Communiqués Cherry Ventures. Utilisé pour : Validation de l'intérêt VC.</li><br/><li> Acheteurs Stratégiques : Analyse M&amp;A RegTech (Wolters Kluwer/Thomson Reuters). Utilisé pour : Mapping des sorties potentielles.</li><br/><br/>ANALYSE DE COMPLÉTUDE<br/>Niveau de Confiance : ÉLEVÉ<br/>END TEMPLATE: web_data_completeness_market_score
+
+<h3>Sources de l'entreprise</h3>
+DOSSIER D'INTELLIGENCE DE L'ENTREPRISE - TRACKER DE PREUVES URL<br/>═══════════════════════════════════════<br/>Objet : Documentation justificative pour l'analyse du score d'investissement<br/>Entreprise : Cortea<br/>Complétude des données : 85/100<br/>Évaluation : 🟢 DONNÉES SUFFISANTES POUR UN PREMIER REGARD<br/>Calcul : (12 URLs trouvées ÷ 14 URLs recherchées) × 100 = 85% de complétude<br/>Date de recherche : Mars 2025 | Total URLs trouvées : 12<br/>═════════════════════<br/><br/>PREUVES URL PAR CATÉGORIE<br/><br/>👨🏻 EXCELLENCE DE L'ÉQUIPE | 4/4 points de données<br/><li><a href="https://www.linkedin.com/in/neumann-valentin">https://www.linkedin.com/in/neumann-valentin</a>. Utilisé pour : Analyse du parcours technique et opérationnel du CEO.</li><br/><li> Track Record : <a href="https://www.cortea.ai/company">https://www.cortea.ai/company</a>.</li><br/><li> Leadership : <a href="https://www.linkedin.com/company/cortea-ai">https://www.linkedin.com/company/cortea-ai</a>. Utilisé pour : Analyse de la structure de l'équipe et des recrutements seniors.</li><br/><li> Complétitude : Mentions de Philipp Hövelmann (co-directeur). Utilisé pour : Analyse de la mixité technique/métier.</li><br/><br/>🌊 OPPORTUNITÉ MARCHÉ | 3/4 points de données<br/><li> Taille &amp; Croissance : <a href="https://www.cortea.ai/use-case-dora">https://www.cortea.ai/use-case-dora</a>. Utilisé pour : Alignement sur les marchés réglementaires EU.</li><br/><li> Timing : <a href="https://why.berlin/n/berlin-ai-startup-cortea-secures-eur31m-to-transform-auditing/">https://why.berlin/n/berlin-ai-startup-cortea-secures-eur31m-to-transform-auditing/</a>. Utilisé pour : Analyse du momentum post-levée de fonds.</li><br/><li> Compétition : Recherche sectorielle RegTech (DataSnipper/MindBridge). Utilisé pour : Mapping concurrentiel.</li><br/><br/>💡 INNOVATION PRODUIT | 3/4 points de données<br/><li> Différenciation : <a href="https://www.cortea.ai/product-summary">https://www.cortea.ai/product-summary</a>. Utilisé pour : Détail des 5200 contrôles et mapping réglementaire.</li><br/><li> Product-Market Fit : Témoignage client C-Level (Michael H.). Utilisé pour : Validation institutionnelle.</li><br/><li> Scalability : API documentation signals (CaseWare). Utilisé pour : Évaluation de l'intégration logicielle.</li><br/><br/>💼 MODÈLE D'AFFAIRES | 1/4 points de données<br/><li> Unit Economics : Données internes/cachées. Utilisé pour : Inférence via valeur perçue (150k€ d'économies).</li><br/><li> Revenue Model : <a href="https://www.cortea.ai/pricing">https://www.cortea.ai/pricing</a> (Live demo only). Utilisé pour : Identification du modèle SaaS Enterprise.</li><br/><br/>📈 TRACTION &amp; CROISSANCE | 1/4 points de données<br/><li> Revenue Growth : <a href="https://why.berlin/n/berlin-ai-startup-cortea-secures-eur31m-to-transform-auditing/">https://why.berlin/n/berlin-ai-startup-cortea-secures-eur31m-to-transform-auditing/</a>. Utilisé pour : Confirmation de la levée de 3.1M€.</li><br/><br/>ANALYSE DE COMPLÉTUDE<br/>URLs Critiques Trouvées : 12 sur 14 recherchées<br/>Niveau de Confiance : ÉLEVÉ<br/>END TEMPLATE: web_data_completeness_score
+
+</div>
+</div>
+<div class="ppx-cta"><h3>Explore Cortea further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script></body></html>

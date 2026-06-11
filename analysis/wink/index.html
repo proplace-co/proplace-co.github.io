@@ -1,0 +1,725 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wink — analyse Future of Work &amp; HR Tech | Proplace</title><meta name="description" content="Future of Work &amp; HR Tech · Regional SMB &amp; Public Sector ATS · Seed"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/wink/"><meta property="og:type" content="article"><meta property="og:title" content="Wink — analyse Future of Work &amp; HR Tech | Proplace"><meta property="og:description" content="Future of Work &amp; HR Tech · Regional SMB &amp; Public Sector ATS · Seed"><meta property="og:url" content="https://proplace.co/analysis/wink/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Wink — Future of Work & HR Tech", "description": "Future of Work & HR Tech · Regional SMB & Public Sector ATS · Seed", "inLanguage": "fr", "url": "https://proplace.co/analysis/wink/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/wink/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Wink"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Wink</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Wink"}]}</script></div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Seed</span>
+<span class="sb-tag">Future of Work &amp; HR Tech</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Wink</h1>
+<span class="sidebar-tagline">Future of Work &amp; HR Tech · Regional SMB &amp; Public Sector ATS · Seed</span>
+<p class="meta-desc" style="margin-bottom: 15px;">The ATS that saves you up to 10x more time on your recruitments.</p>
+<div class="contact-row">
+<a href="https://www.wink-lab.com/" target="_blank"><i class="fas fa-globe"></i> Website</a>
+<a href="https://www.linkedin.com/in/ben-taylor-a4a3a316" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+</div>
+</div>
+</div>
+<span class="sb-nav-heading">Market</span>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<span class="sb-nav-heading">Company</span>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="sb-legend-wrap">
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Market data</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Company data</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; reasoning</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; methodology</span></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Explore Wink further?</h3>
+<a class="btn btn-secondary" href="http://forms.proplace.co/meet" target="_blank">Schedule a strategy call on Wink</a>
+</div>
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="section">
+<h3>Want to follow our deal flow?</h3>
+<p class="meta-desc">Receive European AI startups we assess every day from a VC perspective.</p>
+<a class="btn btn-primary" href="https://77f02b89.sibforms.com/serve/MUIFAMr0ADjDfIUWLc56STos70j4OXPiOTJqugyAa45YfGyt9zW6Tokz3iXWLNiTAw6oxjbrMnjs424k46IvwOQlLjaMIsbgexAk95FvzqzgLa56TkHas6WASK4VKs684XcZhacqMYTYQGuIfzJmBmCkmHwhNeB0yHifmrxC1PUhNMS1ZbiW1xF18IZy7tJP9BIWjDcM5VoH6VEVCw==" target="_blank">Subscribe to deal flow</a>
+</div>
+<div class="section">
+<h3>Want a proprietary deal flow?</h3>
+<p class="meta-desc">Receive daily highly qualified targets for your acquisition strategy.</p>
+<a class="btn btn-primary" href="http://forms.proplace.co/meet" target="_blank">Schedule a strategy call</a>
+</div>
+<div class="sidebar-logo-wrap">
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Wink</h1>
+<h2 class="subtitle-category">Future of Work &amp; HR Tech ➜ Regional SMB &amp; Public Sector ATS ➜ Applicant Tracking System (ATS) SaaS for the French SME, agency, and public sector market.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Wink" data-h="" data-i="Future of Work &amp; HR Tech" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/wink/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="market-summary">
+<h2 class="section-title">Market Summary</h2>
+<div class="split-container">
+<div class="text-col">
+<h4>MARKET OPPORTUNITY SCORE</h4>
+<p>Future of Work &amp; HR Tech &gt; Regional SMB &amp; Public Sector ATS<br/>B2B &gt; SaaS</p>
+<p>IS IT AN ATTRACTIVE MARKET ? (Dynamics): 70/100 × 25% = 17.5 points<br/>IS IT A WINNABLE MARKET ? (Competition): 40/100 × 25% = 10 points<br/>IS IT A PENETRABLE MARKET ? (GTM): 60/100 × 25% = 15 points<br/>IS IT A REWARDING MARKET ? (Exits): 65/100 × 25% = 16.25 points</p>
+<p>TOTAL MARKET ATTRACTIVITY SCORE: 59/100</p>
+<p>This score indicates the market is a significant headwind; success is possible but requires a truly differentiated product or a masterful GTM wedge, as simply being a 'good' product is insufficient to win against entrenched competition.</p>
+<h4>❓ Market DEFINITION</h4>
+<p>Applicant Tracking System (ATS) SaaS for the French SME, agency, and public sector market. ➜ Buyers are HR managers and recruiters at French organizations with 50-500 employees, purchasing software to manage job applicants from posting to hire. The structural friction they face is the operational chaos of using spreadsheets and email to track hundreds of candidates, leading to slow hiring, poor candidate experience, and lost talent. In the value chain, ATS sits downstream from sourcing channels like job boards and upstream from HRIS/onboarding systems, capturing value by organizing the chaotic and highest-volume part of the talent acquisition funnel.</p>
+<h4>💬 Our Market THESIS</h4>
+<p>The structural break in this market is the consumerization of B2B software, where French SMEs now expect beautiful, simple, self-service tools, a stark departure from the clunky, expensive systems of the past. Incumbent giants like Oracle Taleo and SAP SuccessFactors are paralyzed; they cannot offer a cheap, simple product without cannibalizing their high-margin enterprise contracts and dismantling their direct sales force. The attack vector is a product-led motion targeting French SMEs under 250 employees with a transparently priced, localized product that solves 80% of their needs out of the box. This window is closing rapidly as well-funded, pan-European challengers like Teamtailor and Recruitee are already executing this playbook and aggressively capturing market share.</p>
+<h4>🧠 Our CONVICTION &amp; WAGER on this Market:</h4>
+<p><b>🟡 MEDIUM CONVICTION</b></p>
+<p>The honest tension in this market is that while the need for ATS digitization in the French mid-market is undeniable, the space is brutally competitive and rapidly commoditizing. Our wager is that a France-native player can build a sticky, defensible business in the public sector niche, where local regulatory knowledge and cultural nuance create a moat that global players cannot easily replicate. Our falsifiable wager is that within 24 months, the winner in this segment will demonstrate a net revenue retention rate &gt;110% specifically within their public sector cohort, proving that this niche is not just a point of entry but a profitable stronghold. The first-call signal that would immediately raise our conviction is a clear answer showing that &gt;40% of their pipeline is from the public sector and that its CAC is at least 30% lower than their generic SME CAC.</p>
+<h4>🌊 ATTRACTIVE MARKET (Market Dynamics) | Score: 70/100</h4>
+<p>A 70 score signifies a mature but still-growing market where demand is proven, but the 'blue ocean' phase is long over, placing the burden of success on execution rather than market tailwinds.</p>
+<ul><li><b>Market Size (25%) | Score: 75/100:</b> The French market for SME HR tech is a significant portion of the broader European TAM, estimated in the billions, with the addressable ATS segment for SMEs and public bodies representing a solid nine-figure opportunity.</li><li><b>Growth Drivers (25%) | Score: 80/100:</b> Growth is fueled by a national push for digital transformation ('France Num') and a persistent tight labor market that forces even smaller employers to adopt professional tools to compete for talent.</li><li><b>Timing Why Now (25%) | Score: 70/100:</b> The key catalyst is the widespread acceptance of SaaS tools by previously tech-laggard industries and the public sector, creating a large wave of first-time ATS adopters moving off spreadsheets.</li><li><b>Market Risks (25%) | Score: 55/100:</b> The primary risk is market saturation leading to a price war and compressing margins; a secondary risk is the slow, bureaucratic procurement cycles in the public sector which can kill a startup's cash flow.</li></ul>
+<h4>⚔️ WINNABLE MARKET (Competitive Landscape) | Score: 40/100</h4>
+<p>This extremely low score signals a 'red ocean' market where new entrants face a fierce battle for market share against both large incumbents and fast-moving, well-funded challengers, making differentiation critical and expensive.</p>
+<ul><li><b>Incumbents (25%) | Score: 40/100:</b> Global HR suites like Workday Recruiting and SAP SuccessFactors have immense brand recognition and distribution into the enterprise segment, but are often too complex and expensive for the SME market.</li><li><b>Challengers (25%) | Score: 30/100:</b> This is the biggest threat; well-funded scale-ups like Teamtailor and Recruitee offer beautifully designed, modern products and are already aggressively targeting the European SME segment that Wink is after.</li><li><b>White Space (25%) | Score: 60/100:</b> The most significant white space exists within the French public sector (municipalities, local government agencies), which has unique compliance needs and where a focused, local player could build a specific advantage.</li><li><b>Defensibility (25%) | Score: 30/100:</b> Defensibility in the ATS market is structurally weak, primarily relying on switching costs (process power) rather than network effects or proprietary technology, leading to a constant features race.</li></ul>
+<h4>🎯 PENETRABLE MARKET (Go-To-Market &amp; Unit Economics) | Score: 60/100</h4>
+<p>This score suggests that while customer acquisition is possible, it is not frictionless; the high noise level from competitors likely inflates CAC, meaning profitability hinges entirely on excellent retention and upsell.</p>
+<ul><li><b>GTM Model (25%) | Score: 60/100:</b> The market supports a dual GTM: a high-velocity inside sales or PLG motion for SMEs, and a more consultative, relationship-driven direct sales model for public sector and larger clients, which can be complex to manage concurrently.</li><li><b>Pricing Model (25%) | Score: 70/100:</b> The industry standard is a B2B SaaS model, typically priced per recruiter seat and/or number of active jobs, with tiers that unlock advanced features. Freemium is rare, but free trials are common.</li><li><b>Unit Economics (25%) | Score: 50/100:</b> With intense competition, the market likely supports a modest LTV/CAC ratio of 3-4x, with payback periods potentially extending to 12-18 months, making capital efficiency a key determinant of success.</li><li><b>Scalability (25%) | Score: 60/100:</b> The model scales by moving upmarket to larger SMEs or by cross-selling adjacent HR modules like onboarding or performance management, but geographic scaling requires significant localization effort.</li></ul>
+<h4>💰 REWARDING MARKET (Funding &amp; Exit) | Score: 65/100</h4>
+<p>A moderate score here implies a consistent history of M&amp;A activity, providing viable exit paths, though blockbuster, fund-returning outcomes are less common than in other SaaS categories.</p>
+<ul><li><b>Funding Activity (25%) | Score: 70/100:</b> The HR Tech space remains attractive to VCs, with billions invested annually, and firms recognize the opportunity in vertical or geographically focused SaaS players that can win niches.</li><li><b>Exit Multiples (25%) | Score: 60/100:</b> M&amp;A revenue multiples for solid but non-category-leading ATS players typically range from 4x to 8x ARR, while public multiples for giants like Workday are higher but not directly comparable.</li><li><b>Strategic Buyers (25%) | Score: 75/100:</b> The logical acquirers are plentiful and include large HRIS providers (ADP, Cegid in France), payroll software companies seeking to expand their suite, and larger, global ATS players acquiring for geographic footprint (e.g., Greenhouse, Lever).</li><li><b>Return Profile (25%) | Score: 55/100:</b> This market structurally produces more singles and doubles than home runs. While a solid acquisition is a highly probable outcome for a successful niche player, becoming a multi-billion dollar standalone company is unlikely given the competitive dynamics, which may not align with a power-law-driven fund's thesis.</li></ul>
+<h4>⚡ CROSS-SECTION SYNTHESIS:</h4>
+<p>The combination of a moderately attractive market with a very low 'winnable' score creates a classic 'knife fight in a phone booth' scenario; the only path to a venture-scale return is by executing a niche-domination strategy with near-perfect precision, likely in the public sector, and using that beachhead to build a defensible moat before competitors react.</p>
+<h4>🌐 DATA CONFIDENCE:</h4>
+<p>The analysis of market dynamics, competition, and exit environment is based on general industry knowledge and observation, as no specific market research reports were provided. Confidence in the specific dynamics of the French SME/public sector niche is therefore moderate and requires primary research to validate. Total sourced URLs for this analysis: 0.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-174536fcc17788c43378cafea4380062-akmzbxos.jpg"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title">Company Deep Dive</h2>
+<div class="split-container">
+<div class="text-col">
+<h3 id="value-proposition">Value Proposition</h3>
+<div class="text-block"><b>Value Proposition:</b><br/>Wink is a modern Applicant Tracking System (ATS) designed to simplify candidate management, automate repetitive tasks, and facilitate team-based recruiting to reduce recruitment time by up to 10x. The ATS that saves you up to 10x more time on your recruitments. Wink provides a centralized Kanban board to track all candidates, automates email responses, and pushes job postings to dozens of boards from a single interface, collapsing the manual administrative workload into a few clicks.<br/><br/>In 5 years, Wink aims to be the default recruitment software for French small businesses and public sector entities, having replaced clunky spreadsheets and outdated systems with a simple, automated platform for hiring.<br/><b>Ideal Customer Profile (ICP):</b><br/>Independent recruiters, recruitment agencies, SMEs (PME/ETI), and public sector organizations (municipalities, ministries). French SMEs and public sector organizations. HR managers and recruiters at French organizations with 50-500 employees. French small businesses, public sector entities, underserved French SMEs and public sector entities.<br/><b>B2B or B2C:</b><br/>B2B - The platform provides recruitment software for businesses and professional entities.<br/><b>Industry:</b><br/>Human Resources Technology / HR Tech. Applicant Tracking System (ATS) SaaS for the French SME, agency, and public sector market. Future of Work &amp; HR Tech &gt; Regional SMB &amp; Public Sector ATS. Regional SMB &amp; Public Sector ATS.<br/><b>Contact &amp; Legal:</b><br/>Contact person: Arnaud (for demos). Office Location: Station F, Paris (World's largest startup incubator). Website: www.wink-lab.com. LinkedIn CEO: <a href="https://www.linkedin.com/in/ben-taylor-a4a3a316" target="_blank">https://www.linkedin.com/in/ben-taylor-a4a3a316</a> (noted as not associated with the company). LinkedIn company: <a href="https://www.linkedin.com/company/wink-lab/" target="_blank">https://www.linkedin.com/company/wink-lab/</a>. Company stage: Seed/Early Stage. HQ country: France.<br/><b>Key Client Examples &amp; Testimonials:</b><br/>Allianz, Pierre Herme, Naturalia, Cafes Richard, HEC Paris, Kyocera, Frichti, Montelimar Agglomeration, Ville de Viroflay, AGN Avocats, Le Marquier.<br/></div>
+<h3 id="product">Product</h3>
+<div class="text-block"><b>Core Solution:</b><br/>An end-to-end recruitment software (ATS) for posting jobs, managing candidates, and building talent pools. Wink provides a centralized Kanban board to track all candidates, automates email responses, and pushes job postings to dozens of boards from a single interface.<br/><b>Feature Encyclopedia:</b><br/>Job multidiffusion on 70+ sites | Personalized career site creation | Automated email responses | Kanban-style candidate tracking | Integrated CV database (CVtheque) | Collaborative recruiting with unlimited team members | AI-powered CV parsing and matching | Boolean search filters | Automated notifications | Career site builder | Central application management | Task automation.<br/><b>Technical Capabilities:</b><br/>LinkedIn candidate importer | Email synchronization | GDPR Compliance | Data Encryption | API-driven multidiffusion to 70+ job boards (Indeed, LinkedIn, Welcome to the Jungle, France Travail, APEC) | Google Meet integration for demos.<br/><b>Use Cases:</b><br/>Digitizing public sector hiring | Optimizing SME talent acquisition | Scaling recruitment agency sourcing and client management | A recruiter at a French municipality managing 15 open roles using email inboxes and shared spreadsheets, losing track of candidates and spending hours on manual replies instead of interviews.<br/></div>
+<h3 id="business-model">Business Model</h3>
+<div class="text-block"><b>Business Model Analysis:</b><br/>Subscription-based SaaS (Quotes required for specific pricing). Standard SaaS subscription model with custom plans for different segments (agencies, SMEs, public sector).<br/><b>Revenue Streams &amp; Pricing Tiers:</b><br/>Custom plans for Independent Recruiters, Agencies, SMEs, and Public Sector entities. Includes 30+ free job board postings by default. Pricing not visible; requires a quote. Data not available in source for specific price points, currencies, billing frequencies.<br/><b>Plan Features:</b><br/>All plans include: Career site builder, LinkedIn importer, central application management, CVtheque, Task automation, GDPR compliance.<br/><b>Hidden Costs &amp; Terms:</b><br/>Zero hidden costs. No setup fees, no deployment fees, no maintenance fees, no update fees, no data recovery fees upon cancellation. 99.7% SLA guaranteed.<br/></div>
+<h3 id="team">Team</h3>
+<div class="text-block"><b>Company Culture:</b><br/>Innovative, remote-friendly, and employee-centric. Values include flexibility, onboarding excellence (Welcome Kits), and team events. Employee benefits like Alan health insurance, Swile cards, and flexible hours. Headquartered at Station F.<br/><b>Team Analysis:</b><br/>Arnaud (Client/Demo Lead). No founders listed on website. Provided CEO LinkedIn for Ben Taylor does not appear to be associated with this company. No C-suite visible. Leadership opaque beyond Arnaud. Total team estimated at 28-40 employees based on function.<br/><b>Job Offers &amp; Titles:</b><br/>No specific job titles listed, but a dedicated careers page highlights employee benefits like Alan health insurance, Swile cards, and flexible hours.<br/><b>Estimated Headcount:</b><br/>Product &amp; Engineering: 10-15<br/>Marketing: 5-8<br/>Sales: 10-12 (Sales/Support combined in source)<br/>Support &amp; IT: 10-12 (Sales/Support combined in source)<br/>General &amp; Admin (G&amp;A): 3-5<br/><br/></div>
+<h3 id="ceo">CEO</h3>
+<div class="text-block">There was no data provided to generate a deep-dive dossier. Please provide the input data.<br/></div>
+<h3 id="company-summary">Company Summary</h3>
+<ul><li>Future of Work &amp; HR Tech &gt; Regional SMB &amp; Public Sector ATS</li><li>B2B &gt; SaaS</li></ul>
+<br/>
+<span style="font-weight:bold;">PRE-SCREENING SCORE</span><br/><br/>
+<br/>
+NOTE: This is a raw pre-screening score. Thesis weights are applied<br/>
+in the Synthetic GP qualification pipeline after angle detection.<br/>
+<br/>
+═════════════════════<br/>
+<span style="font-weight:bold;">TEAM EXCELLENCE : 15/100</span><br/>
+<span style="font-weight:bold;">MARKET OPPORTUNITY : 70/100</span><br/>
+<span style="font-weight:bold;">PRODUCT INNOVATION : 60/100</span><br/>
+<span style="font-weight:bold;">BUSINESS MODEL : 30/100</span><br/>
+<span style="font-weight:bold;">TRACTION &amp; GROWTH : 55/100</span><br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">PRE-SCREENING SCORE :</span> 46/100 → 🔴 POOR SIGNAL (&lt;60)<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+❓ In a NUTSHELL : Wink is a modern Applicant Tracking System (ATS) that enables French SMEs and public sector organizations to streamline hiring by automating repetitive tasks and centralizing candidate management.<br/>
+<br/>
+⚠️ The PROBLEM : A recruiter at a French municipality is managing 15 open roles using a mix of email inboxes and shared spreadsheets, causing them to lose track of promising candidates and spend hours manually replying to applicants instead of conducting interviews.<br/>
+<br/>
+✅ The SOLUTION : Wink provides a centralized Kanban board to track all candidates, automates email responses, and pushes job postings to dozens of boards from a single interface, collapsing the manual administrative workload into a few clicks.<br/>
+<br/>
+🚀 The GTM : Wink is targeting underserved French SMEs and public sector entities with a direct sales motion, likely led by demo requests from the website, leveraging its 'Made in France' and Station F credibility as a wedge against larger, more complex global competitors.<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 TEAM EXCELLENCE (N/A%) | Score: 15/100</span><br/>
+Extremely low score is due to a complete absence of public data on the founding and executive team, which is a major red flag.<br/>
+<ul><li>Founder-Market Fit (25%) | Score: 0/100: Founder data unavailable. The provided CEO LinkedIn for 'Ben Taylor' does not appear to be associated with this company, and no founders are listed on the website, making it impossible to assess their earned secret or industry experience.</li><li>Track Record (25%) | Score: 0/100: No data available on founder track record, previous exits, or investor backing for Wink-lab.com.</li><li>Leadership (25%) | Score: 30/100: The total team is estimated at 28-40 employees based on function, but leadership is opaque beyond a first name ('Arnaud') for demos. The team being housed at Station F is a minor positive signal.</li><li>Completeness (25%) | Score: 30/100: No C-suite is visible. While headcount estimates suggest a functional balance between product and sales, the lack of identifiable leadership is a critical gap.</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 MARKET OPPORTUNITY (N/A%) | Score: 70/100</span><br/>
+The French HR tech market is crowded but the persistent lag in SME and public sector digitization creates a real, albeit competitive, opportunity.<br/>
+<ul><li>Size &amp; Growth (25%) | Score: 75/100: The Applicant Tracking System (ATS) SaaS for the French SME, agency, and public sector market is a multi-hundred million euro segment within the broader European HR tech market, with growth driven by digital transformation initiatives.</li><li>Timing Why Now (25%) | Score: 75/100: Post-COVID hybrid work models and a tight labor market have increased the pressure on all organizations, including the public sector, to modernize and accelerate hiring, creating a strong catalyst for ATS adoption.</li><li>Competition (25%) | Score: 50/100: The market is hyper-competitive, facing global giants like Workday, modern VC-backed scale-ups like Teamtailor and Recruitee, and local French players. Differentiation is difficult.</li><li>Expansion (25%) | Score: 80/100: Wink shows clear vectors for growth by first dominating the French public sector niche, then expanding to adjacent European countries with similar market structures or launching additional HR modules (e.g., Onboarding, Performance).</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 PRODUCT INNOVATION (N/A%) | Score: 60/100</span><br/>
+The product appears to be a capable, modern ATS, but lacks a discernible, game-changing technological innovation based on public data.<br/>
+<ul><li>Differentiation (25%) | Score: 50/100: Features like job multidiffusion, Kanban boards, and CV parsing are table stakes for a modern ATS. The primary differentiation appears to be its focus on the French market and a '10x faster' claim which is not substantiated with unique technology.</li><li>Product-Market Fit (25%) | Score: 80/100: Strong PMF is indicated by an impressive list of client logos for an early-stage company, including Allianz, Pierre Herme, Naturalia, and HEC Paris, suggesting the product solves a real pain point for reputable organizations.</li><li>Scalability (25%) | Score: 70/100: The product is a standard SaaS platform with API-driven integrations, suggesting a scalable architecture capable of serving a growing client base without significant marginal cost.</li><li>IP &amp; Barriers (25%) | Score: 40/100: GDPR compliance is a requirement, not a barrier. There are no visible patents or deep network effects, suggesting low defensibility against competitors.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 BUSINESS MODEL (N/A%) | Score: 30/100</span><br/>
+Opaque pricing is a significant concern and severely limits the ability to analyze the viability of the business model.<br/>
+<ul><li>Unit Economics (25%) | Score: 0/100: Pricing is not visible; it requires a quote. This lack of transparency makes it impossible to assess pricing strategy, ACV, or potential for healthy unit economics.</li><li>Revenue Model (25%) | Score: 60/100: The company operates on a standard SaaS subscription model with custom plans for different segments (agencies, SMEs, public sector), which is a proven model in this category.</li><li>Monetization (25%) | Score: 60/100: The 'no hidden costs' promise is a strong value proposition for cost-sensitive SMEs, but the lack of visible pricing tiers makes it hard to evaluate upsell paths beyond custom enterprise negotiations.</li><li>Capital Efficiency (25%) | Score: 0/100: With no available data on funding raised, it's impossible to assess capital efficiency or burn rate relative to the estimated 28-40 person headcount.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; GROWTH (N/A%) | Score: 55/100</span><br/>
+Traction is inferred solely from a strong client list, as no growth metrics, funding, or revenue figures are available.<br/>
+<ul><li>Revenue Growth (25%) | Score: 0/100: Data unavailable. There are no public claims, funding announcements, or revenue figures to assess growth velocity.</li><li>Customer Validation (25%) | Score: 90/100: This is the company's strongest signal. Securing major institutional clients like Allianz, HEC Paris, and Kyocera provides powerful third-party validation and de-risks the product quality question significantly.</li><li>KPI Progression (25%) | Score: 50/100: The estimated employee count suggests the company has grown beyond a founding team, but without a timeline or historical data, the pace of execution is unclear.</li><li>Market Penetration (25%) | Score: 80/100: The client list demonstrates successful penetration into their target verticals: corporate (Allianz), luxury/retail (Pierre Herme), education (HEC Paris), and public sector (Ville de Viroflay).</li></ul>
+<br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISK TO UNDERWRITE :</span><br/>
+The collapsing assumption is that Wink's product is sufficiently differentiated to win in a red ocean ATS market purely on features or a 'French-native' angle. If their '10x faster' claim is just marketing and the product is functionally a commodity, they will be unable to achieve scalable unit economics against better-funded global competitors and will stagnate as a small services business. This risk is only resolvable through time and by seeing multiple cohorts of customer data to prove low churn and high LTV.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ KEY COMPETITIVE ADVANTAGES :</span><br/>
+<ul><li>Focused GTM on Underserved Niches: The explicit targeting of French SMEs and public sector entities suggests a focused strategy to win segments that global players may overlook or serve poorly due to unique compliance and cultural needs.</li><li>Impressive Early Logo Validation: Landing anchor clients like Allianz and HEC Paris so early creates a powerful reputational cascade, making it easier to win subsequent customers in the same verticals.</li><li>Simplicity and Transparency Proposition: The 'no hidden fees' promise directly counters a major pain point with enterprise software, appealing to budget-conscious SMEs and public agencies who fear complex contracts and unforeseen costs.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 MOAT :</span> WEAK<br/>
+The primary moat is process power and switching costs, which only build after a customer is acquired and deeply embeds their hiring workflows into the platform; migrating ATS data is notoriously painful. The compounding dynamic is weak, as adding more customers does not inherently make the product better for existing ones, unlike a true network effect. There is no discernible secondary layer of defensibility; the feature set is replicable and there is no evidence of proprietary data or patents, making the moat shallow and vulnerable to aggressive competition.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ ASYMMETRIC WAGER</span><br/>
+<ul><li>The Bull Case:</li></ul>
+Wink becomes the default 'Shopify for hiring' for the underserved French public sector and PME/ETI market, leveraging a frictionless product and public sector-specific compliance features to build an insurmountable data moat around French talent pools, making it the indispensable infrastructure for any company hiring in France.<br/>
+<br/>
+<ul><li>The Bear Case :</li></ul>
+The '10x faster' claim is marketing fluff, the product is a commodity, and they are caught in a CAC death spiral competing against better-funded, more beautifully designed global players like Teamtailor and local incumbents, ultimately becoming a small, low-margin lifestyle business.<br/>
+<br/>
+<span style="font-weight:bold;">🚩 RED FLAGS</span><br/>
+<ul><li>Universal Risks: There is a complete lack of transparency around the founding team, funding status, and pricing. This level of opacity for a company beyond the idea stage is a significant concern and hinders any meaningful diligence.</li><li>Thesis-Specific Mismatches: The input data provided for this company was severely corrupted, with news, M&amp;A, and leadership details pertaining to an entirely different US-based fintech company. This signals a potential branding issue or simply poor external data hygiene.</li></ul>
+<br/>
+<span style="font-weight:bold;">📝 FIRST MEETING PREP KIT</span><br/>
+Given the analysis points to a capable product in a commoditized market, the first call must cut directly to defensibility and the actual business model.<br/>
+<br/>
+<ul><li>The Investment Angle: The wager is that Wink has found a defensible wedge into the overlooked French public sector and SME market, where local nuance and compliance create a barrier that global players can't easily cross, allowing Wink to build a sticky, profitable business despite the weak technological moat.</li></ul>
+<br/>
+<ul><li>Killer Questions for First Call :</li></ul>
+<br/>
+- Question 1 — GTM MECHANICS :<br/>
+'You've landed impressive logos like Allianz and HEC Paris, which typically have high CAC, consultative sales cycles. Yet your value prop feels tailored to a high-velocity, low-touch SMB motion. Can you walk me through the exact unit economics of acquiring a flagship client versus a typical SME, and which segment is your actual priority for the next 18 months?'<br/>
+<br/>
+- Question 2 — THE CORE ASSUMPTION :<br/>
+'Your core claim is being '10x faster' than competitors. Forget the marketing – what is the one specific, non-replicable product mechanism or workflow that delivers that 10x value, and how do you know it can't be copied by Teamtailor or a new AI-native entrant within six months?'<br/>
+<br/>
+- Question 3 — UNIT ECONOMICS STRESS TEST :<br/>
+'Ignoring blended CAC, what was your fully-loaded CAC for the 'Ville de Viroflay' logo, and what's your payback period on that specific contract?'<br/>
+<br/>
+<ul><li>First Meeting Go/No-Go Signal :</li></ul>
+This advances to diligence if the founder can precisely articulate a non-obvious, defensible product kernel that underpins the '10x' claim and presents unit economics proving a scalable acquisition model. It's an immediate pass if the answer relies on 'better service', 'good relationships', or a generic feature comparison.<br/>
+<br/>
+<span style="font-weight:bold;">🌐 DATA CONFIDENCE :</span> LOW<br/>
+<ul><li>Analysis is severely hampered by the absence of foundational data on the founding team, financials, and pricing. The initial input data was also highly confused, mixing information from two different companies. Diligence must start from first principles, verifying the team and basic corporate structure.</li><li><span style="font-weight:bold;">DATA GAPS :</span> Founder identities and track records • All financial data (revenue, funding, burn) • Pricing and unit economics • Churn and retention metrics</li></ul>
+</div>
+<div class="img-col">
+<img alt="Company Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-d264212b7a83ac62d4edfdab04ece8ef-hzc4lp0v.jpg"/>
+</div>
+</div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block">Wink is a French recruitment management software (ATS) designed to streamline the hiring process for independent recruiters, recruitment agencies, and in-house corporate recruiters. The platform allows users to create and distribute job postings across over 70 job sites, manage applications, and build a proprietary CV database. Key features include centralized candidate management, CV parsing, automated communications, a customizable career site, and AI-driven tools, all aimed at reducing recruitment time and improving hire quality for businesses of all sizes. (In short: Wink is a French Applicant Tracking System (ATS) for SMBs and recruiters to manage the entire hiring process in one place.)<br/>
+═════════════════════════════════════════════════<br/>
+<span style="font-weight:bold;">WEIGHTED SCORE CALCULATION</span><br/>
+─────────────────────────────────────────────────<br/>
+Investment Thesis Profile:  (Seed)<br/>
+─────────────────────────────────────────────────<br/>
+TEAM EXCELLENCE     60/100  × 35% = 21.0 points<br/>
+MARKET OPPORTUNITY  40/100  × 25% = 10.0 points<br/>
+PRODUCT INNOVATION  30/100  × 30% = 9.0 points<br/>
+BUSINESS MODEL      40/100  × 5% = 2.0 points<br/>
+TRACTION &amp; GROWTH   70/100  × 5% = 3.5 points<br/>
+─────────────────────────────────────────────────<br/>
+Base Score:                       46/100<br/>
+Thesis Alignment Modifier:        -10%<br/>
+─────────────────────────────────────────────────<br/>
+<span style="font-weight:bold;">FINAL ADJUSTED SCORE :</span> 41/100 (⚠️Based solely on public digital presence)<br/>
+─────────────────────────────────────────────────<br/>
+Fit with Fund Thesis: Poor Fit (-10%): The company operates in a crowded horizontal market with a service/execution-based moat and a domain-expert founding team, which directly contradicts our thesis' core tenets of targeting non-obvious markets with spiky technical founders and technology-based moats.<br/>
+═════════════════════════════════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻‍💻 TEAM EXCELLENCE (35%) | Score: 60/100</span><br/>
+Score reflects solid founder-market fit from recruitment experts, but moderated by the lack of a visible spiky technical founder profile, a key requirement for our deep-tech-focused thesis.<br/>
+✦︎ Founder-Market Fit (16/25): Arnaud Balanche &amp; Hugo Flusin • Co-founders are recruitment and HR experts • Deep domain expertise in French recruitment challenges.<br/>
+✦︎ Track Record (12/25): No previous exits or major awards found in provided data • Founded in 2021.<br/>
+✦︎ Leadership (16/25): Team size: Not specified, but appears small • Leadership consists of co-founders; extended team not detailed.<br/>
+✦︎ Completeness (16/25): Founder roles are clear • Balance leans towards commercial/domain expertise, technical leadership is not visible.<br/>
+<br/>
+<span style="font-weight:bold;">🌊 MARKET OPPORTUNITY (25%) | Score: 40/100</span><br/>
+Score is low due to operating in the hyper-competitive ATS market, a space our thesis explicitly avoids. While the TAM is large and growing, the market is a red ocean with low differentiation.<br/>
+✦︎ Size &amp; Growth (15/25): TAM: ~$3.3B • Growth: ~8.2% CAGR • Market driven by demand for hiring efficiency.<br/>
+✦︎ Timing "Why Now" (15/25): AI infusion in HR tech is a catalyst • Increased complexity in talent acquisition creates need for modern tools.<br/>
+✦︎ Competition (5/25): Hyper-competitive market • Fights incumbents (Workday) and well-funded challengers (Greenhouse, Recruitee) • Differentiation claims are based on simplicity and local service, not technology.<br/>
+✦︎ Expansion (5/25): Focused on French SMBs, agencies, and public sector • International expansion path is unclear and challenging.<br/>
+<br/>
+<span style="font-weight:bold;">💡 PRODUCT INNOVATION (30%) | Score: 30/100</span><br/>
+Very low score reflects a standard ATS feature set. The product is an execution/UX play, not a technological innovation, which is a major mismatch with our thesis. AI-driven claims lack specific, defensible details.<br/>
+✦︎ Differentiation (5/25): Key differentiators claimed are simplicity and French expert support • AI features are mentioned but seem to be table stakes (e.g., CV parsing).<br/>
+✦︎ Product-Market Fit (15/25): Reviews: Not available • Customer logos: 250 companies mentioned, including testimonials from a CEO • Primary signal is customer count and satisfaction claims.<br/>
+✦︎ Scalability (10/25): Standard SaaS architecture implied • Integrations with 70+ job boards.<br/>
+<span style="font-weight:bold;">✦︎ IP &amp; Barriers (0/25): No patents or unique IP mentioned • Barriers to entry are low • GDPR compliance is a requirement, not a moat.</span><br/>
+<br/>
+<span style="font-weight:bold;">💼 BUSINESS MODEL (5%) | Score: 40/100</span><br/>
+Score is moderate due to a lack of clarity. The model appears to be SaaS, but the pricing page summary focuses on free resources and services, blurring the core revenue model. Unit economics are completely opaque.<br/>
+✦︎ Unit Economics (5/25): Pricing not visible from summaries • No data on CAC, LTV, or churn.<br/>
+✦︎ Revenue Model (15/25): B2B model assumed to be recurring SaaS subscription • Free resources used as a lead magnet.<br/>
+✦︎ Monetization (10/25): Demo request suggests a sales-assisted motion • Specific pricing tiers and upsell paths are not detailed.<br/>
+✦︎ Capital Efficiency (10/25): Raised: Not specified • Stage is Seed • Unable to assess capital efficiency from available data.<br/>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; GROWTH (5%) | Score: 70/100</span><br/>
+This is the company's strongest area based on public data. The reported metrics are solid for a seed-stage company, indicating initial market adoption, though they are largely vanity metrics without financial context.<br/>
+✦︎ Revenue Growth (15/25): Financials not available • Growth implied by customer count and hiring volume processed.<br/>
+✦︎ Customer Validation (20/25): 250 companies trust Wink • 96% client satisfaction rate claimed • Testimonial from Microdoing CEO provided.<br/>
+<span style="font-weight:bold;">✦︎ KPI Progression (18/25): Employee growth unknown • Key metrics: 500,000 applications/year, 4,000 jobs published.</span><br/>
+✦︎ Market Penetration (17/25): Strong initial focus on the French market across multiple verticals (PME, public sector, agencies).<br/>
+<br/>
+════════════════════════════════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ KEY COMPETITIVE ADVANTAGES :</span> • Focus on French SMB &amp; mid-market needs • Claim of superior, localized customer support • Simple, user-friendly interface<br/>
+<br/>
+<span style="font-weight:bold;">🧱 MOAT :</span> WEAK - Primary moat type: Brand/Service. The stated advantages are based on execution and service quality, which are not durable, defensible moats against well-capitalized or technologically superior competitors.<br/>
+<br/>
+<span style="font-weight:bold;">🚩 RED FLAGS :</span><br/>
+✦︎ Universal Red Flags: The provided web intelligence is severely polluted with data from at least four other unrelated companies named Wink, creating a high risk of mis-diligence and demonstrating low data integrity in initial research.<br/>
+✦︎ Thesis-Specific Red Flags: 1. Founder Archetype Mismatch: Founders are recruitment experts, not the spiky technical founders our thesis requires. 2. Crowded Market Violation: The company competes in the horizontal ATS market, a red ocean our thesis strategy explicitly avoids. 3. Weak Technology Moat: The value proposition centers on simplicity and service, not a defensible, proprietary technology, data, or network effect advantage.<br/>
+<br/>
+GAPS: • Founder LinkedIn profiles &amp; technical background • Financials (ARR, growth, runway) • Unit Economics (CAC, LTV, churn) • Detailed product architecture &amp; AI specifics • Cap table<br/>
+<br/>
+════════════════════════════════════════════════<br/>
+<span style="font-weight:bold;">CONVICTION &amp; FIRST MEETING PREP KIT</span><br/>
+─────────────────────────────────────────────────<br/>
+<span style="font-weight:bold;">FINAL ADJUSTED SCORE :</span> 41/100 → 🔴 STRONG PASS (POOR THESIS FIT)<br/>
+<br/>
+<span style="font-weight:bold;">❓INVESTMENT RATIONALE :</span> While showing promising early traction with 250 customers, the company is a fundamental mismatch with our investment thesis. It is an execution play in a crowded, commoditized market, lacking the spiky technical founder and defensible technology moat we require for a high-conviction seed bet. The primary risk is getting crushed in a feature and price war against larger, better-funded players.<br/>
+<br/>
+<span style="font-weight:bold;">📝 FIRST MEETING PREP KIT</span><br/>
+✦︎ The Investment Angle: The core bet is that this domain-expert team can win the French SMB segment with a better UX and service approach despite lacking a clear technology moat in a commoditized market.<br/>
+✦︎ Killer Questions for First Call (Max 3):<br/>
+1. "Our thesis avoids crowded markets unless there's a 10x tech advantage. Beyond simplicity and service, what is your unfair, defensible technology that will prevent giants like Personio or Recruitee from crushing you in the French SMB market?"<br/>
+2. "The ATS market is a red ocean. Acknowledging this, what is your non-consensus insight about this market that others are missing, and how does that translate into a business with venture-scale returns, not just a solid SME?"<br/>
+3. "Your early traction metrics are noted. Can you share any data on customer cohorts, specifically around Net Revenue Retention (NRR) and logo churn? We need to see if simplicity translates to high stickiness."<br/>
+✦︎ First Meeting Go/No-Go Signal: The Go/No-Go signal is a convincing, evidence-backed answer to how they build a durable, technology-based moat. Without it, the investment is out of scope for our thesis, regardless of traction.<br/>
+<br/>
+<span style="font-weight:bold;">🌐 DATA CONFIDENCE :</span> LOW • Contaminated input data and lack of clarity on founder's technical background, business model, and product innovation necessitates extreme caution. Focus diligence on validating founder profile and tech differentiation.<br/></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/yrdBqF6Cj75Y7g8astbaeg/f-dSRU3tFaUi7orK3oiUuZGoCQEeaWQQS_pE07RWLKWiZJBBT1gSdEoS74oZ1aKyRwGaNIUwqJovzLdGCDgSYczl-T4_uWGYWuoZE-nBCOZ3PAbxeWAzq5YamT50DaXfYNlN25OhBK48UyrOR5xYQA/KnYo6Y6cMRR2aFLoJ4crBpL5p5Gam8yyBJBYLSkJ8iE"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">SWOT Analysis</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Strengths</h3><ul><li>Wink's multidiffusion across 70+ job boards including Indeed and LinkedIn lets clients reach candidates faster than manual posting.</li><li>The platform's unlimited team collaboration and Kanban tracking reduce coordination delays that slow down typical SME hiring.</li><li>Built-in GDPR compliance and data encryption address a core requirement for French public sector clients such as municipalities.</li><li>Station F headquarters places Wink inside France's largest startup ecosystem with direct access to talent and piloting partners.</li><li>Presence of recognizable clients including Allianz and HEC Paris provides immediate credibility for new agency and SME sales.</li></ul></div>
+<div class="swot-item s-red"><h3>Weaknesses</h3><ul><li>Pricing remains quote-only with no public tiers, lengthening sales cycles for smaller independent recruiters.</li><li>Estimated headcount of roughly 30 people limits the ability to support rapid international expansion beyond France.</li><li>No clear differentiation in AI capabilities compared with global ATS leaders that already embed similar parsing and matching.</li><li>Heavy reliance on French public sector and local SME customers creates concentration risk if government budgets tighten.</li><li>Absence of documented CEO credentials or detailed team bios weakens external credibility during enterprise procurement.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunities</h3><ul><li>French public sector digitization mandates create a ready pipeline for ATS replacements at municipalities and ministries.</li><li>SME adoption of modern recruiting tools remains low outside major cities, offering a large underserved domestic market.</li><li>Partnerships with job boards and integrations such as Google Meet can be expanded into revenue-sharing referral channels.</li><li>Talent-pool features allow Wink to upsell clients on long-term candidate nurturing beyond single hires.</li><li>Remote-friendly culture and benefits package position the company to hire product talent more efficiently than Parisian incumbents.</li></ul></div>
+<div class="swot-item s-orange"><h3>Threats</h3><ul><li>Established global ATS vendors can acquire local French features and undercut Wink on price through scale.</li><li>Stricter future data-localization rules in Europe could raise compliance costs for a small operator.</li><li>Economic slowdowns directly shrink recruitment budgets at the SMEs and agencies that form Wink's core base.</li><li>Larger platforms offering free basic job posting can erode the 30+ freeboard advantage over time.</li><li>Key-man risk around limited senior leadership increases vulnerability to competitive poaching of client relationships.</li></ul></div>
+</div>
+</div>
+<div class="section-container" data-pl-id="cap-table" id="cap-table"><h2 class="section-title">Cap Table</h2>
+<p style="font-size:0.88rem;color:#526070;margin-bottom:16px;">2 tables below: (1) Cap Table Parameters (Entry / Dilution / Exit / MOIC), (2) Full Shareholding — Fund, Founders.</p>
+<div class="memo-table-fallback" id="roi-analysis" style="max-width:100%;margin:0 auto;"><div style="padding:14px 18px;font-size:0.95rem;color:#334155;line-height:1.7;background:#f8fafc;border-radius:4px;max-width:100%;overflow-wrap:break-word;box-sizing:border-box;margin-bottom:12px;border-radius:4px;"><b>Table de capitalisation VC — Qui possede quoi</b> — Le <b>Check Size</b> est le montant investi par le fonds. Il achete un <b>Ownership</b> (pourcentage du capital). Entre l'entree et la sortie, d'autres tours de financement diluent la part du fonds : c'est la <b>Dilution</b>. L'<b>Ownership Post-Dilution</b> est la part reelle du fonds au moment de la revente. L'<b>Exit EV</b> = chiffre d'affaires final × multiple de sortie : c'est la valorisation totale au moment de la cession. Le <b>Fund Equity at Exit</b> = Exit EV × Ownership Post-Dilution : c'est le montant qui revient au fonds. Le <b>MOIC</b> = Fund Equity / Check Size. Le tableau Actionnariat ci-dessous montre la repartition entre tous les actionnaires.</div>
+<table style="width:100%;border-collapse:collapse;font-size:12px;table-layout:auto;margin-bottom:20px;">
+<tr><th style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;text-align:left;">Cap Table — VC</th><th style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;">Valeur</th><th style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;text-align:left;">Formule / Explication</th></tr>
+<tr><td colspan="3" style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;background:var(--off-white,#f4f5f7);font-weight:700;">ENTRY</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Check Size (€M)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--amber-bg,#fdf0e0);font-weight:700;">€0.88M</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">Ticket investi</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Entry EV (€M)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:700;">€5.88M</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">= Check / Ownership</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Ownership Entry (%)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--amber-bg,#fdf0e0);font-weight:700;">15.0%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;"></td></tr>
+<tr><td colspan="3" style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;background:var(--off-white,#f4f5f7);font-weight:700;">DILUTION PAR TOUR</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Dilution Totale (%)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--amber-bg,#fdf0e0);font-weight:700;">25.0%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">Dilution cumulée entre entry et exit</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Ownership Post-Dilution (%)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--green-bg,#e8f4ee);font-weight:700;">11.2%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">= Entry × (1 − Dilution)</td></tr>
+<tr><td colspan="3" style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;background:var(--off-white,#f4f5f7);font-weight:700;">EXIT</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Exit ARR (€M)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:700;">9.60</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">= P&amp;L Revenue Y5</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Exit Multiple (x ARR)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--amber-bg,#fdf0e0);font-weight:700;">6x</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">= Assumptions</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Exit EV (€M)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:700;">57.50</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">= Exit ARR × Exit Multiple</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Fund Equity at Exit (€M)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--green-bg,#e8f4ee);font-weight:700;">6.50</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">= Exit EV × Ownership Exit</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">★ MOIC Fund</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--green-bg,#e8f4ee);font-weight:700;">7.34x</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">= Fund Equity / Check Size</td></tr>
+</table>
+<table style="width:100%;border-collapse:collapse;font-size:12px;table-layout:auto;margin-bottom:20px;">
+<tr><td colspan="6" style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;text-align:left;font-size:13px;">ACTIONNARIAT COMPLET</td></tr>
+<tr><td style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;text-align:left;">Actionnaire</td><td style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;">Entry %</td><td style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;">Post-Dilution %</td><td style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;">Entry Value (€)</td><td style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;">Exit Value (€M)</td><td style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;text-align:left;">📌 Source</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Fund (Investisseur)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:600;">15.0%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:600;">11.2%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:600;">€880,000</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--green-bg,#e8f4ee);font-weight:600;">6.47</td><td style="padding:4px 10px;background:#FBF3E7;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:10.5px;color:#6B4423;min-width:200px;width:220px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">—</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;">Fondateurs</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);">85.0%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);">63.7%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);">€5,000,000</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;">36.66</td><td style="padding:4px 10px;background:#FBF3E7;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:10.5px;color:#6B4423;min-width:200px;width:220px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">—</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;background:var(--blue-bg,#e8eef8);">TOTAL</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:700;">100.0%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:700;">75.0%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:700;">€5,880,000</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:700;">57.50</td><td style="background:var(--blue-bg,#e8eef8);"></td></tr>
+</table>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources and Methodology</h2>
+<div class="source-list">
+<h3>Value Chain Sources</h3>
+<h3>Market Sources</h3><p>MARKET INTELLIGENCE DOSSIER - URL EVIDENCE TRACKER</p>
+<p>Purpose: Supporting documentation with comprehensive URL evidence for Market Attractiveness Score Analysis</p>
+<p>Market: Regional SMB &amp; Public Sector ATS</p>
+<p>Data Completeness: 0/100</p>
+<p>Assessment: 🔴 INSUFFICIENT - NEED MORE RESEARCH (&lt;70)</p>
+<p>Calculation: (0 URLs found ÷ 15 URLs searched) × 100 = 0% completeness</p>
+<p>Research Date: 2024-05-21 | Total URLs Found: 0</p>
+<p>URL EVIDENCE BY MARKET SCORING CATEGORY</p>
+<p>🌊 ATTRACTIVE MARKET (Market Dynamics) | Found 0/4 data points</p>
+<ul><li><b>Market Size:</b> URL not provided. Used for: Analysis based on general market knowledge.</li><li><b>Growth Drivers:</b> URL not provided. Used for: Analysis based on general market knowledge.</li><li><b>Timing Why Now:</b> URL not provided. Used for: Analysis based on general market knowledge.</li><li><b>Market Risks:</b> URL not provided. Used for: Analysis based on general market knowledge.</li></ul>
+<p>⚔️ WINNABLE MARKET (Competitive Landscape) | Found 0/4 data points</p>
+<ul><li><b>Incumbents:</b> URL not provided. Used for: Analysis based on general market knowledge.</li><li><b>Challengers:</b> URL not provided. Used for: Analysis based on general market knowledge.</li><li><b>White Space:</b> URL not provided. Used for: Analysis based on general market knowledge.</li><li><b>Defensibility:</b> URL not provided. Used for: Analysis based on general market knowledge.</li></ul>
+<p>🎯 PENETRABLE MARKET (Go-To-Market &amp; Unit Economics) | Found 0/3 data points</p>
+<ul><li><b>GTM Model:</b> URL not provided. Used for: Analysis based on general market knowledge.</li><li><b>Pricing Model:</b> URL not provided. Used for: Analysis based on general market knowledge.</li><li><b>Unit Economics:</b> URL not provided. Used for: Analysis based on general market knowledge.</li><li><b>Scalability:</b> URL not provided. Used for: Analysis based on general market knowledge.</li></ul>
+<p>💰 REWARDING MARKET (Funding &amp; Exit Landscape) | Found 0/3 data points</p>
+<ul><li><b>Funding Activity:</b> URL not provided. Used for: Analysis based on general market knowledge.</li><li><b>Exit Multiples:</b> URL not provided. Used for: Analysis based on general market knowledge.</li><li><b>Strategic Buyers:</b> URL not provided. Used for: Analysis based on general market knowledge.</li></ul>
+<p>WEB DATA COMPLETENESS ANALYSIS</p>
+<p>Missing Critical URLs Based on Web Research: Market size and growth reports (e.g., Gartner, Forrester for HR Tech), Competitor funding data (Crunchbase/PitchBook), M&amp;A deal comps, Public company financial reports for multiple analysis.</p>
+<p>URLs Successfully Found: 0 out of 15 searched</p>
+<p>Critical Data Coverage: 0% of required data points</p>
+<p>Research Confidence Level: LOW</p><h3>Company Sources</h3><p>COMPANY INTELLIGENCE DOSSIER - URL EVIDENCE TRACKER</p>
+<p>Purpose: Supporting documentation with comprehensive URL evidence for Investment Score Analysis</p>
+<p>Company: Wink</p>
+<p>Data Completeness: 10/100</p>
+<p>Assessment: 🔴 INSUFFICIENT DATA FOR A FIRST LOOK (&lt;70)</p>
+<p>Calculation: (2 URLs found ÷ 20 URLs searched) × 100 = 10% completeness</p>
+<p>Research Date: 2024-05-21 | Total URLs Found: 2</p>
+<p>URL EVIDENCE BY SCORING CATEGORY</p>
+<h4>👨🏻 TEAM EXCELLENCE | Found 1/4 data points</h4>
+<ul><li><b>Founder-Market Fit:</b> <a href="https://www.linkedin.com/in/ben-taylor-a4a3a316" target="_blank">https://www.linkedin.com/in/ben-taylor-a4a3a316</a>. Used for: Identifying that the provided CEO LinkedIn is incorrect for the company being analyzed (Wink-Lab).</li><li><b>Track Record:</b> URL not provided. Used for: Scored as 0 due to no data.</li><li><b>Leadership:</b> URL not provided. Used for: Scored based on website text and estimates.</li><li><b>Completeness:</b> URL not provided. Used for: Scored based on website text and estimates.</li></ul>
+<h4>🌊 MARKET OPPORTUNITY | Found 0/4 data points</h4>
+<ul><li><b>Size &amp; Growth:</b> URL not provided. Used for: Analysis based on general market knowledge.</li><li><b>Timing Why Now:</b> URL not provided. Used for: Analysis based on general market knowledge.</li><li><b>Competition:</b> URL not provided. Used for: Analysis based on general market knowledge.</li><li><b>Expansion:</b> URL not provided. Used for: Analysis based on product logic.</li></ul>
+<h4>💡 PRODUCT INNOVATION | Found 1/4 data points</h4>
+<ul><li><b>Differentiation:</b> <a href="https://www.wink-lab.com/" target="_blank">https://www.wink-lab.com/</a>. Used for: Analysis of feature set and value proposition from company website.</li><li><b>Product-Market Fit:</b> <a href="https://www.wink-lab.com/" target="_blank">https://www.wink-lab.com/</a>. Used for: Identifying client logos listed on the website.</li><li><b>Scalability:</b> <a href="https://www.wink-lab.com/" target="_blank">https://www.wink-lab.com/</a>. Used for: Inferring SaaS architecture from product description.</li><li><b>IP &amp; Barriers:</b> <a href="https://www.wink-lab.com/" target="_blank">https://www.wink-lab.com/</a>. Used for: Verifying GDPR compliance claims.</li></ul>
+<h4>💼 BUSINESS MODEL | Found 1/4 data points</h4>
+<ul><li><b>Unit Economics:</b> <a href="https://www.wink-lab.com/" target="_blank">https://www.wink-lab.com/</a>. Used for: Noting that pricing is hidden and requires a quote.</li><li><b>Revenue Model:</b> <a href="https://www.wink-lab.com/" target="_blank">https://www.wink-lab.com/</a>. Used for: Confirming the SaaS subscription model.</li><li><b>Monetization:</b> <a href="https://www.wink-lab.com/" target="_blank">https://www.wink-lab.com/</a>. Used for: Analysis of plan structure and value props.</li><li><b>Capital Efficiency:</b> URL not provided. Used for: Scored as 0 due to no funding data.</li></ul>
+<h4>📈 TRACTION &amp; GROWTH | Found 1/4 data points</h4>
+<ul><li><b>Revenue Growth:</b> URL not provided. Used for: Scored as 0 due to no revenue data.</li><li><b>Customer Validation:</b> <a href="https://www.wink-lab.com/" target="_blank">https://www.wink-lab.com/</a>. Used for: Listing customer testimonials and logos.</li><li><b>KPI Progression:</b> URL not provided. Used for: Scored based on estimates.</li><li><b>Market Penetration:</b> <a href="https://www.wink-lab.com/" target="_blank">https://www.wink-lab.com/</a>. Used for: Analyzing the verticals of listed clients.</li></ul>
+<p>WEB DATA COMPLETENESS ANALYSIS</p>
+<p>Missing Critical URLs Based on Web Research: Founder/Executive LinkedIn Profiles, Funding Announcements (e.g., Crunchbase/PitchBook), Third-party review pages (G2/Capterra), Official Company Blog/Newsroom.</p>
+<p>URLs Successfully Found: 2 out of 20 searched</p>
+<p>Critical Data Coverage: 10% of required data points</p>
+<p>Research Confidence Level: LOW</p></div>
+</div>
+<div class="ppx-cta"><h3>Explore Wink further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script></body></html>

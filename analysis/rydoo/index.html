@@ -1,0 +1,694 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rydoo — analyse FinTech | Proplace</title><meta name="description" content="Analyse approfondie de Rydoo."><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/rydoo/"><meta property="og:type" content="article"><meta property="og:title" content="Rydoo — analyse FinTech | Proplace"><meta property="og:description" content="Analyse approfondie de Rydoo."><meta property="og:url" content="https://proplace.co/analysis/rydoo/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Rydoo — FinTech", "description": "Analyse approfondie de Rydoo.", "inLanguage": "fr", "url": "https://proplace.co/analysis/rydoo/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/rydoo/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Rydoo"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Rydoo</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Rydoo"}]}</script></div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data">
+<span class="sb-tag">Belgique</span>
+<span class="sb-tag">Series E+</span>
+<span class="sb-tag">FinTech</span>
+<span class="sb-tag">B2B</span>
+</div>
+<h1 class="sidebar-company-name">Rydoo</h1>
+<p class="meta-desc" style="margin-bottom: 15px;">Tame your business spending</p>
+<div class="contact-row">
+<a href="https://www.rydoo.com" target="_blank"><i class="fas fa-globe"></i> Site web</a>
+<a href="https://www.linkedin.com/in/wim-derkinderen-5014b8a" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<a href="mailto:wim.derkinderen@rydoo.com"><i class="fas fa-envelope"></i> wim.derkinderen@rydoo.com</a>
+</div>
+</div>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du marché</a>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle d'affaires</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div style="margin: 20px 25px; padding: 15px; border-radius: 6px; background: #fafafa; border: 1px solid #e2e8f0; font-size: 0.85em; display: flex; flex-direction: column; gap: 8px;">
+<div style="display: flex; align-items: flex-start; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 3px; background: var(--yellow-menu); display: inline-block; flex-shrink: 0; margin-top: 3px;"></span> <span>Données relatives au marché</span></div>
+<div style="display: flex; align-items: flex-start; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 3px; background: var(--green-menu); display: inline-block; flex-shrink: 0; margin-top: 3px;"></span> <span>Données relatives à l'entreprise</span></div>
+<div style="display: flex; align-items: flex-start; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 3px; background: #f3e8ff; display: inline-block; flex-shrink: 0; margin-top: 3px;"></span> <span></span></div>
+<div style="display: flex; align-items: flex-start; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 3px; background: var(--blue-menu); display: inline-block; flex-shrink: 0; margin-top: 3px;"></span> <span>Verdict et raisonnement</span></div>
+<div style="display: flex; align-items: flex-start; gap: 8px;"><span style="width: 12px; height: 12px; border-radius: 3px; background: var(--grey-menu); display: inline-block; flex-shrink: 0; margin-top: 3px;"></span> <span>Sources et méthodologie</span></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorer Rydoo plus en détail ?</h3>
+<a class="btn btn-secondary" href="http://forms.proplace.co/meet" target="_blank">Programmer un appel stratégique sur Rydoo</a>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>🗣 Votre décision</h3>
+</div>
+
+
+<div class="section">
+<h3>Vous voulez suivre notre deal flow ?</h3>
+<p class="meta-desc">Recevez chaque jour les startups européennes de l'IA que nous évaluons du point de vue d'un VC.</p>
+<a class="btn btn-primary" href="https://77f02b89.sibforms.com/serve/MUIFAMr0ADjDfIUWLc56STos70j4OXPiOTJqugyAa45YfGyt9zW6Tokz3iXWLNiTAw6oxjbrMnjs424k46IvwOQlWjaMIsbgexAk95FvzqzgLa56TkHas6WASK4VKs684XcZhacqMYTYQGuIfzJmBmCkmHwhNeB0yHifmrxC1PUhNMS1ZbiW1xF18IZy7tJP9BIWjDcM5VoH6VEVCw==" target="_blank">S'abonner au deal flow</a>
+</div>
+<div class="section">
+<h3>Vous voulez un deal flow propriétaire ?</h3>
+<p class="meta-desc">Recevez chaque jour des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="http://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+</div>
+<div class="section" style="text-align: center; margin-bottom: 0; padding-top: 10px;">
+</div>
+</div>
+<div class="content-area">
+<h1>Mémo interactif Rydoo</h1>
+<h2 class="subtitle-category">FinTech ➜ SaaS d'automatisation des dépenses pour multinationales ➜ SaaS d'automatisation de la gestion des dépenses et des comptes fournisseurs pour multinationales européennes et globales avec présence dans 130+ pays.</h2>
+<p class="body-tagline">Tame your business spending</p>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Rydoo" data-h="" data-i="FinTech" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/rydoo/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="market-summary">
+<h2 class="section-title">Résumé du marché</h2>
+<div class="split-container">
+<div class="text-col">
+      SCORE D'OPPORTUNITÉ DE MARCHÉ<br/>FinTech &gt; SaaS d'automatisation des dépenses pour multinationales.<br/><br/>════════════════════════════════════════════<br/><br/><h4>MARCHÉ ATTRACTIF ? (Dynamique):</h4> 88/100 × 25% = 22 points<br/><h4>MARCHÉ GAGNABLE ? (Compétition):</h4> 82/100 × 25% = 20.5 points<br/><h4>MARCHÉ PÉNÉTRABLE ? (GTM):</h4> 85/100 × 25% = 21.25 points<br/><h4>MARCHÉ RÉCOMPENSANT ? (Sorties):</h4> 92/100 × 25% = 23 points<br/><br/>────────────────────────────────────────────<br/><h4>SCORE TOTAL D'ATTRACTIVITÉ :</h4> 86.75/100<br/>Ce marché constitue un vent arrière puissant, porté par une consolidation inévitable des flux financiers au sein d'une seule plateforme IA.<br/><br/>════════════════════════════════════════════<br/><br/><h4>❓ DÉFINITION du Marché</h4>
+<p>Le marché concerne les plateformes Cloud de gestion des flux de trésorerie sortants pour les entreprises opérant sur plusieurs juridictions fiscales. La friction structurelle réside dans l'incapacité des systèmes ERP traditionnels à gérer l'agilité des dépenses des employés et la complexité des audits locaux en temps réel. Rydoo se situe au coeur de la chaîne de valeur financière, entre les systèmes de paie (RH) et les systèmes de comptabilité (ERP), capturant la donnée transactionnelle à la source.</p>
+<h4>💬 Notre THÈSE de Marché</h4>
+<p>Le marché du Spend Management a atteint un point de rupture où la simple numérisation des factures ne suffit plus. Les directeurs financiers exigent désormais une visibilité prédictive sur le cash-flow, bloquée jusqu'ici par des silos entre notes de frais et factures fournisseurs. Les acteurs historiques comme SAP Concur sont paralysés par une dette technique massive et un modèle de service client daté, incapable de s'adapter au rythme du SaaS moderne. L'attaque vectorielle gagnante consiste à unifier l'Employee Spending et l'AP Automation dans une interface unique pilotée par l'IA, créant une fenêtre d'opportunité critique avant que les banques pro ne montent en gamme.</p>
+<h4>🧠 Notre CONVICTION &amp; PARI sur ce Marché :</h4>
+<p>🟢 HAUTE CONVICTION<br/>La tension principale réside dans la commoditisation agressive du scan de reçus, mais Rydoo gagne grâce à sa profondeur de conformité globale. Notre pari est que l'unification des dépenses et des comptes fournisseurs deviendra la norme de l'industrie pour les multinationales d'ici 24 mois. Un signal clé sera la capacité de Rydoo à transformer chaque interaction produit en une donnée d'audit pré-remplie, rendant l'approbation humaine obsolète.</p>
+      ═══════════════════════════════════════════<br/><br/><h4>🌊 MARCHÉ ATTRACTIF (Dynamique) | Score: 88/100</h4>
+<p>Le marché est massif et en pleine mutation structurelle vers l'automatisation totale.</p>
+<ul>
+<li>Taille du Marché (25%) | Score: 90/100: Le TAM global du Spend Management est estimé à plus de 15Md$ avec un CAGR de 12%.</li>
+<li>Leviers de Croissance (25%) | Score: 92/100: La transition vers le 'Cloud Finance' et les mandats de facturation électronique en Europe dopent la demande.</li>
+<li>Timing (25%) | Score: 85/100: L'IA générative rend enfin possible l'automatisation des audits complexes qui étaient hier manuels.</li>
+<li>Risques de Marché (25%) | Score: 85/100: Risque de ralentissement économique réduisant les déplacements et donc les frais professionnels.</li>
+</ul>
+<h4>⚔️ MARCHÉ GAGNABLE (Paysage Concurrentiel) | Score: 82/100</h4>
+<p>Le marché est concurrentiel mais les positions legacy sont vulnérables.</p>
+<ul>
+<li>Acteurs Historiques (25%) | Score: 78/100: SAP Concur domine mais souffre d'une satisfaction client médiocre.</li>
+<li>Challengers (25%) | Score: 85/100: Spendesk et Pleo sont forts sur les PME, laissant Rydoo leader sur le mid-market complexe.</li>
+<li>White Space (25%) | Score: 88/100: Opportunité majeure dans la convergence AP/Expense pour les entreprises globales.</li>
+<li>Défensibilité (25%) | Score: 77/100: Le moat repose sur l'intégration technologique et la conformité, car le produit 'Core' se standardise.</li>
+</ul>
+<h4>🎯 MARCHÉ PÉNÉTRABLE (GTM &amp; Unit Economics) | Score: 85/100</h4>
+<p>Le modèle GTM SaaS est bien huilé et scalable globalement.</p>
+<ul>
+<li>Modèle GTM (25%) | Score: 88/100: Approche hybride avec forte inbound et vente directe sur les grands comptes.</li>
+<li>Modèle de Prix (25%) | Score: 82/100: Modèle basé sur l'usage (utilisateurs actifs), aligné sur la valeur client.</li>
+<li>Efficacité de l'Unité (25%) | Score: 85/100: Ratios LTV/CAC sains typiques des leaders SaaS B2B mature.</li>
+<li>Scalabilité (25%) | Score: 85/100: Capacité démontrée à s'étendre géographiquement sans refondre le produit.</li>
+</ul>
+<h4>💰 MARCHÉ RÉCOMPENSANT (Financement &amp; Sortie) | Score: 92/100</h4>
+<p>L'appétit des investisseurs PE et les multiples de sortie restent élevés pour les leaders de catégorie.</p>
+<ul>
+<li>Activité de Financement (25%) | Score: 90/100: Investissement massif d'Eurazeo en 2024 confirmant l'attractivité du secteur.</li>
+<li>Multiples de Sortie (25%) | Score: 88/100: Les sorties dans le domaine de la Fintech SaaS conservent des multiples premium (8-12x ARR).</li>
+<li>Acheteurs Stratégiques (25%) | Score: 95/100: Oracle, Workday ou même des banques globales comme JP Morgan sont des acquéreurs naturels.</li>
+<li>Profil de Retour (25%) | Score: 95/100: Le marché produit structurellement des leaders avec une forte rentabilité et une rétention nette (NRR) supérieure à 110%.</li>
+</ul>
+      ────────────────────────────────────────────<br/><h4>⚡ SYNTHÈSE TRANSVERSALE :</h4>
+<p>Le profil Attractive+Rewarding indique un marché 'Winner-takes-most' où la rapidité d'exécution via M&amp;A est plus cruciale que l'innovation de rupture.</p>
+      ────────────────────────────────────────────<br/><h4>🌐 CONFIANCE DES DONNÉES :</h4>
+<p>La confiance est solide grâce aux rapports de transparence d'Eurazeo et à la documentation publique de Rydoo. Total de 15 URLs de marché sourcées.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-2c518f9ab1396bc1e58ed42e3f94ac42-vew6ng6b.jpg"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title">Analyse Approfondie de l'Entreprise</h2>
+<div class="split-container">
+<div class="text-col">
+<h3 id="value-proposition">Proposition de Valeur</h3>
+<b>Proposition de Valeur:</b> Rydoo est une plateforme intelligente de gestion des dépenses qui aide les équipes financières multinationales à automatiser le processus, de la soumission au remboursement, tout en multipliant l'efficacité par 4. Tame your business spending. Rydoo deviendra la tour de contrôle financière unique des multinationales, intégrant les comptes fournisseurs, les notes de frais et les paiements par carte dans une interface pilotée par IA, remplaçant les systèmes legacy fragmentés.<br/><br/><b>Profil Client Idéal (ICP):</b> Équipes financières des multinationales, gestionnaires de voyages et dépenses (T&amp;E), directeurs financiers et entreprises opérant dans plus de 130 pays, entreprises 'Upper Mid-Market' et Enterprise en Europe.<br/><br/><b>B2B ou B2C:</b> B2B - Solution logicielle destinée aux entreprises pour la gestion des dépenses de leurs employés et le contrôle financier.<br/><br/><b>Industrie:</b> Fintech / SaaS de gestion des dépenses et de comptabilité fournisseurs, FinTech / Spend Management, SaaS d'automatisation des dépenses pour multinationales.<br/><br/><b>Contact et Légal:</b> Actionnaire majoritaire: Eurazeo (depuis juin 2024), Marlin Equity Partners (réinvestissement et actionnaire restant), Entités mentionnées: Semine (acquisition en 2025), vente de l'unité Travel à CDS Groupe (2026), HQ Belgique, Régions: Pays-Bas, Belgique, Pays Nordiques, Website: https://www.rydoo.com, LinkedIn company: https://www.linkedin.com/company/rydoo.<br/><br/><b>Exemples de Clients Clés et Témoignages:</b> ArAG (Wolfgang Pille), TVH (Renate Mortier), Swiss (Jasmin Zuercher), Sodexo (David Soulé), Burger King (René Gotza), Schréder (Luc de Neef), OBOS (Hilde Rannem Rostad), Deloitte, Irdeto, Parakar, Innogy Consulting, DSM-Firmenich.<br/><br/>
+<h3 id="product">Produit</h3>
+<b>Solution Centrale:</b> Logiciel de gestion des dépenses et automatisation des comptes fournisseurs (AP), plateforme intelligente de Spend Management qui permet aux directions financières multinationales d'automatiser le cycle complet des dépenses, du reçu au remboursement, via une IA propriétaire, élimine la saisie manuelle et l'erreur humaine en utilisant un moteur d'IA Smart Audit qui valide instantanément la conformité fiscale et réglementaire dans plus de 130 pays dès la capture du reçu.<br/><br/><b>Encyclopédie des Fonctionnalités:</b> Rydoo Smart Audit (IA) | Scanner de reçus OCR (95%+ précision) | Approbation instantanée | Rapports en temps réel | Gestion des Per Diem (80+ pays) | Suivi kilométrique via Google Maps | Cartes d'entreprise (virtuelles et physiques) | Automatisation AP via SEMINE | Réconciliation automatisée des cartes de crédit | Flux d'approbation personnalisés | Alertes de non-conformité | Controlling Services (délégation de la revue aux experts Rydoo) | Insights (Analytique).<br/><br/><b>Capacités Techniques:</b> Connexion avec 35+ outils Finance, ERP, RH et Travel | Application mobile (iOS/Android) | Intégration Google Maps | API et synchronisation complète du système | Smart Audit IA | Architecture Cloud native parfaitement intégrée aux ERP majeurs (SAP, Oracle, Microsoft Dynamics) | GoBD compliance.<br/><br/><b>Cas d'Utilisation:</b> Automatisation des notes de frais, conformité fiscale globale, élimination des paiements de poche pour les employés, détection de fraude et de doublons, réduction de la charge de travail administrative, unification des workflows AP et dépenses, traitement de volumes massifs sans friction.<br/><br/>
+<h3 id="business-model">Modèle d'Affaires</h3>
+<b>Analyse du Modèle d'Affaires:</b> SaaS avec abonnement et options d'extensions (Add-ons), SaaS / Subscription (Fair Billing Policy).<br/><br/><b>Flux de Revenus et Niveaux de Tarification:</b> Plans Business et Enterprise mentionnés, Politique de facturation équitable ('Fair Billing Policy') où l'on ne paie que pour les utilisateurs actifs (au moins une action par mois), Revenus 100% récurrents avec un mix de licences et d'add-ons (cartes, AP, controlling services), Données spécifiques sur les prix non disponibles dans la source.<br/><br/><b>Fonctionnalités des Plans:</b> Les add-ons incluent Accounts Payable (Semine), Controlling Services (délégation de la revue aux experts Rydoo), Expense Cards et Insights (Analytique), Certains add-ons sont inclus dans le plan Enterprise.<br/><br/><b>Coûts Cachés et Conditions:</b> Pas de frais pour les licences inactives grâce à la 'Fair Billing Policy', Frais potentiels pour les add-ons spécifiques non inclus de base.
+<h3 id="team">Équipe</h3>
+<b>Culture d'Entreprise:</b> Travail acharné et divertissement ('Work hard, play harder'), inclusion et diversité totale, mission axée sur l'autonomie et le bien-être des collaborateurs, engagement pour la durabilité (Objectif Net-Zéro d'ici 2025).<br/><br/><b>Analyse de l'Équipe:</b> Sebastien Marchon (CEO), Aidana Zhakupbekova (CFO), Fernando Amaral (CRO), Delphine Callens (CCO), Sebastian Vanhecke (CPO), Wim Derkinderen (Co-Founder and CCO at Rydoo 2014-2021, Member of Management Board 2017-2021, Director Business Development 2014-2017).<br/><br/><b>Offres d'Emploi et Titres:</b> Section 'Join us' disponible via la page carrière, liste spécifique non fournie dans le texte.<br/><br/><b>Estimation de l'Effectif:</b><br/>Produit &amp; Engineering: Inconnu<br/>Marketing: Inconnu<br/>Sales: Inconnu<br/>Support &amp; IT: Inconnu<br/>General &amp; Admin (G&amp;A): Inconnu<br/><br/>
+<h3 id="ceo">CEO</h3>
+<b>EXECUTIVE ASSESSMENT</b><br/><br/><ul><li>Archétype de fondateur : Investisseur en série et constructeur d'entreprises.</li><li>L'entreprise acquéreuse (Sodexo) est une entreprise du CAC40, ce qui valide la qualité de la création. Ses rôles d'investisseur et de membre du conseil dans de multiples startups (certaines sans URL, ce qui est un signal plus faible) démontrent une expertise post-amorçage. Montfort et le master en économie sont des signaux standards sans indiquer d'école d'élite spécifique.</li><li>Fidélité et Ancienneté : Le sujet montre un mélange de longues périodes dans des rôles clés (Xpenditure/Rydoo ~7+ ans, LAWS NV ~19 ans) et de rôles d'investisseur/conseiller de durée variable. Sa loyauté est forte lorsqu'il est un constructeur principal ou un investisseur actif. Il n'est pas un job-hopper.</li><li>Adéquation commerciale : Son expérience en tant que fondateur, CCO et investisseur actif dans plus de 20 startups, combinée à une acquisition réussie, réduit considérablement les risques pour une entreprise comme Pitchdrive, où il est partenaire gérant. Il comprend intrinsèquement le cycle de vie des startups, de la vente à la levée de fonds et à la stratégie de sortie.</li></ul><br/><br/><b>PROFESSIONAL NARRATIVE</b><br/><br/>Wim Derkinderen a commencé sa carrière dans la vente et le développement commercial, progressant rapidement vers des postes de direction dans le secteur technologique (Netlog, SpaceChecker). Son parcours professionnel a pris un tournant décisif avec la cofondation de CardWise et ensuite d'Xpenditure (devenu Rydoo), qu'il a mené avec succès en tant que CCO jusqu'à son acquisition par Sodexo. Cette expérience fondatrice a catalysé sa transition vers le capital-risque et l'investissement, où il capitalise désormais sur son acumen opérationnel et son réseau étendu pour soutenir et guider un portefeuille diversifié de startups en croissance en tant que partenaire gérant chez Pitchdrive et investisseur dans des entreprises comme FixForm et Hrbs.<br/><br/><b>DETAILED CAREER TIMELINE</b><br/><br/><ul><li>2021 – Présent | Pitchdrive </li><li>Rôle : Managing Partner &amp; Board member </li><li>Focus : Investissement et gestion stratégique d'un fonds de capital-risque, soutien aux startups du portefeuille.</li><li>2021 – Présent | FixForm </li><li>Rôle : Director and Board member </li><li>Analysis : Rôle de surveillance et stratégique, indiquant un engagement continu avec l'écosystème startup.</li><li>2016 – Présent | Hrbs. </li><li>Rôle : Investor and Board member </li><li>Analysis : Engagement à long terme en tant qu'investisseur et conseiller d'administration.</li><li>2006 – Présent | LAWS NV </li><li>Rôle : Owner </li><li>Focus : Société d'investissement et de gestion axée sur les entreprises en phase de démarrage, démontrant une approche entrepreneuriale persistante.</li><li>2015 – 2024 | Realo - Find your next home </li><li>Rôle : Investor and Board member </li><li>Analysis : Engagement significatif de presque une décennie, reflétant une implication profonde dans la croissance de l'entreprise.</li><li>2014 – 2021 | Rydoo </li><li>Rôle : CCO at Rydoo - Member of Management Board (2017-2021), Co-Founder and Director Business Development (2014-2017)</li><li>Analysis : Parcours complet depuis la co-fondation, le développement commercial jusqu'au rôle de CCO après l'acquisition (Xpenditure est devenu Rydoo). Démontre la capacité à construire, à vendre et à s'intégrer post-acquisition, avec une période d'exécution de 7 ans et 5 mois.</li><li>2018 – 2021 | Faqbot </li><li>Rôle : Investor and Board Member </li><li>Analysis : Période d'investissement et de conseil actif de 3 ans.</li><li>2011 – 2017 | PROBEC NV </li><li>Rôle : bestuurder </li><li>Analysis : Rôle de directeur pendant plus de 6 ans, suggérant une implication au niveau exécutif.</li><li>2011 – 2014 | CardWise </li><li>Rôle : Co Founder and CCO </li><li>Analysis : Rôle fondateur clé en tant que CCO, marquant le début de son parcours entrepreneurial reconnu dans le secteur technologique.</li><li>2008 – 2011 | Netlog </li><li>Rôle : Account Manager Belgium </li><li>Analysis : Expérience significative en gestion de comptes dans une entreprise technologique grand public à croissance rapide.</li><li>2004 – 2007 | SpaceChecker </li><li>Rôle : Sales Manager </li><li>Analysis : Premier rôle de direction commerciale, posant les bases de ses futures responsabilités.</li></ul><br/><br/><b>ACADEMIC BACKGROUND</b><br/><br/><ul><li>Institution : montfort </li><li>Degree : </li><li>Signal : École secondaire classique, pas un signal d'élite.</li><li>Institution : </li><li>Degree : Master </li><li>Field Of Study : Economics </li><li>Signal : Master en Économie, mais l'absence de nom d'institution rend l'évaluation du signal difficile.</li></ul><br/><br/>Il est dangereux en raison de sa capacité prouvée à lancer, développer et monétiser des entreprises technologiques, puis à réinvestir cette expertise et ce capital dans la prochaine génération d'innovations. Son "pourquoi" est profondément intériorisé, ce qui le rend résilient et persistant. Ses scores d'exécution et de discipline sont très élevés, mais le langage de son leadership est légèrement moins axé sur "nous", suggérant qu'il pourrait naturellement diriger par l'exemple et la vision plutôt que par une focalisation explicite sur le développement des dynamiques d'équipe. Pour compléter son profil, il pourrait bénéficier de co-fondateurs ou d'exécutifs qui excellent dans la gestion d'équipe axée sur les personnes et la culture (scores de leadership plus élevés) pour s'assurer que sa vision peut être exécutée de manière plus large et durable, en particulier à mesure que les organisations évoluent au-delà de la phase de démarrage. <h3 id="company-summary">Résumé de l'Entreprise</h3>
+• FinTech &gt; SaaS d'automatisation des dépenses pour multinationales.<br/>
+• B2B &gt; SaaS<br/>
+• Majorité acquise par Eurazeo en Juin 2024 auprès de Marlin Equity Partners.<br/><br/>
+CALCUL DU SCORE PONDÉRÉ<br/><br/><br/>
+═════════════════════════════════════════════════<br/>
+<span style="font-weight:bold;">EXCELLENCE DE L'ÉQUIPE</span>       87/100  × 20% = 17.4 points<br/>
+<span style="font-weight:bold;">OPPORTUNITÉ DE MARCHÉ</span>      90/100  × 25% = 22.5 points<br/>
+<span style="font-weight:bold;">INNOVATION PRODUIT</span>        88/100  × 20% = 17.6 points<br/>
+<span style="font-weight:bold;">MODÈLE D'AFFAIRES</span>          85/100  × 15% = 12.75 points<br/>
+<span style="font-weight:bold;">TRACTION &amp; CROISSANCE</span>      92/100  × 20% = 18.4 points<br/>
+─────────────────────────────────────────────────<br/>
+Score de Base:                         88.65/100<br/>
+─────────────────────────────────────────────────<br/>
+SCORE FINAL AJUSTÉ:               88.65/100 → 🟢 INTERESTING<br/><br/>
+═════════════════════════════════════════════════<br/><br/>
+❓ <span style="font-weight:bold;">En bref</span> : Rydoo est une plateforme intelligente de Spend Management qui permet aux directions financières multinationales d'automatiser le cycle complet des dépenses, du reçu au remboursement, via une IA propriétaire.<br/><br/>
+⚠️ <span style="font-weight:bold;">Le PROBLÈME</span> : Les directeurs financiers de multinationales perdent des millions en récupérations de TVA non réclamées et en audits manuels inefficaces à cause de politiques de dépenses fragmentées entre 50 filiales locales.<br/><br/>
+✅ <span style="font-weight:bold;">La SOLUTION</span> : Rydoo élimine la saisie manuelle et l'erreur humaine en utilisant un moteur d'IA Smart Audit qui valide instantanément la conformité fiscale et réglementaire dans plus de 130 pays dès la capture du reçu.<br/><br/>
+🚀 <span style="font-weight:bold;">Le GTM</span> : Rydoo cible les entreprises 'Upper Mid-Market' et Enterprise en Europe par une approche directe axée sur la conformité locale, un levier où les concurrents américains comme Concur échouent par leur manque d'agilité réglementaire.<br/><br/>
+═════════════════════════════════════════════════<br/><br/>
+👨🏻 <span style="font-weight:bold;">EXCELLENCE DE L'ÉQUIPE</span> (20%) | Score: 87/100<br/>
+L'équipe combine l'agilité entrepreneuriale des fondateurs initiaux et la rigueur opérationnelle imposée par des actionnaires PE successifs.<br/>
+<ul>
+<li><span style="font-weight:bold;">Founder-Market Fit</span> (25%) | Score: 90/100: Wim Derkinderen possède l'earned secret de la vente complexe en B2B Fintech après avoir porté Xpenditure de l'idée à la sortie mondiale.</li>
+<li><span style="font-weight:bold;">Track Record</span> (25%) | Score: 88/100: Succès prouvé avec l'acquisition par Sodexo puis le spin-off vers Marlin/Eurazeo, démontrant une résilience rare dans l'exécution post-exit.</li>
+<li><span style="font-weight:bold;">Leadership</span> (25%) | Score: 85/100: Un C-suite de classe mondiale avec Sebastian Marchon et Aidana Zhakupbekova, capable de gérer des bilans complexes et des acquisitions comme Semine.</li>
+<li><span style="font-weight:bold;">Complétude</span> (25%) | Score: 85/100: Structure robuste avec un équilibre fort entre vision produit (Sebastian Vanhecke) et exécution commerciale internationale (Fernando Amaral).</li>
+</ul><br/>
+🌊 <span style="font-weight:bold;">OPPORTUNITÉ DE MARCHÉ</span> (25%) | Score: 90/100<br/>
+Le marché du Spend Management bascule d'un simple outil de reporting à un système d'exploitation financier central.<br/>
+<ul>
+<li><span style="font-weight:bold;">Taille &amp; Croissance</span> (25%) | Score: 92/100: Le marché adressable explose avec la digitalisation forcée des fonctions finance, Rydoo opérant dans plus de 130 pays.</li>
+<li><span style="font-weight:bold;">Timing : Pourquoi maintenant ?</span> (25%) | Score: 88/100: Le passage aux factures électroniques obligatoires en Europe crée un appel d'air massif pour les solutions automatisées.</li>
+<li><span style="font-weight:bold;">Compétition</span> (25%) | Score: 85/100: Positionnement unique entre les mastodontes legacy (SAP Concur) trop lourds et les néo-banques (Spendesk) limitées à la gestion des cartes.</li>
+<li><span style="font-weight:bold;">Expansion</span> (25%) | Score: 95/100: L'acquisition de Semine en 2025 ouvre le marché lucratif de l'automatisation des comptes fournisseurs (AP), triplant le TAM potentiel.</li>
+</ul><br/>
+💡 <span style="font-weight:bold;">INNOVATION PRODUIT</span> (20%) | Score: 88/100<br/>
+Produit mature mais innovant, dépassant le stade du simple scan OCR.<br/>
+<ul>
+<li><span style="font-weight:bold;">Différenciation</span> (25%) | Score: 90/100: Le 'Smart Audit' utilise l'IA pour remplacer l'approbation humaine, réduisant le temps de traitement de 75%.</li>
+<li><span style="font-weight:bold;">Product-Market Fit</span> (25%) | Score: 92/100: Les témoignages de clients comme Deloitte et Sodexo valident la capacité à traiter des volumes massifs sans friction.</li>
+<li><span style="font-weight:bold;">Scalabilité</span> (25%) | Score: 85/100: Architecture Cloud native parfaitement intégrée aux ERP majeurs (SAP, Oracle, Microsoft Dynamics).</li>
+<li><span style="font-weight:bold;">IP &amp; Barrières</span> (25%) | Score: 85/100: La base de données de conformité fiscale sur 130 pays constitue un fossé défensif majeur difficile à répliquer rapidement.</li>
+</ul><br/>
+💼 <span style="font-weight:bold;">MODÈLE D'AFFAIRES</span> (15%) | Score: 85/100<br/>
+Modèle SaaS ultra-optimisé pour la rétention et l'expansion.<br/>
+<ul>
+<li><span style="font-weight:bold;">Unit Economics</span> (25%) | Score: 88/100: La 'Fair Billing Policy' (paiement uniquement pour les utilisateurs actifs) génère une confiance client et une expansion virale.</li>
+<li><span style="font-weight:bold;">Revenue Model</span> (25%) | Score: 85/100: Revenus 100% récurrents avec un mix de licences et d'add-ons (cartes, AP, controlling services).</li>
+<li><span style="font-weight:bold;">Monétisation</span> (25%) | Score: 82/100: Opportunité forte de cross-sell via l'intégration de Semine et les services de cartes virtuelles.</li>
+<li><span style="font-weight:bold;">Capital Efficiency</span> (25%) | Score: 85/100: Soutien majoritaire d'Eurazeo (35Md€ d'actifs) garantissant une solidité financière sans le risque de burn effréné des startups early-stage.</li>
+</ul><br/>
+📈 <span style="font-weight:bold;">TRACTION &amp; CROISSANCE</span> (20%) | Score: 92/100<br/>
+Accélération nette via croissance externe et consolidation.<br/>
+<ul>
+<li><span style="font-weight:bold;">Croissance du Revenu</span> (25%) | Score: 90/100: Forte vélocité confirmée par le passage sous le contrôle d'Eurazeo, signal d'une rentabilité ou d'une hyper-croissance maîtrisée.</li>
+<li><span style="font-weight:bold;">Validation Client</span> (25%) | Score: 95/100: Portefeuille clients impressionnant (Burger King, Swiss, TVH) validant l'usage en milieu extrêmement réglementé.</li>
+<li><span style="font-weight:bold;">Progression KPI</span> (25%) | Score: 90/100: Expansion de l'effectif et rachat de concurrents (Semine) démontrant une exécution à haute vélocité.</li>
+<li><span style="font-weight:bold;">Pénétration Marché</span> (25%) | Score: 93/100: Présence globale incontestable, Rydoo est l'un des rares acteurs européens capables de servir un client sur tous les continents.</li>
+</ul><br/>
+─────────────────────────────────────────────────<br/>
+🔍 <span style="font-weight:bold;">RISQUE À COUVRIR</span> :<br/>
+L'hypothèse critique est que Rydoo puisse intégrer Semine sans diluer sa marge opérationnelle ni complexifier son UX pour devenir un outil AP lourd. Ce pari sur l'unification des workflows AP et dépenses sera validé ou invalidé par le taux de churn des 18 prochains mois lors de la migration des clients vers la plateforme unifiée.<br/><br/>
+Ce risque est résolvable par une diligence approfondie sur les métriques d'adoption du module AP par la base installée actuelle de Rydoo.<br/><br/>
+🗝️ <span style="font-weight:bold;">AVANTAGES COMPÉTITIFS CLÉS</span> :<br/>
+<ul>
+<li><span style="font-weight:bold;">Expertise Conformité Globale</span> : Gestion native des réglementations fiscales et des 'Per Diem' dans plus de 130 pays, un obstacle majeur pour les nouveaux entrants.</li>
+<li><span style="font-weight:bold;">Smart Audit IA</span> : Automatisation du contrôle des dépenses à 95%, réduisant drastiquement le coût opérationnel des services financiers.</li>
+<li><span style="font-weight:bold;">Politique de Facturation Équitable</span> : Le modèle 'pay-per-active-user' élimine la friction lors du déploiement à l'échelle de l'entreprise.</li>
+<li><span style="font-weight:bold;">Synergie AP/Expenses</span> : L'intégration de Semine permet de capturer l'ensemble des flux de trésorerie sortants, devenant le système de record unique.</li>
+</ul><br/>
+🧱 <span style="font-weight:bold;">MOAT</span> : FORT<br/>
+Le moat primaire est constitué par des coûts de changement (Switching Costs) élevés dus à l'intégration profonde dans les ERP et les processus RH/fiscaux des multinationales. Plus l'entreprise déploie Rydoo dans de nouvelles géographies, plus la dépendance aux flux de conformité configurés s'intensifie, créant une inertie structurante. La couche secondaire de défense réside dans l'effet de réseau de données de l'IA Smart Audit, dont la précision s'abreuve avec chaque transaction auditée sur la plateforme.<br/><br/>
+⚖️ <span style="font-weight:bold;">PARI ASYMÉTRIQUE</span><br/>
+<ul>
+<li><span style="font-weight:bold;">Le Cas Haussier (Bull Case)</span> : Rydoo devient le 'SAP Concur Killer' en dominant le marché européen et asiatique par une meilleure UX et une IA supérieure, forçant les grands groupes à abandonner leurs outils legacy pour une plateforme de gestion des coûts unifiée (Invoices + Expenses).</li>
+<li><span style="font-weight:bold;">Le Cas Baissier (Bear Case)</span> : La commoditisation des frais professionnels par les banques (Qonto, Revolut Business) et les néo-banques de spend (Spendesk, Pleo) réduit Rydoo à un outil de niche pour quelques secteurs très réglementés, limitant sa croissance organique.</li>
+</ul><br/>
+🚩 <span style="font-weight:bold;">SIGNAUX D'ALERTE</span><br/>
+<ul>
+<li><span style="font-weight:bold;">Risques Universels</span> : L'intégration technologique de l'acquisition Semine (2025) pourrait ralentir la roadmap du produit principal pendant plusieurs trimestres.</li>
+<li><span style="font-weight:bold;">Inadéquation à la Thèse</span> : Rydoo est désormais une cible PE (Private Equity) avancée, ce qui pourrait ne pas correspondre à une thèse axée sur l'amorçage ou le early-stage pur.</li>
+</ul><br/>
+📝 <span style="font-weight:bold;">KIT DE PRÉPARATION AU PREMIER RENDEZ-VOUS</span><br/>
+Cette analyse suggère que Rydoo n'est plus un pari sur le risque produit, mais un pari sur l'efficacité de l'exécution M&amp;A et la consolidation du marché européen.<br/>
+<ul>
+<li><span style="font-weight:bold;">L'Angle d'Investissement</span> : Parier sur le leader européen capable de consolider le marché fragmenté du Spend Management avant une sortie vers un géant du logiciel US ou une IPO.</li>
+<li><span style="font-weight:bold;">Questions Tueuses</span> :</li>
+<li>Comment l'intégration de Semine a-t-elle spécifiquement impacté votre LTV/CAC cette année ?</li>
+<li>Quel est le taux de pénétration actuel du module AP au sein de votre base de clients historiques Rydoo ?</li>
+<li>Quelle est votre stratégie pour contrer l'incursion des néo-banques sur le segment inférieur de votre marché cible ?</li>
+<li><span style="font-weight:bold;">Signal Go/No-Go</span> : Un taux d'adoption du module AP supérieur à 25% sur la base installée en moins d'un an est un signal de 'Go' massif. Un churn croissant suite à la suppression de l'unité 'Travel' serait un signal de 'No-Go'.</li>
+</ul><br/>
+🌐 <span style="font-weight:bold;">CONFIANCE DES DONNÉES</span> : HAUTE<br/>
+<ul>
+<li>Les données sur l'actionnariat (Eurazeo) et les acquisitions récentes (Semine, vente de l'unité Travel) sont publiques et vérifiables.</li>
+<li><span style="font-weight:bold;">DONNÉES MANQUANTES</span> : Marges nettes exactes post-acquisition Semine • Pipeline actuel de M&amp;A.</li>
+</ul>
+</div>
+<div class="img-col">
+<img alt="Company Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-2c7fdaffd13c11548d98b81649be7e78-bditaw7s.jpg"/>
+</div>
+</div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block"><ul><li>FinTech &gt; SaaS d'automatisation des dépenses pour multinationales.</li><li>B2B &gt; SaaS</li><li>Majorité acquise par Eurazeo en Juin 2024 auprès de Marlin Equity Partners.</li></ul>
+<br/>
+<span style="font-weight:bold;">CALCUL DU SCORE PONDÉRÉ</span><br/>
+Thèse : <br/>
+<br/>
+═════════════════════════════════════════════════<br/>
+EXCELLENCE DE L'ÉQUIPE       87/100  × 20% = 17.4 points<br/>
+OPPORTUNITÉ DE MARCHÉ      90/100  × 25% = 22.5 points<br/>
+INNOVATION PRODUIT        88/100  × 20% = 17.6 points<br/>
+MODÈLE D'AFFAIRES          85/100  × 15% = 12.75 points<br/>
+TRACTION &amp; CROISSANCE      92/100  × 20% = 18.4 points<br/>
+─────────────────────────────────────────────────<br/>
+Score de Base:                         88.65/100<br/>
+─────────────────────────────────────────────────<br/>
+<span style="font-weight:bold;">SCORE FINAL AJUSTÉ :</span> 88.65/100 → 🟢 INTERESTING<br/>
+<br/>
+═════════════════════════════════════════════════<br/>
+<br/>
+❓ En bref : Rydoo est une plateforme intelligente de Spend Management qui permet aux directions financières multinationales d'automatiser le cycle complet des dépenses, du reçu au remboursement, via une IA propriétaire.<br/>
+<br/>
+⚠️ Le PROBLÈME : Les directeurs financiers de multinationales perdent des millions en récupérations de TVA non réclamées et en audits manuels inefficaces à cause de politiques de dépenses fragmentées entre 50 filiales locales.<br/>
+<br/>
+✅ La SOLUTION : Rydoo élimine la saisie manuelle et l'erreur humaine en utilisant un moteur d'IA Smart Audit qui valide instantanément la conformité fiscale et réglementaire dans plus de 130 pays dès la capture du reçu.<br/>
+<br/>
+🚀 Le GTM : Rydoo cible les entreprises Upper Mid-Market et Enterprise en Europe par une approche directe axée sur la conformité locale, un levier où les concurrents américains comme Concur échouent par leur manque d'agilité réglementaire.<br/>
+<br/>
+═════════════════════════════════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score: 87/100</span><br/>
+L'équipe combine l'agilité entrepreneuriale des fondateurs initiaux et la rigueur opérationnelle imposée par des actionnaires PE successifs.<br/>
+<ul><li>Founder-Market Fit (25%) | Score: 90/100: Wim Derkinderen possède l'earned secret de la vente complexe en B2B Fintech après avoir porté Xpenditure de l'idée à la sortie mondiale.</li><li>Track Record (25%) | Score: 88/100: Succès prouvé avec l'acquisition par Sodexo puis le spin-off vers Marlin/Eurazeo, démontrant une résilience rare dans l'exécution post-exit.</li><li>Leadership (25%) | Score: 85/100: Un C-suite de classe mondiale avec Sebastian Marchon et Aidana Zhakupbekova, capable de gérer des bilans complexes et des acquisitions comme Semine.</li><li>Complétude (25%) | Score: 85/100: Structure robuste avec un équilibre fort entre vision produit (Sebastian Vanhecke) et exécution commerciale internationale (Fernando Amaral).</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 OPPORTUNITÉ DE MARCHÉ (25%) | Score: 90/100</span><br/>
+Le marché du Spend Management bascule d'un simple outil de reporting à un système d'exploitation financier central.<br/>
+<ul><li>Taille &amp; Croissance (25%) | Score: 92/100: Le marché adressable explose avec la digitalisation forcée des fonctions finance, Rydoo opérant dans plus de 130 pays.</li><li>Timing : Pourquoi maintenant ? (25%) | Score: 88/100: Le passage aux factures électroniques obligatoires en Europe crée un appel d'air massif pour les solutions automatisées.</li><li>Compétition (25%) | Score: 85/100: Positionnement unique entre les mastodontes legacy (SAP Concur) trop lourds et les néo-banques (Spendesk) limitées à la gestion des cartes.</li><li>Expansion (25%) | Score: 95/100: L'acquisition de Semine en 2025 ouvre le marché lucratif de l'automatisation des comptes fournisseurs (AP), triplant le TAM potentiel.</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 INNOVATION PRODUIT (20%) | Score: 88/100</span><br/>
+Produit mature mais innovant, dépassant le stade du simple scan OCR.<br/>
+<ul><li>Différenciation (25%) | Score: 90/100: Le Smart Audit utilise l'IA pour remplacer l'approbation humaine, réduisant le temps de traitement de 75%.</li><li>Product-Market Fit (25%) | Score: 92/100: Les témoignages de clients comme Deloitte et Sodexo valident la capacité à traiter des volumes massifs sans friction.</li><li>Scalabilité (25%) | Score: 85/100: Architecture Cloud native parfaitement intégrée aux ERP majeurs (SAP, Oracle, Microsoft Dynamics).</li><li>IP &amp; Barrières (25%) | Score: 85/100: La base de données de conformité fiscale sur 130 pays constitue un fossé défensif majeur difficile à répliquer rapidement.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 MODÈLE D'AFFAIRES (15%) | Score: 85/100</span><br/>
+Modèle SaaS ultra-optimisé pour la rétention et l'expansion.<br/>
+<ul><li>Unit Economics (25%) | Score: 88/100: La Fair Billing Policy (paiement uniquement pour les utilisateurs actifs) génère une confiance client et une expansion virale.</li><li>Revenue Model (25%) | Score: 85/100: Revenus 100% récurrents avec un mix de licences et d'add-ons (cartes, AP, controlling services).</li><li>Monétisation (25%) | Score: 82/100: Opportunité forte de cross-sell via l'intégration de Semine et les services de cartes virtuelles.</li><li>Capital Efficiency (25%) | Score: 85/100: Soutien majoritaire d'Eurazeo (35Md€ d'actifs) garantissant une solidité financière sans le risque de burn effréné des startups early-stage.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; CROISSANCE (20%) | Score: 92/100</span><br/>
+Accélération nette via croissance externe et consolidation.<br/>
+<ul><li>Croissance du Revenu (25%) | Score: 90/100: Forte vélocité confirmée par le passage sous le contrôle d'Eurazeo, signal d'une rentabilité ou d'une hyper-croissance maîtrisée.</li><li>Validation Client (25%) | Score: 95/100: Portefeuille clients impressionnant (Burger King, Swiss, TVH) validant l'usage en milieu extrêmement réglementé.</li><li>Progression KPI (25%) | Score: 90/100: Expansion de l'effectif et rachat de concurrents (Semine) démontrant une exécution à haute vélocité.</li><li>Pénétration Marché (25%) | Score: 93/100: Présence globale incontestable, Rydoo est l'un des rares acteurs européens capables de servir un client sur tous les continents.</li></ul>
+<br/>
+─────────────────────────────────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISQUE À COUVRIR :</span><br/>
+L'hypothèse critique est que Rydoo puisse intégrer Semine sans diluer sa marge opérationnelle ni complexifier son UX pour devenir un outil AP lourd. Ce pari sur l'unification des workflows AP et dépenses sera validé ou invalidé par le taux de churn des 18 prochains mois lors de la migration des clients vers la plateforme unifiée.<br/>
+<br/>
+Ce risque est résolvable par une diligence approfondie sur les métriques d'adoption du module AP par la base installée actuelle de Rydoo.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ AVANTAGES COMPÉTITIFS CLÉS :</span><br/>
+<ul><li>Expertise Conformité Globale : Gestion native des réglementations fiscales et des Per Diem dans plus de 130 pays, un obstacle majeur pour les nouveaux entrants.</li><li>Smart Audit IA : Automatisation du contrôle des dépenses à 95%, réduisant drastiquement le coût opérationnel des services financiers.</li><li>Politique de Facturation Équitable : Le modèle pay-per-active-user élimine la friction lors du déploiement à l'échelle de l'entreprise.</li><li>Synergie AP/Expenses : L'intégration de Semine permet de capturer l'ensemble des flux de trésorerie sortants, devenant le système de record unique.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 MOAT :</span> FORT<br/>
+Le moat primaire est constitué par des coûts de changement (Switching Costs) élevés dus à l'intégration profonde dans les ERP et les processus RH/fiscaux des multinationales. Plus l'entreprise déploie Rydoo dans de nouvelles géographies, plus la dépendance aux flux de conformité configurés s'intensifie, créant une inertie structurante. La couche secondaire de défense réside dans l'effet de réseau de données de l'IA Smart Audit, dont la précision s'améliore avec chaque transaction auditée sur la plateforme.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ PARI ASYMÉTRIQUE</span><br/>
+<ul><li>Le Cas Haussier (Bull Case) : Rydoo devient le SAP Concur Killer en dominant le marché européen et asiatique par une meilleure UX et une IA supérieure, forçant les grands groupes à abandonner leurs outils legacy pour une plateforme de gestion des coûts unifiée (Invoices + Expenses).</li><li>Le Cas Baissier (Bear Case) : La commoditisation des frais professionnels par les banques (Qonto, Revolut Business) et les néo-banques de spend (Spendesk, Pleo) réduit Rydoo à un outil de niche pour quelques secteurs très réglementés, limitant sa croissance organique.</li></ul>
+<br/>
+<span style="font-weight:bold;">🚩 SIGNAUX D'ALERTE</span><br/>
+<ul><li>Risques Universels : L'intégration technologique de l'acquisition Semine (2025) pourrait ralentir la roadmap du produit principal pendant plusieurs trimestres.</li><li>Inadéquation à la Thèse : Rydoo est désormais une cible PE (Private Equity) avancée, ce qui pourrait ne pas correspondre à une thèse axée sur l'amorçage ou le early-stage pur.</li></ul>
+<br/>
+<br/>
+<ul><li><span style="font-weight:bold;">DONNÉES MANQUANTES :</span> Marges nettes exactes post-acquisition Semine • Pipeline actuel de M&amp;A.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/PAD1H4w4AXqz2jZpGH4_TQ/IcMfYWVln7tjeg94eXphmPxK1XO1BJsD-3ts9afg7qBGLdTZyUNP8Hur-s9Uvyrwcpg_iXNYg8ixfytaSgzUMyd0u1cQLhr8LcRbO3lH30rtGUMi_XAWRJien5gX5Rsk-XOG1Mmjxay0Df1_Vpa0LQ/DwnKSCtHrlI9MX55txHzyu3Fr2GGf57qXkyrPwLf6I0"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>Rydoo a été acquise par Sodexo après sa cofondation par Wim Derkinderen, prouvant sa capacité à scaler une plateforme de gestion des dépenses.</li><li>Eurazeo détient la majorité des parts depuis juin 2024, injectant des capitaux pour accélérer la croissance européenne.</li><li>L'acquisition de Semine en 2025 intègre l'automatisation IA des comptes fournisseurs à la gestion des notes de frais.</li><li>La plateforme offre un OCR à 95% de précision et un audit IA, multipliant l'efficacité des équipes financières par quatre.</li><li>Des clients comme Sodexo, Deloitte et Burger King valident l'adoption par des multinationales dans 130 pays.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>La cession de l'unité Travel à CDS Groupe en 2022 révèle un recentrage stratégique imposé par les investisseurs PE.</li><li>Wim Derkinderen, cofondateur clé, n'est plus CEO, avec une équipe de direction récente manquant de continuité fondatrice.</li><li>Dépendance aux fonds PE comme Eurazeo et Marlin, priorisant les sorties rapides sur l'innovation durable.</li><li>Scores de leadership du fondateur à 80/100, suggérant une focalisation sur l'exécution personnelle plutôt que sur les équipes.</li><li>Absence de signaux académiques d'élite, limitant l'attrait auprès d'investisseurs institutionnels premium.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li>Le marché européen du spend management croît avec la consolidation, favorisant des acquisitions comme Semine.</li><li>Intégrations avec 35 outils ERP et finance capturent les flux end-to-end des multinationales.</li><li>L'IA pour détection de fraude et conformité fiscale répond à la réglementation UE croissante.</li><li>Politique de facturation équitable attire les entreprises sensibles aux coûts post-ralentissement économique.</li><li>Expansion nordique via Semine et présence multilingue cible les PME en croissance rapide.</li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>Concurrence de géants comme SAP Concur et Expensify avec budgets marketing supérieurs.</li><li>Ralentissement économique réduit les dépenses voyages, cœur du modèle T&amp;E de Rydoo.</li><li>Risques d'intégration ratée de Semine diluent les ressources produit.</li><li>Pression des PE pour une sortie accélérée freine les investissements R&amp;D à long terme.</li><li>Évolution réglementaire sur la conformité fiscale en Europe impose des mises à jour coûteuses.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et Méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la Chaîne de Valeur</h3>
+<h3>Sources du Marché</h3>
+DOSSIER D'INTELLIGENCE MARCHÉ - SUIVI DES PREUVES URL
+═══════════════════════════════════════
+Objet : Documentation de support pour l'Analyse d'Attractivité du Marché
+Marché : Spend Management SaaS
+Complétude des Données : 80/100
+Évaluation : 🟢 SUFFICIENT FOR INVESTMENT DECISION
+Calcul : (12 URLs trouvées ÷ 15 URLs recherchées) × 100 = 80%
+═══════════════════════════════════════
+
+PREUVES URL PAR CATÉGORIE
+<ul><li>MARCHÉ ATTRACTIF (Found 3/4): Rapports <a href="https://www.gartner.com">Gartner</a>/<a href="https://www.idc.com">IDC</a> sur le Spend Management. Utilisé pour les prévisions CAGR.</li><li>MARCHÉ GAGNABLE (Found 3/4): <a href="https://www.g2.com">G2 Crowd</a>, <a href="https://www.capterra.com">Capterra</a> Competitive Landscapes. Utilisé pour comparer Concur vs Rydoo.</li><li>MARCHÉ PÉNÉTRABLE (Found 3/4): Communiqués de presse Semine/Rydoo. Utilisé pour le GTM unifié.</li><li>MARCHÉ RÉCOMPENSANT (Found 3/4): <a href="https://www.dealroom.co">Dealroom</a>, <a href="https://www.eurazeo.com">Eurazeo Press</a>. Utilisé pour les multiples de sortie.</li></ul>
+
+ANALYSE DE COMPLÉTUDE
+Données manquantes : Benchmarks de rétention brute (Gross Churn) spécifiques par région.
+Niveau de confiance : MEDIUM/HIGH
+<h3>Sources de l'Entreprise</h3>
+DOSSIER D'INTELLIGENCE DE L'ENTREPRISE - SUIVI DES PREUVES URL
+═══════════════════════════════════════
+Objet : Documentation de support pour le Score d'Investissement
+Entreprise : Rydoo
+Complétude des Données : 85/100
+Évaluation : 🟢 SUFFICIENT DATA FOR A FIRST LOOK
+Calcul : (17 URLs trouvées ÷ 20 URLs recherchées) × 100 = 85%
+═══════════════════════════════════════
+
+PREUVES URL PAR CATÉGORIE
+<ul><li>EXCELLENCE DE L'ÉQUIPE (Found 4/4): LinkedIn de <a href="https://www.linkedin.com/in/wim-derkinderen-5014b8a">Wim Derkinderen</a> &amp; Sebastian Marchon.</li><li>OPPORTUNITÉ DE MARCHÉ (Found 4/4): Communiqués <a href="https://www.eurazeo.com">Eurazeo</a>. Utilisé pour la taille du marché et la stratégie PE.</li><li>INNOVATION PRODUIT (Found 3/4): <a href="https://www.rydoo.com/product">rydoo.com/product</a>. Utilisé pour le Smart Audit et les intégrations API.</li><li>MODÈLE D'AFFAIRES (Found 3/4): <a href="https://www.rydoo.com/pricing">rydoo.com/pricing</a>. Utilisé pour la Fair Billing Policy.</li><li>TRACTION &amp; CROISSANCE (Found 3/4): Newsroom Eurazeo/Semine. Utilisé pour la vélocité M&amp;A.</li></ul>
+
+ANALYSE DE COMPLÉTUDE
+Points manquants : Détails précis de l'actionnariat minoritaire de Marlin après réinvestissement.
+Niveau de confiance : HIGH
+</div>
+</div>
+<div class="ppx-cta"><h3>Explore Rydoo further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script></body></html>

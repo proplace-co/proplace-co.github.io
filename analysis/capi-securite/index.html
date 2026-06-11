@@ -1,0 +1,692 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CAPI Sécurité — analyse Exited (Acquired / Buyout) | Proplace</title><meta name="description" content="The Physical World · Fournisseur Régional de Services de Sécurité · Exited (Acquired / Buyout)"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/capi-securite/"><meta property="og:type" content="article"><meta property="og:title" content="CAPI Sécurité — analyse Exited (Acquired / Buyout) | Proplace"><meta property="og:description" content="The Physical World · Fournisseur Régional de Services de Sécurité · Exited (Acquired / Buyout)"><meta property="og:url" content="https://proplace.co/analysis/capi-securite/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "CAPI Sécurité — Exited (Acquired / Buyout)", "description": "The Physical World · Fournisseur Régional de Services de Sécurité · Exited (Acquired / Buyout)", "inLanguage": "fr", "url": "https://proplace.co/analysis/capi-securite/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/capi-securite/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "CAPI Sécurité"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">CAPI Sécurité</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "CAPI Sécurité"}]}</script></div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Exited (Acquired / Buyout)</span>
+<span class="sb-tag">The Physical World</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">CAPI Sécurité</h1>
+<span class="sidebar-tagline">The Physical World · Fournisseur Régional de Services de Sécurité · Exited (Acquired / Buyout)</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Un acteur global de la sécurité reconnu dans l'Est de la France offrant une expertise complète.</p>
+<div class="contact-row">
+<a href="https://capi-securite.fr/" target="_blank"><i class="fas fa-globe"></i> Site web</a>
+<a href="https://fr.linkedin.com/in/pierre-fichter-ba79b2126" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<a href="mailto:fichter@capi-securite.fr"><i class="fas fa-envelope"></i> fichter@capi-securite.fr</a>
+</div>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du Marché</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de Valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle Économique</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="sb-legend-wrap">
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Données du marché</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Données d'entreprise</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#a898c0;display:inline-block;flex-shrink:0;border:1px solid #8878a0;"></span><span></span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; raisonnement</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; méthodologie</span></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorez CAPI Sécurité davantage?</h3>
+<a class="btn btn-secondary" href="http://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur CAPI Sécurité</a>
+</div>
+<div class="divider"></div>
+
+
+<div class="section">
+<h3>Vous voulez suivre notre deal flow?</h3>
+<p class="meta-desc">Recevez chaque jour des startups européennes que nous évaluons sous l'angle VC.</p>
+<a class="btn btn-primary" href="https://77f02b89.sibforms.com/serve/MUIFAMr0ADjDfIUWLc56STos70j4OXPiOTJqugyAa45YfGyt9zW6Tokz3iXWLNiTAw6oxjbrMnjs424k46IvwOQlWjaMIsbgexAk95FvzrzgLa56TkHas6WASK4VKs684XcZhacqMYTYQGuIfzJmBmCkmHwhNeB0yHifmrxC1PUhNMS1ZbiW1xF18IZy7tJP9BIWjDcM5VoH6VEVCw==" target="_blank">S'abonner au deal flow</a>
+</div>
+<div class="section">
+<h3>Vous voulez un deal flow propriétaire?</h3>
+<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="http://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+</div>
+<div class="sidebar-logo-wrap">
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">CAPI Sécurité</h1>
+<h2 class="subtitle-category">The Physical World ➜ Fournisseur Régional de Services de Sécurité ➜ Installation et maintenance de systèmes de sécurité électronique (alarme, contrôle d'accès, télésurveillance) pour le marché résidentiel et commercial de la région Grand Est.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="CAPI Sécurité" data-h="" data-i="Exited (Acquired / Buyout)" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/capi-securite/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="market-summary">
+<h2 class="section-title">Résumé du Marché</h2>
+<div class="split-container">
+<div class="text-col">
+<h4>SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>Cybersecurity &gt; Fournisseur Régional de Services de Sécurité<br/>B2B &gt; Abonnement</p>
+<p>EST-CE UN MARCHÉ ATTRACTIF ? (Dynamiques) : 60/100 × 25% = 15 points<br/>EST-CE UN MARCHÉ GAGNABLE ? (Concurrence) : 75/100 × 25% = 18.75 points<br/>EST-CE UN MARCHÉ PÉNÉTRABLE ? (GTM) : 70/100 × 25% = 17.5 points<br/>EST-CE UN MARCHÉ RÉMUNÉRATEUR ? (Sorties) : 80/100 × 25% = 20 points</p>
+<h4>SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ : 71/100</h4>
+<p>Ce score indique que le marché représente un facteur neutre à positif, mais uniquement pour une thèse d'acquisition stratégique ; il serait un vent contraire pour une thèse de capital-risque traditionnelle.</p>
+<h4>❓ DÉFINITION du Marché</h4>
+<p>Installation et maintenance de systèmes de sécurité électronique (alarme, contrôle d'accès, télésurveillance) pour le marché résidentiel et commercial de la région Grand Est. ➜ L'acheteur est un propriétaire (entreprise ou particulier) dans une géographie définie qui achète la tranquillité d'esprit via un service d'installation et de maintenance de sécurité fiable. Le frottement structurel du marché est le compromis forcé entre les offres standardisées et impersonnelles des géants nationaux et le manque de fiabilité ou de sophistication technique des artisans locaux. Positionnée en aval de la chaîne de valeur, cette industrie intègre du matériel de fabricants (ex: Daitem) pour vendre un service complet, capturant sa marge sur l'expertise de l'intégration et la fidélité générée par la maintenance récurrente.</p>
+<h4>💬 Notre THÈSE de Marché</h4>
+<p>Le besoin accru de solutions de sécurité intégrées et connectées représente une rupture structurelle, dépassant les compétences des électriciens traditionnels. Les grands acteurs nationaux, optimisés pour un volume élevé et un service client léger, sont paralysés par leur modèle économique ; ils ne peuvent offrir un service local premium sans cannibaliser leurs marges et leur structure de coûts. L'angle d'attaque pour un nouvel entrant est donc la 'densité locale' : dominer une zone géographique limitée en offrant un service client supérieur, créant ainsi une forteresse de réputation et d'efficacité opérationnelle. Cette fenêtre d'opportunité existe tant que la technologie n'évolue pas vers une simplicité 'plug-and-play' qui annulerait la valeur de l'installateur, ou tant qu'un acteur national ne lance pas une sous-marque crédible dédiée au service premium local.</p>
+<h4>🧠 Notre CONVICTION &amp; PARI sur ce Marché :</h4>
+<p><b>🟡 CONVICTION MOYENNE</b></p>
+<p>La tension la plus honnête est que nous parions sur un marché de services à faible croissance et à forte intensité de main-d'œuvre, un anathème pour le capital-risque, mais nous pensons que c'est précisément là que se cachent des revenus récurrents très défendables. Notre pari falsifiable est que, dans les trois prochaines années, les clients de ce segment continueront à payer une prime d'au moins 20 % pour un service local réactif par rapport aux offres à bas prix des acteurs nationaux, maintenant ainsi des marges brutes élevées sur les contrats de service. La question décisive lors du premier appel serait : 'Quel est votre écart de prix par rapport à Verisure pour une installation comparable, et sur 10 clients qui ont un devis des deux, combien vous choisissent et pour quelle raison principale invoquée ?'</p>
+<h4>🌊 MARCHÉ ATTRACTIF (Dynamiques du marché) | Score: 60/100</h4>
+<p>Un score de 60 signifie que le marché est stable et prévisible plutôt que vaste et en croissance rapide, ce qui réduit le risque de demande mais plafonne également le potentiel de hausse exponentielle.</p>
+<ul><li><b>Taille du Marché (25%) | Score: 50/100:</b> Le marché adressable est limité à la région Grand Est, ce qui en fait un marché de niche plutôt qu'un TAM de plusieurs milliards, adapté à un leader local mais pas à une licorne.</li><li><b>Moteurs de Croissance (25%) | Score: 65/100:</b> La croissance est tirée par des facteurs macroéconomiques stables comme les nouvelles constructions, les rénovations et une perception générale croissante de l'insécurité, plutôt que par une vague technologique.</li><li><b>Le Bon Moment (25%) | Score: 60/100:</b> C'est un marché persistant sans 'moment' de rupture clair, ce qui signifie que l'opportunité est continue mais ne bénéficie pas d'un sentiment d'urgence catalyseur.</li><li><b>Risques du Marché (25%) | Score: 55/100:</b> Les principaux risques sont la saturation par les acteurs nationaux à bas prix et la banalisation de la technologie, qui pourraient à terme comprimer les prix et les marges.</li></ul>
+<h4>⚔️ MARCHÉ GAGNABLE (Paysage concurrentiel) | Score: 75/100</h4>
+<p>Ce score élevé indique que malgré la présence de géants, une stratégie de différenciation claire (service local) permet de se tailler une part de marché défendable.</p>
+<ul><li><b>Acteurs en Place (25%) | Score: 70/100:</b> Les acteurs historiques comme Verisure et Securitas Direct dominent en volume grâce à leur marque et leur distribution, mais leur force est aussi leur faiblesse (service impersonnel).</li><li><b>Challengers (25%) | Score: 60/100:</b> Les concurrents sont principalement d'autres PME et artisans locaux, créant un paysage fragmenté propice à la consolidation par l'acteur le plus professionnel.</li><li><b>Espace Libre (25%) | Score: 85/100:</b> L'opportunité réside clairement dans le segment des clients (B2B et B2C haut de gamme) qui sont prêts à payer plus cher pour un service d'installation et de maintenance irréprochable et local.</li><li><b>Défendabilité (25%) | Score: 80/100:</b> Le fossé concurrentiel principal est la marque locale et les coûts de changement, renforcés par la puissance des processus, créant une barrière solide contre les nouveaux entrants dans une zone donnée.</li></ul>
+<h4>🎯 MARCHÉ PÉNÉTRABLE (Go-to-Market &amp; Économie Unitaire) | Score: 70/100</h4>
+<p>Ce score suggère que l'acquisition de clients est réalisable avec une bonne économie unitaire, mais que la mise à l'échelle du modèle GTM est le principal défi structurel.</p>
+<ul><li><b>Modèle GTM (25%) | Score: 70/100:</b> Le modèle dominant est la vente directe et consultative, avec des cycles de vente relativement courts, mais il est à forte intensité de main-d'œuvre et difficile à scaler rapidement.</li><li><b>Modèle de Tarification (25%) | Score: 80/100:</b> Le standard de l'industrie est un mix de frais d'installation uniques et d'abonnements mensuels récurrents (ARR), un modèle très attractif pour la valorisation.</li><li><b>Économie Unitaire (25%) | Score: 60/100:</b> Bien que les données manquent, la forte fidélité suggère un LTV élevé, mais le CAC basé sur la vente directe est probablement significatif, nécessitant une discipline stricte.</li><li><b>Scalabilité (25%) | Score: 50/100:</b> L'expansion géographique est le principal levier de croissance, mais elle est coûteuse et complexe car elle nécessite de recréer localement la densité opérationnelle et la réputation.</li></ul>
+<h4>💰 MARCHÉ RÉMUNÉRATEUR (Financement &amp; Sortie) | Score: 80/100</h4>
+<p>Ce score élevé indique que bien que ce ne soit pas un marché pour les IPOs, il existe une voie de liquidité très claire et crédible via l'acquisition par des acteurs stratégiques.</p>
+<ul><li><b>Activité de Financement (25%) | Score: 20/100:</b> L'activité de capital-risque dans ce segment est quasi nulle ; le financement est traditionnellement assuré par la dette ou les fonds propres des fondateurs.</li><li><b>Multiples de Sortie (25%) | Score: 80/100:</b> Les sorties se font via des acquisitions où les multiples sont basés sur l'EBITDA et la qualité du revenu récurrent (ARR), et peuvent être attractifs pour des entreprises bien gérées.</li><li><b>Acheteurs Stratégiques (25%) | Score: 90/100:</b></li><li><b>Profil de Rendement (25%) | Score: 80/100:</b> Ce marché produit des entreprises rentables avec des flux de trésorerie stables, correspondant parfaitement au profil de rendement recherché par un acquéreur stratégique, plutôt qu'à la croissance explosive attendue par un VC.</li></ul>
+<h4>⚡ SYNTHÈSE CROISÉE :</h4>
+<p>La combinaison d'un marché moyennement attractif, mais très gagnable et rémunérateur (pour un acquéreur) signale un marché de 'roll-up' classique. Le succès ne viendra pas d'une innovation de rupture, mais d'une excellence opérationnelle implacable pour atteindre une domination locale, en vue d'une vente stratégique.</p>
+<h4>🌐 FIABILITÉ DES DONNÉES :</h4>
+<p>Les données sur les dynamiques générales du marché (concurrence, modèles économiques) sont fiables, mais les données spécifiques à la région (taille, croissance, économie unitaire) sont très limitées et nécessiteraient une recherche primaire. Total des URL sourcées : 5.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-f59e27b30c04c296402b095c7446b3f8-7zbknbjs.jpg"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title">Analyse Approfondie de l'Entreprise</h2>
+<div class="split-container">
+<div class="text-col">
+<h3 id="value-proposition">Proposition de Valeur</h3>
+<div class="text-block"><b>Proposition de Valeur:</b><br/> Un acteur global de la sécurité reconnu dans l'Est de la France offrant une expertise complète allant de l'analyse sur site à l'installation et la maintenance de solutions de protection.<br/><br/><b>Profil Client Idéal (ICP):</b><br/> Propriétaires de maisons individuelles, entreprises, commerces, entrepôts, bureaux, industries, hôpitaux, et établissements publics/scolaires.<br/><br/><b>B2B ou B2C:</b><br/> Les deux (B2B/B2C). L'entreprise sécurise aussi bien les locaux privés que les infrastructures professionnelles complexes.<br/><br/><b>Industrie:</b><br/> Sécurité électronique et surveillance.<br/><br/><b>Contact &amp; Légal:</b><br/> Téléphone: 03 89 69 7000 | Site web: www.capi-securite.fr | Implantations: Saint-Louis, Mulhouse, Strasbourg | Entité: CAPI Sécurité.<br/><br/><b>Exemples de Clients Clés &amp; Témoignages:</b><br/> Interventions dans tout l'Est de la France pour divers secteurs (scolaire, industrie, médical). Partenariat mentionné avec la marque Daitem.<br/></div>
+<h3 id="product">Produit</h3>
+<div class="text-block"><b>Solution Principale:</b><br/> Systèmes d'alarme connectés, télésurveillance et contrôle d'accès.<br/><br/><b>Encyclopédie des Fonctionnalités:</b><br/> Détection d'intrusion | Télésurveillance | Gestion des flux de personnes | Contrôle d'accès via logiciel | Systèmes d'alarme haute sécurité NF@A2P Cyber | Sirènes connectées.<br/><br/><b>Capacités Techniques:</b><br/> Systèmes 100% autonomes | Connectivité smartphone | Gestion informatique avancée des incidents | Solutions de cybersécurité intégrées | Matériel certifié français (Daitem).<br/><br/><b>Cas d'Utilisation:</b><br/> Protection contre le vol et le vandalisme | Gestion des accès parkings et bureaux | Modernisation d'anciennes installations d'alarme.<br/></div>
+<h3 id="business-model">Modèle d'Affaires</h3>
+<div class="text-block"><b>Analyse du Modèle d'Affaires:</b><br/> Vente d'équipement, installation et contrats de maintenance (SaaS/Abonnement pour la surveillance).<br/><br/><b>Flux de Revenus &amp; Niveaux de Tarification:</b><br/> Contrats d'entretien déclinés en trois gammes : Silver, Gold et Platinium. Offres promotionnelles ponctuelles (Offre de reprise avec centrale sirène offerte).<br/><br/><b>Caractéristiques des Plans:</b><br/> Silver/Gold/Platinium incluent différents niveaux de support H24/365J, assistance en ligne, mises à jour et formation des utilisateurs.<br/><br/><b>Coûts Cachés &amp; Conditions:</b><br/> Données non disponibles dans la source.<br/></div>
+<h3 id="team">Équipe</h3>
+<div class="text-block"><b>Culture d'Entreprise:</b><br/> Basée sur l'expertise, la réactivité, l'écoute et le conseil. Importance accordée à la formation continue et à la disponibilité 24h/24.<br/><br/><b>Analyse de l'Équipe:</b><br/> Experts en sécurité pour analyses sur site et techniciens spécialisés en SAV disposant d'une forte expérience. Fondateur: Pierre Fichter, Président-directeur général depuis 2004.<br/><br/><b>Offres d'Emploi &amp; Titres:</b><br/> Données non disponibles dans la source.<br/><br/><b>Effectif Estimé:</b><br/> Basé sur les données d'entrée/emplois trouvés, fournir une estimation calculée ou 'Inconnu' pour ces départements spécifiques:<br/>Produit &amp; Ingénierie: Inconnu<br/>Marketing: Inconnu<br/>Ventes: Inconnu<br/>Support &amp; IT: Inconnu<br/>Général &amp; Admin (G&amp;A): Inconnu<br/></div>
+<h3 id="ceo">CEO</h3>
+<div class="text-block"><b>EXECUTIVE ASSESSMENT</b><br/><ul><li> Fondateur-Opérateur Spécialiste de la Sécurité</li><li><span style="font-weight:bold;"></span> Entreprise de petite taille, centrée sur une niche locale.</li><li><span style="font-weight:bold;">Loyalty &amp; Tenure:</span> Très haute loyauté et tenure de plus de 20 ans, démontrant un engagement profond et à long terme envers son entreprise.</li><li><span style="font-weight:bold;">Commercial Fit:</span> Ajustement commercial parfait, car il est le fondateur et PDG de la seule entreprise mentionnée, entièrement dé-risquée par sa direction.</li></ul><br/><br/><b>PROFESSIONAL NARRATIVE</b><br/>Pierre Fichter est un entrepreneur de longue date, ayant fondé et dirigé CAPI Sécurité en tant que Président-directeur général depuis 2004. Son parcours professionnel est entièrement dédié à la croissance et à la pérennité de cette entreprise dans le secteur de la sécurité, localisée dans le Grand Est de la France. Cette tenure exceptionnellement longue, s'étendant sur plus de deux décennies, met en lumière une concentration inébranlable et une dévotion singulière à une seule entité commerciale. Il incarne le dirigeant qui bâtit et pilote son entreprise sur le long terme, sans diversification apparente de carrière.<br/><br/><br/><b>DETAILED CAREER TIMELINE</b><br/><ul><li>2004 – Present | CAPI Sécurité</li><li><span style="font-weight:bold;">Role:</span> Président-directeur général</li><li><span style="font-weight:bold;">Focus:</span> Direction stratégique, gestion opérationnelle, développement commercial et supervision de toutes les activités de l'entreprise de sécurité.</li></ul><br/><br/><b>ACADEMIC BACKGROUND</b><br/><ul><li>Aucune information disponible</li></ul><br/><br/>•Summary Assessment: Cette combinaison de scores dépeint un fondateur extrêmement résilient et discipliné, doté d'une forte confiance en soi et d'une vision claire pour son entreprise. Pierre Fichter est dangereux par sa persévérance inébranlable et sa capacité à maintenir le cap sur le long terme. Son point fort est sa capacité à bâtir et à faire perdurer une entreprise sur des décennies, sans se laisser distraire. Son principal point faible réside potentiellement dans l'absence d'informations sur sa capacité à "multiplier" au-delà d'une certaine taille, son profil étant très centré sur une unique entreprise non à la pointe de l'innovation rapide. Pour une croissance future significative, il pourrait bénéficier de profils complémentaires apportant une expertise dans la diversification des marchés, l'innovation technologique à grande échelle, ou le développement d'une marque employeur forte pour attirer des talents dans un marché plus large. Il aurait besoin de co-fondateurs ou d'exécutifs qui apportent une vision de l'expansion rapide et une capacité à structurer des équipes de grande envergure, car son profil est celui d'un bâtisseur solide mais centré.</div>
+<h3 id="company-summary">Résumé de l'Entreprise</h3>
+<ul><li>Cybersecurity &gt; Fournisseur Régional de Services de Sécurité</li><li>B2B &gt; Abonnement</li></ul>
+<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION</span><br/><br/>
+<br/>
+NOTE : Il s'agit d'un score brut de pré-sélection. Les pondérations de la thèse sont appliquées<br/>
+dans le pipeline de qualification synthétique du GP après la détection de l'angle.<br/>
+<br/>
+═════════════════════<br/>
+<span style="font-weight:bold;">EXCELLENCE DE L'ÉQUIPE : 85/100</span><br/>
+<span style="font-weight:bold;">OPPORTUNITÉ DE MARCHÉ : 65/100</span><br/>
+<span style="font-weight:bold;">INNOVATION PRODUIT : 50/100</span><br/>
+<span style="font-weight:bold;">MODÈLE ÉCONOMIQUE : 80/100</span><br/>
+<span style="font-weight:bold;">TRACTION &amp; CROISSANCE : 60/100</span><br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION :</span> 68/100 → 🔵 SIGNAL FAIBLE<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">❓ EN BREF :</span> CAPI Sécurité est un fournisseur de services de sécurité régional qui permet aux entreprises et aux propriétaires de la région Grand Est de protéger leurs biens en offrant une solution complète d'installation et de maintenance avec un support local et réactif.<br/>
+<br/>
+<span style="font-weight:bold;">⚠️ LE PROBLÈME :</span> Les propriétaires de la région Grand Est ont besoin de systèmes de sécurité fiables mais sont confrontés à un marché fragmenté d'installateurs à la qualité variable ou à des acteurs nationaux manquant de réactivité locale.<br/>
+<br/>
+<span style="font-weight:bold;">✅ LA SOLUTION :</span> CAPI Sécurité fournit des systèmes de sécurité certifiés (alarmes, contrôle d'accès) combinés à une équipe de service locale et très réactive, disponible 24/7 pour l'installation, la maintenance et le dépannage.<br/>
+<br/>
+<span style="font-weight:bold;">🚀 LE GTM :</span> L'entreprise utilise une approche de vente directe ciblant les clients résidentiels et commerciaux dans sa zone géographique (Grand Est), en capitalisant sur sa réputation locale, son expertise technique et la fiabilité de son service pour gagner des parts de marché.<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 EXCELLENCE DE L'ÉQUIPE (non pondéré %) | Score: 85/100</span><br/>
+L'équipe est dirigée par un fondateur-opérateur profondément engagé, ce qui est un signal fort de stabilité et de discipline opérationnelle, parfaitement aligné avec une thèse d'acquisition stratégique.<br/>
+<ul><li>son 'secret acquis' est la compréhension profonde que dans ce secteur, la confiance et la réactivité du service local priment sur la simple technologie.</li><li>Bilan (25%) | Score: 80/100: Son historique est la création et la pérennisation d'une seule entreprise sur deux décennies, une preuve de résilience et de gestion saine plutôt que d'exits multiples.</li><li>Leadership (25%) | Score: 70/100: Le leadership pour maintenir une entreprise viable pendant 20 ans est évident, bien que la visibilité sur l'équipe de direction élargie soit limitée, ce qui suggère une structure centrée sur le fondateur.</li><li>Complétude (25%) | Score: 20/100: Les informations publiques sur l'équipe au-delà du PDG sont quasi inexistantes, indiquant un risque potentiel de dépendance excessive envers le dirigeant (key-man risk).</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 OPPORTUNITÉ DE MARCHÉ (non pondéré %) | Score: 65/100</span><br/>
+Le marché est mature et géographiquement limité, ce qui le rend peu attractif pour un VC, mais sa stabilité et sa fragmentation en font une cible de consolidation idéale pour un acteur stratégique.<br/>
+<ul><li>Taille &amp; Croissance (25%) | Score: 50/100: Le marché de l'installation de systèmes de sécurité dans le Grand Est est un marché de niche, mature, avec une croissance organique lente, et non un marché au TAM de plusieurs milliards.</li><li>Le Bon Moment (25%) | Score: 60/100: Le 'pourquoi maintenant' n'est pas lié à un catalyseur de rupture, mais à un besoin constant de sécurité, ce qui assure une demande stable et prévisible, idéale pour un acquéreur.</li><li>Concurrence (25%) | Score: 70/100: CAPI Sécurité est bien positionné face aux acteurs nationaux grâce à son service local et face aux petits artisans par son expertise et ses certifications, lui conférant une position défendable.</li><li>Expansion (25%) | Score: 50/100: Le potentiel de croissance réside dans la consolidation régionale ou l'expansion dans des services adjacents, plutôt que dans une expansion internationale rapide, limitée par le modèle à forte intensité de service.</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 INNOVATION PRODUIT (non pondéré %) | Score: 50/100</span><br/>
+L'innovation réside dans le modèle de service et non dans la technologie propriétaire, en s'appuyant sur des partenaires matériels de premier plan pour garantir la qualité.<br/>
+<ul><li>Différenciation (25%) | Score: 60/100: La différenciation clé est le service client 24/7 et l'expertise locale, pas des fonctionnalités uniques; ils s'appuient sur la technologie éprouvée de partenaires comme Daitem.</li><li>Adéquation Produit-Marché (25%) | Score: 80/100: Une activité de plus de 20 ans avec une base de clients B2B et B2C démontre une adéquation produit-marché exceptionnellement forte et dé-risquée.</li><li>Scalabilité (25%) | Score: 30/100: Le modèle de service à haute intensité humaine limite intrinsèquement la scalabilité. La croissance est linéaire par rapport aux effectifs, pas exponentielle.</li><li>Propriété Intellectuelle &amp; Barrières (25%) | Score: 30/100: Pas de PI propriétaire sur la technologie, mais des barrières à l'entrée via des certifications clés (NF@A2P Cyber) et une réputation locale difficile à répliquer.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 MODÈLE ÉCONOMIQUE (non pondéré %) | Score: 80/100</span><br/>
+Le modèle hybride vente/abonnement est éprouvé, dé-risqué et génère des revenus récurrents, ce qui est très attractif pour un acquéreur stratégique.<br/>
+<ul><li>Économie Unitaire (25%) | Score: 70/100: Le modèle de contrat de maintenance à trois niveaux (Silver, Gold, Platinium) suggère une stratégie de prix réfléchie, bien que les chiffres précis soient inconnus.</li><li>Modèle de Revenus (25%) | Score: 90/100: Le flux de revenus récurrents provenant des contrats de maintenance et de télésurveillance est le joyau du modèle, offrant prévisibilité et rentabilité à long terme.</li><li>Monétisation (25%) | Score: 80/100: Des parcours de monétisation clairs avec des offres de mise à niveau et des promotions ponctuelles (offre de reprise) montrent une approche commerciale active.</li><li>Efficacité du Capital (25%) | Score: 100/100: L'entreprise est en activité depuis plus de 20 ans sans financement externe apparent, ce qui témoigne d'une efficacité capitalistique et d'une rentabilité exceptionnelles.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; CROISSANCE (non pondéré %) | Score: 60/100</span><br/>
+La traction se mesure par la longévité et la survie, pas par une croissance explosive, ce qui correspond à une entreprise stable plutôt qu'à une startup en hyper-croissance.<br/>
+<ul><li>Croissance des Revenus (25%) | Score: 0/100: Données indisponibles. La croissance est probablement modeste et organique, mais sans chiffres, il est impossible de l'évaluer.</li><li>Validation Client (25%) | Score: 80/100: Vingt ans d'existence et des clients dans les secteurs industriel, médical et scolaire dans tout l'Est de la France constituent une forte validation par le marché.</li><li>Progression des KPI (25%) | Score: 50/100: Les signaux publics comme la croissance des effectifs sur LinkedIn (144 followers) sont faibles, mais la permanence de l'entreprise sur 20 ans est un KPI de survie puissant.</li><li>Pénétration du Marché (25%) | Score: 70/100: L'entreprise a atteint une forte pénétration dans sa niche géographique ciblée (Saint-Louis, Mulhouse, Strasbourg), ce qui est une force clé.</li></ul>
+<br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISQUE À ASSUMER :</span><br/>
+L'hypothèse fondamentale est que la valeur de CAPI Sécurité réside dans son modèle opérationnel et sa base de clients fidèles, et non pas uniquement dans le fondateur lui-même. Si l'entreprise ne peut fonctionner efficacement sans l'implication personnelle constante de Pierre Fichter, sa valeur en tant qu'acquisition stratégique s'effondre car le 'système' n'est pas transférable.<br/>
+Ce risque de dépendance excessive envers le dirigeant ne peut être résolu que par une due diligence approfondie sur les processus internes, la délégation de pouvoir et les plans de succession du fondateur.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ PRINCIPAUX AVANTAGES CONCURRENTIELS :</span><br/>
+<ul><li>Ancrage local et réputation : Plus de 20 ans de présence dans le Grand Est ont bâti une marque de confiance quasi-impossible à acheter ou à répliquer rapidement pour un concurrent national.</li><li>Modèle de service à haute valeur ajoutée : Le service de maintenance et de support 24/7 crée une forte dépendance et des coûts de changement élevés pour les clients, protégeant ainsi la base de revenus récurrents.</li><li>Rentabilité et efficacité du capital prouvées : L'entreprise a prospéré pendant deux décennies sans levée de fonds, ce qui indique une discipline opérationnelle rigoureuse et un modèle économique intrinsèquement rentable.</li><li></li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 FOSSÉ CONCURRENTIEL :</span> MODÉRÉ<br/>
+Le principal fossé concurrentiel est basé sur la puissance des processus ('Process Power') et la marque locale, et non sur la technologie. Il se construit en offrant un service d'une fiabilité irréprochable, ce qui génère une fidélité client élevée et un bouche-à-oreille puissant, se traduisant par des coûts de changement élevés dus à la complexité de remplacer un système de sécurité physique intégré. Ce fossé se renforce à mesure que la densité de clients augmente dans la région, créant des efficacités opérationnelles (ex: tournées de maintenance) que les concurrents ne peuvent égaler. La couche secondaire de défense est constituée par les certifications (NF@A2P), qui agissent comme une barrière réglementaire et un signal de qualité face aux concurrents moins rigoureux.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ PARI ASYMÉTRIQUE</span><br/>
+<ul><li>Le Scénario Optimiste :</li></ul><br/>
+<br/>
+<ul><li>Le Scénario Pessimiste :</li></ul>
+L'entreprise est entièrement dépendante de son fondateur, Pierre Fichter ; son départ ou son incapacité à systématiser son savoir-faire entraînerait une chute de la qualité de service, érodant la confiance des clients et laissant CAPI vulnérable à une guerre des prix menée par les acteurs nationaux, anéantissant ainsi sa prime de valeur.<br/>
+<br/>
+<span style="font-weight:bold;">🚩 SIGNAUX D'ALERTE</span><br/>
+<ul><li>Risques Universels : Une dépendance critique envers une seule personne (le fondateur) constitue un risque opérationnel et de succession majeur. Le modèle économique est difficilement scalable au-delà d'une certaine géographie sans dégrader la qualité du service, ce qui limite le potentiel de croissance.</li><li>Inadéquations Spécifiques à la Thèse : Pour une thèse de capital-risque, l'absence de technologie propriétaire, le marché de niche à faible croissance et le manque de scalabilité sont des signaux d'alerte rédhibitoires.</li></ul>
+<br/>
+<span style="font-weight:bold;">📝 KIT DE PRÉPARATION POUR LA PREMIÈRE RÉUNION</span><br/>
+L'analyse positionne CAPI non pas comme un investissement de croissance, mais comme une acquisition stratégique de premier ordre. La première conversation doit donc valider la transférabilité de la valeur de l'entreprise au-delà de son fondateur.<br/>
+<br/>
+<ul><li>Nous parions que le modèle opérationnel de CAPI est suffisamment robuste et systématisé pour être intégré et répliqué, et qu'il n'est pas uniquement dépendant du génie personnel du fondateur.</li></ul>
+<br/>
+<ul><li>Questions Clés pour le Premier Appel :</li></ul>
+<br/>
+- Question 1 — MÉCANIQUE DU GTM :<br/>
+'Votre succès repose sur une qualité de service locale exceptionnelle. Comment avez-vous structuré vos opérations et formé vos équipes pour que cette qualité puisse non seulement perdurer, mais aussi être mise à l'échelle si vous deviez doubler de taille demain, sans que vous soyez personnellement impliqué dans chaque décision critique ?'<br/>
+<br/>
+- Question 2 — L'HYPOTHÈSE CENTRALE :<br/>
+'Vous dirigez CAPI avec un engagement total depuis plus de 20 ans, ce qui est remarquable. Quel est votre horizon personnel pour les cinq prochaines années ? Envisagez-vous de prendre du recul, et si oui, quel plan de transition avez-vous imaginé pour que l'entreprise continue de prospérer ?'<br/>
+<br/>
+- Question 3 — STRESS TEST DES UNIT ECONOMICS :<br/>
+'Pourriez-vous nous indiquer la part de vos revenus annuels provenant des contrats de maintenance récurrents par rapport aux installations uniques, et quel est le taux de résiliation ('churn') annuel moyen sur ces contrats ?'<br/>
+<br/>
+<ul><li>Signal de Go/No-Go pour la Première Réunion :</li></ul>
+Un 'Go' serait une réponse qui décrit clairement un plan de succession et un 'playbook' opérationnel documenté, démontrant que la valeur est dans le 'système' CAPI et pas seulement dans la tête de Pierre Fichter. Un 'No-Go' serait une réponse qui révèle que l'entreprise, c'est lui, sans plan B, et qu'il n'a aucune intention de céder le contrôle opérationnel.<br/>
+<br/>
+<span style="font-weight:bold;">🌐 FIABILITÉ DES DONNÉES :</span> MOYENNE<br/>
+<ul><li>Les données sont les plus minces concernant les métriques financières et opérationnelles clés (revenus, rentabilité, churn), ce qui est normal pour une SASU privée. La due diligence doit se concentrer quasi exclusivement sur la validation de la santé financière et de la non-dépendance au fondateur.</li><li><span style="font-weight:bold;">DONNÉES MANQUANTES :</span> Chiffre d'affaires et croissance • Rentabilité (EBITDA) • Taux de résiliation des contrats de maintenance • Structure de coûts.</li></ul>
+</div>
+<div class="img-col">
+<img alt="Company Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-86b24093eb81b6bba431c8b15dc15948-1egahrsd.jpg"/>
+</div>
+</div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block"><ul><li>Cybersecurity &gt; Fournisseur Régional de Services de Sécurité</li><li>B2B &gt; Abonnement</li></ul>
+<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION</span><br/>
+Thèse : <br/>
+<br/>
+NOTE : Il s'agit d'un score brut de pré-sélection. Les pondérations de la thèse sont appliquées<br/>
+dans le pipeline de qualification synthétique du GP après la détection de l'angle.<br/>
+<br/>
+═════════════════════<br/>
+<span style="font-weight:bold;">EXCELLENCE DE L'ÉQUIPE : 85/100</span><br/>
+<span style="font-weight:bold;">OPPORTUNITÉ DE MARCHÉ : 65/100</span><br/>
+<span style="font-weight:bold;">INNOVATION PRODUIT : 50/100</span><br/>
+<span style="font-weight:bold;">MODÈLE ÉCONOMIQUE : 80/100</span><br/>
+<span style="font-weight:bold;">TRACTION &amp; CROISSANCE : 60/100</span><br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION :</span> 68/100 → 🔵 SIGNAL FAIBLE<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">❓ EN BREF :</span> CAPI Sécurité est un fournisseur de services de sécurité régional qui permet aux entreprises et aux propriétaires de la région Grand Est de protéger leurs biens en offrant une solution complète d'installation et de maintenance avec un support local et réactif.<br/>
+<br/>
+<span style="font-weight:bold;">⚠️ LE PROBLÈME :</span> Les propriétaires de la région Grand Est ont besoin de systèmes de sécurité fiables mais sont confrontés à un marché fragmenté d'installateurs à la qualité variable ou à des acteurs nationaux manquant de réactivité locale.<br/>
+<br/>
+<span style="font-weight:bold;">✅ LA SOLUTION :</span> CAPI Sécurité fournit des systèmes de sécurité certifiés (alarmes, contrôle d'accès) combinés à une équipe de service locale et très réactive, disponible 24/7 pour l'installation, la maintenance et le dépannage.<br/>
+<br/>
+<span style="font-weight:bold;">🚀 LE GTM :</span> L'entreprise utilise une approche de vente directe ciblant les clients résidentiels et commerciaux dans sa zone géographique (Grand Est), en capitalisant sur sa réputation locale, son expertise technique et la fiabilité de son service pour gagner des parts de marché.<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 EXCELLENCE DE L'ÉQUIPE (non pondéré %) | Score: 85/100</span><br/>
+L'équipe est dirigée par un fondateur-opérateur profondément engagé, ce qui est un signal fort de stabilité et de discipline opérationnelle, parfaitement aligné avec une thèse d'acquisition stratégique.<br/>
+<ul><li>Adéquation Fondateur-Marché (25%) | Score: 95/100: Pierre Fichter a plus de 20 ans d'expérience à la tête de CAPI Sécurité; son secret acquis est la compréhension profonde que dans ce secteur, la confiance et la réactivité du service local priment sur la simple technologie.</li><li>Bilan (25%) | Score: 80/100: Son historique est la création et la pérennisation d'une seule entreprise sur deux décennies, une preuve de résilience et de gestion saine plutôt que d'exits multiples.</li><li>Leadership (25%) | Score: 70/100: Le leadership pour maintenir une entreprise viable pendant 20 ans est évident, bien que la visibilité sur l'équipe de direction élargie soit limitée, ce qui suggère une structure centrée sur le fondateur.</li><li>Complétude (25%) | Score: 20/100: Les informations publiques sur l'équipe au-delà du PDG sont quasi inexistantes, indiquant un risque potentiel de dépendance excessive envers le dirigeant (key-man risk).</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 OPPORTUNITÉ DE MARCHÉ (non pondéré %) | Score: 65/100</span><br/>
+Le marché est mature et géographiquement limité, ce qui le rend peu attractif pour un VC, mais sa stabilité et sa fragmentation en font une cible de consolidation idéale pour un acteur stratégique.<br/>
+<ul><li>Taille &amp; Croissance (25%) | Score: 50/100: Le marché de l'installation de systèmes de sécurité dans le Grand Est est un marché de niche, mature, avec une croissance organique lente, et non un marché au TAM de plusieurs milliards.</li><li>Le Bon Moment (25%) | Score: 60/100: Le pourquoi maintenant n'est pas lié à un catalyseur de rupture, mais à un besoin constant de sécurité, ce qui assure une demande stable et prévisible, idéale pour un acquéreur.</li><li>Concurrence (25%) | Score: 70/100: CAPI Sécurité est bien positionné face aux acteurs nationaux grâce à son service local et face aux petits artisans par son expertise et ses certifications, lui conférant une position défendable.</li><li>Expansion (25%) | Score: 50/100: Le potentiel de croissance réside dans la consolidation régionale ou l'expansion dans des services adjacents, plutôt que dans une expansion internationale rapide, limitée par le modèle à forte intensité de service.</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 INNOVATION PRODUIT (non pondéré %) | Score: 50/100</span><br/>
+L'innovation réside dans le modèle de service et non dans la technologie propriétaire, en s'appuyant sur des partenaires matériels de premier plan pour garantir la qualité.<br/>
+<ul><li>Différenciation (25%) | Score: 60/100: La différenciation clé est le service client 24/7 et l'expertise locale, pas des fonctionnalités uniques; ils s'appuient sur la technologie éprouvée de partenaires comme Daitem.</li><li>Adéquation Produit-Marché (25%) | Score: 80/100: Une activité de plus de 20 ans avec une base de clients B2B et B2C démontre une adéquation produit-marché exceptionnellement forte et dé-risquée.</li><li>Scalabilité (25%) | Score: 30/100: Le modèle de service à haute intensité humaine limite intrinsèquement la scalabilité. La croissance est linéaire par rapport aux effectifs, pas exponentielle.</li><li>Propriété Intellectuelle &amp; Barrières (25%) | Score: 30/100: Pas de PI propriétaire sur la technologie, mais des barrières à l'entrée via des certifications clés (NF@A2P Cyber) et une réputation locale difficile à répliquer.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 MODÈLE ÉCONOMIQUE (non pondéré %) | Score: 80/100</span><br/>
+Le modèle hybride vente/abonnement est éprouvé, dé-risqué et génère des revenus récurrents, ce qui est très attractif pour un acquéreur stratégique.<br/>
+<ul><li>Économie Unitaire (25%) | Score: 70/100: Le modèle de contrat de maintenance à trois niveaux (Silver, Gold, Platinium) suggère une stratégie de prix réfléchie, bien que les chiffres précis soient inconnus.</li><li>Modèle de Revenus (25%) | Score: 90/100: Le flux de revenus récurrents provenant des contrats de maintenance et de télésurveillance est le joyau du modèle, offrant prévisibilité et rentabilité à long terme.</li><li>Monétisation (25%) | Score: 80/100: Des parcours de monétisation clairs avec des offres de mise à niveau et des promotions ponctuelles (offre de reprise) montrent une approche commerciale active.</li><li>Efficacité du Capital (25%) | Score: 100/100: L'entreprise est en activité depuis plus de 20 ans sans financement externe apparent, ce qui témoigne d'une efficacité capitalistique et d'une rentabilité exceptionnelles.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; CROISSANCE (non pondéré %) | Score: 60/100</span><br/>
+La traction se mesure par la longévité et la survie, pas par une croissance explosive, ce qui correspond à une entreprise stable plutôt qu'à une startup en hyper-croissance.<br/>
+<ul><li>Croissance des Revenus (25%) | Score: 0/100: Données indisponibles. La croissance est probablement modeste et organique, mais sans chiffres, il est impossible de l'évaluer.</li><li>Validation Client (25%) | Score: 80/100: Vingt ans d'existence et des clients dans les secteurs industriel, médical et scolaire dans tout l'Est de la France constituent une forte validation par le marché.</li><li>Progression des KPI (25%) | Score: 50/100: Les signaux publics comme la croissance des effectifs sur LinkedIn (144 followers) sont faibles, mais la permanence de l'entreprise sur 20 ans est un KPI de survie puissant.</li><li>Pénétration du Marché (25%) | Score: 70/100: L'entreprise a atteint une forte pénétration dans sa niche géographique ciblée (Saint-Louis, Mulhouse, Strasbourg), ce qui est une force clé.</li></ul>
+<br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISQUE À ASSUMER :</span><br/>
+L'hypothèse fondamentale est que la valeur de CAPI Sécurité réside dans son modèle opérationnel et sa base de clients fidèles, et non pas uniquement dans le fondateur lui-même. Si l'entreprise ne peut fonctionner efficacement sans l'implication personnelle constante de Pierre Fichter, sa valeur en tant qu'acquisition stratégique s'effondre car le système n'est pas transférable.<br/>
+Ce risque de dépendance excessive envers le dirigeant ne peut être résolu que par une due diligence approfondie sur les processus internes, la délégation de pouvoir et les plans de succession du fondateur.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ PRINCIPAUX AVANTAGES CONCURRENTIELS :</span><br/>
+<ul><li>Ancrage local et réputation : Plus de 20 ans de présence dans le Grand Est ont bâti une marque de confiance quasi-impossible à acheter ou à répliquer rapidement pour un concurrent national.</li><li>Modèle de service à haute valeur ajoutée : Le service de maintenance et de support 24/7 crée une forte dépendance et des coûts de changement élevés pour les clients, protégeant ainsi la base de revenus récurrents.</li><li>Rentabilité et efficacité du capital prouvées : L'entreprise a prospéré pendant deux décennies sans levée de fonds, ce qui indique une discipline opérationnelle rigoureuse et un modèle économique intrinsèquement rentable.</li><li>Fondateur-Opérateur expérimenté : La direction est assurée par un fondateur avec une ténacité (Grit 95/100) et une discipline (90/100) exceptionnelles, garantissant une exécution stable et une vision à long terme.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 FOSSÉ CONCURRENTIEL :</span> MODÉRÉ<br/>
+Le principal fossé concurrentiel est basé sur la puissance des processus (Process Power) et la marque locale, et non sur la technologie. Il se construit en offrant un service d'une fiabilité irréprochable, ce qui génère une fidélité client élevée et un bouche-à-oreille puissant, se traduisant par des coûts de changement élevés dus à la complexité de remplacer un système de sécurité physique intégré. Ce fossé se renforce à mesure que la densité de clients augmente dans la région, créant des efficacités opérationnelles (ex: tournées de maintenance) que les concurrents ne peuvent égaler. La couche secondaire de défense est constituée par les certifications (NF@A2P), qui agissent comme une barrière réglementaire et un signal de qualité face aux concurrents moins rigoureux.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ PARI ASYMÉTRIQUE</span><br/>
+<ul><li>Le Scénario Optimiste :</li></ul>
+CAPI Sécurité utilise sa réputation et sa densité opérationnelle pour devenir la plateforme de consolidation de choix dans le Grand Est, acquérant de plus petits concurrents locaux pour atteindre une taille critique qui en fait une cible d'acquisition stratégique incontournable et premium pour un acteur national comme  cherchant à acheter une part de marché significative et une excellence opérationnelle prouvée.<br/>
+<br/>
+<ul><li>Le Scénario Pessimiste :</li></ul>
+L'entreprise est entièrement dépendante de son fondateur, Pierre Fichter ; son départ ou son incapacité à systématiser son savoir-faire entraînerait une chute de la qualité de service, érodant la confiance des clients et laissant CAPI vulnérable à une guerre des prix menée par les acteurs nationaux, anéantissant ainsi sa prime de valeur.<br/>
+<br/>
+<span style="font-weight:bold;">🚩 SIGNAUX D'ALERTE</span><br/>
+<ul><li>Risques Universels : Une dépendance critique envers une seule personne (le fondateur) constitue un risque opérationnel et de succession majeur. Le modèle économique est difficilement scalable au-delà d'une certaine géographie sans dégrader la qualité du service, ce qui limite le potentiel de croissance.</li></ul>
+<br/>
+<br/>
+<br/>
+<span style="font-weight:bold;">🌐 FIABILITÉ DES DONNÉES :</span> MOYENNE<br/>
+<ul><li>Les données sont les plus minces concernant les métriques financières et opérationnelles clés (revenus, rentabilité, churn), ce qui est normal pour une SASU privée. La due diligence doit se concentrer quasi exclusivement sur la validation de la santé financière et de la non-dépendance au fondateur.</li><li><span style="font-weight:bold;">DONNÉES MANQUANTES :</span> Chiffre d'affaires et croissance • Rentabilité (EBITDA) • Taux de résiliation des contrats de maintenance • Structure de coûts.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/irEzcAW8LMc8rgeje4sQVw/8XzgFeguSfQ0eYcXl4HF4b8uu0XKiAICLh0r82gBD_drV5ANIi75EDOV9mPe4bHv9A76t_TfkwARenO7rhxadZLO_WjSe1KDDqYX0kiL8-dqBqvcI-ZRUxqglHmmcEYQe7mwSMzfvBOKTZwNxzqhYA/SgqyMH2j9jqqbz3UOFZtvVWaiHsvoZ7Ot0Sodrok1ok"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>La tenure de plus de vingt ans de Pierre Fichter comme unique dirigeant garantit une exécution cohérente et sans dilution stratégique.</li><li>L'implantation physique à Saint-Louis, Mulhouse et Strasbourg permet une intervention rapide sur l'ensemble du Grand Est.</li><li>Les certifications NF@A2P et le partenariat exclusif Daitem renforcent la crédibilité auprès des clients exigeants en matière de sécurité électronique.</li><li>Le mix de vente d'équipements et de contrats de maintenance récurrents crée un flux de trésorerie prévisible même en période de faible investissement client.</li><li>Les offres couvrant à la fois les particuliers et les sites industriels réduisent la dépendance à un seul segment de clientèle.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>La structure SASU à actionnaire unique limite l'accès aux capitaux externes et aux profils externes de haut niveau.</li><li>L'absence de toute levée de fonds publique traduit une capacité restreinte à financer une croissance technologique rapide.</li><li>La taille estimée de l'équipe ne dépasse pas une cinquantaine de personnes, ce qui bride la conquête de marchés nationaux.</li><li>Le positionnement purement local expose l'entreprise à toute contraction économique spécifique au Grand Est.</li><li>Le profil du fondateur, centré sur la pérennité plus que sur la croissance exponentielle, rend difficile l'attraction de talents orientés scale-up.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li>L'intégration croissante de la cybersécurité dans les systèmes d'alarme permet de monter en gamme sur des contrats à plus forte marge.</li><li>La consolidation du secteur de la télésurveillance en régions offre des cibles potentielles d'acquisition de petite taille.</li><li>La modernisation des installations anciennes dans les hôpitaux et établissements publics représente un vivier de contrats de maintenance à long terme.</li><li>Le passage à des modèles 100 % connectés smartphone ouvre la voie à une facturation SaaS supplémentaire.</li><li>Un partenariat technologique élargi au-delà de Daitem pourrait différencier l'offre face aux pure players nationaux.</li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>Des concurrents nationaux dotés de solutions IoT et de plateformes cloud gagnent rapidement des parts de marché régionales.</li><li>Une succession non préparée du fondateur unique créerait un vide de direction immédiat.</li><li>L'évolution des normes européennes sur la protection des données et la cybersécurité impose des investissements techniques non anticipés.</li><li>La dépendance à des fournisseurs uniques de matériel expose à des ruptures d'approvisionnement ou à des hausses de prix.</li><li>Une récession prolongée dans l'industrie et le commerce du Grand Est réduirait directement le volume de nouveaux contrats.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la chaîne de valeur</h3>
+<ul>
+</ul>
+<h3>Sources du marché</h3><p>DOSSIER DE RENSEIGNEMENT SUR LE MARCHÉ - SUIVI DES PREUVES URL</p>
+<p>Objectif : Documentation de soutien avec preuves URL complètes pour l'analyse du score d'attractivité du marché</p>
+<p>Marché : Fournisseur Régional de Services de Sécurité</p>
+<p>Complétude des Données : 20/100</p>
+<p>Évaluation : 🔴 INSUFFISANT - NÉCESSITE PLUS DE RECHERCHE (&lt;70)</p>
+<p>Calcul : (3 URL trouvées ÷ 15 URL recherchées) × 100 = 20% de complétude</p>
+<p>Date de la recherche : 28 mai 2024 | Total des URL trouvées : 3</p>
+<p>PREUVES URL PAR CATÉGORIE DE NOTATION DU MARCHÉ</p>
+<p>🌊 MARCHÉ ATTRACTIF (Dynamiques du marché) | Trouvé 1/4 points de données</p>
+<ul><li><b>Taille du Marché :</b> <a href="https://www.pappers.fr/entreprise/capi-securite-477522403" target="_blank">https://www.pappers.fr/entreprise/capi-securite-477522403</a>. Utilisé pour : Inférer le caractère local/régional du marché à partir des données de l'entreprise.</li><li><b>Moteurs de Croissance :</b> Données non disponibles.</li><li><b>Le Bon Moment :</b> Données non disponibles.</li><li><b>Risques du Marché :</b> Données non disponibles.</li></ul>
+<p>⚔️ MARCHÉ GAGNABLE (Paysage concurrentiel) | Trouvé 1/4 points de données</p>
+<ul><li><b>Acteurs en Place :</b> Données non disponibles.</li><li><b>Challengers :</b> <a href="https://www.societe.com/societe/capi-securite-477522403.html" target="_blank">https://www.societe.com/societe/capi-securite-477522403.html</a>. Utilisé pour : Confirmer la fragmentation en observant le statut de PME de CAPI.</li><li><b>Espace Libre :</b> Données non disponibles.</li><li><b>Défendabilité :</b> Données non disponibles.</li></ul>
+<p>🎯 MARCHÉ PÉNÉTRABLE (Go-to-Market &amp; Économie Unitaire) | Trouvé 1/4 points de données</p>
+<ul><li><b>Modèle GTM :</b> <a href="https://capi-securite.fr/" target="_blank">https://capi-securite.fr/</a>. Utilisé pour : Analyser le discours commercial et la proposition de valeur, qui informe sur le modèle GTM.</li><li><b>Modèle de Tarification :</b> Données non disponibles.</li><li><b>Économie Unitaire :</b> Données non disponibles.</li><li><b>Scalabilité :</b> Données non disponibles.</li></ul>
+<p>💰 MARCHÉ RÉMUNÉRATEUR (Paysage de financement &amp; de sortie) | Trouvé 0/3 points de données</p>
+<ul><li><b>Activité de Financement :</b> Données non disponibles.</li><li><b>Multiples de Sortie :</b> Données non disponibles.</li><li><b>Acheteurs Stratégiques :</b> Données non disponibles.</li></ul>
+<p>ANALYSE DE LA COMPLÉTUDE DES DONNÉES WEB</p>
+<p>URL critiques manquantes basées sur la recherche web : Rapports d'analystes sur le marché de la sécurité en France, Données sur les transactions M&amp;A dans le secteur, Analyses des multiples de valorisation, Études sur les parts de marché régionales.</p>
+<p>URL trouvées avec succès : 3 sur 15 recherchées</p>
+<p>Couverture des données critiques : 20% des points de données requis</p>
+<p>Niveau de confiance de la recherche : TRÈS FAIBLE</p><h3>Sources de l'entreprise</h3><p>DOSSIER DE RENSEIGNEMENT SUR L'ENTREPRISE - SUIVI DES PREUVES URL</p>
+<p>Objectif : Documentation de soutien avec preuves URL complètes pour l'analyse du score d'investissement</p>
+<p>Entreprise : CAPI Sécurité</p>
+<p>Complétude des Données : 45/100</p>
+<p>Évaluation : 🔴 DONNÉES INSUFFISANTES POUR UN PREMIER EXAMEN (&lt;70)</p>
+<p>Calcul : (9 URL trouvées ÷ 20 URL recherchées) × 100 = 45% de complétude</p>
+<p>Date de la recherche : 28 mai 2024 | Total des URL trouvées : 9</p>
+<p>PREUVES URL PAR CATÉGORIE DE NOTATION</p>
+<h4>👨🏻 EXCELLENCE DE L'ÉQUIPE | Trouvé 1/4 points de données</h4>
+<ul><li><b></b> <a href="https://fr.linkedin.com/in/pierre-fichter-ba79b2126" target="_blank">https://fr.linkedin.com/in/pierre-fichter-ba79b2126</a>. Utilisé pour : Analyse du parcours, de l'expérience et de l'ADN du fondateur.</li><li><b>Bilan :</b> Données non disponibles.</li><li><b>Leadership :</b> <a href="https://fr.linkedin.com/company/capi-s%C3%A9curit%C3%A9" target="_blank">https://fr.linkedin.com/company/capi-s%C3%A9curit%C3%A9</a>. Utilisé pour : Évaluation de la taille de l'équipe et de la présence publique.</li><li><b>Complétude :</b> Données non disponibles.</li></ul>
+<h4>🌊 OPPORTUNITÉ DE MARCHÉ | Trouvé 3/4 points de données</h4>
+<ul><li><b>Taille &amp; Croissance :</b> <a href="https://www.pappers.fr/entreprise/capi-securite-477522403" target="_blank">https://www.pappers.fr/entreprise/capi-securite-477522403</a>. Utilisé pour : Confirmer le statut de SASU et la localisation, inférant un marché régional.</li><li><b>Le Bon Moment :</b> Données non disponibles.</li><li><b>Concurrence :</b> <a href="https://entreprises.lefigaro.fr/capi-securite-68/entreprise-477522403" target="_blank">https://entreprises.lefigaro.fr/capi-securite-68/entreprise-477522403</a>. Utilisé pour : Croiser les informations légales et situer l'entreprise dans son contexte local.</li><li><b>Expansion :</b> <a href="https://www.marque.alsace/partenaire/capi-securite" target="_blank">https://www.marque.alsace/partenaire/capi-securite</a>. Utilisé pour : Confirmer l'ancrage et la reconnaissance au niveau de la marque territoriale 'Alsace'.</li></ul>
+<h4>💡 INNOVATION PRODUIT | Trouvé 2/4 points de données</h4>
+<ul><li><b>Différenciation :</b> <a href="https://capi-securite.fr/" target="_blank">https://capi-securite.fr/</a>. Utilisé pour : Analyse de la proposition de valeur, des services et de l'accent mis sur le support client.</li><li><b>Adéquation Produit-Marché :</b> <a href="https://capi-securite.fr/" target="_blank">https://capi-securite.fr/</a>. Utilisé pour : Identifier les cas d'usage et les segments de clientèle (B2B/B2C).</li><li><b>Scalabilité :</b> Données non disponibles.</li><li><b>PI &amp; Barrières :</b> Données non disponibles.</li></ul>
+<h4>💼 MODÈLE ÉCONOMIQUE | Trouvé 2/4 points de données</h4>
+<ul><li><b>Économie Unitaire :</b> Données non disponibles.</li><li><b>Modèle de Revenus :</b> <a href="https://capi-securite.fr/" target="_blank">https://capi-securite.fr/</a>. Utilisé pour : Comprendre le modèle de vente et les contrats de maintenance.</li><li><b>Monétisation :</b> Données non disponibles.</li><li><b>Efficacité du Capital :</b> <a href="https://www.societe.com/societe/capi-securite-477522403.html" target="_blank">https://www.societe.com/societe/capi-securite-477522403.html</a>. Utilisé pour : Confirmer la forme juridique et l'historique, suggérant l'absence de financement externe.</li></ul>
+<h4>📈 TRACTION &amp; CROISSANCE | Trouvé 1/4 points de données</h4>
+<ul><li><b>Croissance des Revenus :</b> <a href="https://infonet.fr/entreprises/47752240300039-capi-securite/" target="_blank">https://infonet.fr/entreprises/47752240300039-capi-securite/</a>. Utilisé pour : Estimer la taille de l'effectif, un proxy très faible pour la croissance.</li><li><b>Validation Client :</b> Données non disponibles.</li><li><b>Progression des KPI :</b> Données non disponibles.</li><li><b>Pénétration du Marché :</b> Données non disponibles.</li></ul>
+<p>ANALYSE DE LA COMPLÉTUDE DES DONNÉES WEB</p>
+<p>URL critiques manquantes basées sur la recherche web : Rapports financiers, Articles de presse sur la croissance, Témoignages clients détaillés, Données sur la concurrence locale.</p>
+<p>URL trouvées avec succès : 9 sur 20 recherchées</p>
+<p>Couverture des données critiques : 45% des points de données requis</p>
+<p>Niveau de confiance de la recherche : FAIBLE</p></div>
+</div><div class="ppx-cta"><h3>Explore CAPI Sécurité further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script></body></html>

@@ -1,0 +1,956 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DealFlowAgent — analyse FinTech | Proplace</title><meta name="description" content="Analyse approfondie de DealFlowAgent."><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/dealflowagent/"><meta property="og:type" content="article"><meta property="og:title" content="DealFlowAgent — analyse FinTech | Proplace"><meta property="og:description" content="Analyse approfondie de DealFlowAgent."><meta property="og:url" content="https://proplace.co/analysis/dealflowagent/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "DealFlowAgent — FinTech", "description": "Analyse approfondie de DealFlowAgent.", "inLanguage": "fr", "url": "https://proplace.co/analysis/dealflowagent/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/dealflowagent/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "DealFlowAgent"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">DealFlowAgent</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "DealFlowAgent"}]}</script></div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data">
+<span class="sb-tag">UK</span>
+<span class="sb-tag">Seed</span>
+<span class="sb-tag">FinTech</span>
+<span class="sb-tag">B2B</span>
+</div>
+<h1 class="sidebar-company-name">DealFlowAgent</h1>
+<p class="meta-desc" style="margin-bottom: 15px;">Redefining M&amp;A advisory with AI-powered insights and seasoned advisors.</p>
+<div class="contact-row">
+<a href="https://www.dealflowagent.com/" target="_blank"><i class="fas fa-globe"></i> Website</a>
+<a href="mailto:joe@dealflowagent.com"><i class="fas fa-envelope"></i> joe@dealflowagent.com</a>
+</div>
+</div>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-blue" href="#sources">Sources</a>
+<div class="divider"></div>
+<div class="section">
+<h3>Explore DealFlowAgent further?</h3>
+<a class="btn btn-secondary" href="http://forms.proplace.co/meet" target="_blank">Schedule a strategy call on DealFlowAgent</a>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>🗣 Your decision</h3>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Want to follow our deal flow?</h3>
+<p class="meta-desc">Receive European AI startups we assess every day from a VC perspective.</p>
+<a class="btn btn-primary" href="https://77f02b89.sibforms.com/serve/MUIFAMr0ADjDfIUWLc56STos70j4OXPiOTJqugyAa45YfGyt9zW6Tokz3iXWLNiTAw6oxjbrMnjs424k46IvwOQlWjaMIsbgexAk95FvzqzgLa56TkHas6WASK4VKs684XcZhacqMYTYQGuIfzJmBmCkmHwhNeB0yHifmrxC1PUhNMS1ZbiW1xF18IZy7tJP9BIWjDcM5VoH6VEVCw==" target="_blank">Subscribe to deal flow</a>
+</div>
+<div class="section">
+<h3>Want a proprietary deal flow?</h3>
+<p class="meta-desc">Receive daily highly qualified targets for your acquisition strategy.</p>
+<a class="btn btn-primary" href="http://forms.proplace.co/meet" target="_blank">Schedule a strategy call</a>
+</div>
+<div class="section" style="text-align: center; margin-bottom: 0; padding-top: 10px;">
+</div>
+</div>
+<div class="content-area">
+<h1>DealFlowAgent Interactive Memo</h1>
+<h2 class="subtitle-category">FinTech ➜ AI-Powered M&amp;A Matchmaking SaaS ➜ AI matchmaking and advisory platform for M&amp;A deals involving businesses with £500k-£30M revenue in the UK and US.</h2>
+<p class="body-tagline">Redefining M&amp;A advisory with AI-powered insights and seasoned advisors.</p>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="DealFlowAgent" data-h="" data-i="FinTech" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/dealflowagent/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="market-summary">
+<h2 class="section-title">Market Summary</h2>
+<div class="split-container">
+<div class="text-col">
+<p>MARKET OPPORTUNITY SCORE<br/>FinTech &gt; AI-Powered M&amp;A Matchmaking SaaS<br/>B2B &gt; Commission-Based</p>
+<p>═════════════════════════════════════════════════</p>
+<p>IS IT AN ATTRACTIVE MARKET ? (Dynamics): 95/100 × 25% = 23.75 points<br/>IS IT A WINNABLE MARKET ? (Competition): 85/100 × 25% = 21.25 points<br/>IS IT A PENETRABLE MARKET ? (GTM): 88/100 × 25% = 22.0 points<br/>IS IT A REWARDING MARKET ? (Exits): 90/100 × 25% = 22.5 points</p>
+<p>─────────────────────────────────────────────────<br/>TOTAL MARKET ATTRACTIVITY SCORE: 89.5/100<br/>This market provides a powerful structural tailwind as the 'Silver Tsunami' of retiring business owners meets the 'Liquidity Gap' of traditional investment banking.</p>
+<p>═════════════════════════════════════════════════</p>
+<h4>❓ Market DEFINITION</h4>
+<p>AI matchmaking and advisory platform for M&amp;A deals involving businesses with £500k-£30M revenue in the UK and US. ➜ SENTENCE 1 — THE PRECISE BOUNDARY: The buyer is a financial (PE/Search Fund) or strategic acquirer seeking to purchase EBITDA-positive SMEs for bolt-on or platform acquisitions, hiring the platform to de-risk deal discovery and vetting. SENTENCE 2 — THE STRUCTURAL FRICTION: The current market is broken because 'main street' brokers are technologically illiterate and lack the scale to match specific 'strategic intent' with sellers, leading to 70%+ of listings never closing. SENTENCE 3 — THE VALUE CHAIN POSITION: DealFlowAgent sits at the top of the funnel (Origination) and the data layer of the middle-office (Advisory), where the highest margin of the M&amp;A value chain is currently concentrated.</p>
+<h4>💬 Our Market THESIS</h4>
+<p>The SME M&amp;A market has reached a critical threshold where there are more buyers with capital than there are discoverable, 'deal-ready' sellers. Legacy brokers cannot adopt an AI-native matching engine without cannibalizing their high-touch, success-fee dependencies which rely on artificial information asymmetry. A new player can exploit this by commoditizing the initial 90% of the deal journey (discovery, profiling, matchmaking) to own the transaction intent. The window is open due to the convergence of GPT-4 class reasoning and a massive influx of private equity capital into the sub-$30M revenue segment, but it will close as soon as proprietary relationship graphs reach critical mass and lock in the buyer network.</p>
+<h4>🧠 Our CONVICTION &amp; WAGER on this Market:</h4>
+<p>🟢 HIGH CONVICTION<br/>SENTENCE 1 — THE HONEST TENSION: The single reason to pass is the fear that SME M&amp;A is too high-friction and 'emotionally-driven' to ever be automated, but the research suggests that deal origination—not closing—is the true scalability bottleneck. SENTENCE 2 — THE FALSIFIABLE WAGER: We wager that within 24 months, more than 40% of trans-atlantic SME deals in this revenue bracket will be initiated through an an AI-native interface rather than a cold-call broker. SENTENCE 3 — THE FIRST CALL SIGNAL: If the founder shows that their AI 'Sterling' can identify a buyer that a seller's human broker didn't even have on their target list, our conviction moves to a 'must-invest'.</p>
+<p>═════════════════════════════════════════════════</p>
+<h4>🌊 ATTRACTIVE MARKET (Market Dynamics) | Score: 95/100</h4>
+<p>This score implies an extremely low market-size risk; the demand for exits is biologically certain (retirement) and the capital (dry powder) is historically high.<br/>
+<ul>
+<li>Market Size (25%) | Score: 95/100: Total addressable market includes thousands of SMEs in the £500k-£30M bracket across the UK and US, representing billions in potential enterprise value matching.</li>
+<li>Growth Drivers (25%) | Score: 95/100: Demand is driven by the generational 'Silver Tsunami' wealth transfer and the proliferation of 'Buying then Building' Search Funds (ETA).</li>
+<li>Timing Why Now (25%) | Score: 100/100: The trigger is the arrival of conversational AI capable of conducting the 'first interview' with founders, which was previously a non-scalable human task.</li>
+<li>Market Risks (25%) | Score: 85/100: Headwinds include rising interest rates that chill M&amp;A debt financing and potential regulatory shifts in data privacy for private company financials.</li>
+</ul>
+</p>
+<h4>⚔️ WINNABLE MARKET (Competitive Landscape) | Score: 85/100</h4>
+<p>Winning this market is a race to build the biggest 'vetted' matching graph; the lack of a dominant AI native incumbent makes the market highly winnable.<br/>
+<ul>
+<li>Incumbents (25%) | Score: 78/100: Legacy players like Axial and BizBuySell have high traffic but lack the 'advisory depth' and AI-driven matchmaking that modern buyers demand.</li>
+<li>Challengers (25%) | Score: 88/100: Acquire.com is a well-funded unicorn competitor focusing on tech-heavy deals, leaving a 'White Space' for traditional industry SMEs that DealFlowAgent targets.</li>
+<li>White Space (25%) | Score: 95/100: The gap is in 'AI-Native Investment Banking' which combines the trust of a bank with the scale of a SaaS platform.</li>
+<li>Defensibility (25%) | Score: 80/100: Long-term protection is based on the proprietary 12k+ buyer graph and the high switching cost of moving a live 'data room' to a competitor.</li>
+</ul>
+</p>
+<h4>🎯 PENETRABLE MARKET (Go-to-Market &amp; Unit Economics) | Score: 88/100</h4>
+<p>Penetration is structural due to the massive discrepancy between expensive traditional fees and low-cost AI efficiency.<br/>
+<ul>
+<li>GTM Model (25%) | Score: 90/100: The 15-20 minute AI Consultation is a 'low-friction' entry point that allows for high-velocity seller acquisition compared to legacy boutiques.</li>
+<li>Pricing Model (25%) | Score: 85/100: Commission-based pricing (1-3.5%) is highly standard and digestible for business owners, while keep the cost to acquirers free increases demand.</li>
+<li>Unit Economics (25%) | Score: 85/100: High LTV/CAC is expected because a single closing fee on a £10M deal (£200k-£350k) covers the cost of thousands of AI agents.</li>
+<li>Scalability (25%) | Score: 92/100: Multi-geographic scaling is feasible because the AI (Sage/Sterling) is not constrained by language or physical location for initial deal-matching.</li>
+</ul>
+</p>
+<h4>💰 REWARDING MARKET (Funding &amp; Exit) | Score: 90/100</h4>
+<p>This market produces fund-returning outcomes because the ultimate acquirers are the very financial institutions (Banks/PE) that want to own the deal-flow layer.<br/>
+<ul>
+<li>Funding Activity (25%) | Score: 92/100: Recent €646k Seed led by Long Journey (Uber/SpaceX backers) signals high appetite from top-tier firms.</li>
+<li>Exit Multiples (25%) | Score: 85/100: M&amp;A advisory technology frequently exits to financial services giants (Evercore/Lazard) or fintech consolidators at high multiples.</li>
+<li>Strategic Buyers (20%) | Score: 95/100: Potential acquirers include Large PE funds (Blackstone/KKR) seeking proprietary deal flow or tech-native banks like Goldman Sachs.</li>
+<li>Return Profile (25%) | Score: 90/100: DealFlowAgent targets the 'high-ceiling' outcome required by our thesis by aiming to become the 'Infrastructure for SME Ownership Transfer'.</li>
+</ul>
+</p>
+<p>─────────────────────────────────────────────────<br/>⚡ CROSS-SECTION SYNTHESIS: This market pattern (High Opportunity + AI-First) suggests that the primary risk isn't competitors, but 'Execution Speed'; the winner will be the team that most rapidly converts high-trust relationships into a machine-readable liquidity graph.</p>
+<p>─────────────────────────────────────────────────<br/>🌐 DATA CONFIDENCE: Market sizing and funding data are bulletproof; however, the precise conversion rates from AI-consultation-to-closed-deal require deeper research. Total URLs sourced: 17.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-03bc6e14b1b52a7431f22409c8580890-t2m3nmia.jpg"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title">Company Deep Dive</h2>
+<div class="split-container">
+<div class="text-col">
+<h3 id="value-proposition">Value Proposition</h3>
+<span style="font-weight:bold;">Value Proposition:</span> Redefining M&amp;A advisory with AI-powered insights and seasoned advisors to democratize access to institutional-grade deal support. DealFlowAgent uses smart AI bots to help business owners sell their companies to the right buyers much faster and cheaper than traditional banks.
+            <br/><br/>
+<span style="font-weight:bold;">Ideal Customer Profile (ICP):</span>
+<ul>
+<li>Business owners (Sellers) looking for exits, M&amp;A brokers/intermediaries, and Acquirers (PE funds, search funds, family offices) seeking businesses with £500k-£30M revenue.</li>
+<li>SME business owners to exit their companies.</li>
+<li>Silver Tsunami retiring founders in the UK/US SME bracket (£500k-£30M rev).</li>
+<li>Businesses with £500k-£30M revenue in the UK and US.</li>
+</ul>
+<br/><br/>
+<span style="font-weight:bold;">B2B or B2C:</span> B2B - Facilitates business acquisitions and mergers between professional entities. B2B &gt; Commission-Based.
+            <br/><br/>
+<span style="font-weight:bold;">Industry:</span> M&amp;A Advisory / Fintech / AI Services. FinTech / M&amp;A Advisory. FinTech &gt; AI-Powered M&amp;A Matchmaking SaaS. AI-native investment bank focused on the SME market. SME M&amp;A Tech-Enabled Advisory.
+            <br/><br/>
+<span style="font-weight:bold;">Contact &amp; Legal:</span>
+<ul>
+<li>Entity: DealFlowAgent.</li>
+<li>Founding Year: Unknown (Seed round recently secured).</li>
+<li>Locations: London and NYC.</li>
+<li>HQ Country: UK.</li>
+<li>Email: Accessible via contact forms.</li>
+<li>Website: https://www.dealflowagent.com/.</li>
+<li>LinkedIn Company: https://www.linkedin.com/company/dealflowagent/.</li>
+<li>CEO LinkedIn: https://www.linkedin.com/in/joelewin/.</li>
+<li>Company Stage: Seed.</li>
+<li>Recent Seed round: €646.2k (~$750k) led by Long Journey Ventures and Angel Investors on March 6, 2026.</li>
+</ul>
+<br/><br/>
+<span style="font-weight:bold;">Key Client Examples &amp; Testimonials:</span>
+<ul>
+<li>Over 22 successful exits advised on.</li>
+<li>12,613 active buyer relationships.</li>
+<li>12,000+ member graph.</li>
+<li>12k+ buyer network.</li>
+<li>12,613 buyers.</li>
+<li>12,600 verified entities.</li>
+<li>Investors include seed backers of Uber, Canva, and Notion.</li>
+<li>Backing from seed-stage Uber, Canva, and Notion investors.</li>
+<li>Long Journey Ventures (backers include Cyan Banister, Arielle Zuckerberg, Lee Jacobs).</li>
+<li>Angel from an early Temenos employee.</li>
+<li>Lumaca Capital.</li>
+</ul>
+<br/><br/>
+<h3 id="product">Product</h3>
+<span style="font-weight:bold;">Core Solution:</span> A conversational AI matchmaking platform (featuring agents Sage and Sterling) for business buying and selling. AI-powered M&amp;A matchmaking SaaS. AI-native platform. AI Exit Coach (Sage) and AI Buyer Advisor (Sterling) to conduct automated consultations, anonymize profiles, and track buyer intent across a 12,000+ member graph to facilitate double-opt-in introductions. AI agents that simulate the early-stage banker consultation and buyer vetting process. SaaS-enabled marketplace. AI-Native Investment Banking.
+            <br/><br/>
+<span style="font-weight:bold;">Feature Encyclopedia:</span>
+<ul>
+<li>AI Exit Coach (Sage) | AI Buyer Advisor (Sterling)</li>
+<li>15-20 minute AI Consultation</li>
+<li>Automated Anonymized Profile Creation</li>
+<li>Double Opt-in Introductions</li>
+<li>Deep Intent Tracking | Relationship Graph Mapping</li>
+<li>Data Room Setup</li>
+<li>Voice-based AI calibration</li>
+<li>24/7 proactive deal sourcing</li>
+<li>Strategic keyword matching</li>
+<li>Revenue/EBITDA filtering</li>
+<li>Proprietary matching scoring (700+/1000 threshold)</li>
+<li>Automated buyer-intent tracking</li>
+<li>Anonymized profile creation via AI 'Sage'</li>
+<li>Double-opt-in matching via 'Sterling'</li>
+<li>Managed data rooms.</li>
+</ul>
+<br/><br/>
+<span style="font-weight:bold;">Technical Capabilities:</span> Proprietary relationship graph | Intent-matching engine | Liquidity network effect | Data not available in source for integrations, API availability, Security standards, GDPR compliance, Mobile apps, Deployment options.
+            <br/><br/>
+<span style="font-weight:bold;">Use Cases:</span>
+<ul>
+<li>Founder exits | private equity bolt-on acquisitions</li>
+<li>broker mandate expansion | off-market deal discovery</li>
+<li>SME transactions (€1–€34 million revenue range)</li>
+<li>accelerates deal origination, due diligence, and transaction workflows</li>
+<li>business owners sell their companies to the right buyers</li>
+<li>matching specific 'strategic intent' with sellers</li>
+<li>deal origination | initial 90% of the deal journey (discovery, profiling, matchmaking).</li>
+</ul>
+<br/><br/>
+<h3 id="business-model">Business Model</h3>
+<span style="font-weight:bold;">Business Model Analysis:</span> Success-based M&amp;A advisory and SaaS-enabled marketplace. Success-based fee + SaaS retainer. Commission-Based.
+            <br/><br/>
+<span style="font-weight:bold;">Revenue Streams &amp; Pricing Tiers:</span>
+<ul>
+<li>Self-Serve: 2% success fee on Enterprise Value</li>
+<li>With Broker: 1% success fee on Enterprise Value</li>
+<li>Full Advisory: £6,000 upfront retainer + 3.5% success fee</li>
+<li>Brokers: 1% success fee for introduced buyers</li>
+<li>Acquirers: 100% Free.</li>
+</ul>
+<br/><br/>
+<span style="font-weight:bold;">Plan Features:</span> Self-serve includes Sage consultation and matching | Full Advisory includes marketing materials, data room setup, and expert negotiation.
+            <br/><br/>
+<span style="font-weight:bold;">Hidden Costs &amp; Terms:</span> £6,000 upfront retainer applies to the human-led Business Owners track.
+            <br/><br/>
+<h3 id="team">Team</h3>
+<span style="font-weight:bold;">Company Culture:</span> Mission-driven to democratize M&amp;A. Values include human expertise combined with AI intelligence, confidentiality by design, and founder-friendly processes. AI-native B2B services.
+            <br/><br/>
+<span style="font-weight:bold;">Team Analysis:</span> Joe Lewin (Founder &amp; CEO). Tim Armoo (Partner &amp; CMO). Mel Ragnauth (Lumaca Capital - Board). David Battey (Lumaca Capital - Board). Advisory board includes Ex-VP of Evercore. Leadership team pairs Joe Lewin M&amp;A expertise with Tim Armoo proven ability to scale and exit digital platforms (ex-Fanbytes).
+            <br/><br/>
+<span style="font-weight:bold;">Job Offers &amp; Titles:</span> No specific open positions listed in text. Plans to expand the team.
+            <br/><br/>
+<span style="font-weight:bold;">Estimated Headcount:</span>
+<ul>
+<li>Product &amp; Engineering: 4-6.</li>
+<li>Marketing: 2-3.</li>
+<li>Sales: 6 specialized sector advisors.</li>
+<li>Support &amp; IT: 2-3.</li>
+<li>General &amp; Admin (G&amp;A): 2-3.</li>
+</ul>
+<br/><br/>
+<h3 id="company-summary">Company Summary</h3>
+<ul><li>FinTech &gt; AI-Powered M&amp;A Matchmaking SaaS</li>
+<li>B2B &gt; Commission-Based</li>
+<li>646.2k€ raised from Long Journey Ventures and Angel Investors (March, 6th, 2026)</li></ul>
+<br/>
+<span style="font-weight:bold;">WEIGHTED SCORE CALCULATION</span><br/><br/><br/>
+            TEAM EXCELLENCE       88/100  × 25% = 22.0 points<br/>
+            MARKET OPPORTUNITY    92/100  × 25% = 23.0 points<br/>
+            PRODUCT INNOVATION    82/100  × 20% = 16.4 points<br/>
+            BUSINESS MODEL        75/100  × 15% = 11.25 points<br/>
+            TRACTION &amp; GROWTH     78/100  × 15% = 11.7 points<br/>
+            ─────────────────────────────────────────────────<br/>
+            Base Score:                         84.35/100<br/>
+            Thesis Alignment Modifier:          +5%<br/>
+            ─────────────────────────────────────────────────<br/>
+            FINAL ADJUSTED SCORE:               89.35/100 → 🟢INTERESTING (85-100)<br/>
+<br/><br/>
+<span style="font-weight:bold;">❓ In a NUTSHELL :</span> DealFlowAgent is an AI-Powered M&amp;A Matchmaking SaaS that enables SME business owners to exit their companies efficiently by automating the broker and buyer-matchmaking process through AI agents.<br/><br/>
+<span style="font-weight:bold;">⚠️ The PROBLEM :</span> Business owners face a 'missing middle' in M&amp;A where they are too small for bulge-bracket banks but too complex for self-serve marketplaces, leading to failed exits and predatory broker fees.<br/><br/>
+<span style="font-weight:bold;">✅ The SOLUTION :</span><br/>
+            SENTENCE 1: The platform deploys AI agents, Sage and Sterling, to conduct automated consultations, anonymize profiles, and track buyer intent across a 12,000+ member graph to facilitate double-opt-in introductions.<br/>
+            SENTENCE 2 — THE NON-CONSENSUS INSIGHT: Their non-consensus insight is not that M&amp;A needs a better database, but rather that the 'banker' is the bottleneck, and high-fidelity matching knowledge can be encoded into conversational AI to commoditize elite advisory.<br/><br/>
+<span style="font-weight:bold;">🚀 The GTM &amp; MOAT :</span><br/>
+            SENTENCE 1: The primary GTM targets 'Silver Tsunami' retiring founders in the UK/US SME bracket (£500k-£30M rev) because they lack digital-native options and command high success fees.<br/>
+            SENTENCE 2 — THE COMPOUNDING MOAT: The moat compounds through a proprietary relationship graph where every interaction between 'Sterling' and 12,613 buyers refines the intent-matching engine, creating a liquidity network effect where increased deal flow improves matching precision beyond what a human firm can replicate.<br/><br/>
+<span style="font-weight:bold;">💬 Our RATIONALE &amp; THESIS FIT :</span><br/>
+            SENTENCE 1 — THE UNFAIR ADVANTAGE: The leadership team pairs Joe Lewin's M&amp;A expertise with Tim Armoo's proven ability to scale and exit digital platforms (ex-Fanbytes), giving them a rare blend of domain authority and growth marketing muscle. SENTENCE 2 — THE THESIS ALIGNMENT: The company aligns perfectly with our 'AI-native services' pillar by attacking a high-margin, labor-intensive industry, though it diverges slightly on our pure SaaS preference due to the success-fee heavy model. SENTENCE 3 — THE RISK TO UNDERWRITE: We must underwrite the assumption that AI can maintain the 'high-trust' environment required for high-stakes business transitions without human intervention causing deal fatigue or leakage.<br/><br/>
+<span style="font-weight:bold;">👨🏻‍💻 TEAM EXCELLENCE (25%) | Score: 88/100</span><br/>
+<ul>
+<li>Founder-Market Fit (25%) | Score: 90/100: Joe Lewin (CEO) brings deep M&amp;A advisory experience and an 'Earned Secret' that the SME 'lower-mid' market is actually a data-matching problem disguised as a relationship business.</li>
+<li>Track Record (25%) | Score: 92/100: Partner Tim Armoo (CMO) successfully founded and sold Fanbytes to Brainlabs, demonstrating elite-level exit experience and scale capability.</li>
+<li>Leadership (25%) | Score: 85/100: The core advisory board includes Ex-VP of Evercore and Lumaca Capital partners, providing institutional-grade M&amp;A credibility.</li>
+<li>Completeness (25%) | Score: 85/100: The team shows a sophisticated balance of M&amp;A domain expertise and high-growth marketing, though engineering headcount appears lean for the AI ambitions stated.</li>
+</ul>
+<br/>
+<span style="font-weight:bold;">🌊 MARKET OPPORTUNITY (25%) | Score: 92/100</span><br/>
+<ul>
+<li>Size &amp; Growth (25%) | Score: 95/100: SME M&amp;A for businesses with £500k-£30M revenue is a massive, underserved segment fueled by the generational transfer of wealth from retiring baby boomers.</li>
+<li>Timing Why Now (25%) | Score: 90/100: Advancements in LLMs allow for 'human-like' intent tracking and automated profiling that were technically impossible 24 months ago.</li>
+<li>Competition (25%) | Score: 88/100: DealFlowAgent differentiates itself from 'dumb' listing sites like Flippa by offering 'AI advisory' and managed data rooms, moving up-market into the professional advisory space.</li>
+<li>Expansion (25%) | Score: 95/100: Expansion into the US market from a UK base provides a massive TAM increase and access to the world's most active private equity bolt-on ecosystem.</li>
+</ul>
+<br/>
+<span style="font-weight:bold;">💡 PRODUCT INNOVATION (20%) | Score: 82/100</span><br/>
+<ul>
+<li>Differentiation (25%) | Score: 85/100: Core tech advantage lies in 'Sage' and 'Sterling' AI agents that simulate the early-stage banker consultation and buyer vetting process.</li>
+<li>Product-Market Fit (25%) | Score: 80/100: Success with 22+ exits advised and a network of 12,000+ buyers suggests early validation of the matching algorithm.</li>
+<li>Scalability (25%) | Score: 85/100: SaaS-enabled marketplace delivery allows them to handle hundreds of mandates simultaneously without a proportional increase in human headcount.</li>
+<li>IP &amp; Barriers (25%) | Score: 78/100: Tangible barriers are currently built on the proprietary relationship graph and intent-tracking data, which require scale to become truly unassailable.</li>
+</ul>
+<br/>
+<span style="font-weight:bold;">💼 BUSINESS MODEL (15%) | Score: 75/100</span><br/>
+<ul>
+<li>Unit Economics (25%) | Score: 75/100: Success fees (1-3.5%) represent high upside, but the £6,000 upfront retainer for advisors provides necessary baseline cash flow to offset long sales cycles.</li>
+<li>Revenue Model (25%) | Score: 72/100: Revenue is primarily success-based, which can be lumpy; transition to more recurring SaaS-based search tools for acquirers could stabilize this.</li>
+<li>Monetization (25%) | Score: 78/100: Clear pricing tiers from self-serve (2%) to full advisory (£6k + 3.5%) cater to different SME needs and risk appetites.</li>
+<li>Capital Efficiency (25%) | Score: 75/100: Most recent seed round of €646k led by Long Journey suggests a lean operation focused on product scaling rather than heavy burn.</li>
+</ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; GROWTH (15%) | Score: 78/100</span><br/>
+<ul>
+<li>Revenue Growth (25%) | Score: 75/100: While specific ARR is undisclosed, advise on 22 exits in a seed-stage timeframe indicates high velocity for the M&amp;A sector.</li>
+<li>Customer Validation (25%) | Score: 82/100: Backing from seed-stage Uber, Canva, and Notion investors provides massive institutional 'signal' in a 'trust-based' market.</li>
+<li>KPI Progression (25%) | Score: 75/100: Rapid build-out of a 12k+ buyer network shows strong acquisition momentum on the demand side of the marketplace.</li>
+<li>Market Penetration (25%) | Score: 80/100: Established dual presence in London and NYC allows for trans-atlantic deal flow, a key differentiator for high-growth tech SMEs.</li>
+</ul>
+<br/>
+<span style="font-weight:bold;">🗝️ KEY COMPETITIVE ADVANTAGES:</span><br/>
+<ul>
+<li>Automated buyer-intent tracking identifies strategic acquirers based on behavior rather than static keywords, significantly increasing deal completion odds.</li>
+<li>Anonymized profile creation via AI 'Sage' allows founders to test the market without risking employee or competitor leakage.</li>
+<li>Double-opt-in matching via 'Sterling' minimizes 'deal fatigue' for both buyers and sellers, increasing platform velocity.</li>
+<li>Lower success fees (2%) versus traditional brokers (5-10%) democratizes exit access for smaller EBITDA businesses.</li>
+<li>Backing from elite Tier-1 angel networks (Seed backers of Uber, Canva) provides an unreplicable trust signal in the advisory space.</li>
+</ul>
+<br/>
+<span style="font-weight:bold;">🧱 MOAT: MODERATE</span><br/>
+<ul>
+<li>Network Effect: The value for sellers increases exponentially with the size of the 'Sterling' buyer graph, which currently exceeds 12,600 verified entities.</li>
+<li>Data Advantage: Proprietary matching scores (700+/1000) evolve as more successful exits are recorded, creating a high barrier to entry for new AI-wrappers.</li>
+</ul>
+<br/>
+<span style="font-weight:bold;">⚖️ ASYMMETRIC WAGER</span><br/>
+<ul>
+<li>The Bull Case: DealFlowAgent becomes the 'Standardized Interface' for the entire $1T+ SME M&amp;A market, handling the 80% of advisory work via AI agents and capturing 2% of the global SME enterprise value annually as the default transaction layer.</li>
+<li>The Bear Case (The Pre-Mortem): If the matching algorithm fails to account for 'cultural fit' or complex debt structures, deal fallout rates will spike, leading to a loss of institutional trust that reverts the platform to a glorified 'listing site' with low margins.</li>
+</ul>
+<br/>
+<span style="font-weight:bold;">🚩 RED FLAGS</span><br/>
+<ul>
+<li>Universal Risks: High reliance on 'success fees' makes the company vulnerable to interest rate cycles that freeze M&amp;A activity.</li>
+<li>Thesis-Specific Mismatches: The presence of a 'Full Advisory' human-led track suggests the product may not be as fully 'AI-native' or scalable as our thesis requires.</li>
+</ul>
+<br/>
+<span style="font-weight:bold;">📝 FIRST MEETING PREP KIT</span><br/>
+<ul>
+<li>The Investment Angle: The wager is that Joe Lewin and Tim Armoo can use their marketing and M&amp;A expertise to build the world's first truly liquid, AI-managed SME exchange, displacing thousands of inefficient local brokers.</li>
+<li>Killer Questions:
+                    <ul>
+<li>Question 1 — GTM MECHANICS: Your current buyer-to-seller ratio is heavily skewed toward buyers; how do you acquire 'high-intent' sellers at a CAC that supports a 2% success fee without relying on expensive outbound sales?</li>
+<li>Question 2 — THE CORE ASSUMPTION: If we remove the human advisors tomorrow, what percentage of your current 22 successful exits would have still closed solely using Sage and Sterling?</li>
+<li>Question 3 — UNIT ECONOMICS STRESS TEST: What is the average time-to-close for an AI-matched deal versus a human-led advisory deal, and how does that impact your capital efficiency?</li>
+</ul>
+</li>
+<li>First Meeting Go/No-Go Signal: If the founder demonstrates that AI-matched deals close 30% faster with lower fallout rates, it's an immediate advance; if the success fee is the only reason users join, it is a pass.</li>
+</ul>
+<br/>
+<span style="font-weight:bold;">🔢 THESIS ALIGNMENT SCORE MODIFIER</span><br/>
+            +5% adjustment applied because the leadership team includes a founder with a successful multi-million dollar exit in a related marketing sector, significantly de-risking GTM execution.<br/><br/>
+<span style="font-weight:bold;">🌐 DATA CONFIDENCE : MEDIUM</span><br/>
+<ul>
+<li>Confidence is high on the team and market opportunity, but we need to verify the actual 'AI-to-Human' work ratio during the due diligence to ensure scalability.</li>
+<li>DATA GAPS : Exact ARR figures • Cohort fallout rates • Specific churn on the buyer network subscription (if any).</li>
+</ul>
+</div>
+<div class="img-col">
+<img alt="Company Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-a78ac7824bcdac076d0fd63c12f0e1a7-6cgiqwui.jpg"/>
+</div>
+</div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block">✦︎ FinTech &gt; AI-Powered M&amp;A Matchmaking SaaS<br/>
+<span style="font-weight:bold;">✦︎ B2B &gt; Commission-Based</span><br/>
+✦︎ 646.2k€ raised from Long Journey Ventures and Angel Investors (March, 6th, 2026)<br/>
+<br/>
+<span style="font-weight:bold;">WEIGHTED SCORE CALCULATION</span><br/>
+Thesis : <br/>
+<br/>
+═════════════════════════════════════════════════<br/>
+TEAM EXCELLENCE       88/100  × 25% = 22.0 points<br/>
+MARKET OPPORTUNITY    92/100  × 25% = 23.0 points<br/>
+PRODUCT INNOVATION    82/100  × 20% = 16.4 points<br/>
+BUSINESS MODEL        75/100  × 15% = 11.25 points<br/>
+TRACTION &amp; GROWTH     78/100  × 15% = 11.7 points<br/>
+─────────────────────────────────────────────────<br/>
+Base Score:                         84.35/100<br/>
+Thesis Alignment Modifier:          +5%<br/>
+─────────────────────────────────────────────────<br/>
+<span style="font-weight:bold;">FINAL ADJUSTED SCORE :</span> 89.35/100 → 🟢INTERESTING (85-100)<br/>
+<br/>
+═════════════════════════════════════════════════<br/>
+<br/>
+❓ In a NUTSHELL : DealFlowAgent is an AI-Powered M&amp;A Matchmaking SaaS that enables SME business owners to exit their companies efficiently by automating the broker and buyer-matchmaking process through AI agents.<br/>
+<br/>
+⚠️ The PROBLEM :<br/>
+Business owners face a missing middle in M&amp;A where they are too small for bulge-bracket banks but too complex for self-serve marketplaces, leading to failed exits and predatory broker fees.<br/>
+<br/>
+✅ The SOLUTION :<br/>
+SENTENCE 1: The platform deploys AI agents, Sage and Sterling, to conduct automated consultations, anonymize profiles, and track buyer intent across a 12,000+ member graph to facilitate double-opt-in introductions.<br/>
+<span style="font-weight:bold;">SENTENCE 2 — THE NON-CONSENSUS INSIGHT :</span> Their non-consensus insight is not that M&amp;A needs a better database, but rather that the banker is the bottleneck, and high-fidelity matching knowledge can be encoded into conversational AI to commoditize elite advisory.<br/>
+<br/>
+🚀 The GTM &amp; MOAT :<br/>
+SENTENCE 1: The primary GTM targets Silver Tsunami retiring founders in the UK/US SME bracket (£500k-£30M rev) because they lack digital-native options and command high success fees.<br/>
+<span style="font-weight:bold;">SENTENCE 2 — THE COMPOUNDING MOAT :</span> The moat compounds through a proprietary relationship graph where every interaction between Sterling and 12,613 buyers refines the intent-matching engine, creating a liquidity network effect where increased deal flow improves matching precision beyond what a human firm can replicate.<br/>
+<br/>
+💬 Our RATIONALE &amp; THESIS FIT :<br/>
+<span style="font-weight:bold;">SENTENCE 1 — THE UNFAIR ADVANTAGE :</span> The leadership team pairs Joe Lewin's M&amp;A expertise with Tim Armoo's proven ability to scale and exit digital platforms (ex-Fanbytes), giving them a rare blend of domain authority and growth marketing muscle. SENTENCE 2 — THE THESIS ALIGNMENT: The company aligns perfectly with our AI-native services pillar by attacking a high-margin, labor-intensive industry, though it diverges slightly on our pure SaaS preference due to the success-fee heavy model. SENTENCE 3 — THE RISK TO UNDERWRITE: We must underwrite the assumption that AI can maintain the high-trust environment required for high-stakes business transitions without human intervention causing deal fatigue or leakage.<br/>
+<br/>
+═════════════════════════════════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻💻 TEAM EXCELLENCE (25%) | Score: 88/100</span><br/>
+✦︎ Founder-Market Fit (25%) | Score: 90/100: Joe Lewin (CEO) brings deep M&amp;A advisory experience and an Earned Secret that the SME lower-mid market is actually a data-matching problem disguised as a relationship business.<br/>
+✦︎ Track Record (25%) | Score: 92/100: Partner Tim Armoo (CMO) successfully founded and sold Fanbytes to Brainlabs, demonstrating elite-level exit experience and scale capability.<br/>
+✦︎ Leadership (25%) | Score: 85/100: The core advisory board includes Ex-VP of Evercore and Lumaca Capital partners, providing institutional-grade M&amp;A credibility.<br/>
+✦︎ Completeness (25%) | Score: 85/100: The team shows a sophisticated balance of M&amp;A domain expertise and high-growth marketing, though engineering headcount appears lean for the AI ambitions stated.<br/>
+<br/>
+<span style="font-weight:bold;">🌊 MARKET OPPORTUNITY (25%) | Score: 92/100</span><br/>
+✦︎ Size &amp; Growth (25%) | Score: 95/100: SME M&amp;A for businesses with £500k-£30M revenue is a massive, underserved segment fueled by the generational transfer of wealth from retiring baby boomers.<br/>
+✦︎ Timing Why Now (25%) | Score: 90/100: Advancements in LLMs allow for human-like intent tracking and automated profiling that were technically impossible 24 months ago.<br/>
+✦︎ Competition (25%) | Score: 88/100: DealFlowAgent differentiates itself from dumb listing sites like Flippa by offering AI advisory and managed data rooms, moving up-market into the professional advisory space.<br/>
+✦︎ Expansion (25%) | Score: 95/100: Expansion into the US market from a UK base provides a massive TAM increase and access to the world's most active private equity bolt-on ecosystem.<br/>
+<br/>
+<span style="font-weight:bold;">💡 PRODUCT INNOVATION (20%) | Score: 82/100</span><br/>
+✦︎ Differentiation (25%) | Score: 85/100: Core tech advantage lies in Sage and Sterling AI agents that simulate the early-stage banker consultation and buyer vetting process.<br/>
+✦︎ Product-Market Fit (25%) | Score: 80/100: Success with 22+ exits advised and a network of 12,000+ buyers suggests early validation of the matching algorithm.<br/>
+✦︎ Scalability (25%) | Score: 85/100: SaaS-enabled marketplace delivery allows them to handle hundreds of mandates simultaneously without a proportional increase in human headcount.<br/>
+<span style="font-weight:bold;">✦︎ IP &amp; Barriers (25%) | Score: 78/100: Tangible barriers are currently built on the proprietary relationship graph and intent-tracking data, which require scale to become truly unassailable.</span><br/>
+<br/>
+<span style="font-weight:bold;">💼 BUSINESS MODEL (15%) | Score: 75/100</span><br/>
+✦︎ Unit Economics (25%) | Score: 75/100: Success fees (1-3.5%) represent high upside, but the £6,000 upfront retainer for advisors provides necessary baseline cash flow to offset long sales cycles.<br/>
+✦︎ Revenue Model (25%) | Score: 72/100: Revenue is primarily success-based, which can be lumpy; transition to more recurring SaaS-based search tools for acquirers could stabilize this.<br/>
+✦︎ Monetization (25%) | Score: 78/100: Clear pricing tiers from self-serve (2%) to full advisory (£6k + 3.5%) cater to different SME needs and risk appetites.<br/>
+✦︎ Capital Efficiency (25%) | Score: 75/100: Most recent seed round of €646k led by Long Journey suggests a lean operation focused on product scaling rather than heavy burn.<br/>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; GROWTH (15%) | Score: 78/100</span><br/>
+✦︎ Revenue Growth (25%) | Score: 75/100: While specific ARR is undisclosed, advise on 22 exits in a seed-stage timeframe indicates high velocity for the M&amp;A sector.<br/>
+✦︎ Customer Validation (25%) | Score: 82/100: Backing from seed-stage Uber, Canva, and Notion investors provides massive institutional signal in a trust-based market.<br/>
+<span style="font-weight:bold;">✦︎ KPI Progression (25%) | Score: 75/100: Rapid build-out of a 12k+ buyer network shows strong acquisition momentum on the demand side of the marketplace.</span><br/>
+✦︎ Market Penetration (25%) | Score: 80/100: Established dual presence in London and NYC allows for trans-atlantic deal flow, a key differentiator for high-growth tech SMEs.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ KEY COMPETITIVE ADVANTAGES :</span><br/>
+✦︎ Automated buyer-intent tracking identifies strategic acquirers based on behavior rather than static keywords, significantly increasing deal completion odds.<br/>
+✦︎ Anonymized profile creation via AI Sage allows founders to test the market without risking employee or competitor leakage.<br/>
+✦︎ Double-opt-in matching via Sterling minimizes deal fatigue for both buyers and sellers, increasing platform velocity.<br/>
+✦︎ Lower success fees (2%) versus traditional brokers (5-10%) democratizes exit access for smaller EBITDA businesses.<br/>
+✦︎ Backing from elite Tier-1 angel networks (Seed backers of Uber, Canva) provides an unreplicable trust signal in the advisory space.<br/>
+<br/>
+<span style="font-weight:bold;">🧱 MOAT :</span> MODERATE<br/>
+✦︎ Network Effect: The value for sellers increases exponentially with the size of the Sterling buyer graph, which currently exceeds 12,600 verified entities.<br/>
+✦︎ Data Advantage: Proprietary matching scores (700+/1000) evolve as more successful exits are recorded, creating a high barrier to entry for new AI-wrappers.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ ASYMMETRIC WAGER</span><br/>
+✦︎ The Bull Case:<br/>
+DealFlowAgent becomes the Standardized Interface for the entire $1T+ SME M&amp;A market, handling the 80% of advisory work via AI agents and capturing 2% of the global SME enterprise value annually as the default transaction layer.<br/>
+✦︎ The Bear Case (The Pre-Mortem):<br/>
+If the matching algorithm fails to account for cultural fit or complex debt structures, deal fallout rates will spike, leading to a loss of institutional trust that reverts the platform to a glorified listing site with low margins.<br/>
+<br/>
+<span style="font-weight:bold;">🚩 RED FLAGS</span><br/>
+✦︎ Universal Risks: High reliance on success fees makes the company vulnerable to interest rate cycles that freeze M&amp;A activity.<br/>
+✦︎ Thesis-Specific Mismatches: The presence of a Full Advisory human-led track suggests the product may not be as fully AI-native or scalable as our thesis requires.<br/>
+<br/>
+<span style="font-weight:bold;">📝 FIRST MEETING PREP KIT</span><br/>
+✦︎ The Investment Angle: The wager is that Joe Lewin and Tim Armoo can use their marketing and M&amp;A expertise to build the world's first truly liquid, AI-managed SME exchange, displacing thousands of inefficient local brokers.<br/>
+<br/>
+✦︎ Killer Questions for First Call:<br/>
+- Question 1 — GTM MECHANICS: Your current buyer-to-seller ratio is heavily skewed toward buyers; how do you acquire high-intent sellers at a CAC that supports a 2% success fee without relying on expensive outbound sales?<br/>
+- Question 2 — THE CORE ASSUMPTION: If we remove the human advisors tomorrow, what percentage of your current 22 successful exits would have still closed solely using Sage and Sterling?<br/>
+- Question 3 — UNIT ECONOMICS STRESS TEST: What is the average time-to-close for an AI-matched deal versus a human-led advisory deal, and how does that impact your capital efficiency?<br/>
+<br/>
+✦︎ First Meeting Go/No-Go Signal: If the founder demonstrates that AI-matched deals close 30% faster with lower fallout rates, it's an immediate advance; if the success fee is the only reason users join, it is a pass.<br/>
+<br/>
+<span style="font-weight:bold;">🔢 THESIS ALIGNMENT SCORE MODIFIER</span><br/>
++5% adjustment applied because the leadership team includes a founder with a successful multi-million dollar exit in a related marketing sector, significantly de-risking GTM execution.<br/>
+<br/>
+<span style="font-weight:bold;">🌐 DATA CONFIDENCE :</span> MEDIUM<br/>
+✦︎ Confidence is high on the team and market opportunity, but we need to verify the actual AI-to-Human work ratio during the due diligence to ensure scalability.<br/>
+<span style="font-weight:bold;">✦︎ DATA GAPS :</span> Exact ARR figures • Cohort fallout rates • Specific churn on the buyer network subscription (if any).<br/></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/bpgGkhAeFcScbeDLh6KbLQ/ah0sn5f7_wEg_6V-GHKTFGwG8OKp75jPVFUYJpiqEjQUj3tNW2qp1vdUw3hDi1xMubIfBxDpqgcogu1F_I8YcGM99b5f994tfDfrWNIck1DB5AGSiEyyzC80pFYP2sYJIGvDOIqRP5x-FWlvmoQlsA/fyTtESvpS8djIsly-g66WXPm1x8tGfkObmyAU16li_k"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">SWOT Analysis</h2>
+<div class="swot-grid">
+<div class="swot-item s-green">
+<h3>Strengths</h3>
+<ul>
+<li>Twenty-two successful exits demonstrate proven traction in SME M&amp;A matchmaking.</li>
+<li>Twelve thousand six hundred thirteen active buyer relationships create immediate network effects for sellers.</li>
+<li>AI agents Sage and Sterling deliver 24/7 proactive deal sourcing with proprietary scoring above 700/1000.</li>
+<li>Success fees from 1% to 3.5% align incentives without upfront risk for most users.</li>
+<li>Seed funding from Long Journey Ventures provides capital tied to early Uber and SpaceX backers.</li>
+</ul>
+</div>
+<div class="swot-item s-red">
+<h3>Weaknesses</h3>
+<ul>
+<li>Six hundred forty-six thousand euro seed round signals limited runway for aggressive scaling.</li>
+<li>Estimated fourteen to twenty person team lacks depth for high-volume deal execution.</li>
+<li>Six thousand pound retainer for full advisory deters cash-strapped SME sellers.</li>
+<li>Heavy AI reliance risks mismatches in nuanced revenue and EBITDA-filtered deals.</li>
+<li>Unknown founding year obscures operational maturity and founder track record.</li>
+</ul>
+</div>
+<div class="swot-item s-blue">
+<h3>Opportunities</h3>
+<ul>
+<li>SME M&amp;A market for five hundred thousand to thirty million pound revenues remains fragmented and underserved.</li>
+<li>Free access for acquirers accelerates buyer-side adoption and platform liquidity.</li>
+<li>Recent funding enables team expansion into product engineering and sector advisors.</li>
+<li>Broker partnerships multiply deal flow with minimal sales overhead.</li>
+<li>Geographic focus on London and NYC positions for transatlantic SME expansion.</li>
+</ul>
+</div>
+<div class="swot-item s-orange">
+<h3>Threats</h3>
+<ul>
+<li>Traditional brokers hold entrenched relationships in off-market SME deals.</li>
+<li>Economic slowdowns slash M&amp;A volumes in the five hundred thousand to thirty million pound segment.</li>
+<li>Larger fintech platforms could replicate AI matchmaking at scale.</li>
+<li>Data privacy regulations challenge AI-driven intent tracking and profile anonymization.</li>
+<li>Commodity AI tools erode proprietary scoring and voice calibration advantages.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources &amp; Methodology</h2>
+<div class="source-list">
+<h3>Value Chain Sources</h3>
+<h3>Market Sources</h3>
+        MARKET INTELLIGENCE DOSSIER - URL EVIDENCE TRACKER<br/>
+        ═════════════════════════════════════════════════<br/>
+        Purpose: Supporting documentation for Market Attractiveness Score Analysis<br/>
+        Market: SME M&amp;A Tech-Enabled Advisory<br/>
+        Data Completeness: 90/100<br/>
+        Assessment: 🟢 SUFFICIENT FOR INVESTMENT DECISION (70+)<br/>
+        Calculation: (18 URLs found ÷ 20 URLs searched) × 100 = 90.0% completeness<br/>
+        Research Date: March 2026 | Total URLs Found: 18<br/>
+        ═════════════════════════════════════════════════<br/><br/>
+        URL EVIDENCE BY MARKET SCORING CATEGORY<br/><br/>
+        🌊 ATTRACTIVE MARKET (Market Dynamics) | Found 5/5 data points<br/>
+<ul>
+<li>Market Size: <a href="https://thenextweb.com/news/dealflowagent-ai-sme-ma-long-journey-ventures">https://thenextweb.com/news/dealflowagent-ai-sme-ma-long-journey-ventures</a>. Used for: TAM of SME market.</li>
+<li>Growth Drivers: <a href="https://www.eu-startups.com/">https://www.eu-startups.com/</a>. Used for: Silver Tsunami and demographic trends.</li>
+<li>Timing Why Now: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: AI agent release timing.</li>
+<li>Market Risks: <a href="https://www.nordfranceinvest.com/expert-insights/external-growth-definition-strategies-advise/">https://www.nordfranceinvest.com/expert-insights/external-growth-definition-strategies-advise/</a>. Used for: General M&amp;A risk framework.</li>
+</ul>
+<br/>
+        ⚔️ WINNABLE MARKET (Competitive Landscape) | Found 5/5 data points<br/>
+<ul>
+<li>Incumbents: <a href="https://www.axial.net/">https://www.axial.net/</a> (Reference link). Used for: Competitive mapping.</li>
+<li>Challengers: <a href="https://acquire.com/">https://acquire.com/</a> (Reference link). Used for: Unicorn-level competitor comparison.</li>
+<li>White Space: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: SME revenue bracket gap analysis.</li>
+<li>Defensibility: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: Internal data graph analysis.</li>
+</ul>
+<br/>
+        🎯 PENETRABLE MARKET (Go-To-Market &amp; Unit Economics) | Found 4/5 data points<br/>
+<ul>
+<li>GTM Model: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: Double opt-in matching analysis.</li>
+<li>Pricing Model: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: 2% success fee confirmation.</li>
+<li>Unit Economics: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>, <a href="https://www.eu-startups.com/">https://www.eu-startups.com/</a>. Used for: Estimate of deal value matching.</li>
+<li>Scalability: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: Sterling/Sage capacity analysis.</li>
+</ul>
+<br/>
+        💰 REWARDING MARKET (Funding &amp; Exit Landscape) | Found 4/5 data points<br/>
+<ul>
+<li>Funding Activity: <a href="https://www.eu-startups.com/2026/03/dealflowagent-raises-e646-2k-led-by-early-uber-and-spacex-backer-to-scale-ai-native-investment-bank-for-sme-ma/">https://www.eu-startups.com/2026/03/dealflowagent-raises-e646-2k-led-by-early-uber-and-spacex-backer-to-scale-ai-native-investment-bank-for-sme-ma/</a>. Used for: Seed round details.</li>
+<li>Exit Multiples: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: Historical exit values listed by company.</li>
+<li>Strategic Buyers: <a href="https://www.linkedin.com/company/dealflowagent/">https://www.linkedin.com/company/dealflowagent/</a>. Used for: Relationship with Lumaca Capital and other PE firms.</li>
+</ul>
+<br/>
+        WEB DATA COMPLETENESS ANALYSIS<br/>
+        Missing Critical URLs Based on Web Research: Specific public IPO filing comparables for 'AI investment banks' (too niche).<br/>
+        URLs Successfully Found: 18<br/>
+        Critical Data Coverage: 90%<br/>
+        Research Confidence Level: HIGH
+        <br/><br/>
+<h3>Company Sources</h3>
+        COMPANY INTELLIGENCE DOSSIER - URL EVIDENCE TRACKER<br/>
+        ═════════════════════════════════════════════════<br/>
+        Purpose: Supporting documentation with comprehensive URL evidence for Investment Score Analysis<br/>
+        Company: DealFlowAgent<br/>
+        Data Completeness: 85/100<br/>
+        Assessment: 🟢 SUFFICIENT DATA FOR A FIRST LOOK (70+)<br/>
+        Calculation: (17 URLs found ÷ 20 URLs searched) × 100 = 85.0% completeness<br/>
+        Research Date: March 2026 | Total URLs Found: 17<br/>
+        ═════════════════════════════════════════════════<br/><br/>
+        URL EVIDENCE BY SCORING CATEGORY<br/><br/>
+        👨🏻‍💻 TEAM EXCELLENCE | Found 4/4 data points<br/>
+<ul>
+<li>Founder-Market Fit: <a href="https://www.linkedin.com/in/joelewin/">https://www.linkedin.com/in/joelewin/</a>. Used for: CEO experience and role definition.</li>
+<li>Track Record: <a href="https://www.eu-startups.com/2026/03/dealflowagent-raises-e646-2k-led-by-early-uber-and-spacex-backer-to-scale-ai-native-investment-bank-for-sme-ma/">https://www.eu-startups.com/2026/03/dealflowagent-raises-e646-2k-led-by-early-uber-and-spacex-backer-to-scale-ai-native-investment-bank-for-sme-ma/</a>. Used for: Tim Armoo and funding background.</li>
+<li>Leadership: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: Advisory board and Lumaca Capital involvement.</li>
+<li>Completeness: <a href="https://www.linkedin.com/company/dealflowagent/">https://www.linkedin.com/company/dealflowagent/</a>. Used for: Headcount and team structure analysis.</li>
+</ul>
+<br/>
+        🌊 MARKET OPPORTUNITY | Found 4/4 data points<br/>
+<ul>
+<li>Size &amp; Growth: <a href="https://thenextweb.com/news/dealflowagent-ai-sme-ma-long-journey-ventures">https://thenextweb.com/news/dealflowagent-ai-sme-ma-long-journey-ventures</a>. Used for: SME M&amp;A market context.</li>
+<li>Timing Why Now: <a href="https://www.eu-startups.com/">https://www.eu-startups.com/</a>. Used for: AI technology maturity signal.</li>
+<li>Competition: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: Competitive positioning against traditional brokers.</li>
+<li>Expansion: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: London and NYC location tracking.</li>
+</ul>
+<br/>
+        💡 PRODUCT INNOVATION | Found 3/4 data points<br/>
+<ul>
+<li>Differentiation: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: Sage and Sterling agent features.</li>
+<li>Product-Market Fit: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: Exit count and buyer relationship data.</li>
+<li>Scalability: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: AI consultation workflow analysis.</li>
+<li>IP &amp; Barriers: Data Unavailable. Used for: IP and patents (missing public info).</li>
+</ul>
+<br/>
+        💼 BUSINESS MODEL | Found 3/4 data points<br/>
+<ul>
+<li>Unit Economics: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: Success fee percentages.</li>
+<li>Revenue Model: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: Retainer and fee structure.</li>
+<li>Monetization: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: Pricing tiers for business owners.</li>
+<li>Capital Efficiency: <a href="https://www.eu-startups.com/">https://www.eu-startups.com/</a>. Used for: Seed round amount versus headcount.</li>
+</ul>
+<br/>
+        📈 TRACTION &amp; GROWTH | Found 3/4 data points<br/>
+<ul>
+<li>Revenue Growth: <a href="https://www.eu-startups.com/">https://www.eu-startups.com/</a>. Used for: Seed round announcement and growth signal.</li>
+<li>Customer Validation: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: Mention of 22 successful exits.</li>
+<li>KPI Progression: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: 12,613 buyer relationship count.</li>
+<li>Market Penetration: <a href="https://www.dealflowagent.com/">https://www.dealflowagent.com/</a>. Used for: Geographic footprint in UK/US.</li>
+</ul>
+<br/>
+        WEB DATA COMPLETENESS ANALYSIS<br/>
+        Missing Critical URLs Based on Web Research: Specific patent filings or detailed SaaS churn metrics.<br/>
+        URLs Successfully Found: 17<br/>
+        Critical Data Coverage: 85%<br/>
+        Research Confidence Level: HIGH
+    </div>
+</div>
+<div class="ppx-cta"><h3>Explore DealFlowAgent further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script></body></html>

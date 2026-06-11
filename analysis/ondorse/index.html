@@ -1,0 +1,1285 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ondorse — analyse RegTech &amp; Compliance | Proplace</title><meta name="description" content="RegTech &amp; Compliance · KYC/KYB Orchestration SaaS · Seed"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/ondorse/"><meta property="og:type" content="article"><meta property="og:title" content="Ondorse — analyse RegTech &amp; Compliance | Proplace"><meta property="og:description" content="RegTech &amp; Compliance · KYC/KYB Orchestration SaaS · Seed"><meta property="og:url" content="https://proplace.co/analysis/ondorse/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ondorse — RegTech & Compliance", "description": "RegTech & Compliance · KYC/KYB Orchestration SaaS · Seed", "inLanguage": "fr", "url": "https://proplace.co/analysis/ondorse/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/ondorse/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Ondorse"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Ondorse</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Ondorse"}]}</script></div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Seed</span>
+<span class="sb-tag">RegTech &amp; Compliance</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Ondorse</h1>
+<span class="sidebar-tagline">RegTech &amp; Compliance · KYC/KYB Orchestration SaaS · Seed</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Invisible compliance, visible performance.</p>
+<div class="contact-row">
+<a href="https://www.ondorse.co/" target="_blank"><i class="fas fa-globe"></i> Website</a>
+<a href="https://linkedin.com/in/frnrbt" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+</div>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="sb-legend-wrap">
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Market data</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Company data</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; reasoning</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; methodology</span></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Explore Ondorse further?</h3>
+<a class="btn btn-secondary" href="http://forms.proplace.co/meet" target="_blank">Schedule a strategy call on Ondorse</a>
+</div>
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="section">
+<h3>Want to follow our deal flow?</h3>
+<p class="meta-desc">Receive European AI startups we assess every day from a VC perspective.</p>
+<a class="btn btn-primary" href="https://77f02b89.sibforms.com/serve/MUIFAMr0ADjDfIUWLc56STos70j4OXPiOTJqugyAa45YfGyt9zW6Tokz3iXWLNiTAw6oxjbrMnjs424k46IvwOQlWjaMIsbgexAk95FvzqzgLa56TkHas6WASK4VKs684XcZhacqMYTYQGuIfzJmBmCkmHwhNeB0yHifmrxC1PUhNMS1ZbiW1xF18IZy7tJP9BIWjDcM5VoH6VEVCw==" target="_blank">Subscribe to deal flow</a>
+</div>
+<div class="section">
+<h3>Want a proprietary deal flow?</h3>
+<p class="meta-desc">Receive daily highly qualified targets for your acquisition strategy.</p>
+<a class="btn btn-primary" href="http://forms.proplace.co/meet" target="_blank">Schedule a strategy call</a>
+</div>
+<div class="sidebar-logo-wrap">
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Ondorse</h1>
+<h2 class="subtitle-category">RegTech &amp; Compliance ➜ KYC/KYB Orchestration SaaS ➜ SaaS-based KYC/KYB compliance orchestration for European regulated financial services companies.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Ondorse" data-h="" data-i="RegTech &amp; Compliance" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/ondorse/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="market-summary">
+<h2 class="section-title">Market Summary</h2>
+<div class="split-container">
+<div class="text-col">
+<h4>MARKET OPPORTUNITY SCORE</h4>
+<p>RegTech &amp; Compliance &gt; KYC/KYB Orchestration SaaS<br/>B2B &gt; SaaS</p>
+<p>IS IT AN ATTRACTIVE MARKET ? (Dynamics): 85/100 × 25% = 21 points<br/>IS IT A WINNABLE MARKET ? (Competition): 60/100 × 25% = 15 points<br/>IS IT A PENETRABLE MARKET ? (GTM): 75/100 × 25% = 19 points<br/>IS IT A REWARDING MARKET ? (Exits): 80/100 × 25% = 20 points</p>
+<p>TOTAL MARKET ATTRACTIVITY SCORE: 75/100</p>
+<p>This score indicates the market provides a significant tailwind due to timing and need, but success is contingent on navigating a complex competitive field, making founder-market fit and GTM execution paramount for winning.</p>
+<h4>❓ Market DEFINITION</h4>
+<p>Buyers are compliance and operations leaders within regulated European financial services companies and marketplaces. They are purchasing a SaaS platform to perform the job of rapidly and accurately verifying business customers (KYB/KYC) and monitoring them for ongoing risk. The structural friction is the extreme inefficiency and high error rate of manually juggling dozens of disparate data sources, spreadsheets, and email chains to onboard a single customer, which directly bottlenecks revenue and invites compliance failures. In the value chain, this market sits between the regulated end-companies and the raw data providers (e.g., credit bureaus, sanctions list vendors), capturing margin by acting as the intelligent orchestration layer.</p>
+<h4>💬 Our Market THESIS</h4>
+<p>The irreversible structural break is the explosion of digital-native fintechs and marketplaces across Europe, which must comply with the same AML/CFT regulations as incumbent banks but lack the legacy headcount to do so manually. Incumbent data providers are paralyzed because their business models rely on selling proprietary data access or clunky, on-premise software; offering a flexible, API-first orchestration layer would cannibalize these existing high-margin revenue streams. The attack vector is providing a vendor-agnostic orchestration platform that allows fast-growing firms to automate compliance without being locked into a single data vendor's ecosystem. This window is open now due to regulatory pressure meeting the technical maturity of API-driven SaaS, and will begin to close in 24-36 months as the market consolidates around one or two dominant orchestration platforms that have built insurmountable integration and workflow moats.</p>
+<h4>🧠 Our CONVICTION &amp; WAGER on this Market:</h4>
+<p><b>🟡 MEDIUM CONVICTION</b></p>
+<p>While the market timing and problem are undeniable, the defensibility against large data providers moving up the stack into orchestration is a legitimate concern that tempers conviction. Our wager is that within 24 months, a 'best-of-breed' strategy using a neutral orchestrator will prove to have demonstrably better compliance outcomes and unit economics for customers than a bundled 'all-in-one' suite from a single data monopolist. The single binary signal from a first call that would immediately increase conviction is the founder showing hard data that customers who churned from a data provider's bundled suite came to them specifically seeking vendor neutrality and superior workflow automation.</p>
+<h4>🌊 ATTRACTIVE MARKET (Market Dynamics) | Score: 85/100</h4>
+<p>This score signifies that powerful, non-cyclical market drivers create a strong tailwind for companies in this space, reducing demand-side risk significantly.</p>
+<ul><li><b>Market Size (25%) | Score: 80/100:</b> The global RegTech market is a multi-billion dollar category with a strong CAGR, and the specific SAM of European financial services compliance represents a substantial and high-value target, though specific SOM figures are not available.</li><li><b>Growth Drivers (25%) | Score: 95/100:</b> Market growth is fueled by two primary macro drivers: the unabated proliferation of digital finance and the corresponding increase in regulatory complexity and enforcementstringency (e.g. AMLD6 in Europe).</li><li><b>Timing Why Now (25%) | Score: 95/100:</b> The key catalyst is the fintech sector reaching a new maturity stage where manual 'duct-tape' solutions for compliance are breaking at scale, forcing a market shift towards professional-grade automation platforms.</li><li><b>Market Risks (25%) | Score: 70/100:</b> The primary risk is a potential consolidation wave where large data providers acquire smaller workflow tools to create bundled offerings, while a secondary risk is the long sales cycle inherent in selling to regulated financial institutions.</li></ul>
+<h4>⚔️ WINNABLE MARKET (Competitive Landscape) | Score: 60/100</h4>
+<p>This score suggests the market is structurally challenging, with no easy greenfield; winning requires a differentiated product and a precise GTM wedge, not just a good idea.</p>
+<ul><li><b>Incumbents (25%) | Score: 50/100:</b> The market is crowded with legacy data behemoths like Moody's and Refinitiv (LSEG) who have massive distribution but slower, less flexible products, and point-solution providers for specific checks.</li><li><b>Challengers (25%) | Score: 60/100:</b> Well-funded scale-ups exist, often focusing on a specific part of the value chain (e.g., ID verification unicorns like IDNow or screening specialists like ComplyAdvantage), creating a fragmented but fierce landscape.</li><li><b>White Space (25%) | Score: 80/100:</b> A clear white space exists for a pure-play, vendor-agnostic orchestration layer that sits on top of all point solutions, capturing the 'control panel' position in the customer's value chain.</li><li><b>Defensibility (25%) | Score: 50/100:</b> The primary moat in this market is not technology IP but Process Power and high switching costs, which take time to build, making early market stages a features race with weak defensibility.</li></ul>
+<h4>🎯 PENETRABLE MARKET (Go-to-Market &amp; Unit Economics) | Score: 75/100</h4>
+<p>The score indicates that while the target customer is identifiable and has a high willingness to pay, the GTM motion is structurally consultative and sales-heavy, imposing a 'capital tax' on scaling.</p>
+<ul><li><b>GTM Model (25%) | Score: 70/100:</b> The dominant model is a consultative, direct enterprise sales motion due to the complexity of the problem, with average sales cycles likely in the 3-9 month range for mid-to-large customers.</li><li><b>Pricing Model (25%) | Score: 80/100:</b> The standard industry structure is a recurring SaaS fee, often tiered by case volume or number of API calls, with ARR being the primary metric and typical customer ACVs varying widely from five to six figures.</li><li><b>Unit Economics (25%) | Score: 70/100:</b> Healthy LTV/CAC ratios are achievable due to high retention in this sticky category, but payback periods can be extended by the long sales cycles, requiring a well-capitalized GTM engine.</li><li><b>Scalability (25%) | Score: 80/100:</b> Revenue models are highly scalable through volume-based pricing and geographic expansion, as compliance needs are largely universal across regulated markets, albeit with local nuances.</li></ul>
+<h4>💰 REWARDING MARKET (Funding &amp; Exit) | Score: 80/100</h4>
+<p>This score implies that there is a proven and active market for both funding and exits in this category, providing a credible path to the returns our fund requires.</p>
+<ul><li><b>Funding Activity (25%) | Score: 85/100:</b> VC appetite for RegTech remains high, with significant capital invested globally in recent years and consistent participation from top-tier firms who see the category as critical infrastructure.</li><li><b>Exit Multiples (25%) | Score: 75/100:</b> While public SaaS multiples have compressed, strategic M&amp;A multiples for high-growth, mission-critical RegTech assets remain robust, often commanding a premium over pure financial valuation.</li><li><b>Strategic Buyers (25%) | Score: 85/100:</b> A deep bench of logical strategic buyers exists, including large data providers (Moody's, LSEG), core banking software firms (Temenos), and large consultancies (Big Four), all seeking to plug this capability gap.</li><li><b>Return Profile (25%) | Score: 75/100:</b> This market structurally supports the creation of billion-dollar category leaders, given the sticky, recurring revenue and high gross margins at scale, meeting our fund's target return profile, though the path is competitive.</li></ul>
+<h4>⚡ CROSS-SECTION SYNTHESIS:</h4>
+<p>The combination of a highly attractive but only moderately winnable market signals a 'knife fight in a phone booth' scenario: the prize is large and real, but it will be won through brutal execution, not just a clever idea, requiring a capital-efficient GTM and a product that builds a defensible moat from day one.</p>
+<h4>🌐 DATA CONFIDENCE:</h4>
+<p>The analysis relies on publicly available news, company websites, and general market knowledge of the RegTech space, as no dedicated market research reports were provided. Data is strongest on macro trends and weakest on specific, private competitor metrics. A total of 3 sourced URLs were used as proxies.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-abfb718b5db2d4582008778754a552dc-boufnuys.jpg"/>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;&lt;<scenarios_html_code>&gt;&gt;
+
+
+<div class="section-container" id="company">
+<h2 class="section-title">Company Deep Dive</h2>
+<div class="split-container">
+<div class="text-col">
+<h3 id="value-proposition">Value Proposition</h3>
+<div class="text-block"><b>Value Proposition:</b><br/> Ondorse provides invisible compliance and visible performance through an all-in-one platform to orchestrate, automate, and scale the full KYC/KYB journey, reducing manual tasks and accelerating time to revenue. Ondorse is the automated central nervous system for a bank's compliance team. Instead of manually checking every new business customer's identity, documents, and risk level across dozens of systems, Ondorse does it all at once through a single platform, making sure the bank stays legal and can approve good customers faster.<br/><br/><b>Ideal Customer Profile (ICP):</b><br/> Modern operations leaders, compliance managers, and legal heads at fintechs, banks, insurance, and payment companies. Compliance and operations leaders within regulated European financial services companies and marketplaces. Buyers are compliance and operations leaders within regulated European financial services companies and marketplaces.<br/><br/><b>B2B or B2C:</b><br/> B2B - The platform is designed for financial institutions and organizations subject to AML-CFT regulations to manage their business customer base.<br/><br/><b>Industry:</b><br/> RegTech / FinTech Compliance. RegTech &amp; Compliance &gt; KYC/KYB Orchestration SaaS.<br/><br/><b>Contact &amp; Legal:</b><br/> Entity Name: Ondorse. Support: Friendly human support based in Europe. Contact method: Book a call via website. HQ Country: France.<br/><br/><b>Key Client Examples &amp; Testimonials:</b><br/> Fipto (Bertrand Godin, CEO), Smile&amp;Pay (Othmane El Karmaoui, Compliance Manager), Alan (Margaux Dereux, Ops Manager), Evaneos (Florence Rivat, Head of Legal), Lemonway (Antoine Orsini, CEO). High-quality customer logos (Alan, Lemonway). Testimonials from CEOs and compliance heads of top-tier European fintechs like Alan, Fipto, and Lemonway.<br/><br/><b>Core Solution:</b><br/> An all-in-one KYC/KYB compliance platform for onboarding, scanning, remediation, and perpetual monitoring. Modular identity/KYC/AML compliance platform intended for fintechs and regulated businesses, offering onboarding risk scoring and case management via a single API integration. KYC/KYB Orchestration SaaS.<br/><br/><b>Feature Encyclopedia:</b><br/> Day-1 risk overview | AI-powered remediation | AI-generated email sequences | Document collection portal | AI-augmented document analysis (Smart OCR) | Hands-free customer monitoring | Perpetual KYC | Automated risk score updates | Customizable onboarding questionnaires | Autocomplete for European company registers | Smart document demands.<br/><br/><b>Technical Capabilities:</b><br/> API Access | CRM Connectivity | 30+ check library | Integration with 35+ third-party vendors (ComplyAdvantage, IDNow, SEON, Creditsafe, Moody's, etc.) | Workflow Orchestration | CSV data imports | Slack/Teams/Hubspot/Salesforce/SAP integrations | API-first design | Deep CRM integrations | Technical capability to handle complex multi-country onboarding across 10,000 legal entity types.<br/><br/><b>Use Cases:</b><br/> Scaling operations without increasing headcount | Transitioning from manual to automated compliance | Scanning entire client bases for regulatory breaches | Multi-country European onboarding with 10,000 legal types | Automate the entire verification workflow through a single API, orchestrating checks, analyzing documents with AI, and providing a unified risk overview from day one | Automate entire compliance journey (onboarding, remediation, monitoring).<br/><br/><b>Company Culture:</b><br/> Focus on agility, expertise, and simplicity. Mission is to kill manual tasks in compliance operations. Team values operational experience ('we've lived the pressure'). Europe-based support teams.<br/><br/><b>Team Analysis:</b><br/> Flo Robert (Founder, CEO, Serial Fintech Founder with a Quant/Strategy Background), Florent Robert (CEO and cofounder), Aymeric Boëlle (cofounder/president). Founders with a strong background in operational pressure. Founder-Market Fit: The CEO, a serial fintech founder with a quant background. Previous venture: Bruno (successful exit).<br/><br/><b>Job Offers &amp; Titles:</b><br/> Not explicitly listed in text. Describes 'modern ops teams' and 'high-performance ops' as the target users. Plans to expand the team, double headcount.<br/><br/><b>Estimated Headcount:</b><br/> Not provided. Focus is on a 'strong team' based in Europe.<br/>Product &amp; Engineering: Unknown<br/>Marketing: Unknown<br/>Sales: Unknown<br/>Support &amp; IT: Unknown<br/>General &amp; Admin (G&amp;A): Unknown<br/><br/><b>Business Model Analysis:</b><br/> Modular SaaS subscription with volume-based pricing. SaaS &gt; B2B. Recurring SaaS revenue model. Land-and-expand motion. Transparent pricing that reduces friction and clear upsell paths.<br/><br/><b>Revenue Streams &amp; Pricing Tiers:</b><br/> Starter Plan: From EUR 18,000/year (1,000 cases). Growth Plan: From EUR 48,000/year (10,000 cases). Enterprise: Fully custom tailored offer. Healthy starting ACVs of €18k-€48k+.<br/><br/><b>Plan Features:</b><br/> Starter: 2 users, API access, standard marketplace (2 apps). Growth: 5 users, AI &amp; remediation, 3 apps, configurable platform. Enterprise: 10 users, unlimited cases, Premium marketplace (5 apps), 'Bring your own' app capabilities. Upsell paths based on case volume, user seats, and access to premium features like AI and advanced marketplace integrations.<br/><br/><b>Hidden Costs &amp; Terms:</b><br/> Additional users in Growth plan: 600 Euros/year per user. Additional users in Enterprise: 800 Euros/year per user. Extra apps in Enterprise: 2,000 Euros/app.<br/></div>
+<h3 id="product">Product</h3>
+<div class="text-block"></div>
+<h3 id="business-model">Business Model</h3>
+<div class="text-block"></div>
+<h3 id="team">Team</h3>
+<div class="text-block"></div>
+<h3 id="ceo">CEO</h3>
+<div class="text-block"><b>EXECUTIVE ASSESSMENT</b><br/><ul><li> Serial Fintech Founder with a Quant/Strategy Background</li><li><span style="font-weight:bold;"></span> High. Education from top-tier institutions (CentraleSupélec, Imperial College London) and early career at prestigious financial institutions (Deutsche Bank, RBC, SGCIB) signals strong analytical capabilities and a robust professional network. The success of Bruno and the rapid growth of Ondorse further validate this.</li><li><span style="font-weight:bold;">Loyalty &amp; Tenure:</span> Shows commitment to ventures, with two entrepreneurial stints each lasting over 4 years. His corporate roles prior to founding were shorter but typical for quantitative finance careers, showing a pattern of rapid progression.</li><li><span style="font-weight:bold;">Commercial Fit:</span> Excellent. His prior experience building and exiting a successful fintech (Bruno) directly informs his current venture, providing a deep understanding of the regulatory landscape (audits with French financial regulators) and the pain points within financial operations, specifically compliance. This background reduces execution risk for Ondorse significantly.</li></ul><br/><br/><b>PROFESSIONAL NARRATIVE</b><br/>Flo Robert began his career within the high<br/></div>
+<h3 id="company-summary">Company Summary</h3>
+<ul><li>RegTech &amp; Compliance &gt; KYC/KYB Orchestration SaaS</li><li>B2B &gt; SaaS</li><li>€3.8 million raised from Eurazeo and ISAI (September, 26th, 2023)</li></ul>
+<br/>
+<span style="font-weight:bold;">PRE-SCREENING SCORE</span><br/><br/>
+<br/>
+NOTE: This is a raw pre-screening score. Thesis weights are applied<br/>
+in the Synthetic GP qualification pipeline after angle detection.<br/>
+<br/>
+═════════════════════<br/>
+<span style="font-weight:bold;">TEAM EXCELLENCE : 79/100</span><br/>
+<span style="font-weight:bold;">MARKET OPPORTUNITY : 71/100</span><br/>
+<span style="font-weight:bold;">PRODUCT INNOVATION : 88/100</span><br/>
+<span style="font-weight:bold;">BUSINESS MODEL : 88/100</span><br/>
+<span style="font-weight:bold;">TRACTION &amp; GROWTH : 80/100</span><br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">PRE-SCREENING SCORE :</span> 81/100 → 🟡 POSITIVE SIGNAL<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+❓ In a NUTSHELL : Ondorse is a KYC/KYB Orchestration SaaS that enables compliance and ops leaders at financial companies to automate and scale customer onboarding by providing an all-in-one compliance platform.<br/>
+<br/>
+⚠️ The PROBLEM : A compliance manager at a scaling fintech is buried in manual tasks, copy-pasting data between 10 different tabs to verify a single business customer, creating a massive bottleneck that delays revenue and increases regulatory risk.<br/>
+<br/>
+✅ The SOLUTION : Ondorse integrates over 35+ data sources and automates the entire verification workflow through a single API, orchestrating checks, analyzing documents with AI, and providing a unified risk overview from day one.<br/>
+<br/>
+🚀 The GTM : Ondorse employs a direct sales motion targeting modern operations and compliance heads at European fintechs, banks, and payment companies, leveraging a modular pricing model that allows them to land with a starter package and expand as the customer's volume grows.<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 TEAM EXCELLENCE (30%) | Score: 79/100</span><br/>
+[The founding team's direct, earned experience in fintech operations provides a significant de-risking factor and informs a highly relevant product strategy.]<br/>
+<ul><li>Founder-Market Fit (25%) | Score: 95/100: The CEO, a serial fintech founder with a quant background, possesses a rare 'earned secret' from his previous venture: deep, first-hand knowledge of the operational pain caused by compliance audits, which directly informs Ondorse's value proposition.</li><li>Track Record (25%) | Score: 90/100: A previous successful exit (Bruno) and consecutive backing from reputable investors like Eurazeo and ISAI signal strong execution capabilities and validation from the market.</li><li></li><li>Completeness (25%) | Score: 60/100: Public data does not offer a clear view of the tech versus commercial balance across the team or identify critical open positions, making a full assessment of team completeness difficult at this stage.</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 MARKET OPPORTUNITY (25%) | Score: 71/100</span><br/>
+[The market timing is perfect, but a lack of competitive intelligence in the provided data suppresses the score and represents the largest diligence gap.]<br/>
+<ul><li>Size &amp; Growth (25%) | Score: 80/100: The company targets the SaaS-based KYC/KYB compliance market for European financial services, a large, non-discretionary, and growing segment driven by regulation, though specific TAM figures are not provided.</li><li>Timing Why Now (25%) | Score: 95/100: A convergence of intense regulatory pressure (AML/CFT), the need for scaling fintechs to automate manual ops, and a market shift from point solutions to orchestration platforms creates a powerful 'why now' tailwind.</li><li>Competition (25%) | Score: 20/100: Data is unavailable. The provided research lacks any information on direct competitors or the company's relative market position, representing a critical information vacuum.</li><li>Expansion (25%) | Score: 90/100: Ondorse has a clear growth vector focused on geographic expansion into the UK and other European markets, complemented by product expansion through more integrations and 'Bring Your Own App' capabilities for enterprise.</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 PRODUCT INNOVATION (20%) | Score: 88/100</span><br/>
+[Ondorse's product is its strongest attribute, functioning as an intelligent 'middle layer' that creates process power and high switching costs.]<br/>
+<ul><li>Differentiation (25%) | Score: 90/100: The core differentiation is the vendor-agnostic orchestration layer, which combines 35+ vendors into a single workflow engine and leverages AI for complex tasks like document remediation, moving beyond simple data pings.</li><li>Product-Market Fit (25%) | Score: 95/100: PMF is strongly evidenced by high-quality customer logos (Alan, Lemonway) and glowing testimonials from C-level and management personas at their ideal customer profile.</li><li>Scalability (25%) | Score: 90/100: The solution is architected for scale, featuring an API-first design, deep CRM integrations, and the technical capability to handle complex multi-country onboarding across 10,000 legal entity types.</li><li>IP &amp; Barriers (25%) | Score: 75/100: While no patents are mentioned, the platform builds a durable barrier through process power and high switching costs, embedding itself into core customer workflows and leveraging a complex web of 35+ vendor integrations.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 BUSINESS MODEL (15%) | Score: 88/100</span><br/>
+[The business model is intelligently designed for a land-and-expand motion, with transparent pricing that reduces friction and clear upsell paths that drive revenue growth.]<br/>
+<ul><li>Unit Economics (25%) | Score: 90/100: Pricing is transparent and publicly available, a strong positive signal; the modular, volume-based subscription model effectively aligns the value delivered with the price charged.</li><li>Revenue Model (25%) | Score: 90/100: The company operates a clean, recurring SaaS revenue model with healthy starting ACVs of €18k-€48k+, which is strong for a seed-stage company targeting mid-market and enterprise fintechs.</li><li>Monetization (25%) | Score: 95/100: The pricing tiers demonstrate a sophisticated monetization strategy, with clear upsell paths based on case volume, user seats, and access to premium features like AI and advanced marketplace integrations.</li><li>Capital Efficiency (25%) | Score: 75/100: With ~€6.6M raised since 2022, capital efficiency appears reasonable, but a definitive assessment is difficult without current headcount data to estimate burn rate against their European expansion plans.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; GROWTH (10%) | Score: 80/100</span><br/>
+[Traction is validated by elite customer logos and repeat investor backing, though specific growth KPIs are not publicly available.]<br/>
+<ul><li>Revenue Growth (25%) | Score: 85/100: Strong growth is implied by the back-to-back funding rounds led by existing investors Eurazeo and ISAI, signaling that the company is consistently hitting its milestones.</li><li>Customer Validation (25%) | Score: 95/100: Institutional trust is exceptionally high, demonstrated by testimonials from the CEOs and compliance heads of top-tier European fintechs like Alan, Fipto, and Lemonway.</li><li>KPI Progression (25%) | Score: 60/100: Data is unavailable. There is no specific public information on key metrics like employee growth or recent product launch velocity, making it difficult to assess recent execution speed.</li><li>Market Penetration (25%) | Score: 80/100: Ondorse has established a solid footprint in its home market of France and has a defined strategy for penetrating adjacent European markets, supported by a growing partner ecosystem of 35+ data vendors.</li></ul>
+<br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISK TO UNDERWRITE :</span><br/>
+The entire thesis hinges on the assumption that Ondorse's 'orchestration layer' provides a 10x better user experience and efficiency gain than a company stitching together a few point solutions directly; if the integration and workflow value is marginal, they become a glorified, expensive reseller, and the moat collapses. This risk is only resolvable through time and market evidence, specifically by accessing private customer usage data and churn metrics during diligence.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ KEY COMPETITIVE ADVANTAGES :</span><br/>
+<ul><li>Vendor-Agnostic Orchestration: By integrating 35+ data sources into a single API, Ondorse frees customers from vendor lock-in, giving them the flexibility to choose the best data for any given check, which is a powerful advantage over bundled incumbent suites.</li><li>Deep Workflow Automation: The platform moves beyond simple data lookups to automate the entire compliance journey (onboarding, remediation, monitoring), which embeds Ondorse into a customer's core operations and creates powerful switching costs.</li><li>Operator-Led Product DNA: Founded by a serial fintech entrepreneur who viscerally understands the problem, the product is built with an ops-first empathy that solves real-world workflow frictions, not just theoretical compliance check-boxes.</li><li>Transparent Land-and-Expand Model: With public pricing and clear feature tiers, Ondorse reduces adoption friction for modern ops teams and creates a natural, low-touch upsell motion from a €18k starter deal to a large enterprise contract.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 MOAT :</span> MODERATE<br/>
+The primary moat is 'Process Power', created by embedding their workflow orchestration engine deep into a customer's core client onboarding and monitoring processes. The secondary moat is the integration network; maintaining and deepening 35+ vendor integrations represents a significant technical and business development barrier for new entrants, creating a de facto aggregation defense. The compounding dynamic is data gravity: as more case data flows through the system, the platform's risk scoring and AI models become more accurate, creating a data-driven feedback loop that improves the product.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ ASYMMETRIC WAGER</span><br/>
+<ul><li>The Bull Case:</li></ul>
+Ondorse becomes the default orchestration layer for European fintech compliance, then moves upstream to become the central nervous system for all customer risk (fraud, credit, compliance), making them the indispensable 'Stripe for Trust'.<br/>
+<br/>
+<ul><li>The Bear Case :</li></ul>
+The company's bet on being a pure-play orchestration layer is wrong, and the market decides it's 'good enough' to buy a bundled suite from a large data provider (like Moody's) that adds a basic workflow engine, rendering Ondorse a commoditized middleman with squeezed margins.<br/>
+<br/>
+<span style="font-weight:bold;">🚩 RED FLAGS</span><br/>
+<ul><li>Universal Risks: The lack of public data on headcount or specific growth metrics raises questions about capital efficiency, especially for a company that has raised €6.6M for a resource-intensive European expansion.</li><li>Thesis-Specific Mismatches: Our thesis bets on essential infrastructure, and while Ondorse positions itself as such, there is a risk it is perceived by the market as a workflow application, which commands lower multiples and has a less defensible moat.</li></ul>
+<br/>
+<span style="font-weight:bold;">📝 FIRST MEETING PREP KIT</span><br/>
+Given the strong founder-market fit, clear PMF signals, and well-designed business model, the primary diligence hurdle is de-risking the moat's durability and the underlying unit economics.<br/>
+<br/>
+<ul><li>The Investment Angle: We are betting that Flo Robert is the right founder to win the European KYC/KYB orchestration market, and that the 'Process Power' moat from their workflow engine will be more durable than competitors who own the underlying data, allowing Ondorse to become the indispensable, neutral infrastructure layer for fintech compliance.</li></ul>
+<br/>
+<ul><li>Killer Questions for First Call :</li></ul>
+<br/>
+- Question 1 — GTM MECHANICS :<br/>
+'Your value proposition is being a neutral orchestration platform, but your pricing plans have limits on 'marketplace apps'. How do you reconcile being an open platform with creating a toll-booth for the very integrations that make you valuable, and how do you prevent customers from feeling double-charged for your service plus the underlying data vendor costs?'<br/>
+<br/>
+- Question 2 — THE CORE ASSUMPTION :<br/>
+'Let's assume a major data provider you rely on, like Moody's or ComplyAdvantage, launches their own competitive orchestration tool tomorrow and degrades your API access or doubles your price. What percentage of your customers would churn within a year, and what specifically makes your workflow value proposition defensible against that squeeze?'<br/>
+<br/>
+- Question 3 — UNIT ECONOMICS STRESS TEST :<br/>
+'For a typical customer on your €48k Growth plan, what is your gross margin after accounting for all third-party data vendor costs? What percentage of a typical €4.80 per-case fee is pure data cost versus your own margin?'<br/>
+<br/>
+<ul><li>First Meeting Go/No-Go Signal :</li></ul>
+A 'go' signal is a clear, quantified answer on the gross margin net of data provider costs, demonstrating strong and defensible unit economics; a 'no-go' is a vague answer that bundles data costs into a generic COGS, suggesting they either haven't instrumented the core of their business or the margins are weak.<br/>
+<br/>
+<span style="font-weight:bold;">🌐 DATA CONFIDENCE :</span> MEDIUM<br/>
+<ul><li>Data is thinnest on the competitive landscape and internal performance metrics like churn and net revenue retention; diligence must focus on validating the moat's durability against unseen competitors and confirming capital efficiency.</li><li><span style="font-weight:bold;">DATA GAPS :</span> Competitor list and positioning • Headcount growth • Revenue figures (ARR/NRR) • Churn metrics.</li></ul>
+</div>
+<div class="img-col">
+<img alt="Company Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-83b1ed41b71bdda9746a4d66c11c23e3-vgqolyjj.jpg"/>
+</div>
+</div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block"><ul><li>RegTech &amp; Compliance &gt; KYC/KYB Orchestration SaaS</li><li>B2B &gt; SaaS</li><li>€3.8 million raised from Eurazeo and ISAI (September, 26th, 2023)</li></ul>
+<br/>
+<span style="font-weight:bold;">PRE-SCREENING SCORE</span><br/>
+Thesis : <br/>
+<br/>
+NOTE: This is a raw pre-screening score. Thesis weights are applied<br/>
+in the Synthetic GP qualification pipeline after angle detection.<br/>
+<br/>
+═════════════════════<br/>
+<span style="font-weight:bold;">TEAM EXCELLENCE : 79/100</span><br/>
+<span style="font-weight:bold;">MARKET OPPORTUNITY : 71/100</span><br/>
+<span style="font-weight:bold;">PRODUCT INNOVATION : 88/100</span><br/>
+<span style="font-weight:bold;">BUSINESS MODEL : 88/100</span><br/>
+<span style="font-weight:bold;">TRACTION &amp; GROWTH : 80/100</span><br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">PRE-SCREENING SCORE :</span> 81/100 → 🟡 POSITIVE SIGNAL<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+❓ In a NUTSHELL : Ondorse is a KYC/KYB Orchestration SaaS that enables compliance and ops leaders at financial companies to automate and scale customer onboarding by providing an all-in-one compliance platform.<br/>
+<br/>
+⚠️ The PROBLEM : A compliance manager at a scaling fintech is buried in manual tasks, copy-pasting data between 10 different tabs to verify a single business customer, creating a massive bottleneck that delays revenue and increases regulatory risk.<br/>
+<br/>
+✅ The SOLUTION : Ondorse integrates over 35+ data sources and automates the entire verification workflow through a single API, orchestrating checks, analyzing documents with AI, and providing a unified risk overview from day one.<br/>
+<br/>
+🚀 The GTM : Ondorse employs a direct sales motion targeting modern operations and compliance heads at European fintechs, banks, and payment companies, leveraging a modular pricing model that allows them to land with a starter package and expand as the customer's volume grows.<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 TEAM EXCELLENCE (30%) | Score: 79/100</span><br/>
+[The founding team's direct, earned experience in fintech operations provides a significant de-risking factor and informs a highly relevant product strategy.]<br/>
+<ul><li>Founder-Market Fit (25%) | Score: 95/100: The CEO, a serial fintech founder with a quant background, possesses a rare earned secret from his previous venture: deep, first-hand knowledge of the operational pain caused by compliance audits, which directly informs Ondorse's value proposition.</li><li>Track Record (25%) | Score: 90/100: A previous successful exit (Bruno) and consecutive backing from reputable investors like Eurazeo and ISAI signal strong execution capabilities and validation from the market.</li><li>Leadership (25%) | Score: 70/100: While the founder's pedigree is high, the provided data lacks visibility into the broader C-suite or key executive hires, creating a slight gap in assessing the depth of the leadership bench.</li><li>Completeness (25%) | Score: 60/100: Public data does not offer a clear view of the tech versus commercial balance across the team or identify critical open positions, making a full assessment of team completeness difficult at this stage.</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 MARKET OPPORTUNITY (25%) | Score: 71/100</span><br/>
+[The market timing is perfect, but a lack of competitive intelligence in the provided data suppresses the score and represents the largest diligence gap.]<br/>
+<ul><li>Size &amp; Growth (25%) | Score: 80/100: The company targets the SaaS-based KYC/KYB compliance market for European financial services, a large, non-discretionary, and growing segment driven by regulation, though specific TAM figures are not provided.</li><li>Timing Why Now (25%) | Score: 95/100: A convergence of intense regulatory pressure (AML/CFT), the need for scaling fintechs to automate manual ops, and a market shift from point solutions to orchestration platforms creates a powerful why now tailwind.</li><li>Competition (25%) | Score: 20/100: Data is unavailable. The provided research lacks any information on direct competitors or the company's relative market position, representing a critical information vacuum.</li><li>Expansion (25%) | Score: 90/100: Ondorse has a clear growth vector focused on geographic expansion into the UK and other European markets, complemented by product expansion through more integrations and Bring Your Own App capabilities for enterprise.</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 PRODUCT INNOVATION (20%) | Score: 88/100</span><br/>
+[Ondorse's product is its strongest attribute, functioning as an intelligent middle layer that creates process power and high switching costs.]<br/>
+<ul><li>Differentiation (25%) | Score: 90/100: The core differentiation is the vendor-agnostic orchestration layer, which combines 35+ vendors into a single workflow engine and leverages AI for complex tasks like document remediation, moving beyond simple data pings.</li><li>Product-Market Fit (25%) | Score: 95/100: PMF is strongly evidenced by high-quality customer logos (Alan, Lemonway) and glowing testimonials from C-level and management personas at their ideal customer profile.</li><li>Scalability (25%) | Score: 90/100: The solution is architected for scale, featuring an API-first design, deep CRM integrations, and the technical capability to handle complex multi-country onboarding across 10,000 legal entity types.</li><li>IP &amp; Barriers (25%) | Score: 75/100: While no patents are mentioned, the platform builds a durable barrier through process power and high switching costs, embedding itself into core customer workflows and leveraging a complex web of 35+ vendor integrations.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 BUSINESS MODEL (15%) | Score: 88/100</span><br/>
+[The business model is intelligently designed for a land-and-expand motion, with transparent pricing that reduces friction and clear upsell paths that drive revenue growth.]<br/>
+<ul><li>Unit Economics (25%) | Score: 90/100: Pricing is transparent and publicly available, a strong positive signal; the modular, volume-based subscription model effectively aligns the value delivered with the price charged.</li><li>Revenue Model (25%) | Score: 90/100: The company operates a clean, recurring SaaS revenue model with healthy starting ACVs of €18k-€48k+, which is strong for a seed-stage company targeting mid-market and enterprise fintechs.</li><li>Monetization (25%) | Score: 95/100: The pricing tiers demonstrate a sophisticated monetization strategy, with clear upsell paths based on case volume, user seats, and access to premium features like AI and advanced marketplace integrations.</li><li>Capital Efficiency (25%) | Score: 75/100: With ~€6.6M raised since 2022, capital efficiency appears reasonable, but a definitive assessment is difficult without current headcount data to estimate burn rate against their European expansion plans.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; GROWTH (10%) | Score: 80/100</span><br/>
+[Traction is validated by elite customer logos and repeat investor backing, though specific growth KPIs are not publicly available.]<br/>
+<ul><li>Revenue Growth (25%) | Score: 85/100: Strong growth is implied by the back-to-back funding rounds led by existing investors Eurazeo and ISAI, signaling that the company is consistently hitting its milestones.</li><li>Customer Validation (25%) | Score: 95/100: Institutional trust is exceptionally high, demonstrated by testimonials from the CEOs and compliance heads of top-tier European fintechs like Alan, Fipto, and Lemonway.</li><li>KPI Progression (25%) | Score: 60/100: Data is unavailable. There is no specific public information on key metrics like employee growth or recent product launch velocity, making it difficult to assess recent execution speed.</li><li>Market Penetration (25%) | Score: 80/100: Ondorse has established a solid footprint in its home market of France and has a defined strategy for penetrating adjacent European markets, supported by a growing partner ecosystem of 35+ data vendors.</li></ul>
+<br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISK TO UNDERWRITE :</span><br/>
+The entire thesis hinges on the assumption that Ondorse's orchestration layer provides a 10x better user experience and efficiency gain than a company stitching together a few point solutions directly; if the integration and workflow value is marginal, they become a glorified, expensive reseller, and the moat collapses. This risk is only resolvable through time and market evidence, specifically by accessing private customer usage data and churn metrics during diligence.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ KEY COMPETITIVE ADVANTAGES :</span><br/>
+<ul><li>Vendor-Agnostic Orchestration: By integrating 35+ data sources into a single API, Ondorse frees customers from vendor lock-in, giving them the flexibility to choose the best data for any given check, which is a powerful advantage over bundled incumbent suites.</li><li>Deep Workflow Automation: The platform moves beyond simple data lookups to automate the entire compliance journey (onboarding, remediation, monitoring), which embeds Ondorse into a customer's core operations and creates powerful switching costs.</li><li>Operator-Led Product DNA: Founded by a serial fintech entrepreneur who viscerally understands the problem, the product is built with an ops-first empathy that solves real-world workflow frictions, not just theoretical compliance check-boxes.</li><li>Transparent Land-and-Expand Model: With public pricing and clear feature tiers, Ondorse reduces adoption friction for modern ops teams and creates a natural, low-touch upsell motion from a €18k starter deal to a large enterprise contract.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 MOAT :</span> MODERATE<br/>
+The primary moat is Process Power, created by embedding their workflow orchestration engine deep into a customer's core client onboarding and monitoring processes. The secondary moat is the integration network; maintaining and deepening 35+ vendor integrations represents a significant technical and business development barrier for new entrants, creating a de facto aggregation defense. The compounding dynamic is data gravity: as more case data flows through the system, the platform's risk scoring and AI models become more accurate, creating a data-driven feedback loop that improves the product.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ ASYMMETRIC WAGER</span><br/>
+<ul><li>The Bull Case:</li></ul>
+Ondorse becomes the default orchestration layer for European fintech compliance, then moves upstream to become the central nervous system for all customer risk (fraud, credit, compliance), making them the indispensable Stripe for Trust.<br/>
+<br/>
+<ul><li>The Bear Case :</li></ul>
+The company's bet on being a pure-play orchestration layer is wrong, and the market decides it's good enough to buy a bundled suite from a large data provider (like Moody's) that adds a basic workflow engine, rendering Ondorse a commoditized middleman with squeezed margins.<br/>
+<br/>
+<span style="font-weight:bold;">🚩 RED FLAGS</span><br/>
+<ul><li>Universal Risks: The lack of public data on headcount or specific growth metrics raises questions about capital efficiency, especially for a company that has raised €6.6M for a resource-intensive European expansion.</li><li>Thesis-Specific Mismatches: Our thesis bets on essential infrastructure, and while Ondorse positions itself as such, there is a risk it is perceived by the market as a workflow application, which commands lower multiples and has a less defensible moat.</li></ul>
+<br/>
+<span style="font-weight:bold;">📝 FIRST MEETING PREP KIT</span><br/>
+Given the strong founder-market fit, clear PMF signals, and well-designed business model, the primary diligence hurdle is de-risking the moat's durability and the underlying unit economics.<br/>
+<br/>
+<ul><li>The Investment Angle: We are betting that Flo Robert is the right founder to win the European KYC/KYB orchestration market, and that the Process Power moat from their workflow engine will be more durable than competitors who own the underlying data, allowing Ondorse to become the indispensable, neutral infrastructure layer for fintech compliance.</li></ul>
+<br/>
+<ul><li>Killer Questions for First Call :</li></ul>
+<br/>
+- Question 1 — GTM MECHANICS :<br/>
+'Your value proposition is being a neutral orchestration platform, but your pricing plans have limits on marketplace apps. How do you reconcile being an open platform with creating a toll-booth for the very integrations that make you valuable, and how do you prevent customers from feeling double-charged for your service plus the underlying data vendor costs?'<br/>
+<br/>
+- Question 2 — THE CORE ASSUMPTION :<br/>
+'Let's assume a major data provider you rely on, like Moody's or ComplyAdvantage, launches their own competitive orchestration tool tomorrow and degrades your API access or doubles your price. What percentage of your customers would churn within a year, and what specifically makes your workflow value proposition defensible against that squeeze?'<br/>
+<br/>
+- Question 3 — UNIT ECONOMICS STRESS TEST :<br/>
+'For a typical customer on your €48k Growth plan, what is your gross margin after accounting for all third-party data vendor costs? What percentage of a typical €4.80 per-case fee is pure data cost versus your own margin?'<br/>
+<br/>
+<ul><li>First Meeting Go/No-Go Signal :</li></ul>
+A go signal is a clear, quantified answer on the gross margin net of data provider costs, demonstrating strong and defensible unit economics; a no-go is a vague answer that bundles data costs into a generic COGS, suggesting they either haven't instrumented the core of their business or the margins are weak.<br/>
+<br/>
+<span style="font-weight:bold;">🌐 DATA CONFIDENCE :</span> MEDIUM<br/>
+<ul><li>Data is thinnest on the competitive landscape and internal performance metrics like churn and net revenue retention; diligence must focus on validating the moat's durability against unseen competitors and confirming capital efficiency.</li><li><span style="font-weight:bold;">DATA GAPS :</span> Competitor list and positioning • Headcount growth • Revenue figures (ARR/NRR) • Churn metrics.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/HxmDONLAACgDSRjwBFqr7Q/lcj3WmLwvW1iup3n1RQ_YYoRq0lcRI3bkei8B9NZ01rgK21fHHtlWnUoYz9kCAJZ0l-QYPIBWS2_fLPRu0Rj2WHERvEoyyyV9UgB_SHalYn0OqUwsPg9KUazXHqpts0-EPnHTmy3MBfS3SQkW8McCw/hQLWBtdSYlGYYkOcf7fepRwvDjejpPBxkSOhxIiX5To"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">SWOT Analysis</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Strengths</h3><ul><li>The CEO's prior exit with Bruno gives Ondorse firsthand knowledge of French financial regulator audits and the exact compliance bottlenecks that slow revenue.</li><li>The platform already connects to 35 third-party vendors through a single API, letting clients run complex multi-country KYB workflows without stitching vendors themselves.</li><li>Modular SaaS pricing starting at €18,000 per year for 1,000 cases lowers the barrier for mid-size fintechs that cannot afford custom compliance builds.</li><li>Eurazeo and ISAI's continued backing after the 2022 and 2023 rounds provides both capital and credibility for European expansion.</li><li>AI-driven remediation sequences and smart OCR directly cut manual tasks for compliance teams that already operate under headcount pressure.</li></ul></div>
+<div class="swot-item s-red"><h3>Weaknesses</h3><ul><li>Total funding of roughly €6.4 million leaves the company thinly capitalized for the data and coverage investments required to serve large banks at scale.</li><li>No disclosed ARR or active customer counts make it impossible to judge whether early logos translate into durable revenue.</li><li>Dependence on third-party data providers creates single-point failure risk if those providers raise prices or restrict access.</li><li>The €18,000 minimum plan excludes the long tail of smaller payment firms that generate the highest volume of new compliance cases.</li><li>Geographic concentration in continental Europe delays exposure to UK market volumes and regulatory precedents that often set EU standards.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunities</h3><ul><li>Tightening EU AML enforcement forces more fintechs and insurers to replace manual KYC processes with automated perpetual monitoring.</li><li>Entry into the UK market after the 2023 round unlocks high-volume onboarding flows from payment and crypto firms.</li><li>Traditional banks beginning to outsource compliance give Ondorse a second wave of larger, higher-paying customers.</li><li>Deeper AI investments in risk scoring can widen the gap versus legacy vendors that still rely on rigid rule sets.</li><li>CRM and Slack integrations allow Ondorse to become part of daily operations rather than a disconnected compliance silo.</li></ul></div>
+<div class="swot-item s-orange"><h3>Threats</h3><ul><li>Established vendors such as ComplyAdvantage or Onfido could add orchestration layers and make Ondorse's modular offering redundant.</li><li>A single missed high-risk customer or data leak would destroy credibility in a market where trust is binary.</li><li>Sudden regulatory changes in digital identity standards would force expensive re-engineering of the core platform.</li><li>Fintech funding winter would shrink the pool of customers willing to pay for compliance automation.</li><li>Large bank clients could decide to internalize the workflow once automation proves its value, converting partners into competitors.</li></ul></div>
+</div>
+</div>
+<div class="section-container" data-pl-id="cap-table" id="cap-table"><h2 class="section-title">Cap Table</h2>
+<p style="font-size:0.88rem;color:#526070;margin-bottom:16px;">Structure du capital et répartition de l'actionnariat : (1) Paramètres de la Cap Table (Entrée / Dilution / Sortie / MOIC), (2) Répartition complète — Fonds, Fondateurs.</p>
+<div class="memo-table-fallback" id="roi-analysis" style="max-width:100%;margin:0 auto;"><div style="padding:14px 18px;font-size:0.95rem;color:#334155;line-height:1.7;background:#f8fafc;border-radius:4px;max-width:100%;overflow-wrap:break-word;box-sizing:border-box;margin-bottom:12px;border-radius:4px;"><b>Table de capitalisation VC — Qui possede quoi</b> — Le <b>Check Size</b> est le montant investi par le fonds. Il achete un <b>Ownership</b> (pourcentage du capital). Entre l'entree et la sortie, d'autres tours de financement diluent la part du fonds : c'est la <b>Dilution</b>. L'<b>Ownership Post-Dilution</b> est la part reelle du fonds au moment de la revente. L'<b>Exit EV</b> = chiffre d'affaires final × multiple de sortie : c'est la valorisation totale au moment de la cession. Le <b>Fund Equity at Exit</b> = Exit EV × Ownership Post-Dilution : c'est le montant qui revient au fonds. Le <b>MOIC</b> = Fund Equity / Check Size. Le tableau Actionnariat ci-dessous montre la repartition entre tous les actionnaires.</div>
+<table style="width:100%;border-collapse:collapse;font-size:12px;table-layout:auto;margin-bottom:20px;">
+<tr><th style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;text-align:left;">Cap Table — VC</th><th style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;">Valeur</th><th style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;text-align:left;">Formule / Explication</th></tr>
+<tr><td colspan="3" style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;background:var(--off-white,#f4f5f7);font-weight:700;">ENTRY</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Check Size (€M)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--amber-bg,#fdf0e0);font-weight:700;">€6.76M</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">Ticket investi</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Entry EV (€M)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:700;">€45.09M</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">= Check / Ownership</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Ownership Entry (%)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--amber-bg,#fdf0e0);font-weight:700;">15.0%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;"></td></tr>
+<tr><td colspan="3" style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;background:var(--off-white,#f4f5f7);font-weight:700;">DILUTION PAR TOUR</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Dilution Totale (%)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--amber-bg,#fdf0e0);font-weight:700;">25.0%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">Dilution cumulée entre entry et exit</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Ownership Post-Dilution (%)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--green-bg,#e8f4ee);font-weight:700;">11.2%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">= Entry × (1 − Dilution)</td></tr>
+<tr><td colspan="3" style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;background:var(--off-white,#f4f5f7);font-weight:700;">EXIT</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Exit ARR (€M)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:700;">64.00</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">= P&amp;L Revenue Y5</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Exit Multiple (x ARR)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--amber-bg,#fdf0e0);font-weight:700;">15.4x</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">= Assumptions</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Exit EV (€M)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:700;">986.10</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">= Exit ARR × Exit Multiple</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Fund Equity at Exit (€M)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--green-bg,#e8f4ee);font-weight:700;">110.90</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">= Exit EV × Ownership Exit</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">★ MOIC Fund</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--green-bg,#e8f4ee);font-weight:700;">16.40x</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);color:#64748b;font-style:italic;font-size:11px;">= Fund Equity / Check Size</td></tr>
+</table>
+<table style="width:100%;border-collapse:collapse;font-size:12px;table-layout:auto;margin-bottom:20px;">
+<tr><td colspan="6" style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;text-align:left;font-size:13px;">ACTIONNARIAT COMPLET</td></tr>
+<tr><td style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;text-align:left;">Actionnaire</td><td style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;">Entry %</td><td style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;">Post-Dilution %</td><td style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;">Entry Value (€)</td><td style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;">Exit Value (€M)</td><td style="background:var(--navy,#0f172a);color:#fff;padding:8px 10px;text-align:center;font-weight:600;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;text-align:left;">📌 Source</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;">Fund (Investisseur)</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:600;">15.0%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:600;">11.2%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:600;">€6,760,000</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--green-bg,#e8f4ee);font-weight:600;">110.94</td><td style="padding:4px 10px;background:#FBF3E7;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:10.5px;color:#6B4423;min-width:200px;width:220px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">—</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;">Fondateurs</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);">85.0%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);">63.7%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);">€38,330,000</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;">628.64</td><td style="padding:4px 10px;background:#FBF3E7;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:10.5px;color:#6B4423;min-width:200px;width:220px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">—</td></tr>
+<tr><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;font-weight:600;background:var(--blue-bg,#e8eef8);">TOTAL</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:700;">100.0%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:700;">75.0%</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:700;">€45,090,000</td><td style="padding:6px 10px;border-bottom:1px solid var(--border-light,#e4e7ed);font-size:12px;text-align:right;background:var(--blue-bg,#e8eef8);font-weight:700;">986.10</td><td style="background:var(--blue-bg,#e8eef8);"></td></tr>
+</table>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources and Methodology</h2>
+<div class="source-list">
+<h3>Value Chain Sources</h3>
+<ul>
+</ul>
+<h3>Market Sources</h3><p>MARKET INTELLIGENCE DOSSIER - URL EVIDENCE TRACKER</p>
+<p>Purpose: Supporting documentation with comprehensive URL evidence for Market Attractiveness Score Analysis</p>
+<p>Market: KYC/KYB Orchestration SaaS</p>
+<p>Data Completeness: 19/100</p>
+<p>Assessment: 🔴 INSUFFICIENT - NEED MORE RESEARCH (&lt;70)</p>
+<p>Calculation: (3 URLs found ÷ 16 URLs searched) × 100 = 19% completeness</p>
+<p>Research Date: 2024-05-24 | Total URLs Found: 3</p>
+<p>URL EVIDENCE BY MARKET SCORING CATEGORY</p>
+<p>🌊 ATTRACTIVE MARKET (Market Dynamics) | Found 1/4 data points</p>
+<ul><li><b>Market Size:</b> Data Unavailable. Used for:</li><li><b>Growth Drivers:</b> <a href="https://www.cbinsights.com/company/ondorse/financials" target="_blank">https://www.cbinsights.com/company/ondorse/financials</a>. Used for: Using company context ('increased regulatory scrutiny') as a proxy for market growth drivers.</li><li><b>Timing Why Now:</b> Data Unavailable. Used for:</li><li><b>Market Risks:</b> Data Unavailable. Used for:</li></ul>
+<p>⚔️ WINNABLE MARKET (Competitive Landscape) | Found 0/4 data points</p>
+<ul><li><b>Incumbents:</b> Data Unavailable. Used for:</li><li><b>Challengers:</b> Data Unavailable. Used for:</li><li><b>White Space:</b> <a href="https://www.ondorse.co/" target="_blank">https://www.ondorse.co/</a>. Used for: Using the company's own value proposition ('all-in-one platform') to infer the white space for orchestration.</li><li><b>Defensibility:</b> Data Unavailable. Used for:</li></ul>
+<p>🎯 PENETRABLE MARKET (Go-to-Market &amp; Unit Economics) | Found 1/4 data points</p>
+<ul><li><b>GTM Model:</b> Data Unavailable. Used for:</li><li><b>Pricing Model:</b> <a href="https://www.ondorse.co/" target="_blank">https://www.ondorse.co/</a>. Used for: Using the company's pricing page as a proxy for typical pricing structures in the market.</li><li><b>Unit Economics:</b> Data Unavailable. Used for:</li><li><b>Scalability:</b> Data Unavailable. Used for:</li></ul>
+<p>💰 REWARDING MARKET (Funding &amp; Exit Landscape) | Found 1/4 data points</p>
+<ul><li><b>Funding Activity:</b> Data Unavailable. Used for:</li><li><b>Exit Multiples:</b> Data Unavailable. Used for:</li><li><b>Strategic Buyers:</b> Data Unavailable. Used for:</li></ul>
+<p>WEB DATA COMPLETENESS ANALYSIS</p>
+<p>Missing Critical URLs Based on Web Research: Independent market research reports (Gartner, Forrester, etc.), competitor funding data (Crunchbase/Pitchbook), articles on M&amp;A trends in RegTech, public company filings for multiple analysis.</p>
+<p>URLs Successfully Found: 3 out of 16 searched</p>
+<p>Critical Data Coverage: 19% of required data points</p>
+<p>Research Confidence Level: LOW</p><h3>Company Sources</h3><p>COMPANY INTELLIGENCE DOSSIER - URL EVIDENCE TRACKER</p>
+<p>Purpose: Supporting documentation with comprehensive URL evidence for Investment Score Analysis</p>
+<p>Company: Ondorse</p>
+<p>Data Completeness: 65/100</p>
+<p>Assessment: 🔴 INSUFFICIENT DATA FOR A FIRST LOOK (&lt;70)</p>
+<p>Calculation: (13 URLs found ÷ 20 URLs searched) × 100 = 65% completeness</p>
+<p>Research Date: 2024-05-24 | Total URLs Found: 13</p>
+<p>URL EVIDENCE BY SCORING CATEGORY</p>
+<h4>👨🏻 TEAM EXCELLENCE | Found 1/4 data points</h4>
+<ul><li><b>Founder-Market Fit:</b> <a href="https://linkedin.com/in/frnrbt" target="_blank">https://linkedin.com/in/frnrbt</a>.</li><li><b>Track Record:</b> <a href="https://tech.eu/2023/09/26/ondorse-raises-eur38m-to-expand-kyc-solution-in-europe/" target="_blank">https://tech.eu/2023/09/26/ondorse-raises-eur38m-to-expand-kyc-solution-in-europe/</a>. Used for: Confirming previous fundraising and investor backing.</li><li><b>Leadership:</b> Data Unavailable. Used for:</li><li><b>Completeness:</b> Data Unavailable. Used for:</li></ul>
+<h4>🌊 MARKET OPPORTUNITY | Found 2/4 data points</h4>
+<ul><li><b>Size &amp; Growth:</b> <a href="https://www.ondorse.co/" target="_blank">https://www.ondorse.co/</a>. Used for: Defining the target industry (Fintech, Banks, Insurance) and ICP.</li><li><b>Timing Why Now:</b> <a href="https://www.cbinsights.com/company/ondorse/financials" target="_blank">https://www.cbinsights.com/company/ondorse/financials</a>. Used for: Contextualizing need for streamlined onboarding amid regulatory scrutiny.</li><li><b>Competition:</b> Data Unavailable. Used for:</li><li><b>Expansion:</b> <a href="https://www.maddyness.com/2023/09/27/ondorse-leve-38-millions-deuros-pour-conquerir-leurope/" target="_blank">https://www.maddyness.com/2023/09/27/ondorse-leve-38-millions-deuros-pour-conquerir-leurope/</a>. Used for: Confirming stated growth strategy of European and UK expansion.</li></ul>
+<h4>💡 PRODUCT INNOVATION | Found 3/4 data points</h4>
+<ul><li><b>Differentiation:</b> <a href="https://www.ondorse.co/" target="_blank">https://www.ondorse.co/</a>. Used for: Understanding the all-in-one platform and orchestration value proposition.</li><li><b>Product-Market Fit:</b> <a href="https://www.ondorse.co/" target="_blank">https://www.ondorse.co/</a>. Used for: Identifying impressive customer logos and testimonials (Fipto, Alan, Lemonway).</li><li><b>Scalability:</b> <a href="https://www.ondorse.co/" target="_blank">https://www.ondorse.co/</a>. Used for: Reviewing technical capabilities like API access, integrations, and CRM connectivity.</li><li><b>IP &amp; Barriers:</b> Data Unavailable. Used for:</li></ul>
+<h4>💼 BUSINESS MODEL | Found 3/4 data points</h4>
+<ul><li><b>Unit Economics:</b> <a href="https://www.ondorse.co/" target="_blank">https://www.ondorse.co/</a>. Used for: Analyzing the public pricing page and subscription model.</li><li><b>Revenue Model:</b> <a href="https://www.ondorse.co/" target="_blank">https://www.ondorse.co/</a>. Used for: Determining pricing tiers and contract value ranges (€18k-€48k+).</li><li><b>Monetization:</b> <a href="https://www.ondorse.co/" target="_blank">https://www.ondorse.co/</a>. Used for: Understanding upsell paths based on features, users, and marketplace apps.</li><li><b>Capital Efficiency:</b> <a href="https://tech.eu/2023/09/26/ondorse-raises-eur38m-to-expand-kyc-solution-in-europe/" target="_blank">https://tech.eu/2023/09/26/ondorse-raises-eur38m-to-expand-kyc-solution-in-europe/</a>. Used for: Assessing total capital raised against timeline.</li></ul>
+<h4>📈 TRACTION &amp; GROWTH | Found 4/4 data points</h4>
+<ul><li><b>Revenue Growth:</b> <a href="https://tech.eu/2023/09/26/ondorse-raises-eur38m-to-expand-kyc-solution-in-europe/" target="_blank">https://tech.eu/2023/09/26/ondorse-raises-eur38m-to-expand-kyc-solution-in-europe/</a>. Used for: Inferring growth from repeat investor participation in funding rounds.</li><li><b>Customer Validation:</b> <a href="https://www.ondorse.co/" target="_blank">https://www.ondorse.co/</a>. Used for: Verifying strong testimonials from high-quality customers.</li><li><b>KPI Progression:</b> <a href="https://www.maddyness.com/2023/09/27/ondorse-leve-38-millions-deuros-pour-conquerir-leurope/" target="_blank">https://www.maddyness.com/2023/09/27/ondorse-leve-38-millions-deuros-pour-conquerir-leurope/</a>. Used for: Noting planned headcount doubling as an indicator of growth.</li><li><b>Market Penetration:</b> <a href="https://www.maddyness.com/2023/09/27/ondorse-leve-38-millions-deuros-pour-conquerir-leurope/" target="_blank">https://www.maddyness.com/2023/09/27/ondorse-leve-38-millions-deuros-pour-conquerir-leurope/</a>. Used for: Confirming focus on European market, including UK expansion plans.</li></ul>
+<p>WEB DATA COMPLETENESS ANALYSIS</p>
+<p>Missing Critical URLs Based on Web Research: Direct links to competitor websites, independent market research reports (Gartner/Forrester), G2/Capterra review pages, public information on cap table or detailed financials.</p>
+<p>URLs Successfully Found: 13 out of 20 searched</p>
+<p>Critical Data Coverage: 65% of required data points</p>
+<p>Research Confidence Level: MEDIUM</p></div>
+</div>
+</scenarios_html_code><div class="ppx-cta"><h3>Explore Ondorse further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script></body></html>

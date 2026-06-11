@@ -1,0 +1,668 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FASST — analyse InsurTech | Proplace</title><meta name="description" content="InsurTech · Centre Local de Performance Sportive · Series D"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/fasst/"><meta property="og:type" content="article"><meta property="og:title" content="FASST — analyse InsurTech | Proplace"><meta property="og:description" content="InsurTech · Centre Local de Performance Sportive · Series D"><meta property="og:url" content="https://proplace.co/analysis/fasst/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "FASST — InsurTech", "description": "InsurTech · Centre Local de Performance Sportive · Series D", "inLanguage": "fr", "url": "https://proplace.co/analysis/fasst/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/fasst/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "FASST"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">FASST</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "FASST"}]}</script></div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">USA</span>
+<span class="sb-tag">Series D</span>
+<span class="sb-tag">InsurTech</span>
+<span class="sb-tag">B2C</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">FASST</h1>
+<span class="sidebar-tagline">InsurTech · Centre Local de Performance Sportive · Series D</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Inconnu</p>
+<a href="https://www.fasstraining.com/" target="_blank"><i class="fas fa-globe"></i> Site web</a>
+<a href="https://www.linkedin.com/in/james-frisby-abba1436" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du Marché</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de Valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle Économique</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">Dirigeant</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="sb-legend-wrap">
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Données de marché</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Données d'entreprise</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; raisonnement</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; méthodologie</span></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorer FASST plus en détail ?</h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur FASST</a>
+</div>
+<div class="divider"></div>
+
+
+<div class="section">
+<h3>Envie de suivre notre deal flow ?</h3>
+<p class="meta-desc">Recevez les startups européennes IA que nous évaluons chaque jour d'un point de vue VC.</p>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner au deal flow</a>
+</div>
+<div class="section">
+<h3>Envie d'un deal flow propriétaire ?</h3>
+<p class="meta-desc">Recevez chaque jour des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+</div>
+<div class="sidebar-logo-wrap">
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">FASST</h1>
+<h2 class="subtitle-category">InsurTech ➜ Centre Local de Performance Sportive ➜ Services d'entraînement de performance sportive en personne pour les jeunes athlètes de compétition et les adultes actifs dans le comté de Frederick, Virginie.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+&lt;
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="FASST" data-h="" data-i="InsurTech" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/fasst/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title">Résumé du marché</h2>
+<div class="split-container">
+<div class="text-col">
+<h4>MARKET OPPORTUNITY SCORE</h4>
+<p>Health &amp; Wellness &gt; Centre Local de Performance Sportive<br/>B2C &gt; Subscription</p>
+<p>IS IT AN ATTRACTIVE MARKET ? (Dynamics): 50/100 × 25% = 12.5 points<br/>IS IT A WINNABLE MARKET ? (Competition): 50/100 × 25% = 12.5 points<br/>IS IT A PENETRABLE MARKET ? (GTM): 50/100 × 25% = 12.5 points<br/>IS IT A REWARDING MARKET ? (Exits): 0/100 × 25% = 0 points</p>
+<p>TOTAL MARKET ATTRACTIVITY SCORE: 31/100</p>
+<p></p>
+<h4>❓ Market DEFINITION</h4>
+<p>L'acheteur est le parent d'un jeune athlète de compétition ou un adulte actif qui achète des programmes d'entraînement physique spécialisés pour améliorer des performances spécifiques (vitesse, agilité, force) ou pour maintenir une bonne forme physique et prévenir les blessures.</p>
+<p>La friction structurelle est l'absence d'offres locales intégrées qui combinent une expertise de haut niveau, des installations complètes et une approche holistique du développement athlétique (physique et mental) sans compromettre la personnalisation. Ce marché se situe en aval des ligues sportives jeunesse et des compétitions scolaires, capturant la valeur ajoutée de la préparation physique là où se concentrent aujourd'hui les dépenses discrétionnaires pour l'avantage compétitif et le bien-être personnel.</p>
+<h4>💬 Our Market THESIS</h4>
+<p>Un changement irréversible dans ce marché est l'augmentation de la spécialisation sportive chez les jeunes athlètes dès un jeune âge, entraînant une demande accrue pour des entraînements ciblés que les programmes scolaires ou les gyms génériques ne peuvent pas fournir. Les acteurs en place, souvent des salles de sport traditionnelles ou des entraîneurs indépendants, sont structurellement incapables de répondre à cette demande car ils manquent soit des installations complètes, soit de la profondeur d'expertise certifiée nécessaire pour ces athlètes, soit des partenariats institutionnels pour un recrutement de masse, ce qui crée un écart significatif dans la chaîne de valeur.</p>
+<p>Le vecteur d'attaque précis consiste à établir une marque de performance locale avec des installations de pointe et des programmes hautement personnalisés qui attirent les athlètes les plus motivés et leurs parents, en se positionnant comme un hub de développement complet plutôt qu'un simple fournisseur de services. La fenêtre est ouverte maintenant en raison d'une sensibilisation accrue à l'importance de la préparation athlétique pour la santé et la longévité, mais elle se refermera lorsque les grandes chaînes de fitness ou les franchises régionales de performance sportive commenceront à consolider le marché local avec des offres et des capitaux similaires.</p>
+<h4>🧠 Our CONVICTION &amp; WAGER on this Market:</h4>
+<p>🟠 LOW CONVICTION Le principal défi de ce marché est sa forte intensité capitalistique et son caractère hyper-local, ce qui rend la scalabilité intrinsèquement difficile, mais la recherche suggère une demande locale non satisfaite pour des services de qualité supérieure. Notre pari testable est que les parents des athlètes élite sont prêts à payer une prime significative pour une expertise et des résultats prouvés, ce qui permettra des marges suffisamment élevées pour financer la réplication de sites sans dégrader la qualité ou le capital-humain.</p>
+<p>Le signal clé lors du premier appel serait une preuve concrète d'une liste d'attente constante ou de taux de rétention exceptionnellement élevés (supérieurs à 85% d'année en année) qui démontrent que la valeur perçue du service justifie largement son coût, même si cela réduit l'accessibilité à un segment de marché plus large.</p>
+<h4>🌊 ATTRACTIVE MARKET (Market Dynamics) | Score: 50/100</h4>
+<p>Le score de 50 pour l'attractivité du marché indique que, bien qu'il y ait une demande claire pour la performance sportive locale, les incertitudes concernant la taille et la croissance globale limitent l'enthousiasme, suggérant que le marché n'apportera pas un vent arrière significatif à la croissance de FASST sans une expansion active et coûteuse.</p>
+<ul><li><b>Market Size (25%) | Score: 50/100:</b> Le marché cible est très spécifique au comté de Frederick, Virginie, sans données sur son TAM, SAM ou SOM clair, ni de CAGR pour l'industrie hyper-locale. (https://www.fasstraining.com/)</li><li><b>Growth Drivers (25%) | Score: 50/100:</b> Les moteurs de croissance incluent l'importance croissante de la performance athlétique chez les jeunes et l'accent sur le bien-être général pour les adultes, stimulant la demande pour des services spécialisés. (https://www.fasstraining.com/)</li><li><b>Timing Why Now (25%) | Score: 50/100:</b> Le moment est propice en raison de la constante demande pour l'amélioration athlétique et l'évolution des exigences sportives, poussant les athlètes à chercher des programmes de perfectionnement. (https://www.fasstraining.com/)</li><li><b>Market Risks (25%) | Score: 50/100:</b> Les risques incluent la dépendance à la demande locale, la sensibilité aux conditions économiques régionales et la saturation potentielle du marché par de nouveaux entrants à moindre coût. (https://www.fasstraining.com/)</li></ul>
+<h4>⚔️ WINNABLE MARKET (Competitive Landscape) | Score: 50/100</h4>
+<p>Le score de 50 suggère que, bien que le marché ne soit pas dominé par des géants évidents, il n'est pas non plus sans concurrence, indiquant que la thèse devra s'appuyer sur une différenciation locale très forte pour capturer et maintenir des parts de marché face à des alternatives fragmentées.</p>
+<ul><li><b>Incumbents (25%) | Score: 50/100:</b> Le marché est probablement fragmenté avec des salles de sport généralistes et des entraîneurs individuels, bien qu'il n'y ait pas de géants établis spécifiques mentionnés dans le comté de Frederick. (https://www.fasstraining.com/)</li><li><b>Challengers (25%) | Score: 50/100:</b> Il n'y a pas de licornes ou de startups bien financées identifiées dans ce segment hyper-local et physique, mais plutôt des centres d'entraînement régionaux ou plus petits. (https://www.fasstraining.com/)</li><li><b>White Space (25%) | Score: 50/100:</b> Le white space est la fourniture de programmes de performance sportive hautement spécialisés et personnalisés dans une installation intégrée, distinguant FASST des offres plus génériques. (https://www.fasstraining.com/)</li><li><b>Defensibility (25%) | Score: 50/100:</b> La défendabilité est modérée, basée sur la réputation locale, les certifications des coachs et les installations physiques, créant des coûts de commutation et une barrière d'entrée pour les nouveaux concurrents directs dans la région. (https://www.fasstraining.com/)</li></ul>
+<h4>🎯 PENETRABLE MARKET (Go-to-Market &amp; Unit Economics) | Score: 50/100</h4>
+<p>Le score de 50 indique que la capacité à pénétrer le marché est réalisable via une approche ciblée, mais que les économies unitaires des services en personne devront être exceptionnellement solides pour compenser les coûts d'acquisition client et justifier une scalabilité, ce qui représente une taxe GTM qui doit être activement gérée.</p>
+<ul><li><b>GTM Model (25%) | Score: 50/100:</b> Le modèle GTM est principalement B2C direct, s'appuyant sur les recommandations, les partenariats locaux et la réputation des coaches et des athlètes qu'ils ont produits. (https://www.fasstraining.com/)</li><li><b>Pricing Model (25%) | Score: 50/100:</b> Le modèle de tarification est basé sur des abonnements et des paiements à la session (25$-50$), segmenté par âge et niveau d'engagement, avec une évaluation initiale obligatoire. (https://www.fasstraining.com/)</li><li><b>Unit Economics (25%) | Score: 50/100:</b> Les économies unitaires ne sont pas détaillées publiquement, mais la segmentation des offres et les prix des sessions suggèrent une tentative de capturer différentes fourchettes de clientèle. (https://www.fasstraining.com/)</li><li><b>Scalability (25%) | Score: 50/100:</b> La scalabilité passe par la réplication du modèle de centre physique, ce qui est intensif en capital et nécessite de maintenir la qualité des coachs et des programmes à mesure de l'expansion. (https://www.fasstraining.com/)</li></ul>
+<h4>💰 REWARDING MARKET (Funding &amp; Exit) | Score: 0/100</h4>
+<p></p>
+<ul><li><b>Funding Activity (25%) | Score: 0/100:</b> Aucune information de financement n'est disponible pour le marché spécifique des centres de performance sportive locaux, ce qui ne permet aucune évaluation du sentiment des VC ou de l'activité d'investissement. (https://www.fasstraining.com/)</li><li><b>Exit Multiples (25%) | Score: 0/100:</b> Aucune donnée sur les multiples de sortie ou les exemples d'exits notables n'est disponible pour ce segment hyper-local des centres de performance sportive. (https://www.fasstraining.com/)</li><li><b>Strategic Buyers (25%) | Score: 0/100:</b> Aucun acheteur stratégique clair n'est identifié pour des centres locaux de performance sportive, bien que de grandes chaînes de fitness ou des franchises sportives pourraient être des acquéreurs potentiels. (https://www.fasstraining.com/)</li><li><b>Return Profile (25%) | Score: 0/100:</b>(https://www.fasstraining.com/)</li></ul>
+<h4>⚡ CROSS-SECTION SYNTHESIS:</h4>
+<p>La combinaison de scores d'attractivité, de potentiel de victoire et de pénétrabilité modérés, associée à un score nul pour les récompenses de financement et de sortie, indique un marché à forte intensité opérationnelle et à potentiel de rendement limité pour le capital-risque, exigeant un fondateur disposant d'un modèle d'exécution axé sur l'efficacité géographique et la rentabilité locale, plutôt qu'une stratégie de croissance rapide et de consolidation de marché.</p>
+<h4>🌐 DATA CONFIDENCE:</h4>
+<p>La confiance dans les données de marché est moyenne, les informations concernant la définition du problème et les propositions de valeur étant claires, tandis que les données sur la taille exacte du marché local, les dynamiques de croissance quantitatives et surtout le paysage de financement et de sortie ne sont pas disponibles et nécessitent des recherches primaires. Total de 4 URL sourcées.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-e289c01b5c8eb94b5ecb530c973f8d68-ybwjkaxm.jpg"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title">Analyse approfondie de l'entreprise</h2>
+<div class="split-container">
+<div class="text-col">
+<h3 id="value-proposition">Proposition de valeur</h3>
+<div class="text-block"><b>Proposition de valeur:</b><br/>Fournir des programmes de performance sportive spécialisés qui produisent des résultats concrets pour les jeunes athlètes et les adultes.<br/><br/><b>Profil client idéal (ICP):</b><br/>Jeunes athlètes (7-18+ ans) cherchant à s'améliorer pour le sport de compétition, et parents souhaitant s'entraîner simultanément.<br/><br/><b>B2B ou B2C:</b><br/>Principalement B2C (familles et athlètes individuels), avec des partenariats institutionnels.<br/><br/><b>Industrie:</b><br/>Fitness et Performance Sportive.<br/><br/><b>Contact et Mentions Légales:</b><br/>Email: fasstraining@gmail.com, Téléphone: 540-450-5190, Lieu: Winchester, VA, Fondateur: James Frisby.<br/><br/><b>Exemples de clients clés et témoignages:</b><br/>Partenariat avec ReEnvision PT et Shenandoah University. Succès avec des athlètes passés par Kansas City Royals, Cincinnati Reds, VCU, Pitt, Notre Dame, James Madison University, University of Virginia, et George Mason University.<br/></div>
+<h3 id="product">Produit</h3>
+<div class="text-block"><b>Solution de base:</b><br/>Entraînement de performance sportive avec évaluation initiale obligatoire et programmes individualisés.<br/><br/><b>Encyclopédie des fonctionnalités:</b><br/>Évaluation FMS (Functional Movement Screening) | Tests de performance de base | Programmation individualisée | Ratio athlète-coach 12:1 | Sessions de 60 à 75 minutes | Réévaluation tous les 2-3 mois.<br/><br/><b>Capacités techniques:</b><br/>Équipements de haute qualité | Installation de 20 000 pieds carrés | Cages de frappe (baseball/softball) | Terrain multisport en bois dur | Services de thérapie physique internes via ReEnvision.<br/><br/><b>Cas d'utilisation:</b><br/>Préparation athlétique pour le lycée et l'université | Amélioration de la vitesse et de l'agilité | Remise en forme pour adultes (FASST Burn) | Rééducation après blessure.<br/></div>
+<h3 id="business-model">Modèle économique</h3>
+<div class="text-block"><b>Analyse du modèle d'affaires:</b><br/>Abonnement au gym (Adhésion) et paiement à la session.<br/><br/><b>Flux de revenus et paliers de tarification:</b><br/>Sessions collectives (25$ à 50$ par session) | Adhésions de base et VIP | Évaluations obligatoires | Entraînement privé.<br/><br/><b>Caractéristiques des plans:</b><br/>FASST Foundations (7-10 ans): 60 min | FASST Fundamentals (11-13 ans): 75 min | Advanced (14+): 2 heures (mouvement + force) | FASST Burn (Adultes): Conditionnement haute énergie.<br/><br/><b>Coûts cachés et conditions:</b><br/>Évaluation initiale obligatoire requise pour tous les niveaux d'adhésion avant de commencer.<br/></div>
+<h3 id="team">Équipe</h3>
+<div class="text-block"><b>Culture d'entreprise:</b><br/>Axée sur les résultats, le renforcement de la confiance, du caractère et de la force mentale. Environnement de soutien familial.<br/><br/><b>Analyse de l'équipe:</b><br/>James Frisby (Propriétaire et PDG, Certifié NASM CPT/PES/CES/YES), Coachs mentionnés: Tucker Kindig, Tommy Woods, DJ Frisby, Gavin Bizyak, Matt Smith.<br/><br/><b>Offres d'emploi et titres:</b><br/>Aucune offre spécifique mentionnée, mais l'équipe comprend plusieurs coachs certifiés en performance sportive.<br/><br/><b>Effectif estimé:</b><br/>Environ 6 à 10 coachs et personnel de soutien basés sur la liste des sessions.<br/></div>
+<h3 id="ceo">PDG</h3>
+<div class="text-block"><b>EXECUTIVE ASSESSMENT</b><br/><ul><li> Inconnu - Aucune donnée de carrière fournie.</li><li><span style="font-weight:bold;"></span> Inconnu - Aucune donnée de carrière fournie.</li><li><span style="font-weight:bold;">Loyalty &amp; Tenure:</span> Inconnu - Aucune donnée de carrière fournie.</li><li><span style="font-weight:bold;">Commercial Fit:</span> Inconnu - Aucune donnée de carrière fournie.</li></ul><br/><br/><b>PROFESSIONAL NARRATIVE</b><br/>Impossible de générer un résumé de carrière détaillé sans données d'expérience professionnelle. Les informations fournies sont insuffisantes pour déduire les mouvements de carrière, les réalisations ou la logique sous-jacente aux choix professionnels.<br/><br/><br/><b>DETAILED CAREER TIMELINE</b><br/>Aucune donnée de carrière détaillée fournie.<br/><br/><br/><b>ACADEMIC BACKGROUND</b><br/><ul><li><span style="font-weight:bold;">Institution:</span> Inconnu</li><li><span style="font-weight:bold;">Degree:</span> Inconnu</li><li><span style="font-weight:bold;">Signal:</span> Inconnu</li></ul><br/><br/>•Summary Assessment: L'absence totale de données de carrière, d'éducation et de résumé personnel rend impossible toute évaluation significative du potentiel du sujet. Il n'y a aucune information pour déduire des points forts, des angles morts ou des besoins en co-fondateurs complémentaires. Cette analyse est entièrement basée sur l'absence de données, ce qui signifie qu'aucun jugement ne peut être porté sur le sujet. Le profil est un blanc total à ce stade.</div>
+<h3 data-cs-tidy="" id="company-summary">Résumé de l'entreprise</h3>
+<ul><li>Health &amp; Wellness &gt; Centre Local de Performance Sportive</li><li>B2C &gt; Subscription</li></ul>
+<br/>
+<span style="font-weight:bold;">PRE-SCREENING SCORE</span><br/><br/>
+<br/>
+NOTE: This is a raw pre-screening score. Thesis weights are applied<br/>
+in the Synthetic GP qualification pipeline after angle detection.<hr style="border:none;border-top:1px solid #e4e7ed;margin:16px 0"/>
+<span style="font-weight:bold;">TEAM EXCELLENCE : 0/100</span><br/>
+<span style="font-weight:bold;">MARKET OPPORTUNITY : 50/100</span><br/>
+<span style="font-weight:bold;">PRODUCT INNOVATION : 50/100</span><br/>
+<span style="font-weight:bold;">BUSINESS MODEL : 50/100</span><br/>
+<span style="font-weight:bold;">TRACTION &amp; GROWTH : 25/100</span><hr style="border:none;border-top:1px solid #e4e7ed;margin:16px 0"/>
+<span style="font-weight:bold;">PRE-SCREENING SCORE :</span> 35/100 → 🔴 POOR SIGNAL (&lt;60)<hr style="border:none;border-top:1px solid #e4e7ed;margin:16px 0"/>
+❓ In a NUTSHELL : FASST est un Centre Local de Performance Sportive qui permet aux jeunes athlètes de compétition et aux adultes actifs du comté de Frederick, Virginie de développer leurs capacités physiques et mentales en s'entraînant dans des programmes spécialisés et personnalisés.<br/>
+<br/>
+⚠️ The PROBLEM : Les athlètes, en particulier les jeunes, peinent à trouver des environnements d'entraînement structurés et de haute qualité qui non seulement améliorent leurs performances sportives, mais intègrent également le développement personnel et la prévention des blessures, les obligeant souvent à naviguer entre des offres sporadiques ou inadaptées qui ne répondent pas à leurs besoins holistiques et compétitifs.<br/>
+<br/>
+✅ The SOLUTION : FASST propose une évaluation initiale obligatoire et des programmes d'entraînement individualisés, dispensés par des coachs certifiés, qui mettent l'accent sur le mouvement fonctionnel, les tests de performance et un faible ratio athlète-coach pour garantir une progression mesurable et un développement complet dans un environnement familial.<br/>
+<br/>
+🚀 The GTM : Le principal axe de commercialisation est direct au consommateur (B2C), ciblant les jeunes athlètes (7-18+ ans) cherchant à améliorer leurs performances sportives et leurs parents dans le comté de Frederick, Virginie, en capitalisant sur les partenariats institutionnels avec des entités comme ReEnvision PT et Shenandoah University pour créer un point d'entrée fiable et ancré localement qui instaure la confiance et la preuve sociale avant tout concurrent généraliste de fitness.<hr style="border:none;border-top:1px solid #e4e7ed;margin:16px 0"/>
+<span style="font-weight:bold;">👨🏻 TEAM EXCELLENCE (25%) | Score: 0/100</span><br/>
+<ul><li>Founder-Market Fit (25%) | Score: 0/100: L'évaluation du PDG, James Frisby, est impossible en raison de l'absence totale de données sur son parcours professionnel ou sa formation, ce qui ne permet aucune observation de son expérience sectorielle ou de ses connaissances uniques. (<a href="https://www.linkedin.com/in/james-frisby-abba1436" target="_blank">https://www.linkedin.com/in/james-frisby-abba1436</a>)</li><li>Track Record (25%) | Score: 0/100: L'historique des fondateurs est indéterminable, car aucune information n'est disponible concernant ses réalisations passées, récompenses ou investisseurs notables. (<a href="https://www.linkedin.com/in/james-frisby-abba1436" target="_blank">https://www.linkedin.com/in/james-frisby-abba1436</a>)</li><li>Leadership (25%) | Score: 0/100: L'évaluation de l'équipe de direction est entravée par le manque de visibilité sur l'expérience des coachs en leadership, le nombre total d'employés n'étant pas clairement spécifié au-delà de la mention de plusieurs coachs certifiés. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li><li>Completeness (25%) | Score: 0/100: La composition de l'équipe est incertaine, sans indication claire des rôles clés ou de l'équilibre entre les compétences techniques et commerciales, rendant impossible une analyse de sa complétude. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 MARKET OPPORTUNITY (20%) | Score: 50/100</span><br/>
+<ul><li>Size &amp; Growth (25%) | Score: 50/100: Le marché cible est spécifiquement défini comme les services d'entraînement de performance sportive en personne pour les jeunes athlètes de compétition et les adultes actifs dans le comté de Frederick, Virginie, ce qui indique une portée hyper-locale dont la taille globale et le taux de croissance ne sont pas quantifiés. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li><li>Timing Why Now (25%) | Score: 50/100: L'opportunité semble opportune en raison de la demande continue pour l'amélioration des performances sportives et le bien-être général, capitalisant sur la confiance locale et les partenariats qui favorisent une entrée progressive sur le marché. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li><li>Competition (25%) | Score: 50/100: La concurrence n'est pas détaillée, cependant, l'approche de FASST, axée sur les partenariats et les programmes spécialisés, suggère une différenciation locale dans un marché du fitness et de la performance sportive potentiellement fragmenté. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li><li>Expansion (25%) | Score: 50/100: L'expansion potentielle repose sur la réplication du modèle hyper-local dans d'autres comtés ou villes adjacentes, mais aucune stratégie claire d'expansion géographique n'est documentée. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 PRODUCT INNOVATION (30%) | Score: 50/100</span><br/>
+<ul><li>Differentiation (25%) | Score: 50/100: La différenciation de FASST repose sur son approche d'évaluation initiale obligatoire (FMS, tests de performance), sa programmation individualisée et son faible ratio athlète-coach (12:1), offrant une expérience d'entraînement plus personnalisée et axée sur les résultats que de nombreuses alternatives génériques. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li><li>Product-Market Fit (25%) | Score: 50/100: Le succès de FASST est attesté par des athlètes ayant progressé vers des programmes universitaires et professionnels (ex: Kansas City Royals, VCU), ce qui suggère une adéquation produit-marché pour les athlètes de haut-niveau et leurs familles. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li><li>Scalability (25%) | Score: 50/100: La solution s'appuie sur une installation physique de 20 000 pieds carrés et un modèle de services en personne, ce qui confère une capacité d'accueil limitée, mais les processus d'évaluation et de programmation pourraient être systématisés pour une expansion multi-sites. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li><li>IP &amp; Barriers (25%) | Score: 50/100: Les barrières comprennent l'expertise certifiée des coachs (NASM CPT/PES/CES/YES), les partenariats institutionnels et les installations spécialisées, créant une barrière d'entrée locale pour des concurrents moins équipés ou moins qualifiés. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 BUSINESS MODEL (15%) | Score: 50/100</span><br/>
+<ul><li>Unit Economics (25%) | Score: 50/100: Le modèle de revenus combine des abonnements et des sessions à la carte (25$ à 50$ par session), avec des évaluations obligatoires, offrant une structure de prix visible et des flux de revenus potentiellement récurrents. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li><li>Revenue Model (25%) | Score: 50/100: Le modèle de revenus est diversifié avec des sessions collectives, des adhésions de différents niveaux (Foundations, Fundamentals, Advanced, FASST Burn) et des entraînements privés, bien que la répartition exacte entre ces sources ne soit pas précisée. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li><li>Monetization (25%) | Score: 50/100: La monétisation est claire, avec des niveaux d'adhésion spécifiques à l'âge et au niveau de l'athlète, ainsi qu'une offre adulte, facilitant les ventes incitatives et la segmentation de la clientèle. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li><li>Capital Efficiency (25%) | Score: 50/100: L'efficacité du capital n'est pas documentée, car aucune information n'est fournie sur les montants levés, le burn rate ou la taille exacte de l'équipe, rendant impossible d'évaluer la gestion du capital. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; GROWTH (10%) | Score: 25/100</span><br/>
+<ul><li>Revenue Growth (25%) | Score: 25/100: La croissance des revenus n'est pas divulguée, mais le succès avec des athlètes de haut niveau suggère une forte réputation et un bouche-à-oreille positif au sein de la communauté sportive locale. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li><li>Customer Validation (25%) | Score: 25/100: La validation client est forte, avec des témoignages d'athlètes et des partenariats avec ReEnvision PT et Shenandoah University, bien qu'il n'y ait pas de chiffres spécifiques sur la rétention ou le nombre total de clients. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li><li>KPI Progression (25%) | Score: 25/100: La progression des KPI n'est pas quantifiée, l'effectif estimé entre 6 et 10 coachs indique une expansion progressive de l'équipe, et de nouvelles offres de programmes sont régulièrement lancées. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li><li>Market Penetration (25%) | Score: 25/100: La pénétration du marché est locale, centrée sur Winchester, VA, avec une proposition de valeur claire pour les jeunes athlètes et les adultes, mais aucune preuve de expansion géographique au-delà des partenariats locaux. (<a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>)</li></ul>
+<hr style="border:none;border-top:1px solid #e4e7ed;margin:16px 0"/>
+<span style="font-weight:bold;">🔍 RISK TO UNDERWRITE :</span><br/>
+Le risque principal pour FASST est que son modèle de croissance hyper-local et intensif en capital physique ne puisse pas évoluer efficacement pour justifier des rendements de capital-risque, rendant toute expansion au-delà du comté de Frederick une épreuve coûteuse et lente. L'efficacité de la réplication de l'installation de 20 000 pieds carrés et de l'intégration de partenariats locaux se révélera au moment où la première tentative d'ouverture d'un nouveau centre en dehors de la Virginie sera faite.<br/>
+Ce risque est résoluble uniquement par le temps et par des preuves concrètes de réplication réussie à travers plusieurs marchés.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ KEY COMPETITIVE ADVANTAGES :</span><br/>
+<ul><li>Expertise certifiée et approche personnalisée: L'exigence d'une évaluation initiale et l'équipe de coachs certifiés (NASM CPT/PES/CES/YES) garantissent un programme sur mesure qui produit des résultats tangibles, ce qui distingue l'offre des salles de sport génériques et des entraînements de masse.</li><li>Réputation et preuve sociale: Les succès avec des athlètes ayant intégré des programmes universitaires et professionnels de haut niveau (ex: Kansas City Royals, VCU) et les partenariats établis bâtissent une crédibilité forte et génèrent une validation par la performance.</li><li>Infrastructure spécialisée et complète: L'installation de 20 000 pieds carrés incluant des cages de frappe, un terrain multisport et des services de thérapie physique internes offre un environnement d'entraînement holistique et de haute qualité difficile à répliquer pour des concurrents avec des moyens limités.</li><li>Approche axée sur le développement du caractère: Au-delà de la performance physique, l'accent mis sur la confiance, le caractère et la force mentale crée une proposition de valeur unique qui attire les parents soucieux du développement global de leurs enfants athlètes.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 MOAT :</span> MODERATE<br/>
+Le mécanisme de fossé principal de FASST réside dans sa réputation locale et son réseau de partenariats institutionnels, qui se construit par des succès athlétiques avérés et des recommandations, devenant structurellement difficile à battre une fois qu'un seuil de reconnaissance et de confiance est atteint au sein de la communauté sportive locale. Ce fossé se renforce à mesure que l'entreprise continue de produire des athlètes performants, chaque succès alimentant le bouche-à-oreille et solidifiant la position de FASST comme centre de référence. Une couche secondaire de défendabilité est créée par les installations physiques spécialisées et les certifications des coachs, qui imposent des coûts d'investissement et d'expertise significatifs pour tout nouvel entrant.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ ASYMMETRIC WAGER</span><br/>
+<ul><li>The Bull Case:</li></ul>
+Pour que FASST devienne le modèle d'infrastructure par défaut pour le développement athlétique des jeunes, il faudrait qu'il réussisse à prouver que son concept localisé et hautement spécialisé peut être répliqué efficacement et à grande échelle dans d'autres marchés régionaux, transformant son expertise hyper-locale en une méthodologie standardisée de performance athlétique sous licence ou en franchise, avec un point d'inflexion clair de validation de la réplication de son succès institutionnel.<br/>
+<br/>
+<ul><li>The Bear Case :</li></ul>
+Le pari stratégique que FASST a fait est que son modèle d'entraînement en personne, à forte intensité d'équipement et de personnel, peut générer une croissance et des marges suffisantes pour justifier un investissement considérable sans dépendre d'une expansion géographique rapide ou de la numérisation de ses services, une hypothèse qui pourrait s'avérer erronée si les coûts d'acquisition de nouvelles installations et de recrutement de personnel qualifié écrasent sa rentabilité, ce qui sera visible dès la première tentative d'ouverture d'un complexe similaire dans une nouvelle ville.<br/>
+<br/>
+<span style="font-weight:bold;">🚩 RED FLAGS</span><br/>
+<ul><li>Universal Risks: FASST fait face au risque universel d'un modèle d'affaires à forte intensité de capital physique et humain dans une industrie sensible aux cycles économiques, rendant les marges vulnérables aux fluctuations de la demande locale et aux coûts d'exploitation élevés.</li><li></li></ul>
+<br/>
+<span style="font-weight:bold;">📝 FIRST MEETING PREP KIT</span><br/>
+Compte tenu du modèle localisé et de l'absence de données numériques, les questions pour la première rencontre se concentreront sur la faisabilité d'une expansion significative et la structure financière sous-jacente du concept.<br/>
+<br/>
+<ul><li>The Investment Angle: Le pari fondamental serait sur la capacité de James Frisby à transformer une opération de services locale et très efficace en un modèle réplicable à l'échelle nationale, capitalisant sur une demande constante pour la performance athlétique des jeunes, en positionnant FASST comme la référence pour l'entraînement à domicile qui attire les meilleurs talents et construit une marque premium.</li></ul>
+<br/>
+<ul><li>Killer Questions for First Call :</li></ul>
+- Comment évaluez-vous la capacité de FASST à maintenir le ratio coach-athlète de 12:1 et l'intensité de la programmation individualisée tout en franchissant un seuil de 500 athlètes par site, et quels ajustements seraient nécessaires pour ne pas diluer l'efficacité pédagogique ?<br/>
+- Quel est le seuil de rentabilité par site (en nombre d'athlètes actifs) pour votre installation de 20 000 pieds carrés, et comment ce chiffre évolue-t-il lorsque vous incluez les coûts de pré-ouverture et les investissements initiaux dans de nouvelles géographies, en l'absence de toute donnée de financement de FASST Wilmington sur la réplication de modèle économique ?<br/>
+- Sans revenus SaaS ou de licence logicielle, quel LTV/CAC avez-vous historiquement atteint pour un athlète s'entraînant pendant 2 ans chez FASST, et comment envisagez-vous d'améliorer ce ratio pour justifier une expansion capitalistique importante ?<br/>
+<br/>
+<ul><li>First Meeting Go/No-Go Signal :</li></ul>
+Une réponse claire présentant un plan financier détaillé et des prévisions de réplication pour au moins trois nouveaux sites avec un LTV/CAC démontrable supérieur à 3 entraînerait une due diligence approfondie. À l'inverse, l'incapacité à articuler un plan de croissance financièrement viable au-delà du site actuel ou une dépendance excessive à des facteurs non quantifiables mettrait fin au processus.<br/>
+<br/>
+<span style="font-weight:bold;">🌐 DATA CONFIDENCE :</span> LOW<br/>
+<ul><li>Les données sont les plus minces concernant le profil du PDG, l'historique financier de l'entreprise et la stratégie de croissance future, des points qui nécessitent une diligence approfondie.</li><li><span style="font-weight:bold;">DATA GAPS :</span> Profil du PDG (absence d'informations sur LinkedIn) - Chiffres de revenus et de croissance - Coûts d'acquisition d'installations - Métriques de rétention client.</li></ul>
+</div>
+<div class="img-col">
+<img alt="Analyse de l'entreprise" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-31f554f56509459d594582eaf38268ac-0ypzbxyt.jpg"/>
+</div>
+</div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block"><ul><li>InsurTech &gt; SaaS InsurTech pour la digitalisation de la distribution d'assurance.</li><li>B2B &gt; SaaS</li><li>27,000,000€ levés auprès de Bpifrance et Galiena Capital (Novembre, 14, 2024)</li></ul>
+<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION</span><br/>
+Thèse : Solutions pour les Voyages d'Affaires<br/>
+<br/>
+NOTE : Ce score est un pré-filtrage brut. Les poids de la thèse sont appliqués dans le pipeline de qualification opérationnelle.<br/>
+<br/>
+═════════════════════<br/>
+<span style="font-weight:bold;">EXCELLENCE DE L'ÉQUIPE : 92/100</span><br/>
+<span style="font-weight:bold;">OPPORTUNITÉ DE MARCHÉ : 88/100</span><br/>
+<span style="font-weight:bold;">INNOVATION PRODUIT : 90/100</span><br/>
+<span style="font-weight:bold;">MODÈLE D'AFFAIRES : 85/100</span><br/>
+<span style="font-weight:bold;">TRACTION &amp; CROISSANCE : 95/100</span><br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION :</span> 90/100 → 🟢 SIGNAL FORT (85-100)<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">❓ EN QUELQUES MOTS :</span> FASST est une plateforme SaaS InsurTech qui permet aux assureurs et distributeurs de digitaliser leurs parcours de vente en remplaçant les systèmes legacy par une architecture MACH modulaire.<br/>
+<br/>
+<span style="font-weight:bold;">⚠️ LE PROBLÈME :</span> Les assureurs perdent 80% des prospects lors de parcours de souscription complexes et non-interopérables gérés sur des systèmes obsolètes incapables de communiquer en temps réel.<br/>
+<br/>
+<span style="font-weight:bold;">✅ LA SOLUTION :</span> FASST déploie une bibliothèque de plus de 30 APIs et des modules de workflow (OIP) permettant de créer des parcours de vente sur-mesure ou standards en moins de 10 minutes.<br/>
+<br/>
+<span style="font-weight:bold;">🚀 LE GTM :</span> La stratégie repose sur une approche Land and Expand auprès des grandes mutuelles et institutions de prévoyance (AG2R), suivie d'une consolidation agressive par M&amp;A (Upsideo, Maxirem) pour saturer le canal des CGP et courtiers.<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 EXCELLENCE DE L'ÉQUIPE (25%) | Score : 92/100</span><br/>
+<ul><li>Founder-Market Fit (25%) | Score : 95/100 : Hubert Bettan apporte 20 ans d'expertise en architecture système (NDS, Canal+), un earned secret rare sur la scalabilité des middlewares complexes.</li><li>Track Record (25%) | Score : 90/100 : Forte expérience en gestion de R&amp;D internationale (&gt;500 personnes) et réussite de ses précédentes entreprises de conseil.</li><li>Leadership (25%) | Score : 92/100 : L'équipe dirigeante a réussi à faire passer l'effectif à 130 personnes tout en maintenant une culture agile en squads.</li><li>Complétude (25%) | Score : 90/100 : Équilibre solide entre vision technologique (Bettan) et exécution commerciale/stratégique (Favre, Echoukry).</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 OPPORTUNITÉ DE MARCHÉ (25%) | Score : 88/100</span><br/>
+<ul><li>Taille &amp; Croissance (25%) | Score : 85/100 : Marché de la digitalisation de l'assurance en pleine explosion sous la pression de la conformité DDA.</li><li>Timing (25%) | Score : 95/100 : L'obsolescence des systèmes legacy des assureurs français atteint un point de rupture, favorisant les solutions API-first.</li><li>Compétition (25%) | Score : 85/100 : FASST se distingue par sa neutralité et son interopérabilité MACH face aux éditeurs monolithiques traditionnels.</li><li>Expansion (25%) | Score : 85/100 : Potentiel d'expansion européenne amorcé par la levée de 27M€ et les verticales adjacentes (Patrimoine).</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 INNOVATION PRODUIT (20%) | Score : 90/100</span><br/>
+<ul><li>Différenciation (25%) | Score : 92/100 : Architecture MACH (Microservices, API-first, Cloud-native, Headless) permettant une flexibilité totale là où les concurrents imposent des silos.</li><li>Product-Market Fit (25%) | Score : 95/100 : Adoption massive confirmée par AG2R et 40+ clients majeurs, avec récupération de 80% des abandons.</li><li>Scalability (25%) | Score : 88/100 : Infrastructure Cloud robuste gérant 1 million d'appels API mensuels.</li><li>Barrières (25%) | Score : 85/100 : Effet de réseau via l'intégration profonde dans les écosystèmes des courtiers et automate de conformité réglementaire.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 MODÈLE D'AFFAIRES (15%) | Score : 85/100</span><br/>
+<ul><li>Unit Economics (25%) | Score : 80/100 : Modèle SaaS standard mais avec des frais d'intégration qui peuvent peser sur le CAC initial.</li><li>Revenu (25%) | Score : 90/100 : Revenus récurrents solides complétés par une facturation à l'usage (API).</li><li>Monétisation (25%) | Score : 85/100 : Fort levier d'upsell via les nouveaux modules (FlexiDocs, HUB Individuel).</li><li>Efficience Capital (25%) | Score : 85/100 : Brûle des capitaux pour l'acquisition externe, mais soutenu par Bpifrance Large Venture, indiquant une trajectoire de leader de catégorie.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; CROISSANCE (15%) | Score : 95/100</span><br/>
+<ul><li>Croissance Revenu (25%) | Score : 95/100 : Chiffre d'affaires dépassant les 20M€ via acquisitions, une vélocité rare dans l'InsurTech française.</li><li>Validation Client (25%) | Score : 95/100 : Lauréat de prix prestigieux (Cas d'OR 2025) et logos institutionnels de premier plan.</li><li>Progression KPI (25%) | Score : 95/100 : Doublement des effectifs et intégration réussie de plateformes tierces.</li><li>Pénétration Marché (25%) | Score : 90/100 : Leadership affirmé sur le segment français des mutuelles et CGP.</li></ul>
+<br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISQUE À COUVRIR :</span><br/>
+Le pari stratégique réside dans la capacité de FASST à absorber des architectures disparates (Upsideo, Maxirem) sans diluer sa promesse de flexibilité MACH. Ce risque d'exécution M&amp;A deviendra visible lors des premières tentatives de déploiement d'offres unifiées paneuropéennes.<br/>
+Ce risque est résolvable par une diligence technique approfondie sur l'architecture de convergence des plateformes acquises.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ AVANTAGES CONCURRENTIELS CLÉS :</span><br/>
+<ul><li>Architecture MACH permettant des déploiements 40% moins coûteux que les solutions traditionnelles.</li><li>Bibliothèque de 30+ APIs pré-intégrées facilitant une mise sur le marché immédiate pour les distributeurs.</li><li>Neutralité technologique agissant comme Suisse de l'interopérabilité entre porteurs de risques concurrents.</li><li>Automatisation réglementaire native réduisant drastiquement les risques de non-conformité pour les CGP.</li><li>Masse critique atteinte via M&amp;A offrant un accès direct à une base installée de CGP immense.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 MOAT :</span> FORT<br/>
+Le moat repose sur des coûts de substitution massifs une fois les workflows de distribution et de conformité ancrés dans les APIs de FASST. La dynamique de composition s'accélère via l'effet de réseau de données : plus FASST traite de parcours de souscription, plus ses modèles d'IA pour la conformité deviennent performants, créant une barrière à l'entrée insurmontable. Une couche secondaire de défense réside dans les certifications et les intégrations profondes avec les CRM métier des courtiers.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ PARI ASYMÉTRIQUE</span><br/>
+<ul><li>Le Bull Case :</li></ul>
+FASST devient la couche logicielle universelle de la distribution d'assurance en Europe, rendant les systèmes legacy des assureurs invisibles et capturant une commission sur chaque contrat digitalisé.<br/>
+<br/>
+<ul><li>Le Bear Case :</li></ul>
+L'entreprise s'enlise dans une complexité technique héritée des acquisitions (M&amp;A indigestion), perdant son agilité et permettant à des néo-concurrents plus légers de hacker les parcours clients spécifiques.<br/>
+<br/>
+<span style="font-weight:bold;">🚩 SIGNAUX D'ALERTE</span><br/>
+<ul><li>Risques Universels : Dépendance élevée aux investissements IT des assureurs français qui peuvent ralentir en cas de crise économique systémique.</li><li>Inadéquation à la Thèse : FASST n'est pas une solution de Business Travel au sens strict ; le lien de thèse est ténu et repose uniquement sur la couverture des risques lors des déplacements professionnels.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/QRRMQgEtMUoTJ7gkVhmuIQ/X2fPDrCig-nW03cjL1pvQaDx5uxFzeZd_3DDPaBWTHVnopMaKgXrDIUFd0hvaCF_BiDnqMZuAQ9P1uGJfEkZHEduSUR-BRRoZS_a9_fP0DpXvqLGhLfidmZlV90LmaQRwPOnxcuXVURk89EhlWtQ1g/XMV11w-mEUbg9fA0B0ae6dt-2lyKnocg52Emqh0iL8I"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>FASST a levé 27 millions d'euros en 2024 auprès de Bpifrance et Galiena Capital pour financer son expansion européenne.</li><li>L'acquisition de MAXIREM en 2025 étend la plateforme aux workflows de retraite et protection sociale.</li><li>L'acquisition d'UPSIDEO renforce la position de FASST dans la distribution de produits de gestion de patrimoine.</li><li>La plateforme modulaire et API-native de FASST s'intègre facilement aux systèmes existants des assureurs et courtiers.</li><li>L'ajout de deux administrateurs expérimentés en 2025 renforce la gouvernance pour accompagner la croissance.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>Le profil LinkedIn du fondateur initial ne correspond pas au dirigeant actuel Xavier Favre, créant une confusion sur la continuité du leadership.</li><li>La stratégie repose fortement sur des acquisitions dont l'intégration technique et culturelle n'est pas détaillée publiquement.</li><li>L'effectif et les processus opérationnels internes restent opaques malgré les levées de fonds successives.</li><li>Le modèle dépend de partenariats institutionnels sans diversification évidente des canaux de distribution.</li><li>L'absence de données financières précises sur la rentabilité actuelle limite l'évaluation de la trajectoire.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li>La digitalisation accélérée des assureurs et mutuelles en Europe crée une demande structurelle pour des solutions API natives.</li><li>La consolidation du marché français de l'assurance offre des cibles supplémentaires pour des acquisitions ciblées.</li><li>L'extension à de nouveaux pays européens après la France peut multiplier la base de clients institutionnels.</li><li>L'ajout de modules de gestion de patrimoine via UPSIDEO ouvre des revenus récurrents auprès des réseaux de conseil.</li><li>Les investisseurs institutionnels comme Bpifrance peuvent faciliter l'accès à des partenariats publics-privés.</li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>Les grands éditeurs de logiciels d'assurance pourraient développer leurs propres modules et réduire l'adoption de FASST.</li><li>Les risques d'intégration des acquisitions MAXIREM et UPSIDEO pourraient retarder la mise sur le marché de nouvelles fonctionnalités.</li><li>Une régulation plus stricte sur les données financières et d'assurance en Europe pourrait alourdir les coûts de conformité.</li><li>Des concurrents InsurTech mieux financés pourraient exécuter plus vite sur les mêmes segments de distribution.</li><li>Un ralentissement économique pourrait réduire les budgets IT des courtiers et mutuelles.</li></ul></div>
+</div>
+</div>
+<div class="ppx-cta"><h3>Explore FASST further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la chaîne de valeur</h3>
+<ul style="list-style-type:none;padding:0;">
+<li></li>
+</ul>
+<h3>Sources du marché</h3><p>MARKET INTELLIGENCE DOSSIER - URL EVIDENCE TRACKER</p>
+<p>Purpose: Supporting documentation with comprehensive URL evidence for Market Attractiveness Score Analysis</p>
+<p>Market: Centre Local de Performance Sportive</p>
+<p>Data Completeness: 25/100</p>
+<p>Assessment: 🔴 INSUFFICIENT - NEED MORE RESEARCH (&lt;70)</p>
+<p>Calculation: (4 URLs found ÷ 16 URLs searched) × 100 = 25% completeness</p>
+<p>Research Date: 12 septembre 2024 | Total URLs Found: 4</p>
+<p>URL EVIDENCE BY MARKET SCORING CATEGORY</p>
+<p>🌊 ATTRACTIVE MARKET (Market Dynamics) | Found 1/4 data points</p>
+<ul><li><b>Market Size:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Définition de la portée géographique et du public cible de FASST.</li><li><b>Growth Drivers:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Compréhension des motivations des clients pour l'entraînement sportif.</li><li><b>Timing Why Now:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Justification de l'opportunité actuelle pour les services de performance.</li><li><b>Market Risks:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Identification des menaces potentielles pour la demande locale.</li></ul>
+<p>⚔️ WINNABLE MARKET (Competitive Landscape) | Found 1/4 data points</p>
+<ul><li><b>Incumbents:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Inférence sur la nature fragmentée du marché local.</li><li><b>Challengers:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Évaluation de l'absence de compétiteurs financés à grande échelle.</li><li><b>White Space:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Identification de la niche de services spécialisés de FASST.</li><li><b>Defensibility:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Analyse des avantages concurrentiels liés à la réputation et aux installations.</li></ul>
+<p>🎯 PENETRABLE MARKET (Go-To-Market &amp; Unit Economics) | Found 1/4 data points</p>
+<ul><li><b>GTM Model:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Description du canal d'acquisition client de FASST.</li><li><b>Pricing Model:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Explication de la structure de prix des services d'entraînement.</li><li><b>Unit Economics:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Inférence sur les structures de coûts et la rentabilité.</li><li><b>Scalability:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Évaluation du potentiel de réplication du modèle d'affaires.</li></ul>
+<p>💰 REWARDING MARKET (Funding &amp; Exit Landscape) | Found 0/4 data points</p>
+<ul><li><b>Funding Activity:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Recherche d'informations sur l'activité de financement VC dans le secteur.</li><li><b>Exit Multiples:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Recherche d'informations sur les multiples d'évaluation ou d'exits dans ce marché.</li><li><b>Strategic Buyers:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Identification d'acquéreurs potentiels ou de synergies d'acquisition.</li></ul>
+<p>WEB DATA COMPLETENESS ANALYSIS</p>
+<p>Missing Critical URLs Based on Web Research: Informations quantitatives sur la taille et la croissance du marché local - Données de financement et d'exits pour des entreprises comparables - Profils d'acteurs clés et Challengers.</p>
+<p>URLs Successfully Found: 4 out of 16 searched</p>
+<p>Critical Data Coverage: 25% of required data points</p>
+<p>Research Confidence Level: LOW</p><h3>Sources de l'entreprise</h3><p>COMPANY INTELLIGENCE DOSSIER - URL EVIDENCE TRACKER</p>
+<p>Purpose: Supporting documentation with comprehensive URL evidence for Investment Score Analysis</p>
+<p>Company: FASST</p>
+<p>Data Completeness: 20/100</p>
+<p>Assessment: 🔴 INSUFFICIENT DATA FOR A FIRST LOOK (&lt;70)</p>
+<p>Calculation: (4 URLs found ÷ 20 URLs searched) × 100 = 20% completeness</p>
+<p>Research Date: 12 septembre 2024 | Total URLs Found: 4</p>
+<p>URL EVIDENCE BY SCORING CATEGORY</p>
+<h4>👨🏻 TEAM EXCELLENCE | Found 1/4 data points</h4>
+<ul><li><b>Founder-Market Fit:</b> <a href="https://www.linkedin.com/in/james-frisby-abba1436" target="_blank">https://www.linkedin.com/in/james-frisby-abba1436</a>. Used for: Évaluation du profil du PDG et de son expérience.</li><li><b>Track Record:</b> <a href="https://www.linkedin.com/in/james-frisby-abba1436" target="_blank">https://www.linkedin.com/in/james-frisby-abba1436</a>. Used for: Évaluation de l'historique et reconnaissance du fondateur.</li><li><b>Leadership:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Identification de l'équipe et des certifications de coachs.</li><li><b>Completeness:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Analyse de la structure et de l'équilibre de l'équipe.</li></ul>
+<h4>🌊 MARKET OPPORTUNITY | Found 1/4 data points</h4>
+<ul><li><b>Size &amp; Growth:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Définition du marché cible et portée locale.</li><li><b>Timing Why Now:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Identification des catalyseurs de marché et de la pertinence de l'offre.</li><li><b>Competition:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Analyse de la position concurrentielle et de la différenciation locale.</li><li><b>Expansion:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Évaluation des vecteurs de croissance et de la stratégie d'expansion.</li></ul>
+<h4>💡 PRODUCT INNOVATION | Found 1/4 data points</h4>
+<ul><li><b>Differentiation:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Identification de l'avantage technologique et des caractéristiques uniques.</li><li><b>Product-Market Fit:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Interprétation de la validation client et des témoignages.</li><li><b>Scalability:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Évaluation de l'architecture et du modèle de prestation de services.</li><li><b>IP &amp; Barriers:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Analyse des protections et des effets de réseau potentiels.</li></ul>
+<h4>💼 BUSINESS MODEL | Found 1/4 data points</h4>
+<ul><li><b>Unit Economics:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Analyse de la stratégie de tarification et des modèles d'abonnement.</li><li><b>Revenue Model:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Décomposition des sources de revenus et des modèles de monétisation.</li><li><b>Monetization:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Évaluation des chemins d'upsell et de la clarté de la proposition de valeur.</li><li><b>Capital Efficiency:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Évaluation des besoins en capital et de l'efficience opérationnelle.</li></ul>
+<h4>📈 TRACTION &amp; GROWTH | Found 0/4 data points</h4>
+<ul><li><b>Revenue Growth:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Évaluation des indicateurs de croissance et des chiffres d'affaires.</li><li><b>Customer Validation:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Analyse des témoignages clients et des partenariats.</li><li><b>KPI Progression:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Interprétation des indicateurs de performance clés et de l'évolution de l'entreprise.</li><li><b>Market Penetration:</b> <a href="https://www.fasstraining.com/" target="_blank">https://www.fasstraining.com/</a>. Used for: Définition de l'empreinte géographique et des verticaux ciblés.</li></ul>
+<p>WEB DATA COMPLETENESS ANALYSIS</p>
+<p>Missing Critical URLs Based on Web Research: Informations financières et de revenus privées - Métriques de croissance détaillées - Détails sur la composition et l'expérience de l'équipe de direction - Stratégie d'expansion future.</p>
+<p>URLs Successfully Found: 4 out of 20 searched</p>
+<p>Critical Data Coverage: 20% of required data points</p>
+<p>Research Confidence Level: LOW</p></div>
+</div>
+
+
+
+
+
+&gt;</div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script></body></html>

@@ -1,0 +1,680 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Adrien Alarme — analyse Exited (Acquired / Buyout) | Proplace</title><meta name="description" content="Cybersecurity · Intégration de Systèmes de Sécurité Régionaux · Exited (Acquired / Buyout)"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/adrien-alarme/"><meta property="og:type" content="article"><meta property="og:title" content="Adrien Alarme — analyse Exited (Acquired / Buyout) | Proplace"><meta property="og:description" content="Cybersecurity · Intégration de Systèmes de Sécurité Régionaux · Exited (Acquired / Buyout)"><meta property="og:url" content="https://proplace.co/analysis/adrien-alarme/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Adrien Alarme — Exited (Acquired / Buyout)", "description": "Cybersecurity · Intégration de Systèmes de Sécurité Régionaux · Exited (Acquired / Buyout)", "inLanguage": "fr", "url": "https://proplace.co/analysis/adrien-alarme/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/adrien-alarme/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Adrien Alarme"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Adrien Alarme</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Adrien Alarme"}]}</script></div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Exited (Acquired / Buyout)</span>
+<span class="sb-tag">Cybersecurity</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Adrien Alarme</h1>
+<span class="sidebar-tagline">Cybersecurity · Intégration de Systèmes de Sécurité Régionaux · Exited (Acquired / Buyout)</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Solutions de sécurité sur mesure issues des dernières évolutions technologiques pour protéger les habitations, les biens et les familles.</p>
+<div class="contact-row">
+<a href="http://www.adrienalarme.com/" target="_blank"><i class="fas fa-globe"></i> Site Web</a>
+</div>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du Marché</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de Valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle Économique</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="sb-legend-wrap">
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Données du Marché</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Données de la Société</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#a898c0;display:inline-block;flex-shrink:0;border:1px solid #8878a0;"></span><span></span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; Raisonnement</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; Méthodologie</span></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorer Adrien Alarme davantage?</h3>
+<a class="btn btn-secondary" href="http://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur Adrien Alarme</a>
+</div>
+<div class="divider"></div>
+
+
+<div class="section">
+<h3>Vous voulez suivre notre deal flow?</h3>
+<p class="meta-desc">Recevez chaque jour des startups européennes que nous évaluons selon une perspective VC.</p>
+<a class="btn btn-primary" href="https://77f02b89.sibforms.com/serve/MUIFAMr0ADjDfIUWLc56STos70j4OXPiOTJqugyAa45YfGyt9zW6Tokz3iXWLNiTAw6oxjbrMnjs424k46IvwOQlWjaMIsbgexAk95FvzqzgLa56TkHas6WASK4VKs684XcZhacqMYTYQGuIfzJmBmCkmHwhNeB0yHifmrxC1PUhNMS1ZbiW1xF18IZu7tJP9BIWjDcM5VoH6VEVCw==" target="_blank">S'abonner au deal flow</a>
+</div>
+<div class="section">
+<h3>Vous voulez un deal flow propriétaire?</h3>
+<p class="meta-desc">Recevez des cibles hautement qualifiées chaque jour pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="http://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+</div>
+<div class="sidebar-logo-wrap">
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Adrien Alarme</h1>
+<h2 class="subtitle-category">Cybersecurity ➜ Intégration de Systèmes de Sécurité Régionaux ➜ Services d'installation et de maintenance de systèmes de sécurité électronique certifiés pour une clientèle mixte (B2C/B2B) dans le Grand Ouest de la France.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div><div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Adrien Alarme" data-h="" data-i="Exited (Acquired / Buyout)" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/adrien-alarme/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="market-summary">
+<h2 class="section-title">Market Summary</h2>
+<div class="split-container">
+<div class="text-col">
+<h4>SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>Cybersécurité &gt; Intégration de Systèmes de Sécurité Régionaux<br/>B2B &gt; Location/Leasing</p>
+<p>LE MARCHÉ EST-IL ATTRACTIF ? (Dynamiques): 80/100 × 25% = 20 points<br/>LE MARCHÉ EST-IL GAGNABLE ? (Concurrence): 85/100 × 25% = 21.25 points<br/>LE MARCHÉ EST-IL PÉNÉTRABLE ? (GTM): 90/100 × 25% = 22.5 points<br/>LE MARCHÉ EST-IL RÉMUNÉRATEUR ? (Sorties): 80/100 × 25% = 20 points</p>
+<h4>SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ: 84/100</h4>
+<p></p>
+<h4>❓ DÉFINITION du Marché</h4>
+<p>Services d'installation et de maintenance de systèmes de sécurité électronique certifiés pour une clientèle mixte (B2C/B2B) dans le Grand Ouest de la France. ➜ L'acheteur est un propriétaire de bien (résidentiel, PME, industriel, public) qui achète une tranquillité d'esprit certifiée, pas seulement du matériel. La friction structurelle est le manque d'un fournisseur unique qui combine la confiance d'un artisan local, la sophistication technique d'un expert en informatique et la crédibilité réglementaire d'une grande entreprise. Dans la chaîne de valeur, ce marché se situe entre les fabricants de matériel mondialisés et les clients finaux, capturant la marge grâce à l'intégration de services complexes, la confiance et le respect des normes, là où la vraie valeur se crée.</p>
+<h4>💬 NOTRE THÈSE sur le Marché</h4>
+<p>La transition irréversible des systèmes de sécurité analogiques vers des plateformes connectées (IoT) a créé une rupture, demandant une expertise que beaucoup de petits installateurs ne possèdent pas. Les acteurs nationaux dominants sont paralysés par leurs modèles de vente et de service centralisés, ce qui les empêche d'offrir la proximité et la personnalisation nécessaires pour gagner la confiance des clients régionaux à haute valeur, créant ainsi une opportunité structurelle. L'angle d'attaque est de devenir le 'super-intégrateur' régional, en consolidant les petits acteurs pour acquérir leurs clients et leurs techniciens, tout en utilisant une certification supérieure pour gagner des contrats plus importants. Cette fenêtre d'opportunité est ouverte maintenant en raison d'une vague de départs à la retraite des propriétaires de petites entreprises, mais elle se fermera d'ici 5 à 7 ans à mesure que chaque région sera consolidée par un ou deux leaders.</p>
+<h4>🧠 NOTRE CONVICTION &amp; PARI sur ce Marché:</h4>
+<p><b>🟢 HAUTE CONVICTION</b></p>
+<p>Bien qu'un investisseur puisse légitimement hésiter face à un marché géographiquement limité et à faible croissance globale, nous pensons que c'est précisément cette structure qui crée l'opportunité ; elle favorise un jeu de consolidation rentable plutôt qu'une course au financement de capital-risque. Notre pari falsifiable est que, d'ici 24 mois, le principal moteur de croissance des revenus dans ce secteur ne sera pas la croissance organique nette, mais la migration des clients des petits installateurs non certifiés vers des consolidateurs régionaux certifiés comme Adrien Alarme. Le signal que nous rechercherions lors d'un premier appel est la réponse à cette question : 'Quel pourcentage de votre croissance de l'année dernière provenait de clients qui utilisaient auparavant un concurrent local non certifié ?' Une réponse supérieure à 30% serait un signal extrêmement fort.</p>
+<h4>🌊 MARCHÉ ATTRACTIF (Dynamiques du marché) | Score: 80/100</h4>
+<p>Ce score élevé signifie que les dynamiques du marché, bien que n'étant pas explosives, sont stables, prévisibles et soutenues par des facteurs non cycliques (besoin de sécurité) et réglementaires, réduisant le risque de marché global pour un investissement.</p>
+<ul><li><b>Taille du Marché (25%) | Score: 70/100:</b> Le marché des services de sécurité dans l'ouest de la France est un marché de niche mature et bien défini, avec un SAM (Serviceable Addressable Market) composé de milliers de PME et de propriétaires, et une croissance modeste mais stable (CAGR estimé à 3-5%) tirée par les mises à niveau technologiques.</li><li><b>Moteurs de Croissance (25%) | Score: 85/100:</b> La demande est stimulée par des exigences réglementaires et d'assurance de plus en plus strictes (catalyseur réglementaire), la transition vers des systèmes connectés/IP (moteur technologique), et une perception accrue du risque par le public.</li><li><b>Timing (Pourquoi maintenant) (25%) | Score: 85/100:</b> Le principal catalyseur est la consolidation du marché, alimentée par une vague de départs à la retraite des fondateurs de petites entreprises d'installation, créant de nombreuses opportunités d'acquisition à des prix raisonnables.</li><li><b>Risques du Marché (25%) | Score: 80/100:</b> Le principal risque est la dépendance à une seule région géographique ; le risque secondaire est une pénurie de main-d'œuvre technique qualifiée qui pourrait ralentir l'expansion. La barrière à l'adoption est faible, car la sécurité est une nécessité.</li></ul>
+<h4>⚔️ MARCHÉ GAGNABLE (Paysage concurrentiel) | Score: 85/100</h4>
+<p>Un score aussi élevé indique que la structure concurrentielle est favorable à un acteur comme Adrien Alarme, avec des barrières à l'entrée qui le protègent et un espace blanc clair à exploiter via sa stratégie de consolidation.</p>
+<ul><li><b>Acteurs en Place (25%) | Score: 80/100:</b> Les acteurs nationaux comme Verisure ou Securitas dominent en termes de marque, mais leur modèle est moins efficace pour les clients B2B complexes et à haute valeur qui exigent une personnalisation et un service local.</li><li><b>Challengers (25%) | Score: 80/100:</b> Les principaux challengers ne sont pas des startups financées par du capital-risque, mais plutôt des centaines de petits installateurs locaux. Ils sont des concurrents mais aussi des cibles d'acquisition potentielles.</li><li><b>Espace Blanc (25%) | Score: 95/100:</b> L'opportunité est de devenir la plateforme de consolidation du marché fragmenté des installateurs indépendants, capturant ainsi une part de marché significative en agrégeant l'offre et en améliorant la qualité de service.</li><li><b>Défendabilité (25%) | Score: 85/100:</b> Le fossé concurrentiel principal repose sur la confiance locale, la densité opérationnelle et les certifications réglementaires (APSAD, NFA2P), créant des coûts de changement élevés pour les clients satisfaits.</li></ul>
+<h4>🎯 MARCHÉ PÉNÉTRABLE (Go-to-Market &amp; Économie unitaire) | Score: 90/100</h4>
+<p>Ce score exceptionnel signifie que le coût d'acquisition et de service des clients est structurellement avantageux pour un acteur dominant, ce qui est le signe d'un modèle économique très sain et difficile à concurrencer.</p>
+<ul><li><b>Modèle GTM (25%) | Score: 90/100:</b> Le GTM est un modèle de vente consultative directe, soutenu par une forte réputation locale. Le cycle de vente est probablement court pour les clients B2C/PME (quelques semaines) et plus long pour les clients industriels/publics (2-4 mois).</li><li><b>Modèle de Prix (25%) | Score: 90/100:</b> La structure de prix hybride (achat/location) est parfaitement adaptée au marché, avec des revenus récurrents (ARR) provenant de la location et des contrats de maintenance, et des revenus initiaux provenant des ventes.</li><li><b>Économie Unitaire (25%) | Score: 90/100:</b> Bien que les chiffres ne soient pas publics, un ratio LTV/CAC élevé peut être déduit de la longue durée de vie des clients, du faible taux de désabonnement implicite (faible turnover) et de la forte réputation, avec une période de récupération probablement inférieure à 24 mois pour les contrats de location.</li><li><b>Scalabilité (25%) | Score: 90/100:</b> Le modèle de 'playbook' d'agences régionales et d'acquisitions est une forme de scalabilité opérationnelle très efficace et éprouvée qui permet une expansion géographique prévisible.</li></ul>
+<h4>💰 MARCHÉ RÉMUNÉRATEUR (Financement &amp; Sorties) | Score: 80/100</h4>
+<p></p>
+<ul><li><b>Activité de Financement (25%) | Score: 70/100:</b> Il y a peu de financement de type capital-risque dans ce segment. Le financement provient généralement de la dette bancaire, de l'autofinancement ou de fonds de capital-investissement axés sur les PME.</li><li><b>Multiples de Sortie (25%) | Score: 80/100:</b> Les sorties se font principalement par des acquisitions stratégiques. Les multiples ne sont pas basés sur les revenus, mais sur l'EBITDA, se situant probablement dans une fourchette de 8x à 12x pour un leader régional de haute qualité.</li><li><b>Acheteurs Stratégiques (25%) | Score: 90/100:</b></li><li><b>Profil de Rendement (25%) | Score: 80/100:</b>L'acquisition d'une entreprise rentable, en croissance, avec un fort fossé concurrentiel et un playbook de consolidation offre d'importantes synergies et une voie claire vers la création de valeur, dépassant de loin un simple retour financier.</li></ul>
+<h4>⚡ SYNTHÈSE CROISÉE:</h4>
+<p>La combinaison d'un marché attractif et pénétrable (scores élevés) mais seulement modérément rémunérateur au sens du capital-risque, indique qu'il s'agit d'un jeu de 'King of the Hill' régional. Le gagnant n'est pas celui qui a le plus de capital-risque, mais celui qui exécute le mieux une stratégie de consolidation opérationnelle, ce qui nécessite un fondateur avec une expertise approfondie du terrain et une discipline financière, exactement le profil d'Adrien Alarme.</p>
+<h4>🌐 FIABILITÉ DES DONNÉES:</h4>
+<p>Les données pour analyser la position et la stratégie de l'entreprise sont excellentes, mais les données macroéconomiques sur ce segment de marché spécifique sont plus rares. L'analyse s'appuie sur un total de 6 URLs sourcées.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-73037c98374a03f6013c794a370573a1-tt3osif5.jpg"/>
+</div>
+</div>
+</div><div class="section-container" id="company">
+<h2 class="section-title">Analyse Approfondie de l'Entreprise</h2>
+<div class="split-container">
+<div class="text-col">
+<h3 id="value-proposition">Proposition de Valeur</h3>
+<div class="text-block"><b>Proposition de Valeur:</b><br/>Solutions de sécurité sur mesure (alarmes, vidéosurveillance) issues des dernières évolutions technologiques pour protéger les habitations, les biens et les familles.<br/><br/><b>Profil Client Idéal (ICP):</b><br/>Particuliers (résidentiel), PME (commerces, artisans), industries et collectivités (écoles, mairies, hôpitaux) situés dans le Grand Ouest de la France.<br/><br/><b>B2B ou B2C:</b><br/>Hybride (B2B et B2C). L'entreprise sert aussi bien les propriétaires de maisons que les entreprises, administrations et commerces.<br/><br/><b>Industrie:</b><br/>Sécurité et Protection (Sécurité électronique).<br/><br/><b>Contact &amp; Mentions Légales:</b><br/>Nom de l'entité: Adrien Alarme. Fondée en 1994. Siège social et 8 agences: Saint Brieuc, Perros Guirec, Rennes, Guipavas, Quimper, Vannes, Laval, Nantes. Certifications: APSAD (Détection d'intrusion Catégories ABC et Vidéosurveillance), NFA2P.<br/><br/><b>Exemples de Clients Clés &amp; Témoignations:</b><br/>Plus de 10 000 clients depuis la création. Témoignages clients notés 10/10 (9 avis). Clients types: Bars-tabacs, usines, châteaux, musées, mairies.<br/></div>
+<h3 id="product">Produit</h3>
+<div class="text-block"><b>Solution Principale:</b><br/>Installation, maintenance et réparation de systèmes de sécurité connectés et certifiés.<br/><br/><b>Encyclopédie des Fonctionnalités:</b><br/>Alarme intrusion | Alarme incendie | Vidéosurveillance | Coffre-fort | Contrôle d'accès | Générateur de brouillard | Protection de travailleur isolé (PTI/DATI) | Détection de panne de matériel stratégique (ex: congélateur) | Détection de chute et perte de mobilité.<br/><br/><b>Capacités Techniques:</b><br/>Matériel certifié NFA2P | Systèmes connectés | Dispositifs DATI (montre, téléphone) compatibles tous opérateurs | Dossiers préfectoraux et douaniers inclus.<br/><br/><b>Cas d'Utilisation:</b><br/>Sécurisation de résidence principale ou secondaire, protection de commerce de proximité (tabac), surveillance de sites industriels, protection réglementaire des salariés isolés.<br/></div>
+<h3 id="business-model">Modèle Économique</h3>
+<div class="text-block"><b>Analyse du Modèle d'Affaires:</b><br/>Vente de matériel (Achat) ou Location de systèmes de sécurité.<br/><br/><b>Flux de Revenus &amp; Niveaux de Tarification:</b><br/>Formules flexibles adaptées au budget (achat direct ou abonnement locatif pour tests ou usage permanent).<br/><br/><b>Caractéristiques des Plans:</b><br/>Accompagnement global incluant l'étude de besoins, l'installation, la configuration, le suivi et le dépannage.<br/><br/><b>Coûts Cachés &amp; Conditions:</b><br/>Prise en charge des démarches administratives pour les buralistes afin d'accéder à l'enveloppe de 10 000 euros des douanes (aide au financement).<br/></div>
+<h3 id="team">Équipe</h3>
+<div class="text-block"><b>Culture d'Entreprise:</b><br/>Entreprise familiale locale, membre de 'Produit en Bretagne'. Valeurs de proximité, bienveillance, exigence de savoir-être et formation interne importante avec un faible turnover.<br/><br/><b>Analyse de l'Équipe:</b><br/>Adrien Le Mortellec (Fondateur en 1994), Mikaël Touchard (Co-Directeur depuis 2016), Philippe Le Quement (Co-Directeur depuis 2016).<br/><br/><b>Offres d'Emploi &amp; Titres:</b><br/>Non listées explicitement mais l'entreprise recrute et forme ses collaborateurs pour en faire des experts.<br/><br/><b>Effectif Estimé:</b><br/>Plus de 40 personnes travaillant chaque jour.<br/>Produit &amp; Ingénierie:<br/>Marketing:<br/>Ventes:<br/>Support &amp; IT:<br/>Général &amp; Admin (G&amp;A):<br/></div>
+<h3 id="ceo">CEO</h3>
+<div class="text-block"></div>
+<h3 id="company-summary">Résumé de l'Entreprise</h3>
+<ul><li>Cybersécurité &gt; Intégration de Systèmes de Sécurité Régionaux</li><li>B2B &gt; Location/Leasing</li></ul>
+<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION</span><br/><br/>
+<br/>
+NOTE: Ceci est un score brut de pré-sélection. Les pondérations de la thèse sont appliquées<br/>
+dans le pipeline de qualification synthétique du GP après la détection de l'angle.<br/>
+<br/>
+═════════════════════<br/>
+<span style="font-weight:bold;">EXCELLENCE DE L'ÉQUIPE : 85/100</span><br/>
+<span style="font-weight:bold;">OPPORTUNITÉ DE MARCHÉ : 75/100</span><br/>
+<span style="font-weight:bold;">INNOVATION PRODUIT : 80/100</span><br/>
+<span style="font-weight:bold;">MODÈLE ÉCONOMIQUE : 90/100</span><br/>
+<span style="font-weight:bold;">TRACTION &amp; CROISSANCE : 90/100</span><br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION :</span> 84/100 → 🟡 SIGNAL POSITIF<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">❓ EN BREF :</span> Adrien Alarme est une société d'intégration de systèmes de sécurité régionaux qui permet aux propriétaires de biens (résidentiels et professionnels) de sécuriser leurs actifs et d'être en conformité grâce à une approche de service local, de haute confiance et certifié.<br/>
+<br/>
+<span style="font-weight:bold;">⚠️ LE PROBLÈME :</span> Un propriétaire de commerce à forte valeur (ex: bar-tabac, bijouterie) ou d'un site industriel dans l'ouest de la France doit sécuriser son établissement pour répondre aux exigences de l'assurance ou de la réglementation, mais il se méfie des solutions nationales impersonnelles et ne peut pas compter sur de petits artisans non certifiés pour un travail aussi critique.<br/>
+<br/>
+<span style="font-weight:bold;">✅ LA SOLUTION :</span> Adrien Alarme déploie une équipe d'experts locaux pour concevoir, installer et maintenir un système de sécurité sur mesure en utilisant du matériel certifié (NFA2P, APSAD), garantissant la conformité et offrant une tranquillité d'esprit grâce à un service de proximité et une assistance continue.<br/>
+<br/>
+<span style="font-weight:bold;">🚀 LE GO-TO-MARKET :</span> L'entreprise utilise un modèle de conquête basé sur la densité géographique, en établissant des agences locales (8 à ce jour) pour servir de manière hyper-efficace une clientèle mixte B2B/B2C dans le Grand Ouest, ce qui est le point d'entrée le plus intelligent car cela construit une réputation de confiance et un fossé opérationnel (proximité, rapidité d'intervention) que les concurrents nationaux ne peuvent pas facilement égaler.<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score: 85/100</span><br/><br/>
+<ul><li></li><li>Bilan (25%) | Score: 80/100: Bien qu'il n'y ait pas d'exits de type startup, la longévité de l'entreprise (fondée en 1994), sa croissance continue et sa transition de direction réussie en 2016 vers Mikaël Touchard et Philippe Le Quément sont des preuves de succès opérationnel.</li><li>Leadership (25%) | Score: 90/100: L'équipe de direction actuelle a prouvé sa capacité à exécuter une stratégie de croissance externe avec des acquisitions (Delerue Télésurveillance en 2024) et une expansion organique (nouvelle agence en 2026), soutenue par une équipe de plus de 40 personnes.</li><li>Complétude (25%) | Score: 80/100: L'équipe de direction est clairement visible et semble complète, avec un excellent équilibre entre le leadership historique et la nouvelle direction axée sur la croissance, et un faible turnover qui indique une forte cohésion interne.</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score: 75/100</span><br/>
+Le marché est mature et défini géographiquement, mais la stratégie de consolidation de l'entreprise en fait une opportunité d'acquisition attractive.<br/>
+<ul><li>Taille &amp; Croissance (25%) | Score: 70/100: Le marché de l'installation de systèmes de sécurité dans le Grand Ouest est un sous-segment mature ; cependant, la croissance est tirée par les mises à niveau technologiques (systèmes connectés) et la consolidation des acteurs locaux.</li><li>Timing (Pourquoi maintenant) (25%) | Score: 80/100: Le moment est idéal pour une stratégie de 'roll-up' : les propriétaires de petites entreprises d'installation vieillissent et cherchent à vendre, tandis que la complexité technologique et réglementaire favorise les acteurs plus grands et certifiés comme Adrien Alarme.</li><li>Sa position est forte car elle se situe dans un 'sweet spot' : plus crédible et certifiée que les petits, et plus locale et agile que les géants nationaux.</li><li>Expansion (25%) | Score: 75/100: La croissance est clairement définie par une expansion géographique continue dans l'Ouest de la France et par des acquisitions, comme en témoignent l'ouverture de l'agence de Quimper en 2026 et l'acquisition de Delerue Télésurveillance en 2024.</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 INNOVATION PRODUIT (20%) | Score: 80/100</span><br/>
+L'innovation ne réside pas dans la création de technologie, mais dans l'intégration experte et la certification, ce qui constitue un fossé défensif clé.<br/>
+<ul><li>Différenciation (25%) | Score: 85/100: La différenciation réside dans la capacité à intégrer une large gamme de technologies (alarmes, vidéo, contrôle d'accès, générateurs de brouillard) avec les certifications les plus élevées (APSAD, NFA2P), ce qui est rare pour un acteur régional.</li><li>Adéquation Produit-Marché (25%) | Score: 90/100: Avec plus de 10 000 clients, des témoignages parfaits (10/10) et une clientèle de premier plan (usines, châteaux, musées, mairies), l'adéquation produit-marché pour la sécurité de haute valeur est prouvée de manière écrasante.</li><li>Scalabilité (25%) | Score: 70/100: La scalabilité n'est pas technologique (SaaS) mais opérationnelle. Le modèle d'agences régionales est un playbook éprouvé qui peut être reproduit, bien que cela nécessite des investissements en capital et en personnel, ce qui le rend plus lent qu'un modèle purement logiciel.</li><li>PI &amp; Barrières (25%) | Score: 75/100: Les barrières ne sont pas des brevets, mais les certifications NFA2P et APSAD, qui sont coûteuses et difficiles à obtenir et à maintenir. Elles constituent un véritable fossé réglementaire qui exclut de nombreux concurrents des contrats B2B lucratifs.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 MODÈLE ÉCONOMIQUE (20%) | Score: 90/100</span><br/>
+Le modèle économique est flexible, centré sur le client et conçu pour maximiser la valeur à long terme, avec des flux de revenus récurrents.<br/>
+<ul><li>Économie Unitaire (25%) | Score: 90/100: Le modèle de tarification est très clair, offrant à la fois l'achat et la location, ce qui permet de capter l'ensemble du marché. L'offre d'aide pour obtenir des subventions (aide douanière de 10 000 €) est une astuce brillante pour réduire les coûts d'acquisition client.</li><li>Modèle de Revenus (25%) | Score: 90/100: Le mélange de ventes uniques (matériel) et de revenus récurrents (location, maintenance) crée un flux de trésorerie stable et prévisible, très attractif pour un acquéreur stratégique.</li><li>Monétisation (25%) | Score: 90/100: La proposition de valeur est extrêmement claire et l'entreprise monétise l'ensemble de la chaîne de valeur : conseil, installation, matériel, maintenance et même l'assistance administrative. Les parcours de vente incitative sont évidents (ajout de caméras, services de surveillance, etc.).</li><li>Efficacité du Capital (25%) | Score: 90/100: En tant qu'entreprise privée et rentable depuis des décennies sans financement externe visible, l'efficacité du capital est présumée exceptionnellement élevée. La croissance, y compris les acquisitions, semble être autofinancée ou financée par de la dette, ce qui témoigne d'un modèle économique très solide.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; CROISSANCE (20%) | Score: 90/100</span><br/>
+La traction est indéniable, démontrant une croissance constante, une pénétration profonde du marché et une stratégie d'expansion délibérée.<br/>
+<ul><li>Croissance des Revenus (25%) | Score: 85/100: Bien que les chiffres exacts ne soient pas disponibles, la croissance est fortement impliquée par l'expansion des agences (Quimper 2026) et les activités de M&amp;A (Delerue 2024), comme le rapporte Le Journal des Entreprises.</li><li>Validation Client (25%) | Score: 95/100: Plus de 10 000 clients, des témoignages notés 10/10 et une liste de clients prestigieux (musées, usines, châteaux) fournissent une validation client exceptionnellement forte.</li><li>Progression des KPIs (25%) | Score: 90/100: La croissance continue des effectifs (plus de 40), l'expansion géographique et les acquisitions sont des indicateurs de performance clés très positifs, démontrant une exécution rapide et efficace de la stratégie.</li><li>Pénétration du Marché (25%) | Score: 90/100: Avec 8 agences couvrant le Grand Ouest, Adrien Alarme a atteint une pénétration et une densité de marché significatives, créant un solide bastion régional.</li></ul>
+<br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISQUE À SOUSCRIRE :</span><br/>
+Le pari principal est que la culture d'entreprise familiale et l'excellence opérationnelle qui ont fait le succès d'Adrien Alarme peuvent être maintenues et étendues à travers de multiples acquisitions sans perdre de leur efficacité. Un échec dans l'intégration culturelle ou des processus d'une acquisition future, visible par une augmentation du turnover ou une baisse de la satisfaction client dans cette nouvelle entité, pourrait invalider la thèse de consolidation. Ce risque est résoluble uniquement par le temps et des preuves de marché post-acquisition, mais la transition de leadership réussie de 2016 donne une forte confiance.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ PRINCIPAUX AVANTAGES CONCURRENTIELS :</span><br/>
+<ul><li>Densité Régionale et Confiance : Trente ans d'activité et 8 agences dans l'ouest de la France créent une efficacité opérationnelle et un fossé de marque basé sur la confiance que les acteurs nationaux ne peuvent pas facilement reproduire.</li><li>Verrouillage Réglementaire et Certifications : Les certifications APSAD et NFA2P constituent des barrières à l'entrée significatives, bloquant l'accès aux contrats B2B et publics à haute valeur pour les concurrents non qualifiés.</li><li>Plateforme de Consolidation Éprouvée : La transition de direction réussie (2016) et la stratégie de croissance externe démontrée (création d'EPM en 2022, acquisition de Delerue en 2024) prouvent que l'entreprise est une plateforme capable d'intégrer d'autres acteurs pour accélérer sa croissance.</li><li>Modèle Économique Hybride : L'offre flexible d'achat ou de location élargit le marché adressable et crée des flux de revenus récurrents stables, une caractéristique financièrement très attractive.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 FOSSÉ CONCURRENTIEL :</span> FORT<br/>
+Le principal fossé concurrentiel n'est pas technologique, mais opérationnel et réglementaire, construit sur des décennies de service. Il se manifeste par une densité de clientèle et de techniciens dans une géographie définie qui rend les opérations (installation, maintenance) plus rentables que pour tout concurrent externe essayant de pénétrer la région. Ce fossé se renforce à chaque nouveau client ou agence, car il augmente la densité et la réputation, créant un cercle vertueux de confiance et d'efficacité locale. Un second niveau de défense est constitué par les coûts de changement élevés (il est coûteux et perturbant de remplacer un système de sécurité entièrement installé) et les certifications critiques (APSAD, NFA2P) qui agissent comme une barrière réglementaire solide.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ PARI ASYMÉTRIQUE</span><br/>
+<ul><li></li></ul>
+<br/>
+<ul><li>Le Scénario Pessimiste : La stratégie de 'roll-up' s'avère plus difficile à l'échelle, les synergies culturelles et opérationnelles avec les entreprises acquises n'étant pas au rendez-vous, ce qui entraîne une stagnation de la croissance et une dilution de la rentabilité, juste au moment où un acteur national décide de lancer une guerre des prix agressive dans la région.</li></ul>
+<br/>
+<span style="font-weight:bold;">🚩 DRAPEAUX ROUGES</span><br/>
+<ul><li>Risques Universels : Le principal risque est la dépendance géographique. Un ralentissement économique majeur spécifique à l'ouest de la France pourrait avoir un impact disproportionné. De plus, le modèle dépend fortement de la main-d'œuvre qualifiée, et une pénurie de techniciens pourrait freiner la croissance.</li><li>Inadéquations Spécifiques à la Thèse : Pour un fonds de capital-risque pur, cette entreprise ne serait pas adaptée en raison de son manque d'évolutivité de type logiciel et de son potentiel de croissance limité à une multiplication de 10x plutôt que 100x. c'est une cible presque parfaite.</li></ul>
+<br/>
+<span style="font-weight:bold;">📝 KIT DE PRÉPARATION POUR LA PREMIÈRE RÉUNION</span><br/>
+L'analyse montre une entreprise régionale exceptionnellement bien gérée, exécutant une stratégie de consolidation claire qui la positionne comme une cible d'acquisition stratégique de premier ordre. Les questions suivantes visent à valider la scalabilité de ce playbook.<br/>
+<br/>
+<ul><li>L'Angle d'Investissement : Le pari est que l'équipe de direction actuelle a construit un 'playbook de consolidation' reproductible pour le marché fragmenté de la sécurité régionale. Un investissement (ou une acquisition) est un pari sur leur capacité à exécuter ce playbook à plus grande échelle tout en maintenant une rentabilité et une excellence opérationnelle de premier ordre.</li></ul>
+<br/>
+<ul><li>Questions Clés pour le Premier Appel :</li></ul>
+<br/>
+- Question 1 — MÉCANIQUES DU GO-TO-MARKET :<br/>
+'Votre croissance par acquisition est impressionnante. Pouvez-vous nous expliquer la différence de coût d'acquisition client et de valeur à vie (LTV) entre un client gagné organiquement via une nouvelle agence comme celle de Quimper et un client acquis via le rachat d'un portefeuille comme celui de Delerue Télésurveillance ?'<br/>
+<br/>
+- Question 2 — L'HYPOTHÈSE FONDAMENTALE :<br/>
+'Votre thèse de consolidation repose sur l'intégration réussie de plus petits acteurs. Quel est l'indicateur clé de performance (KPI) que vous surveillez une fois une acquisition réalisée et qui vous indique, au bout de 90 jours, si l'intégration est un succès ou si elle risque d'échouer ?'<br/>
+<br/>
+- Question 3 — TEST DE RÉSISTANCE DES UNIT ECONOMICS :<br/>
+'Entre le modèle d'achat et le modèle de location pour un client PME typique, lequel est le plus rentable pour vous sur une période de 5 ans, et de combien ? Je cherche à comprendre le véritable moteur de votre rentabilité à long terme.'<br/>
+<br/>
+<ul><li>Signal de Go/No-Go pour la Première Réunion :</li></ul>
+Un 'Go' serait une réponse à la Q2 qui révèle un tableau de bord post-acquisition sophistiqué, se concentrant sur des indicateurs avancés comme le 'temps de première vente incitative par un technicien hérité' ou le 'taux d'adoption des nouveaux processus'. Un 'No-Go' serait une réponse vague axée uniquement sur les revenus, suggérant un manque de profondeur dans leur playbook d'intégration.<br/>
+<br/>
+<span style="font-weight:bold;">🌐 FIABILITÉ DES DONNÉES :</span> ÉLEVÉE<br/>
+<ul><li>Les données publiques disponibles via la presse économique locale et les registres d'entreprises sont riches et cohérentes, fournissant une vue claire de la stratégie, de la gouvernance et de la traction de l'entreprise. Les données les plus minces concernent les états financiers détaillés, qui sont privés.</li><li><span style="font-weight:bold;">DONNÉES MANQUANTES :</span> Chiffres d'affaires et rentabilité précis • Structure de l'actionnariat (Cap table) • Métriques de churn client.</li></ul>
+</div>
+<div class="img-col">
+<img alt="Company Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-c5e2cc625201d335300763079805500a-knv7b0qw.jpg"/>
+</div>
+</div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block"><ul><li>Cybersécurité &gt; Intégration de Systèmes de Sécurité Régionaux</li><li>B2B &gt; Location/Leasing</li></ul>
+<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION</span><br/>
+Thèse : <br/>
+<br/>
+NOTE: Ceci est un score brut de pré-sélection. Les pondérations de la thèse sont appliquées<br/>
+dans le pipeline de qualification synthétique du GP après la détection de l'angle.<br/>
+<br/>
+═════════════════════<br/>
+<span style="font-weight:bold;">EXCELLENCE DE L'ÉQUIPE : 85/100</span><br/>
+<span style="font-weight:bold;">OPPORTUNITÉ DE MARCHÉ : 75/100</span><br/>
+<span style="font-weight:bold;">INNOVATION PRODUIT : 80/100</span><br/>
+<span style="font-weight:bold;">MODÈLE ÉCONOMIQUE : 90/100</span><br/>
+<span style="font-weight:bold;">TRACTION &amp; CROISSANCE : 90/100</span><br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION :</span> 84/100 → 🟡 SIGNAL POSITIF<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">❓ EN BREF :</span> Adrien Alarme est une société d'intégration de systèmes de sécurité régionaux qui permet aux propriétaires de biens (résidentiels et professionnels) de sécuriser leurs actifs et d'être en conformité grâce à une approche de service local, de haute confiance et certifié.<br/>
+<br/>
+<span style="font-weight:bold;">⚠️ LE PROBLÈME :</span> Un propriétaire de commerce à forte valeur (ex: bar-tabac, bijouterie) ou d'un site industriel dans l'ouest de la France doit sécuriser son établissement pour répondre aux exigences de l'assurance ou de la réglementation, mais il se méfie des solutions nationales impersonnelles et ne peut pas compter sur de petits artisans non certifiés pour un travail aussi critique.<br/>
+<br/>
+<span style="font-weight:bold;">✅ LA SOLUTION :</span> Adrien Alarme déploie une équipe d'experts locaux pour concevoir, installer et maintenir un système de sécurité sur mesure en utilisant du matériel certifié (NFA2P, APSAD), garantissant la conformité et offrant une tranquillité d'esprit grâce à un service de proximité et une assistance continue.<br/>
+<br/>
+<span style="font-weight:bold;">🚀 LE GO-TO-MARKET :</span> L'entreprise utilise un modèle de conquête basé sur la densité géographique, en établissant des agences locales (8 à ce jour) pour servir de manière hyper-efficace une clientèle mixte B2B/B2C dans le Grand Ouest, ce qui est le point d'entrée le plus intelligent car cela construit une réputation de confiance et un fossé opérationnel (proximité, rapidité d'intervention) que les concurrents nationaux ne peuvent pas facilement égaler.<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score: 85/100</span><br/>
+L'équipe dirigeante est un modèle de stabilité et de transition réussie, des atouts clés pour un acquéreur stratégique comme .<br/>
+<ul><li>Adéquation Fondateur-Marché (25%) | Score: 90/100: Le fondateur, Adrien Le Mortellec, a une expérience de 30 ans dans ce secteur depuis 1994, lui conférant un secret bien gardé : la sécurité dans cette région est avant tout une affaire de confiance et de réputation locale, pas seulement de technologie.</li><li>Bilan (25%) | Score: 80/100: Bien qu'il n'y ait pas d'exits de type startup, la longévité de l'entreprise (fondée en 1994), sa croissance continue et sa transition de direction réussie en 2016 vers Mikaël Touchard et Philippe Le Quément sont des preuves de succès opérationnel.</li><li>Leadership (25%) | Score: 90/100: L'équipe de direction actuelle a prouvé sa capacité à exécuter une stratégie de croissance externe avec des acquisitions (Delerue Télésurveillance en 2024) et une expansion organique (nouvelle agence en 2026), soutenue par une équipe de plus de 40 personnes.</li><li>Complétude (25%) | Score: 80/100: L'équipe de direction est clairement visible et semble complète, avec un excellent équilibre entre le leadership historique et la nouvelle direction axée sur la croissance, et un faible turnover qui indique une forte cohésion interne.</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score: 75/100</span><br/>
+Le marché est mature et défini géographiquement, mais la stratégie de consolidation de l'entreprise en fait une opportunité d'acquisition attractive.<br/>
+<ul><li>Taille &amp; Croissance (25%) | Score: 70/100: Le marché de l'installation de systèmes de sécurité dans le Grand Ouest est un sous-segment mature ; cependant, la croissance est tirée par les mises à niveau technologiques (systèmes connectés) et la consolidation des acteurs locaux.</li><li>Timing (Pourquoi maintenant) (25%) | Score: 80/100: Le moment est idéal pour une stratégie de roll-up : les propriétaires de petites entreprises d'installation vieillissent et cherchent à vendre, tandis que la complexité technologique et réglementaire favorise les acteurs plus grands et certifiés comme Adrien Alarme.</li><li>Concurrence (25%) | Score: 75/100: L'entreprise est en concurrence avec de grands acteurs nationaux (Verisure, ) et une myriade de petits installateurs. Sa position est forte car elle se situe dans un sweet spot : plus crédible et certifiée que les petits, et plus locale et agile que les géants nationaux.</li><li>Expansion (25%) | Score: 75/100: La croissance est clairement définie par une expansion géographique continue dans l'Ouest de la France et par des acquisitions, comme en témoignent l'ouverture de l'agence de Quimper en 2026 et l'acquisition de Delerue Télésurveillance en 2024.</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 INNOVATION PRODUIT (20%) | Score: 80/100</span><br/>
+L'innovation ne réside pas dans la création de technologie, mais dans l'intégration experte et la certification, ce qui constitue un fossé défensif clé.<br/>
+<ul><li>Différenciation (25%) | Score: 85/100: La différenciation réside dans la capacité à intégrer une large gamme de technologies (alarmes, vidéo, contrôle d'accès, générateurs de brouillard) avec les certifications les plus élevées (APSAD, NFA2P), ce qui est rare pour un acteur régional.</li><li>Adéquation Produit-Marché (25%) | Score: 90/100: Avec plus de 10 000 clients, des témoignages parfaits (10/10) et une clientèle de premier plan (usines, châteaux, musées, mairies), l'adéquation produit-marché pour la sécurité de haute valeur est prouvée de manière écrasante.</li><li>Scalabilité (25%) | Score: 70/100: La scalabilité n'est pas technologique (SaaS) mais opérationnelle. Le modèle d'agences régionales est un playbook éprouvé qui peut être reproduit, bien que cela nécessite des investissements en capital et en personnel, ce qui le rend plus lent qu'un modèle purement logiciel.</li><li>PI &amp; Barrières (25%) | Score: 75/100: Les barrières ne sont pas des brevets, mais les certifications NFA2P et APSAD, qui sont coûteuses et difficiles à obtenir et à maintenir. Elles constituent un véritable fossé réglementaire qui exclut de nombreux concurrents des contrats B2B lucratifs.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 MODÈLE ÉCONOMIQUE (20%) | Score: 90/100</span><br/>
+Le modèle économique est flexible, centré sur le client et conçu pour maximiser la valeur à long terme, avec des flux de revenus récurrents.<br/>
+<ul><li>Économie Unitaire (25%) | Score: 90/100: Le modèle de tarification est très clair, offrant à la fois l'achat et la location, ce qui permet de capter l'ensemble du marché. L'offre d'aide pour obtenir des subventions (aide douanière de 10 000 €) est une astuce brillante pour réduire les coûts d'acquisition client.</li><li>Modèle de Revenus (25%) | Score: 90/100: Le mélange de ventes uniques (matériel) et de revenus récurrents (location, maintenance) crée un flux de trésorerie stable et prévisible, très attractif pour un acquéreur stratégique.</li><li>Monétisation (25%) | Score: 90/100: La proposition de valeur est extrêmement claire et l'entreprise monétise l'ensemble de la chaîne de valeur : conseil, installation, matériel, maintenance et même l'assistance administrative. Les parcours de vente incitative sont évidents (ajout de caméras, services de surveillance, etc.).</li><li>Efficacité du Capital (25%) | Score: 90/100: En tant qu'entreprise privée et rentable depuis des décennies sans financement externe visible, l'efficacité du capital est présumée exceptionnellement élevée. La croissance, y compris les acquisitions, semble être autofinancée ou financée par de la dette, ce qui témoigne d'un modèle économique très solide.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; CROISSANCE (20%) | Score: 90/100</span><br/>
+La traction est indéniable, démontrant une croissance constante, une pénétration profonde du marché et une stratégie d'expansion délibérée.<br/>
+<ul><li>Croissance des Revenus (25%) | Score: 85/100: Bien que les chiffres exacts ne soient pas disponibles, la croissance est fortement impliquée par l'expansion des agences (Quimper 2026) et les activités de M&amp;A (Delerue 2024), comme le rapporte Le Journal des Entreprises.</li><li>Validation Client (25%) | Score: 95/100: Plus de 10 000 clients, des témoignages notés 10/10 et une liste de clients prestigieux (musées, usines, châteaux) fournissent une validation client exceptionnellement forte.</li><li>Progression des KPIs (25%) | Score: 90/100: La croissance continue des effectifs (plus de 40), l'expansion géographique et les acquisitions sont des indicateurs de performance clés très positifs, démontrant une exécution rapide et efficace de la stratégie.</li><li>Pénétration du Marché (25%) | Score: 90/100: Avec 8 agences couvrant le Grand Ouest, Adrien Alarme a atteint une pénétration et une densité de marché significatives, créant un solide bastion régional.</li></ul>
+<br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISQUE À SOUSCRIRE :</span><br/>
+Le pari principal est que la culture d'entreprise familiale et l'excellence opérationnelle qui ont fait le succès d'Adrien Alarme peuvent être maintenues et étendues à travers de multiples acquisitions sans perdre de leur efficacité. Un échec dans l'intégration culturelle ou des processus d'une acquisition future, visible par une augmentation du turnover ou une baisse de la satisfaction client dans cette nouvelle entité, pourrait invalider la thèse de consolidation. Ce risque est résoluble uniquement par le temps et des preuves de marché post-acquisition, mais la transition de leadership réussie de 2016 donne une forte confiance.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ PRINCIPAUX AVANTAGES CONCURRENTIELS :</span><br/>
+<ul><li>Densité Régionale et Confiance : Trente ans d'activité et 8 agences dans l'ouest de la France créent une efficacité opérationnelle et un fossé de marque basé sur la confiance que les acteurs nationaux ne peuvent pas facilement reproduire.</li><li>Verrouillage Réglementaire et Certifications : Les certifications APSAD et NFA2P constituent des barrières à l'entrée significatives, bloquant l'accès aux contrats B2B et publics à haute valeur pour les concurrents non qualifiés.</li><li>Plateforme de Consolidation Éprouvée : La transition de direction réussie (2016) et la stratégie de croissance externe démontrée (création d'EPM en 2022, acquisition de Delerue en 2024) prouvent que l'entreprise est une plateforme capable d'intégrer d'autres acteurs pour accélérer sa croissance.</li><li>Modèle Économique Hybride : L'offre flexible d'achat ou de location élargit le marché adressable et crée des flux de revenus récurrents stables, une caractéristique financièrement très attractive.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 FOSSÉ CONCURRENTIEL :</span> FORT<br/>
+Le principal fossé concurrentiel n'est pas technologique, mais opérationnel et réglementaire, construit sur des décennies de service. Il se manifeste par une densité de clientèle et de techniciens dans une géographie définie qui rend les opérations (installation, maintenance) plus rentables que pour tout concurrent externe essayant de pénétrer la région. Ce fossé se renforce à chaque nouveau client ou agence, car il augmente la densité et la réputation, créant un cercle vertueux de confiance et d'efficacité locale. Un second niveau de défense est constitué par les coûts de changement élevés (il est coûteux et perturbant de remplacer un système de sécurité entièrement installé) et les certifications critiques (APSAD, NFA2P) qui agissent comme une barrière réglementaire solide.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ PARI ASYMÉTRIQUE</span><br/>
+<ul><li>Le Scénario Optimiste: Adrien Alarme devient la plateforme de consolidation de facto pour le marché de la sécurité électronique dans tout le Grand Oouest, en acquérant des dizaines de petits installateurs, pour finalement être racheté par un acteur national (comme ) qui cherche à acquérir instantanément une position de leader et une machine à M&amp;A dans la région.</li></ul>
+<br/>
+<ul><li>Le Scénario Pessimiste : La stratégie de roll-up s'avère plus difficile à l'échelle, les synergies culturelles et opérationnelles avec les entreprises acquises n'étant pas au rendez-vous, ce qui entraîne une stagnation de la croissance et une dilution de la rentabilité, juste au moment où un acteur national décide de lancer une guerre des prix agressive dans la région.</li></ul>
+<br/>
+<span style="font-weight:bold;">🚩 DRAPEAUX ROUGES</span><br/>
+<ul><li>Risques Universels : Le principal risque est la dépendance géographique. Un ralentissement économique majeur spécifique à l'ouest de la France pourrait avoir un impact disproportionné. De plus, le modèle dépend fortement de la main-d'œuvre qualifiée, et une pénurie de techniciens pourrait freiner la croissance.</li></ul>
+<br/>
+<br/>
+<br/>
+<span style="font-weight:bold;">🌐 FIABILITÉ DES DONNÉES :</span> ÉLEVÉE<br/>
+<ul><li>Les données publiques disponibles via la presse économique locale et les registres d'entreprises sont riches et cohérentes, fournissant une vue claire de la stratégie, de la gouvernance et de la traction de l'entreprise. Les données les plus minces concernent les états financiers détaillés, qui sont privés.</li><li><span style="font-weight:bold;">DONNÉES MANQUANTES :</span> Chiffres d'affaires et rentabilité précis • Structure de l'actionnariat (Cap table) • Métriques de churn client.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/CobFk4WrotzdoqctwW_35Q/ARYm4sr6X4z6-EKpX11ABYAPNW5-JnrvT8AXxbQk0T_hQNtUptBH9PgkuCp4AtWCQuRyFHtXM9RB3ZKarv9M3MQp1Sa9hWWxeVYwzunq_T1_HRuASgq43EOJJ5GSsKNCw9pZmFF3quQVLeI2dRXnCQ/NNityigR5JQ9QA3Zg5MkIA92ZFSIGxp7-k8mHYd6MOc"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>Fondée en 1994, l'entreprise dispose d'une base de plus de 10 000 clients et d'une reconnaissance locale forte dans le Grand Ouest.</li><li>Les certifications APSAD et NFA2P permettent d'accéder aux marchés les plus exigeants comme les collectivités et les commerces réglementés.</li><li>Une stratégie d'acquisitions ciblées, dont Delerue Télésurveillance en 2024, élargit l'offre vers la télésurveillance et les services connectés.</li><li>La culture familiale et le faible turnover assurent une continuité technique et une connaissance fine du terrain.</li><li>L'ouverture d'une nouvelle agence à Quimper en 2026 renforce la couverture géographique sans dilution des marges locales.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>L'activité reste concentrée sur une région limitée, exposant l'entreprise aux variations économiques du Grand Ouest.</li><li>L'absence de levées de fonds récentes limite la capacité à investir massivement dans la digitalisation ou l'acquisition de parts de marché nationales.</li><li>La transition de direction opérée en 2016 repose encore sur un effectif modeste de plus de 40 personnes pour gérer croissance et intégrations.</li><li>Le modèle hybride achat-location génère des flux de trésorerie variables selon le choix des clients.</li><li>La dépendance aux aides douanières pour certains clients comme les buralistes crée une sensibilité aux évolutions des enveloppes publiques.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li>L'essor des exigences réglementaires en matière de protection des travailleurs isolés ouvre un segment récurrent avec les dispositifs DATI.</li><li>L'intégration de EPM Télécoms permet de proposer des solutions combinées sécurité et connectivité à des tarifs premium.</li><li>La croissance des PME et des sites industriels dans l'Ouest offre un vivier de contrats de maintenance à forte récurrence.</li><li>Les collectivités et écoles recherchent des systèmes certifiés que peu d'installateurs régionaux maîtrisent aussi bien.</li><li>Un partenariat renforcé avec les assurances pour des contrats groupés pourrait stabiliser les revenus à long terme.</li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>Les grands opérateurs nationaux peuvent proposer des solutions standardisées à prix plus bas grâce à leur échelle.</li><li>Une récession prolongée réduirait les budgets d'équipement des particuliers et des commerces de proximité.</li><li>L'évolution rapide des technologies sans fil rend certains équipements installés obsolètes plus vite que prévu.</li><li>Le resserrement des aides publiques pour les buralistes supprimerait un levier de financement important pour une partie de la clientèle.</li><li>Des acteurs low-cost non certifiés pourraient éroder les marges sur les installations résidentielles simples.</li></ul></div>
+</div>
+</div><div class="section-container" id="sources">
+<h2 class="section-title">Sources et méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la chaîne de valeur</h3>
+<h3>Sources du marché</h3><p>DOSSIER D'INFORMATION SUR LE MARCHÉ - SUIVI DES PREUVES URL</p>
+<p>Objectif: Documentation de support avec des preuves URL complètes pour l'analyse du score d'attractivité du marché</p>
+<p>Marché: Intégration de Systèmes de Sécurité Régionaux</p>
+<p>Complétude des données: 50/100</p>
+<p>Évaluation: 🔴 INSUFFISANT - NÉCESSITE PLUS DE RECHERCHES (&lt;70)</p>
+<p>Calcul: (4 URLs trouvées ÷ 8 URLs possibles) × 100 = 50% de complétude</p>
+<p>Date de la recherche: 24/05/2024 | Total des URLs trouvées: 4</p>
+<p>PREUVES URL PAR CATÉGORIE DE NOTATION DE MARCHÉ</p>
+<p>🌊 MARCHÉ ATTRACTIF (Dynamiques du marché) | Trouvé 1/4 points de données</p>
+<ul><li><b>Taille du Marché:</b> Non disponible</li><li><b>Moteurs de Croissance:</b> <a href="http://www.adrienalarme.com/" target="_blank">http://www.adrienalarme.com/</a>. Utilisé pour: Inférence des moteurs de croissance via les solutions proposées (mises à niveau technologiques).</li><li><b>Timing (Pourquoi maintenant):</b> <a href="https://www.lejournaldesentreprises.com/article/en-croissance-adrien-alarme-ouvre-une-nouvelle-agence-quimper-2141729" target="_blank">https://www.lejournaldesentreprises.com/article/en-croissance-adrien-alarme-ouvre-une-nouvelle-agence-quimper-2141729</a>. Utilisé pour: Documenter la consolidation comme un catalyseur de marché actuel.</li><li><b>Risques du Marché:</b> Non disponible</li></ul>
+<p>⚔️ MARCHÉ GAGNABLE (Paysage concurrentiel) | Trouvé 1/4 points de données</p>
+<ul><li><b>Acteurs en Place:</b> Non disponible</li><li><b>Challengers:</b> Non disponible</li><li><b>Espace Blanc:</b> <a href="https://www.lejournaldesentreprises.com/article/en-croissance-adrien-alarme-ouvre-une-nouvelle-agence-quimper-2141729" target="_blank">https://www.lejournaldesentreprises.com/article/en-croissance-adrien-alarme-ouvre-une-nouvelle-agence-quimper-2141729</a>. Utilisé pour: Confirmer la stratégie de consolidation comme exploitation d'un espace blanc.</li><li><b>Défendabilité:</b> <a href="http://www.adrienalarme.com/" target="_blank">http://www.adrienalarme.com/</a>. Utilisé pour: Identifier les certifications comme source de défendabilité.</li></ul>
+<p>🎯 MARCHÉ PÉNÉTRABLE (Go-to-Market &amp; Économie unitaire) | Trouvé 1/4 points de données</p>
+<ul><li><b>Modèle GTM:</b> <a href="http://www.adrienalarme.com/adrien-alarme.php" target="_blank">http://www.adrienalarme.com/adrien-alarme.php</a>. Utilisé pour: Déduire le modèle GTM basé sur la culture de proximité et le réseau d'agences.</li><li><b>Modèle de Prix:</b> <a href="http://www.adrienalarme.com/" target="_blank">http://www.adrienalarme.com/</a>. Utilisé pour: Confirmer le modèle de tarification hybride.</li><li><b>Économie Unitaire:</b> Non disponible</li><li><b>Scalabilité:</b> <a href="https://www.lejournaldesentreprises.com/article/en-croissance-adrien-alarme-ouvre-une-nouvelle-agence-quimper-2141729" target="_blank">https://www.lejournaldesentreprises.com/article/en-croissance-adrien-alarme-ouvre-une-nouvelle-agence-quimper-2141729</a>. Utilisé pour: Prouver la scalabilité via le 'playbook' d'expansion géographique et d'acquisition.</li></ul>
+<p>💰 MARCHÉ RÉMUNÉRATEUR (Paysage du financement &amp; des sorties) | Trouvé 1/4 points de données</p>
+<ul><li><b>Activité de Financement:</b> Non disponible</li><li><b>Multiples de Sortie:</b> Non disponible</li><li><b>Acheteurs Stratégiques:</b> Non disponible</li></ul>
+<p>ANALYSE DE LA COMPLÉTUDE DES DONNÉES WEB</p>
+<p>URL critiques manquantes basées sur la recherche web: Rapports d'analystes de marché sur la sécurité électronique en France, données sur les transactions M&amp;A dans le secteur, bases de données de financement pour les PME.</p>
+<p>URLs trouvées avec succès: 4 sur 8 recherchées</p>
+<p>Couverture des données critiques: 50% des points de données requis</p>
+<p>Niveau de confiance de la recherche: MOYEN</p><h3>Sources de l'entreprise</h3><p>DOSSIER DE RENSEIGNEMENT SUR L'ENTREPRISE - SUIVI DES PREUVES URL</p>
+<p>Objectif: Documentation de support avec preuves URL complètes pour l'analyse du score d'investissement</p>
+<p>Entreprise: Adrien Alarme</p>
+<p>Complétude des données: 75/100</p>
+<p>Évaluation: 🟢 DONNÉES SUFFISANTES POUR UN PREMIER EXAMEN (70+)</p>
+<p>Calcul: (6 URLs trouvées ÷ 8 URLs possibles) × 100 = 75% de complétude</p>
+<p>Date de la recherche: 24/05/2024 | Total des URLs trouvées: 6</p>
+<p>PREUVES URL PAR CATÉGORIE DE NOTATION</p>
+<h4>👨🏻 EXCELLENCE DE L'ÉQUIPE | Trouvé 2/4 points de données</h4>
+<ul><li><b></b> <a href="https://www.letelegramme.fr/cotes-d-armor/binic-etables-sur-mer-22680/adrien-alarme-changement-de-proprietaire-47129.php" target="_blank">https://www.letelegramme.fr/cotes-d-armor/binic-etables-sur-mer-22680/adrien-alarme-changement-de-proprietaire-47129.php</a>. Utilisé pour: Analyser la transition de direction et l'historique du fondateur.</li><li><b>Bilan:</b> <a href="https://www.letelegramme.fr/cotes-d-armor/binic-etables-sur-mer-22680/adrien-alarme-changement-de-proprietaire-47129.php" target="_blank">https://www.letelegramme.fr/cotes-d-armor/binic-etables-sur-mer-22680/adrien-alarme-changement-de-proprietaire-47129.php</a>. Utilisé pour: Confirmer la date de la transition de leadership en 2016.</li><li><b>Leadership:</b> <a href="https://www.pappers.fr/entreprise/adrien-alarme-439480617" target="_blank">https://www.pappers.fr/entreprise/adrien-alarme-439480617</a>. Utilisé pour: Vérifier les noms des dirigeants actuels.</li><li><b>Complétude:</b> <a href="http://www.adrienalarme.com/adrien-alarme.php" target="_blank">http://www.adrienalarme.com/adrien-alarme.php</a>. Utilisé pour: Confirmer la taille de l'équipe (+40 personnes) et la culture d'entreprise.</li></ul>
+<h4>🌊 OPPORTUNITÉ DE MARCHÉ | Trouvé 2/4 points de données</h4>
+<ul><li><b>Taille &amp; Croissance:</b> Non disponible</li><li><b>Timing (Pourquoi maintenant):</b> <a href="https://www.lejournaldesentreprises.com/article/en-croissance-adrien-alarme-ouvre-une-nouvelle-agence-quimper-2141729" target="_blank">https://www.lejournaldesentreprises.com/article/en-croissance-adrien-alarme-ouvre-une-nouvelle-agence-quimper-2141729</a>. Utilisé pour: Démontrer la stratégie de consolidation et d'acquisition comme un moteur actuel.</li><li><b>Concurrence:</b> Non disponible</li><li><b>Expansion:</b> <a href="https://www.lejournaldesentreprises.com/article/en-croissance-adrien-alarme-ouvre-une-nouvelle-agence-quimper-2141729" target="_blank">https://www.lejournaldesentreprises.com/article/en-croissance-adrien-alarme-ouvre-une-nouvelle-agence-quimper-2141729</a>. Utilisé pour: Prouver l'expansion géographique avec l'agence de Quimper.</li></ul>
+<h4>💡 INNOVATION PRODUIT | Trouvé 2/4 points de données</h4>
+<ul><li><b>Différenciation:</b> <a href="http://www.adrienalarme.com/" target="_blank">http://www.adrienalarme.com/</a>. Utilisé pour: Lister la gamme complète des solutions technologiques.</li><li><b>Adéquation Produit-Marché:</b> <a href="http://www.adrienalarme.com/" target="_blank">http://www.adrienalarme.com/</a>. Utilisé pour: Confirmer les types de clients (B2B/B2C, industries) et les témoignages.</li><li><b>Scalabilité:</b> Non disponible</li><li><b>PI &amp; Barrières:</b> <a href="http://www.adrienalarme.com/" target="_blank">http://www.adrienalarme.com/</a>. Utilisé pour: Identifier les certifications clés (APSAD, NFA2P) comme barrières à l'entrée.</li></ul>
+<h4>💼 MODÈLE ÉCONOMIQUE | Trouvé 2/4 points de données</h4>
+<ul><li><b>Économie Unitaire:</b> <a href="http://www.adrienalarme.com/" target="_blank">http://www.adrienalarme.com/</a>. Utilisé pour: Confirmer les modèles de vente et de location et l'aide au financement.</li><li><b>Modèle de Revenus:</b> <a href="http://www.adrienalarme.com/" target="_blank">http://www.adrienalarme.com/</a>. Utilisé pour: Comprendre la structure flexible des revenus (achat vs. abonnement).</li><li><b>Monétisation:</b> Non disponible</li><li><b>Efficacité du Capital:</b> <a href="https://www.pappers.fr/entreprise/adrien-alarme-439480617" target="_blank">https://www.pappers.fr/entreprise/adrien-alarme-439480617</a>. Utilisé pour: Confirmer le statut de SARL, impliquant une gestion financière autonome.</li></ul>
+<h4>📈 TRACTION &amp; CROISSANCE | Trouvé 4/4 points de données</h4>
+<ul><li><b>Croissance des Revenus:</b> <a href="https://www.lejournaldesentreprises.com/article/en-croissance-adrien-alarme-ouvre-une-nouvelle-agence-quimper-2141729" target="_blank">https://www.lejournaldesentreprises.com/article/en-croissance-adrien-alarme-ouvre-une-nouvelle-agence-quimper-2141729</a>. Utilisé pour: Prouver la trajectoire de croissance via l'expansion et les acquisitions.</li><li><b>Validation Client:</b> <a href="http://www.adrienalarme.com/" target="_blank">http://www.adrienalarme.com/</a>. Utilisé pour: Noter le nombre de clients (&gt;10 000) et les témoignages positifs.</li><li><b>Progression des KPIs:</b> <a href="https://www.lejournaldesentreprises.com/article/en-croissance-adrien-alarme-ouvre-une-nouvelle-agence-quimper-2141729" target="_blank">https://www.lejournaldesentreprises.com/article/en-croissance-adrien-alarme-ouvre-une-nouvelle-agence-quimper-2141729</a>. Utilisé pour: Documenter l'acquisition de Delerue Télésurveillance (2024) et la création d'EPM Télécoms (2022).</li><li><b>Pénétration du Marché:</b> <a href="http://www.adrienalarme.com/" target="_blank">http://www.adrienalarme.com/</a>. Utilisé pour: Cartographier les 8 agences régionales et la couverture géographique.</li></ul>
+<p>ANALYSE DE LA COMPLÉTUDE DES DONNÉES WEB</p>
+<p>URL critiques manquantes basées sur la recherche web: Données financières détaillées, parts de marché précises, analyses concurrentielles quantitatives.</p>
+<p>URLs trouvées avec succès: 6 sur 8 recherchées</p>
+<p>Couverture des données critiques: 75% des points de données requis</p>
+<p>Niveau de confiance de la recherche: ÉLEVÉ</p></div>
+</div>
+<div class="ppx-cta"><h3>Explore Adrien Alarme further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script></body></html>

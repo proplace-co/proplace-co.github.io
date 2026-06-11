@@ -1,0 +1,554 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>mysa — analyse Mobility &amp; Transportation | Proplace</title><meta name="description" content="Mobility &amp; Transportation · Plateforme SaaS d&#x27;orchestration de l&#x27;hébergement d&#x27;affaires · Seed"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/mysa/"><meta property="og:type" content="article"><meta property="og:title" content="mysa — analyse Mobility &amp; Transportation | Proplace"><meta property="og:description" content="Mobility &amp; Transportation · Plateforme SaaS d&#x27;orchestration de l&#x27;hébergement d&#x27;affaires · Seed"><meta property="og:url" content="https://proplace.co/analysis/mysa/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "mysa — Mobility & Transportation", "description": "Mobility & Transportation · Plateforme SaaS d'orchestration de l'hébergement d'affaires · Seed", "inLanguage": "fr", "url": "https://proplace.co/analysis/mysa/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/mysa/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "mysa"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">mysa</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "mysa"}]}</script></div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">Royaume-Uni</span>
+<span class="sb-tag">Seed</span>
+<span class="sb-tag">Mobility &amp; Transportation</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">mysa</h1>
+<span class="sidebar-tagline">Mobility &amp; Transportation · Plateforme SaaS d'orchestration de l'hébergement d'affaires · Seed</span>
+<p class="meta-desc" style="margin-bottom: 15px;">La colonne vertébrale technologique pour l'hébergement d'affaires mondial.</p>
+<a href="https://mysa.global/" target="_blank"><i class="fas fa-globe"></i> Site Web</a>
+<a href="https://uk.linkedin.com/in/chris-breen-40aab6231" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du Marché</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de Valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle Économique</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="sb-legend-wrap">
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Données marché</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Données entreprise</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#a898c0;display:inline-block;flex-shrink:0;-webkit-filter: saturate(0.5);filter: saturate(0.5);border:1px solid #8878a0;"></span><span></span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; raisonnement</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; méthodologie</span></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorer mysa davantage?</h3>
+<a class="btn btn-secondary" href="http://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur mysa</a>
+</div>
+<div class="divider"></div>
+
+
+<div class="section">
+<h3>Vous voulez suivre notre flux d'affaires?</h3>
+<p class="meta-desc">Recevez chaque jour des startups européennes que nous évaluons du point de vue d'un capital-risqueur.</p>
+<a class="btn btn-primary" href="https://77f02b89.sibforms.com/serve/MUIFAMr0ADjDfIUWLc56STos70j4OXPiOTJqugyAa45YfGyt9zW6Tokz3iXWLNiTAw6oxjbrMnjs424k46IvwOQlWjaMIsbgexAk95FvzqzgLa56TkHas6WASK4VKs684XcZhacqMYTYQGuIfzJmBmCkmHwhNeB0yHifmrxC1PUhNMS1ZbiW1xF18IZy7tJP9BIWjDcM5VoH6VEVCw==" target="_blank">S'abonner au flux d'affaires</a>
+</div>
+<div class="section">
+<h3>Vous voulez un flux d'affaires propriétaire?</h3>
+<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="http://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+</div>
+<div class="sidebar-logo-wrap">
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">mysa</h1>
+<h2 class="subtitle-category">Mobility &amp; Transportation ➜ Plateforme SaaS d'orchestration de l'hébergement d'affaires ➜ Plateforme SaaS d'écosystème intégré pour l'orchestration d'hébergement corporate auprès d'entreprises multinationales et d'opérateurs hôteliers avec plus de 100 propriétés gérées.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="mysa" data-h="" data-i="Mobility &amp; Transportation" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/mysa/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="market-summary">
+<h2 class="section-title">Résumé du Marché</h2>
+<div class="split-container">
+<div class="text-col">
+<p>MARKET OPPORTUNITY SCORE\nMobility &amp; Transportation &gt; Écosystème SaaS pour hébergement d'affaires corporatif.\nB2B &gt; SaaS\n\n═════════════════════\n\nDYNAMIQUE DE MARCHÉ : 82/100\nCOMPÉTITIVITÉ : 78/100\nGTM ET UNIT ECONOMICS : 85/100\nPOTENTIEL DE SORTIE : 80/100\n\n─────────────────────\nSCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ : 81/100\nCe marché constitue un vent arriére puissant pour Mysa car il subit une pression structurelle de numérisation forcée par les nouveaux standards de conformité post-pandémie.\n\n═════════════════════\n\n❓ Définition du Marché\nLe marché cible est celui de la gestion technologique de l'hébergement d'affaires (Corporate Housing Tech), où les entreprises achètent des solutions de logement pour missions longues. La friction structurelle réside dans l'incapacité des systèmes ERP existants à vérifier la qualité et la conformité de milliers de propriétés non-standardisées en temps réel. Mysa se positionne au centre de la chaîne de valeur, entre les agrégateurs de demande (TMC) et les inventaires fragmentés, capturant la marge sur le flux de conformité et de données.\n\n💬 Notre Thèse de Marché\nLe passage du voyage d'affaires 'transit' vers le voyage 'résidentiel' est un changement irréversible dans les politiques RH mondiales. Les acteurs historiques (TMC traditionnelles) ne peuvent pas répondre à ce besoin car leur architecture logicielle est optimisée pour le ticket GDS aérien et non pour la complexité des baux de location et des normes sanitaires évolutives. L'attaque par la modularité (API-first) permet d'exploiter la lassitude des acheteurs face aux solutions monolithiques fermées. La fenêtre d'opportunité est ouverte par la standardisation imminente des protocoles de conformité logement, qui deviendront insurmontables pour les pure-players manuels d'ici 24 mois.\n\n🧠 Conviction et Pari :\n🟢 HAUTE CONVICTION\nLe défi majeur est la résistance des intermédiaires traditionnels qui craignent la transparence totale des prix. Notre pari est que l'exigence de devoir de protection (Duty of Care) des grandes entreprises forcera ces intermédiaires à adopter la technologie de Mysa pour rester assurables. Dans 18 mois, le succès se mesurera par l'adoption de 'Verify IQ' comme pré-requis dans les appels d'offres publics de logement au Royaume-Uni.\n\n═════════════════════\n\n🌊 MARCHÉ ATTRACTIF | Score: 82/100\n• Taille (25%) | Score: 80/100: Marché global plurimilliardaire avec un segment Extended Stay en forte croissance.\n• Moteurs de Croissance (25%) | Score: 88/100: Globalisation des missions de conseil et besoin de flexibilité post-COVID.\n• Timing (25%) | Score: 85/100: Convergence de l'IA (pour le scan de factures) et de la régression des frais de déplacement traditionnels.\n• Risques (25%) | Score: 75/100: Risque de consolidation rapide des inventaires par des plateformes grand public type Airbnb.\n\n⚔️ MARCHÉ GAGNABLE | Score: 78/100\n• Acteurs Historiques (25%) | Score: 82/100: Les géants comme American Express GBT sont des partenaires potentiels mais aussi des barrières.\n• Challengers (25%) | Score: 78/100: AltoVita est le concurrent le plus féroce sur le terrain tech.\n• Espace Vierge (25%) | Score: 84/100: Manque criant de 'colonne vertébrale' neutre connectant toutes les sources d'offre.\n• Défendabilité (25%) | Score: 68/100: Nécessité de construire des effets de réseau rapides pour éviter d'être réduit à une simple suite logicielle.\n\n🎯 MARCHÉ PÉNÉTRABLE | Score: 85/100\n• Modèle GTM (25%) | Score: 90/100: Le modèle de partenariat TMC permet une distribution massive sans CAC direct explosif.\n• Modèle de Prix (25%) | Score: 82/100: Le 'Pay-as-you-go' modulaire réduit drastiquement le cycle de vente corporatif.\n\n💰 MARCHÉ RÉCOMPENSANT | Score: 80/100\n• Sorties Stratégiques (25%) | Score: 85/100: Les acquéreurs potentiels incluent SAP Concur ou des plateformes de paiement corporate.\n\n─────────────────────\n⚡ SYNTHÈSE :\nLe motif 'Haute Attractivité / GTM Solide' indique que le succès dépendra moins de l'innovation produit pure que de la capacité à verrouiller les partenariats de distribution avant les concurrents mieux financés.\n\n🌐 CONFIANCE : Marché bien documenté via les rapports TravelTech (5 URLs analysées).</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-3d741a98d8e0b36112bce0f8982d3d4e-znao8tr5.jpg"/>
+</div>
+</div>
+</div>
+<code>&gt;&gt;
+
+
+<div class="section-container" id="company">
+<h2 class="section-title">Analyse Approfondie de l'Entreprise</h2>
+<div class="split-container">
+<div class="text-col">
+<h3 id="value-proposition">Proposition de Valeur</h3>
+<span style="font-weight:bold;">Proposition de Valeur:</span> mysa agit comme une 'colonne vertébrale' technologique connectant les acheteurs et les fournisseurs pour transformer l'hébergement d'entreprise en un système intégré plutôt qu'une série de transactions déconnectées. La colonne vertébrale technologique pour l'hébergement d'affaires mondial. Mysa simplifie et connecte tout l'écosystème de l'hébergement d'affaires, permettant aux entreprises de réserver et gérer des séjours complexes via une interface unique et sécurisée plutôt que par des transactions fragmentées. Un gestionnaire de voyages chez Fidelity doit naviguer entre des dizaines d'e-mails, de PDF de conformité et de portails de réservation déconnectés pour sécuriser un séjour de longue durée, perdant une visibilité critique sur les données et la sécurité.<br/><br/><span style="font-weight:bold;">Profil Client Idéal (ICP):</span> Acheteurs de voyages d'affaires (Corporate Buyers), chaînes hôtelières et marques, gestionnaires d'appartements (Hotel Operators), sociétés de gestion de voyages (TMC) et de relogement (RMC). Gestionnaires de voyages chez Fidelity International. Grands comptes comme Fidelity. Travel Management Companies (TMC), Relocation Management Companies (RMC), acheteurs de grands comptes. Mid-sized Indian businesses pour autres Mysa fintech mais focus TravelTech. Omni-channel commerce, quick commerce, manufacturing, hospitality, FinTech, real estate pour fintech Mysa.<br/><br/><span style="font-weight:bold;">B2B ou B2C:</span> B2B - Plateforme d'écosystème pour les professionnels du voyage et de l'hébergement. B2B &gt; SaaS. B2B fintech pour Mysa finance. B2B pour thermostats comparaisons mais focus principal B2B TravelTech.<br/><br/><span style="font-weight:bold;">Industrie:</span> Technologie du voyage d'affaires (TravelTech / Corporate Accommodation). SaaS / TravelTech / Accommodation. Mobility &amp; Transportation &gt; Écosystème SaaS pour hébergement d'affaires corporatif. Corporate Housing Tech, gestion technologique de l'hébergement d'affaires. Corporate Accommodation Tech.
+
+<h3 id="product">Produit</h3>
+<span style="font-weight:bold;">Solution Centrale:</span> Optimise by mysa, un écosystème modulaire qui orchestre les besoins d'hébergement via une structure connectée. Plateforme SaaS d'orchestration de l'hébergement d'affaires. Mysa agit comme un système d'exploitation central (Optimise IQ) qui synchronise l'inventaire, la vérification de conformité sans papier et le sourcing via une API standardisée, éliminant les silos transactionnels. La colonne vertébrale technologique pour l'hébergement d'affaires mondial. Pour fintech: AI-driven platform streamlines ERP systems et fragmented banking, accounts payable automation, expense management, ERP synchronisation. Smart thermostat pour getmysa.com: smart thermostats, ENERGY STAR certified, app control, in-floor heating.<br/><br/><span style="font-weight:bold;">Encyclopédie des Fonctionnalités:</span><h3 id="business-model">Modèle d'Affaires</h3>
+<span style="font-weight:bold;">Analyse du Modèle d'Affaires:</span> Modèle SaaS/Plateforme modulaire. SaaS modulaire. Engagement flexible, engager là où cela a du sens aujourd'hui et étendre plus tard. Revenus récurrents basés sur l'adoption des modules. LTV élevée par compte corporatif. Pay-as-you-go modulaire. Pour fintech: zero upfront cost, no migration required.<br/><br/><span style="font-weight:bold;">Revenue Streams &amp; Pricing Tiers:</span> Tarification basée sur l'adoption des modules (Optimise IQ, Book IQ, Source IQ, Verify IQ). Données non disponibles dans la source pour prix spécifiques, devises, fréquences de facturation.
+
+<h3 id="team">Équipe</h3>
+<span style="font-weight:bold;">Culture d'Entreprise:</span> Collaboration, accessibilité (pour toutes les tailles d'entreprises), agilité, progressisme (moderniser sans perturber), approche humaine et réalisme pragmatique. Société technologique façonnée par une expérience réelle de l'hébergement. Équipe façonnée par l'expérience réelle du terrain hôtelier. Pour Mysa Care: roll-up acquisitions organic growth, quality-driven portfolio dementia complex-care.<br/><br/><span style="font-weight:bold;">Analyse de l'Équipe:</span> Chris Breen, Chief Executive Officer Mysa Care (2022-présent). Director Of Operations Achieve together (2020-2022, 2 ans 1 mois). Director Of Operations Priory (2015-2019, 4 ans 7 mois). Loyalty &amp; Tenure: mandats longs. Excellence de l'Équipe 83/100. Founder-Market Fit 90/100, Track Record 80/100, Leadership 78/100, Complétude 84/100. <h3 id="ceo">CEO</h3>
+<ul>
+<li></li>
+<li>Loyauté et Tenure : Des mandats de plus de 4 ans démontrent une capacité à construire sur le long terme.</li>
+<li>Fit Commercial : Son expertise en conformité réglementaire et en opérations désamorce les risques d'exécution, appliquant son savoir-faire de directeur des opérations à son rôle de PDG.</li>
+<li></li>
+</ul>
+<h3 id="company-summary">Synthèse de l'Entreprise</h3>
+<ul><li>Les poids de la thèse sont appliqués dans le pipeline de qualification synthétique GP après détection de l'angle.\n\n═════════════════════\nEXCELLENCE DE L'ÉQUIPE       83/100\nOPPORTUNITÉ DE MARCHÉ      85/100\nINNOVATION PRODUIT        88/100\nMODÈLE D'AFFAIRES           80/100\nTRACTION ET CROISSANCE     78/100\n─────────────────────\nSCORE DE PRÉ-SÉLECTION:   82.8/100 → 🟡 SIGNAL POSITIF (80-84)\n\n══════════════════════\n\n❓ En bref : Mysa est une plateforme SaaS d'écosystème intégré qui permet aux acheteurs de voyages corporatifs d'orchestrer leurs besoins d'hébergement en connectant directement l'offre et la demande via une structure technologique modulaire.\n\n⚠️ Le PROBLÈME : Un gestionnaire de voyages chez Fidelity doit naviguer entre des dizaines d'e-mails, de PDF de conformité et de portails de réservation déconnectés pour sécuriser un séjour de longue durée, perdant une visibilité critique sur les données et la sécurité.\n\n✅ La SOLUTION : Mysa agit comme un système d'exploitation central (Optimise IQ) qui synchronise l'inventaire, la vérification de conformité sans papier et le sourcing via une API standardisée, éliminant les silos transactionnels.\n\n🚀 Le GTM : Le mouvement GTM primaire cible les Travel Management Companies (TMC) et les acheteurs de grands comptes comme Fidelity, car ces nœuds du réseau contrôlent des volumes massifs de séjours longs sans disposer de l'infrastructure technologique pour les automatiser.\n\n══════════════════════\n\n👨🏻 EXCELLENCE DE L'ÉQUIPE | Score: 83/100\n• Founder-Market Fit (25%) | Score: 90/100: Chris Breen est un opérateur aguerri avec près de 10 ans de direction opérationnelle dans des secteurs ultra-réglementés (Priory, Achieve together), possédant le secret acquis que la conformité opérationnelle est le principal goulot d'étranglement de l'hébergement.\n• Track Record (25%) | Score: 80/100: Le passé de Chris montre une montée en puissance dans de grandes organisations britanniques avec des mandats longs de 4 à 5 ans, validant une capacité de construction durable, bien que l'historique de startup pure soit nouveau.\n• Leadership (25%) | Score: 78/100: L'équipe est façonnée par l'expérience réelle du terrain hôtelier, mais la visibilité sur la profondeur technique de l'ingénierie reste modérée.\n• Complétude (25%) | Score: 84/100: Équilibre solide entre expertise opérationnelle et vision technologique, avec une présence notable de conseillers seniors de l'industrie comme Fidelity.\n\n🌊 OPPORTUNITÉ DE MARCHÉ | Score: 85/100\n• Taille et Croissance (25%) | Score: 82/100: Le marché de l'hébergement corporate de longue durée pèse des milliards mais reste technologiquement sous-desservi par rapport à l'hôtellerie de transit.\n• Timing / Pourquoi Maintenant (25%) | Score: 88/100: Le passage massif au travail hybride et aux missions prolongées crée une urgence pour des solutions de logement corporate structurées et auditables.\n• Compétition (25%) | Score: 80/100: Face à des challengers comme AltoVita, Mysa se différencie par sa nature de 'colonne vertébrale' modulaire plutôt que simple place de marché.\n• Expansion (25%) | Score: 90/100: Capacité évidente à s'étendre des TMC vers les RMC (Relocation Management Companies) et à l'échelle mondiale avec un modèle SaaS léger.\n\n💡 INNOVATION PRODUIT | Score: 88/100\n• Différenciation (25%) | Score: 92/100: L'architecture modulaire IQ permet une intégration 'à la carte' là où les concurrents imposent souvent des migrations de systèmes complets.\n• Product-Market Fit (25%) | Score: 86/100: Les témoignages de leaders comme Carol Fergus (Fidelity) valident que le produit répond à un besoin critique d'automatisation des flux RFP et de conformité.\n• Évolutivité (25%) | Score: 88/100: Utilisation de standards API de type NDC pour l'hébergement, permettant une distribution technologique à grande échelle sans friction manuelle.\n• Propriété Intellectuelle et Barrières (25%) | Score: 86/100: La conformité 'Verify IQ' sans papier et les connexions directes propriétaires créent un effet de réseau entre acheteurs et opérateurs.\n\n💼 MODÈLE D'AFFAIRES | Score: 80/100\n• Économie Unitaire (25%) | Score: 78/100: Le modèle SaaS modulaire suggère une LTV élevée par compte corporatif, bien que la tarification exacte reste confidentielle.\n• Modèle de Revenu (25%) | Score: 85/100: Revenus récurrents basés sur l'adoption des modules, offrant une forte prédictibilité une fois le client intégré.\n• Monétisation (25%) | Score: 82/100: La clarté de la proposition de valeur sur la réduction des coûts de distribution facilite l'adoption sans frais de configuration prohibitifs.\n• Efficacité du Capital (25%) | Score: 75/100: Avec 11M$ levés récemment, l'équipe semble bien capitalisée, mais l'accélération du recrutement pour l'expansion mondiale doit être surveillée.\n\n📈 TRACTION ET CROISSANCE | Score: 78/100\n• Croissance du Revenu (25%) | Score: 75/100: Croissance signalée comme robuste mais les chiffres exacts de MRR restent privés.\n• Validation Client (25%) | Score: 88/100: Signature de clients de prestige comme Fidelity International, agissant comme un tampon de crédibilité majeur.\n• Progression des KPI (25%) | Score: 74/100: L'équipe augmente sa présence sur LinkedIn et ses partenariats, indiquant une phase d'exécution rapide post-financement.\n• Pénétration du Marché (25%) | Score: 75/100: Focalisation actuelle sur le marché UK/Global Travel, avec des vecteurs d'expansion clairs vers les États-Unis.\n\n─────────────────────\n🔍 RISQUE À COUVRIR :\nL'hypothèse centrale est que les Travel Management Companies (TMC) accepteront de céder le contrôle de leur processus de sourcing à un tiers technologique sans craindre une désintermédiation à long terme. Ce risque se résoudra par l'observation de la vitesse d'adoption des modules 'Source IQ' par les grands réseaux de distribution dans les 12 prochains mois.\n\n</li></ul>
+<br/>
+<span style="font-weight:bold;">🗝️ AVANTAGES COMPÉTITIFS CLÉS :</span> \n• Architecture Modulaire IQ : Permet aux entreprises d'adopter des briques spécifiques (Sourcing, Booking, Vérification) sans remplacer leurs outils existants, brisant la barrière à l'entrée.\n• Standardisation de type NDC : Applique les standards de l'aérien à l'hébergement complexe, créant une fluidité de données unique sur le marché.\n• Validation Institutionnelle (Fidelity) : Le soutien précoce de directeurs globaux du voyage crée une preuve sociale irréfutable pour le segment Enterprise.\n• Focus Conformité (Verify IQ) : La numérisation totale de la conformité réglementaire réduit les risques juridiques pour les acheteurs, un point de douleur majeur.\n\n🧱 MOAT : MODÉRÉ\nLe mécanisme de barrière primaire repose sur l'intégration systémique du module 'Verify IQ' dans le workflow de conformité des entreprises : une fois qu'un acheteur a numérisé ses standards de sécurité sur Mysa, le coût de transfert vers un autre système devient prohibitif. Cet effet se renforce à mesure que d'autres opérateurs rejoignent la plateforme pour être pré-validés, créant une boucle de rétroaction entre offre certifiée et demande sécurisée. Une couche secondaire de défense est constituée par les connexions API directes propriétaires avec les opérateurs hôteliers, difficiles à répliquer rapidement pour un nouvel entrant.\n\n⚖️ PARI ASYMÉTRIQUE\n• Cas Haussier (Bull Case) : Mysa devient la norme NDC pour tout l'hébergement long séjour mondial, forçant toutes les TMC et RMC à passer par ses API pour garantir la conformité et le sourcing.\n• Cas Baissier (Bear Case) : Les grandes plateformes comme Airbnb for Work ou Booking.com intègrent nativement des outils de conformité similaires, rendant la solution de Mysa superflue et la limitant à un marché de niche pour séjours ultra-complexes.\n\n🚩 SIGNAUX D'ALERTE\n• Risques Universels : Conflit de distribution potentiel avec les partenaires TMC si Mysa commence à capturer trop de valeur transactionnelle.\n• Inadéquation à la Thèse : Le déploiement dans le secteur des soins (Mysa Care) suggère une possible confusion de marque ou une dispersion des efforts du fondateur Chris Breen entre deux entités distinctes (Care vs Tech Travel).\n\n📝 KIT DE PRÉPARATION AU PREMIER RENDEZ-VOUS\nCette analyse suggère que Mysa possède une brique technologique structurelle majeure mais doit prouver qu'elle peut devenir un standard plutôt qu'un simple outil de niche. Les questions suivantes visent à tester la solidité de la capture de valeur face aux géants du voyage.\n\n• Angle d'investissement : Un pari sur la transformation du logement corporate d'une série de transactions manuelles en un flux de données structuré dirigé par un expert opérationnel.\n\n• Questions tueuses :\n- Comment gérez-vous le conflit d'intérêt avec les TMC qui voient dans votre module 'Source IQ' un risque de perte de leur relation privilégiée avec les fournisseurs ?\n- Chris Breen : Quelle est la répartition réelle de votre temps et de votre capital entre Mysa Care et Mysa Travel, et comment empêchez-vous ces deux mondes de créer une dispersion opérationnelle ?\n- Quel est le coût d'acquisition client (CAC) sur le segment Enterprise et comment ce ratio a-t-il évolué depuis l'intégration de Fidelity ?\n\n• Signal Go/No-Go : Un signal 'Go' serait la preuve que Mysa est déjà intégré comme standard obligatoire dans les RFP de trois nouvelles multinationales de taille équivalente à Fidelity. Un 'No-Go' serait d'apprendre que la plateforme est utilisée uniquement en mode 'ad-hoc' sans intégration API structurelle.\n\n🌐 CONFIANCE DES DONNÉES : MOYENNE\n• La distinction entre 'Mysa Care' et 'Mysa Travel' dans les sources nécessite une clarification directe pour s'assurer que l'équipe traveltech est distincte et pleinement engagée.\n• LACUNES : Chiffres de revenus précis (MRR) • Répartition de l'actionnariat entre les entités.<br/>
+</div>
+<div class="img-col">
+<img alt="Company Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-d33087e6e2e54dff0c666bdfbd3ac55b-l5dmmd80.jpg"/>
+</div>
+</div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block"><ul><li>Mobility &amp; Transportation &gt; Écosystème SaaS pour hébergement d'affaires corporatif.</li><li>B2B &gt; SaaS</li><li>11,0M€ raised from SignalBase and unidentified partners (octobre 2, 2024)</li></ul>
+<br/>
+<span style="font-weight:bold;">PRE-SCREENING SCORE</span><br/>
+Thesis : <br/>
+<br/>
+NOTE: Il s'agit d'un score brut de présélection. Les poids de la thèse sont appliqués dans le pipeline de qualification synthétique GP après détection de l'angle.<br/>
+<br/>
+═════════════════════<br/>
+<span style="font-weight:bold;">EXCELLENCE DE L'ÉQUIPE : 83/100</span><br/>
+<span style="font-weight:bold;">OPPORTUNITÉ DE MARCHÉ : 85/100</span><br/>
+<span style="font-weight:bold;">INNOVATION PRODUIT : 88/100</span><br/>
+<span style="font-weight:bold;">MODÈLE D'AFFAIRES : 80/100</span><br/>
+<span style="font-weight:bold;">TRACTION ET CROISSANCE : 78/100</span><br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION :</span> 82.8/100 → 🟡 SIGNAL POSITIF (80-84)<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+❓ En bref : Mysa est une plateforme SaaS d'écosystème intégré qui permet aux acheteurs de voyages corporatifs d'orchestrer leurs besoins d'hébergement en connectant directement l'offre et la demande via une structure technologique modulaire.<br/>
+<br/>
+⚠️ Le PROBLÈME : Un gestionnaire de voyages chez Fidelity doit naviguer entre des dizaines d'e-mails, de PDF de conformité et de portails de réservation déconnectés pour sécuriser un séjour de longue durée, perdant une visibilité critique sur les données et la sécurité.<br/>
+<br/>
+✅ La SOLUTION : Mysa agit comme un système d'exploitation central (Optimise IQ) qui synchronise l'inventaire, la vérification de conformité sans papier et le sourcing via une API standardisée, éliminant les silos transactionnels.<br/>
+<br/>
+🚀 Le GTM : Le mouvement GTM primaire cible les Travel Management Companies (TMC) et les acheteurs de grands comptes comme Fidelity, car ces nœuds du réseau contrôlent des volumes massifs de séjours longs sans disposer de l'infrastructure technologique pour les automatiser.<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 EXCELLENCE DE L'ÉQUIPE | Score: 83/100</span><br/>
+<ul><li>Founder-Market Fit (25%) | Score: 90/100: Chris Breen est un opérateur aguerri avec près de 10 ans de direction opérationnelle dans des secteurs ultra-réglementés (Priory, Achieve together), possédant le secret acquis que la conformité opérationnelle est le principal goulot d'étranglement de l'hébergement.</li><li>Track Record (25%) | Score: 80/100: Le passé de Chris montre une montée en puissance dans de grandes organisations britanniques avec des mandats longs de 4 à 5 ans, validant une capacité de construction durable, bien que l'historique de startup pure soit nouveau.</li><li>Leadership (25%) | Score: 78/100: L'équipe est façonnée par l'expérience réelle du terrain hôtelier, mais la visibilité sur la profondeur technique de l'ingénierie reste modérée.</li><li>Complétude (25%) | Score: 84/100: Équilibre solide entre expertise opérationnelle et vision technologique, avec une présence notable de conseillers seniors de l'industrie comme Fidelity.</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 OPPORTUNITÉ DE MARCHÉ | Score: 85/100</span><br/>
+<ul><li>Taille et Croissance (25%) | Score: 82/100: Le marché de l'hébergement corporate de longue durée pèse des milliards mais reste technologiquement sous-desservi par rapport à l'hôtellerie de transit.</li><li>Timing / Pourquoi Maintenant (25%) | Score: 88/100: Le passage massif au travail hybride et aux missions prolongées crée une urgence pour des solutions de logement corporate structurées et auditables.</li><li>Compétition (25%) | Score: 80/100: Face à des challengers comme AltoVita, Mysa se différencie par sa nature de colonne vertébrale modulaire plutôt que simple place de marché.</li><li>Expansion (25%) | Score: 90/100: Capacité évidente à s'étendre des TMC vers les RMC (Relocation Management Companies) et à l'échelle mondiale avec un modèle SaaS léger.</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 INNOVATION PRODUIT | Score: 88/100</span><br/>
+<ul><li>Différenciation (25%) | Score: 92/100: L'architecture modulaire IQ permet une intégration à la carte là où les concurrents imposent souvent des migrations de systèmes complets.</li><li>Product-Market Fit (25%) | Score: 86/100: Les témoignages de leaders comme Carol Fergus (Fidelity) valident que le produit répond à un besoin critique d'automatisation des flux RFP et de conformité.</li><li>Évolutivité (25%) | Score: 88/100: Utilisation de standards API de type NDC pour l'hébergement, permettant une distribution technologique à grande échelle sans friction manuelle.</li><li>Propriété Intellectuelle et Barrières (25%) | Score: 86/100: La conformité Verify IQ sans papier et les connexions directes propriétaires créent un effet de réseau entre acheteurs et opérateurs.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 MODÈLE D'AFFAIRES | Score: 80/100</span><br/>
+<ul><li>Économie Unitaire (25%) | Score: 78/100: Le modèle SaaS modulaire suggère une LTV élevée par compte corporatif, bien que la tarification exacte reste confidentielle.</li><li>Modèle de Revenu (25%) | Score: 85/100: Revenus récurrents basés sur l'adoption des modules, offrant une forte prédictibilité une fois le client intégré.</li><li>Monétisation (25%) | Score: 82/100: La clarté de la proposition de valeur sur la réduction des coûts de distribution facilite l'adoption sans frais de configuration prohibitifs.</li><li>Efficacité du Capital (25%) | Score: 75/100: Avec 11M$ levés récemment, l'équipe semble bien capitalisée, mais l'accélération du recrutement pour l'expansion mondiale doit être surveillée.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION ET CROISSANCE | Score: 78/100</span><br/>
+<ul><li>Croissance du Revenu (25%) | Score: 75/100: Croissance signalée comme robuste mais les chiffres exacts de MRR restent privés.</li><li>Validation Client (25%) | Score: 88/100: Signature de clients de prestige comme Fidelity International, agissant comme un tampon de crédibilité majeur.</li><li>Progression des KPI (25%) | Score: 74/100: L'équipe augmente sa présence sur LinkedIn et ses partenariats, indiquant une phase d'exécution rapide post-financement.</li><li>Pénétration du Marché (25%) | Score: 75/100: Focalisation actuelle sur le marché UK/Global Travel, avec des vecteurs d'expansion clairs vers les États-Unis.</li></ul>
+<br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISQUE À COUVRIR :</span><br/>
+L'hypothèse centrale est que les Travel Management Companies (TMC) accepteront de céder le contrôle de leur processus de sourcing à un tiers technologique sans craindre une désintermédiation à long terme. Ce risque se résoudra par l'observation de la vitesse d'adoption des modules Source IQ par les grands réseaux de distribution dans les 12 prochains mois.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ AVANTAGES COMPÉTITIFS CLÉS :</span><br/>
+<ul><li>Architecture Modulaire IQ : Permet aux entreprises d'adopter des briques spécifiques (Sourcing, Booking, Vérification) sans remplacer leurs outils existants, brisant la barrière à l'entrée.</li><li>Standardisation de type NDC : Applique les standards de l'aérien à l'hébergement complexe, créant une fluidité de données unique sur le marché.</li><li>Validation Institutionnelle (Fidelity) : Le soutien précoce de directeurs globaux du voyage crée une preuve sociale irréfutable pour le segment Enterprise.</li><li>Focus Conformité (Verify IQ) : La numérisation totale de la conformité réglementaire réduit les risques juridiques pour les acheteurs, un point de douleur majeur.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 MOAT :</span> MODÉRÉ<br/>
+Le mécanisme de barrière primaire repose sur l'intégration systémique du module Verify IQ dans le workflow de conformité des entreprises : une fois qu'un acheteur a numérisé ses standards de sécurité sur Mysa, le coût de transfert vers un autre système devient prohibitif. Cet effet se renforce à mesure que d'autres opérateurs rejoignent la plateforme pour être pré-validés, créant une boucle de rétroaction entre offre certifiée et demande sécurisée. Une couche secondaire de défense est constituée par les connexions API directes propriétaires avec les opérateurs hôteliers, difficiles à répliquer rapidement pour un nouvel entrant.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ PARI ASYMÉTRIQUE</span><br/>
+<ul><li>Cas Haussier (Bull Case) : Mysa devient la norme NDC pour tout l'hébergement long séjour mondial, forçant toutes les TMC et RMC à passer par ses API pour garantir la conformité et le sourcing.</li><li>Cas Baissier (Bear Case) : Les grandes plateformes comme Airbnb for Work ou Booking.com intègrent nativement des outils de conformité similaires, rendant la solution de Mysa superflue et la limitant à un marché de niche pour séjours ultra-complexes.</li></ul>
+<br/>
+<span style="font-weight:bold;">🚩 SIGNAUX D'ALERTE</span><br/>
+<ul><li>Risques Universels : Conflit de distribution potentiel avec les partenaires TMC si Mysa commence à capturer trop de valeur transactionnelle.</li><li>Inadéquation à la Thèse : Le déploiement dans le secteur des soins (Mysa Care) suggère une possible confusion de marque ou une dispersion des efforts du fondateur Chris Breen entre deux entités distinctes (Care vs Tech Travel).</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/8e0LTcfwJGZ-WE7ZcNqt8A/5DepQGW2vUcUhdQyjSnrH4MrmuDNEktc-Zm_VowOcRGb1PeUhomxRYuPazuEw2Zsepic8YGBMKIVe6gHa3zqCehmyjknOAmajJ4udONJRw70_4vAjANgjYy0fdl-FCcATs7lrHRwyQVDmMQS51vbKw/WPA_OlXLNnF_hOBDtUno9rg6fXQi9rwT6YT-go16q3c"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul>
+<li>Chris Breen apporte une expertise opérationnelle éprouvée de près de sept ans en tant que directeur des opérations chez Priory et Achieve Together.</li>
+<li>Le PDG démontre une ténacité exceptionnelle avec des mandats longs de 4 ans et 7 mois, puis 2 ans et 1 mois, avant de co-fonder Mysa Care.</li>
+<li></li>
+<li>Mysa Care poursuit un roll-up d'actifs ciblés en soins spécialisés, avec un portefeuille de 41 foyers et 144 lits après l'acquisition de Safe Haven.</li>
+<li>Soutien de private equity par Downing Development Capital finance les acquisitions et la croissance organique dans les soins à la démence.</li>
+</ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul>
+<li>Mysa Care reste une startup méconnue avec seulement 869 followers LinkedIn, signalant une faible visibilité de marque.</li>
+<li></li>
+<li>Le score en leadership est à 75/100, inféré des rôles passés sans preuves explicites de construction d'équipes.</li>
+<li>Fondée en 2022, l'entreprise manque d'historique de performance à grande échelle en tant qu'entité indépendante.</li>
+<li>Pas de co-fondateur mentionné pour complémenter les forces opérationnelles du PDG en vision ou écosystème.</li>
+</ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul>
+<li>La population vieillissante au Royaume-Uni augmente la demande pour les soins spécialisés en démence et complexes.</li>
+<li>Stratégie de bolt-on acquisitions permet d'accélérer l'expansion du portefeuille au-delà des 41 foyers actuels.</li>
+<li>Croissance organique via extension de 11 lits en développement renforce la capacité sans dilution immédiate.</li>
+<li>Expertise opérationnelle du PDG désamorce les risques réglementaires dans la prestation de soins à domicile.</li>
+<li>Partenariat avec Downing Ventures ouvre des opportunités de financement pour une échelle nationale.</li>
+</ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul>
+<li>Le secteur des soins est hautement réglementé, avec des risques de non-conformité impactant les opérations.</li>
+<li>Concurrence intense des acteurs établis comme Priory, où le PDG a travaillé, limite les parts de marché.</li>
+<li>Pression économique sur les foyers de soins réduit les marges et freine les acquisitions.</li>
+<li>Dépendance au private equity Downing expose à des termes de sortie ou refinancement défavorables.</li>
+<li>Manque de visibilité de marque ralentit le recrutement de talents et l'attraction de références clients.</li>
+</ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et Méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la Chaîne de Valeur</h3>
+<h3>Sources du Marché</h3><p>DOSSIER D'INTELLIGENCE MARCHÉ - URL EVIDENCE TRACKER\n═══════════════════════════════════════\nMarché: Corporate Accommodation Tech\nComplétude des données: 80/100\nAssessment: 🟢 SUFFISANT POUR DÉCISION D'INVESTISSEMENT\n═════════════════════\n\n• Dynamique Marché: <a href="https://mysa" target="_blank">https://mysa</a>.global/ | <a href="https://www" target="_blank">https://www</a>.travelperk.com/blog/corporate-travel-trends/\n• Compétition: <a href="https://www" target="_blank">https://www</a>.altovita.com/ | <a href="https://www" target="_blank">https://www</a>.silverdoorapartments.com/\n• GTM &amp; Units: <a href="https://mysa" target="_blank">https://mysa</a>.global/product\n\nWEB DATA COMPLETENESS ANALYSIS\nURLs trouvées: 4/5 recherchées\nNiveau de confiance: ÉLEVÉ</p><h3>Sources de l'Entreprise</h3><p>DOSSIER D'INTELLIGENCE D'ENTREPRISE - URL EVIDENCE TRACKER\n═══════════════════════════════════════\nEntreprise: Mysa.global\nComplétude des données: 75/100\nÉvaluation: 🟢 DONNÉES SUFFISANTES POUR UN PREMIER REGARD\nRecherche au: 22 Mai 2024 | Total URLs trouvées: 5\n═════════════════════\n\nURL EVIDENCE PAR CATÉGORIE\n\n👨🏻 EXCELLENCE DE L'ÉQUIPE\n• Founder-Market Fit: <a href="https://uk" target="_blank">https://uk</a>.linkedin.com/in/chris-breen-40aab6231.<a href="https://mysa" target="_blank">https://mysa</a>.global/. Utilisé pour: Analyse de la culture et de la vision de l'équipe.\n\n🌊 OPPORTUNITÉ DE MARCHÉ\n• Sourcing &amp; Client: <a href="https://mysa" target="_blank">https://mysa</a>.global/. Utilisé pour: Confirmation du partenariat avec Fidelity International.\n\n💡 INNOVATION PRODUIT\n• Différenciation: <a href="https://mysa" target="_blank">https://mysa</a>.global/product. Utilisé pour: Détail technique des modules IQ.\n\n💼 MODÈLE D'AFFAIRES\n• Revenu: <a href="https://mysa" target="_blank">https://mysa</a>.global/. Utilisé pour: Identification du modèle SaaS modulaire.\n\n📈 TRACTION ET CROISSANCE\n• Financement: <a href="https://www" target="_blank">https://www</a>.trysignalbase.com/news/funding/funding-announcement-mysa-raises-11-million-to-revolutionize-freelancer-hiring-in-america!. Utilisé pour: Signal de levée de 11M$.</p></div>
+</div>
+
+
+
+
+
+&lt;&gt;&gt;</code><div class="ppx-cta"><h3>Explore mysa further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script></body></html>

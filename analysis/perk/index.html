@@ -1,0 +1,774 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Perk — analyse FinTech | Proplace</title><meta name="description" content="FinTech · SaaS de gestion automatisée des voyages et dépenses d&#x27;entreprise. · Series E+"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/perk/"><meta property="og:type" content="article"><meta property="og:title" content="Perk — analyse FinTech | Proplace"><meta property="og:description" content="FinTech · SaaS de gestion automatisée des voyages et dépenses d&#x27;entreprise. · Series E+"><meta property="og:url" content="https://proplace.co/analysis/perk/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Perk — FinTech", "description": "FinTech · SaaS de gestion automatisée des voyages et dépenses d'entreprise. · Series E+", "inLanguage": "fr", "url": "https://proplace.co/analysis/perk/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/perk/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Perk"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Perk</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Perk"}]}</script></div><div class="main-wrapper">
+<div class="sidebar">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">Espagne</span>
+<span class="sb-tag">Series E+</span>
+<span class="sb-tag">FinTech</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Perk</h1>
+<span class="sidebar-tagline">FinTech · SaaS de gestion automatisée des voyages et dépenses d'entreprise. · Series E+</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Simplifier les voyages d'affaires et automatiser les dépenses pour libérer les équipes du 'travail de l'ombre'.</p>
+<div class="contact-row">
+<a href="https://www.perk.com/" target="_blank"><i class="fas fa-globe"></i> Site web</a>
+<a href="mailto:avi@perk.com"><i class="fas fa-envelope"></i> avi@perk.com</a>
+</div>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du Marché</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle économique</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="sb-legend-wrap">
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Données du marché</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Données de l'entreprise</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#a898c0;display:inline-block;flex-shrink:0;border:1px solid #8878a0;"></span><span></span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; raisonnement</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; méthodologie</span></div>
+</div>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorer Perk davantage?</h3>
+<a class="btn btn-secondary" href="http://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur Perk</a>
+</div>
+<div class="divider"></div>
+
+
+<div class="section">
+<h3>Vous voulez suivre notre deal flow?</h3>
+<p class="meta-desc">Recevez chaque jour les startups européennes axées sur l'IA que nous évaluons du point de vue d'un capital-risqueur.</p>
+<a class="btn btn-primary" href="https://77f02b89.sibforms.com/serve/MUIFAMr0ADjDfIUWLc56STos70j4OXPiOTJqugyAa45YfGyt9zW6Tokz3iXWLNiTAw6oxjbrMnjs424k46IvwOQlWjaMIsbgexAk95FvzqzgLa56TkHas6WASK4VKs684XcZhacqMYTYQGuIfzJmBmCkmHwhNeB0yHifmrxC1PUhNMS1ZbiW1xF18IZy7tJP9BIWjDcM5VoH6VEVCw==" target="_blank">S'abonner au deal flow</a>
+</div>
+<div class="section">
+<h3>Vous voulez un deal flow propriétaire?</h3>
+<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="http://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+</div>
+<div class="sidebar-logo-wrap">
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Perk</h1>
+<h2 class="subtitle-category">FinTech ➜ SaaS de gestion automatisée des voyages et dépenses d'entreprise. ➜ Plateforme SaaS d'automatisation des voyages d'affaires et des dépenses pour entreprises européennes et américaines avec budgets annuels de voyages supérieurs à 100 000 €.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div><div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Perk" data-h="" data-i="FinTech" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/perk/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="market-summary">
+<h2 class="section-title">Résumé du marché</h2>
+<div class="split-container">
+<div class="text-col">
+MARKET OPPORTUNITY SCORE<br/>FinTech &gt; SaaS de gestion automatisée des voyages et dépenses d'entreprise.<br/>B2B &gt; SaaS<br/><br/>═════════════════════<br/><br/>MARCHÉ ATTRACTIF ? (Dynamique): 85/100 × 25% = 21.25 points<br/>MARCHÉ GAGNABLE ? (Compétition): 75/100 × 25% = 18.75 points<br/>MARCHÉ PÉNÉTRABLE ? (GTM): 80/100 × 25% = 20 points<br/>MARCHÉ RÉCOMPENSANT ? (Exits/IPO): 90/100 × 25% = 22.5 points<br/><br/>─────────────────────<br/>SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ: 82.5/100<br/>Ce marché est un moteur puissant pour l'investissement, porté par la convergence inéluctable entre la logistique du voyage et la fintech de gestion des dépenses.<br/><br/>═════════════════════<br/><br/><h4>❓ DÉFINITION DU MARCHÉ</h4>
+<p>Le marché cible est celui de la gestion automatisée des voyages d'affaires (Managed Travel) et des dépenses d'entreprise (Spend Management) pour les entreprises de 50 à 5 000 employés disposant de budgets de voyage significatifs. Les entreprises achètent une couche logicielle unique pour remplacer à la fois les agences de voyage physiques et les outils de notes de frais isolés. Le profit se déplace de la simple commission de réservation vers les frais d'abonnement SaaS et le partage des commissions d'interchange sur les paiements par carte.</p>
+<h4>💬 NOTRE THÈSE DE MARCHÉ</h4>
+<p>Le marché du voyage d'affaires a franchi un point de non-retour où l'expérience utilisateur 'consommateur' est devenue une exigence de conformité RH incontournable. Les acteurs hérités comme Concur ne peuvent pas simplifier leur architecture sans risquer d'aliéner leur base de clients 'Legacy' déjà piégée dans des intégrations ERP rigides de 15 ans. Le nouveau vecteur d'attaque est la carte de paiement d'entreprise qui capture la donnée à la source, éliminant le besoin de réconciliation manuelle. La fenêtre d'opportunité se fermera d'ici 36 mois lorsque les leaders actuels du SaaS spend (Brex/Navan) auront atteint une saturation telle que le coût d'acquisition client (CAC) deviendra prohibitif pour tout nouvel entrant.</p>
+<h4>🧠 NOTRE CONVICTION &amp; PARI SUR CE MARCHÉ :</h4>
+<p>🟢 HAUTE CONVICTION<br/>La tension principale réside dans le fait que ce marché ressemble à un jeu de 'Winner takes most' où seuls deux ou trois géants survivront à l'échelle mondiale. Notre pari est que l'avantage structurel de Perk réside dans sa maîtrise de l'inventaire voyage complexe, ce qui est bien plus difficile à construire qu'une simple application de paiement. Le signal décisif sera de voir si le revenu moyen par utilisateur (ARPU) augmente significativement après l'intégration de Yokoy, prouvant que les clients sont prêts à consolider tout leur budget T&amp;E sur un seul fournisseur.</p>
+<p>═════════════════════</p>
+<h4>🌊 MARCHÉ ATTRACTIF (Dynamique du marché) | Score: 85/100</h4>
+<p>Ce score élevé reflète un vent arrière macroéconomique massif lié au besoin de contrôle financier en temps réel.<br/><ul><li>Taille du Marché (25%) | Score: 90/100: Un TAM de plus de 1,3 billion $ pour le voyage, avec une pénétration SaaS encore faible dans le segment des PME européennes.</li><br/><li>Moteurs de Croissance (25%) | Score: 88/100: Transition vers le cloud, besoin de rapports ESG (carbone) et automatisation fiscale.</li><br/><li>Timing (25%) | Score: 85/100: Consolidation post-pandémie où les entreprises cherchent à réduire les coûts opérationnels via l'IA.</li><br/><li>Risques de Marché (25%) | Score: 77/100: Sensibilité aux chocs géopolitiques et à la volatilité des prix de l'énergie affectant le volume des voyages.</li></ul></p>
+<h4>⚔️ MARCHÉ GAGNABLE (Paysage concurrentiel) | Score: 75/100</h4>
+<p>Le marché est gagnable mais nécessite une exécution chirurgicale pour déloger des concurrents bien capitalisés.<br/><ul><li>Acteurs Historiques (25%) | Score: 80/100: SAP Concur et Amex GBT sont vulnérables à cause de leur dette technologique et de leur support client faible.</li><br/><li>Challengers (25%) | Score: 70/100: Navan est un rival féroce, poussant Perk à une course aux armements financiers.</li><br/><li>Espace Libre (25%) | Score: 75/100: Fortes opportunités dans le segment des ETI européennes qui sont mal servies par les solutions purement américaines.</li><br/><li>Défensibilité (25%) | Score: 75/100: Moat basé sur les intégrations ERP et l'exclusivité de l'inventaire voyage.</li></ul></p>
+<h4>🎯 MARCHÉ PÉNÉTRABLE (GTM &amp; Unit Economics) | Score: 80/100</h4>
+<p>La structure de vente est mature et efficace pour les solutions de plateforme.<br/><ul><li>GTM Model (25%) | Score: 85/100: Modèle 'Inbound' performant complété par une force de vente directe hautement spécialisée.</li><br/><li>Pricing (25%) | Score: 82/100: Modèle SaaS par siège qui offre une visibilité de revenu supérieure aux modèles de commission pure.</li><br/><li>Unit Economics (25%) | Score: 78/100: Ratios LTV/CAC typiquement attractifs dans le SaaS B2B, bien que la compétition augmente la pression sur le CAC.</li><br/><li>Scalability (25%) | Score: 75/100: Possibilité d'expansion infinie via l'ajout de services financiers (crédit, change).</li></ul></p>
+<h4>💰 MARCHÉ RÉCOMPENSANT (Financement &amp; Exit) | Score: 90/100</h4>
+<p>L'appétit des investisseurs et les perspectives d'exit placent ce marché dans le haut du panier.<br/><ul><li>Activité de Financement (25%) | Score: 95/100: Levée de 200M$ en 2025 menée par EQT et Sequoia, indiquant un soutien de premier plan.</li><br/><li>Multiples d'Exit (25%) | Score: 88/100: Les multiples pour les leaders du T&amp;E restent élevés grâce à la rétention nette (NRR) exceptionnelle.</li><br/><li>Acheteurs Stratégiques (25%) | Score: 92/100: Banques mondiales (JP Morgan), géants du voyage (Expedia) ou conglomérats SaaS (Salesforce).</li><br/><li>Profil de Retour (25%) | Score: 85/100: Capacité démontrée à produire des licornes avec un chemin clair vers une IPO massif.</li></ul></p>
+<p>─────────────────────<br/>⚡ SYNTHÈSE TRANSVERSALE :<br/>Le profil 'Attractif Élevé + Compétition Modérée' indique un marché qui exige un leader agressif capable de consolider les petits acteurs pour atteindre une masse critique invincible.</p>
+<p>─────────────────────<br/>🌐 CONFIANCE DANS LES DONNÉES : Les données sur la taille du marché et les levées de fonds (Series E) sont ultra-récentes. Onze URLs consultées confirment la trajectoire.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-ff23b76a461fc20d382eda8ecefeda99-g5kig2n9.jpg"/>
+</div>
+</div>
+</div><div class="section-container" id="company">
+<h2 class="section-title">Analyse Approfondie de l'Entreprise</h2>
+<div class="split-container">
+<div class="text-col">
+<h3 id="value-proposition">Proposition de Valeur</h3>
+<b>Proposition de valeur:</b> Une plateforme intelligente qui simplifie les voyages d'affaires et automatise les dépenses d'entreprise pour libérer les équipes des tâches administratives. Simplifier les voyages d'affaires et automatiser les dépenses pour libérer les équipes du 'travail de l'ombre'. Plateforme tout-en-un qui permet aux entreprises de réserver des voyages (vols, hôtels, trains) et de gérer toutes les dépenses des employés en un seul endroit. Au lieu de remplir des notes de frais manuelles, tout est automatisé par IA et lié à des cartes de paiement d'entreprise, ce qui fait gagner des heures de travail administratif chaque mois.<br/><br/><b>Profil client idéal (ICP):</b> Gestionnaires de voyages, équipes financières, RH et employés d'entreprises de toutes tailles (plus de 12 000 clients). Entreprises de 50 à 5 000 employés disposant de budgets de voyage significatifs. Entreprises à forte croissance (Wise, Lush).<br/><br/><b>B2B ou B2C:</b> B2B - Conçu pour la gestion d'entreprise, les politiques de voyage et la conformité financière.<br/><br/><b>Industrie:</b> Travel Tech / Fintech. FinTech &gt; SaaS de gestion automatisée des voyages et dépenses d'entreprise. Travel &amp; Expense (T&amp;E) Management Software. Business Travel &amp; Spend Management SaaS.<br/><br/><b>Contact et mentions légales:</b> Email: legal@perk.com. Téléphone: +34 931227581. Entités: Perk Platform SLU (Espagne), Perk UK Ltd (Royaume-Uni), Perk USA Inc (États-Unis), Perk Deutschland GmbH. Adresse Espagne: Carrer dels Almogàvers, 160, 08018 Barcelone. Siège à Barcelone, avec des bureaux à Londres, Birmingham, Berlin, Zurich, Chicago etc.<br/><br/><b>Exemples de clients clés et témoignages:</b> Wise (Marta Kutt), Fujifilm (Lydia de Kousemaeker), Lush, On Running, Fabletics, Stadler (Raphael Widmer). CFO de Stadler, Co-CEO d'On.
+
+            <h3 id="product">Produit</h3>
+<br/><b>Solution principale:</b> Plateforme tout-en-un pour la réservation de voyages, la gestion des notes de frais et le contrôle des dépenses par carte. Plateforme tout-en-un qui permet aux entreprises de réserver des voyages (vols, hôtels, trains) et de gérer toutes les dépenses des employés en un seul endroit. Au lieu de remplir des notes de frais manuelles, tout est automatisé par IA et lié à des cartes de paiement d'entreprise. SaaS de gestion automatisée des voyages et dépenses d'entreprise. Inventaire de voyage massif couplé à un moteur de paiement qui capture les reçus par IA, appuie les politiques de voyage au moment de la réservation et réconcilie les dépenses en temps réel avec l'ERP. Gestion complète des voyages et dépenses avec Perk. Passage du 'voyage' à la gestion complète des 'dépenses globales'.<br/><br/><b>Encyclopédie des fonctionnalités:</b> Réservation de vols, hôtels, trains et voitures | Gestion d'itinéraires | Capture de reçus par IA | Cartes de débit Platinum Visa | Flux d'approbation personnalisables | Gestion d'événements et de réservations de groupe | Calcul d'indemnités journalières (per diems) | Suivi carbone (Green Trip) | FlexiPerk (remboursement 80% sans questions) | FlexiTravel pour remboursement 80% | Assurance voyage via battleface | Conciergerie | Rapports ESG (carbone) | Automatisation fiscale | Politiques de voyage appliquées au moment de la réservation | Réconciliation comptable automatisée.<br/><br/><b>Capacités techniques:</b> Application mobile (iOS/Android) | Intégrations RH (Standard et Avancées) | API Ouverte | SSO (Single Sign-On) | Intégrations ERP (Xero, Datev, Workday) | Analytique en temps réel | Sécurité des données via AWS (Irlande/Allemagne) | Système basé sur le cloud | Intégrations profondes avec systèmes RH et financiers.<br/><br/><b>Cas d'utilisation:</b> Automatisation des rapports de dépenses | Gestion des politiques de voyage d'entreprise | Récupération de la TVA | Organisation d'événements d'équipe | Suivi des voyageurs en temps réel | Déléguer le travail d'ombre pour businesses | Résoudre les problèmes liés au voyage et à la gestion d'entreprise | Gérer les 'déplacements d'équipe' | Réconcilier les dépenses en temps réel avec l'ERP | Capture de la donnée à la source via carte de paiement.
+
+            <h3 id="business-model">Modèle d'Affaires</h3>
+<br/><b>Analyse du modèle d'affaires:</b> SaaS avec frais de plateforme mensuels et commissions par réservation. Hybride: Abonnement SaaS mensuel (Plans Starter, Premium, Pro) + Commission par réservation. Mix sain de revenus SaaS récurrents et de commissions transactionnelles. Modèle diversifié qui capture de la valeur à chaque étape du voyage. SaaS par siège.<br/><br/><b>Flux de revenus et niveaux de tarification:</b> Plan Starter (0$/mois + 5% par réservation) | Plan Premium (99$/mois + 3% par réservation) | Plan Pro (299$/mois + 3% par réservation).<br/><br/><b>Fonctionnalités des plans:</b> Starter: 1 politique de voyage, reporting de base | Premium: 10 politiques, SSO, intégrations RH, support senior | Pro: Politiques illimitées, reporting personnalisé, intégrations avancées, gestionnaire de compte dédié.<br/><br/><b>Coûts cachés et conditions:</b> Frais de réservation avec seuils min/max | Add-ons payants (FlexiTravel pour remboursement 80%, Assurance voyage via battleface, Conciergerie, Green Trip).
+
+            <h3 id="team">Équipe</h3>
+<b>Culture d'entreprise:</b> Valeurs: 'We are owners', 'Impact over effort', 'A 7-star experience', 'We are a team', 'Be a good person'. Environnement axé sur la responsabilité et l'éthique. 'Always rooting for the rebels'. Expérience utilisateur '7 étoiles'. Service client 24/7 internalisé.<br/><br/><b>Analyse de l'équipe:</b> Avi Meir: CEO &amp; Founder (depuis 2015), Co-Founder et CTO de Hotel Ninjas (acquis par Booking.com), Senior Product Owner chez Booking.com (2014-2015), Vice-President Product chez budgetplaces.com (2010-2012), Manager chez EL AL (2006-2009). MBA IESE Business School, BSc Faculté de Sciences Humaines et Sociales - Sorbonne. Équipe de direction mature capable de gérer des fusions-acquisitions. Équipe interne comprend des experts en support local et des gestionnaires de compte dédiés. Plus de 1 200 employés répartis mondialement. Équilibre parfait entre ingénierie produit et force de frappe commerciale mondiale répartie sur plusieurs hubs.<br/><br/><b>Offres d'emploi et titres:</b> Processus de recrutement actif (candidats, entretiens, Ashby AI pour le screening). Pas de liste de postes spécifiques.<br/><br/><b>Effectif estimé:</b> Plus de 1 200 employés au total.<br/>Product &amp; Engineering: Développement IA, ingénierie produit héritée du passé CTO de Meir, segmenté en Product/Eng (taille inconnue mais significatif pour scaling et lancements IA).<br/>Marketing: Ventes/Marketing (taille inconnue).<br/>Sales: Force de vente directe hautement spécialisée, inbound performant (taille inconnue).<br/>Support &amp; IT: Support 24/7, experts en support local (taille significative pour service client internalisé).<br/>General &amp; Admin (G&amp;A): G&amp;A, gestionnaires de compte dédiés (taille inconnue).
+
+            <h3 id="ceo">CEO</h3>
+<span style="font-weight:bold;">EXECUTIVE ASSESSMENT</span><br/><br/>
+<ul>
+<li></li>
+<li>Le parcours professionnel mêle des entreprises établies (EL AL, Booking.com) à des startups à succès (Hotel Ninjas acquis par Booking.com), indiquant une capacité à naviguer et à exceller dans divers environnements.</li>
+<li>Loyalty &amp; Tenure: Avi Meir démontre une loyauté stratégique et une tenure significative dans ses rôles clés. La période chez EL AL (3 ans) et budgetplaces.com (2 ans 4 mois) est stable. La vente de Hotel Ninjas en moins de 2 ans et la transition rapide post-acquisition chez Booking.com sont des indicateurs d'un focus sur la création de valeur et l'exit rapide. Son leadership actuel chez Perk depuis plus de 9 ans témoigne d'un engagement profond et d'une vision à long terme dans ses propres entreprises.</li>
+<li>Commercial Fit: L'expérience passée d'Avi Meir dans l'industrie du voyage (EL AL, budgetplaces.com, Hotel Ninjas, Booking.com) dé-risque considérablement son rôle actuel chez Perk. Il a bâti et vendu une entreprise dans ce secteur, passant ensuite 10 mois chez l'acquéreur. Sa compréhension des points de friction et des opportunités dans la gestion de voyages et de dépenses est un avantage commercial direct et explicite pour Perk.</li>
+</ul><br/><br/>
+<span style="font-weight:bold;">PROFESSIONAL NARRATIVE</span><br/><br/>
+            Avi Meir a démarré sa carrière avec une expérience opérationnelle dans l'aéronautique, suivi d'une incursion dans l'optimisation des vacances à bas prix avant de se lancer dans l'entrepreneuriat avec Hotel Ninjas, une entreprise de logiciels de gestion hôtelière qu'il a co-fondée et vendue à Booking.com en moins de deux ans. Cette acquisition a été suivie d'une brève période d'intégration chez Booking.com, démontrant sa capacité à générer des exits réussis. Fort de cette expérience, il a ensuite fondé Perk, une plateforme de gestion de voyages, dépenses et événements, où il a appliqué sa connaissance approfondie du secteur et son expertise en construction de produits pour résoudre des problèmes complexes pour les entreprises. Son parcours illustre un fil conducteur constant : l'amélioration et la simplification des processus liés au voyage et à la gestion d'entreprise, passant d'un rôle d'opérateur à celui de leader et de bâtisseur de produits SaaS.<br/><br/>
+<span style="font-weight:bold;">DETAILED CAREER TIMELINE</span><br/><br/>
+<ul>
+<li>2015 – Present | Perk<br/>Role: CEO &amp; Founder<br/>Focus: Scaling a comprehensive platform for travel, spend, and corporate event management, delegating "shadow work" for businesses.</li>
+<li>2014 – 2015 | Booking.com<br/>Role: Senior Product Owner<br/>Analysis: Courte tenure (10 mois) post-acquisition de Hotel Ninjas, indiquant une période d'intégration et de transition avant de se lancer dans une nouvelle aventure entrepreneuriale.</li>
+<li>2012 – 2014 | Hotel Ninjas (acquired by Booking.com)<br/>Role: Co-Founder, CTO<br/>Analysis: Succès rapide de création et de vente d'une entreprise en moins de 2 ans, soulignant une forte capacité à valider le marché, développer un produit et exécuter une stratégie de sortie.</li>
+<li>2010 – 2012 | budgetplaces.com<br/>Role: Vice-President, Product<br/>Analysis: Responsable de l'acquisition de contenu et d'utilisateurs pour une plateforme de voyage, montrant une expérience dans la croissance de produits numériques.</li>
+<li>2006 – 2009 | EL AL Israel Airlines<br/>Role: Manager<br/>Analysis: Expérience opérationnelle précoce dans les opérations aériennes, fournissant une base en gestion et logistique.</li>
+</ul>
+<h3 id="company-summary">Résumé de l'Entreprise</h3>
+<span style="font-weight:bold;">• FinTech &gt; SaaS de gestion automatisée des voyages et dépenses d'entreprise.</span><br/>
+<span style="font-weight:bold;">• B2B &gt; SaaS</span><br/>
+<span style="font-weight:bold;">• 200M€ levés auprès de EQT Growth, Sequoia, Atomico et Noteus Partners (janvier 28, 2025)</span><br/><br/>
+            NOTE: Il s'agit d'un score de pré-sélection brut. Les pondérations de la thèse sont appliquées plus tard.<br/><br/>
+            ═════════════════════<br/>
+<span style="font-weight:bold;">EXCELLENCE DE L'ÉQUIPE</span>       92/100<br/>
+<span style="font-weight:bold;">OPPORTUNITÉ DE MARCHÉ</span>    88/100<br/>
+<span style="font-weight:bold;">INNOVATION PRODUIT</span>    85/100<br/>
+<span style="font-weight:bold;">MODÈLE ÉCONOMIQUE</span>        84/100<br/>
+<span style="font-weight:bold;">TRACTION &amp; CROISSANCE</span>     94/100<br/>
+            ─────────────────────<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION:</span>   88/100 → 🟢 SIGNAL FORT (85-100)<br/><br/>
+            ══════════════════════<br/><br/>
+            ❓ <span style="font-weight:bold;">EN QUELQUES MOTS :</span> Perk est une plateforme SaaS de Travel &amp; Expense qui permet aux gestionnaires de voyages et aux équipes finance de déléguer le travail administratif complexe en automatisant la réservation et le reporting des dépenses via une interface centralisée.<br/><br/>
+            ⚠️ <span style="font-weight:bold;">LE PROBLÈME :</span> Un employé doit jongler entre quatre onglets pour réserver un vol, puis passer 40 minutes à photographier des reçus papier pour se faire rembourser, tandis que le directeur financier découvre les dépassements de budget trois semaines après le voyage.<br/><br/>
+            ✅ <span style="font-weight:bold;">LA SOLUTION :</span> Un inventaire de voyage massif couplé à un moteur de paiement qui capture les reçus par IA, appuie les politiques de voyage au moment de la réservation et réconcilie les dépenses en temps réel avec l'ERP.<br/><br/>
+            🚀 <span style="font-weight:bold;">LE GTM :</span> Ciblage agressif des entreprises à forte croissance (Wise, Lush) et expansion via des acquisitions stratégiques (AmTrav aux USA) pour déloger les agences de voyage traditionnelles grâce à une promesse de réduction de coûts et de conformité automatisée.<br/><br/>
+            ══════════════════════<br/><br/>
+            👨🏻 <span style="font-weight:bold;">EXCELLENCE DE L'ÉQUIPE (20%) | Score: 92/100</span><br/>
+            L'équipe est dirigée par un fondateur qui a déjà prouvé sa capacité à construire et vendre avec succès dans ce secteur vertical spécifique.<br/>
+<ul>
+<li>Founder-Market Fit (25%) | Score: 95/100: Avi Meir possède un 'secret acquis' rare, ayant été à la fois client (Booking.com) et constructeur (Hotel Ninjas), lui permettant de comprendre intimement les frictions techniques et humaines du voyage.</li>
+<li>Track Record (25%) | Score: 93/100: Co-fondateur de Hotel Ninjas vendu à Booking.com en moins de 2 ans, suivi d'une exécution impeccable chez Perk pendant 9 ans.</li>
+<li>Leadership (25%) | Score: 89/100: Une équipe de direction mature capable de gérer des fusions-acquisitions complexes comme celles de Yokoy et AmTrav simultanément.</li>
+<li>Complétude (25%) | Score: 90/100: Équilibre parfait entre ingénierie produit héritée du passé CTO de Meir et force de frappe commerciale mondiale répartie sur plusieurs hubs.</li>
+</ul><br/>
+            🌊 <span style="font-weight:bold;">OPPORTUNITÉ DE MARCHÉ (20%) | Score: 88/100</span><br/>
+            Le marché du voyage d'affaires est en pleine mutation structurelle vers des solutions tout-en-un intégrées.<br/>
+<ul>
+<li>Taille &amp; Croissance (25%) | Score: 90/100: Marché mondial du voyage d'affaires estimé à plus d'un billion d'euros, avec une numérisation croissante des PME/ETI qui délaissent SAP Concur.</li>
+<li>Timing (25%) | Score: 88/100: Le passage au travail distribué force les entreprises à mieux gérer les 'déplacements d'équipe' qui remplacent les voyages de vente classiques.</li>
+<li>Compétition (25%) | Score: 80/100: Rivalité intense avec Navan (ex-TripActions) qui possède des poches profondes, mais Perk domine en Europe avec une meilleure gestion de la complexité locale (trains, TVA).</li>
+<li>Expansion (25%) | Score: 94/100: L'acquisition de Yokoy en 2025 permet de passer du 'voyage' à la gestion complète des 'dépenses globales', multipliant le revenu par utilisateur.</li>
+</ul><br/>
+            💡 <span style="font-weight:bold;">INNOVATION PRODUIT (20%) | Score: 85/100</span><br/>
+            La plateforme se distingue par son expérience utilisateur et son inventaire sans égal.<br/>
+<ul>
+<li>Différenciation (25%) | Score: 85/100: La fonctionnalité 'FlexiPerk' (remboursement 80% sans questions) et l'intégration IA pour la capture de TVA sont des différenciateurs majeurs.</li>
+<li>Product-Market Fit (25%) | Score: 92/100: Plus de 12 000 clients incluant Fujifilm et Wise, avec des scores de satisfaction client très élevés contrairement aux incumbents historiques.</li>
+<li>Scalability (25%) | Score: 82/100: Système basé sur le cloud avec des APIs ouvertes permettant une intégration fluide avec les outils RH (Workday) et de finance (Xero).</li>
+<li>IP &amp; Barrières (25%) | Score: 80/100: L'inventaire direct et les accords négociés avec les compagnies aériennes/hôtels créent une barrière à l'entrée logistique que les purs SaaS fintech ne peuvent égaler.</li>
+</ul><br/>
+            💼 <span style="font-weight:bold;">MODÈLE ÉCONOMIQUE (20%) | Score: 84/100</span><br/>
+            Un modèle diversifié qui capture de la valeur à chaque étape du voyage.<br/>
+<ul>
+<li>Unit Economics (25%) | Score: 83/100: Mix sain de revenus SaaS récurrents et de commissions transactionnelles, protégeant l'entreprise contre les chutes de volume de voyage.</li>
+<li>Modèle de Revenus (25%) | Score: 85/100: Trois niveaux de prix clairs (Starter, Premium, Pro) facilitant le 'land and expand' au sein des entreprises.</li>
+<li>Monétisation (25%) | Score: 84/100: Forte capacité d'upsell via les add-ons (conciergerie, rapports carbone, assurance voyage).</li>
+<li>Efficacité du Capital (25%) | Score: 84/100: Bien que Perk ait levé des montants importants, sa valorisation à 2,7 milliards $ et ses acquisitions suggèrent une utilisation stratégique du capital pour la croissance externe.</li>
+</ul><br/>
+            📈 <span style="font-weight:bold;">TRACTION &amp; CROISSANCE (20%) | Score: 94/100</span><br/>
+            Une vélocité d'exécution exceptionnelle validée par les marchés financiers.<br/>
+<ul>
+<li>Croissance du Revenu (25%) | Score: 95/100: Valorisation presque doublée entre 2024 et 2025 (de 1,1B€ à 2,7B$), signalant une hyper-croissance maintenue.</li>
+<li>Validation Client (25%) | Score: 92/100: Adoption massive par des marques grand public et tech mondiales (On Running, Fabletics, Lush).</li>
+<li>Progression des KPIs (25%) | Score: 94/100: Expansion rapide de l'effectif et lancements de produits IA réussis pour l'automatisation administrative.</li>
+<li>Pénétration du Marché (25%) | Score: 95/100: Expansion réussie aux États-Unis (via AmTrav) et renforcement en Europe centrale (via Yokoy).</li>
+</ul><br/>
+            ─────────────────────<br/>
+            🔍 <span style="font-weight:bold;">RISQUE À RECOUVRIR :</span><br/>
+            Le pari stratégique central repose sur la capacité de Perk à fusionner harmonieusement trois plateformes distinctes (Yokoy, AmTrav, Perk) en une expérience unique '7 étoiles'. Si l'intégration technique échoue ou produit une solution fragmentée, la proposition de valeur de 'simplification' s'effondrera face à des concurrents plus agiles, un risque qui deviendra visible lors de la prochaine grande mise à jour de la plateforme unifiée.<br/>
+            Ce risque est résolvable par la diligence opérationnelle sur le plan d'intégration post-fusion, mais il nécessite une surveillance constante des métriques de rétention post-migration.<br/><br/>
+            🗝️ <span style="font-weight:bold;">AVANTAGES COMPÉTITIFS CLÉS :</span><br/>
+<ul>
+<li>Inventaire de voyage propriétaire : Contrairement aux agences traditionnelles, Perk offre un accès direct à des tarifs exclusifs et une flexibilité totale de réservation sans frais cachés.</li>
+<li>Intégration verticale T&amp;E : L'acquisition de Yokoy transforme Perk d'un outil de réservation en un système de gestion financière complet, automatisant la réconciliation comptable.</li>
+<li>Localisation européenne supérieure : Une maîtrise inégalée de la complexité des transports ferroviaires et de la récupération de la TVA européenne, un point faible majeur des concurrents américains.</li>
+<li>Expérience utilisateur 'Consumer-Grade' : Une interface si simple qu'elle élimine le besoin de formation pour les employés, augmentant drastiquement le taux d'adoption interne.</li>
+<li>Service client 24/7 internalisé : Une assistance réactive et humaine qui réduit les frictions lors des perturbations de voyage, renforçant la loyauté de la marque.</li>
+</ul><br/>
+            🧱 <span style="font-weight:bold;">FOSSÉ DÉFENSIF (MOAT) : FORT</span><br/>
+            La source primaire de défense réside dans les coûts de changement élevés (switching costs) créés par l'intégration profonde avec les systèmes RH et financiers de l'entreprise. À mesure que Perk traite plus de voyages, ses algorithmes d'IA apprennent les politiques et les habitudes de l'entreprise, rendant l'extraction de données et la migration vers un concurrent extrêmement pénibles. Une couche secondaire de défense est apportée par les données propriétaires sur les dépenses de voyage, permettant de négocier des deals exclusifs avec les fournisseurs qui s'auto-renforcent avec l'échelle de la plateforme.<br/><br/>
+            ⚖️ <span style="font-weight:bold;">PARI ASYMÉTRIQUE</span><br/>
+<ul>
+<li>Le Cas Haussier (Bull Case) :<br/>Perk parvient à intégrer Yokoy et devient le système d'exploitation par défaut des dépenses d'entreprise d'une nouvelle génération de scale-ups mondiales, remplaçant totalement les acteurs historiques hérités comme Concur et capturant 30% du marché européen avant une IPO majeure.</li>
+<li>Le Cas Baissier (Bear Case) :<br/>Le marché du voyage d'affaires subit un nouveau choc macroéconomique durable et Navan utilise son capital massif pour asphyxier Perk sur le marché américain, forçant l'entreprise à rester un acteur régional européen avec une valorisation stagnante.</li>
+</ul><br/>
+            🚩 <span style="font-weight:bold;">DRAPEAUX ROUGES</span><br/>
+<ul>
+<li>Risques Universels : Risque d'exécution majeur lié à l'intégration simultanée de deux acquisitions technologiques d'envergure (AmTrav et Yokoy) tout en changeant l'identité de marque du groupe.</li>
+<li></li>
+</ul><br/>
+            📝 <span style="font-weight:bold;">KIT DE PRÉPARATION POUR LE PREMIER RENDEZ-VOUS</span><br/>
+            L'analyse montre une entreprise en phase de consolidation agressive de son marché. Les questions ci-dessous visent à tester la solidité opérationnelle de cette stratégie de croissance externe par rapport à la promesse technologique unifiée.<br/><br/>
+            • L'Angle d'Investissement : Parier sur le leader européen du voyage d'affaires qui pivote vers la gestion globale des dépenses, soutenu par un CEO ayant le 'produit' dans son ADN.<br/><br/>
+            • Questions pour le premier appel :<br/>
+            - Quel est le pourcentage de code de Yokoy qui sera conservé dans la plateforme Perk unifiée d'ici 12 mois, et comment gérez-vous le 'churn de développeurs' post-acquisition ?<br/>
+            - Si une entreprise utilise déjà Ramp ou Brex aux USA pour ses dépenses, quel est l'argument massue irrésistible qui les pousserait à tout migrer sur l'offre intégrée de Perk plutôt qu'à garder un modèle hybride ?<br/>
+            - Quelle est votre marge brute réelle sur la partie 'voyage' une fois les coûts de support client 24/7 déduits, et comment a-t-elle évolué avec l'inflation des coûts logistiques ?<br/><br/>
+            • Signal de Go/No-Go : Un 'Go' franc si le fondateur présente une feuille de route d'intégration produit Yokoy/Perk déjà en phase de test bêta avec des clients communs. Un 'No-Go' si l'on perçoit que les acquisitions sont traitées comme des entités indépendantes par peur de la complexité technique.<br/><br/>
+            🌐 <span style="font-weight:bold;">CONFIANCE DANS LES DONNÉES : ÉLEVÉE</span><br/>
+            • Les données de financement et d'acquisition de 2025 sont récentes et confirmées par de multiples sources. La diligence doit se concentrer sur l'audit technique de la fusion des plateformes.<br/>
+            • LACUNES DE DONNÉES : Métriques de rétention nettes (NRR) des clients Yokoy après le rachat • Structure actuelle des marges après intégration AmTrav.
+        </div>
+<div class="img-col">
+<img alt="Company Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-6fd89155ac82cbfe66b7e08c155a687e-v5a71bc1.jpg"/>
+</div>
+</div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block"><ul><li>FinTech &gt; SaaS de gestion automatisée des voyages et dépenses d'entreprise.</li><li>B2B &gt; SaaS</li><li>200M€ levés auprès de EQT Growth, Sequoia, Atomico et Noteus Partners (janvier 28, 2025)</li></ul>
+<br/>
+NOTE: Il s'agit d'un score de pré-sélection brut. Les pondérations de la thèse sont appliquées plus tard.<br/>
+<br/>
+═════════════════════<br/>
+<span style="font-weight:bold;">EXCELLENCE DE L'ÉQUIPE : 92/100</span><br/>
+<span style="font-weight:bold;">OPPORTUNITÉ DE MARCHÉ : 88/100</span><br/>
+<span style="font-weight:bold;">INNOVATION PRODUIT : 85/100</span><br/>
+<span style="font-weight:bold;">MODÈLE ÉCONOMIQUE : 84/100</span><br/>
+<span style="font-weight:bold;">TRACTION &amp; CROISSANCE : 94/100</span><br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">SCORE DE PRÉ-SÉLECTION :</span> 88/100 → 🟢 SIGNAL FORT (85-100)<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">❓ EN QUELQUES MOTS :</span> Perk est une plateforme SaaS de Travel &amp; Expense qui permet aux gestionnaires de voyages et aux équipes finance de déléguer le travail administratif complexe en automatisant la réservation et le reporting des dépenses via une interface centralisée.<br/>
+<br/>
+<span style="font-weight:bold;">⚠️ LE PROBLÈME :</span> Un employé doit jongler entre quatre onglets pour réserver un vol, puis passer 40 minutes à photographier des reçus papier pour se faire rembourser, tandis que le directeur financier découvre les dépassements de budget trois semaines après le voyage.<br/>
+<br/>
+<span style="font-weight:bold;">✅ LA SOLUTION :</span> Un inventaire de voyage massif couplé à un moteur de paiement qui capture les reçus par IA, appuie les politiques de voyage au moment de la réservation et réconcilie les dépenses en temps réel avec l'ERP.<br/>
+<br/>
+<span style="font-weight:bold;">🚀 LE GTM :</span> Ciblage agressif des entreprises à forte croissance (Wise, Lush) et expansion via des acquisitions stratégiques (AmTrav aux USA) pour déloger les agences de voyage traditionnelles grâce à une promesse de réduction de coûts et de conformité automatisée.<br/>
+<br/>
+══════════════════════<br/>
+<br/>
+<span style="font-weight:bold;">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score: 92/100</span><br/>
+L'équipe est dirigée par un fondateur qui a déjà prouvé sa capacité à construire et vendre avec succès dans ce secteur vertical spécifique.<br/>
+<ul><li>Founder-Market Fit (25%) | Score: 95/100: Avi Meir possède un secret acquis rare, ayant été à la fois client (Booking.com) et constructeur (Hotel Ninjas), lui permettant de comprendre intimement les frictions techniques et humaines du voyage.</li><li>Track Record (25%) | Score: 93/100: Co-fondateur de Hotel Ninjas vendu à Booking.com en moins de 2 ans, suivi d'une exécution impeccable chez Perk pendant 9 ans.</li><li>Leadership (25%) | Score: 89/100: Une équipe de direction mature capable de gérer des fusions-acquisitions complexes comme celles de Yokoy et AmTrav simultanément.</li><li>Complétude (25%) | Score: 90/100: Équilibre parfait entre ingénierie produit héritée du passé CTO de Meir et force de frappe commerciale mondiale répartie sur plusieurs hubs.</li></ul>
+<br/>
+<span style="font-weight:bold;">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score: 88/100</span><br/>
+Le marché du voyage d'affaires est en pleine mutation structurelle vers des solutions tout-en-un intégrées.<br/>
+<ul><li>Taille &amp; Croissance (25%) | Score: 90/100: Marché mondial du voyage d'affaires estimé à plus d'un billion d'euros, avec une numérisation croissante des PME/ETI qui délaissent SAP Concur.</li><li>Timing (25%) | Score: 88/100: Le passage au travail distribué force les entreprises à mieux gérer les déplacements d'équipe qui remplacent les voyages de vente classiques.</li><li>Compétition (25%) | Score: 80/100: Rivalité intense avec Navan (ex-TripActions) qui possède des poches profondes, mais Perk domine en Europe avec une meilleure gestion de la complexité locale (trains, TVA).</li><li>Expansion (25%) | Score: 94/100: L'acquisition de Yokoy en 2025 permet de passer du voyage à la gestion complète des dépenses globales, multipliant le revenu par utilisateur.</li></ul>
+<br/>
+<span style="font-weight:bold;">💡 INNOVATION PRODUIT (20%) | Score: 85/100</span><br/>
+La plateforme se distingue par son expérience utilisateur et son inventaire sans égal.<br/>
+<ul><li>Différenciation (25%) | Score: 85/100: La fonctionnalité FlexiPerk (remboursement 80% sans questions) et l'intégration IA pour la capture de TVA sont des différenciateurs majeurs.</li><li>Product-Market Fit (25%) | Score: 92/100: Plus de 12 000 clients incluant Fujifilm et Wise, avec des scores de satisfaction client très élevés contrairement aux incumbents historiques.</li><li>Scalability (25%) | Score: 82/100: Système basé sur le cloud avec des APIs ouvertes permettant une intégration fluide avec les outils RH (Workday) et de finance (Xero).</li><li>IP &amp; Barrières (25%) | Score: 80/100: L'inventaire direct et les accords négociés avec les compagnies aériennes/hôtels créent une barrière à l'entrée logistique que les purs SaaS fintech ne peuvent égaler.</li></ul>
+<br/>
+<span style="font-weight:bold;">💼 MODÈLE ÉCONOMIQUE (20%) | Score: 84/100</span><br/>
+Un modèle diversifié qui capture de la valeur à chaque étape du voyage.<br/>
+<ul><li>Unit Economics (25%) | Score: 83/100: Mix sain de revenus SaaS récurrents et de commissions transactionnelles, protégeant l'entreprise contre les chutes de volume de voyage.</li><li>Modèle de Revenus (25%) | Score: 85/100: Trois niveaux de prix clairs (Starter, Premium, Pro) facilitant le land and expand au sein des entreprises.</li><li>Monétisation (25%) | Score: 84/100: Forte capacité d'upsell via les add-ons (conciergerie, rapports carbone, assurance voyage).</li><li>Efficacité du Capital (25%) | Score: 84/100: Bien que Perk ait levé des montants importants, sa valorisation à 2,7 milliards $ et ses acquisitions suggèrent une utilisation stratégique du capital pour la croissance externe.</li></ul>
+<br/>
+<span style="font-weight:bold;">📈 TRACTION &amp; CROISSANCE (20%) | Score: 94/100</span><br/>
+Une vélocité d'exécution exceptionnelle validée par les marchés financiers.<br/>
+<ul><li>Croissance du Revenu (25%) | Score: 95/100: Valorisation presque doublée entre 2024 et 2025 (de 1,1B€ à 2,7B$), signalant une hyper-croissance maintenue.</li><li>Validation Client (25%) | Score: 92/100: Adoption massive par des marques grand public et tech mondiales (On Running, Fabletics, Lush).</li><li>Progression des KPIs (25%) | Score: 94/100: Expansion rapide de l'effectif et lancements de produits IA réussis pour l'automatisation administrative.</li><li>Pénétration du Marché (25%) | Score: 95/100: Expansion réussie aux États-Unis (via AmTrav) et renforcement en Europe centrale (via Yokoy).</li></ul>
+<br/>
+─────────────────────<br/>
+<span style="font-weight:bold;">🔍 RISQUE À RECOUVRIR :</span><br/>
+Le pari stratégique central repose sur la capacité de Perk à fusionner harmonieusement trois plateformes distinctes (Yokoy, AmTrav, Perk) en une expérience unique 7 étoiles. Si l'intégration technique échoue ou produit une solution fragmentée, la proposition de valeur de simplification s'effondrera face à des concurrents plus agiles, un risque qui deviendra visible lors de la prochaine grande mise à jour de la plateforme unifiée.<br/>
+Ce risque est résolvable par la diligence opérationnelle sur le plan d'intégration post-fusion, mais il nécessite une surveillance constante des métriques de rétention post-migration.<br/>
+<br/>
+<span style="font-weight:bold;">🗝️ AVANTAGES COMPÉTITIFS CLÉS :</span><br/>
+<ul><li>Inventaire de voyage propriétaire : Contrairement aux agences traditionnelles, Perk offre un accès direct à des tarifs exclusifs et une flexibilité totale de réservation sans frais cachés.</li><li>Intégration verticale T&amp;E : L'acquisition de Yokoy transforme Perk d'un outil de réservation en un système de gestion financière complet, automatisant la réconciliation comptable.</li><li>Localisation européenne supérieure : Une maîtrise inégalée de la complexité des transports ferroviaires et de la récupération de la TVA européenne, un point faible majeur des concurrents américains.</li><li>Expérience utilisateur Consumer-Grade : Une interface si simple qu'elle élimine le besoin de formation pour les employés, augmentant drastiquement le taux d'adoption interne.</li><li>Service client 24/7 internalisé : Une assistance réactive et humaine qui réduit les frictions lors des perturbations de voyage, renforçant la loyauté de la marque.</li></ul>
+<br/>
+<span style="font-weight:bold;">🧱 FOSSÉ DÉFENSIF (MOAT) :</span> FORT<br/>
+La source primaire de défense réside dans les coûts de changement élevés (switching costs) créés par l'intégration profonde avec les systèmes RH et financiers de l'entreprise. À mesure que Perk traite plus de voyages, ses algorithmes d'IA apprennent les politiques et les habitudes de l'entreprise, rendant l'extraction de données et la migration vers un concurrent extrêmement pénibles. Une couche secondaire de défense est apportée par les données propriétaires sur les dépenses de voyage, permettant de négocier des deals exclusifs avec les fournisseurs qui s'auto-renforcent avec l'échelle de la plateforme.<br/>
+<br/>
+<span style="font-weight:bold;">⚖️ PARI ASYMÉTRIQUE</span><br/>
+<ul><li>Le Cas Haussier (Bull Case) :</li></ul>
+Perk parvient à intégrer Yokoy et devient le système d'exploitation par défaut des dépenses d'entreprise d'une nouvelle génération de scale-ups mondiales, remplaçant totalement les acteurs historiques hérités comme Concur et capturant 30% du marché européen avant une IPO majeure.<br/>
+<br/>
+<ul><li>Le Cas Baissier (Bear Case) :</li></ul>
+Le marché du voyage d'affaires subit un nouveau choc macroéconomique durable et Navan utilise son capital massif pour asphyxier Perk sur le marché américain, forçant l'entreprise à rester un acteur régional européen avec une valorisation stagnante.<br/>
+<br/>
+<span style="font-weight:bold;">🚩 DRAPEAUX ROUGES</span><br/>
+<ul><li>Risques Universels : Risque d'exécution majeur lié à l'intégration simultanée de deux acquisitions technologiques d'envergure (AmTrav et Yokoy) tout en changeant l'identité de marque du groupe.</li><li>Inadéquations à la Thèse : Aucun écart majeur par rapport à la thèse Solutions pour Business Travel, car l'entreprise se positionne exactement au centre de la convergence voyage/fintech.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/n3whgi_Jc4bd40NQNGyEkQ/DR8A69NCq_as9naEWDQc1pbGHzOj2ctAPfo8XyIT0AoRtTvau4jdS6BkrWbTn7fudWC6q5kLUvAQQDuetsFsL_OhzrQsiWwe2mb_LlaQ_mdLhq07-AXtGBN0BeZmzJ18zxLVlL4FALBSCT_9xAxbhQ/Rljn5hSREI27w4YaD7BtyucbaC0gN5U9KGg5Dv7FX_A"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green">
+<h3>Forces</h3>
+<ul>
+<li>Avi Meir, fondateur et CEO depuis plus de 9 ans, maîtrise le secteur du voyage grâce à la vente rapide d'Hotel Ninjas à Booking.com.</li>
+<li>La plateforme intègre voyages, dépenses et événements avec IA pour la capture de reçus et intégrations ERP comme Xero.</li>
+<li>Plus de 12 000 clients incluent Wise, Fujifilm et Lush, validant le produit pour entreprises de toutes tailles.</li>
+<li>Lévée de fonds Series E de 200 M$ en janvier 2025 valorise Perk à 2,7 milliards de dollars.</li>
+<li>Acquisitions stratégiques comme Yokoy et AmTrav accélèrent l'expansion aux États-Unis et en Europe.</li>
+</ul>
+</div>
+<div class="swot-item s-red">
+<h3>Faiblesses</h3>
+<ul>
+<li>Le leadership d'Avi Meir excelle en produit mais manque de preuves sur le scaling d'équipes larges.</li>
+<li>Modèle de revenus repose sur commissions par réservation, sensible aux volumes de voyages fluctuants.</li>
+<li>Rebranding récent de TravelPerk à Perk risque de diluer la reconnaissance de marque établie.</li>
+<li>Présence mondiale étendue mais effectif estimé repose sur support 24/7 sans détails sur profondeur technique.</li>
+<li>Dépendance au secteur voyage expose à des cycles économiques post-pandémie.</li>
+</ul>
+</div>
+<div class="swot-item s-blue">
+<h3>Opportunités</h3>
+<ul>
+<li>Intégration IA-native post-acquisition Yokoy cible la gestion unifiée des dépenses d'entreprise.</li>
+<li>Expansion US via AmTrav et financement récent soutient la croissance hyper-accélérée.</li>
+<li>Suivi carbone et Green Trip répondent à la demande croissante de voyages durables.</li>
+<li>API ouverte et SSO facilitent les partenariats avec RH et ERP pour PME en hyper-croissance.</li>
+<li>Marché T&amp;E fragmenté permet des acquisitions opportunistes en Europe et Amérique.</li>
+</ul>
+</div>
+<div class="swot-item s-orange">
+<h3>Menaces</h3>
+<ul>
+<li>Concurrence féroce de Navan et TripActions sur les plateformes T&amp;E intégrées.</li>
+<li>Ralentissement économique réduit les budgets voyages d'affaires.</li>
+<li>Échecs d'intégration post-acquisitions comme Yokoy érodent la confiance client.</li>
+<li>Réglementations fintech plus strictes en Europe menacent les cartes Visa et conformité TVA.</li>
+<li>Churn clients si l'IA ne délivre pas sur la promesse de 'déléguer le travail d'ombre'.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et Méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la Chaîne de Valeur</h3>
+<ul>
+</ul>
+<h3>Sources du Marché</h3>
+<p>
+MARKET INTELLIGENCE DOSSIER - URL EVIDENCE TRACKER<br/>
+═══════════════════════════════════════<br/>
+Purpose: Documentation URL pour l'Analyse du Marché Perk<br/>
+Market: Business Travel &amp; Spend Management SaaS<br/>
+Data Completeness: 88/100<br/>
+Assessment: 🟢 SUFFISANT POUR LA DÉCISION D'INVESTISSEMENT<br/>
+Calculation: (11 URLs trouvées ÷ 12 requises) × 100 = 91.6% de complétude<br/>
+Research Date: 24 avril 2026 | Total URLs Found: 11<br/>
+═════════════════════<br/>
+<br/>
+URL EVIDENCE BY MARKET SCORING CATEGORY<br/>
+<br/>
+🌊 MARCHÉ ATTRACTIF | Found 3/3<br/>
+<li> Market Size: GBTA (Global Business Travel Association) reports. Utilisé pour les chiffres du TAM.</li>
+<li> Growth Drivers: Market Research Report on Travel Software 2025. Analyse des catalyseurs IA.</li>
+<li> Timing Why Now: <a href="https://techcrunch.com" target="_blank">TechCrunch (Jan 28, 2025)</a>. News sur la levée Sequoia confirmant le timing.</li>
+<br/>
+⚔️ MARCHÉ GAGNABLE | Found 3/3<br/>
+<li> Incumbents: Business Travel News (Compare SAP Concur vs Navan vs TravelPerk).</li>
+<li> Challengers: Tech.eu articles on Yokoy, Spendesk and Pleo funding.</li>
+<li> Defensibility: <a href="https://www.perk.com" target="_blank">Perk.com</a> 'Why us' comparison charts vs TMCs.</li>
+<br/>
+🎯 MARCHÉ PÉNÉTRABLE | Found 3/3<br/>
+<li> GTM Model: SaaStr interview with Avi Meir on TravelPerk growth engine.</li>
+<li> Pricing Model: <a href="https://www.perk.com/pricing" target="_blank">Perk.com/pricing</a> analysis.</li>
+<li> Scalability: AmTrav acquisition press release detailing US growth strategy.</li>
+<br/>
+💰 MARCHÉ RÉCOMPENSANT | Found 2/3<br/>
+<li> Funding Activity: <a href="https://www.crunchbase.com" target="_blank">Crunchbase - TravelPerk profile</a>.</li>
+<li> Exit Multiples: Axios Pro Fintech report on T&amp;E multiples.</li>
+<li> Strategic Buyers: Industry news on JP Morgan acquiring Frosch/other travel assets.</li>
+<br/>
+WEB DATA COMPLETENESS ANALYSIS<br/>
+Missing Critical URLs: Proprietary churn data across the industry.<br/>
+Research Confidence Level: HIGH<br/>
+</p>
+<h3>Sources de l'Entreprise</h3>
+<p>
+COMPANY INTELLIGENCE DOSSIER - URL EVIDENCE TRACKER<br/>
+═══════════════════════════════════════<br/>
+Purpose: Documentation avec preuves URL pour l'analyse du score d'investissement<br/>
+Company: Perk (TravelPerk)<br/>
+Data Completeness: 85/100<br/>
+Assessment: 🟢 DONNÉES SUFFISANTES POUR UN PREMIER EXAMEN<br/>
+Calculation: (12 URLs trouvées ÷ 14 requises) × 100 = 85% de complétude<br/>
+Research Date: 24 avril 2026 | Total URLs Found: 12<br/>
+═════════════════════<br/>
+<br/>
+URL EVIDENCE BY SCORING CATEGORY<br/>
+<br/>
+👨🏻 EXCELLENCE DE L'ÉQUIPE | Found 4/4<br/>
+<li> Founder-Market Fit: <a href="https://www.linkedin.com/in/avimeir/" target="_blank">LinkedIn Avi Meir</a>. Analyse du parcours chez Hotel Ninjas et Booking.</li>
+<li> Track Record: <a href="https://techcrunch.com" target="_blank">TechCrunch (historique des levées)</a>. Preuve de l'exit rapide de Hotel Ninjas.</li>
+<li> Leadership: <a href="https://www.perk.com/about" target="_blank">Perk.com/about</a>. Composition de la direction et hubs mondiaux.</li>
+<li> Completeness: Linkedin Company Page. Analyse de la répartition des rôles Produit/Ventes.</li>
+<br/>
+🌊 OPPORTUNITÉ DE MARCHÉ | Found 3/4<br/>
+<li> Size &amp; Growth: <a href="https://tech.eu" target="_blank">Tech.eu</a>. Analyse de la valorisation à 2,7B$ et positionnement US.</li>
+<li> Timing Why Now: Cinco Dias. Changement de marque et focus IA.</li>
+<li> Competition: Business Travel News Europe. Comparaison avec les acteurs US (AmTrav).</li>
+<li> Expansion: Perk Press Release (Jan 2025). Détails de l'acquisition de Yokoy.</li>
+<br/>
+💡 INNOVATION PRODUIT | Found 2/4<br/>
+<li> Differentiation: <a href="https://www.perk.com" target="_blank">Perk.com</a> features list. Détails sur FlexiPerk et Green Trip.</li>
+<li> Product-Market Fit: G2/Capterra. Avis clients Fujifilm et Wise mentionnés.</li>
+<li> Scalability: <a href="https://developers.travelperk.com" target="_blank">Perk Developer API documentation</a>. Ouverture de la plateforme.</li>
+<li> IP &amp; Barriers: Data unavailable for specific patent filings.</li>
+<br/>
+💼 MODÈLE ÉCONOMIQUE | Found 2/4<br/>
+<li> Unit Economics: <a href="https://www.perk.com/pricing" target="_blank">Perk Pricing Page</a>. Détails des plans Starter/Premium/Pro.</li>
+<li> Revenue Model: Sourced from press releases regarding SaaS focus with Yokoy.</li>
+<li> Monetization: Perk.com add-ons descriptions.</li>
+<li> Capital Efficiency: <a href="https://www.crunchbase.com" target="_blank">Crunchbase (Total raised: 200M Series E)</a>.</li>
+<br/>
+📈 TRACTION &amp; CROISSANCE | Found 1/4<br/>
+<li> Revenue Growth: TechCrunch. Confirmation du doublement de la valorisation.</li>
+<li> Customer Validation: Perk Case Studies (Wise, Lush).</li>
+<li> KPI Progression: LinkedIn Headcount growth data.</li>
+<li> Market Penetration: Press releases on Birmingham, Berlin, Chicago expansion.</li>
+<br/>
+WEB DATA COMPLETENESS ANALYSIS<br/>
+Missing Critical URLs: Churn metrics (private) • Gross Margin details • Customer acquisition cost (CAC) specifics.<br/>
+Research Confidence Level: HIGH<br/>
+</p>
+</div>
+</div>
+<div class="ppx-cta"><h3>Explore Perk further?</h3><p>Get a strategy call, or follow our deal flow.</p><a class="b" href="https://forms.proplace.co/meet">Schedule a strategy call</a><a class="b g" href="https://proplace.co/newsletter">Subscribe to deal flow</a><p class="ppx-cta-sub">Daily M&amp;A deals &amp; fundraises we assess, by sector.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector."},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur."}
+};
+function isProxy(){return location.hostname.indexOf(".translate.goog")>-1;}
+try{if(location.hash==="#fr"){localStorage.setItem("proplace_lang","fr");history.replaceState(null,"",location.pathname+location.search);}}catch(e){}
+function getLang(){if(isProxy())return "en";try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function go(l){
+if(l==="en"&&!isProxy()){try{localStorage.setItem("proplace_lang","en");}catch(e){}
+location.href="https://proplace-co.translate.goog"+location.pathname+(location.search?location.search+"&":"?")+"_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en";return;}
+if(l==="fr"&&isProxy()){location.href="https://proplace.co"+location.pathname+"#fr";return;}
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script></body></html>
