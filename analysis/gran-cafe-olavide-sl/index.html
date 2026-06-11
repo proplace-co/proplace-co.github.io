@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,11 +134,11 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Gran Café Olavide SL</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Gran Café Olavide SL"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Gran Café Olavide SL</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Gran Café Olavide SL"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
-<span class="sb-tag">Espagne</span>
+<span class="sb-tag"><span class="i18n-fr">Espagne</span><span class="i18n-en">Spain</span></span>
 <span class="sb-tag">Pre-Seed</span>
 <span class="sb-tag">D2C &amp; Consumer Brands</span>
 <span class="sb-tag">Mixte (B2B &amp; B2C)</span>
@@ -148,9 +149,9 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a href="https://fr.linkedin.com/in/christopher-th%C3%A9pot-03217391" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
 </div>
 </div>
-<span class="sb-nav-heading">Marché</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></span>
 <a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
 <a class="nav-item bg-green" href="#product">Product</a>
 <a class="nav-item bg-green" href="#business-model">Business Model</a>
@@ -304,7 +305,7 @@ Le principal mécanisme de défensibilité repose sur l'effet de verrouillage cl
 <ul><li>Le Bull Case : Si Gran Café Olavide parvient à s'établir comme la marque de référence par abonnement pour les bureaux et les particuliers d'Europe du Sud en mariant l'héritage d'une torréfaction artisanale à une logistique irréprochable sous 24-48h, l'entreprise s'emparera d'une part de marché captive avec des marges d'épicerie fine exceptionnelles, rendant son modèle hautement rentable.</li><li>Le Bear Case : L'entreprise reste piégée dans son rôle traditionnel de café-restaurant de quartier ou d'e-commerce à faible volume en raison d'un coût d'acquisition digital prohibitif, brûlant ses €3 000 de capital initial et les ressources du groupe sans jamais atteindre la scalabilité requise.</li></ul>
 <br/>
 <span style="font-weight:bold;">🚩 DRAPEAUX ROUGES</span><br/>
-<ul><li>Risques Universels : Constitution très récente de la société (mars 2026) avec un capital social minimal de 3 000 euros, ce qui limite considérablement sa capacité intrinsèque à absorber d'importants coûts de croissance e-commerce.</li><li>Incohérences de la Thèse : Le profil actuel de l'entreprise s'apparente davantage à un commerce de détail physique ou une enseigne de restauration (code CNAE 5610) qu'à une startup technologique hyper-scalable, ce qui contredit directement les exigences de retour de .</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/Okggd23YTLCPRH2_Y6v3aw/u61h5SRGwlxwcCKV32dwYijbcU1-SOYVpE1ffXQ5Kje0EmSWaRdaCOpoA8t_1Z2ZEuoHNNGseYa013VLWRLMDgjXbqpYg3e9pVtNVX5SPZn5_-fD-MjAiwfPDgMmc3I4Wf2-pT1AMl77j-009GdsJg/zuMJLYg3y2FOO1ZAhPYr44wuOhne9yu_pgjsa70s_ms"/></div></div></div>
+<ul><li>Risques Universels : Constitution très récente de la société (mars 2026) avec un capital social minimal de 3 000 euros, ce qui limite considérablement sa capacité intrinsèque à absorber d'importants coûts de croissance e-commerce.</li><li>Incohérences de la Thèse : Le profil actuel de l'entreprise s'apparente davantage à un commerce de détail physique ou une enseigne de restauration (code CNAE 5610) qu'à une startup technologique hyper-scalable, ce qui contredit directement les exigences de retour de .</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/mGdAt1k_ySsiuhfzlZkdyA/muibRSoFtazENjgODQEJA1PSWYUsiGQbk6KH7CHngIOXmVZjye3-AdiPrnmXpQ35mBgVuIorM506uMM14ID-e9nOwu2eZpz6s0GAq2W22S0bLW5H14F1P228V-My25CwxVtKWE65ZAlnhaqw_mVXWg/checLZaMeoRmh939edI7VHAnwqsAdwiV02s8LiybzuI"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">Analyse SWOT</h2>
 <div class="swot-grid">
@@ -390,6 +391,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;

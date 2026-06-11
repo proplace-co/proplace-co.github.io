@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,7 +134,7 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">WeeeDoIT 🌱</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "WeeeDoIT 🌱"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">WeeeDoIT 🌱</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "WeeeDoIT 🌱"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
@@ -149,9 +150,9 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a href="mailto:jgaloula@weeedoit.com"><i class="fas fa-envelope"></i> jgaloula@weeedoit.com</a>
 </div>
 </div>
-<span class="sb-nav-heading">Marché</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></span>
 <a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
 <a class="nav-item bg-green" href="#product">Product</a>
 <a class="nav-item bg-green" href="#business-model">Business Model</a>
@@ -305,7 +306,7 @@ L'avantage structurel repose sur un réseau de logistique inversée propriétair
 <ul><li>Le scénario haussier : En devenant le partenaire de remarketing et de maintenance privilégié des bailleurs de fonds de leasing IT en Europe, WeeeDoIT s'insère au cœur des flux financiers de la transition d'actifs, captant un flux récurrent d'infrastructures haut de gamme et s'imposant comme la plateforme souveraine par défaut de l'ITAD circulaire.</li><li>Le scénario baissier : Les DSI et constructeurs d'origine accélèrent artificiellement l'obsolescence logicielle (systèmes d'exploitation, firmwares cryptographiques exclusifs), bloquant l'usage sécurisé d'équipements d'occasion critiques et reléguant la proposition de valeur de WeeeDoIT au simple recyclage de métaux à faible marge.</li></ul>
 <br/>
 <span style="font-weight:bold;">🚩 SIGNAUX D'ALERTE</span><br/>
-<ul><li>Risques universels : Un modèle d'affaires consommateur de capitaux logistiques et d'infrastructures physiques de stockage qui présente des barrières à la duplication de modèle à l'échelon mondial sans un important cash-flow de roulement.</li><li>Incohérences thématiques : L'absence de levées de fonds publiques majeures et une structure fortement axée sur le service opérationnel n'offrent pas l'accélération d'un modèle pure-play SaaS que certains fonds VC traditionnels recherchent en priorité.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/UCnq3ZPsiYj9iuA1Sk0WgA/KP5QLt9_1ihV6bp56PEFqbKE6ti8QErcHJKglHO2fzJ4-bOJPqB3f4MBwEwHy9Zbp7QxGqzxyDVZAdj1knkBWjyFkPlu_ljJf84ubomuiQgqmjQaU9-dPsHa-nNcF6sljmfzbChR7xRx-GQgjnTZsA/3N0dl19DXxLtMK9QdPpX2v03JvGKzAJ3iIgcqtPeSXg"/></div></div></div>
+<ul><li>Risques universels : Un modèle d'affaires consommateur de capitaux logistiques et d'infrastructures physiques de stockage qui présente des barrières à la duplication de modèle à l'échelon mondial sans un important cash-flow de roulement.</li><li>Incohérences thématiques : L'absence de levées de fonds publiques majeures et une structure fortement axée sur le service opérationnel n'offrent pas l'accélération d'un modèle pure-play SaaS que certains fonds VC traditionnels recherchent en priorité.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/a_AnQCk6twoPv6lUNc2q_w/Xlr3NmQDWyZdKo9mZ36qXb5Dwptio4F08Rz6j-PMpelrU41kqPlivujokHPzYmgayBlgF7f4mGeUFr677chgPLGFSDdZqX5YsUW0xOvSYtXKVXOqxB095QcwViaW-HKCHRctewFRslEg7ps5ZpS93Q/C-JYoWhfEqVEIA-yzmbQjYoK20_JO9tKWNPVGFSwDgA"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">Analyse SWOT</h2>
 <div class="swot-grid">
@@ -320,7 +321,7 @@ L'avantage structurel repose sur un réseau de logistique inversée propriétair
 <div class="source-list">
 <h3>Valeur de la chaîne</h3>
 <p>Aucune donnée disponible pour cette section.</p>
-<h3>Marché</h3><p>DOSSIER D'INTELLIGENCE DU MARCHÉ - SUIVI DES PREUVES URL</p>
+<h3><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></h3><p>DOSSIER D'INTELLIGENCE DU MARCHÉ - SUIVI DES PREUVES URL</p>
 <p>Objectif : Documentation à l'appui avec preuves URL complètes pour l'analyse d'attractivité du marché</p>
 <p>Marché : ITAD &amp; Tierce Maintenance Éco-Responsable B2B</p>
 <p>Complétude des données : 75/100</p>
@@ -386,6 +387,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;

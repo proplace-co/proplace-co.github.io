@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,11 +134,11 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">HotelHub</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "HotelHub"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">HotelHub</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "HotelHub"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
-<span class="sb-tag">Royaume-Uni</span>
+<span class="sb-tag"><span class="i18n-fr">Royaume-Uni</span><span class="i18n-en">United Kingdom</span></span>
 <span class="sb-tag">Exited (Acquired / Buyout)</span>
 <span class="sb-tag">B2B Software &amp; Cloud</span>
 <span class="sb-tag">B2B</span>
@@ -149,9 +150,9 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a href="mailto:jay.virdee@hotelhub.com"><i class="fas fa-envelope"></i> jay.virdee@hotelhub.com</a>
 </div>
 </div>
-<span class="sb-nav-heading">Marché</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></span>
 <a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
 <a class="nav-item bg-green" href="#product">Product</a>
 <a class="nav-item bg-green" href="#business-model">Business Model</a>
@@ -177,11 +178,11 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <div class="section">
 <h3>Abonnez-vous à la newsletter Proplace ?</h3>
 <p class="meta-desc">Recevez les dernières nouvelles en M&amp;A et levées de fonds.</p>
-<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank"><span class="i18n-fr">S'abonner à la newsletter</span><span class="i18n-en">Subscribe to the newsletter</span></a>
 </div>
 <div class="section">
 <h3>Vous souhaitez un deal flow propriétaire ?</h3>
-<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<p class="meta-desc"><span class="i18n-fr">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</span><span class="i18n-en">Receive highly qualified targets for your acquisition strategy, every day.</span></p>
 <a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Réserver un appel stratégique</a>
 </div>
 <div class="sidebar-logo-wrap">
@@ -311,7 +312,7 @@ HotelHub s'impose comme l'architecture sous-jacente universelle pour tous les fl
 Le mouvement de consolidation du voyage d'affaires amène les grands GDS (Amadeus, Sabre) à racheter ou à bypasser les briques d'agrégation tierces, rendant la couche intermédiaire d'HotelHub superflue à horizon 5 ans.<br/>
 <br/>
 <span style="font-weight:bold;">🚩 DRAPEAUX ROUGES</span><br/>
-<ul><li>Risques Universels : Une forte concentration du chiffre d'affaires sur un nombre restreint de méga-comptes TMC (AMEX GBT, Flight Centre) rendant l'activité vulnérable au moindre pivot technologique d'un de ces géants.</li><li>Incohérences avec la Thèse : L'acquisition par  écarte provisoirement la possibilité d'un refinancement traditionnel par capital-risque, transformant le dossier en un enjeu d'intégration opérationnelle de constellation industrielle intra-groupe.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/1Uq36B4u6vaC9Jz-shNUjQ/8Hvv6vqssoZa9lJTEaDfDaMhBpyWD_-TP97Wjbo1i9DLov5gfi9GfFIAcf0ZcsvObmaDGmDq-f3A1aMrbnGE1tsVSCI-fms76jbuvPhKBdldmzrjka8TccM9MLgQn66MFw_qKsvmLgqFF4w4-7F3aQ/sBZk0ORMj-o1gMQoU0Odkv14tFxnbvfp-c1_OF-Oq3E"/></div></div></div>
+<ul><li>Risques Universels : Une forte concentration du chiffre d'affaires sur un nombre restreint de méga-comptes TMC (AMEX GBT, Flight Centre) rendant l'activité vulnérable au moindre pivot technologique d'un de ces géants.</li><li>Incohérences avec la Thèse : L'acquisition par  écarte provisoirement la possibilité d'un refinancement traditionnel par capital-risque, transformant le dossier en un enjeu d'intégration opérationnelle de constellation industrielle intra-groupe.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/pOoGFoPtp8dKfSC1_3CfWg/UrTFszpgGynq_Bsf80eqp1ih5ooJhJw8DN7zq7ydv8yfNMrp96onCf74ndZBP-1A5caCSV4vYF5x0P2LpQ5F51109wBD4CFfQf0Qap6gV8MCHuYL57neuWrE4U_amxx1-PrlVEueYR05y69awL9_Bg/4IzqxG7Jb9nynO_bTioVE4k18NMLgC0c-K_uDktDmXk"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">Analyse SWOT</h2>
 <div class="swot-grid">
@@ -382,6 +383,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;

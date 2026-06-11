@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,11 +134,11 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Bravekid</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Bravekid"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Bravekid</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Bravekid"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
-<span class="sb-tag">Italie</span>
+<span class="sb-tag"><span class="i18n-fr">Italie</span><span class="i18n-en">Italy</span></span>
 <span class="sb-tag">Exited (Acquired / Buyout)</span>
 <span class="sb-tag">Retail &amp; E-commerce Tech</span>
 <span class="sb-tag">B2B2C</span>
@@ -148,9 +149,9 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a href="https://it.linkedin.com/in/marco-perin-2633096" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
 </div>
 </div>
-<span class="sb-nav-heading">Marché</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></span>
 <a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
 <a class="nav-item bg-green" href="#product">Product</a>
 <a class="nav-item bg-green" href="#business-model">Business Model</a>
@@ -167,20 +168,20 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 </div>
 <div class="divider"></div>
 <div class="section">
-<h3>Explorez Bravekid davantage ?</h3>
+<h3><span class="i18n-fr">Explorez Bravekid davantage ?</span><span class="i18n-en">Explore Bravekid further?</span></h3>
 <a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Réserver un appel stratégique sur Bravekid</a>
 </div>
 <div class="divider"></div>
 
 
 <div class="section">
-<h3>S'abonner à la newsletter Proplace ?</h3>
+<h3><span class="i18n-fr">S'abonner à la newsletter Proplace ?</span><span class="i18n-en">Subscribe to the Proplace newsletter?</span></h3>
 <p class="meta-desc">Recevez les actualités quotidiennes du M&amp;A et du fundraising.</p>
-<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank"><span class="i18n-fr">S'abonner à la newsletter</span><span class="i18n-en">Subscribe to the newsletter</span></a>
 </div>
 <div class="section">
-<h3>Envie d'un deal flow propriétaire ?</h3>
-<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<h3><span class="i18n-fr">Envie d'un deal flow propriétaire ?</span><span class="i18n-en">Want proprietary deal flow?</span></h3>
+<p class="meta-desc"><span class="i18n-fr">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</span><span class="i18n-en">Receive highly qualified targets for your acquisition strategy, every day.</span></p>
 <a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Réserver un appel stratégique</a>
 </div>
 <div class="sidebar-logo-wrap">
@@ -301,7 +302,7 @@ Les marques du groupe parent et des partenaires tiers s'engagent sur des licence
 Le groupe OTB décide de centraliser et d'intégrer en interne ou de confier ses licences phares à de plus gros concurrents (comme ) à la fin des contrats, privant l'entité de sa substance opérationnelle et commerciale la plus dynamique sans alternative tangible.<br/>
 <br/>
 <span style="font-weight:bold;">🚩 ALERTES ET DRAPEAUX ROUGES</span><br/>
-<ul><li>Risques Universels : Dépendance élevée vis-à-vis de la volatilité de la consommation de luxe des ménages de classe supérieure, très sensible aux turbulences économiques mondiales.</li><li>Incompatibilités de Thèse : Brave Kid n'est pas un actif entrepreneurial indépendant propice à une sortie de capital-risque mais une filiale industrielle d'un conglomérat de mode solidement implanté.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/QrBqDCmwivoLFwenocgpJA/3TYVbjyZJRLOEYPXHpH-6tKXQaMkww4T-tfLCHnzh9HL1wBjB0agAxNUbn_dCce7EcCYXaUlqUNElxVhviMdPKjwB2TjcwcHwWfsNr8UPbp-G9a0NfvaIFhPhOMFSzll80u3Fk33NBT5BiatkhcNmw/CfdW7LhZydelhqmM3N4oxVB1m7j46tQBZ10ow8IXIvE"/></div></div></div>
+<ul><li>Risques Universels : Dépendance élevée vis-à-vis de la volatilité de la consommation de luxe des ménages de classe supérieure, très sensible aux turbulences économiques mondiales.</li><li>Incompatibilités de Thèse : Brave Kid n'est pas un actif entrepreneurial indépendant propice à une sortie de capital-risque mais une filiale industrielle d'un conglomérat de mode solidement implanté.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/sSxPdAkrFD8ugqMvsWVPTg/78FZJfWv_9IaJnxEl88Kz74M73fBAAEXJCcuGFpfox_bSNkS2LdiKbnuwAEpe_WIkKxTOVOP93abxT7eJaGju1AmEWwKYZd6svfCK2qECPkv6bgjN2Rg-9t--3ZbXc3mwcnDFIYCO7HMx7pzfaTBpg/avzf1Yxxc2RS-jwRr8JlcT28LV-3Di0EqiJb-LAsNvI"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">Analyse SWOT</h2>
 <div class="swot-grid">
@@ -381,6 +382,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;

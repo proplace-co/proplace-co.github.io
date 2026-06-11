@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,11 +134,11 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Charanga</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Charanga"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Charanga</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Charanga"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
-<span class="sb-tag">Royaume-Uni</span>
+<span class="sb-tag"><span class="i18n-fr">Royaume-Uni</span><span class="i18n-en">United Kingdom</span></span>
 <span class="sb-tag">Growth / Auto-financé</span>
 <span class="sb-tag">Education &amp; EdTech</span>
 <span class="sb-tag">B2B</span>
@@ -149,9 +150,9 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a href="mailto:paul.fletcher@charanga.com"><i class="fas fa-envelope"></i> paul.fletcher@charanga.com</a>
 </div>
 </div>
-<span class="sb-nav-heading">Marché</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></span>
 <a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
 <a class="nav-item bg-green" href="#product">Product</a>
 <a class="nav-item bg-green" href="#business-model">Business Model</a>
@@ -310,7 +311,7 @@ Charanga s'impose comme l'infrastructure logicielle standardisée par défaut de
 L'expansion internationale se heurte à des coûts d'acquisition client dramatiquement élevés à cause du manque de hubs de distribution à l'étranger, forçant l'entreprise à basculer vers une force de vente directe onéreuse, réduisant à néant l'efficacité financière historique de la société et la reléguant à son seul marché domestique.<br/>
 <br/>
 <span style="font-weight:bold;">🚩 SIGNAUX D'ALERTE (RED FLAGS)</span><br/>
-<ul><li>Risques universels : Un cycle de vente gouvernemental et institutionnel notoirement long et politisé qui expose les finances de l'entreprise aux fluctuations des arbitrages budgétaires des États.</li><li>Incohérences avec la thèse : Le profil historique auto-financé et prudent de l'équipe de Brighton peut entrer en collision frontale avec la mentalité d'une hyper-croissance à capital-risque recherchée par le fonds .</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/u4aQVT_Luve-fLg-2ebJ4Q/lm9SaQXggsp8Kxf1v9riKgjc33_ZopxcBwELqzqulC5niRpJSUtDgBEGA4z917I9vLt4_aXX3ugACc0bYG6T2O6xYAq6XofvHmRa0OVlF_FBTWxgIEJShNiVjM9dQeqaCe0HK6NudCyUdfRnA9YgRQ/YBRa-etlyvU_FXt7BLezHneO-pKTYhFBYcoiiC8wBTc"/></div></div></div>
+<ul><li>Risques universels : Un cycle de vente gouvernemental et institutionnel notoirement long et politisé qui expose les finances de l'entreprise aux fluctuations des arbitrages budgétaires des États.</li><li>Incohérences avec la thèse : Le profil historique auto-financé et prudent de l'équipe de Brighton peut entrer en collision frontale avec la mentalité d'une hyper-croissance à capital-risque recherchée par le fonds .</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/JS3VK5PcY4dqhyHA0nZNdw/cZE_sra1x7PnTK3kkYSOfjcrKWL8qf0bpl0u27b8-PB2kLhRPDAFFvaR82lQ-P0K-ER_SrBUvXRdFMQhWJp4gbf0f6b768Y6MqO9FL4emxt0Wpmx7W7BnvUocCBy_3Moz3aOTMiGzRCmg2EJJU5x_Q/QqC25Y7wVCdqDYLZsrIZpN6WT53q45XtnnOx4nE2RJk"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">Analyse SWOT</h2>
 <div class="swot-grid">
@@ -388,6 +389,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;

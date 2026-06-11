@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,7 +134,7 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Sogoewaste</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Sogoewaste"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Sogoewaste</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Sogoewaste"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
@@ -148,9 +149,9 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a href="https://in.linkedin.com/in/manmath-shilke-" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
 </div>
 </div>
-<span class="sb-nav-heading">Marché</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></span>
 <a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
 <a class="nav-item bg-green" href="#product">Product</a>
 <a class="nav-item bg-green" href="#business-model">Business Model</a>
@@ -305,7 +306,7 @@ Sogoewaste parvient à sceller des partenariats de long terme exclusifs avec 70%
 La montée continue du coût d'acquisition des métaux usagés et une concurrence accrue des leaders indiens soutenus par de puissants investisseurs de capital-risque assèchent les marges de Sogoewaste, transformant ses imposantes infrastructures physiques de traitement en un centre de coûts non rentable à l'horizon de 18 mois.<br/>
 <br/>
 <span style="font-weight:bold;">🚩 DRAPEAUX ROUGES</span><br/>
-<ul><li>Risques Universels : Barrière technologique pure relativement faible sur l'extraction physique primaire, le modèle reposant fortement sur l'exécution opérationnelle et la résilience de la chaîne d'approvisionnement.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/FyM0_szUGyS0eLdmfDu7hw/_JbDAXZdYi6-n6pku-LefZI4huR3UZfx3BBgWRDxz32b2C-ScbRgutciNhLY-sm_imH71gBkRWjw9FsQHHNCDODk5URl3hx3vqgngyDuOxzMxGtNEsmTQvQXs6MaGOBNGL2lGB-3uRzfPNU5hqZlTw/MkT4F_EYGlQn0z7971RjjfRmAmc5ZG_AxSs8XCK4788"/></div></div></div>
+<ul><li>Risques Universels : Barrière technologique pure relativement faible sur l'extraction physique primaire, le modèle reposant fortement sur l'exécution opérationnelle et la résilience de la chaîne d'approvisionnement.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/E56jo6OBrTbD1YMhHNYXYA/pyJTvULxaMSTZesapsMas4LcHw_5yby5mks8H5Ys6nFjoCo7jk7EKMf8PjBr7UjdtDFy50j8EdcwoUQdWQRI6EIep0w-JypyHudXVB0hMjbuG4MFGMnHTt0YBaGrcUPCp2FuFllTIRm_i_pG2m5QlA/1M4-OWoi_oLqy41sWXRLTi9av1OsfafXtheDJI7NVhg"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">Analyse SWOT</h2>
 <div class="swot-grid">
@@ -391,6 +392,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;

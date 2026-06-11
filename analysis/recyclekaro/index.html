@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,7 +134,7 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Recyclekaro</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Recyclekaro"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Recyclekaro</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Recyclekaro"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
@@ -151,9 +152,9 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 </div>
 </div>
 </div>
-<span class="sb-nav-heading">Marché</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></span>
 <a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
 <a class="nav-item bg-green" href="#product">Product</a>
 <a class="nav-item bg-green" href="#business-model">Business Model</a>
@@ -319,7 +320,7 @@ This analysis reveals an operational business scaling into a highly regulated ca
 <ul><li>First Meeting Go/No-Go Signal: A clear commitment to proprietary, high-margin cathode-grade metal extraction backed by contracted, low-cost OEM feed contracts warrants deeper diligence, whereas any signal that the company remains overly dependent on low-margin base e-waste processing and spot market feedstock pricing should lead to a prompt pass.</li></ul>
 <br/>
 <span style="font-weight:bold;">🌐 DATA CONFIDENCE :</span> MEDIUM<br/>
-<ul><li>Sourced data is solid on operational scale, plant location, capacity milestones, and national policy eligibility, but deeper primary diligence must focus on private-scale balance sheet health and actual cost-of-goods-sold structures.</li><li><span style="font-weight:bold;">DATA GAPS :</span> Detailed financial margins representing metallurgical chemical processing cost-per-ton • Churn and contract term lengths with the 375+ corporate partners.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/KspbjGCXL4Wasoc3p94cUg/7pB_3k5d1JcJGqXDLyViEoHrqtT9jC-4LcC3lFQQy8CH8C9xsOddv6p-bRVasIfkTFBPS9Sj3X8ZkCmXKiHj1ns-kfMZ_HfAcvRHO7h9PDV07U6_CTgwKyAp5gmvJSlkHinwIGHiUM1QyTsVBxvziA/yT5iKD7PfWdjmgSpWI3HjXPUzIrgZSpzReizWcfTwsg"/></div></div></div>
+<ul><li>Sourced data is solid on operational scale, plant location, capacity milestones, and national policy eligibility, but deeper primary diligence must focus on private-scale balance sheet health and actual cost-of-goods-sold structures.</li><li><span style="font-weight:bold;">DATA GAPS :</span> Detailed financial margins representing metallurgical chemical processing cost-per-ton • Churn and contract term lengths with the 375+ corporate partners.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/a9o1jNMYeYQnzphLJ_AYdA/L5Jp6mtHpYhHmfch4KkEshQWW0RqxUNd76qgqvgT2uN-ZiKBadtGfIP8BrwJMnVJJoToE_uXuNSxuAUQqVWMMiMlBcYyHJaG5YEINBI3Qy2nlDvD7CPLqVyRCd7huLAVRcq9ppjoVIqVm7_TuERi3w/BaxE9UvRSugoYXqpSg_uWIJuqY6J55qSjNnmRhL3RVk"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">SWOT Analysis</h2>
 <div class="swot-grid">
@@ -399,6 +400,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;

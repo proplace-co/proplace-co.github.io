@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,11 +134,11 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Cloover</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Cloover"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Cloover</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Cloover"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
-<span class="sb-tag">Allemagne / Autriche</span>
+<span class="sb-tag"><span class="i18n-fr">Allemagne / Autriche</span><span class="i18n-en">Germany / Austria</span></span>
 <span class="sb-tag">Series A</span>
 <span class="sb-tag">Greentech / ESG FinTech</span>
 <span class="sb-tag">B2B2C</span>
@@ -148,9 +149,9 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a href="https://de.linkedin.com/in/pederbroms" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
 </div>
 </div>
-<span class="sb-nav-heading">Marché</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></span>
 <a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
 <a class="nav-item bg-green" href="#product">Product</a>
 <a class="nav-item bg-green" href="#business-model">Business Model</a>
@@ -159,29 +160,29 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
 <a class="nav-item bg-grey" href="#sources">Sources</a>
 <div class="sb-legend-wrap">
-<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Données de marché</span></div>
-<div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Données société</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span><span class="i18n-fr">Données de marché</span><span class="i18n-en">Market data</span></span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span><span class="i18n-fr">Données société</span><span class="i18n-en">Company data</span></span></div>
 <div><span style="width:9px;height:9px;border-radius:1px;background:#a898c0;display:inline-block;flex-shrink:0;border:1px solid #8878a0;"></span><span></span></div>
-<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; raisonnement</span></div>
-<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; méthodologie</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span><span class="i18n-fr">Verdict &amp; raisonnement</span><span class="i18n-en">Verdict &amp; reasoning</span></span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span><span class="i18n-fr">Sources &amp; méthodologie</span><span class="i18n-en">Sources &amp; methodology</span></span></div>
 </div>
 <div class="divider"></div>
 <div class="section">
-<h3>Explorez Cloover davantage ?</h3>
-<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur Cloover</a>
+<h3><span class="i18n-fr">Explorez Cloover davantage ?</span><span class="i18n-en">Explore Cloover further?</span></h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank"><span class="i18n-fr">Planifier un appel stratégique sur Cloover</span><span class="i18n-en">Schedule a strategy call on Cloover</span></a>
 </div>
 <div class="divider"></div>
 
 
 <div class="section">
-<h3>S'abonner à la newsletter Proplace ?</h3>
-<p class="meta-desc">Recevez les actualités quotidiennes sur le M&amp;A et la levée de fonds.</p>
-<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+<h3><span class="i18n-fr">S'abonner à la newsletter Proplace ?</span><span class="i18n-en">Subscribe to the Proplace newsletter?</span></h3>
+<p class="meta-desc"><span class="i18n-fr">Recevez les actualités quotidiennes sur le M&amp;A et la levée de fonds.</span><span class="i18n-en">Get the daily M&amp;A and fundraising news.</span></p>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank"><span class="i18n-fr">S'abonner à la newsletter</span><span class="i18n-en">Subscribe to the newsletter</span></a>
 </div>
 <div class="section">
-<h3>Envie d'un deal flow propriétaire ?</h3>
-<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
-<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+<h3><span class="i18n-fr">Envie d'un deal flow propriétaire ?</span><span class="i18n-en">Want proprietary deal flow?</span></h3>
+<p class="meta-desc"><span class="i18n-fr">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</span><span class="i18n-en">Receive highly qualified targets for your acquisition strategy, every day.</span></p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank"><span class="i18n-fr">Planifier un appel stratégique</span><span class="i18n-en">Schedule a strategy call</span></a>
 </div>
 <div class="sidebar-logo-wrap">
 </div>
@@ -299,7 +300,7 @@ Le moat de Cloover repose sur un verrouillage d'infrastructure d'origination de 
 <ul><li>Le scénario haussier : Cloover réussit à s'imposer comme le Shopify de l'énergie en connectant 5 000 installateurs à travers l'Europe, contrôlant le réseau de distribution logiciel indispensable à la transition énergétique et capturant une commission sur chaque mégawattheure produit et chaque financement alloué par son intermédiaire.</li><li>Le scénario baissier : Les banques de détail traditionnelles européennes s'associent directement avec les plus grands équipementiers de pompes à chaleur pour proposer des outils d'origination de crédit gratuits, contournant le canal indirect des installateurs indépendants et privant Cloover de sa matière première d'origination à partir de fin 2027.</li></ul>
 <br/>
 <span style="font-weight:bold;">🚩 SIGNAUX D'ALERTE</span><br/>
-<ul><li>Risques universels : La gestion opérationnelle et réglementaire extrêmement complexe d'une entité financière d'assurance-crédit grand public transfrontalière présente des risques de litiges avec les consommateurs locaux si les économies réelles ne couvrent pas la mensualité de crédit.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/R9H2o-icF4l7yJYVSPD1Uw/7bYk-P4m4eVWOFylgUWj8WHyzSu2hTqwg5Lf7zqRW7JzYsMHKteqmJdFCFMS1w-gkPC_ZR5mvdUWfOVPdWQxngnZYQIMS6OvQzzh75wAM82QdXvc-as_m0SfcRmzd9cfrNSsEW9NNnxlK3q2yy2jWw/PnEWPMMQvVhK86ipcZ9OCQmCbNiTYfNHoWtZGCtDev0"/></div></div></div>
+<ul><li>Risques universels : La gestion opérationnelle et réglementaire extrêmement complexe d'une entité financière d'assurance-crédit grand public transfrontalière présente des risques de litiges avec les consommateurs locaux si les économies réelles ne couvrent pas la mensualité de crédit.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/GEqanaUU5bdvcQBHiUFoPg/-L6nTOo3SHlMjjEQtqzzlf5g97SbrK-xDdFcaCf_soICJywqFrgv7nfujuHAm-kvs6ENRJQ1_TxZequLzeABVLwylFnH744lGWLyyDq51mZCD5gWb-xwhlA9MU-5wC3eB-5PqS-oOATrz45gfgFfYA/krFc25RBaG_WFqy0WQEkSycRFX80gAwSwfbp7yzxIAQ"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">Analyse SWOT</h2>
 <div class="swot-grid">
@@ -379,6 +380,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;

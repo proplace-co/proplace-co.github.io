@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,7 +134,7 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Ecoreco</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Ecoreco"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Ecoreco</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Ecoreco"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
@@ -148,9 +149,9 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a href="https://in.linkedin.com/in/bksoni" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
 </div>
 </div>
-<span class="sb-nav-heading">Marché</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></span>
 <a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
 <a class="nav-item bg-green" href="#product">Product</a>
 <a class="nav-item bg-green" href="#business-model">Business Model</a>
@@ -167,8 +168,8 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 </div>
 <div class="divider"></div>
 <div class="section">
-<h3>Explorez Ecoreco davantage ?</h3>
-<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur Ecoreco</a>
+<h3><span class="i18n-fr">Explorez Ecoreco davantage ?</span><span class="i18n-en">Explore Ecoreco further?</span></h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank"><span class="i18n-fr">Planifier un appel stratégique sur Ecoreco</span><span class="i18n-en">Schedule a strategy call on Ecoreco</span></a>
 </div>
 <div class="divider"></div>
 </div>
@@ -292,7 +293,7 @@ Le durcissement drastique des normes EPR en Inde force la totalité des OEM mond
 Le gisement de déchets électroniques continue de fuir massivement vers l'économie informelle indienne plus compétitive et moins soumise aux normes strictes, réduisant le taux d'utilisation de l'usine physique sophistiquée d'Ecoreco à un niveau d'inactivité critique qui érode ses marges de valorisation et son capital opérationnel.<br/>
 <br/>
 <span style="font-weight:bold;">🚩 SIGNAUX D'ALERTE (RED FLAGS)</span><br/>
-<ul><li>Risques Universels: Absense notoire d'une infrastructure logicielle propriétaire évolutive (SaaS/Platform) reliant les clients, rendant la traçabilité très manuelle par rapport aux concurrents de la logtech indienne.</li><li>Incohérences Spécifiques avec la Thèse: Profil de société publique cotée sur une bourse de taille moyenne (micro-cap BSE), rendant les valorisations d'entrée rigides et l'alignement sur un capital-risque agile plus complexe à structurer.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/zdNRR--c7vGcF3ywqXnBTA/PYzd-II73SIZ3tYkvCXCpPht0yxJUA5AOOj4iFzR3AjVP0_umund60MFgzOwqx5U8HoDfOgrixKxf0Wo0UJgC3Gj4ubQEDjF4h6Z9Z5tSpWK95BkPfvnvJAV42uDcrtz5on3VY7-X1VmUM-0qHW_xA/W4f9fdE6ppjc19bXLbym77g9Dkcw7eX6xmOZyxs8_s0"/></div></div></div>
+<ul><li>Risques Universels: Absense notoire d'une infrastructure logicielle propriétaire évolutive (SaaS/Platform) reliant les clients, rendant la traçabilité très manuelle par rapport aux concurrents de la logtech indienne.</li><li>Incohérences Spécifiques avec la Thèse: Profil de société publique cotée sur une bourse de taille moyenne (micro-cap BSE), rendant les valorisations d'entrée rigides et l'alignement sur un capital-risque agile plus complexe à structurer.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/uvoADh9KFttLZL2I8hkhpQ/A5z6iq_4tie5-seZlVhh61j1nKYeiIQpp66CdMKDOgD54SZI7WSFV6JXF1dLLW92V-0fzb8fviPi9zoOe3eC2_j0a2w8tWgjRnz1JmblVNZBGk8Mx5BKr31Vtprimhy8dhxBrSJYV6aSjJ4uPV31CA/IpXlvm3Ljti9vytcI2Iknb3emX55W48Pur8_zCISkfM"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">Analyse SWOT</h2>
 <div class="swot-grid">
@@ -395,6 +396,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;

@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,7 +134,7 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Mondial Veille</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Mondial Veille"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Mondial Veille</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Mondial Veille"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
@@ -147,9 +148,9 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a href="https://mondial-veille.com" target="_blank"><i class="fas fa-globe"></i> Site Web</a>
 </div>
 </div>
-<span class="sb-nav-heading">Marché</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></span>
 <a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
 <a class="nav-item bg-green" href="#product">Product</a>
 <a class="nav-item bg-green" href="#business-model">Business Model</a>
@@ -296,7 +297,7 @@ Mondial Veille profite d'un rempart concurrentiel lié aux coûts de transfert �
 <ul><li>Le Bull Case : Mondial Veille double sa base d'EBITDA opérationnel en modernisant son parc client par l'intégration d'algorithmes d'analyse d'images open-source sans devoir recruter d'opérateurs pour le premier niveau d'alerte.</li><li>Le Bear Case : La désintermédiation s'accentue sous la pression de solutions d'alarmes intelligentes auto-gérées à bas coût directement intégrées par les clients tertiaires.</li></ul>
 <br/>
 <span style="font-weight:bold;">🚩 POINTS DE VIGILANCE (RED FLAGS)</span><br/>
-<ul><li>Risques Universels : Forte dépendance opérationnelle aux personnels de sécurité de terrain sur un secteur en forte tension d'embauche et obsolescence rapide de l'ancienne infrastructure de captation vidéo.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/qmkpSzCXpQD3WRZzJeK8pg/g9FqbtM7DmXieQvGeKdvqqPOhSN_QeLwJmGQ6Tv2FTl7InK7kluG3S8ypSBByEVV9ErOdXoT1sP48VQiMl5aL5p2M1jdivc97qGsKRXML31pPzGthwB0IsYMXIrkxqH7gWWqDh1_pUhl7HpR94A4iA/VnV2xqT70CVMmgS9V4D-6kZJMdvQQ3hTtnyUEcjl8zo"/></div></div></div>
+<ul><li>Risques Universels : Forte dépendance opérationnelle aux personnels de sécurité de terrain sur un secteur en forte tension d'embauche et obsolescence rapide de l'ancienne infrastructure de captation vidéo.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/8JsVzc0Q2h516Uo2Zn2WNQ/771_5y5PgmCSq1FC4f2aBEqMxPsqe6UMyAD2m2t0FncmTYkPtjqHL-l-UQOkSnPO1MOj23yQyt1yR9j8NXrucnIVdePUh1LZLhXXZ63iw0dcO9cpD_uI5OHdMWxM3xZqnudYEFnOe9GzNen8i0PBlA/pR3NY4RRfFYj5Fo-1yhxeCCQMM5o_7jntQtIsmv43F8"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">Analyse SWOT</h2>
 <div class="swot-grid">
@@ -380,6 +381,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;

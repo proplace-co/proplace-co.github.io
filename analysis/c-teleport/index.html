@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,11 +134,11 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">C Teleport</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "C Teleport"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">C Teleport</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "C Teleport"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
-<span class="sb-tag">Pays-Bas</span>
+<span class="sb-tag"><span class="i18n-fr">Pays-Bas</span><span class="i18n-en">Netherlands</span></span>
 <span class="sb-tag">Series A</span>
 <span class="sb-tag">Logistics &amp; Supply Chain</span>
 <span class="sb-tag">B2B</span>
@@ -149,7 +150,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a href="mailto:beliakov@cteleport.com"><i class="fas fa-envelope"></i> beliakov@cteleport.com</a>
 </div>
 </div>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Proposition de valeur</a>
 <a class="nav-item bg-green" href="#product">Produit</a>
 <a class="nav-item bg-green" href="#business-model">Modèle d'affaires</a>
@@ -158,29 +159,29 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
 <a class="nav-item bg-grey" href="#sources">Sources</a>
 <div class="sb-legend-wrap">
-<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Données de marché</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span><span class="i18n-fr">Données de marché</span><span class="i18n-en">Market data</span></span></div>
 <div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Données d'entreprise</span></div>
 <div><span style="width:9px;height:9px;border-radius:1px;background:#a898c0;display:inline-block;flex-shrink:0;border:1px solid #8878a0;"></span><span></span></div>
-<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; raisonnement</span></div>
-<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; méthodologie</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span><span class="i18n-fr">Verdict &amp; raisonnement</span><span class="i18n-en">Verdict &amp; reasoning</span></span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span><span class="i18n-fr">Sources &amp; méthodologie</span><span class="i18n-en">Sources &amp; methodology</span></span></div>
 </div>
 <div class="divider"></div>
 <div class="section">
 <h3>Explorer davantage C Teleport ?</h3>
-<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur C Teleport</a>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank"><span class="i18n-fr">Planifier un appel stratégique sur C Teleport</span><span class="i18n-en">Schedule a strategy call on C Teleport</span></a>
 </div>
 <div class="divider"></div>
 
 
 <div class="section">
-<h3>S'abonner à la newsletter Proplace ?</h3>
+<h3><span class="i18n-fr">S'abonner à la newsletter Proplace ?</span><span class="i18n-en">Subscribe to the Proplace newsletter?</span></h3>
 <p class="meta-desc">Recevez quotidiennement les news M&amp;A et levées de fonds.</p>
-<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank"><span class="i18n-fr">S'abonner à la newsletter</span><span class="i18n-en">Subscribe to the newsletter</span></a>
 </div>
 <div class="section">
-<h3>Envie d'un deal flow propriétaire ?</h3>
-<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
-<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+<h3><span class="i18n-fr">Envie d'un deal flow propriétaire ?</span><span class="i18n-en">Want proprietary deal flow?</span></h3>
+<p class="meta-desc"><span class="i18n-fr">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</span><span class="i18n-en">Receive highly qualified targets for your acquisition strategy, every day.</span></p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank"><span class="i18n-fr">Planifier un appel stratégique</span><span class="i18n-en">Schedule a strategy call</span></a>
 </div>
 <div class="sidebar-logo-wrap">
 </div>
@@ -306,7 +307,7 @@ Le fossé défensif repose sur les coûts de changement élevés (switching cost
 <ul><li>Le Scénario Bull: C Teleport s'impose comme l'infrastructure technologique globale sous-jacente gérant chaque déplacement d'équipage maritime, de technicien pétrolier et de personnel de l'aviation de premier plan en connectant nativement tous les ERP de flottes maritimes et d'actifs industriels directement aux stocks mondiaux de transporteurs aériens, capturant ainsi une commission sur un flux transactionnel de plusieurs milliards de dollars.</li><li>Le Scénario Bear: L'entreprise reste confinée à un rôle de courtier technologique de second plan, souffrant de la réplique rapide de fonctionnalités de réservation basiques par des agences de voyages physiques legacy restructurant leurs technologies ou de la montée en puissance de solutions de paiement spécialisées déconnectant la valeur de la simple logique de réservation de billets.</li></ul>
 <br/>
 <span style="font-weight:bold;">🚩 SIGNAUX D'ALERTE (RED FLAGS)</span><br/>
-<ul><li>Risques Universels: L'absence de levée de fonds majeure documentée depuis la fin 2018 peut limiter la vitesse de développement technologique et d'expansion géographique globale face à des rivaux disposant de capitaux massifs.</li><li>Contradictions avec la Thèse: La nature transactionnelle et dépendante du volume de transport mondial rend le business model plus sensible aux crises macroéconomiques et aux perturbations du commerce mondial qu'un modèle SaaS de pure souscription récurrente.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/kqoAx1J3fvGg07WJWIQhMw/z6vyiK1nzePqrMJdR00Vn6qKh3QstNUOJLsdOvBvogOjUsIDvhTtJ1ztCjI-YwmZD9RgSLwGPTQMusYGWsEWNWvXB5b_0z21Np9GxOh9YUf7w0yTisnpThovlazAZ-iRUFVJDLu-K8pcE7n5m9Bcpw/DhFgs0jKKIYLLtLq2G_RF907pxHidXIW9EFxRir-qW8"/></div></div></div>
+<ul><li>Risques Universels: L'absence de levée de fonds majeure documentée depuis la fin 2018 peut limiter la vitesse de développement technologique et d'expansion géographique globale face à des rivaux disposant de capitaux massifs.</li><li>Contradictions avec la Thèse: La nature transactionnelle et dépendante du volume de transport mondial rend le business model plus sensible aux crises macroéconomiques et aux perturbations du commerce mondial qu'un modèle SaaS de pure souscription récurrente.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/psu8vq0BQJKykjH9pAlFIQ/PePPbjYv8sSQS7zg3DHBxu9tnB3fsD6AkcqKoTw8njAT8ITleOxQI2s8wNgs9u7-hmLmHmv2ZjPJknmHEHkvnLVRE22ckH05-sY-Xq76ATHZ_K4sj1uYpLGd3JZAnY1o_x1nG-wJFgJW58s--sjmMQ/Abfib9-zswMe3z8WwGIqIA2c_GnysGwsbPPi868gPXc"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">Analyse SWOT</h2>
 <div class="swot-grid">
@@ -366,6 +367,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;

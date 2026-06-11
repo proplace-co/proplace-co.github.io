@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,7 +134,7 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Cwf</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Cwf"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Cwf</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Cwf"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
@@ -148,13 +149,13 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a href="https://www.linkedin.com/in/laurent-mallet-82876838" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
 </div>
 </div>
-<span class="sb-nav-heading">Marché</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></span>
 <a class="nav-item bg-yellow" href="#market">Market Sizing</a>
 <a class="nav-item bg-yellow" href="#value-chain">Value Chain</a>
 <a class="nav-item bg-yellow" href="#value-chain-players">Value Chain Players</a>
 <a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
 <a class="nav-item bg-yellow" href="#competition-magic">Competition Magic Quadrant</a>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
 <a class="nav-item bg-green" href="#product">Product</a>
 <a class="nav-item bg-green" href="#business-model">Business Model</a>
@@ -163,10 +164,10 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
 <a class="nav-item bg-grey" href="#sources">Sources</a>
 <div class="sb-legend-wrap">
-<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Données de marché</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span><span class="i18n-fr">Données de marché</span><span class="i18n-en">Market data</span></span></div>
 <div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Données de l'entreprise</span></div>
-<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; raisonnement</span></div>
-<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; méthodologie</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span><span class="i18n-fr">Verdict &amp; raisonnement</span><span class="i18n-en">Verdict &amp; reasoning</span></span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span><span class="i18n-fr">Sources &amp; méthodologie</span><span class="i18n-en">Sources &amp; methodology</span></span></div>
 </div>
 <div class="divider"></div>
 <div class="section">
@@ -1730,7 +1731,7 @@ La solidité opérationnelle et industrielle de l'entreprise est avérée par 60
 <ul><li>Signal d'acceptation / de refus pour le rendez-vous : Un signal d'acceptation clair serait la démonstration d'un taux de renouvellement de licence supérieur à 90% sur 10 ans et d'une croissance e-commerce supérieure à 35% par an. Un signal de refus immédiat serait l'annonce de la perte imminente d'une licence majeure ou d'une contraction des marges brutes de gros en Europe.</li></ul>
 <br/>
 <span style="font-weight:bold;">🌐 CONFIANCE DANS LES DONNÉES :</span> HAUTE<br/>
-<ul><li>Les données financières clés issues de la structuration de la dette de 2023 et les marques partenaires sont extrêmement fiables car sourcées auprès des communiqués officiels d'Arkéa Capital.</li><li><span style="font-weight:bold;">PARCOURS DES DONNÉES NON DISPONIBLES :</span> Marges brutes détaillées par marque propre • Rétention d'utilisation de la plateforme de licensing B2B.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/cI8WSj3KwS_-glkCjZ6VYw/2OIQSVS5dah-hJ5KrtZONIbJDrmshDUTESQDIT2qvkoj-2rFaZ0cF_m3Gc8tlpFyms84DEfoQPqdfLSolxFwInCjCqXrZWKARRaIePmY_xxosq-UlNJwe4hSl7FkGdhXHWnmzhc0tUVSwym9VkoPqQ/-FhI2iJeuvmVh1Y0nisjqkzk3GYEuSc_qV0cwqktfOo"/></div></div></div>
+<ul><li>Les données financières clés issues de la structuration de la dette de 2023 et les marques partenaires sont extrêmement fiables car sourcées auprès des communiqués officiels d'Arkéa Capital.</li><li><span style="font-weight:bold;">PARCOURS DES DONNÉES NON DISPONIBLES :</span> Marges brutes détaillées par marque propre • Rétention d'utilisation de la plateforme de licensing B2B.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/a1KctBmA1A2c4JuwdRyM4g/pldgUQQ1_WA_LdzpF7r-167Ay16GEtO-e2wTK7IcF_rgDFaWgTR7mYT250PXYTUBgbDlNaOzaC56aP-2-JPbmInn92HLuFTqvD0QPgEJqCeKcGGHKWeBuZmZVPZCoEZncu_T0DxMyYtJbF4aH_exYg/qCwBKm6B8SvkzT-xEA_C-cgaFE-qY9x9N4g6svdc4QE"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">Analyse SWOT</h2>
 <div class="swot-grid">
@@ -1875,6 +1876,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;

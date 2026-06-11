@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,7 +134,7 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">LEASY</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "LEASY"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">LEASY</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "LEASY"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
@@ -148,9 +149,9 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a href="https://www.linkedin.com/in/gregorio-gilardini-8b284764" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
 </div>
 </div>
-<span class="sb-nav-heading">Marché</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></span>
 <a class="nav-item bg-yellow" href="#market-summary">Résumé du Marché</a>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Proposition de valeur</a>
 <a class="nav-item bg-green" href="#product">Produit</a>
 <a class="nav-item bg-green" href="#business-model">Business Model</a>
@@ -159,29 +160,29 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
 <a class="nav-item bg-grey" href="#sources">Sources</a>
 <div class="sb-legend-wrap">
-<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span>Données de marché</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#8fa8c8;display:inline-block;flex-shrink:0;border:1px solid #7090b0;"></span><span><span class="i18n-fr">Données de marché</span><span class="i18n-en">Market data</span></span></div>
 <div><span style="width:9px;height:9px;border-radius:1px;background:#7aaa88;display:inline-block;flex-shrink:0;border:1px solid #5a8a68;"></span><span>Données d'entreprise</span></div>
 <div><span style="width:9px;height:9px;border-radius:1px;background:#a898c0;display:inline-block;flex-shrink:0;border:1px solid #8878a0;"></span><span></span></div>
-<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span>Verdict &amp; raisonnement</span></div>
-<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span>Sources &amp; méthodologie</span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#0f1f33;display:inline-block;flex-shrink:0;border:1px solid #0f1f33;"></span><span><span class="i18n-fr">Verdict &amp; raisonnement</span><span class="i18n-en">Verdict &amp; reasoning</span></span></div>
+<div><span style="width:9px;height:9px;border-radius:1px;background:#9eaaba;display:inline-block;flex-shrink:0;border:1px solid #7e8a9a;"></span><span><span class="i18n-fr">Sources &amp; méthodologie</span><span class="i18n-en">Sources &amp; methodology</span></span></div>
 </div>
 <div class="divider"></div>
 <div class="section">
 <h3>Explorer LEASY plus en détail ?</h3>
-<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur LEASY</a>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank"><span class="i18n-fr">Planifier un appel stratégique sur LEASY</span><span class="i18n-en">Schedule a strategy call on LEASY</span></a>
 </div>
 <div class="divider"></div>
 
 
 <div class="section">
-<h3>S'abonner à la newsletter Proplace ?</h3>
+<h3><span class="i18n-fr">S'abonner à la newsletter Proplace ?</span><span class="i18n-en">Subscribe to the Proplace newsletter?</span></h3>
 <p class="meta-desc">Recevez les dernières nouvelles du M&amp;A et de la levée de fonds.</p>
-<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank"><span class="i18n-fr">S'abonner à la newsletter</span><span class="i18n-en">Subscribe to the newsletter</span></a>
 </div>
 <div class="section">
 <h3>Besoin d'un deal flow propriétaire ?</h3>
-<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
-<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+<p class="meta-desc"><span class="i18n-fr">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</span><span class="i18n-en">Receive highly qualified targets for your acquisition strategy, every day.</span></p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank"><span class="i18n-fr">Planifier un appel stratégique</span><span class="i18n-en">Schedule a strategy call</span></a>
 </div>
 <div class="sidebar-logo-wrap">
 </div>
@@ -308,7 +309,7 @@ Le moat premier repose sur l'intégration technologique exclusive et l'accès di
 <ul><li>Le Scénario Haussier (Bull Case) : LEASY capitalise sur son expansion réussie au Mexique pour s'imposer comme le partenaire financier d'infrastructure par défaut (underwriting as a service) pour tous les acteurs de la gig-economy en Amérique Latine, débloquant des valorisations de type fintech à forte marge en intégrant des services d'assurance et d'épargne d'investissement.</li><li>Le Scénario Baissier (Bear Case) : Une hausse soudaine des taux d'intérêt mondiaux et locaux couplée à un durcissement des conditions d'octroi de dette de refinancement paralyse l'achat de nouveaux véhicules de flotte, tandis qu'une vague de défauts de paiement liée à l'inflation érode la valeur résiduelle des véhicules d'occasion saisis.</li></ul>
 <br/>
 <span style="font-weight:bold;">🚩 REGARE SUR LES RISQUES / RED FLAGS</span><br/>
-<ul><li>Risques Universels : L'intensité du besoin en capital (modèle asset-heavy) expose l'entreprise à d'importants goulots d'étranglement de liquidités en période de contraction du crédit dette.</li><li>Incompatibilité Stratégique avec la Thèse : Le modèle nécessite une gestion de flotte physique intensive (maintenance logistique, revente de matériel d'occasion) ce qui s'éloigne notablement des modèles de pure software à haute scalabilité visés d'ordinaire par les investisseurs en capital-risque.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/X_bsvmjuYcl3YhIIjx2oxQ/sd68AoDSSXS4n3roPlbbewodnoDhGoEZvSO7gjLt2HYJaDm6m3ywa9OojDR4r3bEbxlkE_g2aQiHQa2dfqo3z0I1WIFLZO5Q_xCXVrs_J1fSaFvWwwGyCrOymxMI3Lz3IV1jL-3XVO2k6XUnOeiRGQ/ZC2fgRwdmXax6nPUmFWlXTkFSUylZ9CaQR_EkZMLc34"/></div></div></div>
+<ul><li>Risques Universels : L'intensité du besoin en capital (modèle asset-heavy) expose l'entreprise à d'importants goulots d'étranglement de liquidités en période de contraction du crédit dette.</li><li>Incompatibilité Stratégique avec la Thèse : Le modèle nécessite une gestion de flotte physique intensive (maintenance logistique, revente de matériel d'occasion) ce qui s'éloigne notablement des modèles de pure software à haute scalabilité visés d'ordinaire par les investisseurs en capital-risque.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/EeNzR_L6pOuedu65XXqobw/U9snJS-WsuCddeP393NOojS1pzFemyvuCmWJLnzD60_93U4gdDfxKB1c7oACz1q4GeEj80kigN1fZSlKp4QqzurCF-xV7G6YykM7yCF4kqrCHCQwjflQOX0Ezzv2f9-uM_vPzaU-2FwmflW_5V67Bg/K3boNIG0XdYPK5jqBgXOIyTRVy6XZCcG9AU40RNbijo"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">Analyse SWOT</h2>
 <div class="swot-grid">
@@ -386,6 +387,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;

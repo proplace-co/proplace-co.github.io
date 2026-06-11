@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,7 +134,7 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Kamino Retail</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Kamino Retail"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Kamino Retail</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Kamino Retail"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
@@ -149,9 +150,9 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a href="https://fr.linkedin.com/in/marianne-schneider-952406b" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
 <a href="mailto:marianne@kaminoretail.com"><i class="fas fa-envelope"></i> marianne@kaminoretail.com</a>
 </div>
-<span class="sb-nav-heading">Marché</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></span>
 <a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
 <a class="nav-item bg-green" href="#product">Product</a>
 <a class="nav-item bg-green" href="#business-model">Business Model</a>
@@ -167,8 +168,8 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 </div>
 <div class="divider"></div>
 <div class="section">
-<h3>Explorez Kamino Retail davantage ?</h3>
-<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur Kamino Retail</a>
+<h3><span class="i18n-fr">Explorez Kamino Retail davantage ?</span><span class="i18n-en">Explore Kamino Retail further?</span></h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank"><span class="i18n-fr">Planifier un appel stratégique sur Kamino Retail</span><span class="i18n-en">Schedule a strategy call on Kamino Retail</span></a>
 </div>
 <div class="divider"></div>
 </div>
@@ -177,12 +178,12 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <div class="section">
 <h3>Souscrire à la newsletter Proplace ?</h3>
 <p class="meta-desc">Recevez les dernières nouvelles en M&amp;A et levées de fonds.</p>
-<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank"><span class="i18n-fr">S'abonner à la newsletter</span><span class="i18n-en">Subscribe to the newsletter</span></a>
 </div>
 <div class="section">
 <h3>Besoin d'un deal flow propriétaire ?</h3>
 <p class="meta-desc">Recevez chaque jour des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
-<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank"><span class="i18n-fr">Planifier un appel stratégique</span><span class="i18n-en">Schedule a strategy call</span></a>
 </div>
 <div class="sidebar-logo-wrap">
 <p class="meta-text" style="text-align: center; margin: 0; font-size: 11px; line-height: 1.5; word-break: break-word;">Généré par <a href="https://www.proplace.co" target="_blank">Proplace.co</a>Proplace est une IA et peut faire des erreurs.<br/><br/>Contactez-nous via <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p>
@@ -309,7 +310,7 @@ Le moat s\'articule autour de l\'effet de réseau biface généré par l\'écosy
 <ul><li>Le Cas Haussier : En s\'érigeant comme l\'infrastructure alternative souveraine européenne et interopérable, Kamino devient le système opérationnel de référence de 80% des retailers non-Amazon, forçant les marques à consommer leurs budgets hors-cookie sur ses protocoles unifiés.</li><li>Le Cas Baissier : L\'intégration programmatique au sein d\'Equativ dilue la proposition de valeur spécifique de Kamino on-site, incitant les grands retailers complexes à développer une infrastructure interne ou à capituler devant le duopole de fait Criteo/Amazon.</li></ul>
 <br/>
 <span style="font-weight:bold;">🚩 DRAPEAUX ROUGES</span><br/>
-<ul><li>Risques Universels : Risque important de dépendance au secteur ultra-consolidé et mouvant de l\'AdTech programmatique face aux changements d\'algorithmes des géants du web.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/KxFargNDDzruIKI7AjCpdw/NDh5ArpphU6_ev6Aqz52X61ZZSfMycdKtuGyY3YeWi-X8N-k0hFJtVBvATYBbSg4_vqPVUL9fu9_fgvGnEww0kRCCYzJpfxzLK6nhi4fFXDJefKtKF17tkbanvYbWpxcPOroA8npONnqm-SbMFBahQ/5yW8EIkvsu9Ji54bxiepmo64KUTUKL9D8Hwd4DymAi8"/></div></div></div>
+<ul><li>Risques Universels : Risque important de dépendance au secteur ultra-consolidé et mouvant de l\'AdTech programmatique face aux changements d\'algorithmes des géants du web.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/LXY-bVqfobUDf3pat6D4XQ/ipSxC0cd5cy_6B-pGO8FTzoKbn9zbfOuv13KZjK8-rcdy_k5NQ25etZtytRuN-N5QGMGAksRPPr9vm2QVcrw1P7l-Gmvyei1obvGM5B6V1zdQmA5wEFp6oCa5qit4I73PrWsZRTBw7NlRMVxtVnDeQ/EilMRTfpwOlTw7UsRozXKh5-_FoA7NjeKiS7bBv71zA"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">Analyse SWOT</h2>
 <div class="swot-grid">
@@ -394,6 +395,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;

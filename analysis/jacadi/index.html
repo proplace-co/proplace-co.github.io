@@ -116,6 +116,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -133,7 +134,7 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/">Home</a><span class="sep">›</span><a href="/analysis/">Analysis</a><span class="sep">›</span><span class="cur">Jacadi</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Jacadi"}]}</script></div><div class="main-wrapper">
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Jacadi</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Jacadi"}]}</script></div><div class="main-wrapper">
 <div class="sidebar">
 <div class="meta-block">
 <div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
@@ -149,9 +150,9 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <a href="mailto:afallevoz@jacadi.com"><i class="fas fa-envelope"></i> afallevoz@jacadi.com</a>
 </div>
 </div>
-<span class="sb-nav-heading">Marché</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></span>
 <a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
-<span class="sb-nav-heading">Société</span>
+<span class="sb-nav-heading"><span class="i18n-fr">Société</span><span class="i18n-en">Company</span></span>
 <a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
 <a class="nav-item bg-green" href="#product">Product</a>
 <a class="nav-item bg-green" href="#business-model">Business Model</a>
@@ -169,20 +170,20 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <div class="divider"></div>
 <div class="section">
 <h3>Explorez Jacadi plus en détail ?</h3>
-<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur Jacadi</a>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank"><span class="i18n-fr">Planifier un appel stratégique sur Jacadi</span><span class="i18n-en">Schedule a strategy call on Jacadi</span></a>
 </div>
 <div class="divider"></div>
 
 
 <div class="section">
-<h3>S'abonner à la newsletter Proplace ?</h3>
+<h3><span class="i18n-fr">S'abonner à la newsletter Proplace ?</span><span class="i18n-en">Subscribe to the Proplace newsletter?</span></h3>
 <p class="meta-desc">Recevez les actualités quotidiennes du M&amp;A et du fundraising.</p>
-<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank"><span class="i18n-fr">S'abonner à la newsletter</span><span class="i18n-en">Subscribe to the newsletter</span></a>
 </div>
 <div class="section">
-<h3>Envie d'un deal flow propriétaire ?</h3>
-<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
-<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+<h3><span class="i18n-fr">Envie d'un deal flow propriétaire ?</span><span class="i18n-en">Want proprietary deal flow?</span></h3>
+<p class="meta-desc"><span class="i18n-fr">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</span><span class="i18n-en">Receive highly qualified targets for your acquisition strategy, every day.</span></p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank"><span class="i18n-fr">Planifier un appel stratégique</span><span class="i18n-en">Schedule a strategy call</span></a>
 </div>
 <div class="sidebar-logo-wrap">
 <img alt="Logo " src="" style="max-width: 110px; height: auto; margin: 0 auto 10px; display: block; opacity: 0.85;"/>
@@ -306,7 +307,7 @@ Jacadi utilise l'excellence logistique et industrielle du groupe Deveaux pour do
 La transition opérationnelle de la famille IDKIDS vers la gouvernance Deveaux entraîne une baisse de la qualité perçue et du storytelling de marque, reléguant Jacadi au rang de marque retail intermédiaire banalisée, incapable de justifier ses tarifs premium face à Petit Bateau ou Bonpoint.<br/>
 <br/>
 <span style="font-weight:bold;">🚩 DRAPEAUX ROUGES</span><br/>
-<ul><li>Risques Universels : Une forte sensibilité au ralentissement de la consommation globale et à l'inflation des coûts des matières premières de haute qualité.</li><li>Incohérences Spécifiques avec la Thèse : Le modèle nécessite une présence physique et des stocks denses, s'éloignant des ratios d'efficacité de capital typiques des solutions logicielles pures.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781215200000/-n9bdDE9Jj-uzzdyMd06QA/8SOREDNkhyd_1XCsrZWkFaIoQibBBD7b-rpGmXUraWsKgSCdQX2Zi9kbFnQz7JZ_hr8olOX7c81YMFD-0AOOCjw8QW5j4VsvFGLP81kDaozDvdpqsn2guVH0kpQJ8Q0QyHerVpJ92TuPzW349T4sgQ/ymrLjc8GmpXjYKo1rDTARMuPHJkNRPjT6FdTUikagiI"/></div></div></div>
+<ul><li>Risques Universels : Une forte sensibilité au ralentissement de la consommation globale et à l'inflation des coûts des matières premières de haute qualité.</li><li>Incohérences Spécifiques avec la Thèse : Le modèle nécessite une présence physique et des stocks denses, s'éloignant des ratios d'efficacité de capital typiques des solutions logicielles pures.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781222400000/3scwQ6s2sJDv85GlGEgZqg/mtfj_XCMR2Ya_BEqSP2_bnmKRS8GS879wsFSFOGLl0-cs_PzyC67cWW2WgD93FlEXtyEcTQv-mdclGBrxpvQC1rdxMtWkyO6DjTj9NcOERLn0ycDCDALHPa9F9z2CIX2SudZDifILMs0yavK7PvzeA/9rPk0LRrAzrFnpxA5slSuLYsoOUeZlPGlxHujrqzn2s"/></div></div></div>
 <div class="section-container" id="swot">
 <h2 class="section-title">Analyse SWOT</h2>
 <div class="swot-grid">
@@ -373,6 +374,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
