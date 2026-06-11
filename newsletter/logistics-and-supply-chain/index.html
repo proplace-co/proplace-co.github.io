@@ -400,6 +400,7 @@ if(window.__ppChrome)return;window.__ppChrome=1;
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
 try{var st=document.createElement("style");st.textContent=
 ".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
 ".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
 ".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
 ".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
@@ -416,6 +417,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
@@ -439,6 +441,7 @@ if(window.__ppChrome)return;window.__ppChrome=1;
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
 try{var st=document.createElement("style");st.textContent=
 ".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
 ".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
 ".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
 ".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
@@ -455,6 +458,7 @@ if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
