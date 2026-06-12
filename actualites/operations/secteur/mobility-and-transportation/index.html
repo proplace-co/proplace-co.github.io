@@ -416,6 +416,29 @@ border-radius:999px;padding:5px 13px;text-decoration:none;transition:border-colo
 .type-sec a:hover{border-color:var(--accent);color:var(--ink)}
 .type-sec a.on{color:var(--accent-dk);border-color:var(--accent);background:var(--bg)}
 .type-sec a em{font-style:normal;color:var(--mid);font-weight:700}
+
+/* Carte MÉMO riche (score + radar + industrie/marché + tags) — même esprit que les cartes
+   du hub /analysis, déclinée FR pour les pages /actualites. */
+.mxc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:18px 0 0}
+.mxc{display:flex;flex-direction:column;gap:7px;border:1px solid var(--line);border-radius:16px;
+background:var(--white);padding:16px 18px;transition:border-color .15s,transform .15s}
+.mxc:hover{border-color:var(--accent);transform:translateY(-2px)}
+.mxc-top{display:flex;align-items:center;gap:10px}
+.mxc-score{font-size:17px;font-weight:800;color:var(--accent-dk);background:var(--bg);
+border:1px solid var(--line);border-radius:10px;padding:3px 9px}
+.mxc-name{font-size:17px;font-weight:800;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+.mxc-name:hover{color:var(--accent-dk);text-decoration:none}
+.mxc-geo{font-size:12px;color:var(--mid);font-weight:600}
+.mxc-l{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--mid);margin-top:3px}
+.mxc-v{font-size:13.5px;font-weight:600;color:var(--ink)}
+.mxc-pos{font-size:13px;color:var(--sub);line-height:1.5;margin:2px 0 0}
+.mxc-radar{width:100%;max-width:240px;height:auto;display:block;margin:6px auto 0}
+.mxc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.mxc-tags span{font-size:10.5px;font-weight:700;color:var(--sub);background:var(--bg);
+border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+.mxc-btn{display:block;text-align:center;background:var(--ink);color:#fff;font-weight:700;
+font-size:13px;padding:10px 14px;border-radius:10px;text-decoration:none;margin-top:8px}
+.mxc-btn:hover{opacity:.85;color:#fff;text-decoration:none}
 </style><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news on" href="/actualites/" data-i18n="news">News</a><a class="pph-ana" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
