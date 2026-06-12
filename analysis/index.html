@@ -433,7 +433,8 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 const DATA=window.__MEMOS__||[];
 function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 /* Drapeau IMAGE depuis le code ISO-2 pré-calculé (d.cc) — les emoji drapeaux ne s'affichent pas sous Windows (lettres « FR »). */
-function flagOf(cc){return cc?'<img src="https://flagcdn.com/16x12/'+cc.toLowerCase()+'.png" srcset="https://flagcdn.com/32x24/'+cc.toLowerCase()+'.png 2x" width="16" height="12" alt="" loading="lazy" style="vertical-align:-1px;border-radius:2px;margin-right:6px">':'';}
+function flagOf(cc){return cc?'<img src="https://flagcdn.com/16x12/'+cc.toLowerCase()+'.png" srcset="https://flagcdn.com/32x24/'+cc.toLowerCase()+'.png 2x" width="16" height="12" alt="" loading="lazy" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px">':'';}
+/* display:inline-block inline : le chrome Tailwind du site pose img{display:block} → le drapeau sautait une ligne avant le pays. */
 /* Langue VISITEUR (meme cle que le chrome partage) — tout l'habillage des cartes suit. */
 function LG(){try{var v=localStorage.getItem('proplace_lang');if(v==='en'||v==='fr')return v;}catch(e){}
 return (navigator.language||'').toLowerCase().indexOf('fr')===0?'fr':'en';}
@@ -519,6 +520,9 @@ function card(d){
  var contacts=cc.length?'<div class="cc">'+cc.join('')+'</div>':'';
  var metaBits=[d.country,d.stage].filter(Boolean).map(esc);
  if(d.memo_type)metaBits.push(t.memo+esc(d.memo_type));
+ /* Soudure drapeau+pays (white-space:nowrap) : jamais de retour a la ligne entre les deux. */
+ var _fl=flagOf(d.cc);
+ if(_fl&&metaBits.length){metaBits[0]='<span style="white-space:nowrap">'+_fl+metaBits[0]+'</span>';}
  var meta=metaBits.join(' \u00b7 ');
  var pub=fmtDate(d.published);
  var radar=d.radar?'<div class="cr"><img src="'+esc(d.radar)+'" alt="" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></div>':'';
