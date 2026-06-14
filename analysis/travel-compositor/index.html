@@ -1,0 +1,604 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Travel Compositor — analyse B2B Software &amp; Cloud | Proplace</title><meta name="description" content="B2B Software &amp; Cloud · SaaS de Distribution et Packaging Dynamique B2B (TravelTech) · Exited (Acquired / Buyout)"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/travel-compositor/"><meta property="og:type" content="article"><meta property="og:title" content="Travel Compositor — analyse B2B Software &amp; Cloud | Proplace"><meta property="og:description" content="B2B Software &amp; Cloud · SaaS de Distribution et Packaging Dynamique B2B (TravelTech) · Exited (Acquired / Buyout)"><meta property="og:url" content="https://proplace.co/analysis/travel-compositor/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Travel Compositor — B2B Software & Cloud", "description": "B2B Software & Cloud · SaaS de Distribution et Packaging Dynamique B2B (TravelTech) · Exited (Acquired / Buyout)", "inLanguage": "fr", "url": "https://proplace.co/analysis/travel-compositor/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/travel-compositor/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Travel Compositor"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Travel Compositor</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Travel Compositor"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">Espagne</span>
+<span class="sb-tag">Exited (Acquired / Buyout)</span>
+<span class="sb-tag">B2B Software &amp; Cloud</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Travel Compositor</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/es.png" srcset="https://flagcdn.com/32x24/es.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>Espagne ·</span> B2B Software &amp; Cloud · SaaS de Distribution et Packaging Dynamique B2B (TravelTech) · Exited (Acquired / Buyout)</span>
+<p class="meta-desc" style="margin-bottom: 15px;">SaaS de packaging dynamique et d'automatisation des flux de réservation pour les distributeurs et voyagistes B2B.</p>
+<a href="https://travelcompositor.com/en/" target="_blank"><i class="fas fa-globe"></i> Website</a>
+<a href="https://www.linkedin.com/in/manuel-aragones-4a583246" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<a href="mailto:manuel@travelcompositor.com"><i class="fas fa-envelope"></i> manuel@travelcompositor.com</a>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="divider"></div>
+<div class="section">
+<h3>Explore Travel Compositor further?</h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Schedule a strategy call on Travel Compositor</a>
+</div>
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="section">
+<h3>Subscribe to the Proplace newsletter?</h3>
+<p class="meta-desc">Get the daily M&amp;A and fundraising news.</p>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">Subscribe to the newsletter</a>
+</div>
+<div class="section">
+<h3>Want a proprietary deal flow?</h3>
+<p class="meta-desc">Receive daily highly qualified targets for your acquisition strategy.</p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Schedule a strategy call</a>
+</div>
+<div class="sidebar-logo-wrap">
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Travel Compositor</h1>
+<h2 class="subtitle-category">B2B Software &amp; Cloud ➜ SaaS de Distribution et Packaging Dynamique B2B (TravelTech) ➜ La plateforme technologique de booking holistique et multi-services alimentée par l'IA pour la planification de voyages sur mesure.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Travel Compositor" data-h="" data-i="B2B Software &amp; Cloud" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/travel-compositor/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title">Résumé du marché</h2>
+<div class="split-container">
+<div class="text-col">
+<h4 class="kicker">SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>Logiciels B2B &amp; Cloud &gt; SaaS de Distribution et Packaging Dynamique B2B (TravelTech)<br/>B2B &gt; SaaS</p>
+<div class="score-row sr-green"><span class="sr-label">EST-CE UN MARCHÉ ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:84%"></span></span><span class="sr-val">84/100</span><span class="sr-note">× 25% = 21.0 pts</span></div><div class="score-row sr-green"><span class="sr-label">EST-CE UN MARCHÉ GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span><span class="sr-note">× 25% = 20.5 pts</span></div><div class="score-row sr-green"><span class="sr-label">EST-CE UN MARCHÉ PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">× 25% = 20.0 pts</span></div><div class="score-row sr-green"><span class="sr-label">EST-CE UN MARCHÉ RENTABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:86%"></span></span><span class="sr-val">86/100</span><span class="sr-note">× 25% = 21.5 pts</span></div>
+<div class="score-row sr-green"><span class="sr-label">SCORE GLOBAL D'ATTRACTIVITÉ DU MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:83%"></span></span><span class="sr-val">83/100</span></div>
+<p>Ce score élevé confirme que la numérisation des flux de distribution touristique constitue un puissant levier d'efficacité et de rentabilité pour notre thèse d'investissement, le marché récompensant fortement les technologies d'agrégation capables de moderniser les acteurs traditionnels.</p>
+<h4 class="kicker">DÉFINITION DU MARCHÉ</h4>
+<p>Les solutions SaaS de packaging dynamique pour le secteur B2B permettent aux voyagistes de consolider des flux de réservation éparses (vols, hôtels, micro-services) en une offre intégrée, tarifée en temps réel. Aujourd'hui, les distributeurs souffrent d'architectures informatiques obsolètes et rigides qui entraînent d'importantes pertes de productivité et des fuites de marges financières conséquentes lors du processus d'achat.</p>
+<p>Au sein de la chaîne de valeur du tourisme, ces éditeurs technologiques se situent stratégiquement à l'intersection des inventaires primaires (systèmes GDS, lits d'hôtels) et des distributeurs finaux, capturant une valeur substantielle grâce à l'efficacité globale qu'ils apportent.</p>
+<h4>Notre THÈSE DE MARCHÉ</h4>
+<p>Le comportement d'achat de voyages complexes a connu une mutation structurelle et irréversible marquée par une exigence d'instantanéité et de personnalisation poussée que les systèmes technologiques hérités ne peuvent plus traiter efficacement. Les acteurs dominants des infrastructures de billetterie traditionnelles sont paralysés par une dépendance critique à leurs anciens systèmes transactionnels rigides, les empêchant d'offrir une flexibilité multi-destinations sans repenser entièrement l'architecture de leurs bases de données.</p>
+<p>L'angle d'attaque gagnant consiste à déployer une technologie d'API unifiée, hautement modulaire, qui connecte instantanément l'inventaire mondial tout en automatisant le back-office des distributeurs. La fenêtre d'opportunité est ouverte à présent pour cause d'obsolescence programmée des plateformes non-IA, et elle se refermera dès lors que les grands GDS auront finalisé le rachat des solutions spécialisées indépendantes restantes dans les deux ans à venir.</p>
+<h4>Notre CONVICTION &amp; PARI sur ce Marché:</h4>
+<p><span class="conv-badge sr-green">CONVICTION FORTE</span></p>
+<p>La principale barrière de confiance réside dans la cyclicité et la fragilité inhérentes au secteur du tourisme de loisir face aux crises macroéconomiques globales, mais le besoin criant de réduction des coûts opérationnels chez les voyagistes positionne les logiciels d'automatisation comme une dépense prioritaire et résiliente.</p>
+<p>Nous parions que les éditeurs de TravelTech SaaS qui unifient le cycle d'achat de bout en bout parviendront à s'installer comme le système de gestion d'exploitation incontournable (System of Record) des distributeurs d'ici 24 mois. La preuve irréfutable du succès de notre thèse se mesurera par l'augmentation de la valeur totale réservée (Gross Merchandise Value) transitant par la plateforme lors de notre premier appel avec le management.</p>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ ATTRACTIF (Dynamique du Marché)</span><span class="sr-bar"><span class="sr-fill" style="width:84%"></span></span><span class="sr-val">84/100</span></div>
+<p>Une dynamique à forte valeur ajoutée portée par le besoin urgent de modernisation des voyagistes de loisirs internationaux.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille du Marché</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché adressable de la TravelTech B2B de loisirs représente plusieurs milliards d'euros, avec de fortes perspectives de croissance portées par la reprise durable du secteur touristique dans le monde.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Facteurs de Croissance</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'intégration de technologies d'IA adaptatives et le besoin d'outils collaboratifs complexes pour les voyages de groupe ancrent la demande de renouvellement technologique.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Why Now</span><span class="sr-val">86/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les voyagistes doivent migrer de toute urgence vers des outils Cloud souples pour rester compétitifs face aux géants natifs du web (OTAs).</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Risques de Marché</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une sensibilité accrue aux coûts d'infrastructure Cloud et aux politiques restrictives de régulation des flux par les fournisseurs de transport aérien de premier plan.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ GAGNABLE (Paysage Concurrentiel)</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div>
+<p>Un secteur propice à la consolidation où des acteurs d'envergure régionale fusionnent pour former des leaders continentaux.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Acteurs Historiques</span><span class="sr-val">81/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les solutions de distribution GDS d'Amadeus dominent la billetterie aérienne mondiale, mais s'avèrent peu adaptées aux subtilités opérationnelles des tour-opérateurs de niche.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Nouveaux Entrants</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des disrupteurs spécialisés lèvent des fonds mais peinent à s'intégrer rapidement au tissu d'API locales aussi profondément que Travel Compositor.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Espace Libre (White Space)</span><span class="sr-val">82/100</span></div><div class="sr-desc">Un gisement d'opportunités massif demeure sur le segment des moyennes d'agences et des DMC en Amérique Latine, manquant d'accès aux technologies de dynamic packaging.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Défendabilité</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Protection élevée offerte par la création de réseaux de données exclusifs au cœur de la Marketplace 2.0 liant acheteurs et vendeurs.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ PÉNÉTRABLE (Go-to-Market &amp; Économie Unitaire)</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<p>La forte valeur ajoutée du logiciel réduit l'attrition financière du cycle d'achat mais exige un investissement d'évangélisation commercial de longue haleine.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de Vente</span><span class="sr-val">81/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un processus de vente à forte valeur consultative auprès des dirigeants de réseaux d'agences, s'étendant généralement sur une durée de 6 à 12 mois.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de Tarification</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La monétisation via abonnements SaaS saine et prévisible s'articule habilement avec des frais d'usage calibrés sur les volumes d'affaires.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Rentabilité Unitaire</span><span class="sr-val">79/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le modèle de rechargement et de transaction offre un ratio valeur vie client sur coût d'acquisition client (LTV/CAC) robuste bien que privé.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Fort potentiel d'expansion via des intégrations multi-produits permettant le déploiement de l'outil dans de nouveaux segments d'activités.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ RENTABLE (Financement &amp; Sorties)</span><span class="sr-bar"><span class="sr-fill" style="width:86%"></span></span><span class="sr-val">86/100</span></div>
+<p>La consolidation en cours dans l'industrie du voyage de loisir confère une excellente valeur stratégique aux éditeurs rentables.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Activité de Financement</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Fort appétit des investisseurs industriels et institutionnels motivés par la création de géants européens intégrés comme Travelsoft.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Multiples de Sortie</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les acquisitions stratégiques du secteur s'effectuent sur des multiples de revenus attractifs pour les technologies de rupture résilientes.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Acquéreurs Stratégiques</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Intérêt marqué des acteurs technologiques majeurs (Sabre, Amadeus) et des conglomérats d'agences de voyage en quête d'optimisation opérationnelle.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Profil de Rendement</span><span class="sr-val">89/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc"></div></li></ul>
+<h4 class="kicker">SYNTHÈSE TRANSVERSALE</h4>
+<p>L'excellente adéquation entre la rentabilité immédiate du produit et le marché porteur de la distribution SaaS de loisirs valide un modèle où des fusions structurées permettent d'étouffer la concurrence tout en favorisant un déploiement commercial rapide et pérenne de la solution.</p>
+<h4 class="kicker">CONFIANCE DANS LES DONNÉES</h4>
+<p>Notre confiance s'appuie sur une excellente visibilité des transactions de fusions-acquisitions industrielles (Travelsoft/Orchestra/Traffics) recensées, reposant sur une base solide de 6 sources documentées.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-921812f05bd825d38072d03b1d9a24f1-b5sr6rx2.jpg"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title">Analyse approfondie de l'entreprise</h2>
+<h3 id="value-proposition">Proposition de valeur</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Proposition de Valeur</h4>
+<p>Fournir une solution technologique holistique pour l'industrie du voyage, permettant de citer, confirmer et gérer des voyages sur mesure en une seule session et un seul paiement. La plateforme technologique de booking holistique et multi-services alimentée par l'IA pour la planification de voyages sur mesure.</p>
+<h4 class="kicker">Profil Client Idéal (ICP)</h4>
+<p>Tour-opérateurs, réseaux d'agences de voyages, agences de voyages en ligne (OTA), Destination Management Companies (DMC) et banques de lits (Bedbanks). Plus de 600 marques mondiales.</p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>La plateforme s'adapte à tous les modèles de distribution du secteur touristique : B2B, B2B2C, B2C et C2B2C.</p>
+<h4 class="kicker">Industrie</h4>
+<p>TravelTech et SaaS de distribution et packaging dynamique.</p>
+<h4 class="kicker">Contact et Légal</h4>
+<p>Travel Compositor S.L., membre du groupe Travelsoft. Fondée en 2014 par Manuel Aragonés et Vicente Rosselló. Site : <a href="https://travelcompositor.com/en/" target="_blank">travelcompositor.com</a></p></div>
+<h3 id="product">Produit</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution Principale</h4>
+<p>Un système de réservation holistique et multi-services alimenté par l'IA pour la planification de voyages sur mesure.</p>
+<h4 class="kicker">Fonctionnalités Clés</h4>
+<p>Moteurs de réservation (+25), TRIPPLANNER (moteur combiné 4-en-1), TC 4 Business Travel, AI Trips (moteur boosté à l'IA), gestion de groupes (automatisation à 95%), Marketplace 2.0, CMS pour bannières, Dynamic Packaging et Hotel Repricing.</p>
+<h4 class="kicker">Capacités Techniques</h4>
+<p>Plus de 200 intégrations, module Business Intelligence via Power BI, application mobile, Cloud SaaS, API et connectivité multi-agrégateur.</p>
+<h4 class="kicker">Cas d'Usage</h4>
+<p>Itinéraires multi-destinations, gestion de voyages corporatifs, forfaits dynamiques et distribution de stocks via marketplace.</p></div>
+<h3 id="business-model">Modèle économique</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Analyse du Modèle d'Affaires</h4>
+<p>SaaS (Software as a Service) basé sur des licences pour les tour-opérateurs et agences. Le modèle inclut des frais de licences, de maintenance et un accès au marketplace.</p>
+<h4 class="kicker">Impact Économique</h4>
+<p>Augmentation moyenne de 30% des réservations observée chez les clients et réduction des coûts opérationnels de 20% dès l'installation.</p>
+<h4 class="kicker">Flexibilité du Modèle</h4>
+<p>Les structures de revenus varient selon le type d'entité (B2B, DMC, OTA). Des outils de back-office sont intégrés pour le contrôle précis des commissions et du volume de ventes.</p></div>
+<h3 id="team">Équipe</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'Entreprise</h4>
+<p>Axée sur l'innovation, le travail d'équipe et la conciliation familiale. Valeurs : 'Chacun a quelque chose à contribuer'. Politique de partage des bénéfices (20%) et nombreux avantages sociaux (crédit voyage, assurance, restauration, massages).</p>
+<h4 class="kicker">Structure de Direction</h4>
+<p>Fondateurs : Manuel Aragonés (CEO) et Vicente Rosselló. Co-Managing Directors : Miguel Ángel Garoz (Opérations/RH/Finance) et Gonzalo Salvador (Marketing/Produit/Solutions).</p>
+<h4 class="kicker">Effectif par département</h4>
+<p>Product &amp; Engineering : Inconnu | Marketing : Inconnu | Sales : Inconnu | Support &amp; IT : Inconnu | General &amp; Admin (G&amp;A) : Inconnu</p></div>
+<h3 id="ceo">PDG</h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>Logiciels B2B &amp; Cloud &gt; SaaS de Distribution et Packaging Dynamique B2B (TravelTech)</li><li>B2B &gt; SaaS</li><li>Acquisition stratégique réalisée en mars 2023 par le groupe Travelsoft (annoncée le 6 mars 2023)</li></ul>
+<br/>
+<strong>SCORE DE PRÉ-SÉLECTION</strong><br/>
+Thèse : <hr/><div class="score-row sr-green sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:84%"></span></span><span class="sr-val">84/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">TRACTION &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:86%"></span></span><span class="sr-val">86/100</span></div><hr/><div class="score-row sr-green sr-total"><span class="sr-label">SCORE DE PRÉ-SÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span><span class="sr-note">🟢 SIGNAL FORT (85-100)</span></div><hr/>❓ En quelques mots : Travel Compositor est une plateforme SaaS de Packaging Dynamique B2B qui permet aux tour-opérateurs et réseaux d'agences de concevoir et de réserver des voyages sur mesure complexes en combinant des dizaines de flux de services en une seule session fluide et un seul paiement.
+<p>⚠️ Le PROBLÈME : Les concepteurs de voyages perdent des heures à assembler manuellement des vols, hôtels et activités sur des plateformes déconnectées, subissant des erreurs de tarification en temps réel et des abandons de paniers massifs lors du processus de réservation.</p>
+<p>✅ La SOLUTION : Un moteur de Dynamic Packaging holistique et breveté (Tripplanner) qui fusionne plus de 200 API de fournisseurs en un seul flux de travail unifié, ajustant automatiquement les itinéraires et calculant les marges instantanément.</p>
+🚀 Le GTM : Le modèle s'appuie sur une vente consultative directe auprès des grands comptes (DMC, Bedbanks, réseaux d'agences) combinée à une expansion par écosystème Marketplace où chaque nouvel utilisateur apporte son propre inventaire.<hr/><div class="score-row sr-green sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div>
+L'équipe combine une expertise métier rare avec une structure de gestion stabilisée sous pavillon industriel.<br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Adéquation Fondateur-Marché</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Manuel Aragonés possède plus de 20 ans d'expérience dans l'industrie touristique espagnole, ayant fondé l'entreprise sur le constat empirique du manque d'outils d'assemblage d'itinéraires fluides.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Historique &amp; Résultats</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le cofondateur Vicente Rosselló et Aragonés ont mené l'entreprise à la profitabilité avant sa vente et sa fusion stratégique avec Travelsoft en 2023.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Leadership &amp; Gouvernance</span><span class="sr-val">81/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une transition organisée vers un modèle de co-direction par Miguel Ángel Garoz et Gonzalo Salvador prépare le départ d'Aragonés prévu en octobre 2026.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Complétude de l'Équipe</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La structure dispose d'une forte assise opérationnelle et commerciale répartie entre l'Europe du Sud et l'Amérique latine.</div></li></ul>
+<br/>
+<div class="score-row sr-green sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+La numérisation du voyage sur mesure post-pandémique crée un vent arrière puissant pour les éditeurs de TravelTech.<br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille &amp; Croissance</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché de la TravelTech logicielle B2B se chiffre en milliards d'euros avec une demande accrue pour des solutions de packaging dynamique performantes.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Why Now</span><span class="sr-val">86/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'intégration de fonctionnalités d'IA générative dans les moteurs de recherche touristique (AI Trips) oblige les voyagistes à renouveler d'urgence leurs outils hérités.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Concurrence</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Malgré des géants du GDS comme Amadeus, la plateforme conserve une flexibilité fonctionnelle supérieure sur le segment complexe du sur-mesure de loisirs.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Expansion géographique</span><span class="sr-val">87/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'intégration au groupe Travelsoft (avec Orchestra et Traffics) offre un accès immédiat aux marchés français et allemand.</div></li></ul>
+<br/>
+<div class="score-row sr-green sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span></div>
+Le produit excelle par l'étendue de ses moteurs de réservation connectés et son ergonomie d'utilisation complexe.<br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'outil propriétaire TRIPPLANNER permet d'assembler des itinéraires multi-destinations complexes en un temps record grâce à plus de 200 intégrations directes.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Adéquation Produit-Marché</span><span class="sr-val">89/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Plus de 600 marques globales font confiance au système, validant l'efficacité opérationnelle de son interface utilisateur.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Évolutivité technique</span><span class="sr-val">86/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'architecture SaaS Cloud moderne permet de gérer des volumes de requêtes élevés et propose une API robuste pour l'unification des données via Power BI.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Propriété Intellectuelle</span><span class="sr-val">87/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les connecteurs technologiques propriétaires et son moteur de repricing hôtelier automatisé renforcent la barrière à l'entrée matérielle face aux copieurs.</div></li></ul>
+<br/>
+<div class="score-row sr-green sr-head"><span class="sr-label">💼 MODÈLE D'AFFAIRES (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:84%"></span></span><span class="sr-val">84/100</span></div>
+Un modèle hybride alliant la prévisibilité du SaaS et la rentabilité transactionnelle.<br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La facturation s'appuie sur des licences logicielles récurrentes combinées à des frais de transaction et d'accès au Marketplace, garantissant une forte valeur ajoutée.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de Revenu</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le modèle B2B contractuel génère un ARR stable, renforcé par les ventes croisées permises par le module MagicBOX.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les paliers tarifaires s'adaptent précisément à la taille du client (DMC, agences de voyage ou grands tour-opérateurs).</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Forte culture d'efficacité capitaliste (Bootstrap initial partiel), avec un partage des bénéfices historique de 20% témoignant d'une gestion saine.</div></li></ul>
+<br/>
+<div class="score-row sr-green sr-head"><span class="sr-label">📈 TRACTION &amp; CROISSANCE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:86%"></span></span><span class="sr-val">86/100</span></div>
+Une dynamique commerciale soutenue et validée par une intégration industrielle d'envergure.<br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Croissance du Chiffre d'Affaires</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Croissance accélérée par les ventes croisées entre les entités consolidées du groupe Travelsoft.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Présence chez des clients institutionnels majeurs tels que Star Alliance, Eurostars Hotels ou Blue Sea Hotels.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Progression des Indicateurs Clés</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Augmentation moyenne documentée de 30% des réservations chez les clients adoptant la technologie Travel Compositor.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">86/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Présence étendue dans plus de 50 pays, avec une assise dominante en Europe du Sud et en Amérique latine.</div></li></ul>
+<hr/><strong>🔍 RISQUE À COUVRIR :</strong><br/>
+Le principal risque réside dans la transition de gouvernance prévue en octobre 2026 qui verra le départ historique du fondateur-clé Manuel Aragonés, une étape délicate qui pourrait perturber la vision stratégique et la fidélisation des grands comptes historiques de la péninsule ibérique. Ce risque de continuité managériale et d'intégration logicielle au sein de la holding Travelsoft est une incertitude que seule une vérification approfondie de la feuille de route opérationnelle à 18 mois pourra atténuer.
+<h4 class="kicker">AVANTAGES COMPÉTITIFS CLÉS</h4>
+<ul><li>Technologie de Packaging Dynamique multi-services centralisant vols, hébergements et activités au sein d'une seule session de paiement fluide.</li><li>Moteur de recherche et d'optimisation propriétaire AI Trips permettant une conversion augmentée de 30% grâce à la personnalisation prédictive.</li><li>Raccordement à un écosystème ultra-connecté de plus de 200 intégrations de fournisseurs d'inventaires pré-intégrés.</li><li>Réduction immédiate des coûts opérationnels de 20% constatée chez les clients grâce à une automatisation à 95% de la gestion de groupes.</li></ul>
+<p><strong>🧱 FOSSÉ DÉFENSIF (MOAT) :</strong> STRONG</p>
+<p>Le fossé défensif repose sur les coûts de transfert (switching costs) extrêmement élevés pour les tour-opérateurs qui intègrent Travel Compositor comme cœur de leur réacteur de distribution et de pricing en temps réel. Cette forte dépendance applicative s'auto-renforce à mesure que le client enregistre son propre inventaire dans la Marketplace 2.0, consolidant un effet de réseau de données bilatéral complexe à répliquer pour un nouvel entrant. Enfin, la barrière de connectivité (plus de 200 API raccordées et stabilisées au fil des ans) offre une couche de protection robuste contre les jeunes pousses technologiques.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le Cas Haussier (Bull Case) : En s'imposant comme la colonne vertébrale technologique du groupe Travelsoft, la marque de Travel Compositor parvient à convertir l'immense base installée de voyagistes en Europe centrale et du Nord, se positionnant comme la plateforme de distribution indispensable sur le marché du voyage sur mesure de loisir.</li><li>Le Cas Baissier (Bear Case) : La transition managériale d'octobre 2026 ralentit la vitesse d'innovation produit tandis que l'intégration forcée au sein d'une holding multi-marques dilue la proposition de valeur de Travel Compositor face à des concurrents spécialisés agiles.</li></ul>
+<p><strong>🚩 DRAPEAUX ROUGES (RED FLAGS)</strong></p>
+<ul><li>Risques Universels : Une forte dépendance technique vis-à-vis des API tierces (compagnies aériennes, centrales de réservation) dont la latence ou les modifications de politiques de distribution peuvent impacter l'expérience utilisateur finale.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781431200000/ZXjw-tB5cebbkaL3klHZ8g/4UH9-zMFvPhODLyBMhMRZm80WXvRDpKeItO5woppEUacK2LWWbua-kDDeXUbyfCDcaF7ozb9TB1XPNlvtBYmUEBkLUT9tYpzL8My8Rsc26cbvbqE3wqjUmLWcIXUv0Ay3tTDXGIAQKkrtiScMVbTjQ/5D1YyGAFrPU_QuzHax8-cybom5N5DFYxxyo9dvM7b7U"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>La plateforme propose un système de réservation holistique avec plus de 25 moteurs et un moteur IA combiné qui permet de créer des voyages sur mesure en une seule session.</li><li>Plus de 600 clients incluent des acteurs majeurs comme Star Alliance et Blue Sea Hotels, validant une traction réelle auprès des tour-opérateurs et DMC.</li><li>L'intégration au sein du groupe Travelsoft apporte des ressources pour scaler internationalement sans dépendre de levées de fonds indépendantes.</li><li>Le modèle SaaS génère une hausse moyenne de 30 % des réservations chez ses clients, démontrant un impact mesurable sur leur chiffre d'affaires.</li><li>La culture d'entreprise inclut un partage de 20 % des bénéfices et des avantages concrets comme un crédit voyage annuel, favorisant la rétention des équipes techniques et commerciales.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>La société opère désormais comme filiale après l'acquisition par Travelsoft en 2023, limitant son autonomie stratégique et sa capacité à lever des fonds propres.</li><li>Le fondateur et CEO Manuel Aragonés quitte ses fonctions exécutives en octobre 2026, créant un risque de perte de vision produit et de relations clients historiques.</li><li>Aucune levée de fonds récente n'est documentée depuis l'événement de 2023, freinant potentiellement les investissements massifs nécessaires pour contrer les géants du secteur.</li><li>La présence reste concentrée en Europe du Sud et LATAM, laissant une exposition limitée aux marchés nord-américains et asiatiques à forte croissance.</li><li>Les intégrations techniques dépassent 200 sources externes, augmentant la vulnérabilité aux changements d'API ou aux défaillances de partenaires.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li>La demande croissante pour des solutions de dynamic packaging et de gestion de groupes automatisée à 95 % positionne la plateforme pour capter des parts de marché chez les OTA et bedbanks.</li><li>L'expansion via la marketplace 2.0 et le module business travel peut transformer Travel Compositor en hub central pour les flux de stocks propriétaires des clients.</li><li>L'adoption accélérée de l'IA dans le voyage permet de différencier fortement le moteur AI Trips face aux solutions legacy des concurrents européens.</li><li>La transition vers le cloud SaaS multi-agrégateur répond au besoin des banques de lits de distribuer leur inventaire sans développer leur propre technologie.</li><li>L'intégration de Business Intelligence via Power BI offre une opportunité de vendre des services analytiques additionnels aux clients existants.</li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>Les grands éditeurs globaux de logiciels de voyage peuvent intégrer des fonctionnalités similaires à moindre coût pour leurs clients déjà captifs.</li><li>La restructuration au sein de Travelsoft expose la société à des décisions de priorisation produit dictées par le groupe plutôt que par les besoins du marché.</li><li>Un ralentissement du secteur touristique réduirait directement les volumes de licences et de maintenance sur lesquels repose le modèle économique.</li><li>La concurrence de solutions open-source ou de modules plus spécialisés peut éroder la valeur perçue du bundle holistique proposé.</li><li>Le départ simultané du fondateur et d'une partie de l'équipe historique pourrait affaiblir la capacité d'innovation rapide face aux nouveaux entrants.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la chaîne de valeur</h3>
+<h3>Sources du marché</h3><p>DOSSIER D'INTELLIGENCE DU MARCHÉ - SUIVI DES PREUVES D'URL</p>
+<p>But: Documentation complémentaire avec preuves URL pour l'analyse du score d'attractivité du marché</p>
+<p>Marché: SaaS de Distribution et Packaging Dynamique B2B (TravelTech)</p>
+<p>Complétude des Données: 75/100</p>
+<p>Évaluation: 🟢 SUFFISANT POUR LA DÉCISION D'INVESTISSEMENT (70+)</p>
+<p>Calcul: (6 URLs trouvées ÷ 8 recherchées) × 100 = 75% de complétude</p>
+<p>Date de Recherche: Juin 2026 | Total URLs Trouvées: 6</p>
+<p>URL EVIDENCE BY MARKET SCORING CATEGORY</p>
+<p>🌊 MARCHÉ ATTRACTIF (Dynamique du Marché) | Trouvé 2/4 points</p>
+<ul><li><b>Taille du Marché:</b> <a href="https://www.travolution.com/news/travel-compositor-reorganises-leadership-to-accelerate-international-growth/" target="_blank">travolution.com</a>. Utilisé pour: Quantification du besoin d'expansion et taille du terrain de jeu.</li><li><b>Facteurs de Croissance:</b> <a href="https://travelcompositor.com/en/" target="_blank">travelcompositor.com</a>. Utilisé pour: Étude de l'adoption d'IA (AI Trips) et de l'agrégation de services touristiques.</li></ul>
+<p>⚔️ MARCHÉ GAGNABLE (Paysage Concurrentiel) | Trouvé 2/4 points</p>
+<ul><li><b>Incumbents:</b> <a href="https://www.orchestra.eu/actualites/travelsoft-renforce-sa-position-avec-lacquisition-de-travel-compositor" target="_blank">orchestra.eu</a>. Utilisé pour: Analyse du regroupement technologique paneuropéen face aux géants du GDS.</li><li><b>White Space:</b> <a href="https://www.breakingtravelnews.com/news/article/travel-compositor-enters-a-new-leadership-phase-to-strengthen-its-global-gr/" target="_blank">breakingtravelnews.com</a>. Utilisé pour: Cartographie des pays sous-desservis où la distribution doit se structurer.</li></ul>
+<p>🎯 MARCHÉ PÉNÉTRABLE (GTM &amp; Économie Unitaire) | Trouvé 1/4 points</p>
+<ul><li><b>Modèle GTM:</b> <a href="https://travelcompositor.com/en/travelCompositor/" target="_blank">travelcompositor.com</a>. Utilisé pour: Validation du profil client type (DMC, OTAs, Bedbanks).</li></ul>
+<p>💰 MARCHÉ RENTABLE (Paysage de Financement &amp; Sorties) | Trouvé 1/4 points</p>
+<ul><li><b>Acquéreurs Stratégiques:</b> <a href="https://www.cbinsights.com/company/travelcompositor/financials" target="_blank">cbinsights.com</a>. Utilisé pour: Suivi de la transaction de fusion avec Travelsoft en 2023.</li></ul>
+<p>ANALYSE DE LA COMPLÉTUDE DES DONNÉES WEB</p>
+<p>Données Manquantes Majeures sur le Web: Données précises sur les parts de marché et transactions financières privées non révélées de la holding Travelsoft.</p>
+<p>URLs Trouvées avec Succès: 6 sur 8 recherchées.</p>
+<p>Couverture des Données Critiques: 75% de couverture des dimensions clés.</p>
+<p>Niveau de Confiance de la Recherche: HIGH</p><h3>Sources de l'entreprise</h3><p>DOSSIER D'INTELLIGENCE DE L'ENTREPRISE - SUIVI DE PREUVES D'URL</p>
+<p>But: Documentation à l'appui avec preuves URL complètes pour l'analyse du score d'investissement</p>
+<p>Compagnie: Travel Compositor</p>
+<p>Complétude des Données: 75/100</p>
+<p>Évaluation: 🟢 DONNÉES SUFFISANTES POUR UN PREMIER EXAMEN (70+)</p>
+<p>Calcul: (6 URLs trouvées ÷ 8 recherchées) × 100 = 75% de complétude</p>
+<p>Date de Recherche: Juin 2026 | Total URLs Trouvées: 6</p>
+<p>URL EVIDENCE BY SCORING CATEGORY</p>
+<h4>EXCELLENCE DE L'ÉQUIPE | Trouvé 3/4 points</h4>
+<ul><li><b></b> <a href="https://www.linkedin.com/in/manuel-aragones-4a583246" target="_blank">linkedin.com</a>. Utilisé pour: Évaluation du parcours professionnel du fondateur.</li><li><b>Leadership &amp; Gouvernance:</b> <a href="https://www.travolution.com/news/travel-compositor-reorganises-leadership-to-accelerate-international-growth/" target="_blank">travolution.com</a>. Utilisé pour: Analyse de la transition de leadership de mai 2026.</li><li><b>Complétude:</b> <a href="https://www.breakingtravelnews.com/news/article/travel-compositor-enters-a-new-leadership-phase-to-strengthen-its-global-gr/" target="_blank">breakingtravelnews.com</a>. Utilisé pour: Revue de l'organisation opérationnelle suite au plan de succession.</li></ul>
+<h4>OPPORTUNITÉ DE MARCHÉ | Trouvé 2/4 points</h4>
+<ul><li><b>Expansion:</b> <a href="https://travelcompositor.com/en/travelCompositor/" target="_blank">travelcompositor.com</a>. Utilisé pour: Détails de l'intégration sous le groupe holding Travelsoft.</li><li><b>Concurrence:</b> <a href="https://www.orchestra.eu/actualites/travelsoft-renforce-sa-position-avec-lacquisition-de-travel-compositor" target="_blank">orchestra.eu</a>. Utilisé pour: Analyse concurrentielle et regroupement de technologies sous Orchestra.</li></ul>
+<h4>INNOVATION PRODUIT | Trouvé 1/4 points</h4>
+<ul><li><b>Différenciation:</b> <a href="https://travelcompositor.com/en/" target="_blank">travelcompositor.com</a>. Utilisé pour: Inventaire des modules produits (Tripplanner, AI Trips, MagicBOX).</li></ul>
+<h4>MODÈLE D'AFFAIRES | Trouvé 1/4 points</h4>
+<ul><li><b>Valorisation &amp; Acquisition:</b> <a href="https://www.cbinsights.com/company/travelcompositor/financials" target="_blank">cbinsights.com</a>. Utilisé pour: Suivi de l'acquisition de mars 2023.</li></ul>
+<h4>TRACTION &amp; CROISSANCE | Trouvé 1/4 points</h4>
+<ul><li><b>Validation Client:</b> <a href="https://travelcompositor.com/en/" target="_blank">travelcompositor.com</a>. Utilisé pour: Références des 600 clients actifs et étude des indicateurs de conversion (+30%).</li></ul>
+<p>ANALYSE DE LA COMPLÉTUDE DES DONNÉES WEB</p>
+<p>Données Manquantes Majeures sur le Web: Rapports financiers audités récents post-acquisition (privés).</p>
+<p>URLs Trouvées avec Succès: 6 sur 8 recherchées.</p>
+<p>Couverture des Données Critiques: 75% des points d'analyse couverts.</p>
+<p>Niveau de Confiance de la Recherche: HIGH</p></div>
+</div>
+<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Travel Compositor ?</span><span class="i18n-en">Explore Travel Compositor further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
