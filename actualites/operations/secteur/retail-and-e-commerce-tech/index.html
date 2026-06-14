@@ -327,6 +327,9 @@ box-shadow:0 10px 26px rgba(10,10,10,.28);pointer-events:none;transform:translat
 .tm-secmenu button:hover,.tm-secmenu a:hover{background:var(--bg);text-decoration:none}
 .tm-secmenu button.on,.tm-secmenu a.on{background:var(--bg);color:var(--ink);font-weight:700}
 .tm-secmenu .tm-secn{flex:none;color:var(--mid);font-weight:600;font-variant-numeric:tabular-nums}
+/* Multi-select Secteur : pastille couleur du secteur (--sec-c) devant le libellé + ✓ vert si coché. */
+.secdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--sec-c,var(--accent));margin-right:8px;flex:none;vertical-align:middle}
+.tm-secmenu button.on>span:first-child::before{content:"¹3 ";color:var(--accent-dk);font-weight:800}
 .tm-days{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:14px 0 0}
 .tm-days-l{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin-right:4px}
 .tm-day{font-size:12.5px;font-weight:600;color:var(--sub);border:1px solid var(--line);border-radius:999px;padding:4px 11px;text-decoration:none;white-space:nowrap}
@@ -671,7 +674,7 @@ if(myVerts.length){
 var domSecs=[].slice.call(board.querySelectorAll(".tm-sec"));
 var dOn=document.querySelector(".tm-date button.on");
 var win=dOn?dOn.getAttribute("data-d"):"all",type="*",q="",showAll=(board.getAttribute("data-all")==="1");
-var FILT={sec:"*",pays:"*",stage:"*"},srt="recent";
+var FILT={pays:"*",stage:"*"},srt="recent",SECSET=new Set();
 function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}
 return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}
 function apply(){
@@ -679,7 +682,7 @@ function apply(){
  secs.forEach(function(s){
   var vis=0;
   s._rows.forEach(function(r){
-   var ok=(win==="all"||r._days<(+win))&&(type==="*"||r.getAttribute("data-t")===type)&&(FILT.sec==="*"||s.getAttribute("data-v")===FILT.sec)&&(FILT.pays==="*"||r.getAttribute("data-pays")===FILT.pays)&&(FILT.stage==="*"||r.getAttribute("data-stage")===FILT.stage)&&(q===""||r._co.indexOf(q)>=0);
+   var ok=(win==="all"||r._days<(+win))&&(type==="*"||r.getAttribute("data-t")===type)&&(SECSET.size===0||SECSET.has(s.getAttribute("data-v")))&&(FILT.pays==="*"||r.getAttribute("data-pays")===FILT.pays)&&(FILT.stage==="*"||r.getAttribute("data-stage")===FILT.stage)&&(q===""||r._co.indexOf(q)>=0);
    if(!ok){r.classList.add("hide");return;}
    vis++;
    if(showAll||vis<=3)r.classList.remove("hide");else r.classList.add("hide");
@@ -722,8 +725,20 @@ seg(".tm-sort",function(b){srt=b.getAttribute("data-s");sortRows();});
   [].slice.call(document.querySelectorAll(".tm-secmenu")).forEach(function(m){m.setAttribute("hidden","");});
   [].slice.call(document.querySelectorAll(".tm-secbtn")).forEach(function(x){x.setAttribute("aria-expanded","false");});
   if(wasHidden){ddMenu.removeAttribute("hidden");ddBtn.setAttribute("aria-expanded","true");}};
+ // Secteur = MULTI-select (Set) : on coche plusieurs, le menu RESTE ouvert, le tableau montre
+ // l'UNION ; pays/stade restent mono-select. Libellé compact « Secteur : <1er> +N ▾ ».
+ function relabelSec(){var lab;if(SECSET.size===0){lab=allL;}else{var arr=[];SECSET.forEach(function(x){arr.push(x);});
+  var f=arr[0];if(f.length>16)f=f.slice(0,15)+"…";lab=f+(arr.length>1?(" +"+(arr.length-1)):"");}
+  ddBtn.innerHTML=base+' : <b>'+lab+'</b> ▾';}
+ if(k==="sec")dd._relabel=relabelSec;
  [].slice.call(ddMenu.querySelectorAll("button")).forEach(function(b){b.onclick=function(){
-  var v=b.getAttribute("data-v");if(k)FILT[k]=v;
+  var v=b.getAttribute("data-v");
+  if(k==="sec"){
+   if(v==="*"){SECSET.clear();[].slice.call(ddMenu.querySelectorAll("button")).forEach(function(x){x.classList.remove("on");});b.classList.add("on");}
+   else{if(SECSET.has(v)){SECSET.delete(v);b.classList.remove("on");}else{SECSET.add(v);b.classList.add("on");}
+    var ab=ddMenu.querySelector('button[data-v="*"]');if(ab)ab.classList.toggle("on",SECSET.size===0);}
+   relabelSec();persistSec();apply();return;}   // ne PAS fermer : on continue de cocher
+  if(k)FILT[k]=v;
   [].slice.call(ddMenu.querySelectorAll("button")).forEach(function(x){x.classList.remove("on");});b.classList.add("on");
   var sp=b.querySelector("span");ddBtn.innerHTML=base+' : <b>'+(v==="*"?allL:(sp?sp.textContent:""))+'</b> ▾';
   ddClose();apply();
@@ -734,6 +749,22 @@ var srch=document.getElementById("tm-search");if(srch)srch.oninput=function(){q=
 function phLang(){if(srch)srch.setAttribute("placeholder",EN()?"🔎 company…":"🔎 société…");}
 phLang();document.addEventListener("pplang",function(){phLang();apply();});
 var all=document.getElementById("tm-all");if(all)all.onclick=function(){showAll=!showAll;all.textContent=EN()?(showAll?"▴ Back to essentials":"▾ Show all"):(showAll?"▴ Réduire à l'essentiel":"▾ Tout afficher");apply();};
+// Vue partageable & persistante : la sélection de secteurs vit dans l'URL (?secteurs=slug,slug) ET
+// localStorage → on peut bookmarker/partager son « suivi par secteur » et le retrouver au retour.
+function persistSec(){var arr=[];SECSET.forEach(function(x){arr.push(x);});
+ try{if(arr.length)localStorage.setItem("proplace_secteurs",arr.join("|"));else localStorage.removeItem("proplace_secteurs");}catch(e){}
+ try{var u=new URL(window.location.href);if(arr.length)u.searchParams.set("secteurs",arr.map(slugify).join(","));else u.searchParams.delete("secteurs");window.history.replaceState(null,"",u.toString());}catch(e){}}
+function initSec(){var want=[];
+ try{var u=new URL(window.location.href),qs=u.searchParams.get("secteurs");
+  if(qs){var sl=qs.split(",");domSecs.forEach(function(s){var v=s.getAttribute("data-v");if(sl.indexOf(slugify(v))>=0&&want.indexOf(v)<0)want.push(v);});}}catch(e){}
+ if(!want.length){try{var ls=localStorage.getItem("proplace_secteurs");if(ls)ls.split("|").forEach(function(v){domSecs.forEach(function(s){if(s.getAttribute("data-v")===v&&want.indexOf(v)<0)want.push(v);});});}catch(e){}}
+ if(!want.length)return;
+ want.forEach(function(v){SECSET.add(v);});
+ var dd=document.querySelector('.tm-secdd[data-k="sec"]');if(!dd)return;
+ [].slice.call(dd.querySelectorAll('.tm-secmenu button')).forEach(function(b){var v=b.getAttribute("data-v");if(v!=="*"&&SECSET.has(v))b.classList.add("on");});
+ var ab=dd.querySelector('.tm-secmenu button[data-v="*"]');if(ab)ab.classList.toggle("on",SECSET.size===0);
+ if(dd._relabel)dd._relabel();}
+initSec();
 apply();
 })();</script><style>
 .op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
