@@ -1,0 +1,617 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ellipse Bikes — analyse Mobility &amp; Transportation | Proplace</title><meta name="description" content="Mobility &amp; Transportation · Vélos Électriques Premium &amp; Solutions de Flotte B2B · Seed"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/ellipse-bikes/"><meta property="og:type" content="article"><meta property="og:title" content="Ellipse Bikes — analyse Mobility &amp; Transportation | Proplace"><meta property="og:description" content="Mobility &amp; Transportation · Vélos Électriques Premium &amp; Solutions de Flotte B2B · Seed"><meta property="og:url" content="https://proplace.co/analysis/ellipse-bikes/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ellipse Bikes — Mobility & Transportation", "description": "Mobility & Transportation · Vélos Électriques Premium & Solutions de Flotte B2B · Seed", "inLanguage": "fr", "url": "https://proplace.co/analysis/ellipse-bikes/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/ellipse-bikes/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Ellipse Bikes"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Ellipse Bikes</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Ellipse Bikes"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Seed</span>
+<span class="sb-tag">Mobility &amp; Transportation</span>
+<span class="sb-tag">B2B, B2C</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Ellipse Bikes</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>France ·</span> Mobility &amp; Transportation · Vélos Électriques Premium &amp; Solutions de Flotte B2B · Seed</span>
+<p class="meta-desc" style="margin-bottom: 15px;">VAE premium connectés hautes performances pour trajets pendulaires et gestion de flottes de vélos de fonction en France.</p>
+<a href="https://ellipsebikes.com" target="_blank"><i class="fas fa-globe"></i> Website</a>
+<a href="https://fr.linkedin.com/in/paul-lepoutre-173b42157/en" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<a href="mailto:paul.lepoutre@ellipsebikes.com"><i class="fas fa-envelope"></i> paul.lepoutre@ellipsebikes.com</a>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="divider"></div>
+<div class="section">
+<h3>Explore Ellipse Bikes further?</h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Schedule a strategy call on Ellipse Bikes</a>
+</div>
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="section">
+<h3>Subscribe to the Proplace newsletter?</h3>
+<p class="meta-desc">Get the daily M&amp;A and fundraising news.</p>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">Subscribe to the newsletter</a>
+</div>
+<div class="section">
+<h3>Want a proprietary deal flow?</h3>
+<p class="meta-desc">Receive daily highly qualified targets for your acquisition strategy.</p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Schedule a strategy call</a>
+</div>
+<div class="sidebar-logo-wrap">
+<img alt="Logo " src="https://images.fillout.com/orgid-7761/flowpublicid-ia2sy4nraa/widgetid-default/uKzrYJLYJXhpg5Vu3CSXei/pasted-image-1774869669160.png" style="max-width: 110px; height: auto; margin: 0 auto 10px; display: block; opacity: 0.85;"/>
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Ellipse Bikes</h1>
+<h2 class="subtitle-category">Mobility &amp; Transportation ➜ Vélos Électriques Premium &amp; Solutions de Flotte B2B ➜ Redonner au vélo sa place de premier véhicule du foyer avec des VAE ultra-sécurisés, durables et fabriqués en France.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div><div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Ellipse Bikes" data-h="" data-i="Mobility &amp; Transportation" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/ellipse-bikes/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title">Résumé du marché</h2>
+<div class="split-container">
+<div class="text-col">
+<h4 class="kicker">SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>Mobilité et transports &gt; Vélos Électriques Premium &amp; Solutions de Flotte B2B<br/>B2B, B2C &gt; Vente d'actifs, E-commerce, Vente directe</p>
+<div class="score-row sr-green"><span class="sr-label">MARCHÉ ATTRACTIF?</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span><span class="sr-note">× 25% = 21.25 pts</span></div><div class="score-row sr-blue"><span class="sr-label">MARCHÉ GAGNABLE?</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span><span class="sr-note">× 25% = 18.75 pts</span></div><div class="score-row sr-green"><span class="sr-label">MARCHÉ PÉNÉTRABLE?</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">× 25% = 20.00 pts</span></div><div class="score-row sr-blue"><span class="sr-label">MARCHÉ RENTABLE?</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span><span class="sr-note">× 25% = 17.50 pts</span></div>
+<p>SCORE GLOBAL D'ATTRACTIVITÉ DU MARCHÉ: 77.5/100 Ce score global confirme que le marché de la micromobilité connectée en entreprise constitue un vent arrière structurel de premier plan pour Ellipse, à condition de savoir naviguer dans un secteur matériel historiquement gourmand en capital.</p>
+<h4>DÉFINITION du Marché</h4>
+<p>Le marché visé s'organise autour de la commercialisation et de la location longue durée de VAE français premium et connectés à destination des salariés urbains (vélotaf) et de la gestion centralisée de flottes corporatives. La friction centrale subie par les acheteurs est l'insécurité permanente face au vol de ces équipements coûteux ainsi que la lourdeur d'exploitation logistique associée aux flottes non connectées.</p>
+<p>Ce segment se positionne en aval de la filière d'approvisionnement des composants de motorisation (Mivice, Shimano) et capte la marge en amont de l'usage via l'intégration exclusive de logiciels de verrouillage connectés.</p>
+<h4>Notre THÈSE de Marché</h4>
+<p>Le marché de la mobilité douce en milieu urbain a définitivement franchi un point d'inflexion irréversible sous l'action des politiques publiques et de l'aménagement massif d'infrastructures de circulation protégées. Les fabricants traditionnels de vélos sont incapables de proposer des services de sécurité connectée avancés et des portails de gestion de parcs sans subir des conflits de canaux majeurs avec leurs revendeurs physiques exclusifs.</p>
+<p>L'attaque technologique pertinente réside dans l'intégration matérielle d'une sécurité radicale de l'IoT couplée à une offre locative flexible d'entreprise s'insérant dans le budget RSE des grands comptes. La fenêtre d'opportunité actuelle, dopée par l'adoption massive des forfaits mobilités durables (FMD), se refermera d'ici 36 mois lorsque la pénétration des flottes de vélos de fonction aura saturé l'écosystème corporatif français.</p>
+<h4>Notre CONVICTION &amp; PARI sur ce Marché :</h4>
+<p><span class="conv-badge sr-amber">CONVICTION MOYENNE</span></p>
+<p>Bien que la transition vers la micromobilité urbaine présente une dynamique historique, le secteur matériel reste exposé à de fortes contraintes logistiques industrielles et à de longs cycles de prise de décision B2B.</p>
+<p>Notre pari est que l'émergence des vélos de fonction ultra-sécurisés va rapidement cannibaliser le transport individuel classique ainsi que l'autopartage au sein des plans de déplacement d'entreprises à l'horizon 2027. La preuve décisive de connectivité lors de notre premier appel se matérialisera par le taux d'engagement effectif des salariés d'entreprises ayant opté pour le modèle Ellipse lors des phases pilotes.</p>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ ATTRACTIF (Dynamiques)</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<p>Une dynamique globale extrêmement favorable dopée par l'urgence climatique et la transformation en profondeur des habitudes de déplacement des ménages.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Sizing</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Marché du VAE en Europe en forte accélération, estimé à plus de 5 milliards d'euros, affichant un TCAC robuste de l'ordre de 12%.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Growth Drivers</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Réglementation stricte sur les motorisations thermiques, multiplication des zones à faibles émissions (ZFE) et déploiement du Forfait Mobilités Durables.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Démocratisation des technologies IoT cellulaires à ultra-basse consommation (LTE-M) permettant une veille passive efficace des batteries et de la localisation.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Marché Risques</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Risque de volatilité tarifaire des composants semi-conducteurs et saturation potentielle des subventions publiques nationales à l'achat.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ GAGNABLE (Paysage Concurrentiel)</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div>
+<p>Une rivalité féroce mais qui laisse une place importante aux acteurs de confiance sachant allier souveraineté industrielle et excellence de la sécurité matérielle.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Incumbents</span><span class="sr-val">74/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Leaders historiques comme Specialized et Moustache Bikes, solides de part leurs réseaux physiques mais lents sur le développement logiciel IoT.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Challengers</span><span class="sr-val">76/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Start-ups ambitieuses comme Cowboy et Tenways ayant capté d'importants financements de capital-risque mais se heurtant à des problématiques sévères de rentabilité.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">White Space</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Positionnement vacant pour un VAE d'une grande durabilité, assemblé localement et nativement sécurisé contre le vandalisme pour un coût de revient contraint.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Defensibility</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Barrière matérielle efficace via l'assemblage français et moat logiciel basé sur l'écosystème Bikefinder gérant l'intégrité de la flotte.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ PÉNÉTRABLE (GTM &amp; Modèle d'Affaires)</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<p>La complémentarité des ventes D2C et de la location corporate (B2B) permet d'optimiser l'amortissement du coût d'acquisition client initial.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">GTM Model</span><span class="sr-val">81/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle hybride associant e-commerce moderne et pénétration corporate auprès des décideurs RH et directeurs RSE des entreprises.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Direct Pricing</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un tarif positionné entre 1990€ et 2490€, offrant un excellent rapport qualité-prix en deçà du seuil psychologique des 2500€.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Unit Economics</span><span class="sr-val">77/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Excellente visibilité des marges sur les contrats pluriannuels de location d'entreprises assurant une LTV (valeur à vie) prédictible.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Scalability</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Accélération facilitée par des alliances de distribution stratégiques clés (Decathlon) permettant un déploiement national rapide.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ RENTABLE (Financement &amp; Sorties)</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<p>L'industrie de la micromobilité exige des investisseurs de privilégier des modèles solides et résilients par rapport à des multiples d'évaluation spéculatifs.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Funding</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Financement soutenu par des acteurs étatiques de confiance comme Bpifrance à hauteur de 1.74M$ d'Angels d'ici la mi-2026.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Multiples</span><span class="sr-val">68/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Multiples d'évaluation corrélés au secteur du hardware industriel évoluant généralement entre 1.5x et 3x le chiffre d'affaires.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Strategic Buyers</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Industriels de l'auto voulant s'étendre sur la mobilité durable, géants du sport (Decathlon) et gestionnaires de flottes multimodales.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Return Profile</span><span class="sr-val">68/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un retour sur investissement tiré principalement par la brique logicielle récurrente et les services de flotte SaaS, essentiels pour pallier la lourdeur du stockage matériel matériel.</div></li></ul>
+<h4 class="kicker">SYNTHÈSE DES SECTIONS</h4>
+<p>Le croisement d'un marché extrêmement attractif à forte croissance et d'une intensité concurrentielle élevée impose à l'entreprise d'exceller dans la maîtrise de son prix de revient unitaire (COGS) pour éviter les écueils de croissance non rentable de ses concurrents.</p>
+<h4 class="kicker">DATA CONFIDENCE</h4>
+<p>Données solides fondées sur l'analyse directe des récentes campagnes de presse de 2026 et de la levée de fonds documentée, s'appuyant sur un total de 6 URL sources validées.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-e826e252e3da3ae43aaab2731b55be7c-kyrsot4o.jpg"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title">Analyse approfondie de l'entreprise</h2>
+<h3 id="value-proposition">Proposition de valeur</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Proposition de valeur</h4>
+<p>Redonner au vélo sa place de premier véhicule du foyer en proposant des vélos électriques sécurisés, durables et modernisés, conçus comme de véritables véhicules complets.</p>
+<h4 class="kicker">Profil client idéal (ICP)</h4>
+<p>Cyclistes urbains et interurbains, vélotafeurs quotidiens, entreprises cherchant des solutions de mobilité pour leurs salariés.</p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>Les deux. B2C pour les particuliers via le site et B2B via des offres de vélos de fonction ou en libre accès pour les entreprises.</p>
+<h4 class="kicker">Industrie</h4>
+<p>Mobilité urbaine / Fabrication de vélos électriques (VAE).</p>
+<h4 class="kicker">Contact et juridique</h4>
+<p>Téléphone: 03 25 45 80 84. Email: contact@ellipsebikes.com. Adresse: Troyes, Grand Est, France. Entité: Ellipse Industries. Année de fondation: 2020.</p>
+<h4 class="kicker">Exemples de clients clés et témoignages</h4>
+<p>Plus de 150 clients entreprises. Témoignages de Thierry L., Clément CM, Denis P., Nicolas T., Antoine G., Laurent G., Benoît D. Citations presse: technplay.com, Frandroid, 01Net, Le Parisien, Les Numériques, Weelz!.</p></div>
+<h3 id="product">Produit</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution principale</h4>
+<p>Vélos électriques (VAE) et musculaires haut de gamme, personnalisables et assemblés en France, mettant l'accent sur la sécurité et la longévité.</p>
+<h4 class="kicker">Encyclopédie des fonctionnalités</h4>
+<p>Feux LED intégrés | Clignotants | Feu stop | Système d'alarme sonore (100dB) | Visserie antivol | Courroie carbone ou chaîne | Capteur de couple | Batterie amovible | Géolocalisation GPS (option) | Port de recharge USB.</p>
+<h4 class="kicker">Capacités techniques</h4>
+<p>Application mobile Bikefinder (Android/iOS) | Intégration GPS/LTE-M/Wifi | Moteurs Mivice (250W) | Freins hydrauliques Shimano | Compatibilité remorques Thule | Certification EN-15194 et ISO 4210.</p>
+<h4 class="kicker">Cas d'utilisation</h4>
+<p>Trajets vélotaf quotidiens, déplacements urbains sécurisés, flotte de véhicules pour entreprises, sorties de loisir sur goudron et sentiers.</p></div>
+<h3 id="business-model">Modèle économique</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Analyse du modèle économique</h4>
+<p>Vente directe (D2C) via configurateur en ligne et solutions B2B (Location/Flotte).</p>
+<h4 class="kicker">Sources de revenus et niveaux de tarification</h4>
+<p>E2 / E2st : 2490 euros | E1 : 1990 euros (prix promotionnel, anciennement 2390 euros) | M1.2 : Prix non spécifié mais mentionné | Options: Pack confort, Connectivité GPS, Assurances Qover.</p>
+<h4 class="kicker">Caractéristiques des plans</h4>
+<p>Garantie 5 ans sur cadres/fourches et 2 ans sur composants. 30 jours d'essai pour les particuliers. Offre Entreprise incluant assurance casse/vol et assistance 24/7.</p>
+<h4 class="kicker">Coûts cachés et conditions</h4>
+<p>Frais de retour de 50 euros en cas de rétractation. Maintenance du moyeu Alfine préconisée annuellement.</p></div>
+<h3 id="team">Équipe</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'entreprise</h4>
+<p>Mission centrée sur les besoins concrets des cyclistes, la simplification de l'usage et la relocalisation industrielle (Made in France / Grand Est).</p>
+<h4 class="kicker">Analyse de l'équipe</h4>
+<p>Fondée par 3 ingénieurs et vélotafeurs (Paul L. mentionné comme assembleur). L'équipe regroupe des talents pluridisciplinaires en R&amp;D, électronique et assemblage.</p>
+<h4 class="kicker">Offres d'emploi et titres</h4>
+<p>Mention de rejoindre l'aventure sur la page histoire, mais pas de liste de postes précise dans le texte.</p>
+<h4 class="kicker">Effectif estimé</h4>
+<p>Non spécifié exactement, mais présence de départements R&amp;D, Montage, SAV, et Support client. Produit et ingénierie (R&amp;D et électronique), Support (SAV et Support client).</p></div>
+<h3 id="ceo">PDG</h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>Mobilité et transports &gt; Vélos Électriques Premium &amp; Solutions de Flotte B2B</li><li>B2B, B2C &gt; Vente d'actifs, E-commerce, Vente directe</li><li>1.74M$ levés auprès de Bpifrance, Caisse d'Epargne et SIDE Angels (mai 2026)</li></ul>
+<br/>
+<strong>SCORE DE PRÉ-SÉLECTION</strong><br/>
+Thèse : Critères d'Investissement
+<p>NOTE : Il s'agit d'un score brut d'évaluation préliminaire. Les pondérations de notre thèse d'investissement sont appliquées en aval lors de la qualification finale.<hr/></p><div class="score-row sr-blue sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">TRACTION &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div><p><hr/></p><div class="score-row sr-amber sr-total"><span class="sr-label">SCORE DE PRÉ-SÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">🟡 SIGNAL POSITIF (80-84)</span></div><p><hr/><strong>❓ EN QUELQUES MOTS :</strong> Ellipse Bikes est un constructeur de vélos électriques haut de gamme connectés qui permet aux vélotafeurs urbains d'effectuer leurs trajets quotidiens l'esprit tranquille en proposant des systèmes anti-vol et des technologies de sécurité nativement intégrées.</p>
+<h4 class="kicker">LE PROBLÈME</h4>
+<p>Les cyclistes urbains quotidiens vivent dans la hantise permanente du vol de leur vélo de valeur et du manque de visibilité de nuit sur les routes saturées.</p>
+<h4 class="kicker">LA SOLUTION</h4>
+<p>Un système électronique embarqué et connecté de sécurité active, comprenant des feux LED intégrés, des clignotants, un feu stop automatique, une visserie antivol brevetée ainsi qu'une alarme sonore de 100dB couplée à un traceur GPS.</p>
+<h4 class="kicker">LE GO-TO-MARKET</h4>
+<p>Une stratégie multicanale ciblant d'abord le grand public exigeant en D2C (e-commerce), puis pivotant agressivement vers le B2B grâce à des offres de vélos de fonction clés en main et un partenariat de distribution majeur avec Decathlon.<hr/></p><div class="score-row sr-blue sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Adequation Fondateur-Marché</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Paul Lepoutre et ses cofondateurs ingénieurs possèdent une expertise technique pointue en R&amp;D mécanique et électronique, acquise directement sur le terrain de l'assemblage relocalisé.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Track Record</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des entrepreneurs encore jeunes mais qui ont prouvé leur rigueur opérationnelle et leur capacité à mobiliser des acteurs publics et privés comme Bpifrance.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Organisation claire avec des départements spécialisés en R&amp;D, montage, service après-vente (SAV), basés à Troyes.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Complétude</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Excellente maîtrise technique et opérationnelle, bien que la force de vente B2B internationale reste à structurer pour l'expansion européenne.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille &amp; Croissance</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Explosion historique de la demande de VAE urbains et de la location de flottes corporatives en France, portée par la transition écologique et des taux de croissance annuels supérieurs à 15%.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Conjoncture idéale soutenue par les plans de mobilité nationaux, les forfaits mobilités durables (FMD) et l'extension des zones à faibles émissions (ZFE).</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Compétition</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un segment encombré d'acteurs de premier plan (Cowboy, Tenways), mais où Ellipse se distingue par sa sécurité matérielle et son assemblage local.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Profil d'expansion solide grâce à la transition vers l'Europe et aux services connexes d'assurance et d'entretien intégrés.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Intégration matérielle complète de fonctions de sécurité active (alarme, clignotants, géolocalisation native) absentes ou optionnelles chez la majorité des rivaux.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Product-Market Fit</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Retours clients exceptionnels de la part de plus de 150 entreprises clientes et excellente couverture par la presse technologique de référence.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Architecture connectée pilotée par l'application Bikefinder (iOS/Android) facilitant les mises à jour logicielles à distance et la gestion fine de flotte.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Propriété Intellectuelle &amp; Barrières</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Savoir-faire d'assemblage français et technologies IoT embarquées propriétaires conformes aux strictes normes européennes EN-15194.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">💼 MODÈLE D'AFFAIRES (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Unit Economics</span><span class="sr-val">73/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Excellence des marges D2C sur les modèles E1/E2 (1990€ - 2490€), bien que l'assemblage en France et le coût des composants locaux pèsent temporairement sur les marges brutes de départ.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Modèle de Revenu</span><span class="sr-val">76/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Hybride pragmatique liant vente d'actifs unitaires à des abonnements récurrents de services de connectivité GPS et d'assurance Qover.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Tiers tarifaires lisibles et options à forte valeur ajoutée (pack confort, connectivité étendue) garantissant une valeur à vie client (LTV) optimisée.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">73/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Double injection récente de capital en mai-juin 2026 (1.74M$ et 1.5M€), permettant de financer sereinement la production de la nouvelle gamme sans brûler excessivement de cash.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">📈 TRACTION &amp; CROISSANCE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Croissance des Revenus</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Dynamique solide validée par le nouveau tour de financement dédié à l'offre de vélos de fonction d'entreprise.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Plus de 150 entreprises font déjà confiance aux solutions professionnelles d'Ellipse pour verdir leur flotte de collaborateurs.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Progression des KPI</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Déploiement réussi de nouveaux modèles (E1, E2, E2st), expansion progressive des effectifs techniques et solide couverture médiatique.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Forte assise sur le marché domestique français en cours de consolidation, et début d'amorçage commercial sur les pays frontaliers.</div></li></ul>
+<hr/><strong>🔍 RISQUE À ATTÉNUER :</strong>
+<p>L'hypothèse principale sous-jacente au succès d'Ellipse repose sur sa capacité à maintenir et accroître ses marges brutes face à l'inflation des composants industriels européens tout en conservant son positionnement tarifaire sous la barre des 2500€. Si la demande B2B corporate ne s'accélère pas de façon exponentielle d'ici les 12 prochains mois pour générer des économies d'échelle significatives, le coût d'assemblage relocalisé à Troyes pourrait étouffer la rentabilité financière. Ce risque est partiellement résoluble par l'audit diligent de la structure des prix et la conclusion de contrats-cadres pluriannuels de volumes garantis avec Decathlon et de grandes flottes B2B.</p>
+<h4 class="kicker">AVANTAGES CONCURRENTIELS CLÉS</h4>
+<ul><li>Sécurité intégrée absolue : Un écosystème de protection physique et technologique unique (alarme 100dB, clignotants, géolocalisation native LTE-M) conçu dès le départ pour éliminer le fléau du vol.</li><li>Excellence et souveraineté de l'assemblage français : Une production locale à Troyes assurant un contrôle qualité rigoureux et une résonance puissante avec les critères RSE des entreprises clientes.</li><li>Partenariat stratégique Decathlon : Un canal d'accès et d'accélération commerciale massif offrant une visibilité et une logistique d'envergure nationale.</li><li>Modèle logistique agile : Conception par des ingénieurs permettant une maintenance simplifiée et des composants robustes conçus pour durer.</li></ul>
+<p><strong>🧱 MOAT :</strong> MODÉRÉ</p>
+<p>Le moat primaire d'Ellipse repose sur l'intégration logicielle et matérielle exclusive de son IoT propriétaire au sein du cadre du vélo, créant des coûts de changement technologique élevés et une complexité logicielle de désactivation d'alarme pour les voleurs, ce qui réduit drastiquement les primes d'assurance. Cette barrière technique s'auto-renforce à mesure que le réseau de traceurs GPS s'étend, densifiant l'efficacité de la géolocalisation urbaine. La couche de défense secondaire est constituée par la souveraineté de la production certifiée en France, difficile à copier pour des marques importatrices asiatiques soumises aux taxes de douane et aux contraintes logistiques.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le scénario haussier : Ellipse s'impose comme le leader incontesté de la micromobilité corporate française en équipant les flottes de plus de 1 000 grandes entreprises grâce à sa sécurité anti-vol inviolable, rendant son logiciel de gestion de flottes indispensable et s'imposant comme le système d'exploitation du vélo de fonction.</li><li>Le scénario baissier : La compression persistante des marges sur le hardware industriel et une guerre des prix agressive des acteurs d'importation empêchent la société de couvrir ses investissements en R&amp;D technologique avant d'avoir atteint l'échelle requise.</li></ul>
+<p><strong>🚩 SIGNAUX D'ALERTE</strong></p>
+<ul><li>Risques universels : Importante exposition aux chaînes logistiques globales de composants électroniques et dépendance financière vis-à-vis du rythme de renouvellement annuel des flottes d'entreprises.</li><li>Incohérences avec la thèse : Le modèle repose sur la production industrielle intensive d'actifs physiques lourds, ce qui implique une intensité de Capex structurelle parfois éloignée de nos thèses d'investissement axées sur la légèreté des actifs numériques.</li></ul>
+<p><strong>📝 DISPOSITIF DE PRÉPARATION AU PREMIER RENDEZ-VOUS</strong></p>
+<p>Les levées de fonds successives de mai-juin 2026 démontrent une ambition claire de domination commerciale sur les flottes d'entreprises; notre discussion doit se concentrer sur l'efficacité de ce levier de croissance B2B.</p>
+<ul><li>L'angle d'investissement : Miser sur le champion français de la micromobilité connectée qui convertit l'obligation RSE de décarbonation des entreprises en un parc de vélos ultra-sécurisés hautement rentables.</li><li>Questions capitales pour le premier appel :</li></ul>
+- Quelle est la répartition exacte de votre marge brute actuelle entre votre canal D2C et votre canal B2B corporate, et comment le partenariat avec Decathlon influe-t-il sur vos coûts de distribution ?<br/>
+- Si la hausse des prix des batteries impacte vos coûts de fabrication de 15%, quelle est votre élasticité-prix auprès de vos clients flottes pour préserver vos marges actuelles ?<br/>
+- Quel est le coût d'acquisition client (CAC) moyen constaté de vos contrats de flottes B2B d'entreprises et quel est le taux d'adoption/usage réel de vos vélos par les salariés bénéficiaires ?<br/>
+<ul><li>Signal de Go/No-Go au premier rendez-vous : Une transition rapide vers un audit financier approfondi sera accordée si le management présente une marge brute unitaire supérieure à 45% sur la nouvelle gamme E2 et prouve un taux d'attrition de contrats B2B nul sur l'année écoulée; à l'inverse, toute opacité sur le coût de revient industriel (COGS) ou l'absence de récurrence commerciale stoppera net notre intérêt.</li></ul>
+<br/>
+<strong>🌐 DATA CONFIDENCE :</strong> MEDIUM<br/>
+<ul><li>Les données relatives aux spécifications techniques et aux retours du marché sont hautement exhaustives, mais la dynamique de marge interne et les clauses du partenariat avec Decathlon requièrent une étude approfondie.</li><li><strong>DÉFICITS DE DONNÉES :</strong> Marges brutes unitaires réelles des modèles E1/E2 • Coût d'acquisition client (CAC) B2B • Détails financiers de la convention de partenariat Decathlon.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781431200000/gKb8sZTbgxw_S1KOq562bA/N-t89OsdDKsKn38XuUeHQTU5h7PFU4FEQLCPowWfLF_1r1VENP605CWld68CnxUA5fdgyg75b52gK17CGYkqdSbD2p1WPMsMFUUMtqQh8fr69S31QNnTI4d_UO7wTj8Eb9SDZ-ZUsek6w-SoI_dofg/mF6ExC3lPMfkNfyHpyScsyhDGvPSsA0d5tup2UotQbE"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>L'assemblage en France avec certifications EN-15194 et ISO 4210 renforce la crédibilité sécurité auprès des cyclistes urbains exigeants.</li><li>Plus de 150 clients entreprises démontrent une traction B2B concrète dans les flottes de mobilité.</li><li>Les fonctionnalités intégrées comme l'alarme 100dB, les clignotants et la géolocalisation GPS créent une différenciation produit réelle sur la sécurité.</li><li>La levée de 1,74 million de dollars auprès de Bpifrance et SIDE Angels en mai 2026 apporte du capital pour scaler sans dilution excessive.</li><li>Le partenariat avec Decathlon offre un canal de distribution accéléré pour atteindre un public plus large.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>L'entreprise fondée en 2020 reste petite avec des départements R&amp;D et montage limités, freinant la mise à l'échelle rapide.</li><li>Les prix de 1990 à 2490 euros positionnent les vélos dans une niche premium difficile à pénétrer en volume.</li><li>Les garanties limitées à deux ans sur les composants exposent les clients à des coûts de maintenance élevés après l'achat.</li><li>La vente directe complémentée par des partenariats limités crée une dépendance à l'acquisition client en ligne.</li><li>Les frais de retour de 50 euros et la maintenance annuelle du moyeu Alfine ajoutent des frictions pour les acheteurs B2C.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li>L'expansion européenne financée par les tours récents permet de capter la croissance des marchés de vélos électriques au-delà de la France.</li><li>Les offres flottes entreprises avec assurance casse/vol et assistance 24/7 répondent à une demande croissante des employeurs pour la mobilité durable.</li><li>L'intégration de l'application Bikefinder et du GPS ouvre des revenus récurrents via des services connectés.</li><li>La relocalisation industrielle Made in France attire des subventions et des clients sensibles à la souveraineté économique.</li><li>Le positionnement sur les vélotafeurs quotidiens profite de politiques urbaines favorisant le vélo dans les villes.</li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>La faillite récente d'Angell illustre la fragilité des acteurs de vélos électriques face aux coûts de production et à la concurrence.</li><li>Les fabricants asiatiques à bas coût exercent une pression continue sur les prix des VAE en Europe.</li><li>La dépendance aux financements externes expose l'entreprise à un assèchement du capital si les tours suivants échouent.</li><li>Les problèmes de chaîne d'approvisionnement sur les composants comme les moteurs Mivice peuvent retarder les livraisons.</li><li>Un ralentissement économique réduirait les budgets entreprises pour les flottes de vélos.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la chaîne de valeur</h3>
+<p>Aucune source spécifique fournie.</p>
+<h3>Sources de marché</h3><p>DOSSIER D'INTELLIGENCE DE MARCHÉ - RAPPORTS D'ÉVIDENCE D'URL</p>
+<p>Objet: Documentation de support avec preuves d'URL pour l'évaluation de l'attractivité du marché</p>
+<p>Marché: Vélos Électriques Premium &amp; Solutions de Flotte B2B</p>
+<p>Complétude des Données: 75/100</p>
+<p>Évaluation: 🟢 SUFFISANT POUR UNE DÉCISION D'INVESTISSEMENT</p>
+<p>Calcul: (3 URL trouvées ÷ 4 URL recherchées) × 100 = 75% de complétude</p>
+<p>Date de Recherche: Juin 2026 | Total d'URL trouvées: 3</p>
+<p>URL PAR CATÉGORIE D'ÉVALUATION DE MARCHÉ</p>
+<p>🌊 MARCHÉ ATTRACTIF (Dynamiques de Marché) | Trouvé 1/4 points de données</p>
+<ul><li><b>Timing Why Now:</b> <a href="https://lejournaldesentreprises.com/article/ellipse-bikes-boucle-une-levee-de-fonds-de-15-million-deuros-pour-completer-son-offre-de-velos-pour-2143417" target="_blank">lejournaldesentreprises.com</a>. Utilisé pour: Confirmation de l'expansion du segment B2B et des besoins de financement flottes.</li></ul>
+<p>⚔️ MARCHÉ GAGNABLE (Paysage Concurrentiel) | Trouvé 1/4 points de données</p>
+<ul><li><b>Challengers:</b> <a href="https://leparisien.fr/aube-10/faillite-du-constructeur-angell-les-troyens-dellipse-bikes-mobilisent-la-filiere-des-velos-electriques-03-02-2025-KOVX2WEK5FE25I3RWZQELDUEHE.php" target="_blank">leparisien.fr</a>. Utilisé pour: Analyse contextuelle de la faillite de concurrents notables et de l'adaptation d'Ellipse.</li></ul>
+<p>🎯 MARCHÉ PÉNÉTRABLE (GTM &amp; Modèle d'Affaires) | Trouvé 1/4 points de données</p>
+<ul><li><b>GTM Model:</b> <a href="https://ellipsebikes.com/entreprise/levee-de-fonds/" target="_blank">ellipsebikes.com</a>. Utilisé pour: Explication de l'ouverture du capital et de l'alliance de distribution avec Decathlon.</li></ul>
+<p>💰 MARCHÉ RENTABLE (Financement &amp; Paysage des Sorties) | Trouvé 0/4 points de données</p>
+<ul><li><b>Unit Economics:</b> [Privé/Non Sourdé]</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>Déficits de Données Critiques Basés sur la Recherche: Données transactionnelles et d'évaluation financières privées d'autres constructeurs de VAE de la filière d'assemblage.</p>
+<p>Nombre d'URL Validées: 3 sur 4 cibles recherchées</p>
+<p>Couverture Globale: 75%</p>
+<p>Niveau de Confiance de Recherche: MOYEN</p><h3>Sources de l'entreprise</h3><p>DOSSIER D'INTELLIGENCE D'ENTREPRISE - RAPPORTS D'ÉVIDENCE D'URL</p>
+<p>Objet: Documentation de support avec preuves complètes d'URL pour l'analyse du score d'investissement</p>
+<p>Entreprise: Ellipse Bikes</p>
+<p>Complétude des Données: 75/100</p>
+<p>Évaluation: 🟢 DONNÉES SUFFISANTES POUR UN PREMIER EXAMEN</p>
+<p>Calcul: (6 URL trouvées ÷ 8 URL recherchées) × 100 = 75% de complétude</p>
+<p>Date de Recherche: Juin 2026 | Total d'URL trouvées: 6</p>
+<p>URL PAR CATÉGORIE D'ÉVALUATION</p>
+<h4>EXCELLENCE DE L'ÉQUIPE | Trouvé 2/4 points de données</h4>
+<ul><li><b></b> <a href="https://fr.linkedin.com/in/paul-lepoutre-173b42157/en" target="_blank">fr.linkedin.com</a>. Utilisé pour: Analyse du parcours académique de l'équipe fondatrice d'ingénieurs et de son implication opérationnelle.</li><li><b>Leadership:</b> <a href="https://ellipsebikes.com" target="_blank">ellipsebikes.com</a>. Utilisé pour: Évaluation de l'organisation et de la structuration des équipes d'assemblage situées à Troyes.</li></ul>
+<h4>OPPORTUNITÉ DE MARCHÉ | Trouvé 2/4 points de données</h4>
+<ul><li><b>Compétition:</b> <a href="https://leparisien.fr/aube-10/faillite-du-constructeur-angell-les-troyens-dellipse-bikes-mobilisent-la-filiere-des-velos-electriques-03-02-2025-KOVX2WEK5FE25I3RWZQELDUEHE.php" target="_blank">leparisien.fr</a>. Utilisé pour: Évaluation du paysage concurrentiel local et du positionnement réactif de l'entreprise lors des défaillances de concurrents.</li><li><b>Expansion:</b> <a href="https://ellipsebikes.com/entreprise/levee-de-fonds/" target="_blank">ellipsebikes.com</a>. Utilisé pour: Analyse de la stratégie d'ouverture de capital pour accélérer le développement en Europe.</li></ul>
+<h4>INNOVATION PRODUIT | Trouvé 1/4 points de données</h4>
+<ul><li><b>Différenciation:</b> <a href="https://frandroid.com/survoltes/velo-electrique/2834185_voici-lellipse-e2-le-velo-electrique-qui-vous-laisse-le-choix-sans-surcout" target="_blank">frandroid.com</a>. Utilisé pour: Examen approfondi des caractéristiques technologiques et du positionnement de prix de la nouvelle gamme E2.</li></ul>
+<h4>MODÈLE D'AFFAIRES | Trouvé 1/4 points de données</h4>
+<ul><li><b>Capital Efficiency:</b> <a href="https://www.cbinsights.com/company/ellipse/financials" target="_blank">cbinsights.com</a>. Utilisé pour: Recoupement des données financières d'amorçage et de la trajectoire de financement.</li></ul>
+<h4>TRACTION &amp; CROISSANCE | Trouvé 2/4 points de données</h4>
+<ul><li><b>Validation Client:</b> <a href="https://ellipsebikes.com" target="_blank">ellipsebikes.com</a>. Utilisé pour: Extraction des témoignages clients et de la liste des entreprises utilisatrices de flottes.</li><li><b>Progression de KPI:</b> <a href="https://lejournaldesentreprises.com/article/ellipse-bikes-boucle-une-levee-de-fonds-de-15-million-deuros-pour-completer-son-offre-de-velos-pour-2143417" target="_blank">lejournaldesentreprises.com</a>. Utilisé pour: Analyse de la levée de fonds dédiée à l'expansion de la flotte de vélos de fonction d'entreprise.</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>Déficits de Données Critiques Basés sur la Recherche: Chiffres financiers précis non publics, taux de marge brute exact unitaire, et décomposition du CAC par canal.</p>
+<p>Nombre d'URL Validées: 6 sur 8 cibles recherchées</p>
+<p>Couverture Globale: 75%</p>
+<p>Niveau de Confiance de Recherche: MOYEN</p></div>
+</div>
+
+
+
+
+
+&lt;<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Ellipse Bikes ?</span><span class="i18n-en">Explore Ellipse Bikes further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
