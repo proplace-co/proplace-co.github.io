@@ -319,6 +319,15 @@ box-shadow:0 10px 26px rgba(10,10,10,.28);pointer-events:none;transform:translat
 .tm-day-all{color:var(--accent-dk);border-color:transparent}
 .tm-day-cur{background:var(--accent);color:#06281a;border-color:var(--accent);font-weight:700}
 .tm-count{font-size:13px;font-weight:700;color:var(--mid);margin:20px 0 6px;text-transform:uppercase;letter-spacing:.04em}
+/* CTA « Recevez ce suivi » : apparaît quand ≥1 secteur est coché (piloté par le board JS). */
+.sf-cta{margin:12px 0 2px;border:1px solid var(--accent);background:rgba(74,198,127,.07);border-radius:14px;padding:14px 16px}
+.sf-cta[hidden]{display:none}
+.sf-cta-t{font-size:14.5px;font-weight:700;color:var(--ink);margin:0 0 9px}
+.sf-cta-f{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.sf-cta-f input[type=email]{flex:1 1 240px;min-width:170px;font:inherit;font-size:14px;padding:10px 13px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.sf-cta-f input[type=email]:focus{outline:none;border-color:var(--accent)}
+.sf-cta-f button{background:#0A0A0A;color:#fff;border:none;border-radius:10px;padding:10px 18px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
+.sf-cta-msg{font-size:13px;color:var(--accent-dk);font-weight:600;margin:8px 0 0;min-height:16px}
 .thead{display:grid;grid-template-columns:minmax(0,1fr) 84px 102px 96px 48px 92px 116px;gap:12px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);padding:8px 0 6px;border-bottom:1px solid var(--line);margin-top:6px}
 .tm-board{margin:14px 0 0}
 .tm-sec{margin:38px 0 0;padding-top:14px;border-top:2px solid var(--line);position:relative}
@@ -593,6 +602,7 @@ function apply(){
  if(firstVis)firstVis.classList.add("tm-vfirst");
  var c=document.getElementById("tm-count");if(c)c.textContent=EN()?(totalOps+" deal"+(totalOps>1?"s":"")+" · "+totalSecs+" sector"+(totalSecs>1?"s":"")):(totalOps+" opération"+(totalOps>1?"s":"")+" · "+totalSecs+" secteur"+(totalSecs>1?"s":""));
  var e=document.getElementById("tm-empty");if(e)e.style.display=totalOps?"none":"block";
+ if(typeof sfToggle==="function")sfToggle();
  if(window.__boardApply){try{window.__boardApply();}catch(_e){}}
 }
 function seg(sel,set){document.querySelectorAll(sel+" button").forEach(function(b){b.onclick=function(){document.querySelectorAll(sel+" button").forEach(function(x){x.classList.remove("on")});b.classList.add("on");set(b);apply();};});}
@@ -657,6 +667,25 @@ function initSec(){var want=[];
  [].slice.call(dd.querySelectorAll('.tm-secmenu button')).forEach(function(b){var v=b.getAttribute("data-v");if(v!=="*"&&SECSET.has(v))b.classList.add("on");});
  var ab=dd.querySelector('.tm-secmenu button[data-v="*"]');if(ab)ab.classList.toggle("on",SECSET.size===0);
  if(dd._relabel)dd._relabel();}
+// CTA « Recevez ce suivi par secteur » : visible dès qu'au moins 1 secteur est coché ; envoie les
+// LIBELLÉS bruts de SECSET (pas le slug JS) à /mes-secteurs/subscribe → sauvegarde + email magic-link.
+var sfApi="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/mes-secteurs/subscribe";
+var sfCta=document.getElementById("sf-cta");
+function sfToggle(){if(!sfCta)return;var n=SECSET.size;if(n>0){sfCta.hidden=false;
+ var nl=document.getElementById("sf-cta-n");if(nl)nl.textContent=(n+(EN()?(" sector"+(n>1?"s":"")):(" secteur"+(n>1?"s":""))));}else{sfCta.hidden=true;}}
+var sfF=document.getElementById("sf-cta-f");
+if(sfF)sfF.onsubmit=function(e){e.preventDefault();
+ var em=(document.getElementById("sf-cta-email").value||"").trim();
+ var hp=(document.getElementById("sf-cta-hp").value||"");
+ var ms=document.getElementById("sf-cta-msg");
+ var arr=[];SECSET.forEach(function(x){arr.push(x);});
+ if(!arr.length){ms.textContent=EN()?"Check at least one sector.":"Cochez au moins un secteur.";return;}
+ ms.textContent="…";
+ fetch(sfApi,{method:"POST",headers:{"Content-Type":"application/json"},
+  body:JSON.stringify({email:em,sectors:arr,website:hp,source:"board-cta"})})
+  .then(function(r){return r.json();})
+  .then(function(d){ms.textContent=(d&&d.ok)?(EN()?"Done — check your inbox to manage your watchlist.":"C'est noté — vérifiez votre boîte mail pour gérer votre suivi."):((d&&d.error)||(EN()?"Failed — try again.":"Échec — réessayez."));})
+  .catch(function(){ms.textContent=EN()?"Network error — try again.":"Erreur réseau — réessayez.";});};
 initSec();
 apply();
 })();</script><style>
