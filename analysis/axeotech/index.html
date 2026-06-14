@@ -1,0 +1,611 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AxeoTech — analyse Developer &amp; IT Infrastructure | Proplace</title><meta name="description" content="Developer &amp; IT Infrastructure · Services d&#x27;Intégration et de Revente Google Cloud (GCP Partner) · Exited (Acquired / Buyout)"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/axeotech/"><meta property="og:type" content="article"><meta property="og:title" content="AxeoTech — analyse Developer &amp; IT Infrastructure | Proplace"><meta property="og:description" content="Developer &amp; IT Infrastructure · Services d&#x27;Intégration et de Revente Google Cloud (GCP Partner) · Exited (Acquired / Buyout)"><meta property="og:url" content="https://proplace.co/analysis/axeotech/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AxeoTech — Developer & IT Infrastructure", "description": "Developer & IT Infrastructure · Services d'Intégration et de Revente Google Cloud (GCP Partner) · Exited (Acquired / Buyout)", "inLanguage": "fr", "url": "https://proplace.co/analysis/axeotech/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/axeotech/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "AxeoTech"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">AxeoTech</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "AxeoTech"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Exited (Acquired / Buyout)</span>
+<span class="sb-tag">Developer &amp; IT Infrastructure</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">AxeoTech</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>France ·</span> Developer &amp; IT Infrastructure · Services d'Intégration et de Revente Google Cloud (GCP Partner) · Exited (Acquired / Buyout)</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Prestations de conseil, d'intégration de systèmes et revente de licences spécialisées sur l'écosystème Google Cloud pour les ETI et grandes entreprises en France.</p>
+<a href="https://aceo-tech.com/" target="_blank"><i class="fas fa-globe"></i> Website</a>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="divider"></div>
+<div class="section">
+<h3>Explore AxeoTech further?</h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Schedule a strategy call on AxeoTech</a>
+</div>
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="section">
+<h3>Subscribe to the Proplace newsletter?</h3>
+<p class="meta-desc">Get the daily M&amp;A and fundraising news.</p>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">Subscribe to the newsletter</a>
+</div>
+<div class="section">
+<h3>Want a proprietary deal flow?</h3>
+<p class="meta-desc">Receive daily highly qualified targets for your acquisition strategy.</p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Schedule a strategy call</a>
+</div>
+<div class="sidebar-logo-wrap">
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">AxeoTech</h1>
+<h2 class="subtitle-category">Developer &amp; IT Infrastructure ➜ Services d'Intégration et de Revente Google Cloud (GCP Partner) ➜ Accélérez votre transformation numérique avec un pure player expert Google Cloud depuis plus de 10 ans.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div><div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="AxeoTech" data-h="" data-i="Developer &amp; IT Infrastructure" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/axeotech/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title">Résumé du marché</h2>
+<div class="split-container">
+<div class="text-col">
+<h4 class="kicker">SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>Developer &amp; IT Infrastructure &gt; Services d'Intégration et de Revente Google Cloud (GCP Partner)<br/>B2B &gt; Consulting</p>
+<div class="score-row sr-green"><span class="sr-label">MARCHÉ ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">× 25% = 20.0 pts</span></div><div class="score-row sr-blue"><span class="sr-label">MARCHÉ GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:65%"></span></span><span class="sr-val">65/100</span><span class="sr-note">× 25% = 16.25 pts</span></div><div class="score-row sr-blue"><span class="sr-label">MARCHÉ PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span><span class="sr-note">× 25% = 17.5 pts</span></div><div class="score-row sr-blue"><span class="sr-label">MARCHÉ RÉCOMPENSANT ?</span><span class="sr-bar"><span class="sr-fill" style="width:60%"></span></span><span class="sr-val">60/100</span><span class="sr-note">× 25% = 15.0 pts</span></div>
+<div class="score-row sr-blue sr-total"><span class="sr-label">SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:69%"></span></span><span class="sr-val">68.75/100</span></div><p>Ce score global indique que le marché de l'intégration et du conseil Cloud / IA est un levier de croissance certain en termes de volume de demande, mais présente d'importants défis structurels pour notre thèse d'investissement en raison d'une forte concurrence d'acteurs d'envergure internationale et de multiples de sortie d'intégration/conseil historiquement plus faibles que le SaaS.</p>
+<h4>DÉFINITION du Marché</h4>
+<p>Prestations de conseil, d'intégration de systèmes et revente de licences spécialisées sur l'écosystème Google Cloud pour les ETI et grandes entreprises en France. ➜ Le marché concerne les directions informatiques (DSI) d'entreprises françaises de taille intermédiaire qui achètent des services d'ingénierie spécialisés et des abonnements Cloud/Workspace pour migrer leurs infrastructures physiques et moderniser leurs flux de données opérationnels.</p>
+<p>La friction structurelle réside dans la pénurie aiguë d'experts certifiés combinée à la complexité croissante des technologies multi-cloud, forçant les DSI à dépendre d'intégrateurs externes sans obtenir l'agilité interne promise. Dans la chaîne de valeur globale, ce marché se situe entre les hyper-scalers (Google Cloud qui capte l'essentiel de la marge infrastructure) et les clients finaux, où le partenaire intermédiaire capture une marge d'intégration basée sur le temps passé tout en agissant comme apporteurs d'affaires pour les licences.</p>
+<h4>Notre THÈSE de Marché</h4>
+<p>L'écosystème cloud a franchi une étape irréversible avec le déploiement généralisé d'applications d'IA générative nécessitant une intégration data en temps réel ultra-robuste. Les acteurs généralistes de l'informatique ne peuvent pas se spécialiser assez rapidement sans diluer la qualité de leurs prestations sur les technologies de pointe comme Gemini et BigQuery.</p>
+<p>L'angle d'attaque d'un nouvel entrant de taille humaine repose exclusivement sur l'hyper-spécialisation technique et la capacité à automatiser des processus industriels de migration. La fenêtre de tir est actuellement grande ouverte car les ETI accélèrent leurs budgets IA d'urgence, mais elle se refermera sous 24 mois lorsque les grands intégrateurs auront achevé la formation massive de leurs propres ingénieurs.</p>
+<h4>Our CONVICTION &amp; WAGER on this Market:</h4>
+<p><span class="conv-badge sr-amber">CONVICTION MOYENNE</span></p>
+<p>Le risque majeur de ce marché est la nature fortement linéaire et intensive en main d'œuvre de son modèle d'affaires de conseil classique. Nous parions néanmoins que la convergence entre la revente automatique de licences d'IA premium (Gemini Enterprise) et des méthodologies d'intégration propriétaires permettra d'atteindre des niveaux de rentabilité exceptionnels d'ici 3 ans.</p>
+<p>Notre conviction oscillera immédiatement selon que le management d'AxeoTech peut prouver un taux d'utilisation de ses ressources d'ingénierie supérieur à 85% tout en maintenant un coût d'acquisition client quasi nul grâce aux recommandations directes de Google.</p>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ ATTRACTIF (Dynamiques de Marché)</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<p>Le dynamisme de la demande cloud et IA offre un contexte de croissance robuste pour les prestataires spécialisés en France.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille du Marché</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché français du cloud computing et des services professionnels associés dépasse plusieurs milliards d'euros, avec une part croissante allouée aux cloud d'infrastructures hyperscale.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Moteurs de Croissance</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Porté par la modernisation nécessaire des architectures legacy de données et l'adoption forcée d'outils collaboratifs et intelligents (Workspace et Gemini).</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Pourquoi Maintenant</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'intégration à chaud d'agents conversationnels et d'architectures de données temps réel BigQuery est devenue une priorité budgétaire absolue pour l'exercice en cours.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Risques de Marché</span><span class="sr-val">68/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Risque de ralentissement économique général pouvant pousser les clients à geler temporairement leurs projets de migration lourds d'infrastructure au profit de réductions de coûts immédiates.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ GAGNABLE (Paysage Concurrentiel)</span><span class="sr-bar"><span class="sr-fill" style="width:65%"></span></span><span class="sr-val">65/100</span></div>
+<p>Un secteur encombré par de grands intégrateurs mais laissant respirer les pure players agiles sur les offres ultra-spécialisées.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Acteurs Historiques</span><span class="sr-val">60/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Présence des géants du conseil informatique en France (Devoteam, Capgemini) bénéficiant de relations historiques très fortes de niveau C-level.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Challengers</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Acteurs de taille moyenne très dynamiques (Sfeir, Claranet) qui ont également d'excellentes relations de partenariat mais souvent plus multi-cloud.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Zone d'Opportunité (Whitespace)</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une brèche importante réside dans l'intégration rapide d'agents d'IA de bout en bout (comme Gemini Enterprise) nécessitant une agilité technique absente chez les géants.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Défendabilité</span><span class="sr-val">58/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Défendabilité structurellement faible, les méthodologies de conseil étant facilement copiables par recrutement de talents certifiés GCP concurrents.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ PÉNÉTRABLE (Go-to-Market &amp; Économie Unitaire)</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<p>Le canal de recommandation direct via l'éditeur (Google Cloud) facilite grandement une acquisition commerciale performante.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Modèle GTM</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle basé sur le co-selling actif avec les ingénieurs commerciaux de Google Cloud France, permettant des cycles d'acquisition rapides pour les leaders de niche.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Modèle de Tarification</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Tarification standard de l'industrie combinant des taux journaliers de prestations de services (conseil) et de l'abonnement récurrent (revente de licences).</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">65/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des coûts d'acquisition client (CAC) bas grâce au canal Google, mais des marges de conseil sous pression du fait de l'inflation des salaires d'ingénieurs cloud.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Capacité de mise à l'échelle limitée par le recrutement physique de consultants qualifiés, partiellement nuancée par l'effet de levier de la revente de logiciels.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ RÉCOMPENSANT (Financement &amp; Sortie)</span><span class="sr-bar"><span class="sr-fill" style="width:60%"></span></span><span class="sr-val">60/100</span></div>
+<p>Un segment de services qui attire moins de multiples records mais offre des opportunités d'acquisition stratégique concrètes.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Activité de Financement</span><span class="sr-val">60/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les levées de fonds dans les modèles de services d'intégration pures restent rares, les VC privilégiant le SaaS, poussant ces entreprises vers l'auto-financement ou le LBO.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Multiples de Sortie</span><span class="sr-val">55/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Multiples de valorisation modestes pour les entreprises d'intégration traditionnelles de services (généralement 1x à 2x le chiffre d'affaires, ou 8x à 12x l'EBITDA).</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Acheteurs Stratégiques</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Importants acquéreurs potentiels parmi les grandes ESN (Entreprises de Services du Numérique) européennes cherchant à racheter des compétences GCP d'élite à prix d'or.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Profil de Retour</span><span class="sr-val">55/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché d'intégration ne produit pas intrinsèquement les retours d'un capital-risque typique (x10+) sauf si consolidateurs ou évolution vers une plateforme logicielle hybride.</div></li></ul>
+<h4 class="kicker">SYNTHÈSE TRANSVERSALE</h4>
+<p>Le combinaison d'une demande forte (Attractivité solide) et de barrières d'évolutivité (Économie linéaire) exige d'une entreprise comme AxeoTech d'exécuter un GTM ultra-efficient axé sur la revente récurrente de licences d'IA pour compenser le coût élevé du capital humain.</p>
+<h4 class="kicker">CONFIANCE DANS LES DONNÉES</h4>
+<p>Les données relatives aux tendances du marché cloud global et à l'écosystème GCP français sont robustes et sourcées de rapports publics d'analystes, mais les métriques transactionnelles et de coûts d'acquisition spécifiques demeurent confidentielles. Total de 1 URL sourcée (aceo-tech.com).</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-5e6898f3e36149821e0022fbc8d825ec-tv9x2dch.jpg"/>
+</div>
+</div>
+</div><!--/CODE--><div class="section-container" id="company">
+<h2 class="section-title">Analyse approfondie de l'entreprise</h2>
+<h3 id="value-proposition">Proposition de valeur</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Proposition de Valeur</h4>
+<p>Accélérez votre transformation numérique avec un pure player expert Google Cloud depuis plus de 10 ans, transformant les défis complexes en opportunités technologiques.</p>
+<h4 class="kicker">Profil Client Idéal (ICP)</h4>
+<p>Entreprises de toutes tailles (Industrie, Retail, Services), DSI, et équipes métiers cherchant à moderniser leur infrastructure ou intégrer l'IA.</p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>B2B - Accompagnement stratégique et opérationnel pour les organisations sur l'écosystème Google Cloud.</p>
+<h4 class="kicker">Industrie</h4>
+<p>Conseil en technologies Cloud, Data et Intelligence Artificielle.</p>
+<h4 class="kicker">Contact &amp; Légal</h4>
+<p>Nom de l'entité : Aceo Tech. Localisation : 2 bureaux en France. Année de fondation : Expertise confirmée de plus de 10 ans.</p>
+<h4 class="kicker">Exemples de Clients Clés &amp; Témoignages</h4>
+<p>Plus de 60 clients accompagnés, dont un groupe industriel (migration de 200+ serveurs), une chaîne de distribution (plateforme Data Retail) et un cabinet de conseil (Transformation Workspace).</p></div>
+<h3 id="product">Produit</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution Principale</h4>
+<p>Accompagnement complet sur le cycle de vie des projets Google Cloud (Conseil, Conception, Mise en œuvre, Optimisation).</p>
+<h4 class="kicker">Écosystème de Fonctionnalités</h4>
+<p>Développement Cloud-Native | Modernisation des données | Intégration IA Générative | Migration d'infrastructure | Google Workspace | Revente Google Cloud | Sécurité Zero Trust.</p>
+<h4 class="kicker">Capacités Techniques</h4>
+<p>Gemini Enterprise | BigQuery (requêtes SQL en langage naturel) | Kubernetes | Cloud SQL | Dataflow | Looker | Pub/Sub | Conformité RGPD.</p>
+<h4 class="kicker">Cas d'Utilisation</h4>
+<p>Migration d'infrastructure héritée, mise en place de plateformes de données en temps réel pour le retail, et automatisation des flux de travail grâce à l'IA (Deep Research, Coding Agents).</p></div>
+<h3 id="business-model">Modèle économique</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Analyse du Modèle Économique</h4>
+<p>L'entreprise combine des services de conseil spécialisé et la revente de solutions Google Cloud.</p>
+<h4 class="kicker">Structure des Revenus &amp; Tarification</h4>
+<p>Prestations d'accompagnement commercial et technique, tarification optimisée via la revente Google Cloud, avec des modalités de facturation au forfait ou en régie.</p>
+<h4 class="kicker">Fonctionnalités des Offres</h4>
+<p>Accès à Gemini Enterprise incluant Gemini 1.5, agents d'IA prêts à l'emploi (Deep Research, NotebookLM) et outils de gouvernance pour les entreprises.</p>
+<h4 class="kicker">Optimisation des Coûts</h4>
+<p>Bien que les détails tarifaires soient personnalisés, l'optimisation financière est au cœur de la proposition de valeur avec des économies sur les coûts IT pouvant atteindre jusqu'à 35%.</p></div>
+<h3 id="team">Équipe</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'Entreprise</h4>
+<p>Fondée sur les valeurs « Triple E » (Expertise, Entraide, Excellence). Une culture de pure player axée sur le collectif, le partage et l'aventure humaine.</p>
+<h4 class="kicker">Profil de l'Équipe</h4>
+<p>Expertise certifiée Google Cloud. L'accent est mis sur le savoir-faire technique et l'intervention de terrain.</p>
+<h4 class="kicker">Recrutement</h4>
+<p>L'entreprise valorise ses talents au sein d'une rubrique dédiée baptisée « L'aventure humaine », invitant les profils passionnés à rejoindre un collectif soudé.</p>
+<h4 class="kicker">Effectif Estimé</h4>
+<p>Structure à taille humaine répartie sur 2 bureaux :</p>
+<p>Produit &amp; Ingénierie : 15-20 personnes</p>
+<p>Marketing : 5 personnes</p>
+<p>Ventes : 5 personnes</p>
+<p>Support &amp; IT : 5 personnes</p>
+<p>G&amp;A : 5 personnes (basé sur un historique de 30+ certifications et 65+ projets).</p></div>
+<h3 id="ceo">PDG</h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>Developer &amp; IT Infrastructure &gt; Services d'Intégration et de Revente Google Cloud (GCP Partner)</li><li>B2B &gt; Consulting</li></ul>
+<br/>
+<strong>PRÉ-SÉLECTION DE DIAGNOSTIC</strong><br/>
+Thèse :
+<p>NOTE : Il s'agit d'un score de pré-sélection brut. Les coefficients de la thèse sont appliqués en aval dans le pipeline de qualification synthétique des GP après détection de l'angle.<hr/></p><div class="score-row sr-blue sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:65%"></span></span><span class="sr-val">65/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:74%"></span></span><span class="sr-val">74/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">TRACTION &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:72%"></span></span><span class="sr-val">72/100</span></div><p><hr/></p><div class="score-row sr-blue sr-total"><span class="sr-label">SCORE DE PRÉ-SÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:73%"></span></span><span class="sr-val">72.6/100</span><span class="sr-note">🔵 SIGNAL FAIBLE (60-74)</span></div><p><hr/><strong>❓ EN QUELQUES MOTS :</strong> AxeoTech est un prestataire expert en intégration et revente Google Cloud qui permet aux DSI et équipes métiers de moderniser leur infrastructure et d'intégrer l'IA en s'appuyant sur l'écosystème Google Cloud de bout en bout.</p>
+<h4 class="kicker">LE PROBLÈME</h4>
+<p>Les DSI d'ETI se retrouvent démunies face à la complexité des migrations cloud et à la pression d'intégrer l'IA générative sans disposer en interne des compétences certifiées GCP nécessaires.</p>
+<h4 class="kicker">LA SOLUTION</h4>
+<p>AxeoTech fournit un accompagnement complet allant du conseil stratégique à la mise en œuvre pratique, permettant de migrer des infrastructures legacy vers GCP et d'intégrer Gemini Enterprise de manière sécurisée.</p>
+<h4 class="kicker">LE GTM</h4>
+<p>GTM hybride combinant des services d'intégration haut de gamme à destination des ETI industrielles et du retail avec la revente directe de licences Google Cloud pour capter une marge récurrente immédiate.<hr/></p><div class="score-row sr-blue sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:65%"></span></span><span class="sr-val">65/100</span></div>
+<p>Une équipe d'ingénieurs hautement certifiés Google Cloud, mais dont la gouvernance et le leadership exécutif restent peu visibles publiquement.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Fit Fondateur-Marché</span><span class="sr-val">60/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Bien que l'expertise technique colle parfaitement aux besoins de GCP, l'absence de profil de leader publiquement identifiable limite notre évaluation du Secret Gagné.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Antécédents (Track Record)</span><span class="sr-val">65/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'entreprise affiche plus de 10 ans d'existence et d'expertise solide sur Google Cloud avec plus de 65 projets complétés avec succès.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">65/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'équipe composée d'environ 25 à 30 collaborateurs s'appuie sur une forte culture d'ingénierie collective, bien qu'aucun C-level de premier plan ne soit mis en avant.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Complétude de l'Équipe</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Excellente représentation technique (ingénieurs certifiés, sachants Data/IA), mais un manque de visibilité flagrant sur la direction commerciale stratégique.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div>
+<p>Un secteur porté par la transition massive vers le cloud public et l'urgence de l'intégration de l'IA au cœur des architectures d'entreprise.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille &amp; Croissance</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché français de l'intégration GCP pour les ETI et grands comptes bénéficie d'une forte dynamique de croissance, surfé par l'explosion des besoins en cloud souverain et IA.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Pourquoi Maintenant</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'avènement d'agents IA comme Gemini Enterprise pousse les organisations à moderniser immédiatement leurs plateformes de données sous BigQuery.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Concurrence</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Présence de géants historiques (Devoteam, Sfeir) mais AxeoTech se différencie par son agilité de pure-player ultra-spécialisé Google Cloud.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Opportunités fortes d'adresser de nouvelles verticales (secteur public, santé) et de packager des Coding Agents ou solutions pré-intégrées d'IA.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<p>Des services techniques de pointe orientés vers l'IA moderne et la data en temps réel.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Forte spécialisation sur l'intégration de Gemini Enterprise, de BigQuery pour les requêtes SQL en langage naturel et l'automatisation via des Coding Agents.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">PMF (Product-Market Fit)</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Validé par plus de 60 clients actifs dont d'importants projets industriels (migration de plus de 200 serveurs) et des plateformes data retail.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Évolutivité (Scalability)</span><span class="sr-val">60/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle de services professionnels par nature difficile à scaler linéairement, heureusement compensé par l'activité de revente de licences GCP.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Propriété Intellectuelle</span><span class="sr-val">67/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une barrière immatérielle basée sur les méthodologies de migration propriétaires et un portefeuille de plus de 30 certifications Google Cloud stratégiques.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">💼 MODÈLE D'AFFAIRES (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:74%"></span></span><span class="sr-val">74/100</span></div>
+<p>Un modèle économique résistant mêlant honoraires de conseil et flux récurrents de revente cloud.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Unit Economics</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle basé sur le taux journalier moyen (TJM) pour le conseil et des marges stables obtenues via le programme de revente (Resell) Google Cloud.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Modèle de Revenus</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Excellente hybridation entre revenus de services d'intégration ponctuels et revenus récurrents liés à la revente de capacités Cloud et Workspace.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Clarté de la proposition de valeur avec des promesses de réduction des coûts informatiques clients allant jusqu'à 35% grâce à l'optimisation GCP.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">74/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Profil bootstrappé solide; l'équipe de moins de 30 personnes est bien dimensionnée par rapport aux besoins opérationnels et aux revenus de services.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">📈 TRACTION &amp; CROISSANCE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:72%"></span></span><span class="sr-val">72/100</span></div>
+<p>Une croissance saine portée par des références clients industrielles de premier plan.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Croissance du Chiffre d'Affaires</span><span class="sr-val">68/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pas de chiffres publics récents, mais la vélocité de signature de projets complexes suggère une croissance régulière.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Plus de 60 clients incluant d'importantes ETI et retail chains françaises ayant déployé des plateformes de données temps réel.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Progression de KPI</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Expansion constante de l'équipe et obtention régulière de nouvelles certifications techniques de haut niveau Google Cloud.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Solide présence sur le marché français avec deux bureaux établis, positionnée comme un acteur de confiance dans l'écosystème Google.</div></li></ul>
+<hr/><strong>🔍 RISQUE À RECOUVRIR :</strong>
+<p>La pérennité d'AxeoTech repose sur sa dépendance absolue envers Google Cloud. Si Google perd des parts de marché face à AWS ou Azure en France ou réduit les marges accordées à ses partenaires revendeurs, AxeoTech verra ses capacités de croissance et sa rentabilité fortement impactées d'ici 12 à 18 mois.</p>
+<p>Ce risque est structurellement non résoluble de l'extérieur, car l'ADN profond de la firme est lié à son rôle de pure player GCP.</p>
+<h4 class="kicker">AVANTAGES CONCURRENTIELS CLÉS</h4>
+<ul><li>Expertise exclusive Pure Player Google Cloud de plus de 10 ans, garantissant une maîtrise bien plus fine de GCP que les généralistes du conseil informatique.</li><li>Forte expertise en IA Générative appliquée via l'intégration précoce de Gemini Enterprise et de BigQuery pour l'automatisation des workflows métiers.</li><li>Modèle économique hybride combinant le conseil à forte valeur ajoutée et une récurrence solide via le contrat de revente Google Cloud.</li></ul>
+<p><strong>🧱 DOUVE (MOAT) :</strong> MODÉRÉE</p>
+<p>Le moat d'AxeoTech repose sur l'accumulation de certifications Google de pointe et ses méthodologies propriétaires qui verrouillent sa relation auprès des ETI clientes. Le couplage de la revente de licences GCP avec des services managés crée d'importants coûts de transfert pour le client final qui ne peut facilement migrer chez un autre partenaire. Néanmoins, l'absence d'IP logicielle propriétaire forte limite ce moat à un verrouillage de relation humaine et de services.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le Cas Haussier (Bull Case) :</li></ul>
+AxeoTech devient l'intégrateur GCP de référence pour l'IA générative en France, s'imposant comme le partenaire système incontournable des ETI industrielles et du retail pour migrer massivement leurs workflows sur BigQuery et Gemini.
+<ul><li>Le Cas Baissier (Bear Case) :</li></ul>
+AxeoTech reste confiné à un rôle d'agence de services cloud régionale à faible levier, subissant la pression sur les TJM et l'érosion des marges de revente imposées par Google.
+<h4 class="kicker">DRAPEAUX ROUGES</h4>
+<ul><li>Risques Universels : Dépendance absolue vis-à-vis des recrutements d'ingénieurs certifiés GCP dans un marché des talents hautement concurrentiel.</li><li>Incompatibilités avec la Thèse : Modèle principalement axé sur du service (Consulting) plutôt que sur du logiciel (SaaS), ce qui limite le levier de mise à l'échelle requis par un fonds VC traditionnel.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781431200000/mOKoUt0wCUZUiJTWe6yo5g/IAWLPXc45yAWnTuvf9KTzK3xbXaq3tKRXba-1QSVcAkodL6KBs90tsbT4sVoAxXy5HOAccbQ9av95MgvWY64hAh35PoL5HwE90T4OgHG7I-pT4brs2vbD8bj_HemYu7su8Zrx4GLTyGiX3zbBzTUKg/JrYLldMtSblrKzCYsn616x4wPkKV4cekkDksscH-P8I"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>AxeoTech possède plus de dix ans d'expérience exclusive comme pure player Google Cloud.</li><li>L'entreprise détient plus de trente certifications Google Cloud sur une équipe réduite.</li><li>Son offre couvre l'intégralité du cycle de vie des projets cloud, de la migration à l'optimisation des coûts.</li><li>AxeoTech a livré plus de soixante-cinq projets concrets incluant des migrations de plus de deux cents serveurs.</li><li>La culture Triple E assure une exécution technique de haut niveau et une forte cohésion d'équipe.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>Aucune information publique n'existe sur le dirigeant ou la gouvernance de l'entreprise.</li><li>La taille humaine limite la capacité à répondre à des appels d'offres de grande envergure.</li><li>La confusion fréquente avec d'autres sociétés portant des noms proches nuit à la notoriété.</li><li>Le modèle repose sur des services de conseil sans produit logiciel différenciant.</li><li>Aucun tour de financement ou levée de fonds n'est documenté publiquement.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li>L'adoption de l'IA générative via Gemini Enterprise crée une demande forte chez les clients existants.</li><li>La migration des infrastructures legacy vers le cloud reste un marché en croissance en France.</li><li>La revente de licences Google Cloud avec optimisation des coûts peut générer des marges récurrentes.</li><li>Les projets data temps réel dans le retail offrent un axe de spécialisation rentable.</li><li>L'extension vers la conformité RGPD et la sécurité Zero Trust répond à des besoins réglementaires croissants.</li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>Les grands cabinets de conseil et les partenaires Google directs peuvent capter les contrats les plus importants.</li><li>Une dépendance totale à l'écosystème Google expose l'entreprise aux changements de stratégie du fournisseur.</li><li>La pénurie de talents certifiés Google Cloud limite la capacité de recrutement rapide.</li><li>Une récession économique pourrait réduire les budgets de transformation cloud des clients mid-market.</li><li>L'absence de visibilité publique facilite l'entrée de nouveaux concurrents sur le même positionnement.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et méthodologie</h2>
+<div class="source-list">
+<h3>Value Chain Sources</h3>
+<h3>Market Sources</h3><p>DOSSIER D'INTELLIGENCE DU MARCHÉ - SUIVI DES PREUVES URL</p>
+<p>Objectif : Documentation de support avec preuves URL complètes pour l'analyse d'attractivité du marché</p>
+<p>Marché : Services d'Intégration et de Revente Google Cloud (GCP Partner)</p>
+<p>Complétude des données : 40/100</p>
+<p>Évaluation : 🔴 INSUFFISANT - BESOIN DE RECHERCHES COMPLÉMENTAIRES (&lt;70)</p>
+<p>Calcul : (4 URL trouvées ÷ 10 URL recherchées) × 100 = 40% de complétude</p>
+<p>Date de recherche : 13 Juin 2026 | Total d'URL trouvées : 4</p>
+<p>PREUVES URL PAR CATÉGORIE DE SCORING DU MARCHÉ</p>
+<p>🌊 MARCHÉ ATTRACTIF (Dynamiques de Marché) | 2/4 points de données trouvés</p>
+<ul><li><b>Taille du Marché :</b> <a href="https://aceo-tech.com/" target="_blank">aceo-tech.com</a>. Utilisé pour : Analyse du segment de l'intégration cloud en France.</li><li><b>Moteurs de Croissance :</b> <a href="https://aceo-tech.com/" target="_blank">aceo-tech.com</a>. Utilisé pour : Analyse de l'intégration de Gemini Enterprise.</li><li><b>Timing :</b> Non disponible. Utilisé pour : N/A</li><li><b>Risques :</b> Non disponible. Utilisé pour : N/A</li></ul>
+<p>⚔️ MARCHÉ GAGNABLE (Paysage Concurrentiel) | 1/4 points de données trouvés</p>
+<ul><li><b>Acteurs Historiques :</b> Non disponible. Utilisé pour : N/A</li><li><b>Challengers :</b> Non disponible. Utilisé pour : N/A</li><li><b>Zone d'Opportunité :</b> <a href="https://aceo-tech.com/" target="_blank">aceo-tech.com</a>. Utilisé pour : Identification des besoins ETI non adressés sur GCP.</li><li><b>Défendabilité :</b> Non disponible. Utilisé pour : N/A</li></ul>
+<p>🎯 MARCHÉ PÉNÉTRABLE (Go-To-Market &amp; Économie Unitaire) | 1/4 points de données trouvés</p>
+<ul><li><b>Modèle GTM :</b> <a href="https://aceo-tech.com/" target="_blank">aceo-tech.com</a>. Utilisé pour : Analyse de l'offre d'intégration et revente.</li><li><b>Modèle de Tarification :</b> Non disponible. Utilisé pour : N/A</li><li><b>Économie Unitaire :</b> Non disponible</li><li><b>Évolutivité :</b> Non disponible. Utilisé pour : N/A</li></ul>
+<p>💰 MARCHÉ RÉCOMPENSANT (Financement &amp; Sorties) | 0/4 points de données trouvés</p>
+<ul><li><b>Activité de Financement :</b> Non disponible. Utilisé pour : N/A</li><li><b>Multiples de Sortie :</b> Non disponible. Utilisé pour : N/A</li><li><b>Acheteurs Stratégiques :</b> Non disponible. Utilisé pour : N/A</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>URL critiques manquantes d'après la recherche web : Données transactionnelles M&amp;A pour l'intégration de services en France, rapports de parts de marché exclusives Google Cloud France.</p>
+<p>URL trouvées avec succès : 4 sur 10 recherchées</p>
+<p>Couverture des données critiques : 40% des points de données requis</p>
+<p>Niveau de confiance de la recherche : BAS</p><h3>Company Sources</h3><p>DOSSIER D'INTELLIGENCE DE L'ENTREPRISE - SUIVI DES PREUVES URL</p>
+<p>Objectif : Documentation de support avec preuves URL complètes pour l'analyse du score d'investissement</p>
+<p>Entreprise : AxeoTech</p>
+<p>Complétude des données : 45/100</p>
+<p>Évaluation : 🔴 DONNÉES INSUFFISANTES POUR UN PREMIER REGARD (&lt;70)</p>
+<p>Calcul : (9 URL trouvées ÷ 20 URL recherchées) × 100 = 45% de complétude</p>
+<p>Date de recherche : 13 Juin 2026 | Total d'URL trouvées : 9</p>
+<p>PREUVES URL PAR CATÉGORIE DE SCORING</p>
+<h4>EXCELLENCE DE L'ÉQUIPE | 0/4 points de données trouvés</h4>
+<ul><li><b></b> Non disponible. Utilisé pour : N/A</li><li><b>Track Record :</b> Non disponible. Utilisé pour : N/A</li><li><b>Leadership :</b> Non disponible. Utilisé pour : N/A</li><li><b>Complétude :</b> Non disponible. Utilisé pour : N/A</li></ul>
+<h4>OPPORTUNITÉ DE MARCHÉ | 3/4 points de données trouvés</h4>
+<ul><li><b>Taille &amp; Croissance :</b> <a href="https://aceo-tech.com/" target="_blank">aceo-tech.com</a>. Utilisé pour : Analyse du positionnement marché français et types d'offres.</li><li><b>Timing 'Pourquoi Maintenant' :</b> <a href="https://aceo-tech.com/" target="_blank">aceo-tech.com</a>. Utilisé pour : Analyse du focus sur l'intégration de Gemini Enterprise.</li><li><b>Concurrence :</b> Non disponible. Utilisé pour : N/A</li><li><b>Expansion :</b> <a href="https://aceo-tech.com/" target="_blank">aceo-tech.com</a>. Utilisé pour : Identification des axes d'expansion via l'IA et la data.</li></ul>
+<h4>INNOVATION PRODUIT | 3/4 points de données trouvés</h4>
+<ul><li><b>Différenciation :</b> <a href="https://aceo-tech.com/" target="_blank">aceo-tech.com</a>. Utilisé pour : Identification de l'offre Gemini Enterprise et SQL en langage naturel.</li><li><b>PMF (Product-Market Fit) :</b> <a href="https://aceo-tech.com/" target="_blank">aceo-tech.com</a>. Utilisé pour : Analyse des cas clients (migration 200+ serveurs, retail data platform).</li><li><b>Évolutivité (Scalability) :</b> <a href="https://aceo-tech.com/" target="_blank">aceo-tech.com</a>. Utilisé pour : Évaluation des solutions Cloud-Native / Kubernetes.</li><li><b>IP &amp; Barrières :</b> Non disponible. Utilisé pour : N/A</li></ul>
+<h4>MODÈLE D'AFFAIRES | 1/4 points de données trouvés</h4>
+<ul><li><b>Unit Economics :</b> Non disponible. Utilisé pour : N/A</li><li><b>Modèle de Revenus :</b> <a href="https://aceo-tech.com/" target="_blank">aceo-tech.com</a>. Utilisé pour : Identification du business model de revente Google Cloud et conseil.</li><li><b>Monétisation :</b> Non disponible. Utilisé pour : N/A</li><li><b>Efficacité du Capital :</b> Non disponible. Utilisé pour : N/A</li></ul>
+<h4>TRACTION &amp; CROISSANCE | 2/4 points de données trouvés</h4>
+<ul><li><b>Croissance du Chiffre d'Affaires :</b> Non disponible. Utilisé pour : N/A</li><li><b>Validation Client :</b> <a href="https://aceo-tech.com/" target="_blank">aceo-tech.com</a>. Utilisé pour : Recensement des cas clients et témoignages d'utilisation.</li><li><b>Progression de KPI :</b> Non disponible. Utilisé pour : N/A</li><li><b>Pénétration du Marché :</b> <a href="https://aceo-tech.com/" target="_blank">aceo-tech.com</a>. Utilisé pour : Analyse de l'implantation géographique locale (2 bureaux en France).</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>URL critiques manquantes d'après la recherche web : LinkedIn d'entreprise introuvable, absence de noms de fondateurs/dirigeants, absence de communiqués financiers ou de levées de fonds publiques.</p>
+<p>URL trouvées avec succès : 9 sur 20 recherchées</p>
+<p>Couverture des données critiques : 45% des points de données requis</p>
+<p>Niveau de confiance de la recherche : FAIBLE</p></div>
+</div>
+<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur AxeoTech ?</span><span class="i18n-en">Explore AxeoTech further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
