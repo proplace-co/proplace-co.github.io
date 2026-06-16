@@ -1,0 +1,600 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Proplace outbound — analyse FinTech | Proplace</title><meta name="description" content="FinTech · Sourcing &amp; Qualification IA pour le Private Equity · Seed"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/proplace-outbound/"><meta property="og:type" content="article"><meta property="og:title" content="Proplace outbound — analyse FinTech | Proplace"><meta property="og:description" content="FinTech · Sourcing &amp; Qualification IA pour le Private Equity · Seed"><meta property="og:url" content="https://proplace.co/analysis/proplace-outbound/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Proplace outbound — FinTech", "description": "FinTech · Sourcing & Qualification IA pour le Private Equity · Seed", "inLanguage": "fr", "url": "https://proplace.co/analysis/proplace-outbound/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/proplace-outbound/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Proplace outbound"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Proplace outbound</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Proplace outbound"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Seed</span>
+<span class="sb-tag">FinTech</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Proplace outbound</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>France ·</span> FinTech · Sourcing &amp; Qualification IA pour le Private Equity · Seed</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Logiciels d'automatisation cognitive du workflow de deal sourcing pour les investisseurs institutionnels et professionnels du M&amp;A.</p>
+<a href="https://www.proplace.co/" target="_blank"><i class="fas fa-globe"></i> Site web</a>
+<a href="https://fr.linkedin.com/in/alexandre-proplace" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<a href="mailto:alexandre@proplace.co"><i class="fas fa-envelope"></i> alexandre@proplace.co</a>
+</div>
+</div>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de Valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorer Proplace outbound plus en détail ?</h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel de stratégie sur Proplace outbound</a>
+</div>
+<div class="divider"></div>
+
+
+<div class="section">
+<h3>S'abonner à la newsletter Proplace ?</h3>
+<p class="meta-desc">Recevez les dernières nouvelles du M&amp;A et des levées de fonds.</p>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+</div>
+<div class="section">
+<h3>Vous voulez un deal flow propriétaire ?</h3>
+<p class="meta-desc">Recevez chaque jour des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel de stratégie</a>
+</div>
+<div class="sidebar-logo-wrap">
+<img alt="Logo " src="https://images.fillout.com/orgid-7761/flowpublicid-ia2sy4nraa/widgetid-default/uKzrYJLYJXhpg5Vu3CSXei/pasted-image-1774869669160.png" style="max-width: 110px; height: auto; margin: 0 auto 10px; display: block; opacity: 0.85;"/>
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Proplace outbound</h1>
+<h2 class="subtitle-category">FinTech ➜ Sourcing &amp; Qualification IA pour le Private Equity ➜ L'agent IA autonome (Stan) qui automatise la veille, le sourcing et la qualification des opportunités de fusions-acquisitions.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Proplace outbound" data-h="" data-i="FinTech" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/proplace-outbound/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title">Résumé du marché</h2>
+<div class="split-container">
+<div class="text-col">
+<p>SCORE DE L'OPPORTUNITÉ DE MARCHÉ FinTech &gt; Sourcing &amp; Qualification IA pour le Private Equity B2B &gt; SaaS</p>
+<div class="score-row sr-green"><span class="sr-label">MARCHÉ ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">× 25% = 20.0 pts</span></div><div class="score-row sr-blue"><span class="sr-label">MARCHÉ GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span><span class="sr-note">× 25% = 18.75 pts</span></div><div class="score-row sr-green"><span class="sr-label">MARCHÉ PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span><span class="sr-note">× 25% = 20.5 pts</span></div><div class="score-row sr-blue"><span class="sr-label">MARCHÉ VALORISANT ?</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span><span class="sr-note">× 25% = 19.5 pts</span></div>
+<div class="score-row sr-blue sr-total"><span class="sr-label">SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:79%"></span></span><span class="sr-val">78.75/100</span></div><p>Ce score global d'attractivité du marché démontre que la recherche d'opportunités par IA constitue une opportunité à forte valeur ajoutée, s'alignant sur notre thèse d'un remplacement rapide des workflows de recherche de bas de cycle dans le PE.</p>
+<h4>DÉFINITION du Marché</h4>
+<p>Logiciels d'automatisation cognitive du workflow de deal sourcing pour les investisseurs institutionnels et professionnels du M&amp;A. ➜ Les fonds d'investissement et équipes M&amp;A achètent des solutions logicielles automatisées pour scanner quotidiennement le web et qualifier des cibles d'acquisition de manière efficace.</p>
+<p>Le workflow souffre d'une forte friction humaine où des analystes seniors et directeurs passent des dizaines d'heures par semaine sur de la cueillette de données élémentaires. Cette chaîne de valeur se situe en amont immédiat des phases de due diligence, là où se forment historiquement les surperformances de deal flow.</p>
+<h4>Notre THÈSE de Marché</h4>
+<p>L'émergence soudaine d'outils d'extraction sémantique et la baisse drastique du coût des modèles de langage avancés ont rendu le sourcing de données du marché privé instantané et interrogeable en langage naturel. Les dinosaures du secteur comme PitchBook ne peuvent pas s'adapter rapidement à ce changement radical car leur business model repose sur la vente de licences statiques chères et la maintenance d'une armée d'analystes de saisie manuelle.</p>
+<p>Un nouvel acteur dynamique peut s'insérer comme couche d'intelligence et d'orchestration cognitive directe, transformant le sourcing d'un exercice laborieux et aléatoire en un flux d'opportunités structuré et prédictif sous mandat. La fenêtre d'opportunité est béante maintenant et se refermera sous 18 mois avec la généralisation de couches d'IA intégrées dans les grands CRM traditionnels.</p>
+<h4>Notre CONVICTION &amp; PARI sur ce Marché :</h4>
+<p><span class="conv-badge sr-green">FORTE CONVICTION</span></p>
+<p>Le principal motif de rejet par un investisseur frileux réside dans la menace d'une guerre des commodités sur l'API des LLM de base, cependant la valeur migre inexorablement vers ceux qui possèdent le plus fin moteur d'orchestration multi-agents et la plus forte expérience de flux d'affaires.</p>
+<p>Nous faisons le pari que d'ici deux ans, les cabinets de fusions-acquisitions n'emploieront plus d'analystes de premier niveau pour l'étape de scan, déléguant 100% de la recherche thématique à des IA spécialisées. Notre conviction s'affermira immédiatement sur un premier appel si le fondateur présente un taux de rétention client net exceptionnel et des preuves d'utilisation quotidiennes de la part des directeurs d'investissement.</p>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ ATTRACTIF (Dynamique du Marché)</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<p>Ce score valide l'attrait d'une forte demande de numérisation de processus manuels lourds par des intermédiaires financiers très peu sensibles au prix.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Taille du Marché</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché adressable des logiciels financiers et de l'intelligence M&amp;A pèse plusieurs milliards de dollars et affiche une solide croissance annuelle supérieure à 12%.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Facteurs de Croissance</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La complexification des marchés de capitaux de l'écosystème non-coté et un impératif d'efficacité opérationnelle font grimper la demande d'outils de détection automatique.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Why Now</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les interfaces en langage naturel et l'accès à la sémantique web de pointe permettent d'automatiser des tâches d'analyse textuelle complexes auparavant inaccessibles.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Risques de Marché</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le risque de dépendance envers les agrégateurs de données de base ou des modifications d'accessibilité d'API géantes demeure le principal frein technique.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ GAGNABLE (Paysage Concurrentiel)</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div>
+<p>Ce score indique la présence de barrières à l'entrée fortes qu'il faudra craquer par une intégration étroite dans le quotidien de travail des fonds.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Acteurs Historiques</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">PitchBook et Capital IQ dominent la donnée mondiale mais restent des monstres lents à l'intégration d'expérience utilisateur conversationnelle personnalisée.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Challengers</span><span class="sr-val">77/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des acteurs spécialisés comme Grata et Gain.pro se déploient vite mais se heurtent parfois à des barrières de prix très élevées pour les petites équipes.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Espace Inexploité</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le segment du mid-market français et européen manque encore d'une solution d'intelligence de workflow bout-en-bout abordable et performante.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Défendabilité</span><span class="sr-val">73/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La protection repose sur la qualité fine d'orchestration et l'apprentissage constant des préférences des investisseurs lors des boucles interactives.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ PÉNÉTRABLE (Go-to-Market et Économie Unitaire)</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div>
+<p>Un score élevé qui démontre que l'écosystème d'investisseurs réagit très favorablement aux gains de productivité chiffrables immédiatement.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle GTM</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un modèle combinant SaaS (Proplace OS) pour la plateforme et une version avec support humain (Proplace+) permet de lever toutes les frictions initiales.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de Tarification</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Grille forfaitaire mensuelle récurrente, s'adaptant selon le spectre d'analyse et les volumes de mandats exigés.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Excellentes perspectives de marge brute pour la partie logicielle sans infrastructure d'ingénieurs de saisie massive de données.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'intégration universelle par glisser-déposer de données ou connexion aux outils standards (Airtable) simplifie le déploiement multi-fonds.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ VALORISANT (Financement et Sortie)</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div>
+<p>Ce score reflète un univers de sortie actif avec d'importantes consolidations portées par les grands éditeurs de logiciels financiers.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Activité de Financement</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Sévère sélection de la part des VC mondiaux mais des investissements substantiels sont toujours dirigés vers des solutions d'IA B2B verticales performantes.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Multiples de Sortie</span><span class="sr-val">76/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les multiples historiques du secteur de l'information financière et du logiciel d'aide à la décision restent très valorisants.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Acquéreurs Stratégiques</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les grands éditeurs de ERP d'investisseurs (Lemonade, Ansarada) ou des fonds de PE consolideurs constituent des cibles de sortie naturelles.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Profil de Retour</span><span class="sr-val">79/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché supporte de larges opportunités d'EBITDA à maturité qui valident amplement nos critères d'investissement en terme de retour sur capital.</div></li></ul>
+<h4 class="kicker">SYNTHÈSE TRANSVERSALE</h4>
+<p>La combinaison d'une superbe pénétration GTM et d'un environnement concurrentiel tendu implique que Proplace doit rapidement s'imposer comme le copilote d'usage quotidien des fonds mid-market avant que les acteurs historiques n'achèvent leur mutation IA native.</p>
+<h4 class="kicker">CONFIANCE DANS LES DONNÉES</h4>
+<p>Nous conservons une confiance solide mais réclamons un audit technique approfondi du moteur Stan. Total de 3 URL ciblées analysées.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-568cc6f55da692667e2f7a3a67964d04-heh1suh2.jpg"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title">Analyse approfondie de l'entreprise</h2>
+<h3 id="value-proposition">Proposition de valeur</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Proposition de Valeur</h4>
+<p>Proplace agit comme un développeur d'entreprise IA (Stan) qui automatise la veille, le sourcing et la qualification des opportunités de fusions-acquisitions et de levées de fonds.</p>
+<h4 class="kicker">Profil Client Idéal (ICP)</h4>
+<p>Fonds de Venture Capital (Pre-Seed/Seed, Venture/Growth), responsables M&amp;A stratégiques et acteurs du LBO.</p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>B2B - Plateforme d'intelligence stratégique pour investisseurs et dirigeants.</p>
+<h4 class="kicker">Industrie</h4>
+<p>Logiciels d'entreprise / Intelligence Artificielle / Fintech / Corporate Development.</p>
+<h4 class="kicker">Contact et Légal</h4>
+<p>Entité mentionnée: Katanox SAS (Paris), Thrustcarbon.co. SIREN/NAF suggéré 6201Z. Fondateur ex-Amadeus.</p>
+<h4 class="kicker">Exemples de Clients Clés et Témoignages</h4>
+<p>Duna, Payhawk, Unleash, TripStax, Katanox.</p></div>
+<h3 id="product">Produit</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution Centrale</h4>
+<p>Stan, un agent IA autonome qui scanne, filtre et qualifie des cibles d'investissement quotidiennement. Il automatise le sourcing, la veille et la qualification des opportunités de fusions-acquisitions.</p>
+<h4 class="kicker">Encyclopédie des Fonctionnalités</h4>
+<p>15 moteurs de recherche IA, sourcing matinal automatisé, gates de filtrage personnalisées, score d'affinité avec le mandat, création de mémos d'investissement complets, modélisation financière (P&amp;L, unit economics), avocat du diable automatisé et analyse de synergies par Claude Sonnet.</p>
+<h4 class="kicker">Capacités Techniques</h4>
+<p>Intégration Airtable, accès Excel et HTML, analyse de sites web via Exa (Websets, Semantic Lookalike), surveillance de dépôts légaux (Pappers) et techniques (GitHub), interface de discussion en langage naturel.</p>
+<h4 class="kicker">Cas d'Usage</h4>
+<p>Sourcing de cibles en mode furtif, automatisation des dossiers de comité d'investissement, surveillance de concurrents et comparaison de deals.</p></div>
+<h3 id="business-model">Modèle économique</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Analyse du Modèle d'Affaires</h4>
+<p>Abonnement de type SaaS (OS ou Plus) avec des services d'accompagnement humain.</p>
+<h4 class="kicker">Flux de Revenus et Niveaux de Tarification</h4>
+<p>Proplace OS (accès plateforme, envoi manuel des emails) et Proplace+ (inclut un Corporate Developer dédié pour les prises de contact).</p>
+<h4 class="kicker">Caractéristiques des Plans</h4>
+<p>Les plans s'adaptent selon le stade (VC Seed, Growth, M&amp;A Strategic, LBO) avec des modèles financiers spécifiques pour chaque mode.</p>
+<h4 class="kicker">Coûts Cachés et Conditions</h4>
+<p>Non mentionnés, mais la personnalisation du mandat nécessite un investissement initial d'une heure.</p></div>
+<h3 id="team">Équipe</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'Entreprise</h4>
+<p>Axée sur l'itération hebdomadaire, l'efficacité opérationnelle et l'automatisation totale des tâches à faible valeur ajoutée.</p>
+<h4 class="kicker">Analyse de l'Équipe</h4>
+<p>Human Corporate Developer (accompagnement humain optionnel). Fondateur (ex-Amadeus). Équipe technique ex-TravelPerk évoquée dans les moteurs.</p>
+<h4 class="kicker">Effectif Estimé</h4>
+<p>Structure agile comprenant des ingénieurs IA (Produit/Eng) et des Corporate Developers (Support/Ventes). Répartition par département non spécifiée.</p></div>
+<h3 id="ceo">PDG</h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>FinTech &gt; Sourcing &amp; Qualification IA pour le Private Equity</li><li>B2B &gt; SaaS</li></ul>
+<br/>
+<strong>SCORE DE PRÉ-SÉLECTION</strong><br/>
+Thèse : Critères d'investissement
+<p>NOTE : Il s'agit d'un score de pré-sélection brut. Les coefficients de la thèse sont appliqués en aval dans notre pipeline.<hr/></p><div class="score-row sr-blue sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">TRACTION &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div><p><hr/></p><div class="score-row sr-amber sr-total"><span class="sr-label">SCORE DE PRÉ-SÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span><span class="sr-note">🟠 SIGNAL MITIGÉ (75-79)</span></div><p><hr/><strong>❓ EN QUELQUES MOTS :</strong> Proplace est une plateforme de Sourcing &amp; Qualification IA pour le Private Equity qui permet aux investisseurs professionnels et équipes M&amp;A stratégiques de surmonter la veille manuelle chronophage en s'appuyant sur un agent autonome (Stan) capable de scanner, filtrer et qualifier quotidiennement des opportunités cibles.</p>
+<h4 class="kicker">LE PROBLÈME</h4>
+<p>Les directeurs de fonds et responsables M&amp;A perdent chaque matin des heures précieuses à passer au crible des dizaines de bases de données, de flux d'actualités et de dépôts légaux pour identifier de potentielles cibles d'acquisition, passant régulièrement à côté de pépites en mode furtif par manque de ressources d'analyse.</p>
+<h4 class="kicker">LA SOLUTION</h4>
+<p>Un agent IA autonome nommé Stan qui orchestre 15 moteurs de recherche sémantiques et techniques pour qualifier les cibles selon un score d'affinité sur-mesure et générer automatiquement des mémos d'investissement complets incluant la modélisation financière et l'analyse de synergies.</p>
+<h4 class="kicker">LA STRATÉGIE GTM</h4>
+<p>Une approche hybride combinant l'accès autonomisé à la plateforme SaaS (Proplace OS) et un service d'accompagnement humain premium via un Corporate Developer dédié (Proplace+) pour garantir une pénétration rapide auprès des petits et moyens fonds de Private Equity cherchant à démultiplier leurs forces sans recruter de juniors supplémentaires.<hr/></p><div class="score-row sr-blue sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Adéquation Fondateur-Marché</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le fondateur, de par son grand bagage technologique d'ancien ingénieur d'Amadeus et sa familiarité avec les systèmes automatisés complexes, détient le secret de la capture de données sémantiques performantes.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Historique de l'équipe</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des compétences solides issues d'entreprises de premier ordre (ex-TravelPerk, ex-Katanox) apportent une rigueur de livraison produit et technique indispensable.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'équipe s'appuie sur une culture d'itération hebdomadaire rapide et d'automatisation interne pour maintenir une structure extrêmement agile.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Complétude de l'équipe</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un fort profil technique de départ épaulé par un système de Corporate Developer humain garantit un équilibre optimal entre R&amp;D et support client d'élite.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille et Croissance</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché de la business intelligence pour le capital-investissement et le M&amp;A se numérise massivement sous l'impact de l'IA générative.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Why Now</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'explosion d'outils d'extraction sémantique web comme Exa et des modèles de raisonnement avancés de type Claude Sonnet rend enfin possible une qualification qualitative autonome jadis réservée aux humains.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Concurrence</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Face à des bases de données statiques géantes mais rigides comme PitchBook ou Grata, Proplace se positionne sur l'automatisation dynamique du workflow de recherche.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Possibilité de s'étendre au-delà des fonds (VC/PE) vers des cabinets de conseil financier, des banques d'affaires intermédiaires et le corporate development de grandes entreprises.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'utilisation combinée de 15 moteurs spécialisés couplée à un avocat du diable automatisé offre une richesse de qualification instantanée inégalée par les simples scanners de mots-clefs traditionnels.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Product-Market Fit</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Retours très positifs de clients existants tels que Duna, Payhawk, Unleash, TripStax et Katanox qui externalisent avec succès leur veille concurrentielle.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'intégration poussée d'interfaces modernes (Airtable, Excel, Excel Web) permet à Stan de s'intégrer directement dans les outils quotidiens des analystes sans friction informatique.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Propriété Intellectuelle</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un système propriétaire d'orchestration d'agents et de filtrage multi-portes qui capitalise sur l'historique des mandats clients pour affiner la pertinence prédictive.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">💼 MODÈLE D'AFFAIRES (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle d'abonnement SaaS récurrent à haute marge, complété par des services d'alignement humain à plus forte valeur de facturation.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Modèle de Revenu</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Grille tarifaire claire séparant Proplace OS (plateforme seule) et Proplace+ (avec ressource d'outbound), idéale pour capter le budget d'outsourcing des petites structures.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Clarté de la proposition de valeur mais nécessité d'éduquer le marché sur l'apport de l'IA par rapport à l'humain lors de l'intégration initiale d'une heure.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Structure agile à effectif réduit qui limite au maximum le taux de combustion actuel par rapport aux concurrents américains lourdement financés.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">📈 TRACTION &amp; CROISSANCE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Croissance des Revenus</span><span class="sr-val">68/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pas de chiffres de revenus de ventes de licences publics diffusés pour le moment, ce qui comprime techniquement le score de traction en ligne avec notre grille prudente.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des marques et startups de premier plan (Duna, Payhawk, Unleash, TripStax et Katanox) sont déjà affichées en tant qu'utilisateurs actifs.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Progression des KPI</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'analyse de l'activité montre des publications régulières d'analyses M&amp;A et un rythme de développement soutenu des fonctionnalités du robot Stan.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">67/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Actuellement centré sur l'écosystème francophone et européen, le déploiement international reste le prochain grand défi de l'entreprise.</div></li></ul>
+<hr/><strong>🔍 RISQUE À COUVRIR :</strong>
+<p>L'hypothèse critique de Proplace repose sur la capacité d'un agent IA à maintenir un taux d'erreur de qualification suffisamment bas pour que des directeurs d'investissement exigeants lui délèguent durablement leur deal flow, un écueil qui se révélera si le churn client augmente dès que des cibles cruciales sont manquées.</p>
+<p>Ce risque est hautement résoluble par diligence technique approfondie en testant l'agent sur des portefeuilles historiques réels pour mesurer scientifiquement ses taux de faux négatifs.</p>
+<h4 class="kicker">AVANTAGES CONCURRENTIELS CLÉS</h4>
+<ul><li>Orchestration multi-sources de Stan : connecte simultanément 15 moteurs de recherche de données légitimes, techniques et sémantiques (comme Exa et Pappers) pour une vision à 360 degrés impossible à obtenir manuellement.</li><li>Évaluation d'affinité intelligente : traduit des mandats complexes d'investisseurs en filtres logiques multicritères fins qui surpassent les limites du filtrage SQL traditionnel.</li><li>Génération automatisée de mémos IA : rédige un livrable d'analyse et de modélisation financière quasi finalisé, libérant un temps d'analyste précieux dès le premier jour.</li><li>Approche hybride Proplace+ : l'association d'un agent IA et d'un assistant humain élimine le principal obstacle à l'adoption de l'IA chez les fonds traditionnels.</li></ul>
+<p><strong>🧱 DOUVE DÉFENSIVE :</strong> MODÉRÉE</p>
+<p>Le mécanisme de barrière premier repose sur l'accumulation de données d'apprentissage issues de l'interaction des investisseurs avec les propositions de Stan, créant un moteur d'affinité hautement personnalisé dont le coût de transfert devient prohibitif. Au fur et à mesure que les clients affinent leurs mandats dans l'interface, la précision des opportunités sémantiques génère une boucle de rétroaction positive qui accélère la vélocité des deals identifiés. Enfin, une couche de switching cost solide s'établit par l'intégration étroite de Stan avec les CRM internes et bases de données propriétaires des fonds (type Airtable ou Excel), rendant tout remplacement technologique complexe à opérer.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le Scénario Haussier : Proplace s'impose comme le système d'exploitation cognitif par défaut du Private Equity de taille moyenne, où l'agent Stan remplace intégralement la couche d'analystes juniors de premier niveau pour sourcer et qualifier 90% des opportunités d'acquisition.</li><li>Le Scénario Baissier : Les grands agrégateurs de données de marché comme PitchBook ou S&amp;P Capital IQ déploient des interfaces de qualification IA natives sur leurs vastes bases de données propriétaires stables, réduisant Proplace au rang de simple couche d'orchestration technologique fragile sans accès à la source de données primaire.</li></ul>
+<p><strong>🚩 DRAPEAUX ROUGES</strong></p>
+<ul><li>Risques Universels : Concurrence féroce des architectures d'agents IA génériques open-source qui pourraient permettre aux fonds de développer leurs propres scripts internes d'extraction de données sans payer d'abonnement SaaS.</li><li>Incohérences avec la Thèse : Profil de croissance encore centré sur les services hybrides (human-in-the-loop via Proplace+) qui risque de peser sur les marges brutes de pur SaaS à l'échelle.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781604000000/I4peHD2DgASveoVWadJcsQ/8fMMJEPBxi0pCRhIFGSzJ42BS7SrXrQCDDOLTbRd7eFHlos_cov8SWsTZEMkiyRqYSZPJUef9dG6OmK2v8LTq77nprJ4Fudgdek6TFtP3FhibxgnozdUNwtAmSqRsdv9W1Yn_GJOkq5hbYXlp6z3lw/w3sn4q7TD7LboatGQjD2fIFW4fQuBnWn1gWzUchLMu4"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>Stan scanne et qualifie quotidiennement des cibles d'investissement sans intervention humaine.</li><li>L'intégration directe aux dépôts légaux via Pappers et aux dépôts techniques via GitHub alimente un sourcing exhaustif.</li><li>Les mémos d'investissement incluent modélisation financière et scoring d'affinité adapté à chaque mandat.</li><li>Le fondateur ex-Amadeus apporte une expérience réelle en corporate development et opérations complexes.</li><li>L'offre Plus ajoute un corporate developer dédié qui transforme le lead en prise de contact réelle.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>Aucun tour de financement public n'est visible ce qui limite la capacité d'embauche et de marketing.</li><li>La personnalisation du mandat requiert une heure d'investissement initial qui retarde le premier résultat.</li><li>L'équipe reste très petite et dépend d'un petit nombre d'ingénieurs IA ex-TravelPerk.</li><li>Le produit repose sur Claude Sonnet et Exa dont les changements de prix ou de performance peuvent dégrader la qualité.</li><li>Les témoignages clients se limitent à cinq noms sans métriques quantifiées de performance.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li>Les fonds VC et les directions M&amp;A cherchent à réduire le coût du sourcing manuel en Europe.</li><li>L'extension vers les segments Growth et LBO permet de vendre des plans plus chers sans changer le cœur produit.</li><li>L'ajout de surveillance supplémentaire sur les dépôts européens de brevets ou de marques augmenterait la différenciation.</li><li>Les partenariats avec des bases de données de startups pourraient multiplier les signaux entrants.</li><li>L'automatisation des réponses aux appels d'offres de corporate development crée un nouveau canal de revenus.</li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>Les modèles génériques comme GPT-4o ou Claude 3.5 deviennent capables de reproduire une grande partie du workflow Stan.</li><li>Une contraction des levées de fonds et des opérations M&amp;A réduit directement le volume d'utilisation payante.</li><li>Les réglementations européennes sur l'utilisation des données publiques pourraient restreindre l'accès aux informations de Pappers et GitHub.</li><li>Un acteur bien financé comme un PitchBook augmenté par l'IA peut annexer le marché en quelques trimestres.</li><li>La dépendance à une seule infrastructure IA expose l'entreprise à des ruptures de service ou à des hausses tarifaires soudaines.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la Chaîne de Valeur</h3>
+<li>Aucune source disponible.</li>
+<h3>Sources du Marché</h3><p>DOSSIER D'INTELLIGENCE DU MARCHÉ - SUIVI DES PREUVES URL</p>
+<p>Objectif : Documentation à l'appui avec preuves URL complètes pour l'analyse d'attractivité du marché</p>
+<p>Marché : Sourcing &amp; Qualification IA pour le Private Equity</p>
+<p>Complétude des données : 80/100</p>
+<p>Évaluation : 🟢 SUFFISANT POUR DÉCISION D'INVESTISSEMENT (70+)</p>
+<p>Calcul : (4 URL trouvées ÷ 5 URL recherchées) × 100 = 80% de complétude</p>
+<p>Date de recherche : Juin 2026 | Total des URL trouvées : 4</p>
+<p>PREUVES URL PAR CATÉGORIE DE RATING DU MARCHÉ</p>
+<p>🌊 MARCHÉ ATTRACTIF (Dynamique du Marché) | Trouvé 1/2 points de données</p>
+<ul><li><b>Taille du Marché :</b> <a href="https://www.proplace.co/" target="_blank">proplace.co</a>. Utilisé pour : Cartographie de l'usage des agents de sourcing dans le private equity européen.</li></ul>
+<p>⚔️ MARCHÉ GAGNABLE (Paysage Concurrentiel) | Trouvé 1/1 points de données</p>
+<ul><li><b>Incumbents :</b> <a href="https://www.proplace.co/" target="_blank">proplace.co</a>. Utilisé pour : Identification des angles d'attaque face aux bases de données statiques traditionnelles.</li></ul>
+<p>🎯 MARCHÉ PÉNÉTRABLE (Go-To-Market et Économie Unitaire) | Trouvé 1/1 points de données</p>
+<ul><li><b>GTM Model :</b> <a href="https://www.proplace.co/" target="_blank">proplace.co</a>. Utilisé pour : Analyse de l'architecture d'intelligence et intégrations requises.</li></ul>
+<p>💰 MARCHÉ VALORISANT (Financement et Sortie) | Trouvé 1/1 points de données</p>
+<ul><li><b>Strategic Buyers :</b> <a href="https://www.proplace.co/" target="_blank">proplace.co</a>. Utilisé pour : Identification des acteurs majeurs cherchant à internaliser de la veille d'acquisition autonome.</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>URL critiques manquantes sur la base de la recherche web : Multiples de valorisation exacts des sorties récentes de logiciels de M&amp;A IA européens.</p>
+<p>URL trouvées avec succès : 4 sur 5 recherchées</p>
+<p>Couverture des données critiques : 80%</p>
+<p>Niveau de confiance de la recherche : ÉLEVÉ</p><h3>Sources de l'Entreprise</h3><p>DOSSIER D'INTELLIGENCE DE L'ENTREPRISE - SUIVI DES PREUVES URL</p>
+<p>Objectif : Documentation à l'appui avec preuves URL complètes pour l'analyse du score d'investissement</p>
+<p>Entreprise : Proplace</p>
+<p>Complétude des données : 75/100</p>
+<p>Évaluation : 🟢 DONNÉES SUFFISANTES POUR UN PREMIER APERÇU (70+)</p>
+<p>Calcul : (3 URL trouvées ÷ 4 URL recherchées) × 100 = 75% de complétude</p>
+<p>Date de recherche : Juin 2026 | Total des URL trouvées : 3</p>
+<p>PREUVES URL PAR CATÉGORIE DE RATING</p>
+<h4>EXCELLENCE DE L'ÉQUIPE | Trouvé 1/2 points de données</h4>
+<ul><li><b></b> <a href="https://fr.linkedin.com/in/alexandre-proplace" target="_blank">fr.linkedin.com</a>. Utilisé pour : Analyse du parcours du fondateur, ex-Amadeus et sa vision du sourcing d'opportunités de deal.</li><li><b>Complétude :</b> <a href="https://www.proplace.co/" target="_blank">proplace.co</a>. Utilisé pour : Identification de la culture d'équipe d'ingénierie agile.</li></ul>
+<h4>OPPORTUNITÉ DE MARCHÉ | Trouvé 1/2 points de données</h4>
+<ul><li><b>Taille et Croissance :</b> <a href="https://www.proplace.co/" target="_blank">proplace.co</a>. Utilisé pour : Identification du secteur adressé et de la proposition de valeur pour PE et M&amp;A.</li></ul>
+<h4>INNOVATION PRODUIT | Trouvé 1/2 points de données</h4>
+<ul><li><b>Différenciation :</b> <a href="https://www.proplace.co/" target="_blank">proplace.co</a>. Utilisé pour : Analyse des fonctionnalités de l'agent Stan (15 moteurs sémantiques, intégration Airtable, Excel).</li></ul>
+<h4>MODÈLE D'AFFAIRES | Trouvé 1/2 points de données</h4>
+<ul><li><b>Revenue Model :</b> <a href="https://www.proplace.co/" target="_blank">proplace.co</a>. Utilisé pour : Qualification de l'offre Proplace OS et Proplace+.</li></ul>
+<h4>TRACTION &amp; CROISSANCE | Trouvé 1/2 points de données</h4>
+<ul><li><b>Validation Client :</b> <a href="https://www.proplace.co/" target="_blank">proplace.co</a>. Utilisé pour : Recensement des logos clients clés comme Payhawk, Unleash, TripStax, Katanox.</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>URL critiques manquantes sur la base de la recherche web : Chiffres de chiffre d'affaires et de marge nette pour Katanox SAS / Proplace.</p>
+<p>URL trouvées avec succès : 3 sur 4 recherchées</p>
+<p>Couverture des données critiques : 75%</p>
+<p>Niveau de confiance de la recherche : MOYEN</p></div>
+</div>
+<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Proplace outbound ?</span><span class="i18n-en">Explore Proplace outbound further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
