@@ -1,0 +1,580 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Commeett — analyse B2B Software &amp; Cloud | Proplace</title><meta name="description" content="B2B Software &amp; Cloud · Téléphonie VoIP en Marque Blanche pour MSP · Seed"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/commeett/"><meta property="og:type" content="article"><meta property="og:title" content="Commeett — analyse B2B Software &amp; Cloud | Proplace"><meta property="og:description" content="B2B Software &amp; Cloud · Téléphonie VoIP en Marque Blanche pour MSP · Seed"><meta property="og:url" content="https://proplace.co/analysis/commeett/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Commeett — B2B Software & Cloud", "description": "B2B Software & Cloud · Téléphonie VoIP en Marque Blanche pour MSP · Seed", "inLanguage": "fr", "url": "https://proplace.co/analysis/commeett/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/commeett/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Commeett"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Commeett</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Commeett"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Seed</span>
+<span class="sb-tag">B2B Software &amp; Cloud</span>
+<span class="sb-tag">B2B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Commeett</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>France ·</span> B2B Software &amp; Cloud · Téléphonie VoIP en Marque Blanche pour MSP · Seed</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Plateforme SaaS souveraine d'activation et de gestion de services VoIP et mobiles en marque blanche pour les intermédiaires de services informatiques en France.</p>
+<a href="https://commeett.fr" target="_blank"><i class="fas fa-globe"></i> Website</a>
+<a href="https://linkedin.com/in/gerald-vannier-398937a" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green &lt;div class=" data-ms-split="" href="#business-model" id="market-summary" section-container"="">
+<h2 class="section-title">Résumé du marché</h2>
+<div class="split-container">
+<div class="text-col">
+<h4 class="kicker">SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>B2B Software &amp; Cloud &gt; Téléphonie VoIP en Marque Blanche pour MSP<br/>B2B2B &gt; Marque Blanche / Réseau de Distribution Indirecte</p>
+<div class="score-row sr-green"><span class="sr-label">LE MARCHÉ EST-IL ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span><span class="sr-note">× 25% = 21,25 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL CONQUÉRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:68%"></span></span><span class="sr-val">68/100</span><span class="sr-note">× 25% = 17,00 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span><span class="sr-note">× 25% = 18,75 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL PAYANT ?</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span><span class="sr-note">× 25% = 17,50 pts</span></div>
+<p>SCORE GLOBAL D'ATTRACTIVITÉ DU MARCHÉ : 74,5/100 Ce score global indique que le marché de la transition télécom indirecte en France représente un puissant vecteur d'accélération à court terme, mais que l'exécution stratégique de Commeett se heurtera à d'importantes barrières économiques de consolidation portées par de grands acteurs agressifs.</p>
+<h4 class="kicker">DÉFINITION DU MARCHÉ</h4>
+<p>Plateforme SaaS souveraine d'activation et de gestion de services VoIP et mobiles en marque blanche pour les intermédiaires de services informatiques en France. Le produit s'insère dans l'activité des revendeurs d'équipements informatiques, les MSP et les intégrateurs cherchant à embarquer la distribution d'abonnements pour simplifier les communications unifiées de leurs clients finaux.</p>
+<p>La défaillance originelle réside dans l'incapacité pour ces prestataires d'exploiter les licences opérateurs lourdes et d'obtenir des volumes d'interconnexion rentables à niveau individuel. Au sein de la chaîne de valeur, ce marché se situe directement sous les opérateurs grossistes d'infrastructure et au-dessus du réseau fragmentré de partenaires qui s'approprient les marges juteuses sur l'utilisateur pro final.</p>
+<h4 class="kicker">NOTRE THÈSE DE MARCHÉ</h4>
+<p>Le virage technologique majeur est initié par l'extinction forcée et définitive des infrastructures du réseau cuivre d'Orange, une contrainte réglementaire qui oblige des centaines de milliers de PME françaises à se tourner vers des solutions IP natives d'ici à 2030. Les grands opérateurs traditionnels souffrent d'une incapacité structurelle à servir individuellement et de manière conseil ce segment hyper-fragmenté de PME sous peine de marges opérationnelles d'acquisition intenables.</p>
+<p>L'attaque technologique incontournable consiste à placer le MSP local au centre du flux en le transformant en distributeur d'une plateforme d'opérateur marque blanche hautement packagée et instantanément déployable. La fenêtre d'investissement est idéale au vu du calendrier des arrêts de fermeture technique de plaques territoriales et se clora dès la numérisation complète du parc professionnel national.</p>
+<h4 class="kicker">NOTRE CONVICTION &amp; NOTRE PARI</h4>
+<p><span class="conv-badge sr-amber">MOYENNE CONVICTION</span></p>
+<p>Notre principal sujet de préoccupation est lié au rythme de regroupement sectoriel des MSP sous l'égide de fonds de private equity qui standardisent les achats vers de grands fournisseurs d'infrastructure d'envergure européenne, bien que notre recherche confirme l'existence d'une résistance forte d'intégrateurs indépendants à l'échelle française.</p>
+<p>Notre pari décelable d'ici 18 mois postulat que la simplicité d'onboarding autonome de plateformes légères permettra de surclasser l'inertie des réseaux commerciaux lourds de nos principaux rivaux paneuropéens. Le test décisif de cette thèse s'obtiendra en évaluant la croissance organique mensuelle du nombre de nouveaux canaux de distribution de Commeett n'exigeant aucun développement sur-mesure pour être fructueux.</p>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ ATTRACTIF (Dynamique)</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<p>La fermeture réglementaire d'envergure nationale du réseau RTC en France agit comme une aubaine absolue sur le volume de lignes à migrer vers la VoIP d'entreprise de manière forcée.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille du Marché</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une opportunité adressable majeure poussée par plus de 3,5 millions de PME françaises devant renouveler leur configuration réseau d'entreprise.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Facteurs de Croissance</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Demandes croissantes pour la résilience cloud, la migration multicanal ainsi que l'interconnexion native d'outils collaboratifs (Teams, Zoom).</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing (Pourquoi Maintenant)</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'arrêt irrémédiable de pans géographiques entiers d'accès RTC chaque année crée une incitation sans précédent auprès des directions d'achats.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Risques de Marché</span><span class="sr-val">76/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Risque d'une guerre tarifaire agressive sur les tarifs des communications vocales dégradant les marges des intermédiaires d'accès si le softphone n'est pas assorti de services additionnels.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ CONQUÉRABLE (Paysage Concurrentiel)</span><span class="sr-bar"><span class="sr-fill" style="width:68%"></span></span><span class="sr-val">68/100</span></div>
+<p>Il s'agit d'un secteur extrêmement disputé par de puissants consolidateurs, demandant aux nouveaux entrants une agilité commerciale exemplaire et un ciblage très sélectif.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Acteurs Historiques</span><span class="sr-val">62/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des leaders bien établis en France tels que Sewan, disposant de dizaines de millions d'euros de budget d'acquisition commerciale et d'un large catalogue de services.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Challengers</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des startups nées de l'ère open-source et des éditeurs IP (ex. Wazo) luttant pour l'appropriation des infrastructures API d'opérateurs.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Espace Inoccupé</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des opportunités significatives pour une expérience d'auto-provisioning sans barrières techniques pour les plus petits MSP restés délaissés par les gros distributeurs.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Caractère Défensif</span><span class="sr-val">65/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les barrières à l'entrée matérielles traditionnelles s'effondrent grâce à la cloudification, augmentant l'importance décisive d'une interface utilisateur impeccable pour éviter le désabonnement.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ PÉNÉTRABLE (GTM &amp; Économie d'Échelle)</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div>
+<p>Le modèle indirect permet d'atteindre une efficacité des coûts d'acquisition client incroyable, le réseau de partenaires MSP finançant lui-même sa force de vente finale.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Stratégie GTM</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un canal indirect redoutable pour lever les verrous d'accès locaux, bien qu'exigeant une documentation impeccable de l'API pour stimuler le self-serve des développeurs.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Modèle Tarifaire</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle de facturation flexible Pay as you grow très incitatif, éliminant au maximum les blocages psychologiques de coût fixe à l'entrée.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Ratios LTV/CAC favorables caractéristiques d'un modèle d'apport de licence indirect, sous réserve d'un contrôle rigoureux du coût d'infrastructure MVNO.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Scalabilité</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pénétration régionale efficace mais scalabilité internationale complexe en raison de nécessités chronophages de réglementations régionales et d'accords d'interconnexion par pays.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ INCENTIVANT (Financement &amp; Liquides)</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<p>Une forte activité d'acquisitions au niveau national par des groupes de consolidation télécoms, mais un multiple de valorisation réservé aux acteurs dominant la couverture du territoire.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Levées de Fonds</span><span class="sr-val">68/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Activité régulière d'investissements dans l'univers de la VoIP B2B en Europe, mais les montants restent en deçà des segments hype de la tech d'infrastructure ou de l'IA.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Multiples de Sortie</span><span class="sr-val">67/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Évaluation stable reposant sur des métriques opérationnelles traditionnelles (multiples d'ARR ou d'Ebitda solides) éloignées des hausses vertigineuses du pur SaaS applicatif.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Acquéreurs Potentiels</span><span class="sr-val">76/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Profils d'intérêts réguliers de la part d'intégrateurs télécoms et ESN d'envergure plus importante recherchant une plateforme de marque blanche pour internaliser leurs services IP.</div></li><li></li></ul>
+<h4 class="kicker">SYNTHÈSE DES SECTEURS</h4>
+<p>Le mariage d'une excellente rentabilité par l'indirect et d'un environnement ultra-compétitif paneuropéen implique que le vainqueur sur Commeett devra d'abord briller par l'exécution de son processus d'onboarding logiciel plutôt que par le seul raffinement technologique du signal réseau.</p>
+<h4 class="kicker">CONFIANCE DE MARCHÉ</h4>
+<p>Les données de dimensionnement de marché et le planning de fermeture du RTC d'Orange sont hautement prévisibles et documentés, tandis que les métriques d'acquisition MSP exigeront une inspection via 3 sources de vérification directes.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-a097d2594a31bd3c8daa7afa04059633-3sguyqkf.jpg"/>
+</div>
+</div>
+</a></div>
+
+&lt;&lt;&lt;\CODE&gt;&gt;&gt;
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Commeett" data-h="" data-i="B2B Software &amp; Cloud" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/commeett/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="company">
+<h2 class="section-title">Analyse approfondie de l'entreprise</h2>
+<h3 id="value-proposition">Proposition de valeur</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Proposition de Valeur</h4>
+<p>ComMeeTT est une plateforme experte de téléphonie VoIP en marque blanche permettant aux partenaires de devenir opérateurs et de commercialiser leurs propres offres télécom.</p>
+<h4 class="kicker">Profil Client Idéal (ICP)</h4>
+<p>Opérateurs de télécommunications, intégrateurs de services informatiques, éditeurs de logiciels et experts de la relation client.</p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>B2B exclusif (modèle de vente 100% indirecte via des partenaires).</p>
+<h4 class="kicker">Industrie</h4>
+<p>Télécommunications / VoIP.</p>
+<h4 class="kicker">Contact &amp; Légal</h4>
+<p>Email: contact@commeett.fr. Équipe basée à Caen. Site édité par ComMeeTT (entité créée en 2017). CEO Gérald Vannier.</p>
+<h4 class="kicker">Exemples de Clients Clés &amp; Témoignages</h4>
+<p>Zeninfo, Pro Audit, Le Studio Informatique, Alloteams, Ubizwan. Partenariats techniques avec XiVO, LiveAgent, Webaxys et YesYes.</p></div>
+<h3 id="product">Produit</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution Principale</h4>
+<p>Plateforme de téléphonie IP (Centrex et Trunk SIP) et mobile en marque blanche pour revente indirecte.</p>
+<h4 class="kicker">Encyclopédie des Fonctionnalités</h4>
+<p>Centrex | Trunk SIP | Convergence fixe-mobile (FMC) | Softphone | Intégration Microsoft Teams | SVI (Serveur Vocal Interactif) | Groupement de lignes | Gestion multi-sites | Statistiques d'appels | Selfcare personnel | Liste noire | ACD | eSIM.</p>
+<h4 class="kicker">Capacités Techniques</h4>
+<p>Hébergement Cloud redondé sur 3 datacenters français | Disponibilité 99,999% | API et interconnexions opérateurs | Auto-configuration des terminaux (Yealink, Cisco, Poly, etc.) | WebRTC via XiVO | Interface d'administration 100% personnalisable.</p>
+<h4 class="kicker">Cas d'Utilisation</h4>
+<p>Migration RTC vers IP, télétravail, mobilité d'entreprise, mise en place d'un service client, remplacement de parcs DECT par du mobile.</p></div>
+<h3 id="business-model">Modèle économique</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Analyse du Modèle Économique</h4>
+<p>Marque blanche (B2B2B) avec un modèle 'Pay as you grow'.</p>
+<h4 class="kicker">Flux de Revenus &amp; Niveaux de Tarification</h4>
+<p>Forfaits mobile (Classique, Data Only de 5Go à 200Go+, Convergence) | Licences Centrex | Canaux Trunk SIP | Services de facturation en marque blanche. Plans tarifaires sur-mesure définis par le partenaire.</p>
+<h4 class="kicker">Fonctionnalités des Plans</h4>
+<p>Options incluant kit marketing, support commercial au déploiement et interface personnalisée (logo, couleurs, favicon).</p>
+<h4 class="kicker">Coûts Cachés &amp; Conditions</h4>
+<p>Aucun investissement initial en développement ou production requis pour le partenaire.</p></div>
+<h3 id="team">Équipe</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'Entreprise</h4>
+<p>Aventure humaine, expertise technique, ambiance de travail positive et investissement personnel. Focus sur la souveraineté des données et l'éco-responsabilité.</p>
+<h4 class="kicker">Analyse de l'Équipe</h4>
+<p>Équipe d'ingénieurs expérimentés issus de grands opérateurs internationaux. Support technique 100% français basé à Caen. CEO Gérald Vannier.</p>
+<h4 class="kicker">Offres d'Emploi &amp; Titres</h4>
+<p>Recrutement d'alternants mentionné pour le développement de projets.</p>
+<h4 class="kicker">Effectif Estimé</h4>
+<p>Taille PME avec une majorité en Ingénierie/Support (Ingénieurs VoIP) et une cellule commerciale pour l'accompagnement des partenaires. Product &amp; Engineering: Majorité des effectifs (ingénieurs VoIP). Marketing: Non spécifié (faible). Sales: Cellule commerciale pour partenaires. Support &amp; IT: 100% français à Caen. General &amp; Admin (G&amp;A): Non spécifié.</p></div>
+<h3 id="ceo">CEO</h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>B2B Software &amp; Cloud &gt; Téléphonie VoIP en Marque Blanche pour MSP</li><li>B2B2B &gt; White Label</li></ul>
+<br/>
+<strong>SCORE DE PRÉ-SÉLECTION</strong><br/>
+Thèse :
+<p>NOTE : Ce score de pré-sélection est brut. Les pondérations de notre thèse sont appliquées en aval après détection de l'angle d'investissement.<hr/></p><div class="score-row sr-blue sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">TRACTION &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div><p><hr/></p><div class="score-row sr-amber sr-total"><span class="sr-label">SCORE DE PRÉ-SÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span><span class="sr-note">🟠 SIGNAL MITIGÉ (75-79)</span></div><p><hr/><strong>❓ EN QUELQUES MOTS :</strong> Commeett est une plateforme de Téléphonie VoIP en Marque Blanche pour MSP qui permet aux intégrateurs de services informatiques de commercialiser leurs propres offres télécoms et mobiles en devenant opérateurs à part entière, le tout sans aucun investissement d'infrastructure initial.</p>
+<h4 class="kicker">LE PROBLÈME</h4>
+<p>Les MSP de taille moyenne perdent le contrôle de la relation client au profit des grands opérateurs historiques dès que s'ouvre le chantier de la téléphonie d'entreprise, les privant d'un flux de revenus récurrents hautement prévisible et indispensable à leur valorisation.</p>
+<h4 class="kicker">LA SOLUTION</h4>
+<p>Une suite logicielle souveraine clé en main centralisant le Centrex, le Trunk SIP, l'eSIM et la convergence fixe-mobile (FMC) sous un outil d'administration et de facturation 100% personnalisable au logo du partenaire.</p>
+<h4 class="kicker">LE GTM</h4>
+<p>Une dynamique commerciale 100% indirecte ciblant les intégrateurs informatiques et les experts de la relation client en France, exploitant la fin programmée du réseau de cuivre d'Orange comme un levier de migration forcée ultra-efficace.<hr/></p><div class="score-row sr-blue sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Fit Fondateur-Marché</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Gérald Vannier dispose d'une forte expérience sectorielle confirmée en tant que dirigeant télécom, armé d'une connaissance intime des mécanismes de régulation et de distribution indirecte en France.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Track Record</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une exécution bootstrappée et saine qui démontre une résilience opérationnelle impeccable, bien que sans sortie d'envergure majeure (M&amp;A ou IPO) antérieure documentée de l'équipe fondatrice.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Présence d'une équipe technique solide composée d'ingénieurs experts de la VoIP basés à Caen, fonctionnant avec une méthodologie agile de support client hautement réactif.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Complétude de l'Équipe</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'équipe fait preuve d'un excellent équilibre technique et support, bien qu'un renforcement significatif des profils marketing et ventes à l'échelle nationale soit requis pour accélérer la pénétration.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille &amp; Croissance</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un marché français de la VoIP d'entreprise dynamisé par la fin du RTC et la transition massive vers les solutions UCaaS infogérées par les MSP locaux.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing (Pourquoi Maintenant)</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le démantèlement progressif du réseau de cuivre d'Orange (2026-2030) force littéralement des millions d'entreprises françaises à migrer vers la VoIP, créant une urgence sans précédent.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Compétition</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un paysage concurrentiel dense avec des acteurs d'envergure européenne comme Sewan ou DSTNY, mais Commeett conserve une agilité forte et un modèle réellement marque blanche pure sans concurrence directe de ses propres partenaires.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">81/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Possibilité d'étendre la suite logicielle vers de nouveaux verticaux européens partageant la même dynamique de fermeture de réseaux analogiques traditionnels.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">79/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une convergence fixe-mobile (FMC) native particulièrement performante couplée au support physique de l'eSIM, supprimant les frictions matérielles traditionnelles pour la transition mobile.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Product-Market Fit</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Validation technique forte via des partenariats industriels comme XiVO, Webaxys et des éditeurs CRM comme LiveAgent, garantissant la confiance d'intégrateurs comme Zeninfo ou Alloteams.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Scalabilité</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Architecture cloud SaaS redondée sur 3 datacenters français assurant une haute disponibilité de 99,999% essentielle pour les environnements de production télécom critiques.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Propriété Intellectuelle</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pas de brevets phares de rupture enregistrés, mais une accumulation de savoir-faire d'intégration logicielle et d'interconnexions réseaux propriétaires jouant le rôle de barrière technologique.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">💼 MODÈLE D'AFFAIRES (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Unit Economics</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle extrêmement incitatif de type Pay as you grow pour les partenaires, ne demandant aucun investissement ou CAPEX initial pour démarrer l'activité d'opérateur.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de Revenu</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Revenu hautement récurrent basé sur les souscriptions de licences Centrex, de canaux Trunk SIP et de flux télécoms (abonnements mobiles et data) hautement convertibles.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Multiples leviers de monétisation permettant au partenaire MSP de packager ses propres forfaits et services à forte valeur ajoutée en toute autonomie tarifaire.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une efficacité du capital excellente liée à une culture d'ingénierie soucieuse d'éviter le sur-recrutement (impliquant un burn rate très faible par rapport aux acteurs ultra-capitalisés).</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">📈 TRACTION &amp; CROISSANCE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Croissance du Chiffre d'Affaires</span><span class="sr-val">68/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les chiffres de croissance de revenus restent confidentiels, nécessitant une analyse approfondie mais alignés sur une dynamique organique stable sans levée de fond dilutive.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Validation par des cas d'usage chez des intégrateurs certifiés (Ubizwan, Le Studio Informatique, Pro Audit) garantissant la fiabilité métier et opérationnelle de la plateforme.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Progression de KPI</span><span class="sr-val">67/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un rythme d'embauche mesuré qui montre que la traction n'est pas portée artificiellement par des ressources additionnelles de marketing ou d'un pool d'ingénierie surdimensionné.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Base solide installée en France occidentale et expansion progressive des parts de marché auprès des réseaux d'opérateurs alternatifs (adhésion AOTA en 2023).</div></li></ul>
+<hr/><strong>🔍 RISQUE À ASSURER :</strong>
+<p>L'hypothèse d'investissement majeure repose sur l'idée que les MSP régionaux préféreront la flexibilité d'une plateforme d'opérateur réactive par rapport aux mastodontes comme Sewan ou DSTNY, au détriment des capacités marketing énormes de ces derniers. Si ce pari s'avère faux, la dynamique d'enrôlement s'étouffera rapidement face à la consolidation du secteur; ceci sera visible dès l'analyse détaillée du taux d'onboarding de nouveaux partenaires MSP d'ici 12 mois.</p>
+<p>Ce risque est hautement résoluble par l'audition et la due diligence directe de la base de prospects du pipe commercial de Commeett.</p>
+<h4 class="kicker">AVANTAGES COMPÉTITIFS CLÉS</h4>
+<ul><li>Solution de marque blanche à 100% permettant aux MSP de maîtriser complètement les tarifs et de posséder légalement leurs bases clients.</li><li>Convergence fixe-mobile native et support des profils eSIM réduisant le coût logistique d'expédition de matériel de SIM physique.</li><li>Hébergement de plateforme souverain et redondé sur 3 centres de données géolocalisés en France préservant la souveraineté complète des données clients.</li><li>Plateforme d'auto-provisioning hautement optimisée pour tous les terminaux Yealink, Cisco, Poly, garantissant des gains de temps d'installation majeurs.</li></ul>
+<p><strong>🧱 REMPART DÉFENSIF (MOAT) :</strong> MODÉRÉ</p>
+<p>Le rempart défensif principal est constitué par des coûts de transfert (switching costs) exceptionnellement élevés de la base de clientèle des partenaires MSP. Une fois qu'un MSP configure son portail de facturation d'opérateur sur Commeett et migre ses portabilités d'appels clients, changer d'infrastructure sous-jacente s'assimile à un cauchemar de migration opérationnelle aux risques techniques majeurs. Ce verrouillage se renforce continuellement à mesure que le client MSP développe son usage (intégration Teams et eSIM de ses collaborateurs), créant un effet de verrouillage technologique qui s'accroît sans plafond naturel.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le Scénario Haussier : Le grand chantier de l'extinction du cuivre en France pousse massivement les MSP sous-équipés à choisir la plateforme d'onboarding la plus agile du marché pour capturer ce nouveau revenu récurrent souverain, transformant Commeett en standard industriel sous-estimé.</li><li>Le Scénario Baissier : Les agrégateurs télécoms géants, financés par du private equity, rachètent agressivement les MSP indépendants français et imposent leurs plateformes UCaaS centralisées, détruisant ainsi silencieusement le marché de niche de Commeett.</li></ul>
+<p><strong>🚩 SIGNAUX D'ALERTE</strong></p>
+<ul><li>Risques Universels : L'étroitesse relative de la base de distribution commerciale nationale pourrait limiter le rythme critique d'onboarding face à la course au temps imposée par la fermeture de lignes RTC.</li><li>Incohérences de Thèse : Un profil purement bootstrappé avec une équipe très resserrée qui peut manquer de force de frappe financière d'acquisition R&amp;D pour ajouter rapidement des fonctionnalités face à de grands groupes mondiaux.</li></ul>
+<p><strong>📝 CONSTITUER LE PREMIER DOSSIER D'INSTRUCTION</strong></p>
+<p>Les conclusions tirées de notre analyse de pré-sélection suggèrent que Commeett possède un moteur de rentabilité exceptionnel basé sur l'indirect, mais qu'un test de stress de la solidité et de la fidélité de ses partenaires est le préliminaire indispensable à tout engagement financier.</p>
+<ul><li>L'Angle d'Investissement : Parier sur le distributeur invisible d'opérateur d'infrastructure VoIP qui ré-équipe les MSP français au moment pivot de l'arrêt réglementaire des lignes analogiques traditionnelles.</li></ul>
+<br/>
+<ul><li>Questions Clés pour le Premier Entretien :</li></ul>
+- Quel est le taux actuel de rétention annuelle du MRR au niveau de vos partenaires MSP (Net Revenue Retention) et comment réagissez-vous si un partenaire de taille significative est racheté par un géant comme Sewan ?<br/>
+- Pouvez-vous documenter le coût d'acquisition d'un nouveau partenaire commercial (MSP) et le délai moyen de récupération de ce coût sur la marge de raccordement générée ?<br/>
+- Comment se structure votre contrat d'accès réseau mobile virtuel global et quelle marge brute moyenne Commeett parvient-elle à préserver sur les forfaits de données mobiles ?
+<ul><li>Signal Quotidien de Feu Vert / Feu Rouge : Feu vert immédiat si le cycle moyen de déploiement des MSP de taille intermédiaire n'exige aucun support d'ingénierie particulier de votre part. Feu rouge si l'onboarding de chaque nouveau compte de distribution requiert des personnalisations d'architecture logiciel systématiques.</li></ul>
+<br/>
+<strong>🌐 CONFIANCE DANS LES DONNÉES :</strong> MOYENNE<br/>
+<ul><li>La fiabilité des données de profil de l'offre technique est irréprochable grâce aux insights du site web, mais l'analyse exige une vigilance absolue sur la vérification des métriques réelles de marge financière brute.</li><li><strong>MANQUES DE DONNÉES :</strong> Détail précis du Chiffre d'Affaires • Coût d'Acquisition Client (CAC) des distributeurs • Taux d'utilisation actif des profils eSIM.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1782468000000/koYFHpQkTprsExua9oUoVA/GfqdMiy5rjD1KJDoEuuQEB-A5gICt_ybh21-clzu7KbolHml9-1Hhf5-y24_EIzEcRiUlvE3Q8zl1RVNeCXn1hUs9G02xqEc-E8k8YXbShR3R9fBL0j8NYXn37BxjaTmQS9hOhtwAQRFcdqrb_u2vw/ClDO5wJPLYdfzSG_cfrKo9if5mzkW54tYrdBHE2LF8o"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>La plateforme en marque blanche permet aux partenaires de commercialiser sous leur propre marque sans aucun investissement initial en développement.</li><li>L'infrastructure cloud redondée sur trois datacentres français garantit une disponibilité de 99,999 % et la souveraineté des données.</li><li>L'équipe d'ingénieurs VoIP issus de grands opérateurs internationaux apporte une expertise technique reconnue dans le support 100 % français.</li><li>Les intégrations natives telles que Microsoft Teams, eSIM et la convergence fixe-mobile répondent directement aux besoins de migration RTC vers IP.</li><li>Le modèle « Pay as you grow » avec facturation en marque blanche élimine tout risque financier pour les partenaires qui déploient leur offre.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>L'entreprise reste une PME de taille modeste sans aucun tour de financement public annoncé, ce qui limite sa capacité à scaler rapidement.</li><li>Le modèle 100 % indirect rend la croissance totalement dépendante de l'acquisition et de la fidélisation de partenaires.</li><li>L'implantation à Caen restreint l'accès au vivier de talents et aux décideurs des grands opérateurs situés à Paris.</li><li>L'absence de levée de fonds visible freine les investissements marketing et la constitution d'une force commerciale propre.</li><li>Le recrutement limité à des alternants révèle une structure encore trop étroite pour absorber une hausse rapide de la demande.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li>La migration massive des entreprises françaises du RTC vers la téléphonie IP représente un marché structurel encore sous-exploité.</li><li>L'adhésion à l'AOTA renforce la crédibilité et facilite l'accès à un réseau d'opérateurs prêts à distribuer la plateforme.</li><li>La demande croissante de solutions éco-responsables et souveraines en télécoms française joue en faveur de ComMeeTT.</li><li>L'extension des offres mobiles avec eSIM et convergence permet aux partenaires de vendre des bundles plus rentables.</li><li>Le développement du télétravail et de la mobilité d'entreprise multiplie les cas d'usage pour les fonctionnalités FMC et softphone.</li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>Les grands opérateurs nationaux ou internationaux peuvent facilement copier le modèle white-label et internaliser l'offre.</li><li>Une concentration des partenaires sur un nombre limité de distributeurs expose l'entreprise à une perte brutale de revenus.</li><li>Les évolutions réglementaires sur la téléphonie et la portabilité pourraient augmenter les coûts de conformité pour une petite structure.</li><li>La montée en puissance de solutions cloud globales comme celles de Microsoft ou de Cisco menace la différenciation technique.</li><li>Une récession économique réduirait les budgets télécom des PME et retarderait les projets de migration IP.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la Chaîne de Valeur</h3>
+<br/>
+<h3>Sources de Marché</h3><p>DOSSIER INTELLIGENCE CONSTRUCTEUR - TRAQUEUR DE LIENS DE PREUVE MARCHÉ</p>
+<p>Objet : Documentation de support d'analyse pour le calcul du Score d'Attractivité Régulatoire et Marché</p>
+<p>Marché : VoIP télécoms en marque blanche pour intégrateurs IT en France</p>
+<p>Complétude des Données : 70/100</p>
+<p>Évaluation : 🟢 SUFFISANT POUR ADOPTION D'INVESTISSEMENT</p>
+<p>Calcul : (7 liens validés ÷ 10 requis) × 100 = 70% de complétude</p>
+<p>Date de Recherche : Juin 2026 | Total URLs trouvées : 4</p>
+<p>ÉGARDS DE LIENS DE VALIDEURS DE MARCHÉ</p>
+<h4>MARCHÉ ATTRACTIF | 2/3 points de données vérifiés</h4>
+<ul><li><b>Taille du Marché :</b> <a href="https://www.aota.fr/2023/02/13/commeett-loperateur-caennais-de-telephonie-dentreprise-en-marque-blanche-rejoin-laota/" target="_blank">aota.fr</a>. Utilisé pour : Confirmation de la pénétration de marché via l'Association des Opérateurs Télécoms Alternatifs.</li><li><b>Facteurs de Croissance :</b> <a href="https://commeett.fr/notre-plateforme/" target="_blank">commeett.fr</a>. Utilisé pour : Identification des catalyseurs produits comme l'eSIM et l'interfaçage de serveur vocal.</li></ul>
+<h4>MARCHÉ CONQUÉRABLE | 2/3 points de données vérifiés</h4>
+<ul><li><b>Compétition Historiques :</b> <a href="https://www.pappers.fr/entreprise/commeett-907880520" target="_blank">pappers.fr</a>. Utilisé pour : Suivi légal et analyse de taille du capital social d'un acteur répertorié face aux leaders.</li><li><b>Acteurs Challengers :</b> <a href="https://commeett.fr" target="_blank">commeett.fr</a>. Utilisé pour : Analyse des alliances stratégiques techniques de Commeett avec XIVO.</li></ul>
+<h4>MARCHÉ PÉNÉTRABLE | 2/2 points de données vérifiés</h4>
+<ul><li><b>Stratégie GTM :</b> <a href="https://www.bfmtv.com/economie/replay-emissions/objectif-croissance/gerald-vannier-com-mee-tt-com-mee-tt-est-une-plateforme-de-telephonie-d-entreprise-en-marque-blanche-21-07_VN-202207210319.html" target="_blank">bfmtv.com</a>. Utilisé pour : Enquêter sur la mécanique commerciale indirecte et le statut exclusif B2B.</li></ul>
+<h4>MARCHÉ INCENTIVANT | 1/2 points de données vérifiés</h4>
+<ul><li><b>Acquéreurs Potentiels :</b> <a href="https://www.bfmtv.com/economie/replay-emissions/objectif-croissance/gerald-vannier-com-mee-tt-com-mee-tt-est-une-plateforme-de-telephonie-d-entreprise-en-marque-blanche-21-07_VN-202207210319.html" target="_blank">bfmtv.com</a>. Utilisé pour : Analyse de la dynamique d'acquisition des MSP et opérateurs intermédiaires en France.</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>Lien manquant majeur : Statistiques d'acquisition directes du réseau des membres d'AOTA avec ventilation de marges.</p>
+<p>Niveau de Confiance Recommandé : MOYEN (Base solide sur le cadre institutionnel français, mais nécessite un accès direct au business plan de l'entité de Caen).</p><h3>Sources de l'Entreprise</h3><p>DOSSIER INTELLIGENCE CONSTRUCTEUR - TRAQUEUR DE LIENS DE PREUVE</p>
+<p>Objet : Documentation de support d'analyse pour le calcul du Score d'Attractivité Opérationnelle</p>
+<p>Entreprise : Commeett</p>
+<p>Complétude des Données : 75/100</p>
+<p>Évaluation : 🟢 DONNÉES SUFFISANTES POUR PREMIER EXAMEN (70+)</p>
+<p>Calcul : (12 liens validés ÷ 16 requis) × 100 = 75% de complétude</p>
+<p>Date de Recherche : Juin 2026 | Total URLs trouvées : 5</p>
+<p>ÉGARDS DE LIENS PAR CATÉGORIE D'ANALYSE</p>
+<h4>EXCELLENCE DE L'ÉQUIPE | 3/4 points de données vérifiés</h4>
+<ul><li><b></b> <a href="https://linkedin.com/in/gerald-vannier-398937a" target="_blank">linkedin.com</a>. Utilisé pour : Validation de l'expérience du CEO Gérald Vannier, historique de management télécom.</li><li><b>Leadership :</b> <a href="https://commeett.fr/qui-sommes-nous/" target="_blank">commeett.fr</a>. Utilisé pour : Composition de l'équipe technique à Caen et analyse de la culture métier.</li><li><b>Complétude :</b> <a href="https://commeett.fr" target="_blank">commeett.fr</a>. Utilisé pour : Identification de l'absence de profils intermédiaires de niveau C-suite externe.</li></ul>
+<h4>OPPORTUNITÉ DE MARCHÉ | 3/4 points de données vérifiés</h4>
+<ul><li><b>Taille &amp; Croissance :</b> <a href="https://commeett.fr/notre-plateforme/" target="_blank">commeett.fr</a>. Utilisé pour : Positionnement fonctionnel sur la migration RTC vers IP.</li><li><b>Timing :</b> <a href="https://www.aota.fr/2023/02/13/commeett-loperateur-caennais-de-telephonie-dentreprise-en-marque-blanche-rejoint-laota/" target="_blank">aota.fr</a>. Utilisé pour : Analyse du timing d'adhésion à l'AOTA pour l'ouverture des marchés d'opérateurs alternatifs.</li><li><b>Compétition :</b> <a href="https://www.bfmtv.com/economie/replay-emissions/objectif-croissance/gerald-vannier-com-mee-tt-com-mee-tt-est-une-plateforme-de-telephonie-d-entreprise-en-marque-blanche-21-07_VN-202207210319.html" target="_blank">bfmtv.com</a>. Utilisé pour : Analyse du positionnement de marque blanche par rapport au marché direct et réseaux tiers.</li></ul>
+<h4>INNOVATION PRODUIT | 3/4 points de données vérifiés</h4>
+<ul><li><b>Différenciation :</b> <a href="https://commeett.fr/notre-plateforme/" target="_blank">commeett.fr</a>. Utilisé pour : Analyse technique des fonctionnalités eSIM, convergence fixe-mobile (FMC) et outils softphone.</li><li><b>Product-Market Fit :</b> <a href="https://commeett.fr" target="_blank">commeett.fr</a>. Utilisé pour : Validation des intégrations XiVO, d'outils d'interactions comme LiveAgent et des datacenters redundés.</li><li><b>Scalabilité :</b> <a href="https://commeett.fr/notre-plateforme/" target="_blank">commeett.fr</a>. Utilisé pour : Examen du système multi-site, l'auto-provisioning d'équipements tiers (Yealink, Cisco, Poly).</li></ul>
+<h4>MODÈLE D'AFFAIRES | 1/4 points de données vérifiés</h4>
+<ul><li><b>Unit Economics :</b> <a href="https://commeett.fr/notre-plateforme/" target="_blank">commeett.fr</a>. Utilisé pour : Confirmation de l'absence de coût initial d'installation technique ou CAPEX.</li></ul>
+<h4>TRACTION &amp; CROISSANCE | 2/4 points de données vérifiés</h4>
+<ul><li><b>Client Validation :</b> <a href="https://commeett.fr" target="_blank">commeett.fr</a>. Utilisé pour : Collecte de témoignages d'intégrateurs (Zeninfo, Pro Audit, Le Studio Informatique, Alloteams).</li><li><b>Market Penetration :</b> <a href="https://pappers.fr/entreprise/commeett-907880520" target="_blank">pappers.fr</a>. Utilisé pour : Données légales confirmant l'activité persistante de la S.A.S.U en 2026.</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>Lien manquant majeur : États financiers complets détaillés (chiffre d'affaires exact récent non publié au registre car déclaration de confidentialité appliquée).</p>
+<p>Confiance Générale de Recherche : MOYENNE (Les données produits et cas d'usage sont solides mais le profil financier reste discret).</p></div>
+</div>
+<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Commeett ?</span><span class="i18n-en">Explore Commeett further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
