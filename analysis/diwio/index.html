@@ -1,0 +1,621 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Diwio — analyse Mobility &amp; Transportation | Proplace</title><meta name="description" content="Mobility &amp; Transportation · SaaS de Gestion d&#x27;Infrastructures de Micro-mobilité · Seed"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/diwio/"><meta property="og:type" content="article"><meta property="og:title" content="Diwio — analyse Mobility &amp; Transportation | Proplace"><meta property="og:description" content="Mobility &amp; Transportation · SaaS de Gestion d&#x27;Infrastructures de Micro-mobilité · Seed"><meta property="og:url" content="https://proplace.co/analysis/diwio/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Diwio — Mobility & Transportation", "description": "Mobility & Transportation · SaaS de Gestion d'Infrastructures de Micro-mobilité · Seed", "inLanguage": "fr", "url": "https://proplace.co/analysis/diwio/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/diwio/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Diwio"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Diwio</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Diwio"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Seed</span>
+<span class="sb-tag">Mobility &amp; Transportation</span>
+<span class="sb-tag">B2G2C</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Diwio</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>France ·</span> Mobility &amp; Transportation · SaaS de Gestion d'Infrastructures de Micro-mobilité · Seed</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Logiciels SaaS de gestion de parkings vélos connectés (IoT) et services d'exploitation pour collectivités et réseaux de transport en Europe francophone.</p>
+<a href="https://diwio.com" target="_blank"><i class="fas fa-globe"></i> Site web</a>
+<a href="https://linkedin.com/in/mael-beyssat" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorer davantage Diwio ?</h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur Diwio</a>
+</div>
+<div class="divider"></div>
+
+
+<div class="section">
+<h3>S'abonner à la newsletter Proplace ?</h3>
+<p class="meta-desc">Recevez les actualités quotidiennes du M&amp;A et du fundraising.</p>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+</div>
+<div class="section">
+<h3>Envie d'un deal flow propriétaire ?</h3>
+<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+</div>
+<div class="sidebar-logo-wrap">
+<img alt="Logo " src="https://ellipsebikes.com/wp-content/uploads/2025/09/ELLIPSE_BLANC-1024x245.png" style="max-width: 110px; height: auto; margin: 0 auto 10px; display: block; opacity: 0.85;"/>
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Diwio</h1>
+<h2 class="subtitle-category">Mobility &amp; Transportation ➜ SaaS de Gestion d'Infrastructures de Micro-mobilité ➜ La plateforme SaaS d'exploitation pour le stationnement vélo connecté et sécurisé.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div><div style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin:0 0 22px;box-shadow:0 2px 6px rgba(15,23,42,.08)"><div style="background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><div style="font-size:15px;font-weight:700">🎯 Fiche d'attaque — Diwio</div><div><span style="background:#dc2626;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;margin-right:6px">🔥 75% closing</span><span style="background:#d97706;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.04em"></span><span style="background:rgba(255,255,255,.14);color:#e2e8f0;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;margin-left:6px">Scale-up</span></div></div><div style="padding:15px 18px;background:#fef6df"><div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:12px 14px;margin-bottom:12px"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#475569">Probabilité de closing</span><span style="font-size:22px;font-weight:800;color:#dc2626">75%<span style="font-size:13px;font-weight:600;margin-left:5px;color:#334155">🔥 Chaud</span></span></div><div style="height:7px;background:#eef2f7;border-radius:999px;overflow:hidden;margin:8px 0 6px"><div style="height:100%;width:75%;background:#dc2626"></div></div><div style="font-size:11px;color:#64748b">Tirée par : Déclencheur actif, Décideur accessible</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 22px"><div style="margin-bottom:4px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#6366f1;margin-bottom:2px">Décideur</div><div style="font-size:13px;color:#0f172a;line-height:1.45">Nouveau Management de transition post-2025 · Directeur Général d'exploitation de transition chez Diwio Mobility<br/><span style="color:#475569;font-style:italic">Il coordonne les priorités de développement d'infrastructure commerciale de la nouvelle phase exécutive</span></div></div><div style="margin-bottom:4px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#6366f1;margin-bottom:2px">Comité d'achat</div><div style="font-size:13px;color:#0f172a;line-height:1.45">Implique un responsable produit technique pour l'alignement de l'API et un Directeur Financier pour la validation de nos coûts d'assistance SAV</div></div><div style="margin-bottom:4px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#0ea5e9;margin-bottom:2px">Déclencheur — pourquoi maintenant</div><div style="font-size:13px;color:#0f172a;line-height:1.45">Nouveaux déploiements intermodaux et rapprochement de Diwio avec La Ruche à Vélos.</div></div></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #f1f5f9">Le coup à jouer</div><div style="font-size:13px;line-height:1.5;color:#0f172a"><b>Leur situation :</b> Exploite des abris vélos sécurisés connectés mais sans offre de matériel roulant premium associé d'assemblage souverain<br/><b>Ce qu'on apporte :</b> Vélos électriques connectés haut de gamme assemblés en France (modèles E1/E2 à Troyes) avec alarme 100dB et traceur natif GPS/LTE-M<br/><b>Valeur débloquée :</b> Création d'une offre d'accès unifiée 'Vélo de fonction + Box de recharge sécurisé' déverrouillable avec l'unique carte Navigo de l'usager</div><div style="font-size:13px;line-height:1.5;color:#0f172a;margin-top:6px"><b>À déloger :</b> Logiciels propriétaires développés en interne par les fabricants physiques d'abris (Altinnova ou Abri Plus) <span style="font-size:10px;color:#d97706;font-weight:600">(à vérifier)</span><br/><b>Notre coin :</b> Proposer à Diwio d'intégrer notre micrologiciel Bikefinder pour s'établir comme l'OS de référence agnostique devant les fabricants d'abris</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #f1f5f9">Preuve à dégainer</div><div style="font-size:13px;line-height:1.5;color:#0f172a">Nos 150+ entreprises clientes de flotte et notre partenariat de distribution d'envergure nationale avec Decathlon<br/><span style="color:#475569;font-style:italic">Crédibilise notre réputation opérationnelle, notre savoir-faire SAV de proximité et la fiabilité technique de nos cycles d'assemblage</span></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #f1f5f9">Séquence prête à envoyer</div><div style="margin-bottom:10px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden"><div style="display:flex;justify-content:space-between;align-items:center;background:#f1f5f9;padding:6px 10px;border-bottom:1px solid #e2e8f0"><span style="font-size:12px;font-weight:600;color:#334155">in Accroche interopérabilité d'usage - Paris-Saclay</span><button onclick="navigator.clipboard.writeText(this.parentNode.nextElementSibling.innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#6366f1;background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 8px;cursor:pointer" type="button">Copier</button></div><div style="white-space:pre-wrap;font-size:12.5px;color:#0f172a;line-height:1.5;padding:9px 11px;background:#fff">Bonjour [Prénom], j'ai suivi avec un grand intérêt vos récents déploiements à Paris-Saclay. Nous constatons que la réassurance contre le vol est le verrou d'usage numéro un pour les flottes de vélos de fonction. Seriez-vous ouvert à échanger 15 min sur la façon d'unifier l'accès sécurisé de vos abris d'agglomération avec notre gamme de vélos connectés français ?</div></div><div style="margin-bottom:10px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden"><div style="display:flex;justify-content:space-between;align-items:center;background:#f1f5f9;padding:6px 10px;border-bottom:1px solid #e2e8f0"><span style="font-size:12px;font-weight:600;color:#334155">✉ Wedge d'intégration technique - API Bikefinder × Diwio</span><button onclick="navigator.clipboard.writeText(this.parentNode.nextElementSibling.innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#6366f1;background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 8px;cursor:pointer" type="button">Copier</button></div><div style="white-space:pre-wrap;font-size:12.5px;color:#0f172a;line-height:1.5;padding:9px 11px;background:#fff">Bonjour [Prénom], en complément de notre échange, notre R&amp;D à Troyes a développé l'application Bikefinder (GPS/LTE-M). Nous pensons qu'il est possible de lier nativement l'ouverture de vos consignes à nos notifications d'alarme 100dB, augmentant ainsi de 40% la valeur d'usage perçue de vos contrats de stationnement d'entreprises. Qu'en pensez-vous ? Let's speak team to team.</div></div><div style="margin-bottom:10px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden"><div style="display:flex;justify-content:space-between;align-items:center;background:#f1f5f9;padding:6px 10px;border-bottom:1px solid #e2e8f0"><span style="font-size:12px;font-weight:600;color:#334155">✉ Soft close commercial - ROI et chiffrage flotte</span><button onclick="navigator.clipboard.writeText(this.parentNode.nextElementSibling.innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#6366f1;background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 8px;cursor:pointer" type="button">Copier</button></div><div style="white-space:pre-wrap;font-size:12.5px;color:#0f172a;line-height:1.5;padding:9px 11px;background:#fff">Bonjour [Prénom], avec un point mort de seulement 2 à 3 vélos connectés par an pour amortir une station de recharge sécurisée Diwio, une offre commune clé en main simplifierait la vie de vos clients DRH. Êtes-vous disponible mardi à 14h pour une démonstration rapide de nos compatibilités techniques ?</div></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #f1f5f9">Questions de découverte</div><ol style="margin:0;padding-left:18px;font-size:13px;color:#0f172a;line-height:1.5"><li style="margin-bottom:4px">Quels sont vos coûts unitaires d'exploitation physique et de maintenance terrain par box de stationnement ?</li><li style="margin-bottom:4px">Votre documentation technique API est-elle ouverte aux interconnexions tierces pour des flottes d'entreprises privées ?</li><li style="margin-bottom:4px">Comment s'organise l'expansion ou la roadmap d'acquisition européenne après les réorganisations de direction d'octobre 2025 ?</li></ol><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #f1f5f9">Objections → réponses</div><div style="margin-bottom:8px;font-size:12.5px;line-height:1.45"><div style="color:#b91c1c"><b>« Nous travaillons déjà en consortium avec d'autres installateurs physiques d'abris. »</b></div><div style="color:#0f172a">↳ Notre intégration s'effectue au niveau logiciel : l'application Bikefinder d'Ellipse augmente de 40% la valeur digitale perçue par vos clients DRH sans perturber vos accords avec les fabricants d'abris existants.</div></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #f1f5f9">Boussole de terrain</div><div style="display:flex;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:210px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#059669;margin-bottom:4px">✓ À dire en confiance</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• Déploiement public d'abris sur le campus de Paris-Saclay</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• Partenariats actifs conclus avec la direction de SNCF Gares &amp; Connexions</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• Savoir-faire et connexion directe de l'IoT Diwio avec les badges de transport régionaux (ex. Navigo)</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• Départ du Directeur Général de Diwio, Maël Beyssat, en octobre 2025</div></div><div style="flex:1;min-width:210px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#d97706;margin-bottom:4px">⚠ À vérifier d'abord</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• Le prix d'abonnement moyen facturé aux collectivités locales pour l'exploitation du back-office de Diwio</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• Le pourcentage de chiffre d'affaires exact tiré de l'exploitation récurrente SaaS par rapport aux services physiques de maintenance</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• L'accessibilité technique réelle des documentations API de Diwio aux développeurs tiers</div></div></div></div></div><div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Diwio" data-h="" data-i="Mobility &amp; Transportation" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/diwio/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title">Résumé du marché</h2>
+<div class="split-container">
+<div class="text-col">
+<h4 class="kicker">SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>Mobilité &amp; Transport &gt; SaaS de Gestion d'Infrastructures de Micro-mobilité<br/>B2G2C &gt; SaaS</p>
+<div class="score-row sr-green"><span class="sr-label">LE MARCHÉ EST-IL ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:83%"></span></span><span class="sr-val">83/100</span><span class="sr-note">× 25% = 20.75 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:76%"></span></span><span class="sr-val">76/100</span><span class="sr-note">× 25% = 19.00 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span><span class="sr-note">× 25% = 17.50 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL RÉCOMPENSANT ?</span><span class="sr-bar"><span class="sr-fill" style="width:74%"></span></span><span class="sr-val">74/100</span><span class="sr-note">× 25% = 18.50 pts</span></div>
+<div class="score-row sr-blue sr-total"><span class="sr-label">SCORE TOTAL DE L'ATTRACTIVITÉ DU MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:76%"></span></span><span class="sr-val">75.75/100</span></div>
+<h4 class="kicker">DÉFINITION DU MARCHÉ</h4>
+<p>Ce marché englobe les progiciels de centralisation opérationnelle (SaaS) et les hubs IoT de stationnement sécurisé de consignes de vélos, achetés directement par les régies de transport et municipalités francophones pour encourager les citoyens à la transition intermodale active. Le statu quo actuel souffre d'installations de stockage métalliques manuelles sans connectivité, forçant l'usager à porter plusieurs badges physiques indépendants et complexifiant le reporting opérationnel de remplissage de la ville.</p>
+<p>Sur la chaîne de valeur globale, ce sous-segment se situe à la jonction critique des fabricants de mobilier d'un côté et des opérateurs de transport multimodaux de l'autre, capturant une part croissante de la marge de service grâce à la récurrence de la maîtrise logicielle.</p>
+<h4 class="kicker">NOTRE THÈSE DE MARCHÉ</h4>
+<p>Le déploiement des infrastructures de micro-mobilité fait face à un point d'inflexion réglementaire irréversible matérialisé par la Loi LOM et le versement généralisé de forfaits mobilités durables qui obligent les gares à multiplier par cinq leurs capacités de stationnement vélo sécurisé. Face à ce séisme opérationnel, les acteurs historiques de la signalisation et du mobilier urbain souffrent d'une paralysie technique totale car leurs systèmes industriels sont incapables d'intégrer des fonctionnalités SaaS de billettique connectée sans déstructurer profondément leurs lignes de production et de vente matérielle.</p>
+<p>Le vecteur d'attaque optimal pour un nouvel entrant technologique consiste à désintermédier la quincaillerie par l'installation d'une passerelle logicielle API connectant n'importe quel verrou au système d'accès préexistant de la ville. La fenêtre d'opportunité commerciale est d'environ 36 mois, le temps que s'achèvent les principaux renouvellements de délégations de service public de mobilité dans les capitales régionales.</p>
+<h4 class="kicker">NOTRE CONVICTION &amp; PARI SUR CE MARCHÉ</h4>
+<p><span class="conv-badge sr-amber">CONVICTION MOYENNE</span></p>
+<p>Bien que l'explosion indéniable de la pratique du vélo au quotidien valide de formidables besoins d'infrastructures physiques sécurisées, nous reconnaissons qu'il s'agit d'un environnement de vente public lent et complexe, régi par des contraintes budgétaires serrées et d'intenses frictions locales.</p>
+<p>Nous faisons le pari stratégique que dans les trois années à venir, les gestionnaires de transport urbain imposeront une séparation stricte entre les marchés d'achat d'infrastructures d'abris et les contrats d'exploitation de plateformes numériques, consacrant ainsi l'avènement d'un pur système d'exploitation de micro-mobilité indépendant. Pour valider définitivement cette hypothèse, notre premier appel avec le fondateur se concentrera sur l'analyse de la typologie des appels d'offres récents afin de mesurer si la propriété intellectuelle du logiciel est désormais un critère d'attribution indépendant et autonome.</p>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ ATTRACTIF (Moyenne Dynamique)</span><span class="sr-bar"><span class="sr-fill" style="width:83%"></span></span><span class="sr-val">83/100</span></div>
+<p>Ce score élevé met en relief une opportunité portée par d'excellents indicateurs de volume, tout en posant la contrainte d'une dépendance exclusive aux dynamiques macro-politiques de subventions territoriales.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Sizing Marché</span><span class="sr-val">81/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché ciblé des logiciels de gestion de micro-mobilité (SaaS) et services connexes en Europe de l'Ouest continue sa progression solide à deux chiffres de CAGR à la faveur du boom du VAE.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Moteurs de Croissance</span><span class="sr-val">86/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les obligations de la Loi LOM en France imposant des abris vélos sécurisés dans plus de 1 000 gares françaises constituent le principal levier de conversion du marché.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing (Pourquoi maintenant)</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'essor massif du vélo électrique augmente dramatiquement le coût moyen des vélos en circulation, créant une hantise sociologique du vol que seules des consignes de sécurité logicielle intelligentes peuvent éradiquer.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Risques de Marché</span><span class="sr-val">77/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le goulot d'étranglement majeur reste la lenteur inhérente du cycle d'achat des municipalités territoriales et le manque de standardisation technique globale des intégrations hardware.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ GAGNABLE (Paysage Concurrentiel)</span><span class="sr-bar"><span class="sr-fill" style="width:76%"></span></span><span class="sr-val">76/100</span></div>
+<p>Cette évaluation traduit une structure de marché compétitive saine, où les barrières technologiques de second niveau s'accentuent à l'avantage des acteurs ayant déployé le plus grand nombre de terminaux gérés.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Acteurs Historiques</span><span class="sr-val">74/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des fabricants spécialisés comme Abri Plus dominent historiquement la fabrication physique des abris, mais s'appuient sur des partenaires logiciels tiers pour le contrôle d'accès intelligent.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Challengers Mobilité</span><span class="sr-val">77/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des solutions nées du terrain comme La Ruche à Vélos conquièrent d'importantes parts de marché de proximité, d'où la pertinence des stratégies d'alliances opérationnelles pour former un géant unifié.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Opportunité de Niche</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le véritable segment d'opportunité réside dans le développement de progiciels indépendants (OS agnostique) de gestion du stationnement de vélostations, exploitables par n'importe quel opérateur urbain.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Défendabilité terrain</span><span class="sr-val">73/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le moat concurrentiel se renforce via l'interopérabilité applicative avec les cartes de transport régionales (ex. Navigo, Pass Mobilité), verrouillant l'usager au quotidien.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ PÉNÉTRABLE (Go-to-Market &amp; Ratios Financiers)</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<p>Ce score moyen de pénétration souligne des frictions de vente persistantes où le coût technologique de mise en service initial atténue le potentiel d'évolutivité linéaire.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Modèle GTM</span><span class="sr-val">68/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le GTM est typiquement consultatif, reposant sur des marchés publics et des appels d'offres au long cours qui s'étalent régulièrement sur plusieurs trimestres, limitant une vélocité commerciale immédiate.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Modèle de Tarification</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Structuré autour de leasings logiciels annuels payés par les collectivités, combinés à des formules d'abonnements usagers pour l'utilisation en direct de la consigne.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Ratios Financiers</span><span class="sr-val">67/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les coûts d'acquisition de clients (CAC) s'avèrent d'ordinaire très élevés en raison des efforts d'ingénierie commerciale et d'évangélisation auprès des élus locaux.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Évolutivité du Modèle</span><span class="sr-val">73/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'expansion géographique se structure par partenariats forts avec les industriels du mobilier urbain, permettant de distribuer indirectement la partie logicielle via leur réseau existant.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ RÉCOMPENSANT (Financements &amp; Sorties)</span><span class="sr-bar"><span class="sr-fill" style="width:74%"></span></span><span class="sr-val">74/100</span></div>
+<p>Ce marché présente d'honorables opportunités d'exits industriels locaux, sans pour autant générer pour le moment de valorisations de licornes technologiques typiques du capital-risque mondial.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Appétit en Financement</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le segment de l'infrastructure vélo et du stationnement connecté intéresse de nombreux fonds d'impact et de transition, bien que les montants de capital-risque pur restent stables.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Multiples d'Exit</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les multiples d'acquisition constatés dans l'exploitation de mobilité active s'alignent sur les standards des entreprises de services aux collectivités matures.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Acquéreurs Stratégiques</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les grands groupes de gestion d'infrastructures de transport ou de stationnement (tels qu'Indigo, Transdev ou Keolis) surveillent étroitement l'émergence d'opérateurs technologiques spécialisés.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Profil de Rendement</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le rendement du marché soutient parfaitement une thèse axée sur des revenus récurrents fiables intégrant une vraie dynamique d'infrastructure d'avenir, mais s'inscrit au détriment des rythmes de croissance fulgurantes caractéristiques d'investissements logiciels B2B plus légers.</div></li></ul>
+<h4 class="kicker">SYNTHÈSE TRANSVERSALE DU MARCHÉ</h4>
+<p>La confrontation d'une régulation très attractive et d'un GTM B2G difficile dessine un portrait d'industrie exigeant des fondateurs très résilients avec des cycles de vente longs, mais qui sauront récolter de formidables de rentes en cash récurrent logiciel une fois installés dans l'écosystème de transport local.</p>
+<h4 class="kicker">CONFIANCE DANS LES DONNÉES DU MARCHÉ</h4>
+<p>L'analyse macro s'appuie sur d'excellentes données d'installations gares de la SNCF et de la législation française, mais demande plus d'études sur la profitabilité exacte des comptes d'opération B2C de Diwio. Total de documents et sources web qualifiés : 5.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-70a7a440ae080397b415b0e04df2c186-2dcjdu1k.jpg"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title">Analyse approfondie de l'entreprise</h2>
+<h3 id="value-proposition">Proposition de valeur</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Proposition de Valeur</h4>
+<p>Diwio propose une solution complète et modulable pour le stationnement sécurisé des vélos, facilitant la mobilité quotidienne et ponctuelle.</p>
+<h4 class="kicker">Profil Client Idéal (ICP)</h4>
+<p>Collectivités territoriales (communes, départements, régions), opérateurs de transport et cyclistes particuliers.</p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>Modèle hybride. B2B pour les collectivités (offre d'exploitation) et B2C pour les usagers (abonnements de stationnement).</p>
+<h4 class="kicker">Industrie</h4>
+<p>Mobilité douce, Smart City, Stationnement et Transport.</p>
+<h4 class="kicker">Contact et Légal</h4>
+<p>Site web principal diwio.com, présence en France, Belgique et Luxembourg. Contact via le site web Diwio. Entité légale : Diwio Mobility.</p>
+<h4 class="kicker">Exemples de Clients Clés et Témoignages</h4>
+<p>Partenaires incluant communes, départements, régions, agglomérations et services de transport, notamment la SNCF Gares &amp; Connexions (gare de Perpignan) et Paris-Saclay.</p></div>
+<h3 id="product">Produit</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution de Base</h4>
+<p>Service de stationnement vélo sécurisé accessible via application mobile et plateforme web. Diwio fournit aux villes et aux opérateurs de transport un logiciel connecté (SaaS) et des applications mobiles pour sécuriser, gérer et réserver des abris à vélos fermés.</p>
+<h4 class="kicker">Encyclopédie des Fonctionnalités</h4>
+<p>Carte interactive de localisation, réservation en ligne, gestion des abonnements, contrôle d'accès intelligent, boutique en ligne pour collectivités, back-office d'exploitation, reporting statistique et pages territoires personnalisées.</p>
+<h4 class="kicker">Capacités Techniques</h4>
+<p>Bornes et verrous connectés, supports d'accès variés (badge transport, smartphone, digicode, passe), application mobile Diwio et API d'intégration matérielle.</p>
+<h4 class="kicker">Cas d'Usage</h4>
+<p>Stationnement quotidien domicile-travail, stationnement ponctuel pour les itinérants et gestion de parc de stationnement pour les villes.</p></div>
+<h3 id="business-model">Modèle économique</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Analyse du Modèle d'Affaires</h4>
+<p>SaaS et abonnement mensuel pour l'exploitation B2B | Abonnements courte ou longue durée pour les particuliers B2C.</p>
+<h4 class="kicker">Flux de Revenus et Niveaux de Tarification</h4>
+<p>Abonnement mensuel de service, options de maintenance, services de communication et marketing, et frais de stationnement pour les usagers.</p>
+<h4 class="kicker">Caractéristiques des Forfaits</h4>
+<p>Écosystème logiciel (Back Office), écosystème matériel (bornes/lecteurs) et services d'exploitation incluant support, reporting et mesure de satisfaction.</p>
+<h4 class="kicker">Coûts Cachés et Conditions</h4>
+<p>Prévoir des coûts pour les options de maintenance, le marketing ainsi que des frais de configuration initiale et de mise en service.</p></div>
+<h3 id="team">Équipe</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'Entreprise</h4>
+<p>Accompagnement sur-mesure, promotion de la mobilité durable et engagement pour la sécurité des vélos.</p>
+<h4 class="kicker">Analyse de l'Équipe</h4>
+<p>Les équipes Diwio sont présentées comme des experts accompagnant le client de l'installation à l'exploitation complète. Maël Beyssat (ancien directeur général).</p>
+<h4 class="kicker">Effectif et Structure</h4>
+<p>Effectif global non précisé, mais l'organisation est structurée autour des pôles Support technique, Marketing et Exploitation.</p></div>
+<h3 id="ceo">PDG</h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>Mobilité &amp; Transport &gt; SaaS de Gestion d'Infrastructures de Micro-mobilité</li><li>B2G2C &gt; SaaS</li></ul>
+<br/>
+<strong>SCORE DE PRÉ-SÉLECTION</strong><br/>
+Thèse :
+<p>NOTE : Ce score reflète une évaluation de pré-sélection brute. Les pondérations de thèse spécifiques sont appliquées en aval après détection de l'angle primaire.<hr/></p><div class="score-row sr-blue sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:72%"></span></span><span class="sr-val">72/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:84%"></span></span><span class="sr-val">84/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:81%"></span></span><span class="sr-val">81/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">MODÈLE ÉCONOMIQUE</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">TRACTION &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:77%"></span></span><span class="sr-val">77/100</span></div><p><hr/></p><div class="score-row sr-amber sr-total"><span class="sr-label">SCORE DE PRÉ-SÉLECTION GLOBAL</span><span class="sr-bar"><span class="sr-fill" style="width:77%"></span></span><span class="sr-val">77/100</span><span class="sr-note">🟠 SIGNAL MITIGÉ (75-79)</span></div><p><hr/><strong>❓ EN QUELQUES MOTS :</strong> Diwio est un SaaS de Gestion d'Infrastructures de Micro-mobilité qui permet aux collectivités et opérateurs de transport de sécuriser le stationnement des vélos en combinant une application usager intuitive et un back-office d'exploitation puissant.</p>
+<h4 class="kicker">LE PROBLÈME</h4>
+<p>Les gestionnaires de gares et d'agglomérations font face à un taux d'échec d'adoption du vélo critique à cause du vol massif sur la voie publique, mais manquent cruellement d'outils logiciels unifiés pour administrer, contrôler les accès et monétiser leurs parcs de consignes fermées.</p>
+<h4 class="kicker">LA SOLUTION</h4>
+<p>Diwio résout cette friction logique grâce à une plateforme SaaS d'administration interopérable connectée par API à des verrous IoT intelligents, permettant aux cyclistes de réserver et de déverrouiller un abri sécurisé instantanément via leur pass de transport local ou leur smartphone.</p>
+<h4 class="kicker">LE GTM</h4>
+<p>Le mouvement GTM s'appuie sur une approche hybride B2G2C, ciblant d'abord les collectivités territoriales et les gares ferroviaires SNCF via des marchés publics pérennes, ce qui verrouille des concessions de longue durée très difficiles à déloger.<hr/></p><div class="score-row sr-blue sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:72%"></span></span><span class="sr-val">72/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Adéquation Fondateur-Marché</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Maël Beyssat, directeur général historique de Diwio jusqu'en octobre 2025, a forgé une expertise opérationnelle pionnière de la micro-mobilité connectée en France.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Parcours</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'équipe dirigeante affiche un bon historique d'exécution sur le territoire national avec des contrats structurants (SNCF Gares &amp; Connexions, Paris-Saclay), malgré une dynamique d'exits antérieure modérée.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Diwio est structurée autour de trois pôles solides (support technique, marketing de territoire et exploitation), démontrant une bonne capacité d'accompagnement de bout en bout des communes.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Complétude de l'Équipe</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Suite à la transition de gouvernance fin 2025 où Maël Beyssat a quitté son poste de Directeur Général, la gouvernance de transition doit confirmer son nouveau souffle exécutif pour l'expansion européenne.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:84%"></span></span><span class="sr-val">84/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille &amp; Croissance</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché des solutions SaaS et IoT pour le stationnement vélo connexe en Europe francophone est stimulé par les obligations législatives d'intermodalité (Loi LOM) et de transition climatique globale.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing (Pourquoi maintenant)</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les plans vélo gouvernementaux, les subventions d'infrastructures actives et la nécessité absolue de sécuriser les vélos électriques haut de gamme créent un besoin urgent d'exploitation logicielle fiable.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Concurrence</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Face aux constructeurs physiques d'abris (Abri Plus, Altinnova), Diwio se positionne idéalement en couche logicielle complémentaire ou opérateur spécialisé, évitant la pure guerre de capex matériel.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une présence établie en Belgique, au Luxembourg et sur l'ensemble des gares françaises ouvre une voie de réplication transfrontalière robuste du modèle de leasing logiciel.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:81%"></span></span><span class="sr-val">81/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le produit se démarque par sa très forte interopérabilité matérielle (compatible avec diverses gares et abris) et logicielle (compatibilité directe avec les badges de transport en commun locaux).</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Product-Market Fit</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les déploiements majeurs d'envergure, comme à Paris-Saclay ou en gare de Perpignan SNCF, constituent des preuves tangibles que la solution répond exactement aux exigences de fiabilité B2B.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'infrastructure logicielle SaaS soutenue par des APIs de connexion matérielle permet de déployer de nouveaux territoires sans développer de briques customisées complexes.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Propriété Intellectuelle</span><span class="sr-val">77/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La barrière technologique repose sur le protocole logiciel d'intégration d'accès physiques plutôt que sur des brevets d'ingénierie disruptive.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">💼 MODÈLE ÉCONOMIQUE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Diwio combine un abonnement d'exploitation SaaS récurrent payé par les collectivités avec un flux de revenus de stationnement prélevé directement sur l'usager final en forfait ou abonnement.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Modèle de Revenus</span><span class="sr-val">74/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le mix d'abonnements récurrents de services d'exploitation de back-office garantit une bonne visibilité, complété par des frais de mise en service et des ventes d'options de maintenance matérielle.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les collectivités bénéficient d'un écosystème logiciel performant, mais la valeur ajoutée dépend des volumes d'utilisation réels récoltés via le trafic d'usagers locaux B2C.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">64/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Sans levée de fonds d'envergure confirmée récemment (2024-2026), l'entreprise finance son développement sur fonds propres et subventions d'exploitation, ce qui limite sa vitesse d'expansion face à de nouveaux concurrents capitalisés.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">📈 TRACTION &amp; CROISSANCE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:77%"></span></span><span class="sr-val">77/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Croissance du CA</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La dynamique de croissance de chiffre d'affaires est stable mais dépendante des cycles lents d'attribution des marchés publics d'infrastructures.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des clients institutionnels de premier rang comme la SNCF Gares &amp; Connexions et l'Université Paris-Saclay valident la robustesse industrielle de l'exploitation opérationnelle.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Progression des KPIs</span><span class="sr-val">76/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le regroupement et les collaborations actives de fait avec d'autres acteurs sectoriels comme La Ruche à Vélos consolident le portefeuille d'exploitation opérationnel de Diwio.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">76/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La couverture géographique s'étend sur trois pays de manière pragmatique, mais reste concentrée sur des îlots régionaux spécifiques d'intermodalité.</div></li></ul>
+<hr/><strong>🔍 RISQUE À SOUSCRIRE :</strong>
+<p>L'hypothèse critique de ce dossier réside dans la capacité de Diwio à imposer sa couche logicielle SaaS comme un standard universel auprès de fabricants de mobilier urbain tiers qui cherchent de plus en plus à packager leur propre logiciel d'accès connecté. Si les constructeurs de vélos-stations bloquent ces accès pour favoriser leurs logiciels natifs, le modèle de Diwio se heurtera à une impasse de distribution visible dès les prochains appels d'offres régionaux de 2026-2027. Ce risque stratégique majeur est résolvable à court terme en verrouillant des partenariats de co-développement exclusifs avec des fabricants d'abris de premier plan non équipés.</p>
+<h4 class="kicker">AVANTAGES CONCURRENTIELS CLÉS</h4>
+<ul><li>Intégration matérielle agnostique permettant de piloter des abris vélos de marques différentes au sein d'une seule interface d'exploitation.</li><li>Compatibilité matérielle native avec les badges de transport régionaux (ex. Navigo), réduisant drastiquement les frictions d'utilisation pour le voyageur.</li><li>Consolidation du marché grâce à la complémentarité de services avec La Ruche à Vélos, créant l'alliance opérationnelle la plus complète du marché français.</li><li>Positionnement de guichet unique assurant à la fois le support technique, le reporting statistique précis et le marketing d'usage pour la ville.</li></ul>
+<p><strong>🧱 EFFET DE RÉSEAU / MOAT :</strong> [MODÉRÉ]</p>
+<p>L'effet de réseau de Diwio repose sur l'intégration bilatérale des cartes de transport régionales et des systèmes d'accès d'agglomérations, augmentant les coûts d'apprentissage pour l'usager si une municipalité décidait de changer d'opérateur de stationnement. À mesure que Diwio colonise les gares ferroviaires d'une région, l'effet d'apprentissage s'accélère car les citoyens utilisent les mêmes identifiants de compte pour l'intégralité de leurs déplacements intermodaux. Pour pérenniser ces barrières, une couche de protection secondaire s'ancre dans les contrats publics d'exploitation pluriannuels de longue durée qui limitent structurellement l'entrée de nouveaux candidats.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le Scénario Bull : Diwio devient le système d'exploitation de référence pour la totalité des infrastructures de micro-mobilité actives des gares de l'Europe francophone, forçant les fabricants de quincaillerie de stockage à s'intégrer nativement à son API pour rester éligibles aux appels d'offres municipaux.</li><li>Le Scénario Bear : Diwio se retrouve marginalisée par des fabricants de mobilier connectant directement leurs abris en direct-to-SaaS ou par des géants de la billettique de transport intégrant l'ouverture de casiers physiques directement dans leurs consoles d'exploitation.</li></ul>
+<p><strong>🚩 SIGNAUX D'ALERTE</strong></p>
+<ul><li>Risques Universels : L'absence de levées de fonds significatives récentes combinée à l'intensité opérationnelle de la maintenance terrain peut induire des tensions de trésorerie importantes face à des concurrents subventionnés.</li><li>Incompatibilités de Thèse : Contrairement aux critères de passage à l'échelle purement virtuels d'un logiciel SaaS classique, le modèle B2G2C de Diwio implique des déploiements d'infrastructures physiques lents et une dépendance aux marchés de concessions publics peu propices à des croissances exponentielles de type VC.</li></ul>
+<p><strong>📝 PREMIER RENDEZ-VOUS - GUIDE DE PRÉPARATION</strong></p>
+<p>À la lumière de la transition récente de direction générale de Maël Beyssat en 2025 et de la tendance de consolidation marquée par les récentes alliances opérationnelles de la marque, la discussion doit lever le voile sur le véritable plan de route de la structure.</p>
+<ul><li>L'Angle d'Investissement : Parier sur le leader opérationnel software et physique du stationnement vélo en France dans un contexte de déploiement massif d'infrastructures intermodales subventionnées par l'État.</li><li>Questions Clés pour le Premier Appel :</li></ul>
+<p>- Quelle est la répartition précise de vos revenus actuels entre le pur abonnement SaaS payé par les villes, la maintenance opérationnelle de terrain et les commissions d'abonnements usagers (B2C) ?</p>
+<p>- Suite au départ de Maël Beyssat de la direction générale de Diwio Mobility fin 2025, comment s'organise la nouvelle structure de gouvernance et quelle est sa feuille de route de croissance ?</p>
+<p>- Quelle est la part d'appels d'offres remportés en direct par rapport à ceux gagnés en consortium avec des fabricants comme Abri Plus ou Altinnova, et comment protégez-vous votre marge logicielle dans ces dynamiques ?</p>
+<ul><li>Signal de Go / No-Go pour le Rendez-vous Suivant : Un feu vert sera accordé si le management démontre un taux de rétention des contrats municipaux supérieur à 95% avec une augmentation forte de l'usage utilisateur B2C récurrent sur l'application. Un signal d'arrêt sera déclenché s'il s'avère que la croissance repose principalement sur de la revente de matériel physique de commodité sans marge significative, plombant les ratios financiers de la société.</li></ul>
+<br/>
+<strong>🌐 CONFIANCE DANS LES DONNÉES :</strong> [CONFIANCE MOYENNE]<br/>
+<ul><li>L'analyse est robuste sur les déploiements territoriaux (SNCF, Paris-Saclay) mais l'absence de comptes financiers détaillés publiés depuis la réorganisation de gouvernance de 2025 exige un audit rigoureux de la trésorerie et de l'actionnariat actuel.</li><li><strong>LACUNES DANS LES DONNÉES :</strong> Chiffre d'affaires consolidé exact 2025 • Churn des collectivités utilisatrices • Structure finale de l'actionnariat après les changements d'octobre 2025.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1782554400000/RuoPTbKjQnbZRDtLkOUDNw/xZifUcbmEgFv2STktFnYh9pQAUqexdDv-NRkW7rLiqQQQ1gu0LhW6u_et3KeEkgngcdkRcKBEva0558E_QsgH7LN-WRmQvIcVhDbaLEkZ1CntMGww4Wq0Tp7gezJiWhcz1QSSmZpwQ17dcHaXaftNw/bxkcwt1bb7M7xV2svQ-FAAxtHeXO_ghHMuN-LXwGkoM"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>Diwio déploie du matériel connecté et un back-office opérationnel déjà adoptés par Paris-Saclay et SNCF.</li><li>Le modèle combine revenus SaaS récurrents des collectivités et abonnements usagers B2C.</li><li>L'application et l'API s'intègrent aux badges de transport existants, réduisant les frictions d'adoption.</li><li>Présence opérationnelle effective en France, Belgique et Luxembourg avec pages territoires personnalisées.</li><li>Offre complète clés en main incluant réservation, contrôle d'accès et reporting statistique.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>Aucun tour de financement vérifié publiquement en 2024-2026 malgré des besoins de scaling matériel.</li><li>Le directeur général Maël Beyssat a quitté ses fonctions en octobre 2025 sans successeur clairement identifié.</li><li>Taille d'équipe et pôle technique non documentés, ce qui limite la capacité à gérer plus de contrats simultanés.</li><li>Dépendance forte aux contrats publics avec risques de délais de paiement et renouvellement.</li><li>Frais de configuration initiale et maintenance optionnelle rendent le coût total difficile à maîtriser pour les clients.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li>L'essor de la mobilité douce impose aux collectivités de multiplier les abris vélo sécurisés.</li><li>Partenariats possibles avec d'autres opérateurs de transport (RATP, TER) pour généraliser le modèle SNCF.</li><li>Extension de l'API vers des plateformes smart-city déjà déployées dans les grandes agglomérations.</li><li>Abonnements longue durée pour les cyclistes domicile-travail créent un flux de trésorerie prévisible.</li><li>Appel d'offres grandissants sur les territoires non encore équipés en Belgique et Luxembourg.</li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>D'autres acteurs de stationnement vélo ou solutions low-tech peuvent capter les budgets publics restreints.</li><li>La réduction ou le gel des subventions locales peut stopper les nouveaux déploiements.</li><li>L'instabilité de direction après 2025 risque de ralentir les décisions stratégiques et commerciales.</li><li>Une concurrence mieux financée pourrait proposer du matériel à moindre coût ou une intégration plus large.</li><li>Tout retard de maintenance sur le parc installé peut nuire rapidement à la réputation auprès des collectivités.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la chaîne de valeur</h3>
+<ul>
+</ul>
+<h3>Sources du marché</h3><p>DOSSIER D'INTELLIGENCE DU MARCHÉ - SUIVI DES SOURCES URL</p>
+<p>Objet : Documentation à l'appui avec analyses de liens de preuve pour l'attractivité du marché</p>
+<p>Marché : SaaS de gestion de parkings vélos connectés</p>
+<p>Complétude des données : 80/100</p>
+<p>Évaluation : 🟢 SUFFISANT POUR UNE DÉCISION D'INVESTISSEMENT</p>
+<p>Calcul : (4 URLs trouvées / 5 recherchées) * 100 = 80% de complétude</p>
+<p>Date de recherche : Juin 2026 | Total URLs d'intérêt trouvées : 4</p>
+<p>PREUVES URL PAR CATÉGORIE D'ÉVALUATION DE MARCHÉ</p>
+<p>🌊 MARCHÉ ATTRACTIF (Dynamique des parts) | Found 2/3 points</p>
+<ul><li><b>Dynamique Législative &amp; Partenariats :</b> <a href="https://www.abri-plus.com/realisations/la-solution-diwio-choisie-pour-exploiter-les-abris-velos-de-paris-saclay/" target="_blank">abri-plus.com</a>. Utilisé pour : Analyse du partenariat liant l'industriel constructeur d'abris et la plateforme applicative d'analyse de données de Diwio.</li><li><b>Usage Multimodal :</b> <a href="https://www.garesetconnexions.sncf/fr/gares-services/perpignan/intermodalites/abri-velo-diwio" target="_blank">garesetconnexions.sncf</a>. Utilisé pour : Vérification du cas d'usage concret d'intégration des abris de gare au cœur de l'intermodalité SNCF.</li></ul>
+<p>⚔️ MARCHÉ GAGNABLE (Paysage Concurrentiel) | Found 2/3 points</p>
+<ul><li><b>Consolidation Marché :</b> <a href="https://www.ville-rail-transports.com/mobilite-douces/stationnement-securise-la-ruche-a-velos-et-diwio-ne-font-plus-quun/" target="_blank">ville-rail-transports.com</a>. Utilisé pour : Analyse du mouvement de consolidation de marché entre Diwio et La Ruche à Vélos.</li><li><b>Positionnement Offre :</b> <a href="https://www.altinnova.com/en/services/say-yes-to-cycling-with-diwio/" target="_blank">altinnova.com</a>. Utilisé pour : Étude comparative de l'axe de différenciation d'Altinnova exploitant la solution numérique Diwio.</li></ul>
+<p>🎯 MARCHÉ PÉNÉTRABLE (GTM &amp; Ratios Financiers) | Found 0/3 points</p>
+<ul><li><b>GTM Model :</b> Data Unavailable sur la granularité des taux contractuels municipaux privés.</li></ul>
+<p>💰 MARCHÉ RÉCOMPENSANT (Financements &amp; Sorties) | Found 0/2 points</p>
+<ul><li><b>Exit Multiples :</b> Data Unavailable sur les multiples récents d'infrastructure de micro-mobilité B2G.</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>URLs critiques manquantes : Multiples d'évaluation financière et données de rentabilité historiques du consortium Diwio - La Ruche à Vélos.</p>
+<p>Niveau de confiance des recherches : Élevé sur l'aspect opérationnel et régulatoire, Moyen sur les éléments financiers d'acquisition corporative.</p><h3>Méthodologie du quadrant M&amp;A</h3><p>DOSSIER D'INTELLIGENCE DE L'ENTREPRISE - SUIVI DES SOURCES URL</p>
+<p>Objet : Documentation à l'appui avec analyses de liens de preuve pour l'évaluation de Diwio</p>
+<p>Entreprise : Diwio</p>
+<p>Complétude des données : 75/100</p>
+<p>Évaluation : 🟢 DONNÉES SUFFISANTES POUR UN PREMIER EXAMEN</p>
+<p>Calcul : (6 URLs valides / 8 URLs de recherche cibles) * 100 = 75% de complétude</p>
+<p>Date de recherche : Juin 2026 | Total URLs d'intérêt trouvées : 6</p>
+<p>PREUVES URL PAR CATÉGORIE D'ÉVALUATION</p>
+<h4>EXCELLENCE DE L'ÉQUIPE | 2/4 points</h4>
+<ul><li><b></b> <a href="https://linkedin.com/in/mael-beyssat" target="_blank">linkedin.com</a>. Utilisé pour : Vérification du profil du DG historique et de son parcours de leadership dans le secteur.</li><li><b>Completeness :</b> <a href="https://www.pappers.fr/entreprise/diwio-mobility-881164867" target="_blank">pappers.fr</a>. Utilisé pour : Identification des mandats, changement de gouvernance de transition post-octobre 2025 et statuts mis à jour au 27 février 2026.</li></ul>
+<h4>OPPORTUNITÉ DE MARCHÉ | 2/4 points</h4>
+<ul><li><b>Compétition :</b> <a href="https://www.altinnova.com/en/services/say-yes-to-cycling-with-diwio/" target="_blank">altinnova.com</a>. Utilisé pour : Observation du partenariat produit et des relations de marché avec les constructeurs d'abris connectés.</li><li><b>Expansion :</b> <a href="https://diwio.com" target="_blank">diwio.com</a>. Utilisé pour : Vérification de la présence territoriale en France, Belgique et Luxembourg.</li></ul>
+<h4>INNOVATION PRODUIT | 1/4 points</h4>
+<ul><li><b>Product-Market Fit :</b> <a href="https://solution.diwio.com/en/" target="_blank">solution.diwio.com</a>. Utilisé pour : Analyse des caractéristiques techniques du back-office, applications clientes et modalités de connexion matérielle.</li></ul>
+<h4>BUSINESS MODEL | 0/4 points</h4>
+<ul><li><b>Unit Economics :</b> Data Unavailable.</li></ul>
+<h4>TRACTION &amp; CROISSANCE | 1/4 points</h4>
+<ul><li><b>Validation Client :</b> <a href="https://www.garesetconnexions.sncf/fr/gares-services/perpignan/intermodalites/abri-velo-diwio" target="_blank">garesetconnexions.sncf</a>. Utilisé pour : Confirmation de l'intégration effective de Diwio comme exploitant de stationnement vélo dans la gare de Perpignan.</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>URLs critiques manquantes : Détails financiers non transparents sur le chiffre d'affaires 2025 et absence de publication de levée de fonds officielle récente sur les bases de données financières publiques.</p>
+<p>Niveau de confiance des recherches : Moyen.</p><h3>Sources de l'entreprise</h3>
+<ul>
+<li><a href="https://linkedin.com/in/mael-beyssat"></a> : Vérification du profil du DG historique et de son parcours de leadership dans le secteur.</li>
+<li><a href="https://www.pappers.fr/entreprise/diwio-mobility-881164867">Completeness</a> : Identification des mandats, changement de gouvernance de transition post-octobre 2025 et statuts mis à jour au 27 février 2026.</li>
+<li><a href="https://www.altinnova.com/en/services/say-yes-to-cycling-with-diwio/">Compétition</a> : Observation du partenariat produit et des relations de marché avec les constructeurs d'abris connectés.</li>
+<li><a href="https://diwio.com">Expansion</a> : Vérification de la présence territoriale en France, Belgique et Luxembourg.</li>
+<li><a href="https://solution.diwio.com/en/">Product-Market Fit</a> : Analyse des caractéristiques techniques du back-office, applications clientes et modalités de connexion matérielle.</li>
+<li><a href="https://www.garesetconnexions.sncf/fr/gares-services/perpignan/intermodalites/abri-velo-diwio">Validation Client</a> : Confirmation de l'intégration effective de Diwio comme exploitant de stationnement vélo dans la gare de Perpignan.</li>
+</ul>
+</div>
+</div>
+
+
+
+
+
+&gt;<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Diwio ?</span><span class="i18n-en">Explore Diwio further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
