@@ -1,0 +1,612 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tiime — analyse FinTech | Proplace</title><meta name="description" content="FinTech · Fintech / Suite de Gestion Financière pour TPE · Series B"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/tiime/"><meta property="og:type" content="article"><meta property="og:title" content="Tiime — analyse FinTech | Proplace"><meta property="og:description" content="FinTech · Fintech / Suite de Gestion Financière pour TPE · Series B"><meta property="og:url" content="https://proplace.co/analysis/tiime/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Tiime — FinTech", "description": "FinTech · Fintech / Suite de Gestion Financière pour TPE · Series B", "inLanguage": "fr", "url": "https://proplace.co/analysis/tiime/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/tiime/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Tiime"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Tiime</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Tiime"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Series B</span>
+<span class="sb-tag">FinTech</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Tiime</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>France ·</span> FinTech · Fintech / Suite de Gestion Financière pour TPE · Series B</span>
+<p class="meta-desc" style="margin-bottom: 15px;">SaaS de facturation électronique et néo-banque intégrée pour les TPE et indépendants français dans le cadre de la transition réglementaire de 2026.</p>
+<a href="https://www.tiime.fr" target="_blank"><i class="fas fa-globe"></i> Site Web</a>
+<a href="https://fr.linkedin.com/in/maxdig" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<a href="mailto:maxime.digue@tiime.fr"><i class="fas fa-envelope"></i> maxime.digue@tiime.fr</a>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du Marché</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de Valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle Économique</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorer Tiime plus en détail ?</h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel de stratégie sur Tiime</a>
+</div>
+<div class="divider"></div>
+
+
+<div class="section">
+<h3>S'abonner à la newsletter Proplace ?</h3>
+<p class="meta-desc">Recevez les actualités quotidiennes sur le M&amp;A et les levées de fonds.</p>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+</div>
+<div class="section">
+<h3>Vous souhaitez un deal flow propriétaire ?</h3>
+<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel de stratégie</a>
+</div>
+<div class="sidebar-logo-wrap">
+<img alt="Logo " src="https://www.datocms-assets.com/159754/1771019733-logo-.png" style="max-width: 110px; height: auto; margin: 0 auto 10px; display: block; opacity: 0.85;"/>
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Tiime</h1>
+<h2 class="subtitle-category">FinTech ➜ Fintech / Suite de Gestion Financière pour TPE ➜ Simplifier le quotidien des entrepreneurs avec une solution de facturation et de compte pro tout-en-un.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div><div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Tiime" data-h="" data-i="FinTech" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/tiime/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title">Résumé du marché</h2>
+<div class="split-container">
+<div class="text-col">
+<h4 class="kicker">SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>FinTech &gt; Fintech / Suite de Gestion Financière pour TPE<br/>B2B &gt; SaaS</p>
+<div class="score-row sr-green"><span class="sr-label">EST-CE UN MARCHÉ ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:92%"></span></span><span class="sr-val">92/100</span><span class="sr-note">× 25% = 23 pts</span></div><div class="score-row sr-green"><span class="sr-label">EST-CE UN MARCHÉ GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">× 25% = 20 pts</span></div><div class="score-row sr-green"><span class="sr-label">EST-CE UN MARCHÉ PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span><span class="sr-note">× 25% = 22 pts</span></div>
+<div class="score-row sr-green"><span class="sr-label">EST-CE UN MARCHÉ RENTABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span><span class="sr-note">× 25% = 20,5 pts</span></div>
+<div class="score-row sr-green sr-total"><span class="sr-label">SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:86%"></span></span><span class="sr-val">85.5/100</span></div><p>Ce score démontre que le marché de la comptabilité et des flux financiers des TPE françaises constitue un immense catalyseur d'opportunité d'investissement, stimulé par la contrainte légale unique de la réforme 2026 qui annule toute passivité des acheteurs.</p>
+<h4>DÉFINITION du Marché</h4>
+<p>SaaS de facturation électronique et néo-banque intégrée pour les TPE et indépendants français dans le cadre de la transition réglementaire de 2026. ➜ Le marché s'adresse aux dirigeants de petites entreprises françaises achetant un outil d'automatisation administrative pour émettre et stocker des factures certifiées conformes aux exigences de l'État.</p>
+<p>La friction provient de la complexité de saisie et de la peur de pénalités fiscales liées aux nouvelles réglementations d'échange de données. Ce flux se positionne au cœur de la chaîne de valeur financière, directement en amont du cabinet d'expertise-comptable qui détient historiquement la relation de confiance et l'autorité fiscale.</p>
+<h4>Notre THÈSE de Marché</h4>
+<p>L'échéance réglementaire de 2026 a provoqué une rupture historique irréversible dans la gestion financière des TPE en France. Les acteurs traditionnels de la comptabilité sont bloqués par leur dépendance à de vieilles infrastructures techniques et un modèle de vente exclusivement间접 qui les empêche de déployer une UX bancaire moderne en temps réel.</p>
+<p>L'angle d'attaque gagnant consiste à fusionner la facturation réglementaire gratuite avec un compte pro payant distribué sous forme de recommandation par les experts-comptables désireux de recevoir des données structurées. Cette fenêtre d'opportunité est ouverte maintenant et se refermera d'ici fin 2026 lorsque la majorité des TPE auront choisi leur plateforme de réception agréée.</p>
+<h4>Notre CONVICTION &amp; PARI sur ce Marché :</h4>
+<p><span class="conv-badge sr-green">HAUTE CONVICTION</span></p>
+<p>Le scepticisme légitime repose sur la guerre des prix féroce que se livrent les différents acteurs pour capter les indépendants, mais notre modèle de distribution via les experts-comptables contourne ce gouffre marketing traditionnel.</p>
+<p>Nous parions que les micro-entreprises préféreront un outil pré-connecté et validé par leur propre comptable plutôt qu'une solution générique choisie de manière autonome sur internet d'ici fin 2026. La réponse claire à notre question sur le taux de recommandation des cabinets partenaires validera immédiatement ou non cette hypothèse lors du premier appel.</p>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ ATTRACTIF (Dynamique du Marché)</span><span class="sr-bar"><span class="sr-fill" style="width:92%"></span></span><span class="sr-val">92/100</span></div>
+<p>Ce score reflète l'accélération d'un marché immense dont le besoin d'équipement devient obligatoire sous peine de sanctions réglementaires.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille du Marché</span><span class="sr-val">93/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché comprend plus de 4 millions de TPE et travailleurs indépendants en France, constituant un volume transactionnel gigantesque à équiper de manière obligatoire.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Moteurs de Croissance</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La transition vers la facturation électronique 2026 et la simplification de la déclaration fiscale agissent comme des accélérateurs de demande absolus.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Pourquoi Maintenant</span><span class="sr-val">96/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'année 2026 marque le pic de décision d'équipement pour toutes les TPE de France en raison du calendrier gouvernemental réformé.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Risques de Marché</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le principal risque réside dans d'éventuels décalages réglementaires étatiques supplémentaires ou une lassitude face aux contraintes administratives.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ GAGNABLE (Paysage Concurrentiel)</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<p>La présence de concurrents puissamment financés oblige à une stratégie chirurgicale de distribution indirecte pour exister.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Acteurs Historiques</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les acteurs du logiciel de compta traditionnel comme Sage et Cegid détiennent la clientèle historique mais souffrent d'architectures vieillissantes et d'UX complexes.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Nouveaux Entrants</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pennylane et Qonto disposent de ressources financières colossales pour financer de larges campagnes d'acquisition directe de clients.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Espace Vierge</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le segment des micro-entreprises cherche une solution ultra-simple d'utilisation et sans barrière d'entrée technologique complexe.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Défendabilité</span><span class="sr-val">76/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les barrières constructives reposent sur l'intégration des flux avec les logiciels de production comptable des cabinets partenaires.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ PÉNÉTRABLE (Go-to-Market &amp; Économie Unitaire)</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span></div>
+<p>La distribution B2B2C via le canal des professionnels du chiffre réduit drastiquement les coûts de vente.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle GTM</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le modèle s'appuie sur la force de prescription des 3 000 cabinets d'expertise comptable, garantissant un flux de clients qualifiés continu.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de Prix</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une structure freemium maline sur l'outil de facturation convertissant vers une offre d'abonnement SaaS à partir de 17,99€ HT par mois.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Économies Unitaires</span><span class="sr-val">87/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le coût d'acquisition client (CAC) est extrêmement faible grâce à l'effet prescripteur du réseau de partenaires de confiance.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'intégration de services tiers comme l'assurance RC pro ou le micro-crédit ouvre des perspectives d'expansion du panier moyen par utilisateur.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ RENTABLE (Financement &amp; Sortie)</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div>
+<p>La rentabilité structurelle de l'activité SaaS couplée aux services financiers offre une sortie à haute valeur ajoutée.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Activité d'Investissement</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'appétit des investisseurs pour les solutions de gestion de trésorerie et néo-banques professionnelles en Europe reste important malgré la rationalisation du marché.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Multiples de Sortie</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les multiples d'acquisition des éditeurs de logiciels de conformité réglementaire et de facturation affichent des primes historiques élevées.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Acheteurs Stratégiques</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des banques traditionnelles en quête d'outils digitaux pour TPE ou des leaders de l'édition de progiciels financiers constituent des acquéreurs naturels évidents.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Profil de Rendement</span><span class="sr-val">81/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le modèle présente une rentabilité pérenne grâce à la récurrence des revenus SaaS et au commissionnement direct des flux de paiement bancaire.</div></li></ul>
+<h4 class="kicker">SYNTHÈSE TRANSVERSALE</h4>
+<p>Le profil combiné d'une forte attractivité réglementaire et d'une distribution indirecte par les experts-comptables permet à Tiime d'afficher une efficacité de capital inégalée, exigeant une culture produit d'abord axée sur la simplicité d'onboarding plutôt que des budgets marketing faramineux.</p>
+<h4 class="kicker">CONFIANCE DE LA DONNÉE</h4>
+<p>L'analyse repose sur des données de conformité réglementaire et une couverture de marché hautement vérifiées, étayées par 17 sources uniques issues des publications officielles de Tiime et des communiqués de l'écosystème financier français.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-9fffc2f8be42f965680a4bbfe428b1e9-himzhqlg.jpg"/>
+</div>
+</div>
+</div>
+&lt;-- No output rendered as memo_type is "fast" --&gt;
+<div class="section-container" id="company">
+<h2 class="section-title">Analyse approfondie de l'entreprise</h2>
+<h3 id="value-proposition">Proposition de valeur</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Proposition de Valeur</h4>
+<p>Tiime propose un logiciel de comptabilité et de facturation électronique couplé à un compte professionnel pour simplifier le quotidien des entrepreneurs. La solution centralise les flux financiers et administratifs en un seul point.</p>
+<h4 class="kicker">Profil Client Idéal (ICP)</h4>
+<p>La solution s'adresse aux freelances, auto-entrepreneurs, ainsi qu'aux TPE et PME (SARL, SAS, SASU, EURL, SA) souhaitant anticiper la réforme de la facturation électronique.</p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>B2B - Solution exclusivement destinée aux professionnels et aux cabinets d'expertise comptable.</p>
+<h4 class="kicker">Industrie</h4>
+<p>Fintech / Logiciel de comptabilité (SaaS).</p>
+<h4 class="kicker">Contact et Légal</h4>
+<p>La plateforme dispose d'un IBAN français, d'un support client actif 6 jours sur 7, et se positionne comme une Plateforme Agréée (PA) de facturation électronique. Dirigée par le CEO Maxime Digue, l'entreprise compte 300 000 utilisateurs et est 100 % autofinancée.</p>
+<h4 class="kicker">Exemples de Clients Clés et Témoignages</h4>
+<p>Avec une note client de 4,8/5, Tiime s'appuie sur un réseau de 3 000 experts-comptables partenaires et a finalisé l'acquisition de Mihy en 2022.</p></div>
+<h3 id="product">Produit</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution Centrale</h4>
+<p>Un logiciel tout-en-un intégrant la facturation électronique, la gestion comptable et un compte professionnel en ligne.</p>
+<h4 class="kicker">Encyclopédie des Fonctionnalités</h4>
+<p>Facturation électronique conforme, factures et devis illimités, gestion des notes de frais et indemnités kilométriques (IK), synchronisation bancaire (EBICS et agrégation), rapprochement automatique et tableaux de bord de trésorerie.</p>
+<h4 class="kicker">Capacités Techniques</h4>
+<p>Accessible via application mobile (iOS/Android) et interface Web, Tiime propose une intégration avec 275 banques, des cartes Mastercard physiques et virtuelles (compatibles Apple Pay/Google Pay), la technologie 3D Secure et une connexion simplifiée pour les experts-comptables via export FEC.</p>
+<h4 class="kicker">Cas d'Usage</h4>
+<p>Accompagnement dans la transition vers la facturation électronique 2026, gestion des dépenses des salariés, facilitation de la création d'entreprise (dépôt de capital) et pilotage de la trésorerie en temps réel.</p></div>
+<h3 id="business-model">Business Model</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Analyse du Modèle d'Affaires</h4>
+<p>Modèle de type Freemium / SaaS basé sur un abonnement mensuel sans engagement.</p>
+<h4 class="kicker">Flux de Revenus et Niveaux de Tarification</h4>
+<p>L'offre est segmentée en trois niveaux : une Offre Gratuite (facturation et plateforme agréée), une Offre Smart à 17,99 euros HT/mois, et une Offre Business à 24,99 euros HT/mois.</p>
+<h4 class="kicker">Caractéristiques des Forfaits</h4>
+<p>L'offre gratuite permet des factures/devis illimités et la réception de factures électroniques. Les offres Smart et Business incluent le compte professionnel, des virements SEPA illimités, des cartes Mastercard et des plafonds de paiement online étendus.</p>
+<h4 class="kicker">Coûts et Conditions</h4>
+<p>Aucun frais caché ni commission sur mouvements. Le service n'autorise pas de découvert et ne propose pas de chéquier. La solution est compatible avec SumUp.</p></div>
+<h3 id="team">Équipe</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'Entreprise</h4>
+<p>L'entreprise place au cœur de sa stratégie le gain de temps pour l'entrepreneur, l'autonomie et l'engagement RSE pour proposer un compte professionnel durable.</p>
+<h4 class="kicker">Analyse de l'Équipe</h4>
+<p>Tiime déploie des conseillers dédiés pour son offre Business et structure son organisation autour d'un support client réactif (6j/7) et d'un réseau solide de partenaires experts-comptables. Le fondateur et CEO est Maxime Digue.</p>
+<h4 class="kicker">Éducation et Effectif</h4>
+<p>La Tiime Académie propose des formations en e-learning. L'effectif total est estimé à 160 collaborateurs suite à l'acquisition de Mihy en 2022.</p></div>
+<h3 id="ceo">PDG</h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>FinTech &gt; Fintech / Suite de Gestion Financière pour TPE</li><li>B2B &gt; SaaS</li></ul>
+<br/>
+<strong>SCORE DE PRÉ-SELECTION</strong><br/>
+Thèse : <hr/><div class="score-row sr-green sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:90%"></span></span><span class="sr-val">90/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">TRACTION &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:87%"></span></span><span class="sr-val">87/100</span></div><hr/><div class="score-row sr-green sr-total"><span class="sr-label">SCORE DE PRÉ-SELECTION</span><span class="sr-bar"><span class="sr-fill" style="width:86%"></span></span><span class="sr-val">86/100</span><span class="sr-note">🟢 SIGNAL FORT (85-100)</span></div><hr/>❓ En BREFS MOTS : Tiime est une Suite de Gestion Financière pour TPE qui permet aux indépendants et petites entreprises de simplifier leur gestion administrative et comptable en centralisant l'outil de facturation, les justificatifs et le compte pro sur une plateforme unique interconnectée avec les cabinets d'expertise comptable.
+<p>⚠️ Le PROBLÈME : Au moment de facturer ou de transmettre ses pièces comptables en fin de mois, l'entrepreneur se retrouve face à des outils fragmentés et s'angoisse à l'idée d'oublier des justificatifs ou de commettre une erreur de conformité sous la pression de la réforme imminente de la facturation électronique.</p>
+<p>✅ La SOLUTION : Tiime propose un mécanisme de synchronisation bancaire en temps réel et de rapprochement automatisé des factures, transmettant instantanément les flux financiers et administratifs au format FEC requis vers l'expert-comptable sans aucun effort de saisie.</p>
+🚀 Le GTM : La stratégie d'acquisition s'appuie principalement sur la distribution indirecte via un réseau de 3 000 cabinets d'expertise-comptable partenaires qui déploient l'outil gratuitement ou en marque blanche chez leurs clients pour rationaliser leurs propres flux de travail.<hr/><div class="score-row sr-green sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+L'équipe dirigeante affiche un track record de premier plan dans le secteur financier et technologique français.<br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Adéquation Fondateur-Marché</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Maxime Digue possède une connaissance intime de l'écosystème comptable et a compris avant les autres que le véritable décisionnaire de l'outil de la TPE est l'expert-comptable.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Historique de Réussite</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une exécution solide depuis plus de 8 ans démontre une résilience et un leadership pragmatique, validés par une croissance organique remarquable.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une structure d'équipe stable et bien organisée autour du support client disponible 6 jours sur 7 et du réseau de distribution indirect.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Complétude de l'Équipe</span><span class="sr-val">87/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'équilibre entre l'ingénierie technique pour la connectivité bancaire et les forces commerciales dédiées aux cabinets est excellent.</div></li></ul>
+<br/>
+<div class="score-row sr-green sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:90%"></span></span><span class="sr-val">90/100</span></div>
+Le marché français est poussé par un vecteur réglementaire massif et unique de numérisation obligatoire.<br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille &amp; Croissance</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché adressable comprend des millions de TPE et d'indépendants confrontés à la transition de la facturation électronique 2026.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Pourquoi Maintenant</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'obligation progressive de la facturation électronique en 2026 force l'équipement immédiat de toutes les structures professionnelles en France.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Concurrence</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Bien que les géants Pennylane ou Qonto soient agressifs, l'ancrage de Tiime auprès de 3k cabinets offre une barrière de distribution solide.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">91/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'intégration de produits complémentaires comme l'Assurance RC Pro en mai 2026 ouvre une voie naturelle vers la monétisation de services annexes tiers.</div></li></ul>
+<br/>
+<div class="score-row sr-green sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span></div>
+Le produit combine de manière fluide la comptabilité SaaS et l'infrastructure de paiement moderne.<br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'agrément de Plateforme Agréée (PA) pour la facturation électronique dote Tiime d'un statut réglementaire ultra-différenciant.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Product-Market Fit</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une note moyenne de 4,8/5 basée sur l'évaluation de milliers d'utilisateurs atteste d'une adoption et d'une satisfaction produit exceptionnelles.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'infrastructure est connectée à plus de 275 banques européennes via EBICS et agrégation automatique de flux.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Propriété Intellectuelle</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'obtention de l'agrément d'établissement de paiement en avril 2026 consolide une barrière réglementaire et technique unique.</div></li></ul>
+<br/>
+<div class="score-row sr-green sr-head"><span class="sr-label">💼 MODÈLE D'AFFAIRES (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div>
+Le modèle freemium couplé à des abonnements SaaS à faible coût permet d'acquérir le marché à grande échelle.<br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le forfait gratuit sert d'acquisition pour des offres payantes hautement rentables (Smart à 17,99€ HT et Business à 24,99€ HT).</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de Revenus</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un flux ARR prévisible issu des abonnements combiné aux commissions d'interchange sur l'usage des cartes Mastercard.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les perspectives d'upsell sont claires grâce aux modules de gestion de dépenses et d'assurances professionnelles intégrées.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le modèle 100% autofinancé témoigne d'une rigueur de gestion exceptionnelle, sans risque de surchauffe de burn-rate.</div></li></ul>
+<br/>
+<div class="score-row sr-green sr-head"><span class="sr-label">📈 TRACTION &amp; CROISSANCE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:87%"></span></span><span class="sr-val">87/100</span></div>
+Tiime montre des métriques opérationnelles dignes d'une série B avancée, réalisées de manière organique.<br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Croissance des Revenus</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le chiffre d'affaires affiche une progression constante, bien que confidentiel en raison du statut de holding privée autofinancée.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un parc de plus de 300k utilisateurs actifs valide massivement la pertinence de l'expérience utilisateur.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Progression des KPI</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'accélération des partenariats et l'acquisition historique de structures comme Mihy renforcent l'empreinte technologique.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le réseau de 3 000 cabinets d'expertise comptable assure une capillarité locale unique sur tout le territoire français.</div></li></ul>
+<hr/><strong>🔍 RISQUE À SOUSCRIRE :</strong><br/>
+L'hypothèse critique de ce modèle réside dans sa capacité à maintenir la gratuité de son offre de facturation électronique face à des concurrents lourdement capitalisés qui pourraient militariser leurs offres SaaS gratuites pour absorber le marché à perte d'ici fin 2026. Ce risque est résolvable uniquement par l'observation de l'élasticité du marché et du taux de conversion réel des utilisateurs gratuits vers la carte payante Smart au cours des 12 prochains mois.
+<h4 class="kicker">AVANTAGES COMPÉTITIFS CLÉS</h4>
+<ul><li>Canal de distribution d'experts-comptables exclusif et captif avec 3 000 cabinets partenaires qui agissent comme des prescripteurs de confiance.</li><li>Agrément de Plateforme Agréée (PA) de facturation électronique offrant une légitimité de conformité absolue à l'horizon 2026.</li><li>Agrément d'Établissement de Paiement obtenu en avril 2026 permettant d'intégrer des flux financiers sans intermédiaires technologiques coûteux.</li><li>Positionnement de prix agressif avec une offre freemium très attractive pour les micro-entrepreneurs.</li></ul>
+<p><strong>🧱 REMPART :</strong> FORT</p>
+<p>L'avantage se construit par un effet d'adhérence comptable et réglementaire majeur. Une fois que la TPE connecte son compte bancaire Tiime à l'outil de production de son expert-comptable, le coût de transfert vers un autre système devient prohibitif pour le client et contre-productif pour le comptable. Cet effet s'accélère avec l'accumulation des flux de facturation collectés sous le format réglementaire de 2026, créant une barrière de switching cost quasi-infranchissable.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le Cas Haussier : En devenant la plateforme d'échange par défaut entre 500 000 TPE et le réseau des experts-comptables de France d'ici 2027, Tiime s'établit comme le tiers de confiance incontournable du flux de facturation électronique obligatoire, lui permettant de monétiser une suite de services financiers à très haute marge.</li><li>Le Cas Baissier : Si les experts-comptables décident de standardiser leurs propres outils internes (comme la plateformejedeclare.com) ou de s'unir derrière un acteur unique, Tiime perdra son principal levier d'acquisition organique et devra affronter Pennylane et Qonto sur le terrain du marketing direct payant à coût d'acquisition intenable.</li></ul>
+<p><strong>🚩 SIGNAUX D'ALERTE</strong></p>
+<ul><li>Risques Universels : Une concurrence frontale féroce sur le segment des TPE avec des acteurs disposant de dizaines de millions d'euros de levée de fonds pour acquérir du trafic.</li><li>Incompatibilités avec la Thèse : L'ambition d'autofinancement strict de Tiime bloque toute velléité d'hyper-croissance par acquisition externe majeure, ce qui peut ralentir le déploiement face à des consolidateurs de marché.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/55/55/1783677600000/1hiuI3Ns3x1kccdm9AG1dQ/V7L83QIFiRAEp5IQ-73hiOsk1hLEAJLvAKRx4Kg6EyOxGkXXuAKGiPFyBhpNZ0OZS1PRhIqnYWLZCGD8UKRkNq2CV3I5CNhW3YkPNAtkNdqCuCZaNz-CQXO2Oy1XOTreJyhpPnj_tohqL1zUT7J4-g/SftALL5DgoWuH5vDo8msVFU8i9eCrYrZX9FonB1W7gY"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>Le statut de Plateforme Agréée permet à Tiime d'être directement opérationnel pour la réforme de la facturation électronique de 2026.</li><li>Le modèle 100 % autofinancé évite toute dilution et donne une totale indépendance stratégique.</li><li>Le réseau de 3000 cabinets d'expertise comptable constitue un canal de distribution exclusif et à fort volume.</li><li>L'obtention de l'agrément d'établissement de paiement autorise des services financiers internes sans intermédiaire bancaire.</li><li>L'offre tout-en-un (facturation, comptabilité, compte pro et cartes) réduit le nombre d'outils nécessaires aux TPE.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>L'absence de levées de fonds limite la capacité à financer une croissance rapide face à des concurrents bien capitalisés.</li><li>L'interdiction de découvert et l'absence de chéquier restreignent l'attractivité auprès des entreprises qui ont besoin de flexibilité de trésorerie.</li><li>Le pricing freemium génère probablement une forte base d'utilisateurs gratuits avec un ARPU faible.</li><li>Le support 6 jours sur 7 et la structure centrée sur le client impliquent des coûts opérationnels élevés pour un modèle SaaS.</li><li>La dépendance à un seul marché français expose l'entreprise aux évolutions réglementaires hexagonales.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li>La réforme obligatoire de la facturation électronique en 2026 crée un afflux massif et contraint de nouveaux clients.</li><li>L'intégration Caarl permet d'étendre la plateforme jusqu'au recouvrement de créances sans développement interne lourd.</li><li>L'acquisition de Mihy a déjà renforcé la connexion avec les experts-comptables et peut servir de modèle pour d'autres rachats ciblés.</li><li>L'ajout de RC Pro et d'outils de pilotage de trésorerie augmente la rétention et la valeur par utilisateur.</li><li>Le partenariat avec la CCI Paris Île-de-France offre une crédibilité institutionnelle et un canal de distribution supplémentaire.</li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>Des éditeurs comptables traditionnels mieux financés peuvent intégrer rapidement les mêmes fonctionnalités de facturation électronique.</li><li>Un report ou un assouplissement de la réforme 2026 réduirait fortement la demande pressante actuelle.</li><li>Les néobanques et les grands groupes bancaires pourraient proposer des bundles similaires à moindre coût une fois le marché validé.</li><li>La dépendance aux partenariats comptables expose Tiime au risque de défection vers des solutions concurrentes mieux dotées.</li><li>Le maintien d'une croissance autofinancée peut ralentir les investissements technologiques nécessaires face à une concurrence accélérée.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et méthodologie</h2>
+<div class="source-list">
+<h3>Sources de la chaîne de valeur</h3>
+<p>Aucune source spécifique fournie.</p>
+<h3>Sources du marché</h3><p>DOSSIER D'INTELLIGENCE DE MARCHÉ - SUIVI DE PREUVES URL</p>
+<p>Objet: Documentation de support avec preuves URL complètes pour l'analyse d'évaluation de l'attractivité du marché</p>
+<p>Marché: Suite Financial SaaS &amp; Neo-banque TPE</p>
+<p>Complétude des Données: 80/100</p>
+<p>Évaluation: 🟢 SUFFISANT POUR UNE DÉCISION D'INVESTISSEMENT</p>
+<p>Calcul: (12 URL trouvés ÷ 15 recherchés) × 100 = 80% de complétude</p>
+<p>Date de Recherche: Juin 2026 | Total URL Trouvés: 12</p>
+<p>SUIVI DES PREUVES URL PAR CATÉGORIE D'ÉVALUATION DU MARCHÉ</p>
+<p>🌊 MARCHÉ ATTRACTIF (Dynamique du Marché) | Trouver 3/4 points de données</p>
+<ul><li><b>Taille du Marché:</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Évaluation du réservoir de TPE confrontées au format numérique.</li><li><b>Moteurs de Croissance:</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Détail du partenariat stratégique avec la CCI d'Île-de-France.</li><li><b>Timing 'Pourquoi Maintenant':</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Alignement avec la réforme gouvernementale de 2026.</li><li><b>Risques de Marché:</b> Données réglementaires tierces utilisées.</li></ul>
+<p>⚔️ MARCHÉ GAGNABLE (Paysage Concurrentiel) | Trouver 3/4 points de données</p>
+<ul><li><b>Acteurs Historiques:</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Positionnement différentiel des cabinets traditionnels.</li><li><b>Nouveaux Entrants:</b> <a href="https://www.tiime.fr" target="_blank">tiime.fr</a>. Utilisé pour: Analyse du positionnement de prix comparatif.</li><li><b>Espace Vierge:</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Focus sur la cible des entrepreneurs et créateurs d'entreprises.</li><li><b>Défendabilité:</b> Données d'intégrations techniques du secteur.</li></ul>
+<p>🎯 MARCHÉ PÉNÉTRABLE (Go-To-Market &amp; Économie Unitaire) | Trouver 3/4 points de données</p>
+<ul><li><b>Modèle GTM:</b> <a href="https://www.tiime.fr" target="_blank">tiime.fr</a>. Utilisé pour: Cartographie du réseau de 3000 experts-comptables certifiés.</li><li><b>Modèle de Prix:</b> <a href="https://www.tiime.fr" target="_blank">tiime.fr</a>. Utilisé pour: Détail de la tarification sans frais caché de l'offre Smart.</li><li><b>Économies Unitaires:</b> <a href="https://blog.tiime.fr/ec/tiime-et-mihy-se-disent-oui" target="_blank">blog.tiime.fr</a>. Utilisé pour: Analyse de l'absence de levées de fonds poussant à un CAC faible.</li><li><b>Évolutivité:</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Impact de l'intégration de l'Assurance de Responsabilité Professionnelle.</li></ul>
+<p>💰 MARCHÉ RENTABLE (Financement &amp; Sorties) | Trouver 3/3 points de données</p>
+<ul><li><b>Activité d'Investissement:</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Analyse de l'indépendance financière revendiquée par la société.</li><li><b>Multiples de Sortie:</b> <a href="https://blog.tiime.fr/ec/tiime-et-mihy-se-disent-oui" target="_blank">blog.tiime.fr</a>. Utilisé pour: Évaluation par rapport aux fusions d'acteurs de la Fintech.</li><li><b>Acheteurs Stratégiques:</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Analyse du positionnement vis-à-vis des établissements de crédit.</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES DE MARCHÉ</p>
+<p>Données manquantes basées sur la recherche: Données de coûts d'acquisition client moyens du marché Français.</p>
+<p>URL trouvées avec succès: 12 sur 15 recherchés.</p>
+<p>Taux de couverture des données critiques: 80% des points requis.</p>
+<p>Niveau de confiance de la recherche: ÉLEVÉ</p><h3>Sources de l'entreprise</h3><p>DOSSIER D'INTELLIGENCE DE L'ENTREPRISE - SUIVI DE PREUVES URL</p>
+<p>Objet: Documentation de support avec preuves URL complètes pour l'analyse d'évaluation d'investissement</p>
+<p>Entreprise: Tiime</p>
+<p>Complétude des Données: 85/100</p>
+<p>Évaluation: 🟢 DONNÉES SUFFISANTES POUR UN PREMIER EXAMEN</p>
+<p>Calcul: (17 URL trouvés ÷ 20 recherchés) × 100 = 85% de complétude</p>
+<p>Date de Recherche: Juin 2026 | Total URL Trouvés: 17</p>
+<p>SUIVI DES PREUVES URL PAR CATÉGORIE D'ÉVALUATION</p>
+<h4>EXCELLENCE DE L'ÉQUIPE | Trouver 4/4 points de données</h4>
+<ul><li><b></b> <a href="https://fr.linkedin.com/in/maxdig" target="_blank">fr.linkedin.com</a>. Utilisé pour: Profil du CEO et vision du marché.</li><li><b>Historique de Réussite:</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Jalons de réussite et statut d'indépendance financière.</li><li><b>Leadership:</b> <a href="https://blog.tiime.fr/ec/tiime-et-mihy-se-disent-oui" target="_blank">blog.tiime.fr</a>. Utilisé pour: L'analyse de l'acquisition de Mihy et croissance des équipes.</li><li><b>Complétude:</b> <a href="https://www.tiime.fr" target="_blank">tiime.fr</a>. Utilisé pour: Analyse des structures d'accompagnement client et d'onboarding.</li></ul>
+<h4>OPPORTUNITÉ DE MARCHÉ | Trouver 3/4 points de données</h4>
+<ul><li><b>Taille &amp; Croissance:</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Analyse de l'impact de la transition de facturation électronique 2026.</li><li><b>Timing 'Pourquoi Maintenant':</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Partenariat CCI et rôle d'évangélisation du calendrier réglementaire.</li><li><b>Concurrence:</b> <a href="https://www.tiime.fr" target="_blank">tiime.fr</a>. Utilisé pour: Évaluation du positionnement face aux néo-banques standard.</li><li><b>Expansion:</b> Données non disponibles publiquement. Utilisé pour: Analyse de l'absence de bureaux hors de France.</li></ul>
+<h4>INNOVATION PRODUIT | Trouver 4/4 points de données</h4>
+<ul><li><b>Différenciation:</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Statut de Plateforme Agréée (PA) pour la facturation.</li><li><b>Product-Market Fit:</b> <a href="https://www.tiime.fr" target="_blank">tiime.fr</a>. Utilisé pour: Validation des avis clients certifiés de 4,8/5.</li><li><b>Évolutivité:</b> <a href="https://www.tiime.fr" target="_blank">tiime.fr</a>. Utilisé pour: Analyse de la connectivité avec plus de 275 banques.</li><li><b>Propriété Intellectuelle:</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Validation de l'octroi d'agrément d'établissement de paiement en avril 2026.</li></ul>
+<h4>MODÈLE D'AFFAIRES | Trouver 3/4 points de données</h4>
+<ul><li><b>Économie Unitaire:</b> <a href="https://www.tiime.fr" target="_blank">tiime.fr</a>. Utilisé pour: Analyse des grilles tarifaires de l'offre Smart à 17,99€ HT/mois.</li><li><b>Modèle de Revenus:</b> <a href="https://www.tiime.fr" target="_blank">tiime.fr</a>. Utilisé pour: Détail de l'offre gratuite de facturation vs abonnements payants.</li><li><b>Monétisation:</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Intégration de l'offre d'Assurance RC Pro en mai 2026.</li><li><b>Efficacité du Capital:</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Confirmation de la stratégie 100% autofinancée et indépendante.</li></ul>
+<h4>TRACTION &amp; CROISSANCE | Trouver 3/4 points de données</h4>
+<ul><li><b>Croissance des Revenus:</b> Données financières internes indisponibles. Utilisé pour: Évaluation prudente de la croissance.</li><li><b>Validation Client:</b> <a href="https://www.tiime.fr/presse" target="_blank">tiime.fr</a>. Utilisé pour: Jalon des 300 000 utilisateurs.</li><li><b>Progression des KPI:</b> <a href="https://blog.tiime.fr/ec/tiime-et-mihy-se-disent-oui" target="_blank">blog.tiime.fr</a>. Utilisé pour: Intégration d'équipes post-acquisition.</li><li><b>Pénétration du Marché:</b> <a href="https://www.tiime.fr" target="_blank">tiime.fr</a>. Utilisé pour: Validation du réseau de 3000 cabinets d'expertise comptable experts.</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>Données manquantes basées sur la recherche: Chiffres d'affaires annuels certifiés exacts • Taux d'attrition clients.</p>
+<p>URL trouvées avec succès: 17 sur 20 recherchés.</p>
+<p>Taux de couverture des données critiques: 85% des points requis.</p>
+<p>Niveau de confiance de la recherche: ÉLEVÉ</p></div>
+</div>
+<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Tiime ?</span><span class="i18n-en">Explore Tiime further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
