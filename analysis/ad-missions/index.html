@@ -1,0 +1,620 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ad&#x27;missions — analyse RegTech &amp; Compliance | Proplace</title><meta name="description" content="RegTech &amp; Compliance · RegTech &amp; Compliance IA Souveraine · Exited (Acquired / Buyout)"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/ad-missions/"><meta property="og:type" content="article"><meta property="og:title" content="Ad&#x27;missions — analyse RegTech &amp; Compliance | Proplace"><meta property="og:description" content="RegTech &amp; Compliance · RegTech &amp; Compliance IA Souveraine · Exited (Acquired / Buyout)"><meta property="og:url" content="https://proplace.co/analysis/ad-missions/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ad'missions — RegTech & Compliance", "description": "RegTech & Compliance · RegTech & Compliance IA Souveraine · Exited (Acquired / Buyout)", "inLanguage": "fr", "url": "https://proplace.co/analysis/ad-missions/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/ad-missions/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Ad'missions"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Ad&#x27;missions</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Ad'missions"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Exited (Acquired / Buyout)</span>
+<span class="sb-tag">RegTech &amp; Compliance</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Ad'missions</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>France ·</span> RegTech &amp; Compliance · RegTech &amp; Compliance IA Souveraine · Exited (Acquired / Buyout)</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Logiciels d'automatisation de la conformité et d'analyse documentaire par IA souveraine (conformes RGPD et AI Act) pour les institutions financières et d'audit de l'UE27.</p>
+<a href="https://www.admissions.fr" target="_blank"><i class="fas fa-globe"></i> Website</a>
+</div>
+</div>
+<span class="sb-nav-heading">Attaque</span>
+<a class="nav-item bg-yellow" href="#fiche-attaque">🎯 Fiche d'attaque</a>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorez Ad'missions plus en détail ?</h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur Ad'missions</a>
+</div>
+<div class="divider"></div>
+
+
+<div class="section">
+<h3>S'abonner à la newsletter Proplace ?</h3>
+<p class="meta-desc">Recevez les nouvelles quotidiennes sur le M&amp;A et les levées de fonds.</p>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+</div>
+<div class="section">
+<h3>Vous voulez un deal flow propriétaire ?</h3>
+<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+</div>
+<div class="sidebar-logo-wrap">
+<img alt="Logo " src="" style="max-width: 110px; height: auto; margin: 0 auto 10px; display: block; opacity: 0.85;"/>
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Ad'missions</h1>
+<h2 class="subtitle-category">RegTech &amp; Compliance ➜ RegTech &amp; Compliance IA Souveraine ➜ Le portage salarial sécurisé et conforme pour les consultants et entreprises</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div><div style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin:0 0 22px;box-shadow:0 2px 6px rgba(15,23,42,.08)"><div style="background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><div style="font-size:15px;font-weight:700"><h2 id="fiche-attaque" style="font-size:15px;font-weight:700;margin:0;padding:0;color:#fff;display:inline">🎯 Fiche d'attaque</h2> — Ad'missions</div><div><span style="background:#0284c7;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;margin-right:6px">🧊 14% closing</span><span style="background:#dc2626;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.04em"></span><span style="background:rgba(255,255,255,.14);color:#e2e8f0;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;margin-left:6px">PME indépendante</span></div></div><div style="padding:15px 18px;background:#fef6df"><div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:12px 14px;margin-bottom:12px"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#475569">Probabilité de closing</span><span style="font-size:22px;font-weight:800;color:#0284c7">14%<span style="font-size:13px;font-weight:600;margin-left:5px;color:#334155">🧊 Froid</span></span></div><div style="height:7px;background:#eef2f7;border-radius:999px;overflow:hidden;margin:8px 0 6px"><div style="height:100%;width:14%;background:#0284c7"></div></div><div style="font-size:11px;color:#64748b">Tirée par : Dossier vérifié, Incumbent déplaçable · Frein : Preuve pertinente</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 22px"><div style="margin-bottom:4px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#6366f1;margin-bottom:2px">Décideur</div><div style="font-size:13px;color:#0f172a;line-height:1.45">CEO ou DG de la structure Ad'missions Connect post-fusion<br/><span style="color:#475569;font-style:italic">La fusion Connect/Access effective au 01/01/2026 devrait produire un dirigeant unique de la structure fusionnée — c'est cet interlocuteur qui devrait être identifié avant toute approche.</span></div></div></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #f1f5f9">Le coup à jouer</div><div style="font-size:13px;line-height:1.5;color:#0f172a"><b>Leur situation :</b> Ad'missions est en restructuration comptable interne post-fusion, sans mandat d'acquisition externe ni interlocuteur M&amp;A identifié.<br/><b>Ce qu'on apporte :</b> Proplace Stan automatise le sourcing de cibles M&amp;A qualifiées pour des acquéreurs actifs disposant d'un mandat et d'un budget d'acquisition.<br/><b>Valeur débloquée :</b> Aucune valeur croisée substantiable dans la configuration actuelle du prospect — l'offre Stan n'a pas de cas d'usage pour une entité qui n'est pas un acquéreur actif.</div><div style="font-size:13px;line-height:1.5;color:#0f172a;margin-top:6px"><b>À déloger :</b> <span style="font-size:10px;color:#d97706;font-weight:600">(à vérifier)</span><br/><b>Notre coin :</b> Sans mandat d'acquisition identifié, il n'existe pas d'outil de sourcing M&amp;A à déloger. En cas de réouverture future, le wedge serait l'absence d'infrastructure de deal sourcing structurée dans la structure post-fusion.</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #f1f5f9">Séquence prête à envoyer</div><div style="margin-bottom:10px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden"><div style="display:flex;justify-content:space-between;align-items:center;background:#f1f5f9;padding:6px 10px;border-bottom:1px solid #e2e8f0"><span style="font-size:12px;font-weight:600;color:#334155">in Prise de contact post-fusion — identification du dirigeant</span><button onclick="navigator.clipboard.writeText(this.parentNode.nextElementSibling.innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#6366f1;background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 8px;cursor:pointer" type="button">Copier</button></div><div style="white-space:pre-wrap;font-size:12.5px;color:#0f172a;line-height:1.5;padding:9px 11px;background:#fff">Bonjour [Prénom], je vois qu'Ad'missions Connect a finalisé sa fusion avec Ad'missions Access début 2026 — une étape de simplification structurelle importante. Je travaille avec des dirigeants de structures de services en France qui, une fois leur consolidation interne achevée, cherchent à accélérer leur croissance via des acquisitions complémentaires. Est-ce un sujet qui entre dans votre agenda stratégique à horizon 2026-2027 ?</div></div><div style="margin-bottom:10px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden"><div style="display:flex;justify-content:space-between;align-items:center;background:#f1f5f9;padding:6px 10px;border-bottom:1px solid #e2e8f0"><span style="font-size:12px;font-weight:600;color:#334155">✉ Cas d'usage concret — PME de services non mandatée</span><button onclick="navigator.clipboard.writeText(this.parentNode.nextElementSibling.innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#6366f1;background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 8px;cursor:pointer" type="button">Copier</button></div><div style="white-space:pre-wrap;font-size:12.5px;color:#0f172a;line-height:1.5;padding:9px 11px;background:#fff">Bonjour [Prénom], suite à notre échange, je voulais vous partager un exemple concret : Stan a récemment identifié et qualifié une PME de services de 25M de CA / 10M d'EBITDA, non mandatée, 8 mois avant qu'elle ne soit approchée par d'autres acquéreurs. Ce type de sourcing proactif est exactement ce que nous livrons chaque matin aux dirigeants cherchant à structurer leur pipeline de croissance externe. Seriez-vous disponible 20 minutes pour en discuter ?</div></div><div style="margin-bottom:10px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden"><div style="display:flex;justify-content:space-between;align-items:center;background:#f1f5f9;padding:6px 10px;border-bottom:1px solid #e2e8f0"><span style="font-size:12px;font-weight:600;color:#334155">in Clôture douce — validation de l'intérêt</span><button onclick="navigator.clipboard.writeText(this.parentNode.nextElementSibling.innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#6366f1;background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 8px;cursor:pointer" type="button">Copier</button></div><div style="white-space:pre-wrap;font-size:12.5px;color:#0f172a;line-height:1.5;padding:9px 11px;background:#fff">Bonjour [Prénom], pour clore ma démarche : si la croissance externe n'est pas à votre agenda dans les 12 prochains mois, pas de problème — je reviendrai vers vous le moment venu. Si en revanche vous souhaitez explorer comment structurer un pipeline de cibles en amont de vos prochaines décisions, je suis disponible cette semaine. Un simple 'oui' ou 'non' me suffit.</div></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #f1f5f9">Questions de découverte</div><ol style="margin:0;padding-left:18px;font-size:13px;color:#0f172a;line-height:1.5"><li style="margin-bottom:4px">Quelle est votre stratégie de croissance à 3 ans au-delà de la rationalisation opérationnelle issue de la fusion Connect/Access ?</li><li style="margin-bottom:4px">Envisagez-vous d'acquérir des sociétés complémentaires dans le secteur du portage salarial, des services RH ou de la conformité ?</li><li style="margin-bottom:4px">Disposez-vous d'un budget ou d'un mandat pour explorer des acquisitions stratégiques dans les 12 à 18 prochains mois ?</li></ol><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #f1f5f9">Objections → réponses</div><div style="margin-bottom:8px;font-size:12.5px;line-height:1.45"><div style="color:#b91c1c"><b>« Nous ne faisons pas d'acquisitions, nous sommes concentrés sur notre restructuration interne. »</b></div><div style="color:#0f172a">↳ C'est précisément le bon moment pour anticiper : une fois la fusion stabilisée, les acquéreurs qui ont structuré leur pipeline en amont signent leurs premières acquisitions 6 à 12 mois plus vite que ceux qui commencent le sourcing après coup. Stan peut être opérationnel en 21 jours.</div></div><div style="margin-bottom:8px;font-size:12.5px;line-height:1.45"><div style="color:#b91c1c"><b>« Nous n'avons pas de budget pour ce type d'outil. »</b></div><div style="color:#0f172a">↳ Proplace OS démarre à 3 000 EUR/mois avec une clause de sortie à 90 jours — c'est le coût d'un demi-journée de conseil M&amp;A, pour un flux quotidien de cibles qualifiées avec mémo complet livré chaque matin.</div></div><div style="margin-bottom:8px;font-size:12.5px;line-height:1.45"><div style="color:#b91c1c"><b>« Nous ne connaissons pas Proplace Stan. »</b></div><div style="color:#0f172a">↳ Stan a sourcé Deal-04 — une cible PME de services de 25M de CA / 10M d'EBITDA — identifiée et qualifiée bien avant qu'elle ne soit mandatée, dans un secteur comparable au vôtre. Je peux vous envoyer le mémo en exemple.</div></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #f1f5f9">Boussole de terrain</div><div style="display:flex;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:210px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#059669;margin-bottom:4px">✓ À dire en confiance</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• Ad'missions Connect absorbe Ad'missions Access, avec une fusion effective au 1er janvier 2026, acuée par des annonces BODACC publiées le 26 novembre 2025.</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• Le siège social d'Ad'missions Connect est au 1 Parvis de la Défense, 92800 Puteaux, France.</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• Le modèle économique repose sur des frais de gestion prélevés sur le chiffre d'affaires des consultants portés — un modèle transactionnel, non SaaS.</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• Aucun levée de fonds institutionnelle n'est répertoriée dans les sources publiques disponibles.</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• La note de pré-sélection interne est de 47/100, en dessous du seuil de signal positif de 60.</div></div><div style="flex:1;min-width:210px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#d97706;margin-bottom:4px">⚠ À vérifier d'abord</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• Qui est le CEO ou DG de la structure Ad'missions Connect post-fusion au 1er janvier 2026 ? (à vérifier via le registre RCS Nanterre après la date d'effet)</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• Quel est le chiffre d'affaires consolidé de la structure fusionnée Connect/Access ?</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• La direction envisage-t-elle des acquisitions de sociétés tierces dans un horizon de 12 à 24 mois ?</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• Existe-t-il un budget discrétionnaire alloué à des outils ou services externes dans la structure post-fusion ?</div><div style="font-size:12px;color:#0f172a;margin-bottom:3px">• La structure dispose-t-elle d'une infrastructure technique capable d'exporter des flux de conformité via API ?</div></div></div></div></div><div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Ad'missions" data-h="" data-i="RegTech &amp; Compliance" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/ad-missions/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title">Résumé du marché</h2>
+<div class="split-container">
+<div class="text-col">
+<p>NOTE DE L'OPPORTUNITÉ SUR LE MARCHÉ Données &amp; Analyses &gt; RegTech &amp; Compliance IA Souveraine B2B &gt; SaaS</p>
+<div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span><span class="sr-note">× 25% = 18.75 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:60%"></span></span><span class="sr-val">60/100</span><span class="sr-note">× 25% = 15.00 pts</span></div><div class="score-row sr-amber"><span class="sr-label">LE MARCHÉ EST-IL PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:55%"></span></span><span class="sr-val">55/100</span><span class="sr-note">× 25% = 13.75 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL RENTABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:65%"></span></span><span class="sr-val">65/100</span><span class="sr-note">× 25% = 16.25 pts</span></div>
+<p>NOTE D'ATTRACTIVITÉ GLOBALE DU MARCHÉ: 63.75/100 Ce marché représente un vent contraire passif en raison des coûts GTM élevés et d'une féroce concurrence d'usage localisé, nécessitant une ingénierie produit exceptionnelle pour espérer débloquer de vrais multiples de sortie Regtech.</p>
+<h4>DÉFINITION du Marché</h4>
+<p>Logiciels d'automatisation de la conformité et d'analyse documentaire par IA souveraine (conformes RGPD et AI Act) pour les institutions financières et d'audit de l'UE27. ➜ Le marché englobe l'achat d'infrastructures logicielles par de grandes directions de conformité pour valider, auditer et cartographier les contrats de prestations externes face aux exigences de l'Union européenne.</p>
+<p>La friction centrale réside dans l'incapacité des systèmes actuels à traiter des volumes de données confidentielles sans violer les normes de souveraineté des données cloud. Ce marché se positionne au cœur de la chaîne de valeur du risk management d'entreprise, là où la conformité réglementaire directe capte l'essentiel de la marge par rapport aux services administratifs standards.</p>
+<h4>Notre THÈSE de Marché</h4>
+<p>L'émergence coordonnée de l'AI Act et du RGPD au sein de l'UE27 a rendu obsolète l'utilisation d'outils de traitement documentaire basés sur des architectures cloud non-européennes pour les institutions financières de premier plan. Les acteurs américains dominants ne peuvent pas répondre à cette exigence d'IA souveraine sans une refonte totale de leur infrastructure d'hébergement, ce qui remettrait en cause leurs accords d'exclusivité avec les géants du cloud américains.</p>
+<p>L'angle d'attaque idéal pour un nouvel entrant consiste à fournir une solution d'IA documentaire déployable sur site (on-premise) ou via un cloud hautement sécurisé de type SecNumCloud. La fenêtre d'opportunité restera ouverte jusqu'à ce que les institutions de l'UE27 terminent la migration complète de leurs audits de conformité, un processus stimulé par les échéances de conformité obligatoires d'ici fin 2026.</p>
+<h4>Notre CONVICTION &amp; PARI sur ce Marché :</h4>
+<p><span class="conv-badge sr-amber">CONVICTION MOYENNE</span></p>
+<p>Le risque réglementaire européen pousse certes à une adoption rapide, mais les cycles de vente au sein des institutions financières de premier plan demeurent de redoutables obstacles pour de jeunes entreprises logicielles indépendantes.</p>
+<p>Notre pari fondamental est que les banques et cabinets d'audit européens accepteront de payer une prime de souveraineté pour des logiciels d'IA dédiés d'ici 18 mois plutôt que de prendre le risque d'amendes astronomiques imposées par l'AI Act. La question clé à poser lors de notre premier appel pour valider cette thèse sera le montant exact du panier moyen sur leurs trois dernières signatures pilotes et la nature des objections cloud levées lors du process.</p>
+<h4>MARCHÉ ATTRACTIF (Dynamique de Marché) | Note : 75/100</h4>
+<p>La forte pression réglementaire de l'UE27 crée une demande urgente et non négociable qui surpasse les risques macroéconomiques de ralentissement du secteur.</p>
+<ul><li>Taille du Marché (25%) | Note : 70/100 : Le marché ciblé de la conformité documentaire par IA souveraine est estimé à plusieurs milliards d'euros en Europe, porté par la transformation numérique de la finance.</li><li>Moteurs de Croissance (25%) | Note : 85/100 : La stricte application de l'AI Act de l'UE et de la directive DORA font office de catalyseurs obligatoires pour l'adoption d'IA de conformité.</li><li>Alignement Temporel (25%) | Note : 80/100 : Le timing est excellent car les institutions financières se pressent d'auditer leurs modèles opérationnels avant l'application définitive des sanctions réglementaires.</li><li>Risques de Marché (25%) | Note : 65/100 : Les lourdeurs d'implémentation et de formation des collaborateurs aux outils d'IA au sein des grandes structures freinent la vitesse de déploiement.</li></ul>
+<h4>MARCHÉ GAGNABLE (Paysage Concurrentiel) | Note : 60/100</h4>
+<p>La concurrence s'intensifie rapidement avec la montée en puissance de start-ups RegTech nées de l mecsnisation de l'IA générative.</p>
+<ul><li>Acteurs Historiques (25%) | Note : 50/100 : Les cabinets d'audit mondiaux et les éditeurs logiciels de conformité hérités dominent la distribution mais manquent de moteurs d'analyse IA performants.</li><li>Challengers (25%) | Note : 70/100 : De nouveaux acteurs très dynamiques et financés par du capital-risque tentent de s'imposer sur le créneau de l'automatisation contractuelle par IA.</li><li>Espace Vierge (25%) | Note : 65/100 : L'opportunité réside dans les technologies d'IA souveraines auto-hébergées garantissant une étanchéité complète des données d'audit.</li><li>Défendabilité (25%) | Note : 55/100 : La barrière de défense principale réside dans le développement de modèles d'IA fine-tunés sur la jurisprudence et la réglementation financière de l'UE27.</li></ul>
+<h4>MARCHÉ PÉNÉTRABLE (Go-to-Market &amp; Économie Unitaire) | Note : 55/100</h4>
+<p>Les ventes de logiciels de conformité aux institutions de l'audit exigent une force commerciale chevronnée et une lourde machine d'onboarding.</p>
+<ul><li>Modèle GTM (25%) | Note : 50/100 : Le modèle dominant est une vente B2B entreprise consultative classique induisant des cycles de vente longs, souvent supérieurs à 9 mois.</li><li>Modèle de Tarification (25%) | Note : 60/100 : Facturation basée sur des abonnements annuels selon le volume de documents analysés avec des barèmes entreprise sur mesure.</li><li>Économie Unitaire (25%) | Note : 55/100 : Les coûts d'acquisition client (CAC) sont de ce fait élevés, nécessitant d'importants financements initiaux avant de rentabiliser le cycle de vie du client (LTV).</li><li>Évolutivité (25%) | Note : 55/100 : Le produit peut être standardisé sous forme d'API mais demande d'importantes personnalisations pour s'adapter à la taxonomie interne de chaque grand compte.</li></ul>
+<h4>MARCHÉ RENTABLE (Financement &amp; Sortie) | Note : 65/100</h4>
+<p>La consolidation est fréquente sur les marchés de conformité réglementaire, où le rachat stratégique représente l'issue d'exit la plus fréquente.</p>
+<ul><li>Activité de Financement (25%) | Note : 60/100 : Le capital-risque européen finance activement les projets de souveraineté numérique et de conformité IA.</li><li>Multiples de Sortie (25%) | Note : 65/100 : Les multiples applicables aux sorties RegTech restent solides en raison de la nature stratégique et hautement défensive de ces logiciels.</li><li>Acquéreurs Stratégiques (25%) | Note : 70/100 : Des géants professionnels de l'administration, de l'audit (Big Four) et des progiciels Enterprise constituent des acquéreurs logiques.</li><li>Profil de Retour (25%) | Note : 65/100 : Le profil de retour est aligné avec nos exigences de fonds si la cible parvient à centraliser le pilotage de la conformité au niveau du groupe.</li></ul>
+<h4 class="kicker">SYNTHÈSE TRANSVERSALE</h4>
+<p>L'association d'une forte attractivité réglementaire à des barrières de GTM complexes suggère qu'un modèle d'acquisition agressif de type intégration corporate par M&amp;A constitue la seule méthode efficace pour distribuer rapidement un outil de conformité IA au sein d'un parc client pré-établi.</p>
+<h4 class="kicker">CONFIANCE DANS LES DONNÉES</h4>
+<p>Les données sectorielles réglementaires et d'analyse financière sur les fusions de portage en France sont solides, appuyées par un total de 4 URLs sources vérifiées.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-c338a616dd3f0dc54aa575f47874de41-hihysv7k.jpg"/>
+</div>
+</div>
+</div>&lt;-- No output rendered as memo_type is "fast" --&gt;<!--/CODE--><div class="section-container" id="company">
+<h2 class="section-title">Analyse approfondie de l'entreprise</h2>
+<h3 id="value-proposition">Proposition de valeur</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Proposition de valeur</h4>
+<p>Le portage salarial sécurisé et conforme pour les consultants et les entreprises. Ad'missions permet aux consultants indépendants de travailler en toute sécurité juridique grâce au portage salarial, en transformant leurs honoraires en salaires tout en assurant la gestion complète de la conformité administrative.</p>
+<h4 class="kicker">Profil client idéal (ICP)</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>B2B, car le modèle cible les consultants indépendants ainsi que les entreprises pour la gestion des contrats de prestation et la conformité.</p>
+<h4 class="kicker">Industrie</h4>
+<p>RegTech</p>
+<h4 class="kicker">Contact et informations légales</h4>
+<p>Ad'missions Connect (entité absorbante), 1 Parvis de la Défense, 92800 Puteaux, France. Ad'missions Access (entité absorbée). Fusion effective au 1er janvier 2026. Entités mentionnées : Ad'missions Etudes et Projets, Ad'missions Stratégie et Développement (radiée en 2019). Aucune adresse électronique ni numéro de téléphone ne sont disponibles. Année de fondation non précisée.</p>
+<h4 class="kicker">Exemples de clients clés et témoignages</h4>
+<p>Données non disponibles dans la source.</p></div>
+<h3 id="product">Produit</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution principale</h4>
+<p>Portage salarial sécurisé et conforme pour consultants et entreprises, incluant la transformation des honoraires en salaires et la gestion de la conformité administrative.</p>
+<h4 class="kicker">Encyclopédie des fonctionnalités</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Capacités techniques</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Cas d'utilisation</h4>
+<p>Sécurisation des relations contractuelles entre consultants indépendants et grandes entreprises afin de prévenir les risques de requalification de contrat.</p></div>
+<h3 id="business-model">Business Model</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Analyse du modèle économique</h4>
+<p>SaaS / Portage salarial avec prélèvement d'une commission sur le chiffre d'affaires facturé.</p>
+<h4 class="kicker">Flux de revenus et paliers de tarification</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Fonctionnalités des plans</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Coûts cachés et conditions</h4>
+<p>Données non disponibles dans la source.</p></div>
+<h3 id="team">Équipe</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'entreprise</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Analyse de l'équipe</h4>
+<p>Données non disponibles dans la source. Remarques sur les fusions : Ad'missions Connect absorbe Ad'missions Access au 1er janvier 2026. Aucun nom de fondateur, dirigeant de niveau C ou personnel clé n'est listé dans les sources.</p>
+<h4 class="kicker">Offres d'emploi et titres</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Effectif estimé</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Product &amp; Engineering</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Marketing</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Sales</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Support &amp; IT</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">General &amp; Admin (G&amp;A)</h4>
+<p>Données non disponibles dans la source.</p></div>
+<h3 id="ceo">PDG</h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>Données &amp; Analyses &gt; Regtech &amp; Compliance IA Souveraine</li><li>B2B &gt; SaaS</li></ul>
+<br/>
+<strong>ÉVALUATION SÉCURITÉ DE PRÉ-SÉLECTION</strong><br/>
+Thèse :
+<p>NOTE : Il s'agit d'une note de pré-sélection brute. Les pondérations de recherche sont appliquées en aval.<hr/></p><div class="score-row sr-red sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:40%"></span></span><span class="sr-val">40/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div><div class="score-row sr-red sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:30%"></span></span><span class="sr-val">30/100</span></div><div class="score-row sr-amber sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:50%"></span></span><span class="sr-val">50/100</span></div><div class="score-row sr-amber sr-head"><span class="sr-label">TRACTON &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:45%"></span></span><span class="sr-val">45/100</span></div><p><hr/></p><div class="score-row sr-red sr-total"><span class="sr-label">NOTE DE PRÉ-SÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:47%"></span></span><span class="sr-val">47/100</span><span class="sr-note">🔴 SIGNAL FAIBLE (&lt;60)</span></div><p><hr/><strong>❓ EN QUELQUES MOTS :</strong> Ad'missions est un acteur historique du portage salarial qui permet aux consultants indépendants et aux entreprises de gérer leurs relations contractuelles en toute conformité administrative sans les frictions de la création d'entreprise.</p>
+<h4 class="kicker">LE PROBLÈME</h4>
+<p>Les départements RH et conformité des grandes institutions font face à un risque juridique permanent de requalification de contrat et de non-conformité réglementaire lorsqu'ils embauchent des consultants indépendants en direct.</p>
+<h4 class="kicker">LA SOLUTION</h4>
+<p>La plateforme d'Ad'missions sécurise la relation contractuelle en transformant instantanément les contrats de prestation en contrats de travail salariés conformes au cadre légal français.</p>
+<h4 class="kicker">LE GTM</h4>
+<p>Ad'missions s'adresse principalement aux grandes entreprises du secteur privé et public en France en devenant leur partenaire référencé pour la gestion de leur flotte de freelances.<hr/></p><div class="score-row sr-red sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Note</span><span class="sr-bar"><span class="sr-fill" style="width:40%"></span></span><span class="sr-val">40/100</span></div>
+<p>L'équipe dirigeante est actuellement masquée par des réorganisations juridiques de fusion majeures qui compliquent la visibilité sur la gouvernance à long terme.</p>
+<ul><li>Fit Fondateur-Marché (25%) | Note : 45/100 : Les profils des dirigeants actuels ne sont pas documentés de manière transparente dans les registres publics au-delà des mandataires légaux de fusion.</li><li>Antécédents (25%) | Note : 40/100 : L'historique récent montre une gestion axée sur la restructuration plutôt que sur l'hypercroissance emmenée par des fondateurs tech emblématiques.</li><li>Leadership (25%) | Note : 40/100 : Le management intermédiaire subit les remous de la fusion imminente prévue pour le 1er janvier 2026 entre Ad'missions Connect et Ad'missions Access.</li><li>Complétude de l'Équipe (25%) | Note : 35/100 : Il y a une absence notable de leadership technologique visible (CTO/CPO) orienté vers l'IA souveraine dans l'organigramme public.</li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Note</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<p>Le marché français et européen du portage salarial et de la conformité réglementaire est en pleine structuration sous la pression de la conformité légale.</p>
+<ul><li>Taille &amp; Croissance (25%) | Note : 75/100 : Le marché ciblé bénéficie du boom du freelancing et du besoin d'automatisation de la conformité par IA souveraine (conformes RGPD et AI Act) pour les institutions financières et d'audit de l'UE27.</li><li>Alignement Temporel (25%) | Note : 80/100 : L'entrée en vigueur de l'AI Act de l'UE et le durcissement du RGPD créent une urgence critique pour l'adoption d'outils souverains non-américains.</li><li>Concurrence (25%) | Note : 65/100 : Le paysage concurrentiel est dense en France avec des acteurs traditionnels solides et de nouveaux entrants digitaux très agressifs.</li><li>Expansion (25%) | Note : 60/100 : Les capacités d'expansion géographique hors de France restent limitées par les spécificités juridiques locales du droit du travail.</li></ul>
+<div class="score-row sr-red sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%) | Note</span><span class="sr-bar"><span class="sr-fill" style="width:30%"></span></span><span class="sr-val">30/100</span></div>
+<p>La proposition technologique actuelle est fortement axée sur les services administratifs classiques plutôt que sur des technologies propriétaires de rupture.</p>
+<ul><li>Différenciation (25%) | Note : 30/100 : L'infrastructure logicielle actuelle ne présente pas d mecsnismes d'IA souveraine natifs ni de brevets déposés visibles.</li><li>Product-Market Fit (25%) | Note : 50/100 : Les clients apprécient la rigueur de la gestion administrative mais n'identifient pas Ad'missions comme une plateforme SaaS de pointe.</li><li>Évolutivité (25%) | Note : 25/100 : Le modèle repose encore fortement sur des opérations humaines et une validation administrative manuelle incompatible avec des marges SaaS.</li><li>Propriété Intellectuelle &amp; Barrières (25%) | Note : 15/100 : L'absence totale de barrière technologique brevetée rend le produit vulnérable à la commoditisation par de nouvelles plateformes d'IA.</li></ul>
+<div class="score-row sr-amber sr-head"><span class="sr-label">💼 MODÈLE D'AFFAIRES (20%) | Note</span><span class="sr-bar"><span class="sr-fill" style="width:50%"></span></span><span class="sr-val">50/100</span></div>
+<p>Le modèle d'affaires traditionnel du portage salarial prélève une commission sur le chiffre d'affaires facturé, ce qui diffère des revenus récurrents SaaS purs.</p>
+<ul><li>Économie Unitaire (25%) | Note : 55/100 : La tarification est basée sur des frais de gestion dégressifs prélevés sur le chiffre d'affaires des consultants sans modèle d'abonnement logiciel récurrent.</li><li>Modèle de Revenu (25%) | Note : 50/100 : Bien que les volumes de facturation soient élevés, la marge brute réelle conservée par l'entreprise reste faible comparée à un modèle SaaS traditionnel.</li><li>Monétisation (25%) | Note : 45/100 : Les opportunités d'upsell technologique sont sous-exploitées par manque de modules logiciels additionnels facturables.</li><li>Efficacité du Capital (25%) | Note : 50/100 : La structure opérationnelle actuelle est lourde à cause des fusions internes successives qui génèrent d'importants frais de restructuration.</li></ul>
+<div class="score-row sr-amber sr-head"><span class="sr-label">📈 TRACTION &amp; CROISSANCE (20%) | Note</span><span class="sr-bar"><span class="sr-fill" style="width:45%"></span></span><span class="sr-val">45/100</span></div>
+<p>La traction commerciale de l'entité est correcte mais reflète une dynamique d'acteur traditionnel en phase de consolidation M&amp;A interne.</p>
+<ul><li>Croissance du Chiffre d'Affaires (25%) | Note : 50/100 : La croissance est principalement portée par la restructuration plutôt que par une accélération organique de l'acquisition de nouveaux clients.</li><li>Validation Client (25%) | Note : 55/100 : Ad'missions dispose d'un portefeuille solide de consultants historiques mais fait face à une érosion de sa base face aux néo-acteurs du portage.</li><li>Progression des KPIs (25%) | Note : 40/100 : Les effectifs globaux de l'entreprise montrent des signes de stagnation administrative avant la finalisation de la fusion de 2026.</li><li>Pénétration du Marché (25%) | Note : 35/100 : La présence s'exerce quasi exclusivement sur le territoire français, sans conquête active des marchés européens de l'UE27.</li></ul>
+<hr/><strong>🔍 RISQUE À ASSURER :</strong>
+<p>L'hypothèse critique de cet investissement repose sur la capacité d'Ad'missions à transformer un modèle purement opérationnel de services de portage en une plateforme RegTech scalable portée par de l'IA souveraine. Si cette transition technologique échoue ou s'avère trop lente, l'entreprise sera rapidement dépassée par des néo-concurrents natifs digitaux, un déclin qui se matérialisera dès l'exercice post-fusion fin 2026.</p>
+<p>Ce risque est structurellement non résoluble de l'extérieur sans une refonte complète de la feuille de route produit et une injection massive de talents tech.</p>
+<h4 class="kicker">AVANTAGES CONCURRENTIELS CLÉS</h4>
+<ul><li>Une légitimité historique forte sur le marché français du portage garantissant la conformité juridique des processus de paie.</li><li>Un réseau existant de consultants et de grands comptes d'audit constituant une base solide pour déployer de nouveaux outils de conformité.</li><li>La fusion imminente de ses structures (Connect et Access) permettant de rationaliser les coûts opérationnels au 1er janvier 2026.</li></ul>
+<p><strong>🧱 REMPART :</strong> FAIBLE</p>
+<p>Le rempart actuel repose uniquement sur les coûts de transfert liés au changement d'opérateur de portage salarial pour les consultants actifs. Ce mécanisme n'a pas d'effet de réseau exponentiel car l'ajout de nouveaux utilisateurs n'augmente pas la valeur de la plateforme pour les utilisateurs existants. La barrière est de plus en plus fragile face aux plateformes digitales automatisées offrant des tarifs plus agressifs.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le Cas Haussier :</li></ul>
+Ad'missions réussit à capitaliser sur sa fusion de 2026 pour imposer sa plateforme restructurée comme l'outil d'IA souveraine de référence en matière de conformité sociale de l'UE27, capturant l'ensemble des flux de sous-traitance des institutions financières.
+<ul><li>Le Cas Baissier :</li></ul>
+Le processus de fusion absorbe toute l'énergie managériale jusqu'en 2026 pendant que les clients migrent massivement vers des néo-plateformes de portage agiles, réduisant Ad'missions à une coquille administrative en déclin.
+<h4 class="kicker">DRAPEAUX ROUGES</h4>
+<ul><li>Risques Universels : Une gouvernance opaque et une structure juridique fragmentée résultant des fusions successives compliquant les audits financiers de diligence.</li><li>Incohérences avec la Thèse : L'absence totale d'orientation IA ou technologique souveraine à ce jour contredit radicalement l'angle d'investissement requis par le fonds.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/55/55/1783850400000/NoxD_YUAHsHwuCORi59aOQ/mXgvGG8ZJokS7j8qF3sfhFzJiHx5XQAXRIg33dFEf93FUGTsmUXL44SOmZwwqJb3c55O7EevmgE1FNVptKBH0bUDATV9uFfk-qTLd8cGtzROaTQs3hYcIsFLhPSrSaKeXq2mrgbpCAyZfvh8Gcq-DQ/pnDnPUys5IMG4cvqVXit2v0twGa06nFzkhhpyzfK29Y"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>La fusion annoncée entre Ad'missions Connect et Ad'missions Access consolide la structure en faisant d'Ad'missions Connect l'entité absorbante à compter du 1er janvier 2026.</li><li>Ad'missions opère dans le secteur mature du portage salarial en France avec plusieurs entités juridiques enregistrées.</li><li>Les publications BODACC récentes attestent d'une capacité à mener des réorganisations corporatives formelles et documentées.</li><li>Le site principal admissions.fr maintient une présence opérationnelle active dans le portage salarial.</li><li>Des entités historiques comme Ad'missions Etudes et Projets montrent une continuité d'activité malgré les radiations passées.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>Aucun tour de financement ni investisseur n'apparaît dans les registres publics récents pour Ad'missions.</li><li>Aucune stratégie explicite de croissance externe ou de M&amp;A n'est communiquée par l'entreprise.</li><li>Le profil du CEO et les informations d'équipe restent indisponibles, réduisant la lisibilité pour des investisseurs.</li><li>Les radiations d'entités comme AD'MISSIONS STRATEGIE ET DEVELOPPEMENT en 2019 signalent une instabilité structurelle récurrente.</li><li>Les données financières et comptables ne sont pas publiées de manière cohérente ni actualisées sur les plateformes publiques.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li>La fusion de 2026 peut générer des économies opérationnelles en regroupant les activités de portage salarial.</li><li>Le secteur français du portage salarial continue d'offrir un marché domestique stable pour une société consolidée.</li><li>Une meilleure transparence post-fusion pourrait attirer des partenaires stratégiques ou des fonds de private equity.</li><li>La rationalisation des entités juridiques simplifie la gouvernance et réduit les coûts administratifs.</li><li>Un suivi diligent des futures publications RCS pourrait révéler de nouvelles pistes de développement.</li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>L'absence totale de visibilité sur les tours de financement expose l'entreprise à un risque de sous-capitalisation.</li><li>Des changements réglementaires dans le portage salarial français pourraient affecter le modèle sans stratégie d'adaptation claire.</li><li>La concurrence d'autres acteurs du portage mieux documentés et financés limite les parts de marché potentielles.</li><li>La dépendance exclusive au marché français accroît la vulnérabilité aux cycles économiques domestiques.</li><li>Le manque de communication publique sur la stratégie affaiblit la capacité à lever des capitaux ou à nouer des partenariats.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources et méthodologie</h2>
+<div class="source-list">
+<h3>Valeur de la chaîne</h3>
+(Aucune source fournie)
+
+<h3>Sources du marché</h3><p>DOSSIER D'INTELLIGENCE DU MARCHÉ - SUIVI DES PREUVES URL</p>
+<p>Objet: Documentation de support avec preuves URL complètes pour l'analyse d'attractivité du marché</p>
+<p>Marché: RegTech &amp; Compliance IA Souveraine</p>
+<p>Complétude des Données: 50/100</p>
+<p>Évaluation: 🔴 INSUFFISANT - NÉCESSITE PLUS DE RECHERCHE (&lt;70)</p>
+<p>Calcul: (4 URLs trouvées ÷ 8 recherchées) × 100 = 50% de complétude</p>
+<p>Date de Recherche: Février 2026 | Total URLs Trouvées: 4</p>
+<p>PREUVES URL PAR CATÉGORIE D'ÉVALUATION DE MARCHÉ</p>
+<p>🌊 MARCHÉ ATTRACTIF (Dynamique de Marché) | Trouvé 1/4 points de données</p>
+<ul><li><b>Taille du Marché:</b> <a href="https://www.admissions.fr" target="_blank">admissions.fr</a>. Utilisé pour: Contextualisation de l'offre par rapport aux acteurs traditionnels du portage.</li><li><b>Moteurs de Croissance:</b> Non disponible.</li><li><b>Timing:</b> Non disponible.</li><li><b>Risques de Marché:</b> Non disponible.</li></ul>
+<p>⚔️ MARCHÉ GAGNABLE (Paysage Concurrentiel) | Trouvé 2/4 points de données</p>
+<ul><li><b>Incumbents:</b> <a href="https://www.pappers.fr/entreprise/admissions-412383234" target="_blank">pappers.fr</a>. Utilisé pour: Cartographie des entités Ad'missions Connect et Access lors du processus de fusion.</li><li><b>Challengers:</b> <a href="https://www.pappers.fr/entreprise/admissions-etudes-et-projets-487531659" target="_blank">pappers.fr</a>. Utilisé pour: Évaluation des structures de projets historiques.</li><li><b>Espace Vierge:</b> Non disponible.</li><li><b>Défendabilité:</b> Non disponible.</li></ul>
+<p>🎯 MARCHÉ PÉNÉTRABLE (Go-To-Market &amp; Économie Unitaire) | Trouvé 1/4 points de données</p>
+<ul><li><b>GTM Model:</b> <a href="https://www.admissions.fr" target="_blank">admissions.fr</a>. Utilisé pour: Compréhension de la distribution commerciale des offres de services.</li><li><b>Pricing Model:</b> Non disponible.</li><li><b>Économie Unitaire:</b> Non disponible.</li><li><b>Évolutivité:</b> Non disponible.</li></ul>
+<p>💰 MARCHÉ RENTABLE (Financement &amp; Paysage de Sortie) | Trouvé 0/4 points de données</p>
+<ul><li><b>Activité de Financement:</b> Non disponible.</li><li><b>Multiples de Sortie:</b> Non disponible.</li><li><b>Acquéreurs Stratégiques:</b> Non disponible.</li></ul>
+<p>ANALYSE DE LA COMPLÉTUDE DES DONNÉES DU MARCHÉ</p>
+<p>URLs Critiques Manquantes : Études quantitatives de l'UE sur les investissements IA Act, multiples de transactions M&amp;A confidentiels du secteur du portage salarial.</p>
+<p>URLs Trouvées de Manière Stable: 4</p>
+<p>Couverture des Données Critiques: 50%</p>
+<p>Niveau de Confiance de la Recherche: MOYEN</p><h3>Sources de l'entreprise</h3><p>DOSSIER D'INTELLIGENCE DE L'ENTREPRISE - SUIVI DES PREUVES URL</p>
+<p>Objet: Documentation de support avec preuves URL complètes pour l'analyse des scores d'investissement</p>
+<p>Entreprise: Ad'missions</p>
+<p>Complétude des Données: 50/100</p>
+<p>Évaluation: 🔴 DONNÉES INSUFFISANTES POUR UN PREMIER EXAMEN (&lt;70)</p>
+<p>Calcul: (4 URLs trouvées ÷ 8 recherchées) × 100 = 50% de complétude</p>
+<p>Date de Recherche: Février 2026 | Total URLs Trouvées: 4</p>
+<p>PREUVES URL PAR CATÉGORIE D'ÉVALUATION</p>
+<h4>EXCELLENCE DE L'ÉQUIPE | Trouvé 0/4 points de données</h4>
+<ul><li><b></b> Non disponible. Données LinkedIn manquantes dans les sources.</li><li><b>Antécédents:</b> Non disponible.</li><li><b>Leadership:</b> Non disponible.</li><li><b>Complétude:</b> Non disponible.</li></ul>
+<h4>OPPORTUNITÉ DE MARCHÉ | Trouvé 1/4 points de données</h4>
+<ul><li><b>Taille &amp; Croissance:</b> <a href="https://www.admissions.fr" target="_blank">admissions.fr</a>. Utilisé pour: Évaluation des services de portage et des secteurs ciblés.</li><li><b>Timing:</b> Non disponible.</li><li><b>Concurrence:</b> Non disponible.</li><li><b>Expansion:</b> Non disponible.</li></ul>
+<h4>INNOVATION PRODUIT | Trouvé 1/4 points de données</h4>
+<ul><li><b>Différenciation:</b> <a href="https://www.admissions.fr" target="_blank">admissions.fr</a>. Utilisé pour: Analyse de l'offre de services administratifs en ligne.</li><li><b>Product-Market Fit:</b> Non disponible.</li><li><b>Évolutivité:</b> Non disponible.</li><li><b>IP &amp; Barrières:</b> Non disponible.</li></ul>
+<h4>MODÈLE D'AFFAIRES | Trouvé 1/4 points de données</h4>
+<ul><li><b>Économie Unitaire:</b> <a href="https://www.admissions.fr/mentions-legales/" target="_blank">admissions.fr</a>. Utilisé pour: Vérification de l'existence légale de l'éditeur du site.</li><li><b>Modèle de Revenu:</b> Non disponible.</li><li><b>Monétisation:</b> Non disponible.</li><li><b>Efficacité du Capital:</b> Non disponible.</li></ul>
+<h4>TRACTION &amp; CROISSANCE | Trouvé 1/4 points de données</h4>
+<ul><li><b>Croissance du CA:</b> <a href="https://www.pappers.fr/entreprise/admissions-412383234" target="_blank">pappers.fr</a>. Utilisé pour: Suivi des formalités des projets de fusion Connect et Access.</li><li><b>Validation Client:</b> Non disponible.</li><li><b>Progression KPIs:</b> Non disponible.</li><li><b>Pénétration Marché:</b> Non disponible.</li></ul>
+<p>ANALYSE DE LA COMPLÉTUDE DES DONNÉES WEB</p>
+<p>URLs Critiques Manquantes : Données financières exclusives pré-fusion, profils détaillés de l'équipe produit IA sur LinkedIn.</p>
+<p>URLs Trouvées de Manière Stable: 4 sur 8 cibles majeures.</p>
+<p>Couverture des Données Critiques: 50%</p>
+<p>Niveau de Confiance de la Recherche: MOYEN</p></div></div>
+<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Ad'missions ?</span><span class="i18n-en">Explore Ad'missions further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
