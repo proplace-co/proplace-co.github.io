@@ -753,6 +753,20 @@ border:none;cursor:pointer;text-decoration:underline}
 .fav-vr{display:block;font-size:12.5px;color:var(--sub);line-height:1.45;margin-top:4px}
 </style><script>(function(){
 var K="proplace_favoris";
+// Bridge « certain » vers /cibles/ : un ?cb=<token> dans l'URL (posé par le lien du /cibles/ du
+// client, ou un email Proplace) lie ce navigateur à CE client → chaque ★ est aussi reflétée dans
+// un store SERVEUR scopé au token, retrouvée ensuite dans son onglet Favoris même sur un autre
+// appareil. Sans token (visiteur anonyme), sync() est un no-op → comportement inchangé.
+var TKK="proplace_cb_token",SYNC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/fav-sync";
+function readTok(){try{return localStorage.getItem(TKK)||"";}catch(e){return "";}}
+function writeTok(t){try{localStorage.setItem(TKK,t);}catch(e){}}
+function captureTok(){var t="";try{t=((new URL(window.location.href)).searchParams.get("cb")||"").trim();}catch(e){}
+ if(/^[A-Za-z0-9]{16}$/.test(t)){writeTok(t);return t;}return readTok();}
+var TOK=captureTok();
+function sync(op,removed){if(!TOK)return;try{
+ fetch(SYNC,{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
+  body:JSON.stringify({token:TOK,remove:!!removed,op:op})}).catch(function(){});
+}catch(e){}}
 function EN(){try{var l=localStorage.getItem("proplace_lang");if(l)return l==="en";}catch(e){}
  return (navigator.language||"").slice(0,2).toLowerCase()==="en";}
 function read(){try{return JSON.parse(localStorage.getItem(K)||"[]")||[];}catch(e){return [];}}
@@ -777,9 +791,9 @@ window.__favPaint=paint;
 document.addEventListener("click",function(ev){
  var b=ev.target&&ev.target.closest?ev.target.closest(".op-fav"):null;if(!b)return;
  ev.preventDefault();ev.stopPropagation();
- var a=read(),op=opFromBtn(b),k=idx(a,op.id);
+ var a=read(),op=opFromBtn(b),k=idx(a,op.id),removed=k>=0;
  if(k>=0)a.splice(k,1);else a.unshift(op);
- write(a);paint();if(window.__favRender)window.__favRender();});
+ write(a);paint();sync(op,removed);if(window.__favRender)window.__favRender();});
 window.addEventListener("storage",function(e){if(e.key===K){paint();if(window.__favRender)window.__favRender();}});
 if(document.readyState!=="loading")paint();else document.addEventListener("DOMContentLoaded",paint);
 })();</script></body></html>
