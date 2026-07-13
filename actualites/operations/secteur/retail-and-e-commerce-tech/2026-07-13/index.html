@@ -333,22 +333,9 @@ box-shadow:0 10px 26px rgba(10,10,10,.28);pointer-events:none;transform:translat
    bouton « Plus de filtres » semble ne rien faire). */
 .tm-bar-more[hidden]{display:none}
 .tm-mine{flex-basis:100%;font-size:12.5px;color:var(--accent-dk);font-weight:700;margin:0}
-/* Menu déroulant Secteur (à GAUCHE de la barre) : bouton pill + panneau flottant (liste + compteurs). */
-.tm-secdd{position:relative}
-.tm-secbtn{font-size:12.5px;font-weight:500;border:1px solid var(--line);background:#fff;color:var(--sub);border-radius:999px;padding:6px 14px;cursor:pointer;white-space:nowrap;transition:all .12s}
-.tm-secbtn:hover{border-color:var(--accent)}
-.tm-secbtn b{color:var(--ink);font-weight:700}
-.tm-secmenu{position:absolute;top:calc(100% + 6px);left:0;z-index:45;width:280px;max-height:340px;overflow-y:auto;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 34px -12px rgba(10,10,10,.22);padding:6px}
-.tm-secmenu button,.tm-secmenu a{display:flex;justify-content:space-between;align-items:center;gap:14px;width:100%;text-align:left;font-size:13px;font-weight:500;color:var(--sub);background:none;border:none;border-radius:8px;padding:8px 12px;cursor:pointer;text-decoration:none}
-.tm-secmenu button:hover,.tm-secmenu a:hover{background:var(--bg);text-decoration:none}
-.tm-secmenu button.on,.tm-secmenu a.on{background:var(--bg);color:var(--ink);font-weight:700}
-.tm-secmenu .tm-secn{flex:none;color:var(--mid);font-weight:600;font-variant-numeric:tabular-nums}
-/* Menu « 📅 Jour » de la boussole : jours plus AÉRÉS. Le display:flex NE s'applique QUE quand le
-   menu est ouvert (:not([hidden])) — sinon il écrasait l'attribut `hidden` (display:none de l'UA)
-   et le menu restait ouvert en permanence au chargement. */
-.tm-secmenu.tm-daymenu{padding:8px}
-.tm-secmenu.tm-daymenu:not([hidden]){display:flex;flex-direction:column;gap:4px}
-.tm-secmenu.tm-daymenu a{padding:11px 14px;font-size:13.5px}
+/* Menus déroulants (Secteur/Pays/Stade + picker « 📅 Jour ») : CSS déplacé dans _DAYPICKER_CSS,
+   inclus via _TYPE_CSS → présent sur les pages board ET la page d'ANALYSE (qui ne charge pas
+   _TERMINAL_CSS). Sinon le bouton/menu Jour de l'article restait NON STYLÉ. */
 /* Multi-select Secteur : pastille couleur du secteur (--sec-c) devant le libellé + ✓ vert si coché. */
 .secdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--sec-c,var(--accent));margin-right:8px;flex:none;vertical-align:middle}
 .tm-secmenu button.on>span:first-child::before{content:"✓ ";color:var(--accent-dk);font-weight:800}
@@ -439,6 +426,20 @@ a.tm-sec-name:hover .tm-sec-go{opacity:1}
  .tcell.tamt{order:-1;font-size:14px}
  .trow .op-eval{margin-top:9px}
 }
+
+.tm-secdd{position:relative}
+.tm-secbtn{font-size:12.5px;font-weight:500;border:1px solid var(--line);background:#fff;color:var(--sub);border-radius:999px;padding:6px 14px;cursor:pointer;white-space:nowrap;transition:all .12s}
+.tm-secbtn:hover{border-color:var(--accent)}
+.tm-secbtn b{color:var(--ink);font-weight:700}
+.tm-secmenu{position:absolute;top:calc(100% + 6px);left:0;z-index:45;width:280px;max-height:340px;overflow-y:auto;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 34px -12px rgba(10,10,10,.22);padding:6px}
+.tm-secmenu button,.tm-secmenu a{display:flex;justify-content:space-between;align-items:center;gap:14px;width:100%;text-align:left;font-size:13px;font-weight:500;color:var(--sub);background:none;border:none;border-radius:8px;padding:8px 12px;cursor:pointer;text-decoration:none}
+.tm-secmenu button:hover,.tm-secmenu a:hover{background:var(--bg);text-decoration:none}
+.tm-secmenu button.on,.tm-secmenu a.on{background:var(--bg);color:var(--ink);font-weight:700}
+.tm-secmenu .tm-secn{flex:none;color:var(--mid);font-weight:600;font-variant-numeric:tabular-nums}
+/* Menu « 📅 Jour » : jours aérés. display:flex UNIQUEMENT ouvert (:not([hidden])) — sinon écrase le hidden UA. */
+.tm-secmenu.tm-daymenu{padding:8px}
+.tm-secmenu.tm-daymenu:not([hidden]){display:flex;flex-direction:column;gap:4px}
+.tm-secmenu.tm-daymenu a{padding:11px 14px;font-size:13.5px}
 
 .type-viz{display:flex;gap:18px;flex-wrap:wrap;margin:22px 0 6px}
 .type-viz-i{flex:1 1 380px;display:block;border:1px solid var(--line);border-radius:14px;overflow:hidden;
