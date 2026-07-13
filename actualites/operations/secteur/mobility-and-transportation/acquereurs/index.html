@@ -422,6 +422,17 @@ border-radius:999px;padding:6px 14px;text-decoration:none;transition:border-colo
 .type-nav a.fav-nav:hover{color:#6b5414;background:#fbefc9;border-color:#e5a91c}
 .type-nav a.fav-nav.on{color:#6b5414;background:#fbefc9;border-color:#e5a91c}
 .type-nav a.fav-nav .fav-count{color:#8a6d1a}
+/* BOUSSOLE — cluster de dates poussé à DROITE de la rangée de niveau (fenêtre + jour), présent
+   sur toutes les pages /actualites (point 2). Se replie sous les chips sur mobile (flex-wrap). */
+.lvl-dates{margin-left:auto;display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
+/* Sélecteur de FENÊTRE façon /cibles : piste gris clair, pilule active gris ardoise (point 3).
+   Spécificité .tm-seg.tm-date pour battre .tm-seg button ET .type-nav a (variante liens). */
+.tm-seg.tm-date{border:none;overflow:visible;background:#eef2f6;padding:3px;gap:2px}
+.tm-seg.tm-date button,.tm-seg.tm-date a{font-size:12px;font-weight:600;background:none;color:#56697e;
+padding:5px 12px;border-radius:999px;white-space:nowrap;text-decoration:none;box-shadow:none;
+transition:background .12s,color .12s}
+.tm-seg.tm-date button:hover,.tm-seg.tm-date a:hover{background:none;color:#0f1f33}
+.tm-seg.tm-date button.on,.tm-seg.tm-date a.on{background:#3c4c60;color:#fff;font-weight:800}
 /* « Qui rachète » — paysage des acquéreurs (par secteur). Liste lisible : nom + badges + cibles. */
 .acq-land{margin:22px 0 0}
 .acq-h{font-size:19px;font-weight:800;letter-spacing:-.01em;margin:0 0 6px;color:var(--ink)}
@@ -710,11 +721,12 @@ document.addEventListener('click',function(e){
  e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
 });
 })();</script><style>
-/* Étoile favori (★) en tête de la cellule Société — sobre, ambre à l'état actif. */
-.op-fav{display:inline-block;vertical-align:baseline;margin:0 6px 0 0;padding:0;font-size:15px;
-line-height:1;color:var(--line);background:none;border:none;cursor:pointer;
+/* Étoile favori (★) en tête de la cellule Société — dorée dès l'état INACTIF (☆) pour être
+   repérable comme « à cliquer », pleine et vive à l'état actif (★). */
+.op-fav{display:inline-block;vertical-align:baseline;margin:0 7px 0 0;padding:0;font-size:17px;
+line-height:1;color:#d9b64a;background:none;border:none;cursor:pointer;
 transition:color .12s,transform .12s}
-.op-fav:hover{color:#e5a91c;transform:scale(1.15)}
+.op-fav:hover{color:#e5a91c;transform:scale(1.2)}
 .op-fav.on{color:#e5a91c}
 .fav-count{font-variant-numeric:tabular-nums;font-weight:800}
 /* Page /actualites/favoris/ : état vide + encart « créez votre thèse ». */
