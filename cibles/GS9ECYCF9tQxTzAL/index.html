@@ -391,6 +391,7 @@ padding:12px 14px;flex-wrap:wrap}
 .cb-ustate-prio{background:#0f1f33;color:#fff}
 .cb-ustate-ana{background:#eafaf1;color:#0f6e3f;border:1px solid #9fd8b6}
 .cb-ustate-det{background:#f1f5f9;color:#56697e;border:1px solid #e2e8f0}
+.cb-ustate-pending{background:#fdf6e3;color:#8a6d1a;border:1px solid #e8d9a8}
 .cb-uchev{margin-left:auto;color:#9fb0c2;font-size:19px;font-weight:700;transform:rotate(90deg);transition:transform .15s}
 .cb-urow[open] .cb-uchev{transform:rotate(-90deg)}
 .cb-ubody{padding:2px 16px 14px 47px}
@@ -730,6 +731,675 @@ color:#0f1f33;display:flex;align-items:center;gap:10px}
 .cb-meta{justify-content:flex-start}}
 @media(max-width:520px){.cb-h1{font-size:24px}.cb-wrap{padding:24px 14px 16px}.cb-card{padding:16px 15px}
 .cb-intro{font-size:16px}.cb-name{font-size:18px}.cb-ang summary{font-size:15px;padding:13px 15px}}
+/* ═══════════ v23 — interface Stan en liste (mêmes codes que le chat) ═══════════ */
+/* (1) STATS sur UNE ligne : 4 tuiles horizontales (dont « analysés ») + graphe */
+.cb-statsbar{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin:0 0 14px}
+.cb-stats-l{flex:1 1 360px;display:block}
+.cb-stats-r{flex:1 1 300px;min-width:0;display:block;align-items:initial}
+.cb-statsbar .cb-funnel{display:flex;flex-direction:row;flex-wrap:wrap;gap:7px;margin:0}
+.cb-statsbar .cb-fun{flex:1 1 auto;min-width:98px;padding:7px 11px;border:1px solid #e6eaef;
+border-radius:9px;background:#fafbfc;display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left}
+.cb-statsbar .cb-fun b{font-size:18px;line-height:1.1}
+.cb-statsbar .cb-fun span{font-size:9.5px;line-height:1.25;color:#7d8da0}
+.cb-statsbar .cb-fun.hl{background:#eef7f1;border-color:#bfe6cf}
+.cb-statsbar .cb-fun-ana{background:#eef3ff;border-color:#c7d7f5}
+.cb-statsbar .cb-fun-ana b{color:#1d4ed8}
+.cb-statsbar .cb-fun-today{display:inline;font-size:9.5px;font-weight:700;margin:2px 0 0}
+button.cb-fun-today{color:#185c38}
+.cb-stats-r .cb-act30{width:100%;margin:0}
+/* (3) bouton « Vos critères » NOIR ultra-visible — LE paramétrage de Stan */
+.cb-hyp-btn{background:#0f1f33;border-color:#0f1f33;color:#fff;padding:9px 16px;font-size:13px;font-weight:800}
+.cb-hyp-btn:hover{background:#1d2f47}
+.cb-hyp-btn.on{background:#0f1f33;border-color:#0f1f33;color:#fff}
+.cb-hyp-btn-q{background:#fff;color:#0f1f33}
+.cb-hyp-btn.on .cb-hyp-btn-q{background:#fff;color:#0f1f33}
+.cb-toolbar .cb-fchips{flex:1 1 auto}
+/* (4) ONGLETS d'identité TOUJOURS colorés (vert/bleu/rouge) + Favoris = étoile nue */
+.cb-fchips .cb-f-kept{color:#0f6e3f;background:#eafaf1;border-color:#9fd8b6}
+.cb-fchips .cb-f-kept i{color:#5aa87f}
+.cb-fchips .cb-f-kept.on{background:#16a34a;border-color:#16a34a;color:#fff}
+.cb-fchips .cb-f-kept.on i{color:#d6f5e3}
+.cb-fchips .cb-f-ana{color:#1d4ed8;background:#eef3ff;border-color:#c7d7f5}
+.cb-fchips .cb-f-ana i{color:#7aa0e0}
+.cb-fchips .cb-f-ana.on{background:#2563eb;border-color:#2563eb;color:#fff}
+.cb-fchips .cb-f-ana.on i{color:#cfe0ff}
+.cb-fchips .cb-f-rej{color:#b3261e;background:#fdeceb;border-color:#f2c9c6}
+.cb-fchips .cb-f-rej i{color:#cf8a86}
+.cb-fchips .cb-f-rej.on{background:#dc2626;border-color:#dc2626;color:#fff}
+.cb-fchips .cb-f-rej.on i{color:#fbd6d3}
+.cb-fchips .cb-f-fav{background:none;border:none;padding:4px 6px;color:#e5a91c;font-size:19px;
+display:inline-flex;align-items:center;gap:3px;line-height:1}
+.cb-fchips .cb-f-fav:hover{color:#c8860a}
+.cb-fchips .cb-f-fav.on{color:#c8860a;background:none;border:none}
+.cb-fchips .cb-f-fav i{color:#8a99aa;font-size:12px;font-weight:800}
+/* (6) VERDICT = pastille PLEINE, texte blanc (couleurs exactes du chat) */
+.cb-verdict{color:#fff;border:none;font-weight:800;text-transform:uppercase;letter-spacing:.04em;
+padding:3px 9px;border-radius:6px}
+.cb-uh-l>.cb-verdict{order:-1;flex:0 0 auto;min-width:58px;text-align:center}
+/* (5) POUCE gris-ENFONCÉ une fois donné : le travail est fait, avec la note */
+.cb-act-mini button.done{opacity:1;background:#e2e8f0;border-color:#cbd5e1;
+box-shadow:inset 0 1px 3px rgba(15,31,51,.22);cursor:default;filter:grayscale(.5)}
+.cb-act-mini button.dim{opacity:.28;cursor:default}
+/* (7) CARTE STAN en liste : bouton mémo noir, top-pick YES/NO, encadré analyse */
+.cb-memo-dark{display:block;text-align:center;font-size:13px;font-weight:700;color:#fff;
+background:#0f172a;border:1px solid #0f172a;border-radius:10px;padding:10px 14px;text-decoration:none}
+.cb-memo-dark:hover{background:#1e293b;text-decoration:none;color:#fff}
+.cb-toppick{background:#fffbeb;border-left:3px solid #f59e0b;border-radius:0 8px 8px 0;padding:12px 15px}
+.cb-tp-h{margin:0 0 4px;font-size:12px;font-weight:800;color:#ca8a04;text-transform:uppercase;letter-spacing:.06em}
+.cb-tp-sub{margin:0 0 12px;font-size:13.5px;color:#475569;line-height:1.5}
+.cb-tp-btns{display:flex;gap:10px;margin:0;border:none;padding:0}
+.cb-tp-yes,.cb-tp-no{flex:1;padding:12px 0;border-radius:10px;font-family:inherit;font-size:14px;
+font-weight:800;text-transform:uppercase;letter-spacing:.06em;cursor:pointer}
+.cb-tp-yes{background:#4ac67f;color:#fff;border:none}
+.cb-tp-yes:hover{background:#3db571}
+.cb-tp-no{background:#fff;color:#dc2626;border:2px solid #dc2626}
+.cb-tp-no:hover{background:#fef2f2}
+.cb-tp-yes.done,.cb-tp-no.done{background:#e2e8f0;color:#475569;border:1px solid #cbd5e1;
+box-shadow:inset 0 2px 4px rgba(15,31,51,.14);cursor:default}
+.cb-tp-yes.dim,.cb-tp-no.dim{opacity:.4;cursor:default}
+.cb-tp-help{display:flex;gap:10px;margin:8px 0 0}
+.cb-tp-help span{flex:1;text-align:center;font-size:10px;color:#64748b;line-height:1.35}
+.cb-tp-help span:last-child{color:#94a3b8}
+.cb-stan-auto{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cb-stan-auto-l{font-size:10px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.08em}
+.cb-stanbox{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px 14px}
+.cb-stanbox-h{margin:0 0 8px;font-size:10px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.08em}
+.cb-stanbox .cb-reason{font-size:13px;line-height:1.55;color:#243040;padding:0}
+.cb-stanbox .cb-reason b{display:block;margin:12px 0 2px;font-size:13px;font-weight:700;
+text-transform:none;letter-spacing:0;color:#0f172a}
+.cb-stanbox .cb-reason br{display:none}
+/* (8) PANNEAU DE FILTRES (colonne gauche du chat, en barre) */
+.cb-flt{background:#f7f8fa;border:1px solid #e2e7ee;border-radius:12px;padding:11px 12px;margin:0 0 14px;
+display:flex;flex-wrap:wrap;gap:7px;align-items:center;position:relative}
+.cb-flt-search{flex:0 1 260px;min-width:190px;box-sizing:border-box;font-family:inherit;font-size:12.5px;padding:7px 13px;
+border:1px solid #d4d9e2;border-radius:999px;background:#fff;color:#243040;outline:none}
+@media(max-width:620px){.cb-flt-search{flex:1 1 100%}}
+.cb-facet{position:relative;display:inline-flex;max-width:100%}
+.cb-fpill{font-family:inherit;font-size:12px;font-weight:500;border:1px solid #d4d9e2;background:#fff;
+color:#475569;border-radius:999px;padding:5px 12px;cursor:pointer;white-space:nowrap;max-width:100%;
+overflow:hidden;text-overflow:ellipsis}
+.cb-fpill.on{border-color:#0f1f33}
+.cb-fpill b{color:#0f1f33;font-weight:700}
+.cb-fmenu{position:absolute;top:calc(100% + 4px);left:0;z-index:40;width:230px;max-height:280px;overflow-y:auto;
+background:#fff;border:1px solid #d4d9e2;border-radius:12px;box-shadow:0 14px 34px -12px rgba(10,10,10,.22);padding:6px;display:none}
+.cb-facet.open .cb-fmenu{display:block}
+.cb-frow{display:flex;justify-content:space-between;align-items:center;gap:14px;width:100%;text-align:left;
+font-family:inherit;font-size:13px;font-weight:500;color:#475569;background:none;border:none;border-radius:8px;padding:7px 11px;cursor:pointer}
+.cb-frow.on{background:#edf0f4;color:#0f1f33;font-weight:700}
+.cb-frow .cb-fdot{width:8px;height:8px;border-radius:50%;flex:0 0 8px;margin-right:6px;display:inline-block}
+.cb-frow .cb-fc{flex:none;color:#6b7280;font-weight:600;font-size:12px}
+.cb-fmore{font-family:inherit;font-size:12px;font-weight:700;color:#36a866;background:#eaf6ef;
+border:1px solid #bfe6cf;border-radius:999px;padding:5px 12px;cursor:pointer;white-space:nowrap}
+.cb-freset{font-family:inherit;font-size:12px;font-weight:600;color:#36a866;background:#fff;
+border:1px solid #d4d9e2;border-radius:999px;padding:5px 12px;cursor:pointer;white-space:nowrap;display:none}
+.cb-freset.on{display:inline-block}
+.cb-fhide{display:none}
+.cb-fhide.on{display:inline-flex}
+.cb-fchipwrap{flex-basis:100%;display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:2px;
+max-height:132px;overflow-y:auto}
+.cb-fchipwrap.cb-fhide.on{display:flex}
+.cb-fclbl{font-family:inherit;font-size:11px;font-weight:600;color:#6b7280;margin-right:2px}
+.cb-crit{font-family:inherit;font-size:11px;font-weight:500;text-align:left;color:#475569;background:#fff;
+border:1px solid #d4d9e2;border-radius:999px;padding:4px 10px;cursor:pointer}
+.cb-crit.on{color:#fff;background:#0f1f33;border-color:#0f1f33}
+.cb-crit i{font-style:normal;color:#6b7280;font-size:.9em;margin-left:3px}
+.cb-crit.on i{color:#9eaaba}
+.cb-flt-none{flex-basis:100%;font-size:12.5px;color:#8a99aa;margin:4px 0 0;display:none}
+.cb-flt-none.on{display:block}
+/* évaluateur (sous le panneau) : tester une société — distinct de la recherche */
+.cb-evalwrap{margin:0 0 16px}
+.cb-eval-lbl{font-size:12px;font-weight:700;color:#56697e;margin:0 0 6px}
+.cb-evalwrap .cb-eval-inline{min-width:0}
+.cb-evalwrap .cb-eval-inline .cb-eval-row{max-width:520px}
+/* ═══════════ v24 — tableau NET, barre d'onglets + dates, machine sobre ═══════════ */
+/* (3) graphe d'activité PLEINE LARGEUR (plus de tuiles de stats) */
+.cb-graphrow{margin:0 0 16px}
+.cb-graphrow .cb-act30{width:100%;margin:0}
+/* (1) BARRE D'ONGLETS : « N évalués » gris · Retenus/Écartés/★ · dates à droite */
+.cb-tabrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex:1 1 auto;min-width:0}
+.cb-f-eval{font-size:12.5px;font-weight:600;color:#8a99aa;white-space:nowrap}
+.cb-tabrow .cb-fchips{margin:0;gap:7px}
+/* v36.1 — sélecteur de dates ÉPURÉ : piste grise discrète, pilule active VERTE en gras */
+.cb-dateseg{display:inline-flex;gap:3px;border:none;border-radius:999px;background:#eef2f6;
+padding:3px;margin-left:auto}
+.cb-dateseg button{font-family:inherit;font-size:12px;font-weight:600;border:none;background:none;
+color:#56697e;padding:5px 12px;cursor:pointer;border-radius:999px;white-space:nowrap;transition:background .12s,color .12s}
+.cb-dateseg button:hover{color:#0f1f33}
+/* v36.2 — actif GRIS FONCÉ (pas vert) : c'est un réglage de JOUR, pas un état de dossier */
+.cb-dateseg button.on{background:#3c4c60;color:#fff;font-weight:800}
+/* (5) LIGNE = tableau propre : 3 colonnes (société | industrie·marché | méta) */
+.cb-card.cb-urow{padding:0;margin:0 0 6px;border:1px solid #e6eaef;border-radius:10px;overflow:hidden}
+.cb-uhead{display:grid;grid-template-columns:minmax(0,1fr) 172px auto;gap:16px;align-items:start;
+padding:13px 15px;cursor:pointer}
+.cb-uhead:hover{background:#fafbfc}
+.cb-uh-main{min-width:0;display:flex;flex-direction:column;gap:5px}
+.cb-uh-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+.cb-uh-top>.cb-act-mini{order:-2;flex:0 0 auto}
+.cb-uh-top>.cb-verdict{order:-1;flex:0 0 auto;min-width:54px;text-align:center}
+.cb-uh-top .cb-rr-name{font-size:15px;font-weight:800;color:#0f1f33;letter-spacing:-.005em;
+white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
+.cb-uh-top .cb-uh-loc{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:#8a99aa;white-space:nowrap}
+.cb-uh-desc{margin:0;font-size:13px;color:#3c4c60;line-height:1.45;font-style:italic;
+display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.cb-uh-reason{margin:0;font-size:12.5px;color:#7a8aa0;line-height:1.4;
+display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cb-uh-reason .cb-loupe{margin-right:5px;opacity:.75;font-style:normal}
+.cb-uh-tags{display:flex;flex-wrap:wrap;gap:5px;margin:2px 0 0}
+.cb-uh-tags .cb-tag{font-size:11px;font-weight:600;color:#56697e;background:#f4f6f8;
+border:1px solid #e6eaef;border-radius:5px;padding:2px 8px}
+/* colonne INDUSTRIE / MARCHÉ (position fixe, comme les cartes du chat) */
+.cb-uh-im{min-width:0;display:flex;flex-direction:column;gap:5px;padding-top:2px}
+.cb-im-r{min-width:0;display:flex;flex-direction:column;gap:1px}
+.cb-im-r em{font-style:normal;font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#a2adba}
+.cb-im-r span{font-size:12px;color:#3c4c60;line-height:1.35;white-space:normal;overflow-wrap:anywhere}
+/* colonne méta droite : score, date, liens, chevron */
+.cb-uh-r{display:flex;align-items:center;gap:8px;flex:0 0 auto;justify-self:end}
+.cb-uh-r .cb-us-date{font-size:11px;color:#8a99aa;white-space:nowrap}
+@media(max-width:760px){.cb-uhead{grid-template-columns:1fr;gap:8px}
+.cb-uh-im{flex-direction:row;gap:16px}.cb-uh-r{justify-self:start}}
+/* (6) PANNEAU DE FILTRES plus épuré : pas de gros fond gris, ZÉRO scroll interne */
+.cb-flt{background:none;border:none;border-bottom:1px solid #eef1f5;border-radius:0;
+padding:2px 0 12px;margin:0 0 14px}
+.cb-fmenu{max-height:none;overflow:visible}
+.cb-fchipwrap{max-height:none;overflow:visible}
+.cb-fpill{background:#fff;border-color:#e2e7ee}
+/* (8) pastilles « Tout déplier / replier » à droite de l'évaluateur */
+.cb-xall{display:inline-flex;gap:6px;align-items:center;flex:0 0 auto}
+.cb-xall button{font-family:inherit;font-size:11.5px;font-weight:600;color:#56697e;background:#fff;
+border:1px solid #e2e7ee;border-radius:999px;padding:7px 12px;cursor:pointer;white-space:nowrap}
+.cb-xall button:hover{border-color:#0f1f33;color:#0f1f33}
+.cb-evalwrap .cb-eval-row{flex-wrap:wrap;align-items:center;max-width:none}
+/* (7) MACHINE « Vos critères » SOBRE : bordure grise, bullets & rail gris foncé */
+.cb-machine{border-color:#e2e7ee;box-shadow:none}
+.cb-mach-kicker{color:#56697e}
+.cb-step-n{background:#0f1f33}
+.cb-step-sub,.cb-step-body{border-left-color:#e2e7ee}
+.cb-correct{background:none;border:none;border-radius:0;padding:0;margin:2px 0 14px}
+.cb-correct-t{color:#0f1f33}
+.cb-hyp-note{font-size:12px;font-style:italic;color:#8a99aa;margin:8px 0 0;line-height:1.45}
+/* (9) boucle d'apprentissage : petite, italique, SANS encadré vert + lien */
+.cb-learn{background:none;border:none;border-radius:0;padding:0;margin:16px 0 0;
+font-size:12px;font-style:italic;color:#8090a2;line-height:1.5}
+.cb-learn-a{font-style:normal;font-weight:700;color:#0f6e3f;text-decoration:none;white-space:nowrap}
+.cb-learn-a:hover{text-decoration:underline}
+/* provenance (loupe) : « comment Stan l'a trouvée » + sous-titre accroche */
+.cb-prov-how{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+color:#8a99aa;margin:0 0 5px}
+.cb-say-sub{display:block;font-size:12.5px;font-weight:700;color:#185c38;margin:0 0 3px}
+/* ═══════════ v25 — dossiers en lignes (dividers), raison colorée, provenance, gate ═══════════ */
+/* (9) LIGNES séparées par des filets (plus d'encadrés arrondis) */
+.cb-card.cb-urow{border:none;border-bottom:1px solid #eef1f5;border-radius:0;margin:0;box-shadow:none;background:none}
+.cb-urow.cb-open{background:#fbfcfd}
+.cb-urow.cb-call{border-left:3px solid #4ac67f}
+.cb-urow.cb-urow-out{opacity:.92}
+/* (5) grille 3 colonnes : société | industrie·marché | droite (méta + provenance) */
+.cb-uhead{grid-template-columns:minmax(0,1fr) 146px 258px;gap:18px;align-items:start;padding:14px 14px}
+@media(max-width:900px){.cb-uhead{grid-template-columns:minmax(0,1fr) 130px;gap:14px}
+.cb-uh-r{grid-column:1/-1}}
+@media(max-width:640px){.cb-uhead{grid-template-columns:1fr;gap:9px}.cb-uh-im{flex-direction:row;gap:16px}}
+.cb-uh-r{display:flex;flex-direction:column;align-items:flex-end;gap:8px;justify-self:end;width:100%}
+.cb-uh-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+/* provenance stylée SOUS le score/date (col. droite) — là où il y a de la place */
+.cb-uh-r .cb-provbox{width:100%;margin:0;font-size:11.5px;background:#f5f8fb;border-left:3px solid #b7c6d8;
+border-radius:0 7px 7px 0;padding:8px 10px;text-align:left;line-height:1.5}
+.cb-uh-r .cb-provbox .cb-prov-how{font-size:9px;color:#96a4b3;margin:0 0 3px}
+.cb-uh-r .cb-provbox p{margin:0}
+.cb-uh-r .cb-provbox b{color:#3c4c60;font-weight:700}
+@media(max-width:900px){.cb-uh-r{align-items:flex-start}.cb-uh-meta{justify-content:flex-start}}
+/* (4) RAISON = encadré COLORÉ (vert retenu / rouge écarté), texte NON coupé net */
+.cb-reasonbox{margin:2px 0 0;font-size:12.5px;line-height:1.5;border-radius:0 8px 8px 0;padding:8px 12px}
+.cb-reasonbox em{display:inline;font-style:normal;font-weight:800;font-size:10px;letter-spacing:.04em;
+text-transform:uppercase;margin-right:7px}
+.cb-rbox-kept{background:#eefaf2;border-left:3px solid #4ac67f;color:#20492f}
+.cb-rbox-kept em{color:#0f6e3f}
+.cb-rbox-out{background:#fdf1f1;border-left:3px solid #dc6666;color:#5c2b2b}
+.cb-rbox-out em{color:#b3261e}
+.cb-uh-desc{font-weight:500;color:#2b3a4d}
+/* (1) évaluateur : header (label gauche / « Tout déplier·replier » PETIT à droite) */
+.cb-evalhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 6px}
+.cb-evalhead .cb-eval-lbl{margin:0}
+.cb-xall{display:inline-flex;align-items:baseline;gap:6px;flex:0 0 auto}
+.cb-xall button{background:none;border:none;padding:0;color:#8a99aa;font-size:11.5px;font-weight:600;
+cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.cb-xall button:hover{color:#0f1f33}
+.cb-xall-sep{color:#c8d2de;font-size:11px}
+.cb-evalwrap .cb-eval-row input{flex:1;min-width:0;max-width:none}
+.cb-eval-r{position:relative;padding-right:30px}
+.cb-eval-x{position:absolute;top:6px;right:8px;background:none;border:none;color:#9eb0c2;font-size:17px;
+line-height:1;cursor:pointer;padding:0}
+.cb-eval-x:hover{color:#0f1f33}
+.cb-eval-badge{display:inline-block;margin-left:8px;font-size:10px;font-weight:800;letter-spacing:.03em;
+text-transform:uppercase;color:#475569;background:#eef2f6;border:1px solid #dbe3ea;border-radius:5px;padding:1px 7px;vertical-align:middle}
+.cb-eval-links{margin:7px 0 0;display:flex;flex-wrap:wrap;gap:7px}
+.cb-eval-links a{font-size:11.5px;font-weight:700;color:#185c38;background:#eefaf2;border:1px solid #b7e0c6;
+border-radius:14px;padding:3px 10px;text-decoration:none}
+.cb-eval-links a:hover{background:#e0f5e8}
+/* (7) bouton CALL en attente (orange, façon chat) */
+.cb-callpending{font-family:inherit;font-size:12px;font-weight:800;color:#fff;background:#e67e22;
+border:none;border-radius:999px;padding:7px 14px;cursor:pointer;white-space:nowrap;letter-spacing:.02em}
+.cb-callpending:hover{background:#d9741c}
+.cb-callpending.on{background:#b35c10}
+/* (7) « Votre avis sur le jugement de Stan » + boutons analyse / similaires (bleu clair) */
+.cb-verdictvote{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cb-vv-lbl{font-size:12.5px;font-weight:700;color:#3c4c60}
+.cb-act-2nd{margin-top:12px;display:flex;flex-wrap:wrap;gap:9px}
+.cb-btn-analyse{font-family:inherit;font-size:12.5px;font-weight:800;color:#fff;background:#0f6e3f;
+border:1px solid #0f6e3f;border-radius:9px;padding:8px 15px;cursor:pointer}
+.cb-btn-analyse:hover{background:#0c5c34}
+.cb-btn-similar{font-family:inherit;font-size:12.5px;font-weight:700;color:#1d4ed8;background:#eef3ff;
+border:1px solid #c7d7f5;border-radius:9px;padding:8px 15px;cursor:pointer}
+.cb-btn-similar:hover{background:#e2ebff}
+/* (3) le crible de Stan (single_gate A/B/C/D) dans la machine */
+.cb-gate-steps{list-style:none;margin:4px 0 0;padding:0;counter-reset:none}
+.cb-gate-steps li{position:relative;padding:0 0 10px 0;font-size:13px;line-height:1.5;color:#34455a}
+.cb-gate-steps li b{color:#0f1f33;margin-right:5px}
+.cb-gate-1{font-size:13px;line-height:1.55;color:#34455a;margin:4px 0 0}
+/* (7) mode d'emploi replié */
+.cb-howto{border:1px solid #e2e7ee;border-radius:10px;background:#fbfcfd;margin:0 0 16px;overflow:hidden}
+.cb-howto summary{cursor:pointer;list-style:none;padding:11px 15px;font-size:13px;font-weight:800;color:#0f1f33}
+.cb-howto summary::-webkit-details-marker{display:none}
+.cb-howto summary:after{content:"+";float:right;color:#8a99aa;font-size:16px;line-height:1}
+.cb-howto[open] summary:after{content:"\2013"}
+.cb-howto ol{margin:0;padding:2px 18px 14px 34px}
+.cb-howto li{font-size:13px;line-height:1.55;color:#34455a;padding:0 0 6px}
+/* (6) accroche à copier-coller dans « L'angle décisif » */
+.cb-approach{margin:10px 0 0;background:#f4f8fb;border:1px dashed #c3d3e2;border-radius:9px;padding:10px 13px}
+.cb-approach-h{margin:0 0 5px;font-size:12.5px;font-weight:800;color:#185c38}
+.cb-approach-t{margin:0;font-size:13px;line-height:1.55;color:#2b3a4d}
+.cb-approach-t b{color:#0f1f33}
+/* échantillon d'écartées */
+.cb-rej-more{font-size:12px;color:#9aa8b8;margin:10px 0 0;text-align:center;font-style:italic}
+/* ═══════════ v26 — tutoriel en tête, actions visibles sous Marché ═══════════ */
+/* (1) TUTORIEL cliquable, en tête (sous le kicker) */
+.cb-tuto{border:1px solid #e2e7ee;border-radius:12px;background:#fbfcfd;margin:0 0 20px;overflow:hidden}
+.cb-tuto>summary{cursor:pointer;list-style:none;padding:12px 16px;font-size:13.5px;font-weight:800;color:#0f1f33}
+.cb-tuto>summary::-webkit-details-marker{display:none}
+.cb-tuto>summary:after{content:"\2013";float:right;color:#8a99aa;font-size:16px;line-height:1.2}
+.cb-tuto:not([open])>summary:after{content:"+"}
+/* v36.2 — tutoriel en LISTE VERTICALE propre (1→5 de haut en bas), SANS carte blanche :
+   numéro à gauche · texte · flèche à droite, séparateurs fins, fond transparent (montre le
+   gris très clair du bloc). Épuré. */
+.cb-tuto-steps{display:flex;flex-direction:column;gap:0;padding:4px 18px 12px}
+.cb-tuto-step{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;text-align:left;
+background:none;border:none;border-radius:8px;padding:12px 10px;cursor:pointer;
+font-family:inherit;border-bottom:1px solid #eaeef2;transition:background .12s}
+.cb-tuto-step:last-child{border-bottom:none}
+.cb-tuto-step:hover{background:#f1f5f9}
+.cb-tuto-n{flex:0 0 auto;width:27px;height:27px;border-radius:50%;background:#0f1f33;color:#fff;
+font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+.cb-tuto-t{font-size:13px;line-height:1.5;color:#34455a;font-weight:600}
+.cb-tuto-go{align-self:center;color:#4ac67f;font-weight:800;font-size:16px}
+/* flash : petit halo quand une étape du tutoriel pointe vers un élément */
+.cb-flash{animation:cbflash 1.7s ease}
+@keyframes cbflash{0%,100%{box-shadow:0 0 0 0 rgba(74,198,127,0)}
+15%,55%{box-shadow:0 0 0 4px rgba(74,198,127,.35)}}
+/* (5) col. INDUSTRIE/MARCHÉ un peu plus large pour loger les boutons d'action */
+.cb-uhead{grid-template-columns:minmax(0,1fr) 172px 240px}
+@media(max-width:900px){.cb-uhead{grid-template-columns:minmax(0,1fr) 150px}}
+@media(max-width:640px){.cb-uhead{grid-template-columns:1fr}}
+/* (2/4) ACTIONS sous Marché (visibles SANS déplier) — pile verticale compacte */
+.cb-uh-act{display:flex;flex-direction:column;gap:6px;margin:9px 0 0;border:none;padding:0}
+.cb-uh-btn,.cb-memo-quick{display:block;width:100%;box-sizing:border-box;text-align:center;
+font-family:inherit;font-size:11.5px;font-weight:700;border-radius:8px;padding:7px 10px;cursor:pointer;
+white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* mémo DÉJÀ prêt : bouton distinct (vert plein, « voir ») */
+.cb-memo-quick{background:#0f6e3f;color:#fff;border:1px solid #0f6e3f;text-decoration:none}
+.cb-memo-quick:hover{background:#0c5c34;color:#fff;text-decoration:none}
+/* « Lancer une analyse rapide » = étape suivante d'un Retenu (vert plein) */
+.cb-uh-btn.cb-btn-analyse{background:#0f6e3f;color:#fff;border:1px solid #0f6e3f}
+.cb-uh-btn.cb-btn-analyse:hover{background:#0c5c34}
+/* (4) « Chercher des similaires » = bleu TRÈS clair (distinct : ajoute des leads) */
+.cb-btn-similar3{background:#f2f7ff;color:#3b6fd4;border:1px solid #dbe6fb}
+.cb-btn-similar3:hover{background:#e8f1ff;border-color:#c3d7f7}
+/* v38.4 (point 13) — mobile : boutons mémo/similaires CENTRÉS et empilés dessous */
+@media(max-width:640px){.cb-uh-act{flex-direction:column;align-items:center;margin-top:12px}
+.cb-uh-btn,.cb-memo-quick,.cb-btn-similar3{width:100%;max-width:320px;min-width:200px}}
+/* ═══════════ v27 — état déplier/replier, tooltips verdicts, moteur, one-line eval ═══════════ */
+/* (2) légende des verdicts sous le tutoriel + curseur d'aide sur les pastilles */
+.cb-tuto-legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:0 14px 14px}
+.cb-verdict[title]{cursor:help}
+.cb-verdict-lg{font-size:10px;padding:3px 10px}
+.cb-tuto-step.cb-tuto-on{background:#eafaf1}   /* v36.2 — surlignage doux (plus de bordure, liste plate) */
+/* (13) barres du graphe : état sélectionné NET + note « recliquez pour réafficher » */
+.cb-abar{cursor:pointer}
+.cb-abar rect{transition:opacity .12s}
+.cb-abar:hover rect{opacity:.72}
+.cb-abar.sel rect{opacity:1;stroke:#0f1f33;stroke-width:.6}
+.cb-bar-hint{font-size:11.5px;color:#8a99aa;margin:6px 0 0;text-align:center}
+.cb-bar-hint.on{color:#0f1f33;font-weight:600}
+/* (12) évaluateur sur UNE ligne : label + champ + bouton + déplier/replier */
+.cb-eval-1line{display:flex;align-items:center;gap:9px;flex-wrap:wrap;max-width:none}
+.cb-eval-lbl2{font-size:12.5px;font-weight:700;color:#56697e;white-space:nowrap;flex:0 0 auto}
+.cb-eval-1line #cb-eval-q{flex:1 1 240px;min-width:160px}
+.cb-eval-1line #cb-eval-go{flex:0 0 auto}
+.cb-eval-1line .cb-xall{margin-left:auto;flex:0 0 auto}
+/* (1) « Tout déplier / Tout replier » : TEXTE seul (plus de forme bouton), l'ACTIF
+   en gras ; icône à GAUCHE du texte ; collé tout à droite de la ligne d'évaluation. */
+.cb-xall button.on{color:#0f1f33;font-weight:800;text-decoration:none;background:none;padding:3px 4px}
+/* (4) « recherche des similaires » : spinner + fermeture */
+.cb-searching{display:flex;align-items:center;gap:7px;color:#3b6fd4;position:relative;padding-right:22px}
+.cb-spin{width:12px;height:12px;border:2px solid #cfe0ff;border-top-color:#3b6fd4;border-radius:50%;
+display:inline-block;animation:cbspin .7s linear infinite;flex:0 0 12px}
+@keyframes cbspin{to{transform:rotate(360deg)}}
+.cb-srch-x{position:absolute;right:0;top:0;background:none;border:none;color:#9eb0c2;font-size:15px;cursor:pointer;padding:0}
+.cb-srch-x:hover{color:#0f1f33}
+/* (11) boucle d'apprentissage : NORMAL (plus d'italique) */
+.cb-learn{font-style:normal}
+/* ═══════════ v28 — lignes aérées, corps déplié distinct, éval 1 ligne nette ═══════════ */
+/* (5) LIGNES très aérées : filet net + beaucoup d'air au-dessus/dessous */
+.cb-card.cb-urow{border-bottom:1px solid #e4e8ee;margin:0}
+.cb-card.cb-urow:last-child{border-bottom:none}
+.cb-uhead{padding:20px 15px}
+.cb-uhead:hover{background:#fafcfe}
+.cb-urow.cb-open>.cb-uhead{background:#f6f8fb}
+/* (4) CORPS DÉPLIÉ nettement distinct : fond gris clair + liseré + boutons Replier */
+.cb-urow .cb-ubody{background:#f5f8fb;border-top:1px solid #e2e8f0;border-left:3px solid #cbd6e3;
+padding:6px 18px 16px 44px;margin:0}
+@media(max-width:640px){.cb-urow .cb-ubody{padding-left:16px}}
+.cb-collapse-row{display:inline-block;float:right;font-family:inherit;font-size:11px;font-weight:700;
+color:#56697e;background:#fff;border:1px solid #d4dce6;border-radius:7px;padding:4px 10px;cursor:pointer;
+margin:8px 0 2px}
+.cb-collapse-row:hover{border-color:#0f1f33;color:#0f1f33}
+.cb-ubody-foot{clear:both;text-align:right;padding-top:6px;border-top:1px dashed #dbe3ea;margin-top:12px}
+.cb-ubody-foot .cb-collapse-row{float:none}
+/* (2) évaluateur SUR UNE SEULE LIGNE (nowrap desktop) + « Tout déplier/replier » à droite */
+.cb-eval-1line{flex-wrap:nowrap;gap:10px}
+.cb-eval-1line #cb-eval-q{flex:1 1 auto;min-width:120px}
+.cb-eval-1line #cb-eval-go{padding:8px 16px}
+.cb-xall{display:inline-flex;align-items:center;gap:10px;flex:0 0 auto;margin-left:6px}
+.cb-xall button{display:inline-flex;align-items:center;gap:4px;background:none;border:none;padding:3px 4px;
+color:#8a99aa;font-size:12px;font-weight:600;cursor:pointer}
+.cb-xall button:hover{color:#0f1f33}
+.cb-xall button.on{color:#0f1f33;font-weight:800}
+.cb-xall-i{font-size:12px}
+@media(max-width:720px){.cb-eval-1line{flex-wrap:wrap}.cb-xall{margin-left:0;width:100%;justify-content:flex-end}}
+/* (8) « Votre avis sur le jugement de Stan » : DISCRET (petit, pas gras) */
+.cb-verdictvote{gap:8px;margin-top:13px}
+.cb-vv-lbl{font-size:11px;font-weight:500;color:#7d8da0}
+.cb-verdictvote .cb-act-mini button{font-size:12px;padding:2px 5px;opacity:.8}
+.cb-verdictvote .cb-act-mini.strong button{border-width:1px}
+/* (6) petite croix (pas un bouton) pour fermer la recherche de similaires */
+.cb-srch-x{font-size:13px;opacity:.7}
+.cb-srch-x:hover{opacity:1}
+/* (nouveau) « Vos critères » sur fond gris TRÈS clair : distingue nettement le
+   PARAMÉTRAGE de Stan de la LISTE des sociétés (blanche). */
+.cb-machinline .cb-machine{background:#f5f7fa;border-color:#dde3ea}
+.cb-machinline .cb-ang{background:#fff}
+/* (1) « Comment Stan décide l'analyse » : verdicts + signaux verts/rouges + poids */
+.cb-rub-lead{font-size:13px;color:#56697e;line-height:1.5;margin:0 0 12px}
+.cb-rub-verdicts{display:grid;grid-template-columns:auto 1fr;gap:7px 10px;align-items:center;margin:0 0 14px}
+.cb-rub-verdicts>span{font-size:12.5px;color:#34455a;line-height:1.4}
+.cb-rub-h{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin:14px 0 7px;color:#56697e}
+.cb-rub-green{color:#0f6e3f}.cb-rub-red{color:#b3261e}
+.cb-flag-wrap{display:flex;flex-wrap:wrap;gap:6px}
+.cb-flag-chip{font-size:11.5px;font-weight:600;border-radius:7px;padding:4px 10px;line-height:1.3}
+.cb-flag-chip.green{color:#0f6e3f;background:#eefaf2;border:1px solid #b7e0c6}
+.cb-flag-chip.red{color:#8a2a2a;background:#fdf1f1;border:1px solid #eecaca}
+.cb-flag-chip.wt{color:#334;background:#eef2f6;border:1px solid #dbe3ea}
+.cb-flag-chip.wt b{color:#0f1f33;margin-left:2px}
+/* ═══════════ v29 — similaires en live + « Stan apprend » (avis → thèse) ═══════════ */
+/* résultats de « Chercher des similaires » (dans la mini-fenêtre de la carte) */
+.cb-simbox{position:relative;margin:10px 0 0;background:#f6f8fb;border:1px solid #e2e8f0;
+border-radius:9px;padding:11px 30px 11px 13px}
+.cb-simbox .cb-srch-x{position:absolute;top:8px;right:9px}
+.cb-sim-head{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:#3b6fd4;margin:0}
+.cb-sim-it{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:9px 0 0;
+padding-top:9px;border-top:1px solid #eaeef3}
+.cb-sim-it>b{font-size:13.5px;color:#0f1f33}
+.cb-sim-r{flex-basis:100%;margin:2px 0 0;font-size:12px;color:#56697e;line-height:1.45}
+.cb-sim-foot{margin:10px 0 0;font-size:12px;font-weight:700;color:#0f6e3f}
+/* bandeau PROACTIF « vous jugez, il apprend » dans « Vos critères » */
+.cb-avis{background:#fff8ec;border:1px solid #f0d8a8;border-left:3px solid #e0a83c;
+border-radius:9px;padding:12px 14px;margin:0 0 14px}
+.cb-avis-t{margin:0 0 9px;font-size:13.5px;font-weight:600;color:#6e4d16;line-height:1.5}
+.cb-avis-act{display:flex;gap:9px;flex-wrap:wrap}
+.cb-avis-yes{font-family:inherit;font-size:12.5px;font-weight:800;color:#fff;background:#0f6e3f;
+border:1px solid #0f6e3f;border-radius:9px;padding:8px 16px;cursor:pointer}
+.cb-avis-yes:hover{background:#0c5c34}
+.cb-avis-no{font-family:inherit;font-size:12.5px;font-weight:600;color:#8a7a55;background:none;
+border:none;border-radius:9px;padding:8px 10px;cursor:pointer;text-decoration:underline}
+.cb-avis-no:hover{color:#6e4d16}
+/* ═══════════ v30 — barre d'évaluation NEUVE (une ligne nette) + favoris actualités ═══════════ */
+/* classes NEUVES : immunisées contre .cb-eval-inline/.cb-eval-row (bouton noir + wrap) */
+.cb-evalbar{display:flex;align-items:center;gap:10px;flex-wrap:nowrap;margin:0 0 4px}
+.cb-evalbar .cb-eval-lbl2{flex:0 0 auto;font-size:12.5px;font-weight:700;color:#56697e;white-space:nowrap;margin:0}
+.cb-eval-q2{flex:1 1 auto;min-width:120px;box-sizing:border-box;font-family:inherit;font-size:12.5px;
+padding:8px 14px;border:1px solid #cfd8e2;border-radius:999px;background:#fff;color:#0f1f33;outline:none}
+.cb-eval-q2:focus{border-color:#0f1f33}
+.cb-eval-go2{flex:0 0 auto;font-family:inherit;font-size:12px;font-weight:700;color:#fff;background:#0f1f33;
+border:1px solid #0f1f33;border-radius:9px;padding:8px 17px;cursor:pointer;white-space:nowrap}
+.cb-eval-go2:hover{background:#1d3a5c}
+.cb-actu-link{flex:0 0 auto;font-family:inherit;font-size:12px;font-weight:700;color:#185c38;background:#eefaf2;
+border:1px solid #b7e0c6;border-radius:9px;padding:8px 13px;text-decoration:none;white-space:nowrap}
+.cb-actu-link:hover{background:#e0f5e8;text-decoration:none;color:#185c38}
+.cb-evalbar .cb-xall{margin-left:auto;flex:0 0 auto;display:inline-flex;align-items:center;gap:14px}
+.cb-evalbar .cb-xall button{background:none;border:none;padding:0;color:#8a99aa;font-size:12px;font-weight:600;
+cursor:pointer;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;text-decoration:none}
+.cb-evalbar .cb-xall button:hover{color:#0f1f33;text-decoration:none}
+.cb-evalbar .cb-xall button.on{color:#0f1f33;font-weight:800;text-decoration:none}
+.cb-evalbar .cb-xall-i{font-size:12px;opacity:.8}
+#cb-eval-out{margin:8px 0 0}
+@media(max-width:860px){.cb-evalbar{flex-wrap:wrap}.cb-evalbar .cb-xall{margin-left:0;width:100%;justify-content:flex-end;margin-top:4px}
+.cb-eval-q2{flex:1 1 100%;order:5}}
+/* favoris importés des ACTUALITÉS : société pas encore évaluée + bouton Évaluer */
+.cb-extfav .cb-uh-top .cb-rr-name{color:#0f1f33}
+.cb-extfav-badge{font-size:10px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
+color:#8a6d1a;background:#fdf6e3;border:1px solid #e8d9a8;border-radius:6px;padding:2px 8px}
+.cb-extfav-src{font-size:11px;color:#8a99aa}
+.cb-extfav-eval{font-family:inherit;font-size:11.5px;font-weight:700;color:#fff;background:#0f6e3f;
+border:1px solid #0f6e3f;border-radius:8px;padding:6px 13px;cursor:pointer;white-space:nowrap}
+.cb-extfav-eval:hover{background:#0c5c34}
+.cb-extfav-eval:disabled{opacity:.55;cursor:default}
+.cb-extfav-r{margin:8px 0 0;font-size:12.5px;line-height:1.5}
+.cb-extfav-empty{font-size:12.5px;color:#8a99aa;padding:10px 2px}
+/* ═══ v32 — COCKPIT gris REPLIABLE (<details>) : 2 lignes + ligne d'onglets collée ═══ */
+/* v38 — ACCORDÉON « Filtre » : replié par défaut, s'ouvre JUSTE SOUS la ligne d'onglets
+   (bord-haut supprimé → fait UN avec les onglets), fond gris clair comme l'ancien cockpit. */
+.cb-accord{display:none}
+.cb-accord.cb-open{display:block;background:#f7f9fc;border:1px solid #e6eaef;border-top:none;
+border-radius:0 0 14px 14px;padding:14px 16px 12px;margin:0 0 18px}
+/* LIGNE 1 : ⚙ Vos critères + recherche + Statut + Plus de filtres + Réinitialiser (une ligne) */
+.cb-accord .cb-toolbar{margin:0 0 10px;gap:10px;align-items:center}
+.cb-accord .cb-toolbar>.cb-hyp-btn{flex:0 0 auto}
+.cb-accord .cb-flt{flex:1 1 auto;border-bottom:none;margin:0;padding:0;gap:8px}
+.cb-accord .cb-flt-search{background:#fff;flex:0 1 220px;min-width:150px}
+.cb-accord .cb-machinline{margin:2px 0 10px}
+.cb-accord .cb-machinline .cb-machine{background:#fff;box-shadow:none}   /* machine en blanc dans le gris */
+/* LIGNE 2 : évaluateur (champ RÉTRÉCI pour tout tenir sur une ligne, point 5) */
+/* wrap AUTORISÉ (au lieu d'un point de rupture magique) : sur écran étroit le 📰 passe
+   à la ligne DANS le cadre gris au lieu de déborder et de créer un scroll horizontal. */
+.cb-accord .cb-evalbar{margin:0;flex-wrap:wrap}
+.cb-accord .cb-eval-q2{flex:0 1 200px;min-width:110px}
+.cb-accord .cb-actu-link{white-space:normal}
+/* le graphe d'activité vit désormais DANS le cockpit repliable (point 3) */
+.cb-accord .cb-graphrow{margin:0 0 14px}
+.cb-accord .cb-bar-hint{margin:6px 0 0}
+/* v34 — encadré ⚙ « Les critères de <fonds> » (bouton noir + machine GRISE) sous le titre */
+.cb-critline{margin:0 0 18px}
+.cb-critline .cb-machinline{margin:9px 0 0}
+/* « Réinitialiser » = simple lien texte discret (moins de pastilles) */
+.cb-accord .cb-freset{background:none;border:none;padding:6px 2px;color:#8a99aa;
+text-decoration:underline;text-underline-offset:2px}
+.cb-accord .cb-freset:hover{color:#dc2626}
+/* ═══ Ligne d'ONGLETS collée au tableau : compteurs = PASTILLES couleur clair→foncé (point 1) ═══ */
+/* v37 — barre d'onglets COLLÉE EN HAUT au scroll (sticky) : on peut filtrer même en bas
+   de la liste. Fond blanc + z-index pour passer AU-DESSUS des lignes qui défilent. */
+/* v38 — UNE SEULE ligne, collée en haut (mobile+desktop) ; défile horizontalement au
+   besoin plutôt que de passer à la ligne ; l'accordéon filtre s'ouvre juste dessous. */
+.cb-tabbar{display:flex;align-items:center;gap:8px 10px;flex-wrap:nowrap;overflow-x:auto;margin:2px 0 0;
+padding:9px 2px 9px;border-bottom:1px solid #e6eaef;position:sticky;top:0;z-index:30;background:#fff;
+scrollbar-width:thin}
+.cb-tabbar .cb-fchips{flex-wrap:nowrap}
+/* v38.3 — bouton « ⚙ Vos critères » à gauche de la ligne d'onglets (noir, comme avant) */
+/* v38.5 (point 5) — « Vos critères » PLUS GROS et plus large */
+.cb-tabbar .cb-tb-btn{display:inline-flex;align-items:center;gap:6px;flex:0 0 auto;background:#0f1f33;
+color:#fff;border:none;border-radius:9px;padding:9px 18px;font-family:inherit;font-size:13.5px;
+font-weight:800;cursor:pointer;white-space:nowrap}
+.cb-tabbar .cb-tb-btn:hover,.cb-tabbar .cb-tb-btn.on{background:#1d3a5c}
+/* v38.5 (point 5) — machine en accordéon SANS encadré gris superflu (la machine a déjà le sien) */
+.cb-machinline.cb-accord.cb-open{display:block;background:none;border:none;padding:0;margin:0 0 18px}
+.cb-tabbar .cb-f-eval{margin-right:4px;color:#8a99aa;font-weight:600;font-size:12.5px}
+.cb-tabbar .cb-fchips{margin:0;gap:8px;flex-wrap:wrap}
+.cb-tabbar .cb-fchips button{background:none;border:1px solid transparent;border-radius:999px;
+padding:5px 13px;font-size:12.5px;font-weight:700;color:#56697e;cursor:pointer;font-family:inherit;
+line-height:1;transition:background .12s,color .12s,border-color .12s}
+.cb-tabbar .cb-fchips button i{font-style:normal;font-weight:800;margin-left:6px;font-size:11.5px;opacity:.95}
+/* Retenues — vert clair (repos) / vert foncé (sélectionné) */
+.cb-tabbar .cb-fchips .cb-f-kept{background:#e7f7ee;border-color:#c4ecd6;color:#0f6e3f}
+.cb-tabbar .cb-fchips .cb-f-kept i{color:#3e9c6e}
+.cb-tabbar .cb-fchips .cb-f-kept.on{background:#15884a;border-color:#15884a;color:#fff}
+.cb-tabbar .cb-fchips .cb-f-kept.on i{color:#d3f2e0}
+/* Analysées — bleu clair / bleu foncé */
+.cb-tabbar .cb-fchips .cb-f-ana{background:#e9f0ff;border-color:#cddef7;color:#1d4ed8}
+.cb-tabbar .cb-fchips .cb-f-ana i{color:#6f96da}
+.cb-tabbar .cb-fchips .cb-f-ana.on{background:#1e40af;border-color:#1e40af;color:#fff}
+.cb-tabbar .cb-fchips .cb-f-ana.on i{color:#c7d7f5}
+/* Écartées — rouge clair / rouge */
+.cb-tabbar .cb-fchips .cb-f-rej{background:#fdecec;border-color:#f5cfcd;color:#b3261e}
+.cb-tabbar .cb-fchips .cb-f-rej i{color:#d38a86}
+.cb-tabbar .cb-fchips .cb-f-rej.on{background:#dc2626;border-color:#dc2626;color:#fff}
+.cb-tabbar .cb-fchips .cb-f-rej.on i{color:#fbd5d3}
+/* Favoris — jaune clair / jaune */
+.cb-tabbar .cb-fchips .cb-f-fav{background:#fdf4d7;border-color:#f0e2a8;color:#96700c;font-size:13px}
+.cb-tabbar .cb-fchips .cb-f-fav i{color:#b89530;font-size:11px;margin-left:3px}
+.cb-tabbar .cb-fchips .cb-f-fav.on{background:#eab308;border-color:#eab308;color:#fff}
+.cb-tabbar .cb-fchips .cb-f-fav.on i{color:#fff4cf}
+.cb-tabbar .cb-callpending{margin:0}
+/* v38 — « dont N analysées » COMPACT (sous-ensemble des retenues) : police réduite */
+.cb-tabbar .cb-fchips .cb-f-sub{font-size:11px;padding:4px 9px;font-weight:600}
+.cb-tabbar .cb-fchips .cb-f-sub i{font-size:11px}
+/* dates JUSTE à droite de Favoris (point 7) ; déplier/replier poussés tout à droite (point 3) */
+.cb-tabbar .cb-dateseg{margin-left:0}
+.cb-tabbar .cb-xall{display:inline-flex;align-items:center;gap:12px;flex:0 0 auto;margin-left:auto}
+.cb-tabbar .cb-xall button{background:none;border:none;padding:0;color:#8a99aa;font-size:12px;font-weight:600;
+cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:4px;text-decoration:none}
+.cb-tabbar .cb-xall button:hover{color:#0f1f33}
+.cb-tabbar .cb-xall button.on{color:#0f1f33;font-weight:800}
+.cb-tabbar .cb-xall-i{font-size:12px}
+/* la LISTE se colle DIRECTEMENT sous les onglets (effet « collé ») */
+.cb-tabbar + #cb-rows-kept{margin-top:0}
+.cb-tabbar + #cb-rows-kept > .cb-urow:first-child{border-top:none}
+/* point 1 — verdicts CALL/CONSIDER/MONITOR/PASS écrits en BLANC dans « Vos critères » */
+.cb-rub-verdicts .cb-verdict{color:#fff}
+@media(max-width:720px){.cb-tabbar .cb-xall{margin-left:auto}}
+/* ═══ v35 — CLASSEMENT par prospect (la liste = un TOP) + note d'explication ═══ */
+/* v36 — GROS rangs sur fond BLEU FONCÉ (comme le bouton ⚙) : l'ordre pertinence + urgence
+   est TOUJOURS présent à l'esprit du CEO. Uniforme et fort ; n°1 accentué (vert priorité). */
+.cb-uh-top>.cb-urank{order:-3;flex:0 0 auto;min-width:30px;height:28px;padding:0 9px;
+display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;
+color:#fff;background:#0f1f33;border:none;border-radius:8px;letter-spacing:-.02em}
+.cb-uh-top>.cb-urank-top{background:#0f1f33}                                       /* n°2-3 : bleu foncé */
+.cb-uh-top>.cb-urank-1{background:#0f1f33}                                         /* v37.4 — n°1 AUSSI bleu foncé (uniforme) */
+.cb-rank-note{font-size:13px;color:#0f6e3f;background:#f0faf4;border:1px solid #cdebd9;
+border-radius:9px;padding:9px 12px;margin:0 0 14px;line-height:1.5}
+.cb-rank-note b{font-weight:800}
+/* ═══ v37 — POURQUOI blanchi (puces) + « Alignement » DANS la carte repliée (ex-carte _card) ═══ */
+.cb-uh-why{margin:7px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.cb-uh-why li{position:relative;padding-left:17px;font-size:12.5px;line-height:1.5;color:#3c4c60}
+.cb-uh-why li:before{content:"—";position:absolute;left:0;top:0;color:#15884a;font-weight:800}
+.cb-uh-fit{margin:9px 0 0;background:#f0faf4;border-left:3px solid #15884a;border-radius:0 7px 7px 0;
+padding:9px 12px;font-size:12.5px;line-height:1.55;color:#243040}
+.cb-uh-fit b{color:#0f6e3f;font-weight:800}
+/* v37 — bouton « Actualiser » : mis en avant quand la page n'a pas les cibles du jour */
+.cb-tabbar .cb-xall #cb-refresh.cb-refresh-stale{color:#0f6e3f;font-weight:800}
+.cb-tabbar .cb-xall #cb-refresh.cb-refresh-busy{opacity:.65;cursor:default}
+/* ═══ v38.4 — ligne de titre : aide (?) + Actualiser + date (points 5+6) ═══ */
+.cb-h1row{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:0 0 18px}
+.cb-h1row .cb-h1{margin:0}
+.cb-help-btn{flex:0 0 auto;width:24px;height:24px;border-radius:50%;border:1.5px solid #c8d2de;
+background:#fff;color:#56697e;font-weight:800;font-size:13px;cursor:pointer;line-height:1;padding:0}
+.cb-help-btn:hover,.cb-help-btn.on{border-color:#0f1f33;color:#0f1f33}
+.cb-h1-actions{margin-left:auto;display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cb-refresh-h1{display:inline-flex;align-items:center;gap:5px;background:#eefaf2;border:1px solid #b7e0c6;
+color:#185c38;border-radius:8px;padding:6px 12px;font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer}
+.cb-refresh-h1:hover{background:#e0f5e8}
+.cb-refresh-h1.cb-refresh-stale{background:#185c38;color:#fff;border-color:#185c38}
+.cb-refresh-h1.cb-refresh-busy{opacity:.65;cursor:default}
+.cb-upd{font-size:11px;color:#8a99aa;white-space:nowrap}
+.cb-tuto[hidden]{display:none}
+.cb-tuto-h{margin:0;padding:12px 16px 0;font-size:13.5px;font-weight:800;color:#0f1f33}
+/* ═══ v38.6 — boutons ⚡/🧬 + favori dans la COLONNE DROITE (sous « Comment Stan l'a trouvé »),
+   pleine largeur, non coupés ; Industrie/Marché aérés à gauche ; date sur sa ligne ═══ */
+.cb-uhead{grid-template-columns:minmax(0,1fr) minmax(150px,205px) 250px}
+.cb-uh-r{align-items:stretch}
+.cb-uh-r .cb-uh-meta{justify-content:flex-end;flex-wrap:wrap}
+.cb-uh-r .cb-uh-act{margin:4px 0 0;width:100%}
+.cb-uh-r .cb-uh-btn,.cb-uh-r .cb-memo-quick{width:100%;box-sizing:border-box;text-align:center;white-space:normal}
+.cb-uh-r .cb-prov-how{width:100%;box-sizing:border-box}
+.cb-fav-phrase{width:100%;box-sizing:border-box;background:none;border:1px dashed #dcc98a;border-radius:8px;
+padding:6px 10px;font-family:inherit;font-size:11.5px;font-weight:600;color:#96700c;cursor:pointer;text-align:center;margin-top:2px}
+.cb-fav-phrase:hover{background:#fdf7e3;border-color:#eab308}
+.cb-fav-phrase.on{background:#fdf4d7;border:1px solid #eab308;color:#8a5a00}
+.cb-uh-im{gap:10px}
+.cb-im-r{gap:3px}
+.cb-im-r span{line-height:1.4;font-size:12.5px}
+/* ═══ v38.7 — (A) DÉPLIÉ = cartes blanches séparées par un large blanc (fini le gris continu) ;
+   (pt 2) texte pleine largeur jusqu'aux boutons, Industrie/Marché en ligne compacte sous le texte ;
+   (pt 1) « N évalués » en mini SOUS les dates → la ligne d'onglets tient sur une ligne ═══ */
+.cb-uhead{grid-template-columns:minmax(0,1fr) 250px}
+@media(max-width:900px){.cb-uhead{grid-template-columns:minmax(0,1fr) 220px}}
+@media(max-width:640px){.cb-uhead{grid-template-columns:1fr}}
+/* (pt 2) Industrie/Marché : ligne compacte « label : valeur », sous le texte, filet léger */
+.cb-uh-imline{display:flex;flex-wrap:wrap;gap:5px 22px;margin-top:8px;padding-top:8px;border-top:1px dashed #e7ecf2}
+.cb-uh-imline .cb-im-r{flex-direction:row;gap:6px;align-items:baseline}
+.cb-uh-imline .cb-im-r em{flex:0 0 auto}
+.cb-uh-imline .cb-im-r span{font-size:12.5px}
+/* (A) chaque société DÉPLIÉE devient une carte blanche isolée par un large espace blanc :
+   fond blanc, marge verticale, bord + rayon + ombre, le corps gris est clippé dans la carte */
+.cb-urow.cb-open{background:#fff;margin:16px 0;border:1px solid #e3e9f0;border-radius:14px;
+box-shadow:0 4px 18px rgba(15,31,51,.07);overflow:hidden}
+.cb-urow.cb-open>.cb-uhead{background:#fff}
+/* (pt 1) « N évalués <horizon> » en mini sous le sélecteur de dates */
+.cb-datewrap{display:inline-flex;flex-direction:column;gap:3px;align-items:flex-start}
+.cb-datewrap .cb-eval-mini{line-height:1.1}
+.cb-datewrap .cb-eval-mini .cb-f-eval{font-size:10.5px;font-weight:600;color:#9aa7b5}
+/* ═══ v38.8 — (5) TOUT en cartes blanches, gros blanc vertical, ZÉRO gros fond gris au déplier ;
+   (0) « N évalués » en légende AU-DESSUS des dates SANS décaler la ligne (position absolue) ;
+   (1) accordéon « Vos critères » = panneau gris FLUSH aligné sur la barre (fini la boîte arrondie) ;
+   (2) dates plus compactes ; (4) « ⚙ Vos critères » stylé comme « Filtre » (gras si ouvert) ;
+   (6) plus d'air entre le texte à gauche et la colonne des boutons ; (3) news sous le nom en favoris ═══ */
+/* (5) chaque société = carte blanche isolée, repliée ET dépliée ; déplier = la carte grandit vers
+   le bas avec un simple filet, aucun gros aplat gris */
+.cb-card.cb-urow{background:#fff;border:1px solid #e7ecf2;border-radius:14px;margin:13px 0;
+box-shadow:0 1px 4px rgba(15,31,51,.045);overflow:hidden}
+.cb-tabbar + #cb-rows-kept > .cb-urow:first-child{border-top:1px solid #e7ecf2;margin-top:14px}
+.cb-urow.cb-open{background:#fff;border-color:#d7e0ea;box-shadow:0 5px 20px rgba(15,31,51,.09);margin:16px 0}
+.cb-urow.cb-open>.cb-uhead{background:#fff}
+.cb-urow .cb-ubody{background:#fff;border-top:1px solid #eef2f6;border-left:none}
+/* (6) plus d'espace entre le texte (col. 1) et la colonne droite (boutons) */
+.cb-uhead{column-gap:42px}
+/* (0) légende « N évalués » posée au-dessus des dates, en absolu → les boutons de dates restent
+   sur la même ligne que les pastilles (aucun décalage). Padding-haut de la barre = place pour la légende. */
+.cb-tabbar{padding-top:20px;padding-bottom:8px}
+.cb-datewrap{position:relative;display:inline-flex;flex-direction:row;align-items:center;gap:0}
+.cb-datewrap .cb-eval-mini{position:absolute;bottom:100%;left:1px;margin-bottom:2px;white-space:nowrap;
+line-height:1;pointer-events:none}
+.cb-datewrap .cb-eval-mini .cb-f-eval{font-size:10px;font-weight:600;color:#9aa7b5}
+/* (2) dates plus compactes pour que tous les onglets tiennent sur une ligne */
+.cb-dateseg{padding:2px;gap:2px}
+.cb-dateseg button{padding:5px 9px;font-size:11.5px}
+/* (4) « ⚙ Vos critères » = même style léger que « Filtre » (texte gris), gras+foncé quand ouvert */
+.cb-tabbar .cb-tb-btn{background:none;border:none;border-radius:0;padding:0;color:#8a99aa;
+font-size:12px;font-weight:600}
+.cb-tabbar .cb-tb-btn:hover{background:none;color:#0f1f33}
+.cb-tabbar .cb-tb-btn.on{background:none;color:#0f1f33;font-weight:800}
+/* (1) accordéon « Vos critères » : panneau gris FLUSH pleine largeur, aligné sur la ligne de la barre
+   (plus de boîte arrondie flottante avec ombre) */
+.cb-machinline .cb-machine{border:none;border-radius:0;box-shadow:none;background:#f5f7fa;
+margin:0 -2px;padding:16px 14px 12px;border-top:1px solid #e6eaef}
+/* (3) texte de la news sous le nom, dans la vue favoris */
+.cb-extfav-disp{margin:5px 0 0;font-size:13px;color:#475569;line-height:1.5}
+/* ═══ v38.9 — (1) on RETIRE les cartes : lignes À PLAT (ni bord, ni ombre, ni coin arrondi),
+   GROS espace blanc vertical entre les lignes, fond gris PLEIN quand la ligne est dépliée ;
+   (2) « Vos critères » est passé à gauche de « Filtre » (fait côté HTML) ;
+   (3) encore plus d'air entre le texte à gauche et la colonne des boutons ═══ */
+.cb-card.cb-urow{background:none;border:none;border-radius:0;box-shadow:none;margin:0 0 28px;overflow:visible}
+.cb-tabbar + #cb-rows-kept > .cb-urow:first-child{border-top:none;margin-top:12px}
+.cb-urow.cb-open{background:#f4f7fa;border:none;border-radius:10px;box-shadow:none;margin:0 0 28px}
+.cb-urow.cb-open>.cb-uhead{background:#f4f7fa;border-radius:10px 10px 0 0}
+.cb-urow .cb-ubody{background:#f4f7fa;border-top:1px solid #e6ecf2;border-left:none;border-radius:0 0 10px 10px}
+/* (3) plus d'espace entre le texte (col. 1) et la colonne droite (boutons) */
+.cb-uhead{column-gap:54px}
 </style></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
@@ -771,7 +1441,7 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><main class="cb-wrap"><div class="cb-grid"><div class="cb-left"><p class="cb-kicker">Croissance externe · un mémo d&#x27;analyse généré par dossier</p><h1 class="cb-h1">Quelques cibles qui pourraient intéresser Cerfrance</h1><div class="cb-hyp"><div class="cb-hyp-hdr">Notre hypothèse sur votre stratégie</div><p class="cb-hyp-sub">Toute la sélection ci-contre découle de cette hypothèse. Si elle est à côté, corrigez-la — je réaligne la recherche et vous renvoie une sélection corrigée.</p><p class="cb-intro">Je suis parti de l&#x27;hypothèse que vous cherchiez à consolider une présence nationale dans l&#x27;accompagnement des TPE, PME et exploitants agricoles — en combinant la maîtrise des flux de conformité fiscale numérique, le conseil aux dirigeants sur leurs opérations de transmission et de croissance, et les outils de financement adaptés au monde rural :</p><ul class="cb-points"><li>En vous rapprochant d&#x27;acteurs qui maîtrisent déjà la distribution capillaire vers les cabinets comptables et les exploitants, vous accélérez votre couverture sans repartir de zéro sur chaque territoire.</li><li>En intégrant des briques logicielles agréées pour la facturation électronique obligatoire, vous transformez une contrainte réglementaire de masse en avantage concurrentiel durable pour l&#x27;ensemble de votre réseau.</li><li>En adossant à votre activité historique des expertises en conseil transactionnel et en financement structuré, vous devenez l&#x27;interlocuteur unique du dirigeant de TPE ou d&#x27;exploitation agricole à chaque étape de son cycle de vie.</li></ul><div class="cb-hyp-act"><button type="button" id="cb-hyp-ok">✓ C&#x27;est exactement ça</button><button type="button" id="cb-hyp-edit">✎ Corriger cette hypothèse</button></div><div id="cb-hyp-form" style="display:none"><textarea id="cb-hyp-txt" maxlength="1200"></textarea><button type="button" id="cb-hyp-send">Envoyer mes corrections</button></div></div><p class="cb-cta-line">Je serais ravi d'affiner ces hypothèses avec vous afin de trouver des cibles qui vous intéressent vraiment — lors d'une rencontre, d'une visio (<a href="#rdv" class="cb-ilink">réserver un créneau</a>), par téléphone au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou par email <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>.</p><a class="cb-cta-top" href="#rdv">📅 Planifiez un rendez-vous stratégique</a></div><div class="cb-right cb-q"><p class="cb-sec-label">Les dossiers, par ordre de pertinence</p><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">1</span><h3 class="cb-name">Tiime</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://www.tiime.fr" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://fr.linkedin.com/in/maxdig" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Éditeur SaaS français de facturation et de compte professionnel tout-en-un, agréé Plateforme Agréée (PA) pour la réforme de facturation électronique obligatoire 2026, avec 300 000 utilisateurs actifs distribués via un réseau de 3 000 cabinets comptables partenaires.</p><ul class="cb-why"><li>Son statut de Plateforme Agréée lui confère un accès réglementaire que ses concurrents non agréés ne peuvent pas répliquer rapidement : toute TPE française devra passer par un acteur de ce type d&#x27;ici 2026, ce qui transforme mécaniquement sa base d&#x27;utilisateurs en actif captif.</li><li>Les 3 000 cabinets prescripteurs intégrés dans ses workflows représentent un réseau de distribution déjà constitué, superposable directement à votre propre maillage territorial sans coût de recrutement commercial.</li><li>L&#x27;obtention de la licence d&#x27;établissement de paiement en avril 2026 ouvre une capacité de monétisation des flux de trésorerie des clients — une brique de financement qui prolonge naturellement votre offre d&#x27;accompagnement vers les besoins de liquidité des TPE et exploitants.</li><li>Sur un parc estimé à plusieurs millions de TPE et indépendants en France, la combinaison de l&#x27;agrément réglementaire et du réseau de cabinets place Tiime en position de capter une part significative de la migration numérique obligatoire, avec un coût d&#x27;acquisition client structurellement bas pour quiconque contrôle déjà ce réseau.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Tiime est la pièce centrale de votre transformation numérique : en l&#x27;intégrant, vous devenez pour vos clients TPE et cabinets partenaires le point de passage obligé de la conformité fiscale 2026, tout en posant les fondations d&#x27;une offre de services financiers adossée aux flux réels de leurs entreprises.</p><details class="cb-deep cb-deep-syn"><summary>🔗 Synergies avec votre groupe — le détail du mémo</summary><div class="cb-deep-body"><b>Migration Numérique Massive du Portefeuille Cerfrance (Soft Revenue)</b>: Cerfrance déploie l'application Tiime en marque blanche auprès de sa base de 120 000 TPE clientes d'ici fin 2026 pour sécuriser leur facturation obligatoire.<br>Estimated financial impact: High<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Medium<br><b>Économie de Frais de Traitement Comptable par Robotisation (Hard Cost)</b>: Les équipes de production comptable de Cerfrance utilisent les algorithmes de réconciliation de Tiime pour éliminer la saisie manuelle de données.<br>Estimated financial impact: High<br>Time to value: Immediate (<6m)<br>Difficulty: Low<br><b>Monétisation de Services Financiers par l'Agrément de Paiement (Structural)</b>: Cerfrance intègre le compte professionnel et les cartes de paiement Mastercard de Tiime dans ses forfaits d'accompagnement comptable.<br>Estimated financial impact: High<br>Time to value: Long-Term (>18m)<br>Difficulty: High<br><b>Verrouillage Antitrust et Barrière Contre Qonto et Pennylane (Defensive Moat)</b>: L'intégration technique bidirectionnelle des écritures entre Tiime et Cerfrance empêche les néo-banques d'extraire la donnée client.<br>Estimated financial impact: Medium<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Medium<br></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>Angle</b><br>Tiime s'inscrit dans l'angle dominant 'Logiciel SaaS de conformité fiscale et facturation électronique pour TPE et artisans' — confirmé par le statut de Plateforme Agréée obligatoire 2026, les 300 000 utilisateurs actifs et les 3 000 cabinets prescripteurs intégrés dans les workflows comptables. Elle présente également un alignement fort sur l'angle 'Financement structuré agricole' via la licence d'établissement de paiement (avril 2026), et un alignement spéculatif sur l'angle 'Conseil M&A PME'.<br><br><b>Market</b><br>Le marché de la conformité fiscale numérique pour TPE françaises est en phase de consolidation accélérée par la réforme e-facture 2026, créant un appel d'air réglementaire sur 4 millions de structures. La menace principale vient de Pennylane et Qonto, mais le canal de distribution indirect de Tiime via 3 000 cabinets constitue une barrière difficile à répliquer à court terme.<br><br><b>Timing</b><br>Fenêtre parfaite et non répétable : l'obligation 2026 transforme l'adoption en nécessité légale, créant une dynamique d'équipement forcé favorable à Tiime. L'urgence est de finaliser avant que des concurrents capitalisés ne sécurisent des partenariats exclusifs avec les réseaux de cabinets.<br><br><b>Company</b><br>SaaS 100 % autofinancé, rentable, 300 000 utilisateurs actifs, note 4,8/5, absence de concentration client critique. Modèle freemium alimentant des abonnements payants (17,99-24,99 €/mois) avec une couche transactionnelle montante via la licence de paiement Mastercard obtenue en avril 2026. L'acquisition de Mihy en 2022 a réduit le temps de traitement des experts-comptables de 30 %.<br><br><b>Founder</b><br>Maxime Digue, fondateur missionnaire discipliné par l'autofinancement, a fait de l'expert-comptable le vecteur de distribution exclusif de Tiime — une barrière à l'entrée irréversible validée par 8 ans de croissance organique jusqu'à 300 000 utilisateurs sans capital externe.<br><br><b>Thesis-fit</b><br>Alignement maximal avec l'angle SaaS de conformité fiscale : Tiime remplit chaque critère du signal déclencheur. La combinaison avec la licence de paiement crée une opportunité de valeur supérieure qui justifie l'acquisition comme plateforme nationale de transformation pour Cerfrance.<br><br><b>Verdict</b><br>🟢 CALL (M&A) — Acquisition recommandée : Tiime est l'actif d'infrastructure le plus stratégique disponible sur le marché français pour Cerfrance en 2026, avec un taux de confirmation Q&A de 100 %, trois synergies à haute confiance représentant plus de 60 M€ d'impact EBITDA sur 5 ans, et un modèle 100 % autofinancé rentable dès le premier jour — sous réserve de validation en diligence du taux de conversion freemium et de la marge nette de la licence de paiement avant clôture.</div></details><div class="cb-act" data-target="Tiime"><button type="button" class="cb-yes" data-kind="yes" data-done="Bien noté ✓ — nous en parlerons.">👍 Oui, à creuser</button><button type="button" class="cb-no" data-kind="no" data-done="Bien noté ✓ — merci pour la précision.">👎 Pas pour nous</button><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/tiime-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">2</span><h3 class="cb-name">IRD M</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://ird-ma.fr" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://linkedin.com/in/paul-damestoy-4360011ab" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Cabinet de conseil en transmission et acquisition de PME, basé en Hauts-de-France, adossé au Groupe IRD qui opère des véhicules d&#x27;investissement régionaux dont un fonds dédié aux filières agricoles et rurales (FE2T).</p><ul class="cb-why"><li>L&#x27;articulation entre les mandats de cession et le fonds FE2T crée un continuum rare : le même acteur accompagne le dirigeant dans la valorisation de son entreprise ET mobilise les capitaux pour financer la transaction — une combinaison que peu de boutiques régionales peuvent offrir.</li><li>Son ancrage territorial en Hauts-de-France lui donne accès à un flux de dossiers de transmission hors marché, inaccessibles aux plateformes digitales nationales ou aux banques d&#x27;affaires parisiennes, précisément là où votre réseau de proximité est le plus fort.</li><li>Le vieillissement des dirigeants de PME et d&#x27;exploitations agricoles génère un volume de transmissions sans précédent dans les prochaines années : disposer d&#x27;un partenaire qui maîtrise à la fois le conseil transactionnel et le financement régional vous positionne en amont de ce flux, pas en réaction.</li><li>La dimension agricole et rurale du fonds FE2T est directement complémentaire de votre clientèle historique : vous apportez la connaissance intime des exploitants, IRD M apporte l&#x27;ingénierie financière pour structurer leur transmission ou leur croissance externe.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> IRD M vous permet de passer du rôle de conseiller de confiance à celui d&#x27;architecte complet de la transmission agricole et PME : vous couvrez la préparation, la valorisation, le financement et l&#x27;accompagnement post-opération, sans dépendre d&#x27;un tiers pour la partie capitalistique.</p><details class="cb-deep cb-deep-syn"><summary>🔗 Synergies avec votre groupe — le détail du mémo</summary><div class="cb-deep-body"><b>Offre Intégrée d'Expertise et Transmission (Soft Revenue)</b>: Le réseau de Cerfrance commercialise l'offre de conseil en fusions-acquisitions d'IRD M auprès de ses clients agriculteurs et PME en phase de départ à la retraite, générant de nouveaux honoraires de succès (success fees) sous 12 mois.<br>Estimated financial impact: High<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Medium<br><b>Standardisation et Internalisation du Support Juridique (Hard Cost)</b>: Cerfrance remplace ses prestataires juridiques externes spécialisés en droit des affaires par l'équipe juridique interne dédiée d'IRD M, diminuant immédiatement les frais généraux d'honoraires.<br>Estimated financial impact: Medium<br>Time to value: Immediate (<6m)<br>Difficulty: Low<br><b>Mutualisation Back-Office Comptable et IT (Hard Cost)</b>: Les fonctions administratives, comptables et les systèmes d'information d'IRD M sont migratés vers l'infrastructure partagée nationale de Cerfrance, réduisant les frais généraux et administratifs de la cible.<br>Estimated financial impact: Medium<br>Time to value: Immediate (<6m)<br>Difficulty: Medium<br></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>Angle</b><br>Cette cible s'inscrit dans l'angle Conseil en croissance externe et M&A pour PME et exploitants agricoles — l'articulation entre les mandats de transmission et le fonds IRD Invest crée un entonnoir de dealflow captif qui dépasse la simple boutique M&A. Elle présente également un alignement modéré avec l'angle Financement structuré agri-PME, exploitable en synergie directe via le fonds FE2T. L'angle SaaS e-facture ne correspond pas à ce profil (0 confirmation, pas d'édition logicielle native).<br><br><b>Market</b><br>Le marché de la transmission de PME et d'exploitations agricoles en France est en consolidation structurelle, avec un pic de cessions attendu entre 2026 et 2030. Les acteurs de proximité comme IRD M captent des dossiers off-market inaccessibles aux banques parisiennes. La menace principale vient des plateformes digitales de M&A small-cap qui automatisent les transactions inférieures à 3 millions d'euros à des prix très inférieurs aux success fees traditionnels.<br><br><b>Timing</b><br>Fenêtre d'opportunité idéale : convergence du pic démographique de cessions et de l'obligation légale de facturation électronique. Tout retard d'acquisition de 12 à 18 mois affaiblit la position de Cerfrance face aux réseaux bancaires coopératifs qui construisent des offres concurrentes.<br><br><b>Company</b><br>IRD M est une boutique M&A fondée en 1985 avec 130+ transactions finalisées, un ancrage territorial unique dans les Hauts-de-France et un accès organique au dealflow via l'écosystème IRD. Sa faiblesse principale est un modèle de revenus entièrement transactionnel (success fees cycliques) et l'absence totale de roadmap technologique propriétaire.<br><br><b>Founder</b><br>Équipe missionnaire (Damestoy, Pettenati) alignée sur la culture coopérative de Cerfrance, avec exécution prouvée. Risque de dépendance aux personnes clés élevé et documenté — clauses de rétention non négociables.<br><br><b>Thesis-fit</b><br>IRD M répond directement au signal déclencheur de l'angle M&A pour PME et exploitants agricoles, avec 3 synergies documentées et un potentiel de revenus additionnels de 3 M€ à l'année 3 via la prescription croisée Cerfrance.<br><br><b>Verdict</b><br>🟢 CALL (M&A) — Acquisition recommandée : IRD M comble la faiblesse structurelle de Cerfrance en matière de conseil de haut de bilan avec un actif relationnel irréplicable construit sur 40 ans, une fenêtre démographique validée et 3 synergies documentées ; condition principale : clauses de rétention de Damestoy et Pettenati sur 24 à 36 mois avant closing, et vérification en due diligence que la concentration du dealflow IRD n'excède pas 50% des honoraires récurrents.</div></details><div class="cb-act" data-target="IRD M"><button type="button" class="cb-yes" data-kind="yes" data-done="Bien noté ✓ — nous en parlerons.">👍 Oui, à creuser</button><button type="button" class="cb-no" data-kind="no" data-done="Bien noté ✓ — merci pour la précision.">👎 Pas pour nous</button><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/ird-m-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">3</span><h3 class="cb-name">Dougs</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://www.dougs.fr" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://fr.linkedin.com/in/patrick-maurice-dougs/en" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Cabinet d&#x27;expertise comptable en ligne agréé PDP (Plateforme de Dématérialisation Partenaire) et inscrit à l&#x27;Ordre des Experts-Comptables, proposant une offre hybride SaaS-expertise à destination des TPE, indépendants et petites sociétés françaises.</p><ul class="cb-why"><li>Son double agrément — PDP pour la dématérialisation fiscale et OEC pour l&#x27;expertise comptable — lui permet d&#x27;internaliser la chaîne de conformité complète là où la plupart des acteurs délèguent à des tiers : c&#x27;est une barrière à l&#x27;entrée réelle, pas seulement une certification.</li><li>La réforme de la facturation électronique obligatoire agit mécaniquement comme un accélérateur d&#x27;acquisition pour tout acteur déjà agréé PDP : les TPE non équipées n&#x27;ont pas le choix de migrer, et Dougs est déjà en position de les accueillir.</li><li>Son modèle de croissance centré sur la scalabilité logicielle signifie que chaque client supplémentaire coûte structurellement moins cher à servir — une logique de marge qui se renforce à mesure que votre réseau lui apporte du volume.</li><li>La base de clients TPE de Dougs est directement superposable à votre clientèle historique : un rapprochement vous évite de construire une offre digitale de zéro et vous donne immédiatement une crédibilité technologique auprès des jeunes dirigeants.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Dougs vous apporte la couche numérique agréée qui manque à votre offre de proximité : en combinant votre ancrage territorial et leur plateforme scalable, vous devenez l&#x27;acteur qui sert le dirigeant de TPE aussi bien en face à face qu&#x27;en autonomie digitale.</p><details class="cb-deep cb-deep-syn"><summary>🔗 Synergies avec votre groupe — le détail du mémo</summary><div class="cb-deep-body"><b>Migration Nationale vers la Facturation Electronique Intégrée (Soft Revenue)</b>: Cerfrance commercialise la solution de facturation électronique certifiée de Dougs auprès de ses 320 000 clients existants avant l'échéance réglementaire de 2026 pour sécuriser l'abonnement mensuel récurrent.<br>Estimated financial impact: High<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Medium<br><b>Optimisation Opérationnelle de la Saisie Comptable Locale (Hard Cost)</b>: Cerfrance déploie l'assistant de synchronisation bancaire de Dougs sur son réseau régional pour automatiser 60 % de la saisie comptable manuelle et réduire les charges de personnel de tenue de livre comptable.<br>Estimated financial impact: High<br>Time to value: Long-Term (>18m)<br>Difficulty: High<br><b>Canal d'Acquisition Automatisé des Créateurs d'Entreprises (Soft Revenue)</b>: Rediriger les créateurs d'entreprises à fort potentiel captés par le module de création gratuite de Dougs vers les conseillers en ingénierie financière et juridique de Cerfrance.<br>Estimated financial impact: Medium<br>Time to value: Immediate (<6m)<br>Difficulty: Low<br><b>Lancement d'une Offre Immobilière et Gestion SCI LMNP Nationale (Structural)</b>: Déployer la solution automatisée de comptabilité immobilière de Dougs (SCI, société civile immobilière / LMNP, loueur en meublé non professionnel) sur toute la clientèle patrimoniale de Cerfrance.<br>Estimated financial impact: Medium<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Low<br></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>Angle</b><br>Cette cible s'inscrit dans l'angle Logiciel SaaS de conformité fiscale et facturation électronique pour TPE et artisans, ancré par l'agrément PDP et l'inscription OEC de Dougs qui internalisent la chaîne de conformité complète là où les concurrents délèguent à des tiers. L'angle Conseil en croissance externe et M&A présente un alignement faible (zéro confirmation Q&A, absence d'offre M&A documentée). L'angle Financement structuré et véhicules d'investissement pour exploitants agricoles et PME rurales a été écarté : absence totale de services financiers structurés ou de fonds dédiés aux coopératives agricoles.<br><br><b>Market</b><br>Le marché de la comptabilité TPE française est en consolidation technologique accélérée, avec l'obligation e-facture 2026 comme catalyseur binaire non discrétionnaire. Dougs bénéficie d'un positionnement différencié grâce à sa double accréditation réglementaire (OEC + PDP), là où les pure-players SaaS non réglementés délèguent la validation à des cabinets tiers. Le marché adressable pour Cerfrance via Dougs est estimé à 300 000 TPE/agri non encore digitalisés.<br><br><b>Timing</b><br>La fenêtre est idéale en raison de l'échéance réglementaire 2026 et du risque de migration spontanée des clients TPE Cerfrance vers des concurrents PDP agréés si Cerfrance n'agit pas. Le timing impose un cycle de décision court (45 jours pour valider la due diligence financière).<br><br><b>Company</b><br>Dougs affiche 25 M€ d'ARR en 2024, 49 000 clients actifs, un fort verrouillage par les données historiques fiscales, et un modèle hybride 'Service-as-a-Software' dont la scalabilité dépend du recrutement d'experts-comptables dans un marché pénurique. Les données de marge brute et burn multiple sont absentes, bloquant la validation de la scalabilité opérationnelle. Les deux deal-killers identifiés (ICP Mismatch et Culture Clash) sont gérables par une structure d'acquisition préservant l'autonomie de Dougs.<br><br><b>Founder</b><br>Patrick Maurice est un fondateur missionnaire discipliné (8 ans de bootstrap), avec un risque de dépendance au fondateur documenté nécessitant un plan de rétention contractuel.<br><br><b>Thesis-fit</b><br>L'alignement avec l'angle conformité fiscale e-facture est fort sur les dimensions réglementaires (OEC + PDP) et de verrouillage client, validant le verdict 'MUST_ACQUIRE' de l'analyste Moat. L'alignement avec l'angle M&A est nul, confirmant que la valeur est dans la conformité et la digitalisation, pas dans le conseil transactionnel.<br><br><b>Verdict</b><br>🟡 CONSIDER (M&A) — Dossier stratégiquement cohérent avec la thèse Cerfrance sur l'angle e-facture, mais bloqué par l'absence de données financières unitaires (marge brute, burn multiple) et deux risques d'exécution confirmés (ICP Mismatch, Culture Clash) — mandater un audit financier des marges unitaires et un plan de rétention des fondateurs dans 45 jours, faute de quoi le dossier passe en rejet.</div></details><div class="cb-act" data-target="Dougs"><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/dougs-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">4</span><h3 class="cb-name">Effiz</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://effiz.fr" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://www.linkedin.com/in/geraud-ferrandier-98b3a243" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Éditeur SaaS français spécialisé dans l&#x27;automatisation de la saisie comptable pour cabinets et TPE, avec des intégrations API natives vers les principaux logiciels du marché (Cegid, MyUnisoft, Jefacture).</p><ul class="cb-why"><li>Son positionnement d&#x27;automatisation de bout en bout — de la capture des pièces jusqu&#x27;à la production comptable — répond directement à la pression de productivité que la généralisation de la facturation électronique va imposer à tous les cabinets de votre réseau.</li><li>Les intégrations API natives avec Cegid, MyUnisoft et Jefacture signifient qu&#x27;Effiz s&#x27;insère dans les environnements existants sans migration forcée : c&#x27;est un argument décisif pour convaincre des cabinets partenaires réticents au changement d&#x27;outil.</li><li>L&#x27;approche verticale d&#x27;Effiz — couvrir l&#x27;ensemble du flux de saisie plutôt qu&#x27;une seule étape — lui confère une stickiness client élevée : une fois intégré dans les processus d&#x27;un cabinet, il est difficile à déloger, ce qui protège la valeur de l&#x27;actif dans la durée.</li><li>Dans un marché où des acteurs mieux capitalisés comme Pennylane ou MyUnisoft exercent une pression concurrentielle forte, la fenêtre pour acquérir Effiz à des conditions raisonnables est probablement plus courte qu&#x27;il n&#x27;y paraît.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Effiz est la brique d&#x27;efficacité opérationnelle qui démultiplie la valeur de votre réseau de cabinets : en automatisant 80 % de la saisie, vous libérez du temps conseiller que vos équipes peuvent réinvestir dans l&#x27;accompagnement stratégique — votre vraie différenciation.</p><details class="cb-deep cb-deep-syn"><summary>🔗 Synergies avec votre groupe — le détail du mémo</summary><div class="cb-deep-body"><b>Automatisation de la saisie comptable à grande échelle (Hard Cost)</b>: Le déploiement du moteur d'import d'Effiz sur les portefeuilles clients de Cerfrance réduit le temps de saisie manuelle des collaborateurs comptables de 38 % en 12 mois.<br>Estimated financial impact: High<br>Time to value: Immediate (<6m)<br>Difficulty: Medium<br><b>Monétisation de la liasse fiscale premium en offre intégrée (Soft Revenue)</b>: La vente additionnelle du module de déclaration de TVA et d'IS d'Effiz Premium auprès des clients artisans et TPE de Cerfrance génère un revenu récurrent supplémentaire dès l'année 1.<br>Estimated financial impact: Medium<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Low<br><b>Mutualisation et rationalisation des serveurs souverains (Hard Cost)</b>: Le regroupement des infrastructures d'hébergement d'Effiz (Strasbourg/Roubaix) avec le cloud privé national de Cerfrance génère des économies d'échelle substantielles sur l'hébergement de données.<br>Estimated financial impact: Low<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Low<br><b>Verrouillage de la marque blanche régionale Cerfrance (Defensive Moat)</b>: L'utilisation de la marque blanche d'Effiz permet à chaque entité régionale de proposer un portail d'automatisation personnalisé aux couleurs de Cerfrance, neutralisant la menace des néo-comptables digitaux.<br>Estimated financial impact: Medium<br>Time to value: Immediate (<6m)<br>Difficulty: Low<br></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>Angle</b><br>Cette cible s'inscrit dans l'angle Logiciel SaaS de conformité fiscale et facturation électronique pour TPE et artisans — Effiz propose une solution d'automatisation comptable nativement intégrée via API (Cegid, MyUnisoft, Jefacture) qui correspond exactement au signal de déclenchement de cet angle. Aucun autre angle du fund_thesis ne s'applique : l'angle Conseil en croissance externe a été écarté (pas d'activité M&A) et l'angle Financement structuré agricole a été écarté (pas de services financiers dans le périmètre fonctionnel).<br><br><b>Market</b><br>Le marché de la comptabilité pour TPE et PME en France est en phase de consolidation technologique accélérée, portée par la réforme de la facturation électronique obligatoire qui force la digitalisation immédiate des flux de saisie. La concurrence est intense mais Effiz se différencie par une approche verticale de bout en bout (saisie + liasse fiscale). Le risque central est la banalisation de la technologie si les grands éditeurs l'intègrent nativement à coût nul.<br><br><b>Timing</b><br>La fenêtre d'opportunité est idéale et urgente : l'échéance réglementaire crée une pression immédiate que les cabinets indépendants ne peuvent pas résoudre seuls. Chaque mois d'inaction laisse les grands éditeurs verrouiller leurs écosystèmes API au détriment des solutions intermédiaires comme Effiz.<br><br><b>Company</b><br>Effiz élimine 80 % de la saisie manuelle et génère 38 % de gain de productivité documenté par les utilisateurs, avec des intégrations natives opérationnelles avec Cegid, MyUnisoft et Jefacture. Le développement est autofinancé (discipline budgétaire réelle) mais les données financières publiques sont absentes (ARR, churn, marges), rendant toute modélisation de valorisation M&A précise impossible à ce stade. La présence de frais d'installation uniques à 250 € HT soulève la question d'un modèle partiellement services déguisés.<br><br><b>Founder</b><br>Géraud Ferrandier est un fondateur missionnaire avec une connaissance acquise fine du domaine et des preuves d'exécution solides sur le plan produit. Son profil manque d'agressivité commerciale nationale et aucune déclaration publique n'existe sur une intention d'exit ou d'intégration dans une gouvernance coopérative normée.<br><br><b>Thesis-fit</b><br>Effiz correspond directement au signal de l'angle SaaS de conformité fiscale : modèle d'abonnement récurrent, intégration native experts-comptables, conformité e-facture, hébergement souverain français. Le verdict construire versus acquérir est sans ambiguïté — les connecteurs API certifiés ne peuvent pas être répliqués en interne en moins de 18 mois, justifiant l'acquisition avant la fermeture des fenêtres API.<br><br><b>Verdict</b><br>🟡 CONSIDER (M&A) — Acquisition à approfondir avant tout engagement : la logique stratégique est solide (synergies de 540 000 € dès l'année 2, fenêtre réglementaire urgente, verdict build-vs-buy favorable) mais deux risques d'exécution bloquent la recommandation ferme (pureté du modèle SaaS non vérifiée, scalabilité technique à 300 000 dossiers non documentée). Prochaine étape : audit financier détaillé + documentation des tests de charge, d'ici 30 jours sous peine de passage en rejet.</div></details><div class="cb-act" data-target="Effiz"><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/effiz-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">5</span><h3 class="cb-name">Amg Conseil</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://amg-conseils.fr" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://linkedin.com/in/matthieu-amblard-b514429a" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Cabinet d&#x27;expertise comptable et de conseil patrimonial pour TPE et PME, utilisant des outils cloud et portails collaboratifs intégrés dans les flux comptables de ses clients, avec une expertise documentée en transmission d&#x27;entreprise portée par son dirigeant Matthieu Amblard.</p><ul class="cb-why"><li>Sa maîtrise des outils cloud connectés en fait un vecteur de migration naturel pour vos clients TPE vers la conformité e-facture obligatoire : il a déjà fait le travail d&#x27;acculturation digitale que vous devriez sinon refaire client par client.</li><li>L&#x27;expertise en transmission d&#x27;entreprise et en ingénierie patrimoniale de son dirigeant est directement mobilisable sur vos mandats M&amp;A PME : vous n&#x27;achetez pas seulement un portefeuille clients, vous intégrez une compétence transactionnelle rare dans un cabinet de cette taille.</li><li>Un cabinet régional de ce profil constitue un nœud de distribution local protégé dans un marché très fragmenté : sa valeur réside précisément dans l&#x27;ancrage de confiance qu&#x27;il a construit avec ses clients, un actif que vous ne pouvez pas recréer par croissance organique.</li><li>La fenêtre de la réforme e-facture referme rapidement l&#x27;écart entre cabinets digitalisés et non digitalisés : les acteurs comme AMG Conseil, déjà équipés, vont attirer les clients des cabinets retardataires — une dynamique qui valorise l&#x27;actif aujourd&#x27;hui plus qu&#x27;elle ne le fera dans deux ans.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> AMG Conseil est le prototype du partenaire de déploiement territorial que vous cherchez : il vous apporte à la fois un ancrage local de confiance, une compétence en transmission d&#x27;entreprise et une infrastructure digitale déjà opérationnelle — trois atouts que vous auriez du mal à assembler séparément.</p><details class="cb-deep cb-deep-syn"><summary>🔗 Synergies avec votre groupe — le détail du mémo</summary><div class="cb-deep-body"><b>Accélération vers la facturation électronique par les connecteurs SaaS d'Amg Conseil (Structural)</b>: Cerfrance déploie les connecteurs de portail collaboratif d'Amg Conseil auprès de 5 % de sa clientèle régionale de TPE rurales pour débloquer l'automatisation de la facturation.<br>Estimated financial impact: High<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Medium<br><b>Cross-selling de l'offre de gestion de patrimoine d'Amg Conseil sur la base Cerfrance (Soft Revenue)</b>: Les conseillers de Cerfrance proposent l'expertise en structuration patrimoniale et levée de fonds d'Amg Conseil aux chefs d'entreprises rurales en phase de transmission de capital.<br>Estimated financial impact: Medium<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Low<br><b>Standardisation du back-office de saisie et de paie sous l'infrastructure nationale Cerfrance (Hard Cost)</b>: Cerfrance intègre la paie et la gestion RH (Ressources Humaines) des clients d'Amg Conseil dans ses centres régionaux de services partagés pour libérer du temps pour les experts d'Amg.<br>Estimated financial impact: Medium<br>Time to value: Immediate (<6m)<br>Difficulty: Medium<br><b>Création d'une barrière défensive régionale contre les fintechs comptables à Toulouse (Defensive Moat)</b>: Cerfrance et Amg Conseil lancent une offre hybride unifiée comptable + humaine sous la marque Cerfrance-Amg pour bloquer la progression des plateformes automatisées.<br>Estimated financial impact: Low<br>Time to value: Long-Term (>18m)<br>Difficulty: Medium<br></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>Angle</b><br>Cette cible s'inscrit dans l'angle Logiciel SaaS de conformité fiscale et facturation électronique pour TPE et artisans — AMG Conseil maîtrise des outils cloud connectés qui en font un vecteur de distribution pour la migration e-facture de Cerfrance, avec un taux de confirmation Q&A de 64% et deux synergies documentées à haute confiance. L'angle Conseil en croissance externe et M&A pour PME est secondaire avec un fit faible (40% de confirmation) ; l'angle Financement structuré agricole est spéculatif (33% de confirmation).<br><br><b>Market</b><br>Le marché de l'expertise comptable hybride pour les TPE et PME est fragmenté en France, structuré autour de cabinets régionaux non standardisés. La réforme de la facturation électronique obligatoire crée un catalyseur de migration de masse qui avantage les acteurs capables de distribuer des outils cloud via des réseaux de confiance locaux constitués sur des années.<br><br><b>Timing</b><br>Fenêtre qui se referme rapidement : la réforme réglementaire ouvre une opportunité que les néo-cabinets digitaux financés par capital-risque captent déjà. Cerfrance doit agir avant que Pennylane et Dougs ne verrouillent la base client artisans et startups toulousains.<br><br><b>Company</b><br>AMG Conseil est un cabinet d'expertise comptable fondé en 2015 à Toulouse, 11 à 15 collaborateurs, centaines de clients TPE/PME/startups en Occitanie, sans technologie propriétaire. Le modèle est un service professionnel à haute intensité humaine dont la croissance est corrélée à l'embauche, pas à une plateforme logicielle scalable. Les données financières ne sont pas publiées.<br><br><b>Founder</b><br>Matthieu Amblard, expert-comptable et commissaire aux comptes depuis 2015, profil de services traditionnels avec ancrage relationnel fort. La dépendance structurelle au fondateur est le risque principal de l'opération.<br><br><b>Thesis-fit</b><br>Fit modéré sur l'angle conformité fiscale et facturation électronique — AMG Conseil est un vecteur de distribution protégé pour les outils digitaux Cerfrance, mais n'est pas un éditeur SaaS propriétaire. La valeur acquise est un réseau de confiance et des connecteurs cloud opérationnels, non une plateforme scalable.<br><br><b>Verdict</b><br>🟡 CONSIDER (M&A) — La logique stratégique de consolidation territoriale pour la migration e-facture est solide et les synergies sont chiffrées à hauteur de 1 million d'euros annuels à partir de l'année 2, mais la dépendance structurelle au fondateur et l'absence de données financières publiées bloquent la conclusion. Condition : sécuriser contractuellement la rétention de Matthieu Amblard via un earn-out 36 mois et valider la compatibilité technique des outils cloud AMG avec l'infrastructure Cerfrance dans les 30 jours — sans résolution, le dossier bascule en rejet.</div></details><div class="cb-act" data-target="Amg Conseil"><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/amg-conseil-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div><div class="cb-teaser"><b>+ 1 autre cible identifiée</b> et à découvrir ensemble — je vous les présente de vive voix, avec le détail des rapprochements les plus prometteurs.</div></div></div><div class="cb-crit"><h2>Notre méthode de sélection</h2><p class="cb-crit-intro">Pour construire cette sélection, j&#x27;ai cadré la recherche autour de trois axes complémentaires qui me semblent refléter les priorités d&#x27;un réseau comme le vôtre à ce stade de son développement — à confirmer avec vous, car c&#x27;est votre stratégie qui doit guider, pas l&#x27;inverse. Chaque cible a été retenue parce qu&#x27;elle répond concrètement à au moins un de ces axes, avec des faits publics vérifiables à l&#x27;appui.</p><div class="cb-funnel"><div class="cb-fun"><b>758</b><span>sociétés passées au crible</span></div><div class="cb-fun"><b>82</b><span>retenues comme cibles sérieuses</span></div><div class="cb-fun"><b>6</b><span>mémos d&#x27;analyse générés</span></div><div class="cb-fun hl"><b>5</b><span>présentées ici en détail</span></div></div><details class="cb-ang" open><summary>Conformité fiscale numérique et facturation électronique</summary><div class="cb-ang-body"><p class="cb-ang-why">La réforme de la facturation électronique obligatoire crée une migration de masse irréversible pour l&#x27;ensemble des TPE françaises : les acteurs qui maîtrisent déjà les agréments réglementaires et les réseaux de distribution vers les cabinets comptables captent cette vague à moindre coût, tandis que les autres la subissent.</p><div class="cb-cols"><div class="cb-look"><h4>Ce que nous recherchons</h4><ul><li>Éditeurs ou cabinets disposant d&#x27;un agrément PDP ou PA délivré par l&#x27;administration fiscale française</li><li>Solutions intégrées nativement dans les workflows des cabinets comptables, avec des connecteurs API vers les logiciels de production comptable du marché</li><li>Base d&#x27;utilisateurs actifs ou de cabinets prescripteurs déjà constituée, représentant un réseau de distribution immédiatement exploitable</li><li>Modèle économique SaaS ou hybride permettant une montée en charge sans coût marginal prohibitif</li></ul></div><div class="cb-rule"><h4>Ce que nous écartons</h4><ul><li>Nous écartons les acteurs qui se positionnent uniquement sur la facturation sans couvrir la conformité fiscale amont : ils adressent un besoin partiel et seront rapidement absorbés ou marginalisés par des plateformes plus complètes</li><li>Nous écartons les solutions dont l&#x27;architecture technique nécessite une migration lourde des cabinets partenaires : le coût d&#x27;adoption annulerait le bénéfice du rapprochement</li></ul></div></div></div></details><details class="cb-ang"><summary>Conseil en transmission et accompagnement des opérations de croissance externe pour PME et exploitants</summary><div class="cb-ang-body"><p class="cb-ang-why">Le vieillissement des dirigeants de PME et d&#x27;exploitations agricoles génère un flux de transmissions structurellement croissant sur les dix prochaines années ; les acteurs qui combinent la proximité relationnelle avec les dirigeants et une capacité d&#x27;ingénierie transactionnelle réelle sont rares et difficiles à construire de zéro.</p><div class="cb-cols"><div class="cb-look"><h4>Ce que nous recherchons</h4><ul><li>Cabinets ou boutiques M&amp;A avec un ancrage régional fort et un accès documenté à des dossiers hors marché, notamment dans les filières agricoles et industrielles de proximité</li><li>Acteurs qui couvrent à la fois le conseil en valorisation et l&#x27;accompagnement post-transaction, pas seulement l&#x27;intermédiation</li><li>Présence d&#x27;une expertise patrimoniale ou d&#x27;ingénierie financière permettant de traiter les situations complexes de transmission familiale ou agricole</li><li>Taille compatible avec une intégration dans un réseau national sans perte de l&#x27;ancrage local qui fait leur valeur</li></ul></div><div class="cb-rule"><h4>Ce que nous écartons</h4><ul><li>Nous écartons les plateformes digitales de mise en relation acheteur-vendeur sans accompagnement conseil réel : elles adressent le volume mais pas la complexité des dossiers qui constituent votre cœur de marché</li><li>Nous écartons les acteurs dont l&#x27;activité est concentrée sur les transactions de taille intermédiaire ou grande : leur culture et leurs process sont inadaptés aux TPE et exploitations agricoles</li></ul></div></div></div></details><details class="cb-ang"><summary>Financement structuré et véhicules d&#x27;investissement dédiés aux filières agricoles et PME rurales</summary><div class="cb-ang-body"><p class="cb-ang-why">Les exploitants agricoles et les PME rurales ont des besoins de financement spécifiques — cycles longs, actifs atypiques, structures juridiques complexes — que les acteurs bancaires généralistes servent mal ; disposer d&#x27;une brique de financement propriétaire ou partenariale vous permet de couvrir l&#x27;intégralité du parcours du dirigeant sans le perdre au profit d&#x27;un tiers.</p><div class="cb-cols"><div class="cb-look"><h4>Ce que nous recherchons</h4><ul><li>Acteurs disposant d&#x27;une licence réglementaire (établissement de paiement, société de financement) ou d&#x27;un fonds d&#x27;</li></ul></div></div></div></details></div><div class="cb-rdv" id="rdv"><h2>Échangeons 20 minutes</h2><p>Choisissez un créneau ci-dessous, ou contactez-moi directement au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>. Je serais ravi d'affiner cette sélection avec votre retour.</p><script>(function(){try{var u=new URL(window.location.href);if(!u.searchParams.get('company_name')){u.searchParams.set('company_name',"Cerfrance");history.replaceState(null,'',u);}}catch(e){}})();</script><div style="width:100%;min-height:560px;" data-fillout-id="aDx8z7Hzksus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div><script src="https://server.fillout.com/embed/v1/"></script></div><p class="cb-note">Sélection établie par Proplace, votre Corporate Developer augmenté. Lien privé — merci de ne pas le diffuser.</p></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+})();</script><main class="cb-wrap"><div class="cb-grid"><div class="cb-left"><p class="cb-kicker">Croissance externe · un mémo d&#x27;analyse généré par dossier</p><h1 class="cb-h1">Quelques cibles qui pourraient intéresser Cerfrance</h1><div class="cb-hyp"><div class="cb-hyp-hdr">Notre hypothèse sur votre stratégie</div><p class="cb-hyp-sub">Toute la sélection ci-contre découle de cette hypothèse. Si elle est à côté, corrigez-la — je réaligne la recherche et vous renvoie une sélection corrigée.</p><p class="cb-intro">Je suis parti de l&#x27;hypothèse que vous cherchiez à consolider une plateforme nationale de conseil et d&#x27;outils numériques au service des TPE, des PME et des exploitants agricoles français, en combinant la proximité terrain de Cerfrance avec des capacités que le réseau ne peut pas construire seul à temps :</p><ul class="cb-points"><li>en intégrant des solutions SaaS de facturation électronique déjà agréées, pour ne pas laisser la réforme réglementaire de 2026 profiter à des acteurs extérieurs au réseau</li><li>en vous rapprochant de structures spécialisées dans la transmission et la croissance externe des PME régionales, pour transformer Cerfrance en interlocuteur de bout en bout sur les opérations de haut de bilan</li><li>en adossant ces deux axes à des capacités de financement structuré, afin de couvrir l&#x27;ensemble du cycle de vie d&#x27;un exploitant ou d&#x27;un dirigeant de PME, de la création jusqu&#x27;à la cession</li></ul><div class="cb-hyp-act"><button type="button" id="cb-hyp-ok">✓ C&#x27;est exactement ça</button><button type="button" id="cb-hyp-edit">✎ Corriger cette hypothèse</button></div><div id="cb-hyp-form" style="display:none"><textarea id="cb-hyp-txt" maxlength="1200"></textarea><button type="button" id="cb-hyp-send">Mettre à jour Stan avec ces corrections</button></div></div><p class="cb-cta-line">Je serais ravi d'affiner ces hypothèses avec vous afin de trouver des cibles qui vous intéressent vraiment — lors d'une rencontre, d'une visio (<a href="#rdv" class="cb-ilink">réserver un créneau</a>), par téléphone au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou par email <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>.</p><a class="cb-cta-top" href="#rdv">📅 Planifiez un rendez-vous stratégique</a></div><div class="cb-right cb-q"><p class="cb-sec-label">Les dossiers, par ordre de pertinence</p><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">1</span><h3 class="cb-name">Tiime</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://www.tiime.fr" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://fr.linkedin.com/in/maxdig" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Éditeur SaaS français de facturation et de compte professionnel tout-en-un, agréé Plateforme Agréée pour la réforme e-facture obligatoire, distribué via 3 000 cabinets comptables partenaires et utilisé par 300 000 entrepreneurs actifs.</p><ul class="cb-why"><li>Son statut de Plateforme Agréée (PA) pour la facturation électronique obligatoire lui confère une position réglementaire que ses concurrents non agréés ne peuvent pas répliquer rapidement — c&#x27;est une barrière d&#x27;entrée concrète, pas un avantage marketing.</li><li>Les 3 000 cabinets prescripteurs intégrés dans ses workflows représentent un réseau de distribution capillaire déjà constitué, qui recoupe directement la base de clients et partenaires de Cerfrance.</li><li>L&#x27;obtention d&#x27;une licence d&#x27;établissement de paiement en avril 2026 ouvre la monétisation des flux de trésorerie de ses utilisateurs — une brique financière complémentaire à l&#x27;activité de conseil.</li><li>Avec 300 000 utilisateurs actifs sur un parc estimé à plusieurs millions de TPE et indépendants français, la trajectoire de pénétration reste largement ouverte, notamment sur les segments agricoles et artisanaux historiquement peu digitalisés.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Tiime apporte la couche numérique agréée que Cerfrance ne peut pas construire seul avant l&#x27;échéance réglementaire, tout en s&#x27;appuyant sur un réseau de distribution en cabinets qui fait écho à votre propre maillage territorial.</p><details class="cb-deep cb-deep-syn"><summary>🔗 Synergies avec votre groupe — le détail du mémo</summary><div class="cb-deep-body"><b>Migration Numérique Massive du Portefeuille Cerfrance (Soft Revenue)</b>: Cerfrance déploie l'application Tiime en marque blanche auprès de sa base de 120 000 TPE clientes d'ici fin 2026 pour sécuriser leur facturation obligatoire.<br>Estimated financial impact: High<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Medium<br><b>Économie de Frais de Traitement Comptable par Robotisation (Hard Cost)</b>: Les équipes de production comptable de Cerfrance utilisent les algorithmes de réconciliation de Tiime pour éliminer la saisie manuelle de données.<br>Estimated financial impact: High<br>Time to value: Immediate (<6m)<br>Difficulty: Low<br><b>Monétisation de Services Financiers par l'Agrément de Paiement (Structural)</b>: Cerfrance intègre le compte professionnel et les cartes de paiement Mastercard de Tiime dans ses forfaits d'accompagnement comptable.<br>Estimated financial impact: High<br>Time to value: Long-Term (>18m)<br>Difficulty: High<br><b>Verrouillage Antitrust et Barrière Contre Qonto et Pennylane (Defensive Moat)</b>: L'intégration technique bidirectionnelle des écritures entre Tiime et Cerfrance empêche les néo-banques d'extraire la donnée client.<br>Estimated financial impact: Medium<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Medium<br></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>Angle</b><br>Tiime s'inscrit dans l'angle dominant 'Logiciel SaaS de conformité fiscale et facturation électronique pour TPE et artisans' — confirmé par le statut de Plateforme Agréée obligatoire 2026, les 300 000 utilisateurs actifs et les 3 000 cabinets prescripteurs intégrés dans les workflows comptables. Elle présente également un alignement fort sur l'angle 'Financement structuré agricole' via la licence d'établissement de paiement (avril 2026), et un alignement spéculatif sur l'angle 'Conseil M&A PME'.<br><br><b>Market</b><br>Le marché de la conformité fiscale numérique pour TPE françaises est en phase de consolidation accélérée par la réforme e-facture 2026, créant un appel d'air réglementaire sur 4 millions de structures. La menace principale vient de Pennylane et Qonto, mais le canal de distribution indirect de Tiime via 3 000 cabinets constitue une barrière difficile à répliquer à court terme.<br><br><b>Timing</b><br>Fenêtre parfaite et non répétable : l'obligation 2026 transforme l'adoption en nécessité légale, créant une dynamique d'équipement forcé favorable à Tiime. L'urgence est de finaliser avant que des concurrents capitalisés ne sécurisent des partenariats exclusifs avec les réseaux de cabinets.<br><br><b>Company</b><br>SaaS 100 % autofinancé, rentable, 300 000 utilisateurs actifs, note 4,8/5, absence de concentration client critique. Modèle freemium alimentant des abonnements payants (17,99-24,99 €/mois) avec une couche transactionnelle montante via la licence de paiement Mastercard obtenue en avril 2026. L'acquisition de Mihy en 2022 a réduit le temps de traitement des experts-comptables de 30 %.<br><br><b>Founder</b><br>Maxime Digue, fondateur missionnaire discipliné par l'autofinancement, a fait de l'expert-comptable le vecteur de distribution exclusif de Tiime — une barrière à l'entrée irréversible validée par 8 ans de croissance organique jusqu'à 300 000 utilisateurs sans capital externe.<br><br><b>Thesis-fit</b><br>Alignement maximal avec l'angle SaaS de conformité fiscale : Tiime remplit chaque critère du signal déclencheur. La combinaison avec la licence de paiement crée une opportunité de valeur supérieure qui justifie l'acquisition comme plateforme nationale de transformation pour Cerfrance.<br><br><b>Verdict</b><br>🟢 CALL (M&A) — Acquisition recommandée : Tiime est l'actif d'infrastructure le plus stratégique disponible sur le marché français pour Cerfrance en 2026, avec un taux de confirmation Q&A de 100 %, trois synergies à haute confiance représentant plus de 60 M€ d'impact EBITDA sur 5 ans, et un modèle 100 % autofinancé rentable dès le premier jour — sous réserve de validation en diligence du taux de conversion freemium et de la marge nette de la licence de paiement avant clôture.</div></details><div class="cb-act" data-target="Tiime"><button type="button" class="cb-yes" data-kind="yes" data-done="Bien noté ✓ — nous en parlerons.">👍 Oui, à creuser</button><button type="button" class="cb-no" data-kind="no" data-done="Bien noté ✓ — merci pour la précision.">👎 Pas pour nous</button><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/tiime-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">2</span><h3 class="cb-name">IRD M</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://ird-ma.fr" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://linkedin.com/in/paul-damestoy-4360011ab" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Cabinet de conseil en transmission et acquisition de PME basé en Hauts-de-France, adossé au Groupe IRD et à son fonds FE2T dédié aux PME et filières régionales, avec une activité documentée de mandats de cession et d&#x27;accompagnement stratégique de dirigeants.</p><ul class="cb-why"><li>L&#x27;articulation entre les mandats de transmission et le fonds FE2T crée un continuum rare : le même acteur accompagne le dirigeant dans la valorisation de son entreprise, la structuration du financement et la recherche d&#x27;acquéreur — exactement ce que Cerfrance ne couvre pas encore sur le haut de bilan.</li><li>Son ancrage régional en Hauts-de-France lui donne accès à des dossiers de cession traités hors des circuits parisiens, sur des PME industrielles et agricoles dont la taille correspond précisément à la clientèle historique de Cerfrance.</li><li>Le vieillissement des dirigeants de PME génère un flux de transmissions estimé à plusieurs centaines d&#x27;opérations par an dans la seule zone cible — un marché structurellement porteur sur les dix prochaines années.</li><li>La combinaison conseil M&amp;A + véhicule d&#x27;investissement régional permettrait à Cerfrance de verrouiller la relation client sur l&#x27;ensemble du cycle de transmission, de l&#x27;audit préalable jusqu&#x27;au financement de la reprise.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> IRD M comble précisément le chaînon manquant entre le conseil de gestion quotidien que Cerfrance maîtrise et l&#x27;ingénierie transactionnelle de haut de bilan que ses clients dirigeants réclament au moment de céder ou d&#x27;acquérir.</p><details class="cb-deep cb-deep-syn"><summary>🔗 Synergies avec votre groupe — le détail du mémo</summary><div class="cb-deep-body"><b>Offre Intégrée d'Expertise et Transmission (Soft Revenue)</b>: Le réseau de Cerfrance commercialise l'offre de conseil en fusions-acquisitions d'IRD M auprès de ses clients agriculteurs et PME en phase de départ à la retraite, générant de nouveaux honoraires de succès (success fees) sous 12 mois.<br>Estimated financial impact: High<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Medium<br><b>Standardisation et Internalisation du Support Juridique (Hard Cost)</b>: Cerfrance remplace ses prestataires juridiques externes spécialisés en droit des affaires par l'équipe juridique interne dédiée d'IRD M, diminuant immédiatement les frais généraux d'honoraires.<br>Estimated financial impact: Medium<br>Time to value: Immediate (<6m)<br>Difficulty: Low<br><b>Mutualisation Back-Office Comptable et IT (Hard Cost)</b>: Les fonctions administratives, comptables et les systèmes d'information d'IRD M sont migratés vers l'infrastructure partagée nationale de Cerfrance, réduisant les frais généraux et administratifs de la cible.<br>Estimated financial impact: Medium<br>Time to value: Immediate (<6m)<br>Difficulty: Medium<br></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>Angle</b><br>Cette cible s'inscrit dans l'angle Conseil en croissance externe et M&A pour PME et exploitants agricoles — l'articulation entre les mandats de transmission et le fonds IRD Invest crée un entonnoir de dealflow captif qui dépasse la simple boutique M&A. Elle présente également un alignement modéré avec l'angle Financement structuré agri-PME, exploitable en synergie directe via le fonds FE2T. L'angle SaaS e-facture ne correspond pas à ce profil (0 confirmation, pas d'édition logicielle native).<br><br><b>Market</b><br>Le marché de la transmission de PME et d'exploitations agricoles en France est en consolidation structurelle, avec un pic de cessions attendu entre 2026 et 2030. Les acteurs de proximité comme IRD M captent des dossiers off-market inaccessibles aux banques parisiennes. La menace principale vient des plateformes digitales de M&A small-cap qui automatisent les transactions inférieures à 3 millions d'euros à des prix très inférieurs aux success fees traditionnels.<br><br><b>Timing</b><br>Fenêtre d'opportunité idéale : convergence du pic démographique de cessions et de l'obligation légale de facturation électronique. Tout retard d'acquisition de 12 à 18 mois affaiblit la position de Cerfrance face aux réseaux bancaires coopératifs qui construisent des offres concurrentes.<br><br><b>Company</b><br>IRD M est une boutique M&A fondée en 1985 avec 130+ transactions finalisées, un ancrage territorial unique dans les Hauts-de-France et un accès organique au dealflow via l'écosystème IRD. Sa faiblesse principale est un modèle de revenus entièrement transactionnel (success fees cycliques) et l'absence totale de roadmap technologique propriétaire.<br><br><b>Founder</b><br>Équipe missionnaire (Damestoy, Pettenati) alignée sur la culture coopérative de Cerfrance, avec exécution prouvée. Risque de dépendance aux personnes clés élevé et documenté — clauses de rétention non négociables.<br><br><b>Thesis-fit</b><br>IRD M répond directement au signal déclencheur de l'angle M&A pour PME et exploitants agricoles, avec 3 synergies documentées et un potentiel de revenus additionnels de 3 M€ à l'année 3 via la prescription croisée Cerfrance.<br><br><b>Verdict</b><br>🟢 CALL (M&A) — Acquisition recommandée : IRD M comble la faiblesse structurelle de Cerfrance en matière de conseil de haut de bilan avec un actif relationnel irréplicable construit sur 40 ans, une fenêtre démographique validée et 3 synergies documentées ; condition principale : clauses de rétention de Damestoy et Pettenati sur 24 à 36 mois avant closing, et vérification en due diligence que la concentration du dealflow IRD n'excède pas 50% des honoraires récurrents.</div></details><div class="cb-act" data-target="IRD M"><button type="button" class="cb-yes" data-kind="yes" data-done="Bien noté ✓ — nous en parlerons.">👍 Oui, à creuser</button><button type="button" class="cb-no" data-kind="no" data-done="Bien noté ✓ — merci pour la précision.">👎 Pas pour nous</button><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/ird-m-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">3</span><h3 class="cb-name">Dougs</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://www.dougs.fr" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://fr.linkedin.com/in/patrick-maurice-dougs/en" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Cabinet d&#x27;expertise comptable en ligne agréé PDP et inscrit à l&#x27;Ordre des Experts-Comptables, opérant sur l&#x27;ensemble du territoire français avec un modèle hybride SaaS-expertise ciblant les TPE, indépendants et jeunes entreprises.</p><ul class="cb-why"><li>Son double agrément — PDP pour la dématérialisation fiscale et inscription OEC pour l&#x27;expertise comptable — lui permet d&#x27;internaliser la chaîne de conformité complète là où la plupart des acteurs délèguent une partie à des tiers, ce qui réduit structurellement le coût de service.</li><li>L&#x27;obligation de facturation électronique agit mécaniquement comme un accélérateur d&#x27;acquisition : chaque TPE non encore équipée d&#x27;un outil agréé devient une cible naturelle pour Dougs, sans effort commercial supplémentaire.</li><li>Son modèle de distribution 100 % digital lui permet d&#x27;adresser des segments géographiques — zones rurales, artisans isolés — que les cabinets traditionnels ne couvrent pas de façon rentable, et que Cerfrance connaît bien.</li><li>La base clients existante de Dougs représente un vivier de TPE déjà converties à la comptabilité numérique, immédiatement valorisable dans une logique de montée en gamme vers des services de conseil ou d&#x27;accompagnement patrimonial.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Dougs apporte la capacité de servir à grande échelle les TPE et indépendants numériquement actifs, en complément du maillage physique de Cerfrance sur les segments agricoles et ruraux moins digitalisés.</p><details class="cb-deep cb-deep-syn"><summary>🔗 Synergies avec votre groupe — le détail du mémo</summary><div class="cb-deep-body"><b>Migration Nationale vers la Facturation Electronique Intégrée (Soft Revenue)</b>: Cerfrance commercialise la solution de facturation électronique certifiée de Dougs auprès de ses 320 000 clients existants avant l'échéance réglementaire de 2026 pour sécuriser l'abonnement mensuel récurrent.<br>Estimated financial impact: High<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Medium<br><b>Optimisation Opérationnelle de la Saisie Comptable Locale (Hard Cost)</b>: Cerfrance déploie l'assistant de synchronisation bancaire de Dougs sur son réseau régional pour automatiser 60 % de la saisie comptable manuelle et réduire les charges de personnel de tenue de livre comptable.<br>Estimated financial impact: High<br>Time to value: Long-Term (>18m)<br>Difficulty: High<br><b>Canal d'Acquisition Automatisé des Créateurs d'Entreprises (Soft Revenue)</b>: Rediriger les créateurs d'entreprises à fort potentiel captés par le module de création gratuite de Dougs vers les conseillers en ingénierie financière et juridique de Cerfrance.<br>Estimated financial impact: Medium<br>Time to value: Immediate (<6m)<br>Difficulty: Low<br><b>Lancement d'une Offre Immobilière et Gestion SCI LMNP Nationale (Structural)</b>: Déployer la solution automatisée de comptabilité immobilière de Dougs (SCI, société civile immobilière / LMNP, loueur en meublé non professionnel) sur toute la clientèle patrimoniale de Cerfrance.<br>Estimated financial impact: Medium<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Low<br></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>Angle</b><br>Cette cible s'inscrit dans l'angle Logiciel SaaS de conformité fiscale et facturation électronique pour TPE et artisans, ancré par l'agrément PDP et l'inscription OEC de Dougs qui internalisent la chaîne de conformité complète là où les concurrents délèguent à des tiers. L'angle Conseil en croissance externe et M&A présente un alignement faible (zéro confirmation Q&A, absence d'offre M&A documentée). L'angle Financement structuré et véhicules d'investissement pour exploitants agricoles et PME rurales a été écarté : absence totale de services financiers structurés ou de fonds dédiés aux coopératives agricoles.<br><br><b>Market</b><br>Le marché de la comptabilité TPE française est en consolidation technologique accélérée, avec l'obligation e-facture 2026 comme catalyseur binaire non discrétionnaire. Dougs bénéficie d'un positionnement différencié grâce à sa double accréditation réglementaire (OEC + PDP), là où les pure-players SaaS non réglementés délèguent la validation à des cabinets tiers. Le marché adressable pour Cerfrance via Dougs est estimé à 300 000 TPE/agri non encore digitalisés.<br><br><b>Timing</b><br>La fenêtre est idéale en raison de l'échéance réglementaire 2026 et du risque de migration spontanée des clients TPE Cerfrance vers des concurrents PDP agréés si Cerfrance n'agit pas. Le timing impose un cycle de décision court (45 jours pour valider la due diligence financière).<br><br><b>Company</b><br>Dougs affiche 25 M€ d'ARR en 2024, 49 000 clients actifs, un fort verrouillage par les données historiques fiscales, et un modèle hybride 'Service-as-a-Software' dont la scalabilité dépend du recrutement d'experts-comptables dans un marché pénurique. Les données de marge brute et burn multiple sont absentes, bloquant la validation de la scalabilité opérationnelle. Les deux deal-killers identifiés (ICP Mismatch et Culture Clash) sont gérables par une structure d'acquisition préservant l'autonomie de Dougs.<br><br><b>Founder</b><br>Patrick Maurice est un fondateur missionnaire discipliné (8 ans de bootstrap), avec un risque de dépendance au fondateur documenté nécessitant un plan de rétention contractuel.<br><br><b>Thesis-fit</b><br>L'alignement avec l'angle conformité fiscale e-facture est fort sur les dimensions réglementaires (OEC + PDP) et de verrouillage client, validant le verdict 'MUST_ACQUIRE' de l'analyste Moat. L'alignement avec l'angle M&A est nul, confirmant que la valeur est dans la conformité et la digitalisation, pas dans le conseil transactionnel.<br><br><b>Verdict</b><br>🟡 CONSIDER (M&A) — Dossier stratégiquement cohérent avec la thèse Cerfrance sur l'angle e-facture, mais bloqué par l'absence de données financières unitaires (marge brute, burn multiple) et deux risques d'exécution confirmés (ICP Mismatch, Culture Clash) — mandater un audit financier des marges unitaires et un plan de rétention des fondateurs dans 45 jours, faute de quoi le dossier passe en rejet.</div></details><div class="cb-act" data-target="Dougs"><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/dougs-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">4</span><h3 class="cb-name">Blendy</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://blendy.co" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://linkedin.com/in/noham-layani-%F0%9F%9A%80-49988639" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Cabinet de comptabilité et de DAF externalisé positionné sur les PME technologiques et les scale-ups, intégré nativement avec Pennylane et QuickBooks, et qualifié Opérateur de Dématérialisation dans le cadre de la réforme e-facture.</p><ul class="cb-why"><li>Son positionnement de DAF externalisé auprès de PME en croissance rapide lui confère une relation de confiance sur le haut de bilan — budgets, levées de fonds, structuration financière — que les cabinets comptables classiques n&#x27;ont pas.</li><li>L&#x27;intégration native avec les principales plateformes comptables du marché (Pennylane, QuickBooks) en fait un point de passage naturel pour les flux de données financières des entreprises qu&#x27;il accompagne, ce qui facilite considérablement l&#x27;audit préalable à toute opération de rapprochement.</li><li>Sa qualification d&#x27;Opérateur de Dématérialisation le positionne sur la réforme e-facture sans avoir à construire une infrastructure agréée from scratch — un actif réglementaire concret.</li><li>Son profil de clientèle — PME technologiques et scale-ups — est complémentaire de la base agricole et artisanale de Cerfrance, et ouvre un segment de croissance que le réseau n&#x27;adresse pas aujourd&#x27;hui.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Blendy permet à Cerfrance d&#x27;accéder à un segment de PME technologiques à forte valeur ajoutée, tout en apportant une compétence d&#x27;accompagnement transactionnel et de DAF externalisé directement utile dans une logique de conseil élargi.</p><details class="cb-deep cb-deep-syn"><summary>🔗 Synergies avec votre groupe — le détail du mémo</summary><div class="cb-deep-body"><b>Standardisation et Automatisation de la Stack Technologique (Hard Cost)</b>: Le déploiement des connecteurs technologiques de Blendy sur le portefeuille clients PME de Cerfrance permet de réduire le temps de saisie manuelle d'ici 12 mois.<br>Estimated financial impact: High<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Medium<br><b>Lancement de l'Offre de DAF Externalisé Fractionné (Soft Revenue)</b>: Cerfrance commercialise l'offre haut de gamme de DAF externalisé de Blendy auprès de ses 1000 plus grandes PME clientes.<br>Estimated financial impact: High<br>Time to value: Immediate (<6m)<br>Difficulty: Low<br><b>Corridor d'Accompagnement Spatial et International (Structural)</b>: Exploitation des bureaux physiques de Blendy à Montréal et Miami pour proposer une offre d'exportation clé en main aux clients de Cerfrance.<br>Estimated financial impact: Medium<br>Time to value: Long-Term (>18m)<br>Difficulty: High<br><b>Verrouillage Client par Barrière de Sortie Technologique (Defensive Moat)</b>: La migration des données clients historiques vers les tableaux de bord temps réel de Blendy crée des coûts de transfert élevés rendant le churn impossible.<br>Estimated financial impact: Medium<br>Time to value: Long-Term (>18m)<br>Difficulty: High<br></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>Angle</b><br>Cette cible s'inscrit dans l'angle Logiciel SaaS de conformité fiscale et facturation électronique pour TPE et artisans — son intégration native avec Pennylane et QuickBooks et son positionnement d'Opérateur de Dématérialisation confirment directement le signal déclencheur. L'angle Conseil en croissance externe et M&A pour PME présente un alignement modéré via le DAF externalisé ; l'angle Financement structuré agricole est en alignement faible car aucune compétence sur les exploitations rurales n'est documentée.<br><br><b>Market</b><br>Le marché de l'expertise comptable digitale pour PME tech est en consolidation, tiré par la réforme e-facture obligatoire qui crée une demande contrainte et non discrétionnaire avant 2026. Les acteurs multi-juridictionnels bénéficient d'un avantage de position difficile à répliquer par des pure-players SaaS standardisés. La commoditisation IA représente le risque structurel moyen terme le plus sérieux.<br><br><b>Timing</b><br>La fenêtre d'acquisition est ouverte maintenant, portée par l'échéance réglementaire et la position de premier entrant de Blendy comme Opérateur de Dématérialisation natif. Attendre renchérirait le prix et réduirait la fenêtre d'intégration.<br><br><b>Company</b><br>Blendy est la division digitale de Cogesten, 15 à 20 salariés, hubs Paris/Montréal/Miami, plus de 150 clients dirigeants de PME tech. Modèle hybride abonnements récurrents plus DAF externalisé fractionné, scalabilité limitée par la composante humaine, données financières précises non publiées.<br><br><b>Founder</b><br>Noham Layani est un fondateur missionnaire avec 12 ans d'expérience, preuve d'exécution rapide (deux hubs internationaux en moins de deux ans), mais forte dépendance au fondateur confirmée comme deal-killer potentiel.<br><br><b>Thesis-fit</b><br>Alignement modéré sur l'angle numérique — les conditions du signal déclencheur sont confirmées (abonnements récurrents, conformité e-facture, intégration Cerfrance possible), mais l'inadéquation totale avec le segment agricole limite la valeur stratégique au seul périmètre PME tech.<br><br><b>Verdict</b><br>🟡 CONSIDER (M&A) — Blendy offre un vecteur de digitalisation immédiat et une expertise cross-border non réplicable en interne, avec 3,42 millions d'euros de synergies annuelles modélisées en année 3 ; le dossier est bloqué par l'absence de données financières (marges brutes, CA précis), le risque de dépendance au fondateur et l'inadéquation structurelle avec le segment agricole. Conduire un audit P&L complet (services vs abonnements récurrents, marges par hub) et sécuriser une clause de rétention fondateur d'ici le 31 août 2026 — sans résolution, le dossier passe en rejet.</div></details><div class="cb-act" data-target="Blendy"><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/blendy-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">5</span><h3 class="cb-name">Effiz</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://effiz.fr" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://www.linkedin.com/in/geraud-ferrandier-98b3a243" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Éditeur de logiciel d&#x27;automatisation comptable basé en France, intégré via API avec Cegid, MyUnisoft et Jefacture, ciblant les cabinets comptables indépendants et les TPE qui cherchent à réduire la charge de saisie manuelle.</p><ul class="cb-why"><li>Son intégration native avec Cegid, MyUnisoft et Jefacture — trois des environnements les plus répandus dans les cabinets comptables de proximité — lui permet de s&#x27;insérer dans des workflows existants sans imposer de migration, ce qui accélère considérablement l&#x27;adoption.</li><li>L&#x27;automatisation de 80 % de la saisie comptable avec un gain de productivité annoncé de 38 % représente un argument opérationnel concret pour les cabinets Cerfrance eux-mêmes, indépendamment de toute logique de distribution externe.</li><li>La généralisation imminente de la facturation électronique obligatoire crée une fenêtre d&#x27;opportunité précise : les cabinets qui n&#x27;ont pas encore modernisé leurs flux de saisie sont sous pression immédiate, et Effiz répond à ce besoin sans nécessiter de refonte complète du système d&#x27;information.</li><li>Son positionnement vertical de bout en bout — de la saisie à la conformité — le différencie des acteurs mieux capitalisés qui adressent le marché de façon plus horizontale.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Effiz est d&#x27;abord un outil d&#x27;efficacité opérationnelle pour le réseau Cerfrance lui-même, avant d&#x27;être une offre à distribuer aux clients — une cible dont la valeur se lit à deux niveaux simultanément.</p><details class="cb-deep cb-deep-syn"><summary>🔗 Synergies avec votre groupe — le détail du mémo</summary><div class="cb-deep-body"><b>Automatisation de la saisie comptable à grande échelle (Hard Cost)</b>: Le déploiement du moteur d'import d'Effiz sur les portefeuilles clients de Cerfrance réduit le temps de saisie manuelle des collaborateurs comptables de 38 % en 12 mois.<br>Estimated financial impact: High<br>Time to value: Immediate (<6m)<br>Difficulty: Medium<br><b>Monétisation de la liasse fiscale premium en offre intégrée (Soft Revenue)</b>: La vente additionnelle du module de déclaration de TVA et d'IS d'Effiz Premium auprès des clients artisans et TPE de Cerfrance génère un revenu récurrent supplémentaire dès l'année 1.<br>Estimated financial impact: Medium<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Low<br><b>Mutualisation et rationalisation des serveurs souverains (Hard Cost)</b>: Le regroupement des infrastructures d'hébergement d'Effiz (Strasbourg/Roubaix) avec le cloud privé national de Cerfrance génère des économies d'échelle substantielles sur l'hébergement de données.<br>Estimated financial impact: Low<br>Time to value: Mid-Term (6-18m)<br>Difficulty: Low<br><b>Verrouillage de la marque blanche régionale Cerfrance (Defensive Moat)</b>: L'utilisation de la marque blanche d'Effiz permet à chaque entité régionale de proposer un portail d'automatisation personnalisé aux couleurs de Cerfrance, neutralisant la menace des néo-comptables digitaux.<br>Estimated financial impact: Medium<br>Time to value: Immediate (<6m)<br>Difficulty: Low<br></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>Angle</b><br>Cette cible s'inscrit dans l'angle Logiciel SaaS de conformité fiscale et facturation électronique pour TPE et artisans — Effiz propose une solution d'automatisation comptable nativement intégrée via API (Cegid, MyUnisoft, Jefacture) qui correspond exactement au signal de déclenchement de cet angle. Aucun autre angle du fund_thesis ne s'applique : l'angle Conseil en croissance externe a été écarté (pas d'activité M&A) et l'angle Financement structuré agricole a été écarté (pas de services financiers dans le périmètre fonctionnel).<br><br><b>Market</b><br>Le marché de la comptabilité pour TPE et PME en France est en phase de consolidation technologique accélérée, portée par la réforme de la facturation électronique obligatoire qui force la digitalisation immédiate des flux de saisie. La concurrence est intense mais Effiz se différencie par une approche verticale de bout en bout (saisie + liasse fiscale). Le risque central est la banalisation de la technologie si les grands éditeurs l'intègrent nativement à coût nul.<br><br><b>Timing</b><br>La fenêtre d'opportunité est idéale et urgente : l'échéance réglementaire crée une pression immédiate que les cabinets indépendants ne peuvent pas résoudre seuls. Chaque mois d'inaction laisse les grands éditeurs verrouiller leurs écosystèmes API au détriment des solutions intermédiaires comme Effiz.<br><br><b>Company</b><br>Effiz élimine 80 % de la saisie manuelle et génère 38 % de gain de productivité documenté par les utilisateurs, avec des intégrations natives opérationnelles avec Cegid, MyUnisoft et Jefacture. Le développement est autofinancé (discipline budgétaire réelle) mais les données financières publiques sont absentes (ARR, churn, marges), rendant toute modélisation de valorisation M&A précise impossible à ce stade. La présence de frais d'installation uniques à 250 € HT soulève la question d'un modèle partiellement services déguisés.<br><br><b>Founder</b><br>Géraud Ferrandier est un fondateur missionnaire avec une connaissance acquise fine du domaine et des preuves d'exécution solides sur le plan produit. Son profil manque d'agressivité commerciale nationale et aucune déclaration publique n'existe sur une intention d'exit ou d'intégration dans une gouvernance coopérative normée.<br><br><b>Thesis-fit</b><br>Effiz correspond directement au signal de l'angle SaaS de conformité fiscale : modèle d'abonnement récurrent, intégration native experts-comptables, conformité e-facture, hébergement souverain français. Le verdict construire versus acquérir est sans ambiguïté — les connecteurs API certifiés ne peuvent pas être répliqués en interne en moins de 18 mois, justifiant l'acquisition avant la fermeture des fenêtres API.<br><br><b>Verdict</b><br>🟡 CONSIDER (M&A) — Acquisition à approfondir avant tout engagement : la logique stratégique est solide (synergies de 540 000 € dès l'année 2, fenêtre réglementaire urgente, verdict build-vs-buy favorable) mais deux risques d'exécution bloquent la recommandation ferme (pureté du modèle SaaS non vérifiée, scalabilité technique à 300 000 dossiers non documentée). Prochaine étape : audit financier détaillé + documentation des tests de charge, d'ici 30 jours sous peine de passage en rejet.</div></details><div class="cb-act" data-target="Effiz"><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/effiz-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div><div class="cb-teaser"><b>+ 2 autres cibles identifiées</b> et à découvrir ensemble — je vous les présente de vive voix, avec le détail des rapprochements les plus prometteurs.</div></div></div><div class="cb-crit"><h2>Notre méthode de sélection</h2><p class="cb-crit-intro">Pour construire cette sélection, j&#x27;ai cadré la recherche autour de trois axes complémentaires qui me semblent correspondre à ce que Cerfrance cherche à construire — à confirmer avec vous. Chaque axe a ses propres critères d&#x27;inclusion et d&#x27;exclusion, que je détaille ci-dessous pour que vous puissiez juger de la rigueur du filtre appliqué.</p><div class="cb-funnel"><div class="cb-fun"><b>892</b><span>sociétés passées au crible</span></div><div class="cb-fun"><b>86</b><span>retenues comme cibles sérieuses</span></div><div class="cb-fun"><b>7</b><span>mémos d&#x27;analyse générés</span></div><div class="cb-fun hl"><b>5</b><span>présentées ici en détail</span></div></div><details class="cb-ang" open><summary>Numérisation et conformité fiscale pour TPE et artisans</summary><div class="cb-ang-body"><p class="cb-ang-why">La réforme de la facturation électronique obligatoire crée une rupture réglementaire irréversible qui redistribue les cartes entre acteurs agréés et non agréés — Cerfrance doit être du bon côté de cette ligne avant l&#x27;échéance.</p><div class="cb-cols"><div class="cb-look"><h4>Ce que nous recherchons</h4><ul><li>Éditeurs ou opérateurs disposant d&#x27;un agrément PDP ou PA délivré par l&#x27;administration fiscale française</li><li>Solutions intégrées dans les workflows de cabinets comptables existants, avec une base d&#x27;utilisateurs actifs documentée</li><li>Modèle de distribution s&#x27;appuyant sur des réseaux de prescripteurs (cabinets, experts-comptables, associations professionnelles)</li><li>Couverture des segments TPE, artisans et indépendants, cohérente avec la clientèle historique de Cerfrance</li></ul></div><div class="cb-rule"><h4>Ce que nous écartons</h4><ul><li>Nous écartons les éditeurs généralistes de comptabilité d&#x27;entreprise dont le cœur de cible est la PME de taille intermédiaire ou le grand compte, sans ancrage sur les très petites structures</li><li>Nous écartons les solutions sans agrément réglementaire obtenu ou en cours d&#x27;obtention, dont la conformité 2026 reste incertaine</li></ul></div></div></div></details><details class="cb-ang"><summary>Conseil en transmission et croissance externe pour PME et exploitants</summary><div class="cb-ang-body"><p class="cb-ang-why">Le vieillissement des dirigeants de PME et d&#x27;exploitations agricoles génère un flux de transmissions structurel que Cerfrance accompagne aujourd&#x27;hui jusqu&#x27;à la porte de la transaction — sans pouvoir franchir le seuil du conseil transactionnel.</p><div class="cb-cols"><div class="cb-look"><h4>Ce que nous recherchons</h4><ul><li>Cabinets ou boutiques M&amp;A avec une activité documentée de mandats de cession et d&#x27;acquisition sur des PME de moins de 20 M€ de chiffre d&#x27;affaires</li><li>Acteurs disposant d&#x27;un ancrage régional fort, avec accès à des dossiers traités hors des circuits bancaires parisiens</li><li>Structures ayant développé une compétence sur les filières agricoles, agroalimentaires ou rurales, en complément du conseil industriel classique</li><li>Présence d&#x27;un véhicule de financement propre ou d&#x27;un partenariat structuré avec un fonds régional, permettant de couvrir le financement de la reprise</li></ul></div><div class="cb-rule"><h4>Ce que nous écartons</h4><ul><li>Nous écartons les banques d&#x27;affaires dont le ticket minimum d&#x27;intervention dépasse la taille des entreprises clientes de Cerfrance</li><li>Nous écartons les plateformes digitales de mise en relation acheteur-vendeur sans accompagnement conseil structuré, dont le modèle ne crée pas de relation de confiance durable avec le dirigeant</li></ul></div></div></div></details><details class="cb-ang"><summary>Financement structuré et accompagnement des exploitants agricoles et PME rurales</summary><div class="cb-ang-body"><p class="cb-ang-why">Les exploitants agricoles et les PME rurales ont des besoins de financement spécifiques — transmission d&#x27;exploitation, investissement foncier, structuration de coopérative — que les circuits bancaires classiques couvrent mal et que Cerfrance est idéalement placé pour orchestrer.</p><div class="cb-cols"><div class="cb-look"><h4>Ce que nous recherchons</h4><ul><li>Acteurs disposant d&#x27;une licence d&#x27;établissement de paiement, d&#x27;un agrément de financement ou d&#x27;un véhicule d&#x27;investissement dédié aux PME et exploitations agricoles</li><li>Structures ayant une expérience documentée sur les montages de financement de transmission ou de croissance externe en milieu rural</li><li>Capacité à opérer sur des géographies peu denses, avec un modèle économique viable hors des grandes métropoles</li></ul></div><div class="cb-rule"><h4>Ce que nous écartons</h4><ul><li>Nous écartons les acteurs du financement dont l&#x27;offre est exclusivement orientée vers les start-ups technologiques ou les PME urbaines, sans compétence sectorielle agricole</li><li>Nous écartons les structures dont le financement repose intégralement sur des subventions publiques sans modèle de revenus propres, ce qui fragiliserait la pérennité de la relation</li></ul></div></div></div></details></div><div class="cb-rdv" id="rdv"><h2>Échangeons 20 minutes</h2><p>Choisissez un créneau ci-dessous, ou contactez-moi directement au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>. Je serais ravi d'affiner cette sélection avec votre retour.</p><script>(function(){try{var u=new URL(window.location.href);if(!u.searchParams.get('company_name')){u.searchParams.set('company_name',"Cerfrance");history.replaceState(null,'',u);}}catch(e){}})();</script><div style="width:100%;min-height:560px;" data-fillout-id="aDx8z7Hzksus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div><script src="https://server.fillout.com/embed/v1/"></script></div><p class="cb-note">Sélection établie par Proplace, votre Corporate Developer augmenté. Lien privé — merci de ne pas le diffuser.</p></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -813,17 +1483,18 @@ function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();</script><script>(function(){
-var U="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/react",RD="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/reactions",T="GS9ECYCF9tQxTzAL",TC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/thesis-chat";
+var U="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/react",RD="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/reactions",T="GS9ECYCF9tQxTzAL",TC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/thesis-chat",SIMS="";
+var SIMU="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/similar",SIMDK="",SIMDO="",SIMNONE="",SIMERR="Envoi impossible \u2014 r\u00e9essayez dans un instant.",VK="",VO="";
 // Identité du destinataire quand le lien a été envoyé avec &email=… (facultatif) :
 // permet de savoir QUEL dirigeant a réagi si le même lien part à plusieurs personnes.
 var W="";try{W=(new URL(window.location.href)).searchParams.get("email")||"";}catch(e){}
 // Mode PRÉVISUALISATION (?preview=1) : le commercial teste la page sans qu'AUCUN
 // clic ne soit compté ni stocké — impossible de consommer les boutons du CEO.
 var PV=false;try{PV=!!(new URL(window.location.href)).searchParams.get("preview");}catch(e){}
-function send(kind,target,message,cb){
+function send(kind,target,message,cb,extra){
   if(PV){cb(true,{});return;}
   try{fetch(U,{method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({token:T,kind:kind,target:target||"",message:message||"",who:W})})
+    body:JSON.stringify(Object.assign({token:T,kind:kind,target:target||"",message:message||"",who:W},extra||{}))})
     .then(function(r){
       if(!r.ok){cb(false,null);return;}
       r.json().then(function(j){cb(true,j||{});},function(){cb(true,{});});
@@ -887,6 +1558,15 @@ function applyDecision(row,kind,noteDone){
   if(noteDone){row.appendChild(doneLine("Merci, bien not\u00e9 \u2713 \u2014 \u00e7a nourrit la mise \u00e0 jour de votre strat\u00e9gie."));}
   else{addWhyForm(row,row.getAttribute("data-target"));}
 }
+// v23 · jugement LÉGER : on ne retire plus les pouces et on n'ouvre plus de
+// « pourquoi ? ». Le pouce choisi passe gris-enfoncé (grisage fait par le
+// persisteur paintDec, par nom), on ajoute juste la note « pris en compte ✓ ».
+function applyDecisionLight(row,kind){
+  var b=btnIn(row,kind);var txt=b?(b.getAttribute("data-done")||""):"";
+  setBusy(row,false);
+  Array.prototype.forEach.call(row.querySelectorAll("button"),function(x){x.style.opacity="";});
+  if(!row.querySelector(".cb-act-done"))row.appendChild(doneLine(txt));
+}
 function applyMemo(row,detailedDone){
   var b=btnIn(row,"memo_request");if(!b)return;
   var mu=b.getAttribute("data-memo-url")||"",mo=b.getAttribute("data-memo-open")||"",txt=b.getAttribute("data-done")||"";
@@ -901,6 +1581,50 @@ function applySimple(row,kind){
   var b=btnIn(row,kind);if(!b)return;var txt=b.getAttribute("data-done")||"";
   b.parentNode.removeChild(b);setBusy(row,false);row.appendChild(doneLine(txt));
 }
+// « Chercher des similaires » EN LIVE (v29) : Exa trouve les jumelles, Stan les
+// crible, et on AFFICHE les sociétés trouvées (retenu/écarté + raison) dans la
+// mini-fenêtre — elles entrent dans la liste au prochain rafraîchissement. Petite
+// croix pour fermer (pas un gros bouton) ; on ATTEND vraiment le résultat.
+function applySimilar(row){
+  var target=row.getAttribute("data-target")||"";
+  var b=btnIn(row,"similar_request");if(b)b.parentNode.removeChild(b);setBusy(row,false);
+  var box=document.createElement("div");box.className="cb-simbox";
+  var x=document.createElement("button");x.type="button";x.className="cb-srch-x";x.setAttribute("aria-label","\u00d7");x.textContent="\u00d7";
+  x.addEventListener("click",function(){if(box.parentNode)box.parentNode.removeChild(box);});
+  box.appendChild(x);
+  var head=document.createElement("p");head.className="cb-sim-head";
+  var sp=document.createElement("span");sp.className="cb-spin";head.appendChild(sp);
+  head.appendChild(document.createTextNode(" "+SIMS));box.appendChild(head);
+  row.appendChild(box);
+  var W2="";try{W2=(new URL(window.location.href)).searchParams.get("email")||"";}catch(e){}
+  var PV2=false;try{PV2=!!(new URL(window.location.href)).searchParams.get("preview");}catch(e){}
+  function fin(msg){head.innerHTML="";head.appendChild(document.createTextNode(msg));}
+  if(PV2){setTimeout(function(){fin(SIMNONE);},1500);return;}
+  fetch(SIMU,{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({token:T,target:target,who:W2})})
+  .then(function(r){return r.json();})
+  .then(function(j){
+    if(!j||!j.ok){fin(SIMERR);return;}
+    var res=(j.results||[]);
+    if(!res.length){fin(SIMNONE);return;}
+    fin("");head.style.display="none";
+    var n=0;res.forEach(function(o){
+      var kept=(o.verdict==="kept");n++;
+      var it=document.createElement("div");it.className="cb-sim-it";
+      var pill=document.createElement("span");pill.className="cb-verdict cb-verdict-lg";
+      pill.style.background=kept?"#047857":"#b91c1c";pill.textContent=(kept?VK:VO).toUpperCase();
+      var nm=document.createElement("b");nm.textContent=o.company;
+      it.appendChild(pill);it.appendChild(nm);
+      if(o.reason){var rp=document.createElement("p");rp.className="cb-sim-r";rp.textContent=o.reason;it.appendChild(rp);}
+      box.appendChild(it);
+    });
+    var foot=document.createElement("p");foot.className="cb-sim-foot";
+    var nk=res.filter(function(o){return o.verdict==="kept";}).length;
+    foot.textContent=(nk?SIMDK:SIMDO).replace("{n}",String(n));
+    box.appendChild(foot);
+  })
+  .catch(function(){fin(SIMERR);});
+}
 function hypApplied(kind){
   var f=document.getElementById("cb-hyp-form");if(f&&f.parentNode)f.parentNode.removeChild(f);
   var w=document.querySelector(".cb-hyp-act");
@@ -910,13 +1634,20 @@ Array.prototype.forEach.call(document.querySelectorAll(".cb-act button"),functio
   b.addEventListener("click",function(){
     var row=b.closest(".cb-act");if(!row)return;
     var k=b.getAttribute("data-kind");
+    // « Similaires » gère son PROPRE appel live (/cibles/similar) — pas de double-record.
+    if(k==="similar_request"){applySimilar(row);return;}
+    // Secteur + verdict de la société (portés par la ligne) → agrégation des avis.
+    var card=b.closest("[data-name]");
+    var extra=card?{sector:(card.getAttribute("data-sector")||""),status:(card.getAttribute("data-status")||"")}:{};
     setBusy(row,true);
     send(k,row.getAttribute("data-target"),"",function(ok){
       if(!ok){setBusy(row,false);showErr(row);return;}
-      if(k==="yes"||k==="no"){applyDecision(row,k,false);}
+      if(k==="yes"||k==="no"){applyDecisionLight(row,k);
+        // Après un 👎, re-vérifie si un MOTIF émerge (proposition de correction thèse).
+        if(k==="no"&&window.__cbCheckAvis)setTimeout(window.__cbCheckAvis,600);}
       else if(k==="memo_request"){applyMemo(row,false);}
       else{applySimple(row,k);}
-    });
+    },extra);
   });
 });
 // ── Hypothèse de stratégie (carte en tête) : valider ou corriger ──
@@ -1019,4 +1750,4 @@ try{
   var seen=false;try{seen=!!localStorage.getItem(vk);}catch(e){}
   if(!seen&&!PV){send("view","","",function(ok){if(ok){try{localStorage.setItem(vk,"1");}catch(e){}}});}
 }catch(e){}
-})();</script><!-- v:2DgUreH2Kj --></body></html>
+})();</script><!-- v:3ZTnABZet3 --></body></html>
