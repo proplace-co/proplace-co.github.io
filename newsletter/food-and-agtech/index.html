@@ -212,7 +212,14 @@ border-top:1px solid var(--line);align-items:baseline}
 .opc>a:hover{color:var(--accent-dk)}
 .opm{font-size:13px;color:var(--mid);margin-top:5px}
 .optag{display:inline-block;font-size:11px;font-weight:600;color:var(--sub);background:var(--bg);
-border:1px solid var(--line);border-radius:5px;padding:1px 7px;margin:6px 5px 0 0}
+border:1px solid var(--line);border-radius:5px;padding:1px 7px;margin:6px 5px 0 0;cursor:pointer;
+font-family:inherit;line-height:1.5;transition:background .12s,color .12s,border-color .12s}
+.optag:hover{border-color:#3c4c60;color:#0f1f33}
+.optag.on{background:#3c4c60;color:#fff;border-color:#3c4c60}
+/* Barre des tags actifs (filtre par tag, façon /cibles) : injectée par le board JS sous les compteurs. */
+.tm-tagbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px;font-size:12.5px;color:#56697e;font-weight:600}
+.tm-tagchip{font-size:12px;font-weight:700;border:none;background:#3c4c60;color:#fff;border-radius:999px;padding:4px 11px;cursor:pointer;font-family:inherit}
+.tm-tagchip:hover{background:#2b3a4d}
 @media(max-width:560px){.oplist li{grid-template-columns:1fr;gap:4px}
 .opd{order:-1;color:var(--accent-dk)}}
 
@@ -280,14 +287,18 @@ box-shadow:0 10px 26px rgba(10,10,10,.28);pointer-events:none;transform:translat
    Collée sous le header. Séparée du tableau par un simple trait — zéro relief, zéro mur de chips. */
 .tm-bar{position:sticky;top:60px;z-index:30;background:var(--white);padding:11px 0 12px;border-bottom:1px solid var(--line);margin:0 0 6px}
 .tm-bar-in{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
-.tm-seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
-.tm-seg button{font-size:12.5px;font-weight:500;border:none;background:#fff;color:var(--sub);padding:6px 13px;cursor:pointer;transition:background .12s}
-.tm-seg button:hover{background:var(--bg)}
-.tm-seg button.on{background:var(--accent);color:#06281a;font-weight:700}
-.tm-search{flex:0 1 190px;min-width:120px;font-size:13px;padding:7px 13px;border:1px solid var(--line);border-radius:999px;font-family:inherit;background:#fff}
-.tm-morebtn{font-size:12.5px;font-weight:500;border:1px solid var(--line);background:#fff;color:var(--sub);border-radius:999px;padding:6px 14px;cursor:pointer;white-space:nowrap;transition:all .12s}
-.tm-morebtn:hover{border-color:var(--accent)}
-.tm-morebtn.on{background:var(--bg);color:var(--ink);border-color:var(--accent);font-weight:700}
+/* Contrôles de la barre de filtres UNIFIÉS au style /cibles (piste gris clair, pilule active
+   ardoise) — segments (Période/Type/Tri), menus (Secteur/Pays/Stade/Jour), Plus de filtres,
+   recherche : même langage visuel que le sélecteur de dates. */
+.tm-seg{display:inline-flex;border:none;border-radius:999px;background:#eef2f6;padding:3px;gap:2px}
+.tm-seg button{font-size:12.5px;font-weight:600;border:none;background:none;color:#56697e;padding:5px 12px;cursor:pointer;border-radius:999px;white-space:nowrap;transition:background .12s,color .12s}
+.tm-seg button:hover{color:#0f1f33}
+.tm-seg button.on{background:#3c4c60;color:#fff;font-weight:800}
+.tm-search{flex:0 1 190px;min-width:120px;font-size:13px;padding:7px 13px;border:1px solid transparent;border-radius:999px;font-family:inherit;background:#eef2f6;color:#0f1f33}
+.tm-search:focus{outline:none;background:#fff;border-color:#c3ccd6}
+.tm-morebtn{font-size:12.5px;font-weight:600;border:none;background:#eef2f6;color:#56697e;border-radius:999px;padding:6px 14px;cursor:pointer;white-space:nowrap;transition:background .12s,color .12s}
+.tm-morebtn:hover{color:#0f1f33}
+.tm-morebtn.on{background:#3c4c60;color:#fff;font-weight:800}
 .tm-bar-more{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;padding:10px 0 2px}
 /* hidden doit GAGNER sur display:flex (sinon le panneau replié est toujours visible et le
    bouton « Plus de filtres » semble ne rien faire). */
@@ -295,16 +306,21 @@ box-shadow:0 10px 26px rgba(10,10,10,.28);pointer-events:none;transform:translat
 .tm-mine{flex-basis:100%;font-size:12.5px;color:var(--accent-dk);font-weight:700;margin:0}
 /* Menu déroulant Secteur (à GAUCHE de la barre) : bouton pill + panneau flottant (liste + compteurs). */
 .tm-secdd{position:relative}
-.tm-secbtn{font-size:12.5px;font-weight:500;border:1px solid var(--line);background:#fff;color:var(--sub);border-radius:999px;padding:6px 14px;cursor:pointer;white-space:nowrap;transition:all .12s}
-.tm-secbtn:hover{border-color:var(--accent)}
-.tm-secbtn b{color:var(--ink);font-weight:700}
+.tm-secbtn{font-size:12.5px;font-weight:600;border:none;background:#eef2f6;color:#56697e;border-radius:999px;padding:6px 14px;cursor:pointer;white-space:nowrap;transition:background .12s,color .12s}
+.tm-secbtn:hover{color:#0f1f33}
+.tm-secbtn[aria-expanded="true"]{background:#3c4c60;color:#fff}
+.tm-secbtn b{color:#2b3a4d;font-weight:800}
+.tm-secbtn[aria-expanded="true"] b{color:#fff}
 .tm-secmenu{position:absolute;top:calc(100% + 6px);left:0;z-index:45;width:280px;max-height:340px;overflow-y:auto;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 34px -12px rgba(10,10,10,.22);padding:6px}
 .tm-secmenu button,.tm-secmenu a{display:flex;justify-content:space-between;align-items:center;gap:14px;width:100%;text-align:left;font-size:13px;font-weight:500;color:var(--sub);background:none;border:none;border-radius:8px;padding:8px 12px;cursor:pointer;text-decoration:none}
 .tm-secmenu button:hover,.tm-secmenu a:hover{background:var(--bg);text-decoration:none}
 .tm-secmenu button.on,.tm-secmenu a.on{background:var(--bg);color:var(--ink);font-weight:700}
 .tm-secmenu .tm-secn{flex:none;color:var(--mid);font-weight:600;font-variant-numeric:tabular-nums}
-/* Menu « 📅 Jour » de la boussole : jours plus AÉRÉS (plus d'espace entre chaque jour). */
-.tm-secmenu.tm-daymenu{display:flex;flex-direction:column;gap:4px;padding:8px}
+/* Menu « 📅 Jour » de la boussole : jours plus AÉRÉS. Le display:flex NE s'applique QUE quand le
+   menu est ouvert (:not([hidden])) — sinon il écrasait l'attribut `hidden` (display:none de l'UA)
+   et le menu restait ouvert en permanence au chargement. */
+.tm-secmenu.tm-daymenu{padding:8px}
+.tm-secmenu.tm-daymenu:not([hidden]){display:flex;flex-direction:column;gap:4px}
 .tm-secmenu.tm-daymenu a{padding:11px 14px;font-size:13.5px}
 /* Multi-select Secteur : pastille couleur du secteur (--sec-c) devant le libellé + ✓ vert si coché. */
 .secdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--sec-c,var(--accent));margin-right:8px;flex:none;vertical-align:middle}
@@ -425,17 +441,10 @@ border-radius:999px;padding:6px 14px;text-decoration:none;transition:border-colo
 .type-nav a.fav-nav:hover{color:#6b5414;background:#fbefc9;border-color:#e5a91c}
 .type-nav a.fav-nav.on{color:#6b5414;background:#fbefc9;border-color:#e5a91c}
 .type-nav a.fav-nav .fav-count{color:#8a6d1a}
-/* BOUSSOLE — cluster de dates poussé à DROITE de la rangée de niveau (fenêtre + jour), présent
-   sur toutes les pages /actualites (point 2). Se replie sous les chips sur mobile (flex-wrap). */
-.lvl-dates{margin-left:auto;display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
-/* Sélecteur de FENÊTRE façon /cibles : piste gris clair, pilule active gris ardoise (point 3).
-   Spécificité .tm-seg.tm-date pour battre .tm-seg button ET .type-nav a (variante liens). */
-.tm-seg.tm-date{border:none;overflow:visible;background:#eef2f6;padding:3px;gap:2px}
-.tm-seg.tm-date button,.tm-seg.tm-date a{font-size:12px;font-weight:600;background:none;color:#56697e;
-padding:5px 12px;border-radius:999px;white-space:nowrap;text-decoration:none;box-shadow:none;
-transition:background .12s,color .12s}
-.tm-seg.tm-date button:hover,.tm-seg.tm-date a:hover{background:none;color:#0f1f33}
-.tm-seg.tm-date button.on,.tm-seg.tm-date a.on{background:#3c4c60;color:#fff;font-weight:800}
+/* BOUSSOLE — le menu « 📅 Jour » suit DIRECTEMENT les chips de niveau (plus de margin-left:auto :
+   collé au groupe, plus clair). Se replie sous les chips sur mobile (flex-wrap). Le style gris du
+   sélecteur vient désormais de la base .tm-seg / .tm-secbtn (unifiés, point 4). */
+.lvl-dates{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
 /* « Qui rachète » — paysage des acquéreurs (par secteur). Liste lisible : nom + badges + cibles. */
 .acq-land{margin:22px 0 0}
 .acq-h{font-size:19px;font-weight:800;letter-spacing:-.01em;margin:0 0 6px;color:var(--ink)}
