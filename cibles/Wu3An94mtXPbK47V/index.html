@@ -391,6 +391,7 @@ padding:12px 14px;flex-wrap:wrap}
 .cb-ustate-prio{background:#0f1f33;color:#fff}
 .cb-ustate-ana{background:#eafaf1;color:#0f6e3f;border:1px solid #9fd8b6}
 .cb-ustate-det{background:#f1f5f9;color:#56697e;border:1px solid #e2e8f0}
+.cb-ustate-pending{background:#fdf6e3;color:#8a6d1a;border:1px solid #e8d9a8}
 .cb-uchev{margin-left:auto;color:#9fb0c2;font-size:19px;font-weight:700;transform:rotate(90deg);transition:transform .15s}
 .cb-urow[open] .cb-uchev{transform:rotate(-90deg)}
 .cb-ubody{padding:2px 16px 14px 47px}
@@ -730,6 +731,675 @@ color:#0f1f33;display:flex;align-items:center;gap:10px}
 .cb-meta{justify-content:flex-start}}
 @media(max-width:520px){.cb-h1{font-size:24px}.cb-wrap{padding:24px 14px 16px}.cb-card{padding:16px 15px}
 .cb-intro{font-size:16px}.cb-name{font-size:18px}.cb-ang summary{font-size:15px;padding:13px 15px}}
+/* ═══════════ v23 — interface Stan en liste (mêmes codes que le chat) ═══════════ */
+/* (1) STATS sur UNE ligne : 4 tuiles horizontales (dont « analysés ») + graphe */
+.cb-statsbar{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin:0 0 14px}
+.cb-stats-l{flex:1 1 360px;display:block}
+.cb-stats-r{flex:1 1 300px;min-width:0;display:block;align-items:initial}
+.cb-statsbar .cb-funnel{display:flex;flex-direction:row;flex-wrap:wrap;gap:7px;margin:0}
+.cb-statsbar .cb-fun{flex:1 1 auto;min-width:98px;padding:7px 11px;border:1px solid #e6eaef;
+border-radius:9px;background:#fafbfc;display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left}
+.cb-statsbar .cb-fun b{font-size:18px;line-height:1.1}
+.cb-statsbar .cb-fun span{font-size:9.5px;line-height:1.25;color:#7d8da0}
+.cb-statsbar .cb-fun.hl{background:#eef7f1;border-color:#bfe6cf}
+.cb-statsbar .cb-fun-ana{background:#eef3ff;border-color:#c7d7f5}
+.cb-statsbar .cb-fun-ana b{color:#1d4ed8}
+.cb-statsbar .cb-fun-today{display:inline;font-size:9.5px;font-weight:700;margin:2px 0 0}
+button.cb-fun-today{color:#185c38}
+.cb-stats-r .cb-act30{width:100%;margin:0}
+/* (3) bouton « Vos critères » NOIR ultra-visible — LE paramétrage de Stan */
+.cb-hyp-btn{background:#0f1f33;border-color:#0f1f33;color:#fff;padding:9px 16px;font-size:13px;font-weight:800}
+.cb-hyp-btn:hover{background:#1d2f47}
+.cb-hyp-btn.on{background:#0f1f33;border-color:#0f1f33;color:#fff}
+.cb-hyp-btn-q{background:#fff;color:#0f1f33}
+.cb-hyp-btn.on .cb-hyp-btn-q{background:#fff;color:#0f1f33}
+.cb-toolbar .cb-fchips{flex:1 1 auto}
+/* (4) ONGLETS d'identité TOUJOURS colorés (vert/bleu/rouge) + Favoris = étoile nue */
+.cb-fchips .cb-f-kept{color:#0f6e3f;background:#eafaf1;border-color:#9fd8b6}
+.cb-fchips .cb-f-kept i{color:#5aa87f}
+.cb-fchips .cb-f-kept.on{background:#16a34a;border-color:#16a34a;color:#fff}
+.cb-fchips .cb-f-kept.on i{color:#d6f5e3}
+.cb-fchips .cb-f-ana{color:#1d4ed8;background:#eef3ff;border-color:#c7d7f5}
+.cb-fchips .cb-f-ana i{color:#7aa0e0}
+.cb-fchips .cb-f-ana.on{background:#2563eb;border-color:#2563eb;color:#fff}
+.cb-fchips .cb-f-ana.on i{color:#cfe0ff}
+.cb-fchips .cb-f-rej{color:#b3261e;background:#fdeceb;border-color:#f2c9c6}
+.cb-fchips .cb-f-rej i{color:#cf8a86}
+.cb-fchips .cb-f-rej.on{background:#dc2626;border-color:#dc2626;color:#fff}
+.cb-fchips .cb-f-rej.on i{color:#fbd6d3}
+.cb-fchips .cb-f-fav{background:none;border:none;padding:4px 6px;color:#e5a91c;font-size:19px;
+display:inline-flex;align-items:center;gap:3px;line-height:1}
+.cb-fchips .cb-f-fav:hover{color:#c8860a}
+.cb-fchips .cb-f-fav.on{color:#c8860a;background:none;border:none}
+.cb-fchips .cb-f-fav i{color:#8a99aa;font-size:12px;font-weight:800}
+/* (6) VERDICT = pastille PLEINE, texte blanc (couleurs exactes du chat) */
+.cb-verdict{color:#fff;border:none;font-weight:800;text-transform:uppercase;letter-spacing:.04em;
+padding:3px 9px;border-radius:6px}
+.cb-uh-l>.cb-verdict{order:-1;flex:0 0 auto;min-width:58px;text-align:center}
+/* (5) POUCE gris-ENFONCÉ une fois donné : le travail est fait, avec la note */
+.cb-act-mini button.done{opacity:1;background:#e2e8f0;border-color:#cbd5e1;
+box-shadow:inset 0 1px 3px rgba(15,31,51,.22);cursor:default;filter:grayscale(.5)}
+.cb-act-mini button.dim{opacity:.28;cursor:default}
+/* (7) CARTE STAN en liste : bouton mémo noir, top-pick YES/NO, encadré analyse */
+.cb-memo-dark{display:block;text-align:center;font-size:13px;font-weight:700;color:#fff;
+background:#0f172a;border:1px solid #0f172a;border-radius:10px;padding:10px 14px;text-decoration:none}
+.cb-memo-dark:hover{background:#1e293b;text-decoration:none;color:#fff}
+.cb-toppick{background:#fffbeb;border-left:3px solid #f59e0b;border-radius:0 8px 8px 0;padding:12px 15px}
+.cb-tp-h{margin:0 0 4px;font-size:12px;font-weight:800;color:#ca8a04;text-transform:uppercase;letter-spacing:.06em}
+.cb-tp-sub{margin:0 0 12px;font-size:13.5px;color:#475569;line-height:1.5}
+.cb-tp-btns{display:flex;gap:10px;margin:0;border:none;padding:0}
+.cb-tp-yes,.cb-tp-no{flex:1;padding:12px 0;border-radius:10px;font-family:inherit;font-size:14px;
+font-weight:800;text-transform:uppercase;letter-spacing:.06em;cursor:pointer}
+.cb-tp-yes{background:#4ac67f;color:#fff;border:none}
+.cb-tp-yes:hover{background:#3db571}
+.cb-tp-no{background:#fff;color:#dc2626;border:2px solid #dc2626}
+.cb-tp-no:hover{background:#fef2f2}
+.cb-tp-yes.done,.cb-tp-no.done{background:#e2e8f0;color:#475569;border:1px solid #cbd5e1;
+box-shadow:inset 0 2px 4px rgba(15,31,51,.14);cursor:default}
+.cb-tp-yes.dim,.cb-tp-no.dim{opacity:.4;cursor:default}
+.cb-tp-help{display:flex;gap:10px;margin:8px 0 0}
+.cb-tp-help span{flex:1;text-align:center;font-size:10px;color:#64748b;line-height:1.35}
+.cb-tp-help span:last-child{color:#94a3b8}
+.cb-stan-auto{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cb-stan-auto-l{font-size:10px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.08em}
+.cb-stanbox{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px 14px}
+.cb-stanbox-h{margin:0 0 8px;font-size:10px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.08em}
+.cb-stanbox .cb-reason{font-size:13px;line-height:1.55;color:#243040;padding:0}
+.cb-stanbox .cb-reason b{display:block;margin:12px 0 2px;font-size:13px;font-weight:700;
+text-transform:none;letter-spacing:0;color:#0f172a}
+.cb-stanbox .cb-reason br{display:none}
+/* (8) PANNEAU DE FILTRES (colonne gauche du chat, en barre) */
+.cb-flt{background:#f7f8fa;border:1px solid #e2e7ee;border-radius:12px;padding:11px 12px;margin:0 0 14px;
+display:flex;flex-wrap:wrap;gap:7px;align-items:center;position:relative}
+.cb-flt-search{flex:0 1 260px;min-width:190px;box-sizing:border-box;font-family:inherit;font-size:12.5px;padding:7px 13px;
+border:1px solid #d4d9e2;border-radius:999px;background:#fff;color:#243040;outline:none}
+@media(max-width:620px){.cb-flt-search{flex:1 1 100%}}
+.cb-facet{position:relative;display:inline-flex;max-width:100%}
+.cb-fpill{font-family:inherit;font-size:12px;font-weight:500;border:1px solid #d4d9e2;background:#fff;
+color:#475569;border-radius:999px;padding:5px 12px;cursor:pointer;white-space:nowrap;max-width:100%;
+overflow:hidden;text-overflow:ellipsis}
+.cb-fpill.on{border-color:#0f1f33}
+.cb-fpill b{color:#0f1f33;font-weight:700}
+.cb-fmenu{position:absolute;top:calc(100% + 4px);left:0;z-index:40;width:230px;max-height:280px;overflow-y:auto;
+background:#fff;border:1px solid #d4d9e2;border-radius:12px;box-shadow:0 14px 34px -12px rgba(10,10,10,.22);padding:6px;display:none}
+.cb-facet.open .cb-fmenu{display:block}
+.cb-frow{display:flex;justify-content:space-between;align-items:center;gap:14px;width:100%;text-align:left;
+font-family:inherit;font-size:13px;font-weight:500;color:#475569;background:none;border:none;border-radius:8px;padding:7px 11px;cursor:pointer}
+.cb-frow.on{background:#edf0f4;color:#0f1f33;font-weight:700}
+.cb-frow .cb-fdot{width:8px;height:8px;border-radius:50%;flex:0 0 8px;margin-right:6px;display:inline-block}
+.cb-frow .cb-fc{flex:none;color:#6b7280;font-weight:600;font-size:12px}
+.cb-fmore{font-family:inherit;font-size:12px;font-weight:700;color:#36a866;background:#eaf6ef;
+border:1px solid #bfe6cf;border-radius:999px;padding:5px 12px;cursor:pointer;white-space:nowrap}
+.cb-freset{font-family:inherit;font-size:12px;font-weight:600;color:#36a866;background:#fff;
+border:1px solid #d4d9e2;border-radius:999px;padding:5px 12px;cursor:pointer;white-space:nowrap;display:none}
+.cb-freset.on{display:inline-block}
+.cb-fhide{display:none}
+.cb-fhide.on{display:inline-flex}
+.cb-fchipwrap{flex-basis:100%;display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:2px;
+max-height:132px;overflow-y:auto}
+.cb-fchipwrap.cb-fhide.on{display:flex}
+.cb-fclbl{font-family:inherit;font-size:11px;font-weight:600;color:#6b7280;margin-right:2px}
+.cb-crit{font-family:inherit;font-size:11px;font-weight:500;text-align:left;color:#475569;background:#fff;
+border:1px solid #d4d9e2;border-radius:999px;padding:4px 10px;cursor:pointer}
+.cb-crit.on{color:#fff;background:#0f1f33;border-color:#0f1f33}
+.cb-crit i{font-style:normal;color:#6b7280;font-size:.9em;margin-left:3px}
+.cb-crit.on i{color:#9eaaba}
+.cb-flt-none{flex-basis:100%;font-size:12.5px;color:#8a99aa;margin:4px 0 0;display:none}
+.cb-flt-none.on{display:block}
+/* évaluateur (sous le panneau) : tester une société — distinct de la recherche */
+.cb-evalwrap{margin:0 0 16px}
+.cb-eval-lbl{font-size:12px;font-weight:700;color:#56697e;margin:0 0 6px}
+.cb-evalwrap .cb-eval-inline{min-width:0}
+.cb-evalwrap .cb-eval-inline .cb-eval-row{max-width:520px}
+/* ═══════════ v24 — tableau NET, barre d'onglets + dates, machine sobre ═══════════ */
+/* (3) graphe d'activité PLEINE LARGEUR (plus de tuiles de stats) */
+.cb-graphrow{margin:0 0 16px}
+.cb-graphrow .cb-act30{width:100%;margin:0}
+/* (1) BARRE D'ONGLETS : « N évalués » gris · Retenus/Écartés/★ · dates à droite */
+.cb-tabrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex:1 1 auto;min-width:0}
+.cb-f-eval{font-size:12.5px;font-weight:600;color:#8a99aa;white-space:nowrap}
+.cb-tabrow .cb-fchips{margin:0;gap:7px}
+/* v36.1 — sélecteur de dates ÉPURÉ : piste grise discrète, pilule active VERTE en gras */
+.cb-dateseg{display:inline-flex;gap:3px;border:none;border-radius:999px;background:#eef2f6;
+padding:3px;margin-left:auto}
+.cb-dateseg button{font-family:inherit;font-size:12px;font-weight:600;border:none;background:none;
+color:#56697e;padding:5px 12px;cursor:pointer;border-radius:999px;white-space:nowrap;transition:background .12s,color .12s}
+.cb-dateseg button:hover{color:#0f1f33}
+/* v36.2 — actif GRIS FONCÉ (pas vert) : c'est un réglage de JOUR, pas un état de dossier */
+.cb-dateseg button.on{background:#3c4c60;color:#fff;font-weight:800}
+/* (5) LIGNE = tableau propre : 3 colonnes (société | industrie·marché | méta) */
+.cb-card.cb-urow{padding:0;margin:0 0 6px;border:1px solid #e6eaef;border-radius:10px;overflow:hidden}
+.cb-uhead{display:grid;grid-template-columns:minmax(0,1fr) 172px auto;gap:16px;align-items:start;
+padding:13px 15px;cursor:pointer}
+.cb-uhead:hover{background:#fafbfc}
+.cb-uh-main{min-width:0;display:flex;flex-direction:column;gap:5px}
+.cb-uh-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+.cb-uh-top>.cb-act-mini{order:-2;flex:0 0 auto}
+.cb-uh-top>.cb-verdict{order:-1;flex:0 0 auto;min-width:54px;text-align:center}
+.cb-uh-top .cb-rr-name{font-size:15px;font-weight:800;color:#0f1f33;letter-spacing:-.005em;
+white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
+.cb-uh-top .cb-uh-loc{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:#8a99aa;white-space:nowrap}
+.cb-uh-desc{margin:0;font-size:13px;color:#3c4c60;line-height:1.45;font-style:italic;
+display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.cb-uh-reason{margin:0;font-size:12.5px;color:#7a8aa0;line-height:1.4;
+display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cb-uh-reason .cb-loupe{margin-right:5px;opacity:.75;font-style:normal}
+.cb-uh-tags{display:flex;flex-wrap:wrap;gap:5px;margin:2px 0 0}
+.cb-uh-tags .cb-tag{font-size:11px;font-weight:600;color:#56697e;background:#f4f6f8;
+border:1px solid #e6eaef;border-radius:5px;padding:2px 8px}
+/* colonne INDUSTRIE / MARCHÉ (position fixe, comme les cartes du chat) */
+.cb-uh-im{min-width:0;display:flex;flex-direction:column;gap:5px;padding-top:2px}
+.cb-im-r{min-width:0;display:flex;flex-direction:column;gap:1px}
+.cb-im-r em{font-style:normal;font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#a2adba}
+.cb-im-r span{font-size:12px;color:#3c4c60;line-height:1.35;white-space:normal;overflow-wrap:anywhere}
+/* colonne méta droite : score, date, liens, chevron */
+.cb-uh-r{display:flex;align-items:center;gap:8px;flex:0 0 auto;justify-self:end}
+.cb-uh-r .cb-us-date{font-size:11px;color:#8a99aa;white-space:nowrap}
+@media(max-width:760px){.cb-uhead{grid-template-columns:1fr;gap:8px}
+.cb-uh-im{flex-direction:row;gap:16px}.cb-uh-r{justify-self:start}}
+/* (6) PANNEAU DE FILTRES plus épuré : pas de gros fond gris, ZÉRO scroll interne */
+.cb-flt{background:none;border:none;border-bottom:1px solid #eef1f5;border-radius:0;
+padding:2px 0 12px;margin:0 0 14px}
+.cb-fmenu{max-height:none;overflow:visible}
+.cb-fchipwrap{max-height:none;overflow:visible}
+.cb-fpill{background:#fff;border-color:#e2e7ee}
+/* (8) pastilles « Tout déplier / replier » à droite de l'évaluateur */
+.cb-xall{display:inline-flex;gap:6px;align-items:center;flex:0 0 auto}
+.cb-xall button{font-family:inherit;font-size:11.5px;font-weight:600;color:#56697e;background:#fff;
+border:1px solid #e2e7ee;border-radius:999px;padding:7px 12px;cursor:pointer;white-space:nowrap}
+.cb-xall button:hover{border-color:#0f1f33;color:#0f1f33}
+.cb-evalwrap .cb-eval-row{flex-wrap:wrap;align-items:center;max-width:none}
+/* (7) MACHINE « Vos critères » SOBRE : bordure grise, bullets & rail gris foncé */
+.cb-machine{border-color:#e2e7ee;box-shadow:none}
+.cb-mach-kicker{color:#56697e}
+.cb-step-n{background:#0f1f33}
+.cb-step-sub,.cb-step-body{border-left-color:#e2e7ee}
+.cb-correct{background:none;border:none;border-radius:0;padding:0;margin:2px 0 14px}
+.cb-correct-t{color:#0f1f33}
+.cb-hyp-note{font-size:12px;font-style:italic;color:#8a99aa;margin:8px 0 0;line-height:1.45}
+/* (9) boucle d'apprentissage : petite, italique, SANS encadré vert + lien */
+.cb-learn{background:none;border:none;border-radius:0;padding:0;margin:16px 0 0;
+font-size:12px;font-style:italic;color:#8090a2;line-height:1.5}
+.cb-learn-a{font-style:normal;font-weight:700;color:#0f6e3f;text-decoration:none;white-space:nowrap}
+.cb-learn-a:hover{text-decoration:underline}
+/* provenance (loupe) : « comment Stan l'a trouvée » + sous-titre accroche */
+.cb-prov-how{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+color:#8a99aa;margin:0 0 5px}
+.cb-say-sub{display:block;font-size:12.5px;font-weight:700;color:#185c38;margin:0 0 3px}
+/* ═══════════ v25 — dossiers en lignes (dividers), raison colorée, provenance, gate ═══════════ */
+/* (9) LIGNES séparées par des filets (plus d'encadrés arrondis) */
+.cb-card.cb-urow{border:none;border-bottom:1px solid #eef1f5;border-radius:0;margin:0;box-shadow:none;background:none}
+.cb-urow.cb-open{background:#fbfcfd}
+.cb-urow.cb-call{border-left:3px solid #4ac67f}
+.cb-urow.cb-urow-out{opacity:.92}
+/* (5) grille 3 colonnes : société | industrie·marché | droite (méta + provenance) */
+.cb-uhead{grid-template-columns:minmax(0,1fr) 146px 258px;gap:18px;align-items:start;padding:14px 14px}
+@media(max-width:900px){.cb-uhead{grid-template-columns:minmax(0,1fr) 130px;gap:14px}
+.cb-uh-r{grid-column:1/-1}}
+@media(max-width:640px){.cb-uhead{grid-template-columns:1fr;gap:9px}.cb-uh-im{flex-direction:row;gap:16px}}
+.cb-uh-r{display:flex;flex-direction:column;align-items:flex-end;gap:8px;justify-self:end;width:100%}
+.cb-uh-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+/* provenance stylée SOUS le score/date (col. droite) — là où il y a de la place */
+.cb-uh-r .cb-provbox{width:100%;margin:0;font-size:11.5px;background:#f5f8fb;border-left:3px solid #b7c6d8;
+border-radius:0 7px 7px 0;padding:8px 10px;text-align:left;line-height:1.5}
+.cb-uh-r .cb-provbox .cb-prov-how{font-size:9px;color:#96a4b3;margin:0 0 3px}
+.cb-uh-r .cb-provbox p{margin:0}
+.cb-uh-r .cb-provbox b{color:#3c4c60;font-weight:700}
+@media(max-width:900px){.cb-uh-r{align-items:flex-start}.cb-uh-meta{justify-content:flex-start}}
+/* (4) RAISON = encadré COLORÉ (vert retenu / rouge écarté), texte NON coupé net */
+.cb-reasonbox{margin:2px 0 0;font-size:12.5px;line-height:1.5;border-radius:0 8px 8px 0;padding:8px 12px}
+.cb-reasonbox em{display:inline;font-style:normal;font-weight:800;font-size:10px;letter-spacing:.04em;
+text-transform:uppercase;margin-right:7px}
+.cb-rbox-kept{background:#eefaf2;border-left:3px solid #4ac67f;color:#20492f}
+.cb-rbox-kept em{color:#0f6e3f}
+.cb-rbox-out{background:#fdf1f1;border-left:3px solid #dc6666;color:#5c2b2b}
+.cb-rbox-out em{color:#b3261e}
+.cb-uh-desc{font-weight:500;color:#2b3a4d}
+/* (1) évaluateur : header (label gauche / « Tout déplier·replier » PETIT à droite) */
+.cb-evalhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 6px}
+.cb-evalhead .cb-eval-lbl{margin:0}
+.cb-xall{display:inline-flex;align-items:baseline;gap:6px;flex:0 0 auto}
+.cb-xall button{background:none;border:none;padding:0;color:#8a99aa;font-size:11.5px;font-weight:600;
+cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.cb-xall button:hover{color:#0f1f33}
+.cb-xall-sep{color:#c8d2de;font-size:11px}
+.cb-evalwrap .cb-eval-row input{flex:1;min-width:0;max-width:none}
+.cb-eval-r{position:relative;padding-right:30px}
+.cb-eval-x{position:absolute;top:6px;right:8px;background:none;border:none;color:#9eb0c2;font-size:17px;
+line-height:1;cursor:pointer;padding:0}
+.cb-eval-x:hover{color:#0f1f33}
+.cb-eval-badge{display:inline-block;margin-left:8px;font-size:10px;font-weight:800;letter-spacing:.03em;
+text-transform:uppercase;color:#475569;background:#eef2f6;border:1px solid #dbe3ea;border-radius:5px;padding:1px 7px;vertical-align:middle}
+.cb-eval-links{margin:7px 0 0;display:flex;flex-wrap:wrap;gap:7px}
+.cb-eval-links a{font-size:11.5px;font-weight:700;color:#185c38;background:#eefaf2;border:1px solid #b7e0c6;
+border-radius:14px;padding:3px 10px;text-decoration:none}
+.cb-eval-links a:hover{background:#e0f5e8}
+/* (7) bouton CALL en attente (orange, façon chat) */
+.cb-callpending{font-family:inherit;font-size:12px;font-weight:800;color:#fff;background:#e67e22;
+border:none;border-radius:999px;padding:7px 14px;cursor:pointer;white-space:nowrap;letter-spacing:.02em}
+.cb-callpending:hover{background:#d9741c}
+.cb-callpending.on{background:#b35c10}
+/* (7) « Votre avis sur le jugement de Stan » + boutons analyse / similaires (bleu clair) */
+.cb-verdictvote{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cb-vv-lbl{font-size:12.5px;font-weight:700;color:#3c4c60}
+.cb-act-2nd{margin-top:12px;display:flex;flex-wrap:wrap;gap:9px}
+.cb-btn-analyse{font-family:inherit;font-size:12.5px;font-weight:800;color:#fff;background:#0f6e3f;
+border:1px solid #0f6e3f;border-radius:9px;padding:8px 15px;cursor:pointer}
+.cb-btn-analyse:hover{background:#0c5c34}
+.cb-btn-similar{font-family:inherit;font-size:12.5px;font-weight:700;color:#1d4ed8;background:#eef3ff;
+border:1px solid #c7d7f5;border-radius:9px;padding:8px 15px;cursor:pointer}
+.cb-btn-similar:hover{background:#e2ebff}
+/* (3) le crible de Stan (single_gate A/B/C/D) dans la machine */
+.cb-gate-steps{list-style:none;margin:4px 0 0;padding:0;counter-reset:none}
+.cb-gate-steps li{position:relative;padding:0 0 10px 0;font-size:13px;line-height:1.5;color:#34455a}
+.cb-gate-steps li b{color:#0f1f33;margin-right:5px}
+.cb-gate-1{font-size:13px;line-height:1.55;color:#34455a;margin:4px 0 0}
+/* (7) mode d'emploi replié */
+.cb-howto{border:1px solid #e2e7ee;border-radius:10px;background:#fbfcfd;margin:0 0 16px;overflow:hidden}
+.cb-howto summary{cursor:pointer;list-style:none;padding:11px 15px;font-size:13px;font-weight:800;color:#0f1f33}
+.cb-howto summary::-webkit-details-marker{display:none}
+.cb-howto summary:after{content:"+";float:right;color:#8a99aa;font-size:16px;line-height:1}
+.cb-howto[open] summary:after{content:"\2013"}
+.cb-howto ol{margin:0;padding:2px 18px 14px 34px}
+.cb-howto li{font-size:13px;line-height:1.55;color:#34455a;padding:0 0 6px}
+/* (6) accroche à copier-coller dans « L'angle décisif » */
+.cb-approach{margin:10px 0 0;background:#f4f8fb;border:1px dashed #c3d3e2;border-radius:9px;padding:10px 13px}
+.cb-approach-h{margin:0 0 5px;font-size:12.5px;font-weight:800;color:#185c38}
+.cb-approach-t{margin:0;font-size:13px;line-height:1.55;color:#2b3a4d}
+.cb-approach-t b{color:#0f1f33}
+/* échantillon d'écartées */
+.cb-rej-more{font-size:12px;color:#9aa8b8;margin:10px 0 0;text-align:center;font-style:italic}
+/* ═══════════ v26 — tutoriel en tête, actions visibles sous Marché ═══════════ */
+/* (1) TUTORIEL cliquable, en tête (sous le kicker) */
+.cb-tuto{border:1px solid #e2e7ee;border-radius:12px;background:#fbfcfd;margin:0 0 20px;overflow:hidden}
+.cb-tuto>summary{cursor:pointer;list-style:none;padding:12px 16px;font-size:13.5px;font-weight:800;color:#0f1f33}
+.cb-tuto>summary::-webkit-details-marker{display:none}
+.cb-tuto>summary:after{content:"\2013";float:right;color:#8a99aa;font-size:16px;line-height:1.2}
+.cb-tuto:not([open])>summary:after{content:"+"}
+/* v36.2 — tutoriel en LISTE VERTICALE propre (1→5 de haut en bas), SANS carte blanche :
+   numéro à gauche · texte · flèche à droite, séparateurs fins, fond transparent (montre le
+   gris très clair du bloc). Épuré. */
+.cb-tuto-steps{display:flex;flex-direction:column;gap:0;padding:4px 18px 12px}
+.cb-tuto-step{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;text-align:left;
+background:none;border:none;border-radius:8px;padding:12px 10px;cursor:pointer;
+font-family:inherit;border-bottom:1px solid #eaeef2;transition:background .12s}
+.cb-tuto-step:last-child{border-bottom:none}
+.cb-tuto-step:hover{background:#f1f5f9}
+.cb-tuto-n{flex:0 0 auto;width:27px;height:27px;border-radius:50%;background:#0f1f33;color:#fff;
+font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+.cb-tuto-t{font-size:13px;line-height:1.5;color:#34455a;font-weight:600}
+.cb-tuto-go{align-self:center;color:#4ac67f;font-weight:800;font-size:16px}
+/* flash : petit halo quand une étape du tutoriel pointe vers un élément */
+.cb-flash{animation:cbflash 1.7s ease}
+@keyframes cbflash{0%,100%{box-shadow:0 0 0 0 rgba(74,198,127,0)}
+15%,55%{box-shadow:0 0 0 4px rgba(74,198,127,.35)}}
+/* (5) col. INDUSTRIE/MARCHÉ un peu plus large pour loger les boutons d'action */
+.cb-uhead{grid-template-columns:minmax(0,1fr) 172px 240px}
+@media(max-width:900px){.cb-uhead{grid-template-columns:minmax(0,1fr) 150px}}
+@media(max-width:640px){.cb-uhead{grid-template-columns:1fr}}
+/* (2/4) ACTIONS sous Marché (visibles SANS déplier) — pile verticale compacte */
+.cb-uh-act{display:flex;flex-direction:column;gap:6px;margin:9px 0 0;border:none;padding:0}
+.cb-uh-btn,.cb-memo-quick{display:block;width:100%;box-sizing:border-box;text-align:center;
+font-family:inherit;font-size:11.5px;font-weight:700;border-radius:8px;padding:7px 10px;cursor:pointer;
+white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* mémo DÉJÀ prêt : bouton distinct (vert plein, « voir ») */
+.cb-memo-quick{background:#0f6e3f;color:#fff;border:1px solid #0f6e3f;text-decoration:none}
+.cb-memo-quick:hover{background:#0c5c34;color:#fff;text-decoration:none}
+/* « Lancer une analyse rapide » = étape suivante d'un Retenu (vert plein) */
+.cb-uh-btn.cb-btn-analyse{background:#0f6e3f;color:#fff;border:1px solid #0f6e3f}
+.cb-uh-btn.cb-btn-analyse:hover{background:#0c5c34}
+/* (4) « Chercher des similaires » = bleu TRÈS clair (distinct : ajoute des leads) */
+.cb-btn-similar3{background:#f2f7ff;color:#3b6fd4;border:1px solid #dbe6fb}
+.cb-btn-similar3:hover{background:#e8f1ff;border-color:#c3d7f7}
+/* v38.4 (point 13) — mobile : boutons mémo/similaires CENTRÉS et empilés dessous */
+@media(max-width:640px){.cb-uh-act{flex-direction:column;align-items:center;margin-top:12px}
+.cb-uh-btn,.cb-memo-quick,.cb-btn-similar3{width:100%;max-width:320px;min-width:200px}}
+/* ═══════════ v27 — état déplier/replier, tooltips verdicts, moteur, one-line eval ═══════════ */
+/* (2) légende des verdicts sous le tutoriel + curseur d'aide sur les pastilles */
+.cb-tuto-legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:0 14px 14px}
+.cb-verdict[title]{cursor:help}
+.cb-verdict-lg{font-size:10px;padding:3px 10px}
+.cb-tuto-step.cb-tuto-on{background:#eafaf1}   /* v36.2 — surlignage doux (plus de bordure, liste plate) */
+/* (13) barres du graphe : état sélectionné NET + note « recliquez pour réafficher » */
+.cb-abar{cursor:pointer}
+.cb-abar rect{transition:opacity .12s}
+.cb-abar:hover rect{opacity:.72}
+.cb-abar.sel rect{opacity:1;stroke:#0f1f33;stroke-width:.6}
+.cb-bar-hint{font-size:11.5px;color:#8a99aa;margin:6px 0 0;text-align:center}
+.cb-bar-hint.on{color:#0f1f33;font-weight:600}
+/* (12) évaluateur sur UNE ligne : label + champ + bouton + déplier/replier */
+.cb-eval-1line{display:flex;align-items:center;gap:9px;flex-wrap:wrap;max-width:none}
+.cb-eval-lbl2{font-size:12.5px;font-weight:700;color:#56697e;white-space:nowrap;flex:0 0 auto}
+.cb-eval-1line #cb-eval-q{flex:1 1 240px;min-width:160px}
+.cb-eval-1line #cb-eval-go{flex:0 0 auto}
+.cb-eval-1line .cb-xall{margin-left:auto;flex:0 0 auto}
+/* (1) « Tout déplier / Tout replier » : TEXTE seul (plus de forme bouton), l'ACTIF
+   en gras ; icône à GAUCHE du texte ; collé tout à droite de la ligne d'évaluation. */
+.cb-xall button.on{color:#0f1f33;font-weight:800;text-decoration:none;background:none;padding:3px 4px}
+/* (4) « recherche des similaires » : spinner + fermeture */
+.cb-searching{display:flex;align-items:center;gap:7px;color:#3b6fd4;position:relative;padding-right:22px}
+.cb-spin{width:12px;height:12px;border:2px solid #cfe0ff;border-top-color:#3b6fd4;border-radius:50%;
+display:inline-block;animation:cbspin .7s linear infinite;flex:0 0 12px}
+@keyframes cbspin{to{transform:rotate(360deg)}}
+.cb-srch-x{position:absolute;right:0;top:0;background:none;border:none;color:#9eb0c2;font-size:15px;cursor:pointer;padding:0}
+.cb-srch-x:hover{color:#0f1f33}
+/* (11) boucle d'apprentissage : NORMAL (plus d'italique) */
+.cb-learn{font-style:normal}
+/* ═══════════ v28 — lignes aérées, corps déplié distinct, éval 1 ligne nette ═══════════ */
+/* (5) LIGNES très aérées : filet net + beaucoup d'air au-dessus/dessous */
+.cb-card.cb-urow{border-bottom:1px solid #e4e8ee;margin:0}
+.cb-card.cb-urow:last-child{border-bottom:none}
+.cb-uhead{padding:20px 15px}
+.cb-uhead:hover{background:#fafcfe}
+.cb-urow.cb-open>.cb-uhead{background:#f6f8fb}
+/* (4) CORPS DÉPLIÉ nettement distinct : fond gris clair + liseré + boutons Replier */
+.cb-urow .cb-ubody{background:#f5f8fb;border-top:1px solid #e2e8f0;border-left:3px solid #cbd6e3;
+padding:6px 18px 16px 44px;margin:0}
+@media(max-width:640px){.cb-urow .cb-ubody{padding-left:16px}}
+.cb-collapse-row{display:inline-block;float:right;font-family:inherit;font-size:11px;font-weight:700;
+color:#56697e;background:#fff;border:1px solid #d4dce6;border-radius:7px;padding:4px 10px;cursor:pointer;
+margin:8px 0 2px}
+.cb-collapse-row:hover{border-color:#0f1f33;color:#0f1f33}
+.cb-ubody-foot{clear:both;text-align:right;padding-top:6px;border-top:1px dashed #dbe3ea;margin-top:12px}
+.cb-ubody-foot .cb-collapse-row{float:none}
+/* (2) évaluateur SUR UNE SEULE LIGNE (nowrap desktop) + « Tout déplier/replier » à droite */
+.cb-eval-1line{flex-wrap:nowrap;gap:10px}
+.cb-eval-1line #cb-eval-q{flex:1 1 auto;min-width:120px}
+.cb-eval-1line #cb-eval-go{padding:8px 16px}
+.cb-xall{display:inline-flex;align-items:center;gap:10px;flex:0 0 auto;margin-left:6px}
+.cb-xall button{display:inline-flex;align-items:center;gap:4px;background:none;border:none;padding:3px 4px;
+color:#8a99aa;font-size:12px;font-weight:600;cursor:pointer}
+.cb-xall button:hover{color:#0f1f33}
+.cb-xall button.on{color:#0f1f33;font-weight:800}
+.cb-xall-i{font-size:12px}
+@media(max-width:720px){.cb-eval-1line{flex-wrap:wrap}.cb-xall{margin-left:0;width:100%;justify-content:flex-end}}
+/* (8) « Votre avis sur le jugement de Stan » : DISCRET (petit, pas gras) */
+.cb-verdictvote{gap:8px;margin-top:13px}
+.cb-vv-lbl{font-size:11px;font-weight:500;color:#7d8da0}
+.cb-verdictvote .cb-act-mini button{font-size:12px;padding:2px 5px;opacity:.8}
+.cb-verdictvote .cb-act-mini.strong button{border-width:1px}
+/* (6) petite croix (pas un bouton) pour fermer la recherche de similaires */
+.cb-srch-x{font-size:13px;opacity:.7}
+.cb-srch-x:hover{opacity:1}
+/* (nouveau) « Vos critères » sur fond gris TRÈS clair : distingue nettement le
+   PARAMÉTRAGE de Stan de la LISTE des sociétés (blanche). */
+.cb-machinline .cb-machine{background:#f5f7fa;border-color:#dde3ea}
+.cb-machinline .cb-ang{background:#fff}
+/* (1) « Comment Stan décide l'analyse » : verdicts + signaux verts/rouges + poids */
+.cb-rub-lead{font-size:13px;color:#56697e;line-height:1.5;margin:0 0 12px}
+.cb-rub-verdicts{display:grid;grid-template-columns:auto 1fr;gap:7px 10px;align-items:center;margin:0 0 14px}
+.cb-rub-verdicts>span{font-size:12.5px;color:#34455a;line-height:1.4}
+.cb-rub-h{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin:14px 0 7px;color:#56697e}
+.cb-rub-green{color:#0f6e3f}.cb-rub-red{color:#b3261e}
+.cb-flag-wrap{display:flex;flex-wrap:wrap;gap:6px}
+.cb-flag-chip{font-size:11.5px;font-weight:600;border-radius:7px;padding:4px 10px;line-height:1.3}
+.cb-flag-chip.green{color:#0f6e3f;background:#eefaf2;border:1px solid #b7e0c6}
+.cb-flag-chip.red{color:#8a2a2a;background:#fdf1f1;border:1px solid #eecaca}
+.cb-flag-chip.wt{color:#334;background:#eef2f6;border:1px solid #dbe3ea}
+.cb-flag-chip.wt b{color:#0f1f33;margin-left:2px}
+/* ═══════════ v29 — similaires en live + « Stan apprend » (avis → thèse) ═══════════ */
+/* résultats de « Chercher des similaires » (dans la mini-fenêtre de la carte) */
+.cb-simbox{position:relative;margin:10px 0 0;background:#f6f8fb;border:1px solid #e2e8f0;
+border-radius:9px;padding:11px 30px 11px 13px}
+.cb-simbox .cb-srch-x{position:absolute;top:8px;right:9px}
+.cb-sim-head{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:#3b6fd4;margin:0}
+.cb-sim-it{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:9px 0 0;
+padding-top:9px;border-top:1px solid #eaeef3}
+.cb-sim-it>b{font-size:13.5px;color:#0f1f33}
+.cb-sim-r{flex-basis:100%;margin:2px 0 0;font-size:12px;color:#56697e;line-height:1.45}
+.cb-sim-foot{margin:10px 0 0;font-size:12px;font-weight:700;color:#0f6e3f}
+/* bandeau PROACTIF « vous jugez, il apprend » dans « Vos critères » */
+.cb-avis{background:#fff8ec;border:1px solid #f0d8a8;border-left:3px solid #e0a83c;
+border-radius:9px;padding:12px 14px;margin:0 0 14px}
+.cb-avis-t{margin:0 0 9px;font-size:13.5px;font-weight:600;color:#6e4d16;line-height:1.5}
+.cb-avis-act{display:flex;gap:9px;flex-wrap:wrap}
+.cb-avis-yes{font-family:inherit;font-size:12.5px;font-weight:800;color:#fff;background:#0f6e3f;
+border:1px solid #0f6e3f;border-radius:9px;padding:8px 16px;cursor:pointer}
+.cb-avis-yes:hover{background:#0c5c34}
+.cb-avis-no{font-family:inherit;font-size:12.5px;font-weight:600;color:#8a7a55;background:none;
+border:none;border-radius:9px;padding:8px 10px;cursor:pointer;text-decoration:underline}
+.cb-avis-no:hover{color:#6e4d16}
+/* ═══════════ v30 — barre d'évaluation NEUVE (une ligne nette) + favoris actualités ═══════════ */
+/* classes NEUVES : immunisées contre .cb-eval-inline/.cb-eval-row (bouton noir + wrap) */
+.cb-evalbar{display:flex;align-items:center;gap:10px;flex-wrap:nowrap;margin:0 0 4px}
+.cb-evalbar .cb-eval-lbl2{flex:0 0 auto;font-size:12.5px;font-weight:700;color:#56697e;white-space:nowrap;margin:0}
+.cb-eval-q2{flex:1 1 auto;min-width:120px;box-sizing:border-box;font-family:inherit;font-size:12.5px;
+padding:8px 14px;border:1px solid #cfd8e2;border-radius:999px;background:#fff;color:#0f1f33;outline:none}
+.cb-eval-q2:focus{border-color:#0f1f33}
+.cb-eval-go2{flex:0 0 auto;font-family:inherit;font-size:12px;font-weight:700;color:#fff;background:#0f1f33;
+border:1px solid #0f1f33;border-radius:9px;padding:8px 17px;cursor:pointer;white-space:nowrap}
+.cb-eval-go2:hover{background:#1d3a5c}
+.cb-actu-link{flex:0 0 auto;font-family:inherit;font-size:12px;font-weight:700;color:#185c38;background:#eefaf2;
+border:1px solid #b7e0c6;border-radius:9px;padding:8px 13px;text-decoration:none;white-space:nowrap}
+.cb-actu-link:hover{background:#e0f5e8;text-decoration:none;color:#185c38}
+.cb-evalbar .cb-xall{margin-left:auto;flex:0 0 auto;display:inline-flex;align-items:center;gap:14px}
+.cb-evalbar .cb-xall button{background:none;border:none;padding:0;color:#8a99aa;font-size:12px;font-weight:600;
+cursor:pointer;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;text-decoration:none}
+.cb-evalbar .cb-xall button:hover{color:#0f1f33;text-decoration:none}
+.cb-evalbar .cb-xall button.on{color:#0f1f33;font-weight:800;text-decoration:none}
+.cb-evalbar .cb-xall-i{font-size:12px;opacity:.8}
+#cb-eval-out{margin:8px 0 0}
+@media(max-width:860px){.cb-evalbar{flex-wrap:wrap}.cb-evalbar .cb-xall{margin-left:0;width:100%;justify-content:flex-end;margin-top:4px}
+.cb-eval-q2{flex:1 1 100%;order:5}}
+/* favoris importés des ACTUALITÉS : société pas encore évaluée + bouton Évaluer */
+.cb-extfav .cb-uh-top .cb-rr-name{color:#0f1f33}
+.cb-extfav-badge{font-size:10px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
+color:#8a6d1a;background:#fdf6e3;border:1px solid #e8d9a8;border-radius:6px;padding:2px 8px}
+.cb-extfav-src{font-size:11px;color:#8a99aa}
+.cb-extfav-eval{font-family:inherit;font-size:11.5px;font-weight:700;color:#fff;background:#0f6e3f;
+border:1px solid #0f6e3f;border-radius:8px;padding:6px 13px;cursor:pointer;white-space:nowrap}
+.cb-extfav-eval:hover{background:#0c5c34}
+.cb-extfav-eval:disabled{opacity:.55;cursor:default}
+.cb-extfav-r{margin:8px 0 0;font-size:12.5px;line-height:1.5}
+.cb-extfav-empty{font-size:12.5px;color:#8a99aa;padding:10px 2px}
+/* ═══ v32 — COCKPIT gris REPLIABLE (<details>) : 2 lignes + ligne d'onglets collée ═══ */
+/* v38 — ACCORDÉON « Filtre » : replié par défaut, s'ouvre JUSTE SOUS la ligne d'onglets
+   (bord-haut supprimé → fait UN avec les onglets), fond gris clair comme l'ancien cockpit. */
+.cb-accord{display:none}
+.cb-accord.cb-open{display:block;background:#f7f9fc;border:1px solid #e6eaef;border-top:none;
+border-radius:0 0 14px 14px;padding:14px 16px 12px;margin:0 0 18px}
+/* LIGNE 1 : ⚙ Vos critères + recherche + Statut + Plus de filtres + Réinitialiser (une ligne) */
+.cb-accord .cb-toolbar{margin:0 0 10px;gap:10px;align-items:center}
+.cb-accord .cb-toolbar>.cb-hyp-btn{flex:0 0 auto}
+.cb-accord .cb-flt{flex:1 1 auto;border-bottom:none;margin:0;padding:0;gap:8px}
+.cb-accord .cb-flt-search{background:#fff;flex:0 1 220px;min-width:150px}
+.cb-accord .cb-machinline{margin:2px 0 10px}
+.cb-accord .cb-machinline .cb-machine{background:#fff;box-shadow:none}   /* machine en blanc dans le gris */
+/* LIGNE 2 : évaluateur (champ RÉTRÉCI pour tout tenir sur une ligne, point 5) */
+/* wrap AUTORISÉ (au lieu d'un point de rupture magique) : sur écran étroit le 📰 passe
+   à la ligne DANS le cadre gris au lieu de déborder et de créer un scroll horizontal. */
+.cb-accord .cb-evalbar{margin:0;flex-wrap:wrap}
+.cb-accord .cb-eval-q2{flex:0 1 200px;min-width:110px}
+.cb-accord .cb-actu-link{white-space:normal}
+/* le graphe d'activité vit désormais DANS le cockpit repliable (point 3) */
+.cb-accord .cb-graphrow{margin:0 0 14px}
+.cb-accord .cb-bar-hint{margin:6px 0 0}
+/* v34 — encadré ⚙ « Les critères de <fonds> » (bouton noir + machine GRISE) sous le titre */
+.cb-critline{margin:0 0 18px}
+.cb-critline .cb-machinline{margin:9px 0 0}
+/* « Réinitialiser » = simple lien texte discret (moins de pastilles) */
+.cb-accord .cb-freset{background:none;border:none;padding:6px 2px;color:#8a99aa;
+text-decoration:underline;text-underline-offset:2px}
+.cb-accord .cb-freset:hover{color:#dc2626}
+/* ═══ Ligne d'ONGLETS collée au tableau : compteurs = PASTILLES couleur clair→foncé (point 1) ═══ */
+/* v37 — barre d'onglets COLLÉE EN HAUT au scroll (sticky) : on peut filtrer même en bas
+   de la liste. Fond blanc + z-index pour passer AU-DESSUS des lignes qui défilent. */
+/* v38 — UNE SEULE ligne, collée en haut (mobile+desktop) ; défile horizontalement au
+   besoin plutôt que de passer à la ligne ; l'accordéon filtre s'ouvre juste dessous. */
+.cb-tabbar{display:flex;align-items:center;gap:8px 10px;flex-wrap:nowrap;overflow-x:auto;margin:2px 0 0;
+padding:9px 2px 9px;border-bottom:1px solid #e6eaef;position:sticky;top:0;z-index:30;background:#fff;
+scrollbar-width:thin}
+.cb-tabbar .cb-fchips{flex-wrap:nowrap}
+/* v38.3 — bouton « ⚙ Vos critères » à gauche de la ligne d'onglets (noir, comme avant) */
+/* v38.5 (point 5) — « Vos critères » PLUS GROS et plus large */
+.cb-tabbar .cb-tb-btn{display:inline-flex;align-items:center;gap:6px;flex:0 0 auto;background:#0f1f33;
+color:#fff;border:none;border-radius:9px;padding:9px 18px;font-family:inherit;font-size:13.5px;
+font-weight:800;cursor:pointer;white-space:nowrap}
+.cb-tabbar .cb-tb-btn:hover,.cb-tabbar .cb-tb-btn.on{background:#1d3a5c}
+/* v38.5 (point 5) — machine en accordéon SANS encadré gris superflu (la machine a déjà le sien) */
+.cb-machinline.cb-accord.cb-open{display:block;background:none;border:none;padding:0;margin:0 0 18px}
+.cb-tabbar .cb-f-eval{margin-right:4px;color:#8a99aa;font-weight:600;font-size:12.5px}
+.cb-tabbar .cb-fchips{margin:0;gap:8px;flex-wrap:wrap}
+.cb-tabbar .cb-fchips button{background:none;border:1px solid transparent;border-radius:999px;
+padding:5px 13px;font-size:12.5px;font-weight:700;color:#56697e;cursor:pointer;font-family:inherit;
+line-height:1;transition:background .12s,color .12s,border-color .12s}
+.cb-tabbar .cb-fchips button i{font-style:normal;font-weight:800;margin-left:6px;font-size:11.5px;opacity:.95}
+/* Retenues — vert clair (repos) / vert foncé (sélectionné) */
+.cb-tabbar .cb-fchips .cb-f-kept{background:#e7f7ee;border-color:#c4ecd6;color:#0f6e3f}
+.cb-tabbar .cb-fchips .cb-f-kept i{color:#3e9c6e}
+.cb-tabbar .cb-fchips .cb-f-kept.on{background:#15884a;border-color:#15884a;color:#fff}
+.cb-tabbar .cb-fchips .cb-f-kept.on i{color:#d3f2e0}
+/* Analysées — bleu clair / bleu foncé */
+.cb-tabbar .cb-fchips .cb-f-ana{background:#e9f0ff;border-color:#cddef7;color:#1d4ed8}
+.cb-tabbar .cb-fchips .cb-f-ana i{color:#6f96da}
+.cb-tabbar .cb-fchips .cb-f-ana.on{background:#1e40af;border-color:#1e40af;color:#fff}
+.cb-tabbar .cb-fchips .cb-f-ana.on i{color:#c7d7f5}
+/* Écartées — rouge clair / rouge */
+.cb-tabbar .cb-fchips .cb-f-rej{background:#fdecec;border-color:#f5cfcd;color:#b3261e}
+.cb-tabbar .cb-fchips .cb-f-rej i{color:#d38a86}
+.cb-tabbar .cb-fchips .cb-f-rej.on{background:#dc2626;border-color:#dc2626;color:#fff}
+.cb-tabbar .cb-fchips .cb-f-rej.on i{color:#fbd5d3}
+/* Favoris — jaune clair / jaune */
+.cb-tabbar .cb-fchips .cb-f-fav{background:#fdf4d7;border-color:#f0e2a8;color:#96700c;font-size:13px}
+.cb-tabbar .cb-fchips .cb-f-fav i{color:#b89530;font-size:11px;margin-left:3px}
+.cb-tabbar .cb-fchips .cb-f-fav.on{background:#eab308;border-color:#eab308;color:#fff}
+.cb-tabbar .cb-fchips .cb-f-fav.on i{color:#fff4cf}
+.cb-tabbar .cb-callpending{margin:0}
+/* v38 — « dont N analysées » COMPACT (sous-ensemble des retenues) : police réduite */
+.cb-tabbar .cb-fchips .cb-f-sub{font-size:11px;padding:4px 9px;font-weight:600}
+.cb-tabbar .cb-fchips .cb-f-sub i{font-size:11px}
+/* dates JUSTE à droite de Favoris (point 7) ; déplier/replier poussés tout à droite (point 3) */
+.cb-tabbar .cb-dateseg{margin-left:0}
+.cb-tabbar .cb-xall{display:inline-flex;align-items:center;gap:12px;flex:0 0 auto;margin-left:auto}
+.cb-tabbar .cb-xall button{background:none;border:none;padding:0;color:#8a99aa;font-size:12px;font-weight:600;
+cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:4px;text-decoration:none}
+.cb-tabbar .cb-xall button:hover{color:#0f1f33}
+.cb-tabbar .cb-xall button.on{color:#0f1f33;font-weight:800}
+.cb-tabbar .cb-xall-i{font-size:12px}
+/* la LISTE se colle DIRECTEMENT sous les onglets (effet « collé ») */
+.cb-tabbar + #cb-rows-kept{margin-top:0}
+.cb-tabbar + #cb-rows-kept > .cb-urow:first-child{border-top:none}
+/* point 1 — verdicts CALL/CONSIDER/MONITOR/PASS écrits en BLANC dans « Vos critères » */
+.cb-rub-verdicts .cb-verdict{color:#fff}
+@media(max-width:720px){.cb-tabbar .cb-xall{margin-left:auto}}
+/* ═══ v35 — CLASSEMENT par prospect (la liste = un TOP) + note d'explication ═══ */
+/* v36 — GROS rangs sur fond BLEU FONCÉ (comme le bouton ⚙) : l'ordre pertinence + urgence
+   est TOUJOURS présent à l'esprit du CEO. Uniforme et fort ; n°1 accentué (vert priorité). */
+.cb-uh-top>.cb-urank{order:-3;flex:0 0 auto;min-width:30px;height:28px;padding:0 9px;
+display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;
+color:#fff;background:#0f1f33;border:none;border-radius:8px;letter-spacing:-.02em}
+.cb-uh-top>.cb-urank-top{background:#0f1f33}                                       /* n°2-3 : bleu foncé */
+.cb-uh-top>.cb-urank-1{background:#0f1f33}                                         /* v37.4 — n°1 AUSSI bleu foncé (uniforme) */
+.cb-rank-note{font-size:13px;color:#0f6e3f;background:#f0faf4;border:1px solid #cdebd9;
+border-radius:9px;padding:9px 12px;margin:0 0 14px;line-height:1.5}
+.cb-rank-note b{font-weight:800}
+/* ═══ v37 — POURQUOI blanchi (puces) + « Alignement » DANS la carte repliée (ex-carte _card) ═══ */
+.cb-uh-why{margin:7px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.cb-uh-why li{position:relative;padding-left:17px;font-size:12.5px;line-height:1.5;color:#3c4c60}
+.cb-uh-why li:before{content:"—";position:absolute;left:0;top:0;color:#15884a;font-weight:800}
+.cb-uh-fit{margin:9px 0 0;background:#f0faf4;border-left:3px solid #15884a;border-radius:0 7px 7px 0;
+padding:9px 12px;font-size:12.5px;line-height:1.55;color:#243040}
+.cb-uh-fit b{color:#0f6e3f;font-weight:800}
+/* v37 — bouton « Actualiser » : mis en avant quand la page n'a pas les cibles du jour */
+.cb-tabbar .cb-xall #cb-refresh.cb-refresh-stale{color:#0f6e3f;font-weight:800}
+.cb-tabbar .cb-xall #cb-refresh.cb-refresh-busy{opacity:.65;cursor:default}
+/* ═══ v38.4 — ligne de titre : aide (?) + Actualiser + date (points 5+6) ═══ */
+.cb-h1row{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:0 0 18px}
+.cb-h1row .cb-h1{margin:0}
+.cb-help-btn{flex:0 0 auto;width:24px;height:24px;border-radius:50%;border:1.5px solid #c8d2de;
+background:#fff;color:#56697e;font-weight:800;font-size:13px;cursor:pointer;line-height:1;padding:0}
+.cb-help-btn:hover,.cb-help-btn.on{border-color:#0f1f33;color:#0f1f33}
+.cb-h1-actions{margin-left:auto;display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cb-refresh-h1{display:inline-flex;align-items:center;gap:5px;background:#eefaf2;border:1px solid #b7e0c6;
+color:#185c38;border-radius:8px;padding:6px 12px;font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer}
+.cb-refresh-h1:hover{background:#e0f5e8}
+.cb-refresh-h1.cb-refresh-stale{background:#185c38;color:#fff;border-color:#185c38}
+.cb-refresh-h1.cb-refresh-busy{opacity:.65;cursor:default}
+.cb-upd{font-size:11px;color:#8a99aa;white-space:nowrap}
+.cb-tuto[hidden]{display:none}
+.cb-tuto-h{margin:0;padding:12px 16px 0;font-size:13.5px;font-weight:800;color:#0f1f33}
+/* ═══ v38.6 — boutons ⚡/🧬 + favori dans la COLONNE DROITE (sous « Comment Stan l'a trouvé »),
+   pleine largeur, non coupés ; Industrie/Marché aérés à gauche ; date sur sa ligne ═══ */
+.cb-uhead{grid-template-columns:minmax(0,1fr) minmax(150px,205px) 250px}
+.cb-uh-r{align-items:stretch}
+.cb-uh-r .cb-uh-meta{justify-content:flex-end;flex-wrap:wrap}
+.cb-uh-r .cb-uh-act{margin:4px 0 0;width:100%}
+.cb-uh-r .cb-uh-btn,.cb-uh-r .cb-memo-quick{width:100%;box-sizing:border-box;text-align:center;white-space:normal}
+.cb-uh-r .cb-prov-how{width:100%;box-sizing:border-box}
+.cb-fav-phrase{width:100%;box-sizing:border-box;background:none;border:1px dashed #dcc98a;border-radius:8px;
+padding:6px 10px;font-family:inherit;font-size:11.5px;font-weight:600;color:#96700c;cursor:pointer;text-align:center;margin-top:2px}
+.cb-fav-phrase:hover{background:#fdf7e3;border-color:#eab308}
+.cb-fav-phrase.on{background:#fdf4d7;border:1px solid #eab308;color:#8a5a00}
+.cb-uh-im{gap:10px}
+.cb-im-r{gap:3px}
+.cb-im-r span{line-height:1.4;font-size:12.5px}
+/* ═══ v38.7 — (A) DÉPLIÉ = cartes blanches séparées par un large blanc (fini le gris continu) ;
+   (pt 2) texte pleine largeur jusqu'aux boutons, Industrie/Marché en ligne compacte sous le texte ;
+   (pt 1) « N évalués » en mini SOUS les dates → la ligne d'onglets tient sur une ligne ═══ */
+.cb-uhead{grid-template-columns:minmax(0,1fr) 250px}
+@media(max-width:900px){.cb-uhead{grid-template-columns:minmax(0,1fr) 220px}}
+@media(max-width:640px){.cb-uhead{grid-template-columns:1fr}}
+/* (pt 2) Industrie/Marché : ligne compacte « label : valeur », sous le texte, filet léger */
+.cb-uh-imline{display:flex;flex-wrap:wrap;gap:5px 22px;margin-top:8px;padding-top:8px;border-top:1px dashed #e7ecf2}
+.cb-uh-imline .cb-im-r{flex-direction:row;gap:6px;align-items:baseline}
+.cb-uh-imline .cb-im-r em{flex:0 0 auto}
+.cb-uh-imline .cb-im-r span{font-size:12.5px}
+/* (A) chaque société DÉPLIÉE devient une carte blanche isolée par un large espace blanc :
+   fond blanc, marge verticale, bord + rayon + ombre, le corps gris est clippé dans la carte */
+.cb-urow.cb-open{background:#fff;margin:16px 0;border:1px solid #e3e9f0;border-radius:14px;
+box-shadow:0 4px 18px rgba(15,31,51,.07);overflow:hidden}
+.cb-urow.cb-open>.cb-uhead{background:#fff}
+/* (pt 1) « N évalués <horizon> » en mini sous le sélecteur de dates */
+.cb-datewrap{display:inline-flex;flex-direction:column;gap:3px;align-items:flex-start}
+.cb-datewrap .cb-eval-mini{line-height:1.1}
+.cb-datewrap .cb-eval-mini .cb-f-eval{font-size:10.5px;font-weight:600;color:#9aa7b5}
+/* ═══ v38.8 — (5) TOUT en cartes blanches, gros blanc vertical, ZÉRO gros fond gris au déplier ;
+   (0) « N évalués » en légende AU-DESSUS des dates SANS décaler la ligne (position absolue) ;
+   (1) accordéon « Vos critères » = panneau gris FLUSH aligné sur la barre (fini la boîte arrondie) ;
+   (2) dates plus compactes ; (4) « ⚙ Vos critères » stylé comme « Filtre » (gras si ouvert) ;
+   (6) plus d'air entre le texte à gauche et la colonne des boutons ; (3) news sous le nom en favoris ═══ */
+/* (5) chaque société = carte blanche isolée, repliée ET dépliée ; déplier = la carte grandit vers
+   le bas avec un simple filet, aucun gros aplat gris */
+.cb-card.cb-urow{background:#fff;border:1px solid #e7ecf2;border-radius:14px;margin:13px 0;
+box-shadow:0 1px 4px rgba(15,31,51,.045);overflow:hidden}
+.cb-tabbar + #cb-rows-kept > .cb-urow:first-child{border-top:1px solid #e7ecf2;margin-top:14px}
+.cb-urow.cb-open{background:#fff;border-color:#d7e0ea;box-shadow:0 5px 20px rgba(15,31,51,.09);margin:16px 0}
+.cb-urow.cb-open>.cb-uhead{background:#fff}
+.cb-urow .cb-ubody{background:#fff;border-top:1px solid #eef2f6;border-left:none}
+/* (6) plus d'espace entre le texte (col. 1) et la colonne droite (boutons) */
+.cb-uhead{column-gap:42px}
+/* (0) légende « N évalués » posée au-dessus des dates, en absolu → les boutons de dates restent
+   sur la même ligne que les pastilles (aucun décalage). Padding-haut de la barre = place pour la légende. */
+.cb-tabbar{padding-top:20px;padding-bottom:8px}
+.cb-datewrap{position:relative;display:inline-flex;flex-direction:row;align-items:center;gap:0}
+.cb-datewrap .cb-eval-mini{position:absolute;bottom:100%;left:1px;margin-bottom:2px;white-space:nowrap;
+line-height:1;pointer-events:none}
+.cb-datewrap .cb-eval-mini .cb-f-eval{font-size:10px;font-weight:600;color:#9aa7b5}
+/* (2) dates plus compactes pour que tous les onglets tiennent sur une ligne */
+.cb-dateseg{padding:2px;gap:2px}
+.cb-dateseg button{padding:5px 9px;font-size:11.5px}
+/* (4) « ⚙ Vos critères » = même style léger que « Filtre » (texte gris), gras+foncé quand ouvert */
+.cb-tabbar .cb-tb-btn{background:none;border:none;border-radius:0;padding:0;color:#8a99aa;
+font-size:12px;font-weight:600}
+.cb-tabbar .cb-tb-btn:hover{background:none;color:#0f1f33}
+.cb-tabbar .cb-tb-btn.on{background:none;color:#0f1f33;font-weight:800}
+/* (1) accordéon « Vos critères » : panneau gris FLUSH pleine largeur, aligné sur la ligne de la barre
+   (plus de boîte arrondie flottante avec ombre) */
+.cb-machinline .cb-machine{border:none;border-radius:0;box-shadow:none;background:#f5f7fa;
+margin:0 -2px;padding:16px 14px 12px;border-top:1px solid #e6eaef}
+/* (3) texte de la news sous le nom, dans la vue favoris */
+.cb-extfav-disp{margin:5px 0 0;font-size:13px;color:#475569;line-height:1.5}
+/* ═══ v38.9 — (1) on RETIRE les cartes : lignes À PLAT (ni bord, ni ombre, ni coin arrondi),
+   GROS espace blanc vertical entre les lignes, fond gris PLEIN quand la ligne est dépliée ;
+   (2) « Vos critères » est passé à gauche de « Filtre » (fait côté HTML) ;
+   (3) encore plus d'air entre le texte à gauche et la colonne des boutons ═══ */
+.cb-card.cb-urow{background:none;border:none;border-radius:0;box-shadow:none;margin:0 0 28px;overflow:visible}
+.cb-tabbar + #cb-rows-kept > .cb-urow:first-child{border-top:none;margin-top:12px}
+.cb-urow.cb-open{background:#f4f7fa;border:none;border-radius:10px;box-shadow:none;margin:0 0 28px}
+.cb-urow.cb-open>.cb-uhead{background:#f4f7fa;border-radius:10px 10px 0 0}
+.cb-urow .cb-ubody{background:#f4f7fa;border-top:1px solid #e6ecf2;border-left:none;border-radius:0 0 10px 10px}
+/* (3) plus d'espace entre le texte (col. 1) et la colonne droite (boutons) */
+.cb-uhead{column-gap:54px}
 </style></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
@@ -771,16 +1441,16 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><main class="cb-wrap cb-flow"><p class="cb-kicker">Prospection commerciale · un mémo d&#x27;analyse généré par prospect</p><h1 class="cb-h1">Quelques prospects qui pourraient intéresser jeece</h1><div class="cb-swap"><a class="cb-swap-oth" href="https://proplace.co/cibles/Zhx4hptfCDqA58CC/">🔎 Prospects détectés</a><span class="cb-swap-cur">📚 Dossiers analysés</span></div><div class="cb-machine"><p class="cb-mach-kicker">Le paramétrage de Stan, votre assistant de prospection (SDR) — réglé pour vous<span class="cb-mach-upd"> · actualisée le 12/07 à 14:04</span></p><div class="cb-step"><div class="cb-step-head"><span class="cb-step-n">1</span><h2 class="cb-step-h">Notre hypothèse sur votre client idéal</h2></div><p class="cb-step-sub">Toute la prospection découle de cette hypothèse et des profils ci-dessous. Corrigez ce qui est à côté (hypothèse comme ICP) — je réaligne la machine et vous renvoie une sélection corrigée.</p><div class="cb-step-body"><div class="cb-hyp cb-hyp-flat"><p class="cb-intro">Je suis parti de l&#x27;hypothèse que vous cherchiez à convaincre des organisations françaises — startups en phase d&#x27;industrialisation, industriels sur mesure, acteurs de la santé ou de la défense — qui ont un besoin urgent de développement technique externalisé mais pas encore d&#x27;interlocuteur identifié pour le faire :</p><ul class="cb-points"><li>En ciblant des structures de moins de 500 personnes qui portent des projets hardware, firmware ou logiciel trop complexes pour être absorbés en interne, sans pour autant vouloir recruter.</li><li>En vous rapprochant d&#x27;acteurs dont l&#x27;actualité récente — levée de fonds, nouveau produit, pression réglementaire — crée une fenêtre d&#x27;achat concrète et datée.</li><li>En écartant systématiquement les ESN, agences et prestataires tech qui seraient des concurrents déguisés plutôt que de vrais clients.</li></ul><div class="cb-hyp-act"><button type="button" id="cb-hyp-ok">✓ C&#x27;est exactement ça</button><button type="button" id="cb-hyp-edit">✎ Corriger cette hypothèse</button></div><div id="cb-hyp-form" style="display:none"><p class="cb-hyp-hint">Dites-le avec vos mots — la machine comprend les consignes libres : « visez plutôt les structures de 20 à 200 personnes », « retirez tel type d&#x27;acteur », « ajoutez tel profil »… Elle vous répond, et se recalibre dès que c&#x27;est clair.</p><textarea id="cb-hyp-txt" maxlength="1200">Je suis parti de l&#x27;hypothèse que vous cherchiez à convaincre des organisations françaises — startups en phase d&#x27;industrialisation, industriels sur mesure, acteurs de la santé ou de la défense — qui ont un besoin urgent de développement technique externalisé mais pas encore d&#x27;interlocuteur identifié pour le faire :
-- En ciblant des structures de moins de 500 personnes qui portent des projets hardware, firmware ou logiciel trop complexes pour être absorbés en interne, sans pour autant vouloir recruter.
-- En vous rapprochant d&#x27;acteurs dont l&#x27;actualité récente — levée de fonds, nouveau produit, pression réglementaire — crée une fenêtre d&#x27;achat concrète et datée.
-- En écartant systématiquement les ESN, agences et prestataires tech qui seraient des concurrents déguisés plutôt que de vrais clients.
+})();</script><main class="cb-wrap cb-flow"><p class="cb-kicker">Prospection commerciale · un mémo d&#x27;analyse généré par prospect</p><h1 class="cb-h1">Quelques prospects qui pourraient intéresser jeece</h1><div class="cb-swap"><a class="cb-swap-oth" href="https://proplace.co/cibles/Zhx4hptfCDqA58CC/">🔎 Prospects détectés</a><span class="cb-swap-cur">📚 Dossiers analysés</span></div><div class="cb-machine"><p class="cb-mach-kicker">Le paramétrage de Stan, votre assistant de prospection (SDR) — réglé pour vous<span class="cb-mach-upd"> · actualisée le 13/07 à 14:04</span></p><p class="cb-rank-note">🏆 Le classement suit le dispatch automatique de Stan : d&#x27;abord vos CALL (à trancher OUI/NON), puis les dossiers dont le mémo est déjà lancé, puis les prochains par conviction — le n°1 est votre priorité du moment.</p><div class="cb-step"><div class="cb-step-head"><span class="cb-step-n">1</span><h2 class="cb-step-h">Notre hypothèse sur votre client idéal</h2></div><p class="cb-step-sub">Toute la prospection découle de cette hypothèse et des profils ci-dessous. Corrigez ce qui est à côté (hypothèse comme ICP) — je réaligne la machine et vous renvoie une sélection corrigée.</p><div class="cb-step-body"><div class="cb-hyp cb-hyp-flat"><p class="cb-intro">Je suis parti de l&#x27;hypothèse que vous cherchiez à convaincre des organisations françaises — PME, startups en phase de construction, industriels et acteurs publics — qui ont un besoin concret de développement sur mesure (logiciel, électronique, IA) mais pas les ressources internes pour le réaliser seules :</p><ul class="cb-points"><li>en ciblant des structures de 1 à 500 personnes dont le projet technique est identifiable mais l&#x27;équipe de réalisation absente ou saturée</li><li>en vous rapprochant d&#x27;acteurs ancrés en France, souvent dans les grands bassins tech (Paris, Lyon, Toulouse, Grenoble), là où la demande de prestation sur mesure est la plus dense</li><li>en combinant quatre profils de clients distincts — startup hardware en amorçage, industriel embarqué, PME en modernisation SI et institution publique ou médicale — pour diversifier vos points d&#x27;entrée sans diluer votre positionnement</li></ul><div class="cb-hyp-act"><button type="button" id="cb-hyp-ok">✓ C&#x27;est exactement ça</button><button type="button" id="cb-hyp-edit">✎ Corriger cette hypothèse</button></div><div id="cb-hyp-form" style="display:none"><p class="cb-hyp-hint">Dites-le avec vos mots — la machine comprend les consignes libres : « visez plutôt les structures de 20 à 200 personnes », « retirez tel type d&#x27;acteur », « ajoutez tel profil »… Elle vous répond, et se recalibre dès que c&#x27;est clair.</p><textarea id="cb-hyp-txt" maxlength="1200">Je suis parti de l&#x27;hypothèse que vous cherchiez à convaincre des organisations françaises — PME, startups en phase de construction, industriels et acteurs publics — qui ont un besoin concret de développement sur mesure (logiciel, électronique, IA) mais pas les ressources internes pour le réaliser seules :
+- en ciblant des structures de 1 à 500 personnes dont le projet technique est identifiable mais l&#x27;équipe de réalisation absente ou saturée
+- en vous rapprochant d&#x27;acteurs ancrés en France, souvent dans les grands bassins tech (Paris, Lyon, Toulouse, Grenoble), là où la demande de prestation sur mesure est la plus dense
+- en combinant quatre profils de clients distincts — startup hardware en amorçage, industriel embarqué, PME en modernisation SI et institution publique ou médicale — pour diversifier vos points d&#x27;entrée sans diluer votre positionnement
 
 ICP visés :
-- Startups en phase d&#x27;industrialisation hardware ou logicielle
-- Industriels PME avec firmware ou électronique propriétaire
-- PME en rupture de compétence numérique
-- Institutions et acteurs publics cherchant des solutions sur mesure</textarea><button type="button" id="cb-hyp-send">Envoyer mes corrections</button></div></div></div></div><div class="cb-step"><div class="cb-step-head"><span class="cb-step-n">2</span><h2 class="cb-step-h">Vos profils de clients idéaux (ICP)</h2></div><p class="cb-step-sub">Les familles de prospects que la machine traque en continu — chaque profil se déplie : ce que nous recherchons, ce que nous écartons.</p><div class="cb-step-body"><div class="cb-ang-grid"><details class="cb-ang"><summary>Startups en phase d&#x27;industrialisation hardware ou logicielle</summary><div class="cb-ang-body"><p class="cb-ang-why">Une startup qui vient de lever des fonds a un mandat de livraison produit mais rarement l&#x27;équipe technique complète pour l&#x27;exécuter — c&#x27;est la fenêtre d&#x27;achat la plus courte et la plus prévisible.</p><div class="cb-cols"><div class="cb-look"><h4>Ce que nous recherchons</h4><ul><li>Levée de fonds récente (moins de 12 mois) avec un produit physique ou logiciel à industrialiser</li><li>Équipe fondatrice à dominante business ou scientifique, sans CTO hardware ou firmware identifié</li><li>Secteurs à forte contrainte réglementaire ou de certification (médical, défense, industrie) où la vitesse d&#x27;exécution est critique</li><li>Présence sur des annuaires French Tech, BPI, ou dans la presse spécialisée medtech / deeptech</li></ul></div><div class="cb-rule"><h4>Ce que nous écartons</h4><ul><li>Nous écartons les startups purement SaaS sans composante hardware ou développement sur mesure identifiable</li><li>Nous écartons les structures qui ont déjà un partenaire technique exclusif mentionné publiquement</li></ul></div></div></div></details><details class="cb-ang"><summary>Industriels PME avec firmware ou électronique propriétaire</summary><div class="cb-ang-body"><p class="cb-ang-why">Ces acteurs ont des cycles de prototypage récurrents et des pics de charge prévisibles : ils ont besoin d&#x27;un partenaire de débordement fiable, pas d&#x27;un recrutement permanent.</p><div class="cb-cols"><div class="cb-look"><h4>Ce que nous recherchons</h4><ul><li>Fabricant de machines spéciales, d&#x27;automates ou d&#x27;équipements industriels avec développement électronique ou firmware en interne</li><li>Équipe R&amp;D de 10 à 80 personnes, signe d&#x27;une structure qui produit mais ne peut pas tout absorber</li><li>Clients PME industrielles avec des cahiers des charges sur mesure et des délais serrés</li><li>Activité dans des bassins industriels français : Île-de-France, Auvergne-Rhône-Alpes, Occitanie, Grand Est</li></ul></div><div class="cb-rule"><h4>Ce que nous écartons</h4><ul><li>Nous écartons les grands groupes industriels avec des DSI intégrées et des appels d&#x27;offres formalisés incompatibles avec une intervention rapide</li><li>Nous écartons les sous-traitants purement mécaniques sans composante numérique ou électronique dans leur offre</li></ul></div></div></div></details><details class="cb-ang"><summary>PME en rupture de compétence numérique</summary><div class="cb-ang-body"><p class="cb-ang-why">Une PME qui cherche à moderniser son SI, lancer une application métier ou refondre son e-commerce a souvent un projet bloqué faute d&#x27;interlocuteur technique de confiance — le besoin est réel mais mal formulé.</p><div class="cb-cols"><div class="cb-look"><h4>Ce que nous recherchons</h4><ul><li>PME de 10 à 200 salariés avec un site ou un SI vieillissant et une activité commerciale en croissance</li><li>Signaux de recrutement tech infructueux ou de projets digitaux annoncés sans suite visible</li><li>Secteurs à forte pression de modernisation : distribution, logistique, services B2B, industrie légère</li></ul></div><div class="cb-rule"><h4>Ce que nous écartons</h4><ul><li>Nous écartons les PME dont le dirigeant a déjà un prestataire web ou IT attitré mentionné sur le site ou les réseaux</li><li>Nous écartons les structures sans budget projet identifiable ou dont l&#x27;activité principale est elle-même la prestation informatique</li></ul></div></div></div></details><details class="cb-ang"><summary>Institutions et acteurs publics cherchant des solutions sur mesure</summary><div class="cb-ang-body"><p class="cb-ang-why">Les hôpitaux, organismes de défense et établissements publics ont des besoins techniques très spécifiques que les grands éditeurs ne couvrent pas — et ils cherchent des prestataires référencés capables de livrer vite sur des périmètres bornés.</p><div class="cb-cols"><div class="cb-look"><h4>Ce que nous recherchons</h4><ul><li>Appels d&#x27;offres publics récents sur des développements logiciels, électroniques ou IoT spécifiques</li><li>Structures ayant déjà externalisé un projet technique et cherchant à renouveler ou élargir la collaboration</li><li>Acteurs du médical connecté, de la défense numérique ou de l&#x27;éducation technique avec des contraintes de souveraineté ou de certification</li></ul></div><div class="cb-rule"><h4>Ce que nous écartons</h4><ul><li>Nous écartons les appels d&#x27;offres dont le volume ou la durée impliquent une réponse en groupement impossible à tenir pour une structure agile</li><li>Nous écartons les institutions dont les projets sont entièrement gérés par une DSI interne sans recours à l&#x27;externalisation</li></ul></div></div></div></details></div></div></div><div class="cb-step"><div class="cb-step-head"><span class="cb-step-n">3</span><h2 class="cb-step-h">Le résultat du ciblage</h2></div><p class="cb-step-sub">Chaque société passe ce crible avant d&#x27;arriver jusqu&#x27;à vous.</p><div class="cb-step-body"><div class="cb-funnel"><div class="cb-fun"><b>527</b><span>sociétés passées au crible</span></div><div class="cb-fun"><b>27</b><span>retenues comme prospects sérieux</span></div><div class="cb-fun"><b>2</b><span>retenues comme prospects sérieux</span></div><div class="cb-fun hl"><b>2</b><span>présentées ici en détail</span></div></div><div class="cb-act30"><div class="cb-act30-head"><span class="cb-act30-t">Activité des 30 derniers jours — cliquez un jour pour retrouver ses prospects</span><span class="cb-alg"><i style="background:#4AC67F"></i>retenues</span><span class="cb-alg"><i style="background:#2563eb"></i>Analysées</span><span class="cb-alg"><i style="background:#f0c9c9"></i>Écartées</span></div><svg viewBox="0 0 600 66" preserveAspectRatio="none" role="img" aria-label="Activité des 30 derniers jours — cliquez un jour pour retrouver ses prospects"><g class="cb-abar" data-d="2026-06-13"><title>13/06 · 1 criblée · 0 retenue · 0 analysée</title><rect x="0.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="2.5" y="62.0" width="15.0" height="2.0" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-06-14"><title>14/06 · 2 criblées · 0 retenue · 0 analysée</title><rect x="20.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="22.5" y="62.0" width="15.0" height="2.0" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-06-15"><title>15/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="40.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-16"><title>16/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="60.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-17"><title>17/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="80.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-18"><title>18/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="100.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-19"><title>19/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="120.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-20"><title>20/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="140.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-21"><title>21/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="160.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-22"><title>22/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="180.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-23"><title>23/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="200.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-24"><title>24/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="220.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-25"><title>25/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="240.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-26"><title>26/06 · 15 criblées · 1 retenue · 1 analysée</title><rect x="260.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="262.5" y="59.5" width="15.0" height="4.5" fill="#f0c9c9"/><rect x="262.5" y="56.9" width="15.0" height="2.0" fill="#2563eb"/></g><g class="cb-abar" data-d="2026-06-27"><title>27/06 · 9 criblées · 0 retenue · 0 analysée</title><rect x="280.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="282.5" y="61.1" width="15.0" height="2.9" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-06-28"><title>28/06 · 8 criblées · 0 retenue · 0 analysée</title><rect x="300.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="302.5" y="61.4" width="15.0" height="2.6" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-06-29"><title>29/06 · 3 criblées · 0 retenue · 0 analysée</title><rect x="320.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="322.5" y="62.0" width="15.0" height="2.0" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-06-30"><title>30/06 · 1 criblée · 0 retenue · 0 analysée</title><rect x="340.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="342.5" y="62.0" width="15.0" height="2.0" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-07-01"><title>01/07 · 15 criblées · 0 retenue · 0 analysée</title><rect x="360.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="362.5" y="59.2" width="15.0" height="4.8" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-07-02"><title>02/07 · 9 criblées · 0 retenue · 0 analysée</title><rect x="380.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="382.5" y="61.1" width="15.0" height="2.9" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-07-03"><title>03/07 · 9 criblées · 1 retenue · 1 analysée</title><rect x="400.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="402.5" y="61.4" width="15.0" height="2.6" fill="#f0c9c9"/><rect x="402.5" y="58.8" width="15.0" height="2.0" fill="#2563eb"/></g><g class="cb-abar" data-d="2026-07-04"><title>04/07 · 16 criblées · 2 retenues · 2 analysées</title><rect x="420.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="422.5" y="59.5" width="15.0" height="4.5" fill="#f0c9c9"/><rect x="422.5" y="56.9" width="15.0" height="2.0" fill="#2563eb"/></g><g class="cb-abar" data-d="2026-07-05"><title>05/07 · 0 criblée · 0 retenue · 0 analysée</title><rect x="440.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-07-06"><title>06/07 · 0 criblée · 0 retenue · 0 analysée</title><rect x="460.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-07-07"><title>07/07 · 0 criblée · 0 retenue · 0 analysée</title><rect x="480.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-07-08"><title>08/07 · 8 criblées · 0 retenue · 0 analysée</title><rect x="500.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="502.5" y="61.4" width="15.0" height="2.6" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-07-09"><title>09/07 · 2 criblées · 0 retenue · 0 analysée</title><rect x="520.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="522.5" y="62.0" width="15.0" height="2.0" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-07-10"><title>10/07 · 8 criblées · 0 retenue · 0 analysée</title><rect x="540.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="542.5" y="61.4" width="15.0" height="2.6" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-07-11"><title>11/07 · 193 criblées · 13 retenues · 13 analysées</title><rect x="560.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="562.5" y="6.2" width="15.0" height="57.8" fill="#f0c9c9"/><rect x="562.5" y="1.4" width="15.0" height="4.2" fill="#2563eb"/></g><g class="cb-abar" data-d="2026-07-12"><title>12/07 · 147 criblées · 10 retenues · 10 analysées</title><rect x="580.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="582.5" y="20.0" width="15.0" height="44.0" fill="#f0c9c9"/><rect x="582.5" y="16.2" width="15.0" height="3.2" fill="#2563eb"/></g><line x1="0" y1="64.5" x2="600" y2="64.5" stroke="#dbe5df" stroke-width="1"/></svg><div class="cb-act30-x"><span>13/06</span><span>aujourd&#x27;hui</span></div><p id="cb-day-note" style="display:none">Aucun des prospects affichés ici ne vient de ce jour-là — les autres se présentent de vive voix.</p></div><p class="cb-sec-label">Dossiers analysés — première sélection, à affiner avec vous</p><div class="cb-right cb-q"><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">1</span><h3 class="cb-name">En Carta Diagnostics</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-tier">À étudier</span><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://encarta.bio" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://fr.linkedin.com/in/guillaumehorreard" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Startup medtech française spécialisée dans le diagnostic moléculaire décentralisé par cartouche LAMP jetable, positionnée sur les marchés de la santé de terrain, des hôpitaux de référence et des réseaux d&#x27;achats publics.</p><div class="cb-provbox"><p><b>présente dans un annuaire professionnel de votre secteur passé au crible — acteur installé, identifié nominativement</b> <span class="cb-prov-meta">— via Annuaires professionnels scannés · ICP « startups mvp prototype »</span></p><p class="cb-prov-say"><b>Votre accroche</b> : « J&#x27;ai repéré En Carta Diagnostics dans un annuaire sectoriel que nous passons régulièrement au crible, et votre levée de juillet m&#x27;a interpellé : industrialiser une cartouche LAMP sans équipe hardware dédiée en interne, c&#x27;est exactement le type de défi sur lequel nous intervenons — est-ce que vous avez déjà identifié un partenaire pour cette phase de prototypage ? »</p></div><ul class="cb-why"><li>Elle vient de boucler une levée de 5 M€ en juillet 2026 : l&#x27;argent est là, le mandat d&#x27;industrialisation de la cartouche aussi — mais l&#x27;équipe hardware permanente, elle, n&#x27;existe pas encore.</li><li>Son produit repose sur un kit jetable sans électronique active embarquée complexe, ce qui signifie que le besoin immédiat porte sur le prototypage rapide de la cartouche et l&#x27;interface logicielle associée — exactement le type de mission externalisable à court terme.</li><li>Sa stratégie commerciale cible explicitement les hôpitaux publics et les réseaux d&#x27;achats institutionnels, ce qui ouvre un second angle d&#x27;entrée pour un prestataire déjà référencé auprès d&#x27;acteurs publics ou de défense.</li><li>Le marché du diagnostic au point de soin est en pleine consolidation : les grands laboratoires centralisés ne peuvent pas répondre à la demande de tests rapides terrain, et En Carta se retrouve dans une course à l&#x27;industrialisation où chaque mois de retard a un coût direct sur sa position concurrentielle.</li></ul><p class="cb-fit"><b>Pourquoi c&#x27;est un prospect pour vous :</b> En Carta a le budget, le projet et l&#x27;urgence — mais pas l&#x27;équipe technique externe pour industrialiser sa cartouche : c&#x27;est précisément le moment où un partenaire de développement sur mesure, capable de travailler vite sur un prototype physique et logiciel, devient une nécessité opérationnelle et non un confort.</p><details class="cb-deep cb-deep-syn"><summary>⚔️ Fiche d&#x27;attaque commerciale — le détail du mémo</summary><div class="cb-deep-body"><div class="cb-atk-row"><span>Décideur &amp; comité d&#x27;achat</span><div>CEO et co-fondateur — Guillaume Horréard — Décideur unique dans une équipe de moins de 10 personnes, concentre les décisions techniques et commerciales, disponible sur LinkedIn (profil confirmé : https://fr.linkedin.com/in/guillaumehorreard).</div></div><div class="cb-atk-row"><span>Déclencheur du moment</span><div>Levée de 5 M€ annoncée le 10 juillet 2026 — budget R&amp;D opérationnel débloqué pour l&#x27;industrialisation de la cartouche LAMP, sans partenaire de sous-traitance industrielle identifié publiquement.</div></div><div class="cb-atk-row"><span>Cas d&#x27;usage pour eux</span><div>En Carta doit passer du prototype de laboratoire à l&#x27;injection plastique de précision pour sa cartouche microfluidique LAMP, sans équipe hardware interne ni sous-traitant industriel formalisé à ce jour. — Jeece prototypage hardware sur mesure (schémas électriques passifs, moulage plastique, interface de collecte de données) en mode forfaitaire livrable sous 3 mois, à des tarifs étudiants inaccessibles pour un bureau d&#x27;études senior. — En Carta obtient une itération de prototypage de cartouche validée industriellement dans le délai de son plan CE-IVD, sans recruter d&#x27;équipe permanente ni payer </div></div><div class="cb-atk-row"><span>Face à la concurrence</span><div>Statu quo — absence de partenaire industriel formalisé, dépendance implicite à des bureaux d&#x27;études seniors ou à des partenaires académiques aux délais incompatibles. — Jeece est le seul prestataire capable de couvrir le prototypage hardware de cartouche à des tarifs seed (forfait 10-30 K€) avec une garantie de livraison d&#x27;un mois — une combinaison impossible pour un bureau d&#x27;études senior ou une ESN, et inaccessible via un recrutement interne à ce stade. (à vérifier)</div></div><div class="cb-atk-row"><span>Preuve à utiliser</span><div>Armée de Terre — systèmes embarqués et électroniques pour l&#x27;armée française — Cette référence signale à Guillaume Horréard que Jeece peut livrer sous contrainte de haute fiabilité technique et réglementaire, neutralisant l&#x27;objection &#x27;Junior-Entreprise = équipe étudiante sans rigueur médicale&#x27; avant même qu&#x27;elle soit exprimée.</div></div><div class="cb-atk-row"><span>Accroche d&#x27;ouverture</span><div>« Jeece a livré des systèmes embarqués pour l&#x27;Armée de Terre — nous aidons les startups deeptech à prototyper leur hardware sur mesure en mode forfaitaire avant leur validation clinique. »</div></div><div class="cb-atk-row"><span>Questions de découverte</span><div><ul class="cb-atk-q"><li>Avez-vous déjà sélectionné un partenaire de sous-traitance industrielle pour le prototypage de la cartouche LAMP en injection plastique de précision ?</li><li>Quelle part du budget post-levée est allouée à l&#x27;industrialisation du design de cartouche avant la phase de validation CE-IVD ?</li><li>Avez-vous envisagé de valoriser les données épidémiologiques collectées lors de chaque amplification LAMP pour les proposer aux institutions de santé publique ?</li></ul></div></div><p class="cb-atk-note">La séquence d&#x27;approche prête à l&#x27;emploi et les réponses aux objections sont dans le mémo complet.</p></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>ICP</b><br>ICP dominant : Startups cherchant un MVP ou prototype rapide — En Carta est une startup seed medtech qui vient de lever 5 M€ et doit industrialiser sa cartouche LAMP sans équipe hardware permanente ni partenaire identifié, ce qui est le déclencheur exact de cet ICP. L'ICP Institutions publiques, défense et santé cherchant solutions sur mesure est également fort (adéquation forte) et exploitable en parallèle via la référence Armée de Terre et l'accréditation France Num de Jeece. L'ICP Industriels cherchant de l'électronique embarquée ou IoT présente une adéquation modérée — le kit est délibérément sans électronique active, ce qui réduit le périmètre mais ne l'annule pas (composants passifs, schémas). L'offre comprend également l'ICP PME en transformation digitale qui a été écarté : aucun signal détecté, biotech spécialisée en diagnostic non concernée par la transformation de SI ou l'e-commerce.<br><br><b>Marché & Contexte</b><br>Le marché du diagnostic moléculaire décentralisé est en consolidation active : les grands laboratoires centralisés sont inadaptés à la demande de tests rapides au point de soin, ouvrant un corridor durable pour les kits jetables bas coût portables. L'explosion des cas de Lyme en France (changement climatique) et la priorité politique de souveraineté sanitaire (Bpifrance, France Num) créent une pression institutionnelle et clinique simultanée favorable à En Carta.<br><br><b>Trigger (Pourquoi maintenant)</b><br>La levée de 5 M€ du 10 juillet 2026 (Ring Capital, Blue Forest Ventures, Bpifrance, 50 Partners Health, CentraleSupélec Venture) débloque un budget d'industrialisation opérationnel. La fenêtre est ouverte pour 6 à 9 mois — passé ce délai, En Carta aura sélectionné un partenaire ou les contraintes du runway réduiront les dépenses non-cliniques.<br><br><b>Prospect</b><br>En Carta doit passer du prototype laboratoire à l'injection plastique de précision pour sa cartouche LAMP — Jeece peut couvrir ce besoin (prototypage hardware, schémas passifs, interface données épidémiologiques) à des tarifs que la startup peut financer. Le statu quo à déloger est l'absence de partenaire industriel ou le recours à un bureau d'études senior trop coûteux pour un budget seed.<br><br><b>Décideur & Comité d'achat</b><br>Guillaume Horréard (CEO, co-fondateur CentraleSupélec) est le décideur unique — équipe de moins de 10 personnes, pas de DSI ni responsable achats formalisé.<br><br><b>Fit ICP</b><br>En Carta matche l'ICP Startups cherchant un MVP ou prototype rapide sur tous les critères centraux : startup seed sans équipe hardware permanente, fondateur sans track-record en production industrielle, besoin urgent de prototypage de la cartouche LAMP avant validation CE-IVD, budget seed disponible post-levée. Le cas d'usage croisé direct est le prototypage de la cartouche plastique microfluidique, avec un second projet logiciel+hardware sur l'interface de données épidémiologiques comme levier de renforcement.<br><br><b>Verdict</b><br>🟡 CONSIDER (Objection) — En Carta est un prospect qualifié avec un déclencheur d'achat actif (5 M€ levés en juillet 2026), mais l'objection 'Junior-Entreprise en contexte médical' doit être neutralisée avant l'envoi avec la référence Armée de Terre. Prochaine étape : contacter Guillaume Horréard sur LinkedIn dans les 5 jours ouvrés avec un message ancré sur le cas Armée de Terre et une question ouverte sur le besoin de sous-traitance industrielle pour la cartouche LAMP.</div></details><div class="cb-act" data-target="En Carta Diagnostics"><button type="button" class="cb-yes" data-kind="yes" data-done="Pris en compte ✓ — ça entraîne Stan, votre assistant de prospection.">👍 Oui, à contacter</button><button type="button" class="cb-no" data-kind="no" data-done="Pris en compte ✓ — ça entraîne Stan, votre assistant de prospection.">👎 Pas pour nous</button><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/en-carta-diagnostics-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">2</span><h3 class="cb-name">RSAI</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-tier">À étudier</span><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://rsai.fr" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://unavailable" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">PME industrielle française spécialisée dans la conception et la fabrication d&#x27;automates et de cartes électroniques propriétaires sur mesure, principalement pour les PME du secteur du béton et de l&#x27;industrie lourde.</p><div class="cb-provbox"><p><b>identifiée comme jumelle de vos meilleurs clients — même profil, même besoin probable</b> <span class="cb-prov-meta">— via Similarité Exa (sosies de vos meilleurs clients) · ICP « industriels systemes embarques »</span></p><p class="cb-prov-say"><b>Votre accroche</b> : « Nous travaillons avec des industriels qui ont exactement votre profil — conception d&#x27;automates propriétaires, firmware maison, clients PME exigeants — et c&#x27;est précisément ce type d&#x27;acteur que nous cherchons à accompagner : est-ce que vous avez des projets de prototypage ou de développement logiciel sur lesquels vous manquez de bande passante en ce moment ? »</p></div><ul class="cb-why"><li>RSAI conçoit ses propres cartes électroniques couplées à un firmware de contrôle maison : c&#x27;est un acheteur naturel de renfort en développement embarqué dès que ses 30 ingénieurs sont saturés sur les projets en cours.</li><li>Son taux de conversion prototype-à-série dépasse 70 % selon les informations disponibles, ce qui signifie que chaque prototype supplémentaire traité rapidement se transforme presque systématiquement en commande série — l&#x27;externalisation du prototypage logiciel a donc un retour direct et mesurable.</li><li>RSAI développe également un logiciel de supervision métier pour ses clients industriels : la pression croissante vers la modernisation de ces interfaces crée un besoin de développement logiciel agile que l&#x27;équipe interne ne peut pas absorber seule sans sacrifier la R&amp;D mécatronique.</li><li>Le marché de l&#x27;automatisation pour PME industrielles françaises bascule vers des solutions plus connectées et plus modulaires : RSAI est en position de croissance, mais cette croissance génère précisément des pics de charge technique difficiles à gérer avec une équipe fixe.</li></ul><p class="cb-fit"><b>Pourquoi c&#x27;est un prospect pour vous :</b> RSAI est un fabricant d&#x27;électronique industrielle sur mesure avec une capacité interne structurellement limitée face à sa propre croissance : un partenaire de développement firmware et logiciel capable d&#x27;intervenir en débordement de charge ou sur des prototypes rapides lui permettrait de tenir ses délais clients sans recruter.</p><details class="cb-deep cb-deep-syn"><summary>⚔️ Fiche d&#x27;attaque commerciale — le détail du mémo</summary><div class="cb-deep-body"><div class="cb-atk-row"><span>Décideur &amp; comité d&#x27;achat</span><div>Directeur technique ou Responsable R&amp;D — Ce décideur arbitre les priorités d&#x27;ingénierie et les budgets de sous-traitance — c&#x27;est lui qui ressent directement le goulet d&#x27;étranglement IHM et qui peut mandater un projet pilote sans passer par une longue procédure d&#x27;achat.</div></div><div class="cb-atk-row"><span>Déclencheur du moment</span><div>Les clients PME industrielles de RSAI demandent une supervision multi-sites centralisée que les automates embarqués locaux ne peuvent pas délivrer seuls, forçant RSAI à moderniser ses interfaces logicielles sans pouvoir réaffecter ses ingénieurs firmware.</div></div><div class="cb-atk-row"><span>Cas d&#x27;usage pour eux</span><div>RSAI doit moderniser ses interfaces homme-machine (IHM) et développer des couches cloud pour répondre aux demandes de supervision multi-sites de ses clients béton, mais ses ingénieurs sont entièrement mobilisés sur le firmware propriétaire et la R&amp;D mécatronique. — Jeece développe des interfaces IHM modernes et des couches cloud de supervision pour systèmes industriels, avec un vivier de 3 500 ingénieurs ECE Paris, des cycles Agile courts, et des tarifs de Junior-Entreprise inaccessibles pour une ESN. — RSAI peut répondre aux demandes cloud de ses clients PME industrielles sans recruter ni réa</div></div><div class="cb-atk-row"><span>Face à la concurrence</span><div>Internalisation — les ingénieurs firmware de RSAI développent eux-mêmes les IHM, au détriment de la R&amp;D mécatronique. — Jeece propose exactement ce que RSAI ne peut pas produire rapidement seul — des IHM et interfaces cloud modernes — à des tarifs de Junior-Entreprise, sans toucher au firmware propriétaire qui est le cœur de valeur de RSAI. La référence Armée de Terre prouve la maîtrise des environnements industriels exigeants.</div></div><div class="cb-atk-row"><span>Preuve à utiliser</span><div>Armée de Terre — développement de systèmes embarqués et électroniques pour l&#x27;armée française. — Cette référence prouve que Jeece maîtrise le développement pour des environnements industriels exigeants à très haute rigueur technique, ce qui rassure directement un industriel comme RSAI dont la culture French Fab valorise la souveraineté nationale et la rigueur d&#x27;ingénierie.</div></div><div class="cb-atk-row"><span>Accroche d&#x27;ouverture</span><div>« Vous concevez des automates industriels sur mesure pour des PME du béton depuis plus de 30 ans — et vos clients demandent maintenant des interfaces de supervision multi-sites centralisées. La question est de savoir si vos ingénieurs firmware ont la bande passante pour développer ces couches cloud sans ralentir votre R&amp;D mécatronique. »</div></div><div class="cb-atk-row"><span>Questions de découverte</span><div><ul class="cb-atk-q"><li>Quelle est la part de temps de vos ingénieurs actuellement consacrée au développement des interfaces utilisateur (IHM) versus la R&amp;D firmware et mécatronique ?</li><li>Combien de clients du secteur béton vous ont explicitement demandé une supervision multi-sites ou des fonctionnalités cloud au cours des 12 derniers mois ?</li><li>Avez-vous déjà travaillé avec un prestataire externe pour une partie du développement logiciel applicatif, ou toutes vos réalisations sont-elles entièrement internes ?</li></ul></div></div><p class="cb-atk-note">La séquence d&#x27;approche prête à l&#x27;emploi et les réponses aux objections sont dans le mémo complet.</p></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>ICP</b><br>Ce prospect s'aligne sur l'ICP Industriels cherchant de l'électronique embarquée ou IoT : RSAI conçoit des automates et firmware propriétaires pour PME industrielles du béton, correspondant exactement au profil d'acheteur cible. L'ICP PME en transformation digitale présente un fit modéré exploitable en parallèle via le besoin de modernisation des IHM logicielles. L'ICP Startups cherchant un MVP ou prototype rapide reste spéculatif — RSAI n'est pas une startup. L'offre comprend également l'ICP Institutions publiques, défense et santé cherchant solutions sur mesure, écarté pour ce prospect : aucun signal public ne lie RSAI à des appels d'offres publics récents ou à une activité dédiée aux institutions de défense ou hôpitaux.<br><br><b>Marché & Contexte</b><br>RSAI opère sur un marché de l'automatisation industrielle en consolidation vers le logiciel de supervision connecté. La pression Industrie 4.0 et les normes énergétiques forcent ses clients PME béton à demander des interfaces cloud multi-sites que les automates locaux ne délivrent pas seuls. RSAI détient un verrou hardware fort (firmware propriétaire dans plus de 90% des automates, coût de migration supérieur à 24 mois) mais une vulnérabilité structurelle sur ses IHM logicielles.<br><br><b>Trigger (Pourquoi maintenant)</b><br>Les exploitants clients de RSAI demandent une supervision multi-sites centralisée que les automates embarqués locaux ne délivrent pas — RSAI doit moderniser ses IHM sans réaffecter ses ingénieurs firmware, créant un besoin d'externalisation logicielle immédiat. La fenêtre se ferme à mesure que des ESN spécialisées pourraient répliquer les interfaces logicielles en 6 à 12 mois.<br><br><b>Prospect</b><br>RSAI (SASU, ~30 salariés, Saint-Chamond) est un fabricant d'automates sur mesure et logiciels de supervision pour PME industrielles du béton depuis plus de 30 ans, avec 15% du CA investi en R&D interne et un label French Fab. Jeece peut développer les IHM cloud de RSAI à des tarifs inaccessibles pour une ESN, libérant les ingénieurs firmware pour la R&D mécatronique à haute valeur — la preuve Armée de Terre rassure directement ce profil industriel exigeant.<br><br><b>Décideur & Comité d'achat</b><br>Le décideur cible est le directeur technique ou responsable R&D de RSAI — aucun nom disponible publiquement, à identifier avant toute approche. La structure SASU implique un associé unique comme décideur final, avec un risque de résistance culturelle à l'externalisation de la R&D logicielle.<br><br><b>Fit ICP</b><br>RSAI coche les signaux d'achat clés de l'ICP Industriels cherchant de l'électronique embarquée ou IoT — PME industrielle française avec R&D électronique embarquée active, besoin de modernisation IHM documenté, et incapacité à absorber le développement cloud sans externalisation. Le cas d'usage croisé central est le développement des IHM et couches cloud par Jeece, libérant les ingénieurs RSAI pour la mécatronique.<br><br><b>Verdict</b><br>🟡 CONSIDER (Objection) — L'approche est défendable et le fit ICP est fort, mais la résistance culturelle à l'externalisation de la R&D chez RSAI (culture 'tout-interne' French Fab, 15% CA en R&D interne) doit être pré-traitée avant le contact : reformuler l'approche comme aide opérationnelle sur les IHM, pas comme transformation stratégique. Identifier le directeur technique via LinkedIn avant J+7, puis envoyer un message de diagnostic ciblé.</div></details><div class="cb-act" data-target="RSAI"><button type="button" class="cb-yes" data-kind="yes" data-done="Pris en compte ✓ — ça entraîne Stan, votre assistant de prospection.">👍 Oui, à contacter</button><button type="button" class="cb-no" data-kind="no" data-done="Pris en compte ✓ — ça entraîne Stan, votre assistant de prospection.">👎 Pas pour nous</button><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/rsai-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div></div><p class="cb-learn">💡 Chaque 👍/👎 et chaque correction réaligne la sélection suivante — c&#x27;est votre machine, elle apprend de vous.</p></div></div></div><p class="cb-cta-line">Je serais ravi d'affiner ces hypothèses avec vous afin de cibler les prospects qui comptent vraiment — lors d'une rencontre, d'une visio (<a href="#rdv" class="cb-ilink">réserver un créneau</a>), par téléphone au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou par email <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>.</p><a class="cb-cta-top" href="#rdv">20 minutes pour calibrer votre machine</a><div class="cb-upsell"><h2>Et si vous pilotiez la machine en direct ?</h2><p>Cette page n&#x27;est qu&#x27;une fenêtre. En accès complet, vous voyez tout, en continu : chaque prospect détecté (pas seulement cette sélection), les analyses lancées à la demande, l&#x27;hypothèse et les profils ajustables à tout moment — et une machine qui apprend de chacun de vos retours. C&#x27;est ce que je vous montre en 20 minutes.</p><a class="cb-cta-top" href="#rdv">20 minutes pour calibrer votre machine</a></div><div class="cb-rdv" id="rdv"><h2>Échangeons 20 minutes</h2><p>Choisissez un créneau ci-dessous, ou contactez-moi directement au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>. Je serais ravi d'affiner cette sélection avec votre retour.</p><script>(function(){try{var u=new URL(window.location.href);if(!u.searchParams.get('company_name')){u.searchParams.set('company_name',"jeece");history.replaceState(null,'',u);}}catch(e){}})();</script><div style="width:100%;min-height:560px;" data-fillout-id="aDx8z7Hzksus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div><script src="https://server.fillout.com/embed/v1/"></script></div><p class="cb-note">Sélection établie par Proplace, votre force de prospection augmentée. Lien privé — merci de ne pas le diffuser.</p></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+- Startups hardware et medtech en phase d&#x27;industrialisation
+- Industriels et sous-traitants électroniques en saturation R&amp;D
+- Acteurs défense et institutions publiques cherchant des partenaires certifiés
+- PME en modernisat</textarea><button type="button" id="cb-hyp-send">Mettre à jour Stan avec ces corrections</button><p class="cb-hyp-note">Stan va vous proposer une mise à jour de vos critères que vous pourrez affiner ou valider.</p></div></div></div></div><div class="cb-step"><div class="cb-step-head"><span class="cb-step-n">2</span><h2 class="cb-step-h">Vos profils de clients idéaux (ICP)</h2></div><p class="cb-step-sub">Les familles de prospects que la machine traque en continu — chaque profil se déplie : ce que nous recherchons, ce que nous écartons.</p><div class="cb-step-body"><div class="cb-ang-grid"><details class="cb-ang"><summary>Startups hardware et medtech en phase d&#x27;industrialisation</summary><div class="cb-ang-body"><p class="cb-ang-why">Une startup qui vient de lever des fonds doit livrer un prototype fonctionnel en quelques mois sans recruter une équipe technique permanente — c&#x27;est le moment où elle est la plus réceptive à une prestation externe structurée.</p><div class="cb-cols"><div class="cb-look"><h4>Ce que nous recherchons</h4><ul><li>Startup française ayant levé entre 1 et 10 M€ dans les 12 derniers mois, avec un produit physique ou une interface numérique à construire</li><li>Absence d&#x27;équipe technique interne constituée ou équipe trop petite pour tenir le rythme de la roadmap</li><li>Secteurs à forte contrainte réglementaire (medtech, agritech, cleantech) où la crédibilité du prestataire compte autant que la vitesse</li></ul></div><div class="cb-rule"><h4>Ce que nous écartons</h4><ul><li>Nous écartons les startups en phase d&#x27;idéation sans financement confirmé : le besoin est réel mais la décision d&#x27;achat ne peut pas se concrétiser</li><li>Nous écartons les startups purement logicielles avec une équipe tech déjà constituée : elles n&#x27;ont pas besoin d&#x27;un prestataire externe pour leur cœur de métier</li></ul></div></div></div></details><details class="cb-ang"><summary>Industriels et sous-traitants électroniques en saturation R&amp;D</summary><div class="cb-ang-body"><p class="cb-ang-why">Un industriel dont l&#x27;équipe technique est à pleine capacité sur le hardware ne peut pas absorber seul la demande croissante de ses clients sur la couche logicielle et connectée — il cherche un partenaire fiable, pas un généraliste.</p><div class="cb-cols"><div class="cb-look"><h4>Ce que nous recherchons</h4><ul><li>PME ou ETI industrielle française de 20 à 300 personnes, spécialisée en électronique embarquée, automates ou systèmes de contrôle</li><li>Présence d&#x27;une activité de prototypage ou de petites séries avec des cycles de développement identifiables</li><li>Signaux de demande client sur des interfaces logicielles, cloud ou IoT que l&#x27;industriel ne peut pas livrer seul</li></ul></div><div class="cb-rule"><h4>Ce que nous écartons</h4><ul><li>Nous écartons les grands groupes industriels avec des DSI internes structurées : ils ont leurs propres prestataires référencés et des cycles d&#x27;achat trop longs</li><li>Nous écartons les sous-traitants purement manufacturiers sans activité de bureau d&#x27;études : le besoin de développement sur mesure n&#x27;est pas dans leur modèle</li></ul></div></div></div></details><details class="cb-ang"><summary>Acteurs défense et institutions publiques cherchant des partenaires certifiés</summary><div class="cb-ang-body"><p class="cb-ang-why">Les donneurs d&#x27;ordre institutionnels et défense privilégient des prestataires qui connaissent leurs contraintes de certification et de souveraineté — une référence commune est souvent le meilleur accélérateur de confiance.</p><div class="cb-cols"><div class="cb-look"><h4>Ce que nous recherchons</h4><ul><li>Organisation active dans la défense, la santé publique ou les infrastructures critiques, avec des projets de développement technique externalisables</li><li>Présence de certifications ou d&#x27;exigences réglementaires spécifiques (MIL-STD, normes médicales, cybersécurité) qui limitent le choix de prestataires</li><li>Historique d&#x27;achats publics ou de marchés à bons de commande récents, signal d&#x27;une capacité budgétaire structurée</li></ul></div><div class="cb-rule"><h4>Ce que nous écartons</h4><ul><li>Nous écartons les institutions dont les projets numériques sont intégralement gérés par des ESN sous contrat-cadre pluriannuel : la fenêtre d&#x27;entrée est fermée à court terme</li><li>Nous écartons les structures dont le budget projet n&#x27;est pas identifiable ou dont le cycle de décision dépasse 18 mois sans déclencheur imminent</li></ul></div></div></div></details><details class="cb-ang"><summary>PME en modernisation de leur système d&#x27;information ou de leur présence digitale</summary><div class="cb-ang-body"><p class="cb-ang-why">Une PME qui doit moderniser son SI, lancer une application métier ou structurer sa présence en ligne a rarement les ressources internes pour piloter ce chantier — elle cherche un partenaire qui comprend son métier autant que la technologie.</p><div class="cb-cols"><div class="cb-look"><h4>Ce que nous recherchons</h4><ul><li>PME française de 10 à 250 salariés avec un SI vieillissant, une activité e-commerce à structurer ou une application métier à développer</li><li>Signaux de croissance récente (recrutements, ouverture de site, nouveau marché) qui rendent la modernisation urgente</li><li>Dirigeant ou responsable opérationnel identifiable, capable de prendre une décision d&#x27;achat sans appel d&#x27;offres long</li></ul></div><div class="cb-rule"><h4>Ce que nous écartons</h4><ul><li>Nous écartons les PME dont la transformation digitale se limite à un changement d&#x27;ERP standard : ce type de projet est pris en charge par des intégrateurs spécialisés, pas par une prestation sur mesure</li><li>Nous écartons les structures sans budget projet identifiable ou dont la direction n&#x27;a pas encore internalisé le besoin de transformation</li></ul></div></div></div></details></div></div></div><div class="cb-step"><div class="cb-step-head"><span class="cb-step-n">3</span><h2 class="cb-step-h">Le crible de Stan — comment il décide Retenu / Écarté</h2></div><p class="cb-step-sub">Chaque société est confrontée à ces critères, dans l&#x27;ordre. C&#x27;est à eux que renvoient les raisons ci-dessus (« STEP A, C… »).</p><div class="cb-step-body"><ol class="cb-gate-steps"><li><b>A</b> L&#x27;organisation est un acheteur final de prestations de développement informatique, électronique ou IA sur mesure (PME, startup, industriel, institution publique) — exclure : ESN concurrentes, agences web rivales, Junior-Entreprises concurrentes, freelances tech.</li><li><b>B</b> Correspond à au moins un ICP actif : pme transformation digitale (PME cherchant site/app/modernisation SI), startups mvp prototype (startup cherchant MVP/prototype rapide), industriels systemes embarques (industriel cherchant électronique embarquée/IoT/automates), institutions publiques defense sant</li><li><b>C</b> Siège ou opérations principales en France.</li><li><b>D</b> Structure de 1 à 500 salariés ou budget projet externalisable identifiable.</li></ol></div></div><div class="cb-step"><div class="cb-step-head"><span class="cb-step-n">4</span><h2 class="cb-step-h">Comment Stan décide l&#x27;analyse (CALL / CONSIDER / MONITOR / PASS)</h2></div><div class="cb-step-body"><p class="cb-rub-lead">Une fois retenu, Stan approfondit et tranche. Voici ce qui fait pencher la balance.</p><div class="cb-rub-verdicts"><span class="cb-verdict cb-verdict-lg" style="background:#4ac67f" title="CALL — le choix n°1 de Stan : à trancher OUI/NON maintenant.">CALL</span><span>le choix n°1 de Stan : à trancher OUI/NON maintenant.</span><span class="cb-verdict cb-verdict-lg" style="background:#ca8a04" title="CONSIDER — solide, mérite un regard plus attentif.">CONSIDER</span><span>solide, mérite un regard plus attentif.</span><span class="cb-verdict cb-verdict-lg" style="background:#2563eb" title="MONITOR — à surveiller, pas prioritaire pour l&#x27;instant.">MONITOR</span><span>à surveiller, pas prioritaire pour l&#x27;instant.</span><span class="cb-verdict cb-verdict-lg" style="background:#dc2626" title="PASS — non pertinent pour le moment.">PASS</span><span>non pertinent pour le moment.</span></div><p class="cb-rub-h cb-rub-green">✅ Ce qui pousse vers CALL</p><div class="cb-flag-wrap"><span class="cb-flag-chip green">Recrutement responsable digital récent</span><span class="cb-flag-chip green">Lancement produit e-commerce annoncé</span><span class="cb-flag-chip green">Mention refonte site ou application</span><span class="cb-flag-chip green">BPI France accompagnement numérique</span><span class="cb-flag-chip green">Présence France Num répertoire</span><span class="cb-flag-chip green">SEO inexistant ou dégradé</span><span class="cb-flag-chip green">Intégration API ERP mentionnée</span><span class="cb-flag-chip green">Expansion digitale régionale</span><span class="cb-flag-chip green">Boutique physique sans présence web</span><span class="cb-flag-chip green">PME 10-250 salariés secteur retail</span><span class="cb-flag-chip green">Annonce levée pre-seed ou seed</span><span class="cb-flag-chip green">Recrutement premier CTO ou dev</span></div><p class="cb-rub-h cb-rub-red">🚫 Ce qui pousse vers PASS</p><div class="cb-flag-wrap"><span class="cb-flag-chip red">Agence web vendant services rivaux</span><span class="cb-flag-chip red">ESN type Capgemini ou Alten</span><span class="cb-flag-chip red">Éditeur SaaS sans besoin dev externe</span><span class="cb-flag-chip red">PME sans budget IT identifié</span><span class="cb-flag-chip red">Studio MVP concurrent type Theodo</span><span class="cb-flag-chip red">Startup SaaS avec équipe tech interne</span><span class="cb-flag-chip red">Plateforme no-code sans besoin ingé</span><span class="cb-flag-chip red">Startup Series A déjà capitalisée</span><span class="cb-flag-chip red">Fabricant composants PCB concurrent</span><span class="cb-flag-chip red">Bureau d&#x27;études électronique rival</span><span class="cb-flag-chip red">Intégrateur automates concurrent Siemens</span><span class="cb-flag-chip red">Industriel avec R&amp;D interne complète</span></div><p class="cb-rub-h">Les angles qui pèsent le plus</p><div class="cb-flag-wrap"><span class="cb-flag-chip wt">PME en transformation digitale <b>5</b></span><span class="cb-flag-chip wt">Startups cherchant un MVP ou prototype rapide <b>4</b></span><span class="cb-flag-chip wt">Industriels cherchant de l&#x27;électronique embarquée ou IoT <b>4</b></span><span class="cb-flag-chip wt">Institutions publiques, défense et santé cherchant solutions sur mesure <b>3</b></span></div></div></div><div class="cb-step"><div class="cb-step-head"><span class="cb-step-n">5</span><h2 class="cb-step-h">Le résultat du ciblage</h2></div><p class="cb-step-sub">Chaque société passe ce crible avant d&#x27;arriver jusqu&#x27;à vous.</p><div class="cb-step-body"><div class="cb-funnel"><div class="cb-fun"><b>676</b><span>sociétés passées au crible</span></div><div class="cb-fun"><b>31</b><span>retenues comme prospects sérieux</span></div><div class="cb-fun"><b>4</b><span>retenues comme prospects sérieux</span></div><div class="cb-fun hl"><b>4</b><span>présentées ici en détail</span></div></div><div class="cb-act30"><div class="cb-act30-head"><span class="cb-act30-t">Activité des 30 derniers jours — cliquez un jour pour retrouver ses prospects</span><span class="cb-alg"><i style="background:#4AC67F"></i>retenues</span><span class="cb-alg"><i style="background:#2563eb"></i>Analysées</span><span class="cb-alg"><i style="background:#f0c9c9"></i>Écartées</span></div><svg viewBox="0 0 600 66" preserveAspectRatio="none" role="img" aria-label="Activité des 30 derniers jours — cliquez un jour pour retrouver ses prospects"><g class="cb-abar" data-d="2026-06-14"><title>14/06 · 2 criblées · 0 retenue · 0 analysée</title><rect x="0.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="2.5" y="62.0" width="15.0" height="2.0" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-06-15"><title>15/06 · 1 criblée · 0 retenue · 0 analysée</title><rect x="20.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="22.5" y="62.0" width="15.0" height="2.0" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-06-16"><title>16/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="40.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-17"><title>17/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="60.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-18"><title>18/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="80.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-19"><title>19/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="100.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-20"><title>20/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="120.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-21"><title>21/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="140.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-22"><title>22/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="160.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-23"><title>23/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="180.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-24"><title>24/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="200.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-25"><title>25/06 · 0 criblée · 0 retenue · 0 analysée</title><rect x="220.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-06-26"><title>26/06 · 18 criblées · 1 retenue · 0 analysée</title><rect x="240.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="242.5" y="58.5" width="15.0" height="5.5" fill="#f0c9c9"/><rect x="242.5" y="55.9" width="15.0" height="2.0" fill="#4AC67F"/></g><g class="cb-abar" data-d="2026-06-27"><title>27/06 · 10 criblées · 0 retenue · 0 analysée</title><rect x="260.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="262.5" y="60.8" width="15.0" height="3.2" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-06-28"><title>28/06 · 11 criblées · 0 retenue · 0 analysée</title><rect x="280.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="282.5" y="60.5" width="15.0" height="3.5" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-06-29"><title>29/06 · 4 criblées · 0 retenue · 0 analysée</title><rect x="300.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="302.5" y="62.0" width="15.0" height="2.0" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-06-30"><title>30/06 · 2 criblées · 0 retenue · 0 analysée</title><rect x="320.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="322.5" y="62.0" width="15.0" height="2.0" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-07-01"><title>01/07 · 21 criblées · 0 retenue · 0 analysée</title><rect x="340.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="342.5" y="57.3" width="15.0" height="6.7" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-07-02"><title>02/07 · 12 criblées · 0 retenue · 0 analysée</title><rect x="360.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="362.5" y="60.1" width="15.0" height="3.9" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-07-03"><title>03/07 · 10 criblées · 1 retenue · 0 analysée</title><rect x="380.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="382.5" y="61.1" width="15.0" height="2.9" fill="#f0c9c9"/><rect x="382.5" y="58.5" width="15.0" height="2.0" fill="#4AC67F"/></g><g class="cb-abar" data-d="2026-07-04"><title>04/07 · 16 criblées · 2 retenues · 0 analysée</title><rect x="400.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="402.5" y="59.5" width="15.0" height="4.5" fill="#f0c9c9"/><rect x="402.5" y="56.9" width="15.0" height="2.0" fill="#4AC67F"/></g><g class="cb-abar" data-d="2026-07-05"><title>05/07 · 0 criblée · 0 retenue · 0 analysée</title><rect x="420.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-07-06"><title>06/07 · 0 criblée · 0 retenue · 0 analysée</title><rect x="440.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-07-07"><title>07/07 · 0 criblée · 0 retenue · 0 analysée</title><rect x="460.0" y="0" width="20.0" height="66.0" fill="transparent"/></g><g class="cb-abar" data-d="2026-07-08"><title>08/07 · 8 criblées · 0 retenue · 0 analysée</title><rect x="480.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="482.5" y="61.4" width="15.0" height="2.6" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-07-09"><title>09/07 · 3 criblées · 0 retenue · 0 analysée</title><rect x="500.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="502.5" y="62.0" width="15.0" height="2.0" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-07-10"><title>10/07 · 8 criblées · 0 retenue · 0 analysée</title><rect x="520.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="522.5" y="61.4" width="15.0" height="2.6" fill="#f0c9c9"/></g><g class="cb-abar" data-d="2026-07-11"><title>11/07 · 193 criblées · 13 retenues · 2 analysées</title><rect x="540.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="542.5" y="6.2" width="15.0" height="57.8" fill="#f0c9c9"/><rect x="542.5" y="2.0" width="15.0" height="3.5" fill="#4AC67F"/><rect x="542.5" y="-0.6" width="15.0" height="2.0" fill="#2563eb"/></g><g class="cb-abar" data-d="2026-07-12"><title>12/07 · 147 criblées · 10 retenues · 2 analysées</title><rect x="560.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="562.5" y="20.0" width="15.0" height="44.0" fill="#f0c9c9"/><rect x="562.5" y="16.8" width="15.0" height="2.6" fill="#4AC67F"/><rect x="562.5" y="14.2" width="15.0" height="2.0" fill="#2563eb"/></g><g class="cb-abar" data-d="2026-07-13"><title>13/07 · 110 criblées · 4 retenues · 2 analysées</title><rect x="580.0" y="0" width="20.0" height="66.0" fill="transparent"/><rect x="582.5" y="29.9" width="15.0" height="34.1" fill="#f0c9c9"/><rect x="582.5" y="27.3" width="15.0" height="2.0" fill="#4AC67F"/><rect x="582.5" y="24.7" width="15.0" height="2.0" fill="#2563eb"/></g><line x1="0" y1="64.5" x2="600" y2="64.5" stroke="#dbe5df" stroke-width="1"/></svg><div class="cb-act30-x"><span>14/06</span><span>aujourd&#x27;hui</span></div><p id="cb-day-note" style="display:none">Aucun des prospects affichés ici ne vient de ce jour-là — les autres se présentent de vive voix.</p></div><p class="cb-sec-label">Dossiers analysés — première sélection, à affiner avec vous</p><div class="cb-right cb-q"><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">1</span><h3 class="cb-name">En Carta Diagnostics</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-tier">À étudier</span><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://encarta.bio" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://fr.linkedin.com/in/guillaumehorreard" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Startup medtech française spécialisée dans le diagnostic moléculaire décentralisé par cartouche LAMP jetable, ciblant les hôpitaux de référence et les réseaux d&#x27;achats publics en zones d&#x27;endémie.</p><div class="cb-provbox"><p class="cb-prov-how">🔎 Comment Stan l&#x27;a trouvée</p><p><b>présente dans un annuaire professionnel de votre secteur passé au crible — acteur installé, identifié nominativement</b> <span class="cb-prov-meta">— via Annuaires professionnels scannés · ICP « startups mvp prototype »</span></p><p class="cb-prov-say"><b>Votre accroche</b> : « J&#x27;ai identifié En Carta Diagnostics en passant au crible un annuaire professionnel du secteur medtech : vous venez de lever 5 M€ et vous devez industrialiser votre cartouche LAMP sans équipe de sous-traitance identifiée — c&#x27;est précisément le moment où nous intervenons pour des startups dans votre situation, et j&#x27;aimerais vous montrer comment nous avons structuré ce type de mission. »</p></div><ul class="cb-why"><li>Elle vient de lever 5 M€ et doit industrialiser sa roadmap hardware sans équipe de sous-traitance technique constituée : le besoin de prototypage et d&#x27;ingénierie embarquée est immédiat, pas dans six mois.</li><li>Le marché du diagnostic au point de soin est en pleine consolidation face aux géants centralisés (Abbott, Roche) — En Carta a une fenêtre courte pour valider son kit avant que des concurrents mieux dotés ne ferment le corridor.</li><li>Sa stratégie commerciale vise explicitement les hôpitaux publics et les réseaux d&#x27;achats institutionnels, un terrain où une référence défense ou accréditation France Num constitue un avantage d&#x27;entrée tangible.</li><li>L&#x27;explosion des cas de Lyme et la priorité politique de souveraineté sanitaire post-Covid créent une pression réglementaire et budgétaire qui accélère les décisions d&#x27;achat dans ce segment.</li></ul><p class="cb-fit"><b>Pourquoi c&#x27;est un prospect pour vous :</b> En Carta a besoin d&#x27;un partenaire capable de prendre en charge le développement technique de sa cartouche et de ses interfaces dès maintenant, sans recruter — exactement ce qu&#x27;une structure de prestation sur mesure en électronique et logiciel embarqué peut apporter à une startup seed sans équipe hardware permanente.</p><details class="cb-deep cb-deep-syn"><summary>⚔️ Fiche d&#x27;attaque commerciale — le détail du mémo</summary><div class="cb-deep-body"><div class="cb-atk-row"><span>Décideur &amp; comité d&#x27;achat</span><div>CEO et co-fondateur — Guillaume Horréard — Décideur unique dans une équipe de moins de 10 personnes, concentre les décisions techniques et commerciales, disponible sur LinkedIn (profil confirmé : https://fr.linkedin.com/in/guillaumehorreard).</div></div><div class="cb-atk-row"><span>Déclencheur du moment</span><div>Levée de 5 M€ annoncée le 10 juillet 2026 — budget R&amp;D opérationnel débloqué pour l&#x27;industrialisation de la cartouche LAMP, sans partenaire de sous-traitance industrielle identifié publiquement.</div></div><div class="cb-atk-row"><span>Cas d&#x27;usage pour eux</span><div>En Carta doit passer du prototype de laboratoire à l&#x27;injection plastique de précision pour sa cartouche microfluidique LAMP, sans équipe hardware interne ni sous-traitant industriel formalisé à ce jour. — Jeece prototypage hardware sur mesure (schémas électriques passifs, moulage plastique, interface de collecte de données) en mode forfaitaire livrable sous 3 mois, à des tarifs étudiants inaccessibles pour un bureau d&#x27;études senior. — En Carta obtient une itération de prototypage de cartouche validée industriellement dans le délai de son plan CE-IVD, sans recruter d&#x27;équipe permanente ni payer </div></div><div class="cb-atk-row"><span>Face à la concurrence</span><div>Statu quo — absence de partenaire industriel formalisé, dépendance implicite à des bureaux d&#x27;études seniors ou à des partenaires académiques aux délais incompatibles. — Jeece est le seul prestataire capable de couvrir le prototypage hardware de cartouche à des tarifs seed (forfait 10-30 K€) avec une garantie de livraison d&#x27;un mois — une combinaison impossible pour un bureau d&#x27;études senior ou une ESN, et inaccessible via un recrutement interne à ce stade. (à vérifier)</div></div><div class="cb-atk-row"><span>Preuve à utiliser</span><div>Armée de Terre — systèmes embarqués et électroniques pour l&#x27;armée française — Cette référence signale à Guillaume Horréard que Jeece peut livrer sous contrainte de haute fiabilité technique et réglementaire, neutralisant l&#x27;objection &#x27;Junior-Entreprise = équipe étudiante sans rigueur médicale&#x27; avant même qu&#x27;elle soit exprimée.</div></div><div class="cb-atk-row"><span>Accroche d&#x27;ouverture</span><div>« Jeece a livré des systèmes embarqués pour l&#x27;Armée de Terre — nous aidons les startups deeptech à prototyper leur hardware sur mesure en mode forfaitaire avant leur validation clinique. »</div></div><div class="cb-atk-row"><span>Questions de découverte</span><div><ul class="cb-atk-q"><li>Avez-vous déjà sélectionné un partenaire de sous-traitance industrielle pour le prototypage de la cartouche LAMP en injection plastique de précision ?</li><li>Quelle part du budget post-levée est allouée à l&#x27;industrialisation du design de cartouche avant la phase de validation CE-IVD ?</li><li>Avez-vous envisagé de valoriser les données épidémiologiques collectées lors de chaque amplification LAMP pour les proposer aux institutions de santé publique ?</li></ul></div></div><p class="cb-atk-note">La séquence d&#x27;approche prête à l&#x27;emploi et les réponses aux objections sont dans le mémo complet.</p></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>ICP</b><br>ICP dominant : Startups cherchant un MVP ou prototype rapide — En Carta est une startup seed medtech qui vient de lever 5 M€ et doit industrialiser sa cartouche LAMP sans équipe hardware permanente ni partenaire identifié, ce qui est le déclencheur exact de cet ICP. L'ICP Institutions publiques, défense et santé cherchant solutions sur mesure est également fort (adéquation forte) et exploitable en parallèle via la référence Armée de Terre et l'accréditation France Num de Jeece. L'ICP Industriels cherchant de l'électronique embarquée ou IoT présente une adéquation modérée — le kit est délibérément sans électronique active, ce qui réduit le périmètre mais ne l'annule pas (composants passifs, schémas). L'offre comprend également l'ICP PME en transformation digitale qui a été écarté : aucun signal détecté, biotech spécialisée en diagnostic non concernée par la transformation de SI ou l'e-commerce.<br><br><b>Marché & Contexte</b><br>Le marché du diagnostic moléculaire décentralisé est en consolidation active : les grands laboratoires centralisés sont inadaptés à la demande de tests rapides au point de soin, ouvrant un corridor durable pour les kits jetables bas coût portables. L'explosion des cas de Lyme en France (changement climatique) et la priorité politique de souveraineté sanitaire (Bpifrance, France Num) créent une pression institutionnelle et clinique simultanée favorable à En Carta.<br><br><b>Trigger (Pourquoi maintenant)</b><br>La levée de 5 M€ du 10 juillet 2026 (Ring Capital, Blue Forest Ventures, Bpifrance, 50 Partners Health, CentraleSupélec Venture) débloque un budget d'industrialisation opérationnel. La fenêtre est ouverte pour 6 à 9 mois — passé ce délai, En Carta aura sélectionné un partenaire ou les contraintes du runway réduiront les dépenses non-cliniques.<br><br><b>Prospect</b><br>En Carta doit passer du prototype laboratoire à l'injection plastique de précision pour sa cartouche LAMP — Jeece peut couvrir ce besoin (prototypage hardware, schémas passifs, interface données épidémiologiques) à des tarifs que la startup peut financer. Le statu quo à déloger est l'absence de partenaire industriel ou le recours à un bureau d'études senior trop coûteux pour un budget seed.<br><br><b>Décideur & Comité d'achat</b><br>Guillaume Horréard (CEO, co-fondateur CentraleSupélec) est le décideur unique — équipe de moins de 10 personnes, pas de DSI ni responsable achats formalisé.<br><br><b>Fit ICP</b><br>En Carta matche l'ICP Startups cherchant un MVP ou prototype rapide sur tous les critères centraux : startup seed sans équipe hardware permanente, fondateur sans track-record en production industrielle, besoin urgent de prototypage de la cartouche LAMP avant validation CE-IVD, budget seed disponible post-levée. Le cas d'usage croisé direct est le prototypage de la cartouche plastique microfluidique, avec un second projet logiciel+hardware sur l'interface de données épidémiologiques comme levier de renforcement.<br><br><b>Verdict</b><br>🟡 CONSIDER (Objection) — En Carta est un prospect qualifié avec un déclencheur d'achat actif (5 M€ levés en juillet 2026), mais l'objection 'Junior-Entreprise en contexte médical' doit être neutralisée avant l'envoi avec la référence Armée de Terre. Prochaine étape : contacter Guillaume Horréard sur LinkedIn dans les 5 jours ouvrés avec un message ancré sur le cas Armée de Terre et une question ouverte sur le besoin de sous-traitance industrielle pour la cartouche LAMP.</div></details><div class="cb-act" data-target="En Carta Diagnostics"><button type="button" class="cb-yes" data-kind="yes" data-done="Pris en compte ✓ — ça entraîne Stan, votre assistant de prospection.">👍 Oui, à contacter</button><button type="button" class="cb-no" data-kind="no" data-done="Pris en compte ✓ — ça entraîne Stan, votre assistant de prospection.">👎 Pas pour nous</button><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/en-carta-diagnostics-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">2</span><h3 class="cb-name">RSAI</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-tier">À étudier</span><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://rsai.fr" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://unavailable" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Concepteur et fabricant français d&#x27;automates et de firmware propriétaires sur mesure pour PME industrielles, notamment dans le secteur du béton, avec une trentaine d&#x27;ingénieurs.</p><div class="cb-provbox"><p class="cb-prov-how">🔎 Comment Stan l&#x27;a trouvée</p><p><b>identifiée comme jumelle de vos meilleurs clients — même profil, même besoin probable</b> <span class="cb-prov-meta">— via Similarité Exa (sosies de vos meilleurs clients) · ICP « industriels systemes embarques »</span></p><p class="cb-prov-say"><b>Votre accroche</b> : « En analysant des acteurs dont le profil ressemble à vos meilleurs clients actuels, RSAI est apparu comme une correspondance évidente : ils conçoivent leurs propres automates mais leur équipe de 30 ingénieurs est à saturation sur le hardware — je pense qu&#x27;il y a une conversation à avoir sur la couche logicielle et supervision que vous pourriez prendre en charge pour eux. »</p></div><ul class="cb-why"><li>RSAI conçoit ses propres cartes électroniques et firmware, mais avec 30 ingénieurs, sa capacité R&amp;D est structurellement plafonnée : chaque projet de prototypage logiciel qu&#x27;elle absorbe en interne est du temps de développement mécatronique perdu.</li><li>Elle développe en parallèle un logiciel métier de supervision pour ses clients PME industrielles — une couche applicative qui demande une agilité de développement que son organisation d&#x27;ingénieurs hardware ne peut pas fournir seule.</li><li>Son taux de conversion prototype-à-série élevé confirme que la demande client est là : le goulot d&#x27;étranglement est la vitesse de prototypage logiciel, pas la qualité du produit final.</li><li>La pression vers la modernisation cloud des interfaces de supervision industrielle s&#x27;accélère — RSAI risque de perdre des clients PME qui attendent cette évolution si elle ne peut pas la livrer rapidement.</li></ul><p class="cb-fit"><b>Pourquoi c&#x27;est un prospect pour vous :</b> RSAI a besoin d&#x27;un partenaire de développement logiciel agile pour débloquer sa capacité R&amp;D mécatronique et tenir le rythme de modernisation que ses clients industriels lui demandent — un besoin récurrent, pas ponctuel.</p><details class="cb-deep cb-deep-syn"><summary>⚔️ Fiche d&#x27;attaque commerciale — le détail du mémo</summary><div class="cb-deep-body"><div class="cb-atk-row"><span>Décideur &amp; comité d&#x27;achat</span><div>Directeur technique ou Responsable R&amp;D — Ce décideur arbitre les priorités d&#x27;ingénierie et les budgets de sous-traitance — c&#x27;est lui qui ressent directement le goulet d&#x27;étranglement IHM et qui peut mandater un projet pilote sans passer par une longue procédure d&#x27;achat.</div></div><div class="cb-atk-row"><span>Déclencheur du moment</span><div>Les clients PME industrielles de RSAI demandent une supervision multi-sites centralisée que les automates embarqués locaux ne peuvent pas délivrer seuls, forçant RSAI à moderniser ses interfaces logicielles sans pouvoir réaffecter ses ingénieurs firmware.</div></div><div class="cb-atk-row"><span>Cas d&#x27;usage pour eux</span><div>RSAI doit moderniser ses interfaces homme-machine (IHM) et développer des couches cloud pour répondre aux demandes de supervision multi-sites de ses clients béton, mais ses ingénieurs sont entièrement mobilisés sur le firmware propriétaire et la R&amp;D mécatronique. — Jeece développe des interfaces IHM modernes et des couches cloud de supervision pour systèmes industriels, avec un vivier de 3 500 ingénieurs ECE Paris, des cycles Agile courts, et des tarifs de Junior-Entreprise inaccessibles pour une ESN. — RSAI peut répondre aux demandes cloud de ses clients PME industrielles sans recruter ni réa</div></div><div class="cb-atk-row"><span>Face à la concurrence</span><div>Internalisation — les ingénieurs firmware de RSAI développent eux-mêmes les IHM, au détriment de la R&amp;D mécatronique. — Jeece propose exactement ce que RSAI ne peut pas produire rapidement seul — des IHM et interfaces cloud modernes — à des tarifs de Junior-Entreprise, sans toucher au firmware propriétaire qui est le cœur de valeur de RSAI. La référence Armée de Terre prouve la maîtrise des environnements industriels exigeants.</div></div><div class="cb-atk-row"><span>Preuve à utiliser</span><div>Armée de Terre — développement de systèmes embarqués et électroniques pour l&#x27;armée française. — Cette référence prouve que Jeece maîtrise le développement pour des environnements industriels exigeants à très haute rigueur technique, ce qui rassure directement un industriel comme RSAI dont la culture French Fab valorise la souveraineté nationale et la rigueur d&#x27;ingénierie.</div></div><div class="cb-atk-row"><span>Accroche d&#x27;ouverture</span><div>« Vous concevez des automates industriels sur mesure pour des PME du béton depuis plus de 30 ans — et vos clients demandent maintenant des interfaces de supervision multi-sites centralisées. La question est de savoir si vos ingénieurs firmware ont la bande passante pour développer ces couches cloud sans ralentir votre R&amp;D mécatronique. »</div></div><div class="cb-atk-row"><span>Questions de découverte</span><div><ul class="cb-atk-q"><li>Quelle est la part de temps de vos ingénieurs actuellement consacrée au développement des interfaces utilisateur (IHM) versus la R&amp;D firmware et mécatronique ?</li><li>Combien de clients du secteur béton vous ont explicitement demandé une supervision multi-sites ou des fonctionnalités cloud au cours des 12 derniers mois ?</li><li>Avez-vous déjà travaillé avec un prestataire externe pour une partie du développement logiciel applicatif, ou toutes vos réalisations sont-elles entièrement internes ?</li></ul></div></div><p class="cb-atk-note">La séquence d&#x27;approche prête à l&#x27;emploi et les réponses aux objections sont dans le mémo complet.</p></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>ICP</b><br>Ce prospect s'aligne sur l'ICP Industriels cherchant de l'électronique embarquée ou IoT : RSAI conçoit des automates et firmware propriétaires pour PME industrielles du béton, correspondant exactement au profil d'acheteur cible. L'ICP PME en transformation digitale présente un fit modéré exploitable en parallèle via le besoin de modernisation des IHM logicielles. L'ICP Startups cherchant un MVP ou prototype rapide reste spéculatif — RSAI n'est pas une startup. L'offre comprend également l'ICP Institutions publiques, défense et santé cherchant solutions sur mesure, écarté pour ce prospect : aucun signal public ne lie RSAI à des appels d'offres publics récents ou à une activité dédiée aux institutions de défense ou hôpitaux.<br><br><b>Marché & Contexte</b><br>RSAI opère sur un marché de l'automatisation industrielle en consolidation vers le logiciel de supervision connecté. La pression Industrie 4.0 et les normes énergétiques forcent ses clients PME béton à demander des interfaces cloud multi-sites que les automates locaux ne délivrent pas seuls. RSAI détient un verrou hardware fort (firmware propriétaire dans plus de 90% des automates, coût de migration supérieur à 24 mois) mais une vulnérabilité structurelle sur ses IHM logicielles.<br><br><b>Trigger (Pourquoi maintenant)</b><br>Les exploitants clients de RSAI demandent une supervision multi-sites centralisée que les automates embarqués locaux ne délivrent pas — RSAI doit moderniser ses IHM sans réaffecter ses ingénieurs firmware, créant un besoin d'externalisation logicielle immédiat. La fenêtre se ferme à mesure que des ESN spécialisées pourraient répliquer les interfaces logicielles en 6 à 12 mois.<br><br><b>Prospect</b><br>RSAI (SASU, ~30 salariés, Saint-Chamond) est un fabricant d'automates sur mesure et logiciels de supervision pour PME industrielles du béton depuis plus de 30 ans, avec 15% du CA investi en R&D interne et un label French Fab. Jeece peut développer les IHM cloud de RSAI à des tarifs inaccessibles pour une ESN, libérant les ingénieurs firmware pour la R&D mécatronique à haute valeur — la preuve Armée de Terre rassure directement ce profil industriel exigeant.<br><br><b>Décideur & Comité d'achat</b><br>Le décideur cible est le directeur technique ou responsable R&D de RSAI — aucun nom disponible publiquement, à identifier avant toute approche. La structure SASU implique un associé unique comme décideur final, avec un risque de résistance culturelle à l'externalisation de la R&D logicielle.<br><br><b>Fit ICP</b><br>RSAI coche les signaux d'achat clés de l'ICP Industriels cherchant de l'électronique embarquée ou IoT — PME industrielle française avec R&D électronique embarquée active, besoin de modernisation IHM documenté, et incapacité à absorber le développement cloud sans externalisation. Le cas d'usage croisé central est le développement des IHM et couches cloud par Jeece, libérant les ingénieurs RSAI pour la mécatronique.<br><br><b>Verdict</b><br>🟡 CONSIDER (Objection) — L'approche est défendable et le fit ICP est fort, mais la résistance culturelle à l'externalisation de la R&D chez RSAI (culture 'tout-interne' French Fab, 15% CA en R&D interne) doit être pré-traitée avant le contact : reformuler l'approche comme aide opérationnelle sur les IHM, pas comme transformation stratégique. Identifier le directeur technique via LinkedIn avant J+7, puis envoyer un message de diagnostic ciblé.</div></details><div class="cb-act" data-target="RSAI"><button type="button" class="cb-yes" data-kind="yes" data-done="Pris en compte ✓ — ça entraîne Stan, votre assistant de prospection.">👍 Oui, à contacter</button><button type="button" class="cb-no" data-kind="no" data-done="Pris en compte ✓ — ça entraîne Stan, votre assistant de prospection.">👎 Pas pour nous</button><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/rsai-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">3</span><h3 class="cb-name">Ngvelectronique</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-tier">À étudier</span><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://ngvelectronique.com" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://unavailable" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Filiale du Groupe NADIA spécialisée dans la conception et fabrication de cartes électroniques, automates, capteurs IoT et boîtiers durcis pour les secteurs agricole et automobile, en petites séries.</p><div class="cb-provbox"><p class="cb-prov-how">🔎 Comment Stan l&#x27;a trouvée</p><p><b>identifiée comme jumelle de vos meilleurs clients — même profil, même besoin probable</b> <span class="cb-prov-meta">— via Similarité Exa (sosies de vos meilleurs clients) · ICP « industriels systemes embarques »</span></p><p class="cb-prov-say"><b>Votre accroche</b> : « En cartographiant des acteurs au profil similaire à vos clients industriels les plus fidèles, NGV Electronique est ressorti clairement : ils fabriquent des systèmes embarqués durcis pour l&#x27;agriculture et l&#x27;automobile mais n&#x27;ont pas la structure pour livrer la partie logicielle et cloud que leurs clients leur demandent — je serais curieux de savoir si vous avez déjà travaillé avec ce type d&#x27;acteur. »</p></div><ul class="cb-why"><li>NGV maîtrise le prototype électronique durci — potting, vernissage, environnements sévères — mais n&#x27;a ni les compétences ni l&#x27;organisation pour délivrer les interfaces web, les couches cloud et la modernisation SI que ses propres clients industriels lui demandent de plus en plus.</li><li>Le marché des sous-traitants électroniques spécialisés est fragmenté : les acteurs qui combinent bureau d&#x27;études, petites séries et durcissement physique sont rares, ce qui donne à NGV un avantage concurrentiel réel — à condition de compléter son offre sur la partie logicielle.</li><li>La demande pour des contrôleurs connectés dans l&#x27;agriculture de précision et l&#x27;automobile monte structurellement : NGV est bien positionné sur le hardware, mais risque de laisser la valeur logicielle à des concurrents s&#x27;il ne la propose pas.</li><li>En tant que filiale d&#x27;un groupe industriel établi, NGV a des cycles de décision plus courts et des budgets projet identifiables — un profil d&#x27;acheteur plus prévisible qu&#x27;une startup.</li></ul><p class="cb-fit"><b>Pourquoi c&#x27;est un prospect pour vous :</b> Là où NGV apporte le prototype électronique durci, il manque un partenaire pour la couche web, les interfaces de données cloud et la modernisation SI — un besoin complémentaire direct, sans chevauchement de compétences.</p><details class="cb-deep cb-deep-syn"><summary>⚔️ Fiche d&#x27;attaque commerciale — le détail du mémo</summary><div class="cb-deep-body"><div class="cb-atk-row"><span>Décideur &amp; comité d&#x27;achat</span><div>Directeur Technique ou Responsable R&amp;D de NGV Electronique — Ce profil est le champion potentiel le plus probable car il ressent directement la pénurie de profils logiciels et la tension entre les exigences IoT de ses clients et les capacités actuelles de NGV.</div></div><div class="cb-atk-row"><span>Déclencheur du moment</span><div>Transition vers l&#x27;agriculture de précision et l&#x27;électrification des machines agricoles créant une demande de couche logicielle IoT et web au-dessus du hardware durci que NGV livre — fenêtre ouverte maintenant car la transition est en cours et NGV est en tension de recrutement sur les profils spécialisés.</div></div><div class="cb-atk-row"><span>Cas d&#x27;usage pour eux</span><div>NGV Electronique livre des cartes embarquées durcies (potting, CAN-OPEN) à des constructeurs agricoles qui commencent à exiger des interfaces web, dashboards IoT et APIs cloud au-dessus du hardware — NGV n&#x27;a ni les compétences ni la structure pour livrer cette couche. — Jeece développe des interfaces web, dashboards IoT, APIs cloud et applications mobiles sur mesure à des tarifs étudiants compétitifs, avec des ingénieurs ECE Paris formés sur les projets embarqués et industriels (référence Armée de Terre). — NGV peut enrichir son offre client avec une couche logicielle et web sans recruter d&#x27;in</div></div><div class="cb-atk-row"><span>Face à la concurrence</span><div>Statu quo — absence totale de prestataire logiciel externe documenté chez NGV Electronique — NGV n&#x27;a pas de partenaire logiciel identifié et ses clients agricoles exigent désormais des interfaces IoT au-dessus du hardware — Jeece apporte cette couche manquante à des tarifs inaccessibles pour un bureau d&#x27;études permanent, avec une crédibilité industrielle prouvée (Armée de Terre). (à vérifier)</div></div><div class="cb-atk-row"><span>Preuve à utiliser</span><div>Armée de Terre — développement de systèmes embarqués et électroniques pour l&#x27;armée française — Cette référence prouve que Jeece peut travailler sur des projets embarqués dans des environnements industriels exigeants, ce qui crédibilise immédiatement l&#x27;approche auprès d&#x27;ingénieurs industriels qui ne feraient pas confiance à une Junior-Entreprise sur un projet purement logiciel grand public.</div></div><div class="cb-atk-row"><span>Accroche d&#x27;ouverture</span><div>« Jeece a livré des systèmes embarqués pour l&#x27;Armée de Terre — et nous aidons aujourd&#x27;hui des industriels comme NGV à ajouter la couche web et IoT au-dessus de leur hardware durci, pour répondre aux exigences de leurs clients en agriculture de précision, sans recruter en interne. »</div></div><div class="cb-atk-row"><span>Questions de découverte</span><div><ul class="cb-atk-q"><li>Vos clients agricoles vous demandent-ils de plus en plus des interfaces de pilotage web ou des dashboards IoT au-dessus des cartes embarquées que vous leur livrez ?</li><li>Avez-vous un budget ou un projet en cours pour développer la couche logicielle web ou cloud sur vos prochaines gammes de contrôleurs ?</li><li>Qui dans votre organisation décide de faire appel à un prestataire extérieur pour un développement logiciel ou web complémentaire à votre bureau d&#x27;études ?</li></ul></div></div><p class="cb-atk-note">La séquence d&#x27;approche prête à l&#x27;emploi et les réponses aux objections sont dans le mémo complet.</p></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>ICP</b><br>Ce prospect s'aligne sur l'ICP Industriels cherchant de l'électronique embarquée ou IoT (57% de confirmation, 2 cas d'usage croisé dont 1 fort). L'ICP PME en transformation digitale présente un alignement faible (25% de confirmation, 1 cas d'usage croisé faible) et constitue un angle secondaire non prioritaire. L'offre comprend également 2 ICP inactifs pour ce prospect : Startups cherchant un MVP ou prototype rapide (aucun signal d'amorçage, filiale industrielle établie) et Institutions publiques, défense et santé (aucun focus institutionnel documenté).<br><br><b>Marché & Contexte</b><br>NGV Electronique opère sur le marché fragmenté de la sous-traitance électronique spécialisée pour constructeurs agricoles et industriels français. Sa spécialité distinctive — l'encapsulation chimique (potting) des cartes électroniques — verrouille ses clients pendant 6 à 9 mois d'ingénierie pour tout changement. La pression de l'électrification agricole et de l'IoT crée une demande croissante de couche logicielle cloud que NGV ne peut pas fournir seul, sans recrutement ou externalisation.<br><br><b>Trigger (Pourquoi maintenant)</b><br>La transition vers l'agriculture de précision accélère les exigences d'interfaces web et IoT au-dessus du hardware embarqué que NGV livre — NGV ne peut pas satisfaire cette demande sans partenaire logiciel. La tension de recrutement documentée sur les ingénieurs spécialisés CAN-OPEN renforce l'ouverture à l'externalisation complémentaire.<br><br><b>Prospect</b><br>NGV Electronique est une filiale du Groupe NADIA (650 personnes, fondé en 1962) spécialisée dans la conception et fabrication de cartes et modules électroniques pour véhicules agricoles et industriels. Elle est dans la cible haute de l'ICP industriels de Jeece (50-500 salariés dans la branche). Jeece peut se positionner comme sous-traitant logiciel complémentaire — couche web, dashboards IoT, APIs cloud — que NGV ne peut pas livrer à ses propres clients. Le statu quo à déplacer est l'absence totale de cette couche dans l'offre NGV.<br><br><b>Décideur & Comité d'achat</b><br>Le décideur probable est le Directeur Technique ou Responsable R&D de NGV Electronique — identité non documentée dans les sources. La gouvernance diluée dans le Groupe NADIA impose une validation corporate pour les achats dépassant un seuil inconnu, allongeant structurellement le cycle de vente.<br><br><b>Fit ICP</b><br>NGV correspond aux signaux d'achat de l'ICP industriels embarqués : industriel français de taille intermédiaire, expertise avérée en systèmes embarqués et IoT, pénurie de profils logiciels, et absence de couche logicielle cloud dans son offre actuelle. Le cas d'usage croisé fort est : NGV livre du hardware durci à des constructeurs agricoles exigeant désormais des interfaces web IoT — Jeece peut intervenir comme sous-traitant logiciel de NGV pour cette couche que NGV ne peut pas fournir seul.<br><br><b>Verdict</b><br>🟡 CONSIDER (Objection) — L'approche est défendable car NGV a un manque réel sur la couche logicielle et la fenêtre d'accélération IoT agricole est ouverte, mais l'objection principale à pré-traiter est la gouvernance du Groupe NADIA : sans identification du décideur local et confirmation de son autonomie budgétaire, tout cycle de vente risque de se perdre dans la hiérarchie corporate. Qualifier le décideur et son autorité d'ici 10 jours ouvrés avant tout envoi de message.</div></details><div class="cb-act" data-target="Ngvelectronique"><button type="button" class="cb-yes" data-kind="yes" data-done="Pris en compte ✓ — ça entraîne Stan, votre assistant de prospection.">👍 Oui, à contacter</button><button type="button" class="cb-no" data-kind="no" data-done="Pris en compte ✓ — ça entraîne Stan, votre assistant de prospection.">👎 Pas pour nous</button><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/ngvelectronique-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">4</span><h3 class="cb-name">Tokhatec</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-tier">À étudier</span><span class="cb-pill cb-pill-memo">Mémo d&#x27;analyse disponible</span><a class="cb-pill" href="https://tokhatec.fr" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://linkedin.com/in/jc-rerat-25351b9" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Spécialiste français des systèmes embarqués haute fiabilité et de la pérennité OEM+ pour l&#x27;industrie et la défense, avec des certifications MIL-STD et un historique client Armée de Terre.</p><div class="cb-provbox"><p class="cb-prov-how">🔎 Comment Stan l&#x27;a trouvée</p><p><b>identifiée comme jumelle de vos meilleurs clients — même profil, même besoin probable</b> <span class="cb-prov-meta">— via Similarité Exa (sosies de vos meilleurs clients) · ICP « industriels systemes embarques »</span></p><p class="cb-prov-say"><b>Votre accroche</b> : « En analysant des acteurs dont le profil correspond à vos clients les plus exigeants sur le plan technique, Tokhatec est apparu comme une piste sérieuse : ils intègrent des systèmes embarqués durcis pour la défense et l&#x27;industrie avec des contraintes MIL-STD, et je pense que votre référencement Armée de Terre est un point d&#x27;entrée concret pour ouvrir la conversation. »</p></div><ul class="cb-why"><li>Tokhatec opère sur un segment en consolidation poussé par deux dynamiques simultanées : les injonctions de souveraineté technologique post-Covid et la montée des exigences de cybersécurité physique — deux facteurs qui accélèrent les décisions d&#x27;externalisation technique.</li><li>Ses certifications MIL-STD et son historique avec l&#x27;Armée de Terre en font un interlocuteur crédible pour des projets défense, un terrain où une référence institutionnelle commune facilite l&#x27;entrée en relation.</li><li>Son modèle OEM+ implique des cycles de développement longs et des contraintes de pérennité strictes : Tokhatec a besoin de partenaires techniques capables de s&#x27;inscrire dans ces contraintes, pas de prestataires généralistes.</li><li>Face aux grands intégrateurs qui dominent le segment défense, Tokhatec cherche à différencier son offre par l&#x27;agilité et la réactivité — exactement ce qu&#x27;une structure de prestation sur mesure à taille humaine peut apporter.</li></ul><p class="cb-fit"><b>Pourquoi c&#x27;est un prospect pour vous :</b> Tokhatec a besoin de partenaires de développement embarqué et logiciel capables de travailler dans des environnements certifiés et contraints — un profil de mission que peu de prestataires peuvent tenir, et qui correspond précisément à ce que vous proposez.</p><details class="cb-deep cb-deep-syn"><summary>⚔️ Fiche d&#x27;attaque commerciale — le détail du mémo</summary><div class="cb-deep-body"><div class="cb-atk-row"><span>Décideur &amp; comité d&#x27;achat</span><div>Président/CEO — Jean-Christian Rerat — Fondateur et dirigeant de Tokhatec depuis 2009, il est le décideur présumé sur les achats de prestations techniques externes — son profil LinkedIn confirme 15 ans d&#x27;expérience dans les systèmes embarqués.</div></div><div class="cb-atk-row"><span>Déclencheur du moment</span><div>Pression de souveraineté technologique et accélération des cycles de qualification de composants embarqués imposée par les programmes de défense française — besoin structurel de renfort en prototypage sans recruter d&#x27;ingénieurs permanents.</div></div><div class="cb-atk-row"><span>Cas d&#x27;usage pour eux</span><div>Tokhatec doit prototyper rapidement de nouveaux assemblages embarqués et concevoir des schémas électriques pour qualifier des composants avant certification MIL-STD, avec une capacité interne potentiellement saturée par les projets clients existants. — Jeece mobilise des ingénieurs ECE Paris spécialisés en systèmes embarqués, conception de schémas électriques et prototypage matériel, à des tarifs étudiants impossibles à répliquer par un bureau d&#x27;études senior. — Tokhatec peut traiter plus de projets de qualification en parallèle sans recruter, réduisant son time-to-market sur les nouveaux comp</div></div><div class="cb-atk-row"><span>Face à la concurrence</span><div>Capacité interne de Tokhatec (ingénieurs propres assurant la conception et le prototypage) — Jeece intervient sur les missions de débordement quand la capacité interne est saturée, à un coût marginal bien inférieur à un recrutement ou à un bureau d&#x27;études senior — et avec une référence Armée de Terre qui légitime la crédibilité technique. (à vérifier)</div></div><div class="cb-atk-row"><span>Preuve à utiliser</span><div>Référence Armée de Terre — Jeece a développé des systèmes embarqués et électroniques pour l&#x27;armée française — C&#x27;est la seule preuve qui désamorce immédiatement l&#x27;objection de crédibilité Junior-Entreprise face à un intégrateur défense comme Tokhatec, car elle démontre que Jeece a déjà opéré dans le même environnement d&#x27;exigences critiques.</div></div><div class="cb-atk-row"><span>Accroche d&#x27;ouverture</span><div>« Jeece a développé des systèmes embarqués pour l&#x27;Armée de Terre et dispose d&#x27;ingénieurs ECE Paris formés à la conception de schémas électriques et au prototypage matériel certifiable — nous aidons des intégrateurs comme Tokhatec à accélérer leurs cycles de qualification sans recruter. »</div></div><div class="cb-atk-row"><span>Questions de découverte</span><div><ul class="cb-atk-q"><li>Avez-vous actuellement des projets de prototypage embarqué ou de conception de schémas électriques pour lesquels votre équipe interne est en surcharge ?</li><li>Comment gérez-vous aujourd&#x27;hui le pic de demandes de qualification de nouveaux composants lorsqu&#x27;ils arrivent simultanément de plusieurs clients ?</li><li>Avez-vous déjà eu recours à des prestataires externes pour des missions de prototypage ou de schémas électriques, et si oui, quelles ont été vos critères de sélection ?</li></ul></div></div><p class="cb-atk-note">La séquence d&#x27;approche prête à l&#x27;emploi et les réponses aux objections sont dans le mémo complet.</p></div></details><details class="cb-deep"><summary>📝 Résumé du mémo d&#x27;analyse</summary><div class="cb-deep-body"><b>ICP</b><br>L'ICP dominant est Industriels cherchant de l'électronique embarquée ou IoT : Tokhatec intègre des systèmes embarqués durcis pour la défense et l'industrie, ce qui correspond exactement au profil d'acheteur de cet ICP. L'ICP Institutions publiques défense et santé présente un fit modéré (référence Armée de Terre commune). L'ICP PME transformation digitale est sans cas d'usage croisé et en fit faible. L'ICP Startups MVP prototype a été écarté à la calibration : Tokhatec se concentre sur l'intégration industrielle plutôt que sur le MVP logiciel pur.<br><br><b>Marché & Contexte</b><br>Le marché des systèmes embarqués durcis pour la défense et l'industrie française est en consolidation, porté par les injonctions de souveraineté technologique et les nouvelles exigences de cybersécurité physique. Tokhatec se différencie des grands distributeurs par son accompagnement certifié MIL-STD pour des volumes de PME et ETI, un segment que les géants mondiaux ne servent pas bien.<br><br><b>Trigger (Pourquoi maintenant)</b><br>La restructuration des chaînes d'approvisionnement européennes et la politique de souveraineté technologique créent un besoin structurel d'accélération des cycles de qualification de composants embarqués, sans recruter d'ingénieurs permanents — c'est exactement le déclencheur que Jeece peut adresser.<br><br><b>Prospect</b><br>Tokhatec est une PME industrielle spécialisée fondée en 2009, autofinancée, avec 200+ projets livrés et une référence Armée de Terre confirmée. Jeece peut apporter du prototypage embarqué rapide et de la conception de schémas électriques à coût étudiant, ainsi qu'une mission de structuration des données MCO pour un positionnement plus stratégique. La mention 'Exited' dans les données source doit être vérifiée avant tout contact.<br><br><b>Décideur & Comité d'achat</b><br>Jean-Christian Rerat, Président/CEO, est le décideur identifié — profil 'Mercenaire' sensible à la fiabilité technique et au ROI concret. Son autorité formelle sur les achats d'externalisation et sa disponibilité en tant que décideur actif restent à confirmer.<br><br><b>Fit ICP</b><br>Fort alignement sur l'ICP Industriels embarqués : 3 cas d'usage croisés substantiés (prototypage embarqué, schémas électriques certifiables, structuration données MCO) et une référence défense commune qui désamorce l'objection de crédibilité Junior-Entreprise.<br><br><b>Verdict</b><br>🟡 CONSIDER (Objection) — Approche défendable avec la référence Armée de Terre comme clé de crédibilité, mais l'objection principale (perception de Jeece comme prestataire junior incompatible avec les normes industrielles critiques) doit être anticipée dès le premier message ; vérifier d'abord le statut juridique de Tokhatec, puis contacter Jean-Christian Rerat sur LinkedIn avec un message centré sur la référence défense et un cas d'usage de prototypage embarqué précis d'ici 5 jours ouvrés.</div></details><div class="cb-act" data-target="Tokhatec"><button type="button" class="cb-yes" data-kind="yes" data-done="Pris en compte ✓ — ça entraîne Stan, votre assistant de prospection.">👍 Oui, à contacter</button><button type="button" class="cb-no" data-kind="no" data-done="Pris en compte ✓ — ça entraîne Stan, votre assistant de prospection.">👎 Pas pour nous</button><button type="button" data-kind="memo_request" data-done="Le voici ✓ — on en parle quand vous voulez." data-memo-url="https://analysis.proplace.co/tokhatec-v2" data-memo-open="Ouvrir le mémo rapide">Demander le mémo rapide</button></div></div></div><p class="cb-learn">💡 Comme sur Netflix, chaque 👍/👎 affine ce que Stan vous montre ensuite — vous jugez, il apprend.</p></div></div></div><p class="cb-cta-line">Je serais ravi d'affiner ces hypothèses avec vous afin de cibler les prospects qui comptent vraiment — lors d'une rencontre, d'une visio (<a href="#rdv" class="cb-ilink">réserver un créneau</a>), par téléphone au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou par email <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>.</p><a class="cb-cta-top" href="#rdv">20 minutes pour calibrer votre machine</a><div class="cb-upsell"><h2>Et si vous pilotiez la machine en direct ?</h2><p>Cette page n&#x27;est qu&#x27;une fenêtre. En accès complet, vous voyez tout, en continu : chaque prospect détecté (pas seulement cette sélection), les analyses lancées à la demande, l&#x27;hypothèse et les profils ajustables à tout moment — et une machine qui apprend de chacun de vos retours. C&#x27;est ce que je vous montre en 20 minutes.</p><a class="cb-cta-top" href="#rdv">20 minutes pour calibrer votre machine</a></div><div class="cb-rdv" id="rdv"><h2>Échangeons 20 minutes</h2><p>Choisissez un créneau ci-dessous, ou contactez-moi directement au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>. Je serais ravi d'affiner cette sélection avec votre retour.</p><script>(function(){try{var u=new URL(window.location.href);if(!u.searchParams.get('company_name')){u.searchParams.set('company_name',"jeece");history.replaceState(null,'',u);}}catch(e){}})();</script><div style="width:100%;min-height:560px;" data-fillout-id="aDx8z7Hzksus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div><script src="https://server.fillout.com/embed/v1/"></script></div><p class="cb-note">Sélection établie par Proplace, votre force de prospection augmentée. Lien privé — merci de ne pas le diffuser.</p></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -827,6 +1497,10 @@ var rm=false;try{rm=window.matchMedia&&window.matchMedia("(prefers-reduced-motio
 // gardent leur action). Remplace <details> pour laisser les 👍/👎 dans l'en-tête.
 document.addEventListener("click",function(ev){
   var el=ev.target;
+  // Bouton « ▲ Replier » (haut/bas du corps déplié) : referme SA ligne (point 4 v28).
+  var cr=(el&&el.closest)?el.closest(".cb-collapse-row"):null;
+  if(cr){var rr=cr.closest(".cb-urow");if(rr){rr.classList.remove("cb-open");
+    if(rr.scrollIntoView)rr.scrollIntoView({behavior:rm?"auto":"smooth",block:"nearest"});}return;}
   while(el&&el!==document){
     if(el.tagName==="BUTTON"||el.tagName==="A")return;      // action, pas toggle
     if(el.classList&&el.classList.contains("cb-uhead")){
@@ -836,57 +1510,118 @@ document.addEventListener("click",function(ev){
     el=el.parentNode;
   }
 });
-// « Votre hypothèse » : déplie/replie la machine EN LIGNE (le paramétrage de
-// Stan) juste sous la barre d'outils — plus de popup. Le bouton reste visible.
+// « Vos critères » : déplie/replie la machine EN LIGNE (le paramétrage de Stan)
+// juste sous la barre d'outils — plus de popup. Le bouton reste visible.
 var mo=document.getElementById("cb-mach-open"),mi=document.getElementById("cb-machinline");
+function openMachine(scroll){if(!mi)return;mi.classList.add("cb-open");if(mo)mo.classList.add("on");
+  if(scroll&&mi.scrollIntoView)mi.scrollIntoView({behavior:rm?"auto":"smooth",block:"start"});}
+function toggleMachine(scroll){if(!mi)return;var on=mi.classList.toggle("cb-open");if(mo)mo.classList.toggle("on",on);
+  if(on&&scroll&&mi.scrollIntoView)mi.scrollIntoView({behavior:rm?"auto":"smooth",block:"start"});}
 if(mo&&mi){mo.addEventListener("click",function(){
   var on=mi.classList.toggle("cb-open");mo.classList.toggle("on",on);});}
-var b=document.getElementById("cb-today-btn");
-if(b){b.addEventListener("click",function(){
-  var cs=document.querySelectorAll('.cb-card[data-today="1"]');if(!cs.length)return;
-  var on=!document.body.classList.contains("cb-hl-today");
-  document.body.classList.toggle("cb-hl-today",on);
-  if(on&&cs[0].scrollIntoView)cs[0].scrollIntoView({behavior:rm?"auto":"smooth",block:"center"});
-});}
+// Lien « Ajuster mes critères → » (boucle d'apprentissage) : ouvre + scrolle vers
+// le paramétrage de Stan (le panneau est display:none tant que .cb-open absent).
+var ll=document.getElementById("cb-learn-link");
+if(ll)ll.addEventListener("click",function(ev){ev.preventDefault();openMachine(true);});
+// TUTORIEL (en tête) : chaque étape POINTE vers le bon endroit (scroll + flash).
+function flash(el){if(!el)return;el.classList.add("cb-flash");setTimeout(function(){el.classList.remove("cb-flash");},1700);}
+function goTo(el,block){if(el&&el.scrollIntoView)el.scrollIntoView({behavior:rm?"auto":"smooth",block:block||"center"});}
+Array.prototype.forEach.call(document.querySelectorAll(".cb-tuto-step[data-goto]"),function(b){
+  b.addEventListener("click",function(){var g=b.getAttribute("data-goto");
+    // étape 1 : OUVRE/FERME le paramétrage (toggle) + marque l'étape active (point 6)
+    if(g==="crit"){toggleMachine(true);var mb=document.getElementById("cb-mach-open");flash(mb);
+      b.classList.toggle("cb-tuto-on",mi&&mi.classList.contains("cb-open"));return;}
+    if(g==="eval"){var pf=document.getElementById("cb-panel-filter");if(pf){pf.classList.add("cb-open");var of2=document.getElementById("cb-open-filters");if(of2)of2.classList.add("on");}   // ouvre l'accordéon filtre
+      var eb=document.getElementById("cb-eval"),q=document.getElementById("cb-eval-q");goTo(eb);if(q){try{q.focus();}catch(e){}}flash(eb);return;}
+    if(g==="analyse"){var r=document.querySelector("#cb-rows-kept .cb-urow");goTo(r);flash(r);return;}
+    // étape 4 : décider (YES/NO sur les CALL) → vise le 1er CALL, sinon la 1re ligne.
+    if(g==="decide"){var rc=document.querySelector('#cb-rows-kept .cb-urow[data-status="CALL"]')||document.querySelector("#cb-rows-kept .cb-urow");goTo(rc);flash(rc);return;}
+    // étape 5 : closer → met en avant la meilleure cible (tête de liste).
+    if(g==="close"){var rt=document.querySelector("#cb-rows-kept .cb-urow");goTo(rt);flash(rt);return;}
+  });});
+// Pastilles « Tout déplier / Tout replier » : ÉTAT ACTIF visible (gras enfoncé),
+// « Tout replier » présélectionné par défaut (tout est replié à l'arrivée). Point 1.
+// v38.5 — bascule UNIQUE déplier/replier (▼ Tout déplier ↔ ▲ Tout replier).
+var xt=document.getElementById("cb-toggle-all"),xtOpen=false;
+function setXt(){if(!xt)return;xt.classList.toggle("on",xtOpen);
+  var ic=xt.querySelector(".cb-xall-i");if(ic)ic.textContent=xtOpen?"▲":"▼";
+  var lbl=xtOpen?(xt.getAttribute("data-col")||""):(xt.getAttribute("data-exp")||"");
+  var tn=xt.lastChild;if(tn&&tn.nodeType===3){tn.textContent=lbl;}else{xt.appendChild(document.createTextNode(lbl));}}
+function setXAll(open){xtOpen=!!open;setXt();}
+if(xt)xt.addEventListener("click",function(){xtOpen=!xtOpen;
+  Array.prototype.forEach.call(document.querySelectorAll(".cb-urow"),function(r){r.classList.toggle("cb-open",xtOpen);});
+  setXt();});
+/* v37 — « Filtres » (barre d'onglets collée) : rouvre le cockpit replié + scrolle sur les filtres. */
+var ofb=document.getElementById("cb-open-filters");
+if(ofb)ofb.addEventListener("click",function(){var pf=document.getElementById("cb-panel-filter");if(!pf)return;
+  var op=pf.classList.toggle("cb-open");ofb.classList.toggle("on",op);
+  if(op&&pf.scrollIntoView)pf.scrollIntoView({behavior:"smooth",block:"nearest"});});
+/* v38.4 — icône d'aide (?) au titre : ouvre/ferme le tutoriel masqué. */
+var hbtn=document.getElementById("cb-help-btn"),howto=document.getElementById("cb-howto");
+if(hbtn&&howto)hbtn.addEventListener("click",function(){var show=howto.hidden;howto.hidden=!show;
+  hbtn.classList.toggle("on",show);if(show&&howto.scrollIntoView)howto.scrollIntoView({behavior:"smooth",block:"nearest"});});
+/* « dont X aujourd'hui » (chaque tuile de stats) : surligne les cartes du jour +
+   scrolle. Toutes les tuiles partagent le même geste (kept/analysés/criblées). */
+Array.prototype.forEach.call(document.querySelectorAll(".cb-today-btn"),function(b){
+  b.addEventListener("click",function(){
+    var cs=document.querySelectorAll('.cb-card[data-today="1"]');if(!cs.length)return;
+    var on=!document.body.classList.contains("cb-hl-today");
+    document.body.classList.toggle("cb-hl-today",on);
+    if(on&&cs[0].scrollIntoView)cs[0].scrollIntoView({behavior:rm?"auto":"smooth",block:"center"});
+  });});
 /* sélecteur de page jumelle : recopie ?email=&preview= (identité conservée) */
 var sw=document.querySelector(".cb-swap-oth");
 if(sw&&window.location.search){try{sw.href=sw.href.split("?")[0]+window.location.search;}catch(e){}}
-/* onglets de la liste vivante : Retenues / Analysées / Écartées (instantané) */
+/* onglets d'IDENTITÉ (toujours colorés) : Retenues / Analysées / Écartées /
+   Favoris — on ne TOGGLE que la classe « on », la classe d'identité reste (sinon
+   la couleur du bouton disparaît). Filtrage instantané des lignes vivantes. */
 var FC=document.getElementById("cb-fchips");
 if(FC){FC.addEventListener("click",function(ev){
   var b=ev.target;while(b&&b!==FC&&b.tagName!=="BUTTON")b=b.parentNode;
   if(!b||b===FC)return;
   Array.prototype.forEach.call(FC.querySelectorAll("button"),function(x){
-    x.className=(x===b)?"on":"";});
+    x.classList.toggle("on",x===b);});
   var f=b.getAttribute("data-f");
   var K=document.getElementById("cb-rows-kept"),R=document.getElementById("cb-rows-rej");
   if(K)K.style.display=(f==="rej")?"none":"";
   if(R)R.style.display=(f==="rej")?"":"none";
-  if(f!=="rej"){Array.prototype.forEach.call(document.querySelectorAll(".cb-urow"),function(r){
+  // Favoris importés des actualités : visibles UNIQUEMENT sous l'onglet Favoris.
+  var EF=document.getElementById("cb-rows-extfav");if(EF)EF.style.display=(f==="fav")?"":"none";
+  window.__cbTab=f;
+  // Le panneau de filtres (s'il est monté) est AUTORITAIRE : il compose l'onglet
+  // actif AVEC les filtres (statut/pays/critères…). Repli direct sinon.
+  if(f!=="rej"&&window.__cbFilter){window.__cbFilter();}
+  else if(f!=="rej"){Array.prototype.forEach.call(document.querySelectorAll(".cb-urow"),function(r){
     var st=r.getAttribute("data-state");
     var show=(f==="kept")||(f==="ana"&&(st==="ana"||st==="prio"))
-      ||(f==="fav"&&r.classList.contains("cb-is-fav"))
-      ||(f==="todo"&&!r.classList.contains("cb-decided"));
+      ||(f==="fav"&&r.classList.contains("cb-is-fav"));
     r.style.display=show?"":"none";});}
 });}
-/* barres du graphe cliquables : filtre les cartes par jour de détection */
+/* barres du graphe cliquables : surligne les prospects du jour. Re-clic = désélection.
+   La barre du JOUR active le menu « Aujourd'hui » (point 5) ; look & feel plus clair
+   (état sélectionné visible + note « recliquez pour tout réafficher », point 13). */
 var CUR=null;
+var _bars=document.querySelectorAll(".cb-abar[data-d]");
+var TODAY=(_bars.length?_bars[_bars.length-1].getAttribute("data-d"):"");
 function dayClear(){CUR=null;
   Array.prototype.forEach.call(document.querySelectorAll(".cb-card"),function(c){c.classList.remove("cb-day-hit","cb-day-dim");});
   Array.prototype.forEach.call(document.querySelectorAll(".cb-abar.sel"),function(g){g.classList.remove("sel");});
-  var n=document.getElementById("cb-day-note");if(n)n.style.display="none";}
-Array.prototype.forEach.call(document.querySelectorAll(".cb-abar[data-d]"),function(g){
+  var n=document.getElementById("cb-day-note");if(n)n.style.display="none";
+  var bh=document.getElementById("cb-bar-hint");if(bh)bh.classList.remove("on");}
+Array.prototype.forEach.call(_bars,function(g){
   g.addEventListener("click",function(){
     var d=g.getAttribute("data-d");
     if(CUR===d){dayClear();return;}
     dayClear();CUR=d;g.classList.add("sel");
+    var bh=document.getElementById("cb-bar-hint");if(bh)bh.classList.add("on");
+    // La barre d'AUJOURD'HUI → active le menu « Aujourd'hui » (fenêtre = jour).
+    if(d===TODAY){var tp=document.querySelector('#cb-dateseg button[data-win="1"]');if(tp&&!tp.classList.contains("on"))tp.click();}
     var hits=[];
     Array.prototype.forEach.call(document.querySelectorAll(".cb-card"),function(c){
       if((c.getAttribute("data-det")||"")===d){c.classList.add("cb-day-hit");hits.push(c);}
       else{c.classList.add("cb-day-dim");}
     });
     if(!hits.length){
-      /* jour sans prospect sur la page : on ne grise rien, on l'explique */
       Array.prototype.forEach.call(document.querySelectorAll(".cb-card"),function(c){c.classList.remove("cb-day-dim");});
       var n=document.getElementById("cb-day-note");if(n)n.style.display="block";
       return;
@@ -906,6 +1641,17 @@ if(!rm&&("IntersectionObserver" in window)){
   });},{threshold:.4});
   Array.prototype.forEach.call(document.querySelectorAll(".cb-funnel b"),function(el){io.observe(el);});
 }
+// RÉINITIALISER = tout remettre à zéro (point 3 v28) : appelé par le bouton
+// « Réinitialiser » du panneau de filtres. Ferme la machine, déselectionne la
+// barre-jour, replie toutes les lignes, referme les menus. (Le filtre lui-même
+// est remis à « Aujourd'hui » par _filter_js.)
+window.__cbHardReset=function(){
+  dayClear();
+  if(mi){mi.classList.remove("cb-open");}if(mo){mo.classList.remove("on");}
+  Array.prototype.forEach.call(document.querySelectorAll(".cb-urow.cb-open"),function(r){r.classList.remove("cb-open");});
+  if(typeof setXAll==="function")setXAll(false);
+  document.body.classList.remove("cb-hl-today");
+};
 })();</script><script>(function(){
 try{
   var SL="Depuis votre derni\u00e8re visite",SN="nouveaux",SO="sorties de la liste",LOC="fr-FR",K="cbv:"+"Wu3An94mtXPbK47V";
@@ -930,17 +1676,18 @@ try{
   if(!PV)localStorage.setItem(K,JSON.stringify({n:cur,d:new Date().toLocaleDateString(LOC)}));
 }catch(e){}
 })();</script><script>(function(){
-var U="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/react",RD="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/reactions",T="Wu3An94mtXPbK47V",TC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/thesis-chat";
+var U="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/react",RD="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/reactions",T="Wu3An94mtXPbK47V",TC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/thesis-chat",SIMS="\ud83d\udd0e Recherche des profils jumeaux en cours (\u224830\u201360s)\u2026";
+var SIMU="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/similar",SIMDK="\u2713 {n} jumelles trouv\u00e9es \u2014 elles rejoignent votre liste au prochain rafra\u00eechissement.",SIMDO="{n} jumelles pass\u00e9es au crible \u2014 aucune retenue cette fois.",SIMNONE="Aucune jumelle trouv\u00e9e pour l'instant.",SIMERR="Envoi impossible \u2014 r\u00e9essayez dans un instant.",VK="Retenu",VO="\u00c9cart\u00e9";
 // Identité du destinataire quand le lien a été envoyé avec &email=… (facultatif) :
 // permet de savoir QUEL dirigeant a réagi si le même lien part à plusieurs personnes.
 var W="";try{W=(new URL(window.location.href)).searchParams.get("email")||"";}catch(e){}
 // Mode PRÉVISUALISATION (?preview=1) : le commercial teste la page sans qu'AUCUN
 // clic ne soit compté ni stocké — impossible de consommer les boutons du CEO.
 var PV=false;try{PV=!!(new URL(window.location.href)).searchParams.get("preview");}catch(e){}
-function send(kind,target,message,cb){
+function send(kind,target,message,cb,extra){
   if(PV){cb(true,{});return;}
   try{fetch(U,{method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({token:T,kind:kind,target:target||"",message:message||"",who:W})})
+    body:JSON.stringify(Object.assign({token:T,kind:kind,target:target||"",message:message||"",who:W},extra||{}))})
     .then(function(r){
       if(!r.ok){cb(false,null);return;}
       r.json().then(function(j){cb(true,j||{});},function(){cb(true,{});});
@@ -1004,6 +1751,15 @@ function applyDecision(row,kind,noteDone){
   if(noteDone){row.appendChild(doneLine("Merci, bien not\u00e9 \u2713 \u2014 \u00e7a nourrit la mise \u00e0 jour de votre strat\u00e9gie."));}
   else{addWhyForm(row,row.getAttribute("data-target"));}
 }
+// v23 · jugement LÉGER : on ne retire plus les pouces et on n'ouvre plus de
+// « pourquoi ? ». Le pouce choisi passe gris-enfoncé (grisage fait par le
+// persisteur paintDec, par nom), on ajoute juste la note « pris en compte ✓ ».
+function applyDecisionLight(row,kind){
+  var b=btnIn(row,kind);var txt=b?(b.getAttribute("data-done")||""):"";
+  setBusy(row,false);
+  Array.prototype.forEach.call(row.querySelectorAll("button"),function(x){x.style.opacity="";});
+  if(!row.querySelector(".cb-act-done"))row.appendChild(doneLine(txt));
+}
 function applyMemo(row,detailedDone){
   var b=btnIn(row,"memo_request");if(!b)return;
   var mu=b.getAttribute("data-memo-url")||"",mo=b.getAttribute("data-memo-open")||"",txt=b.getAttribute("data-done")||"";
@@ -1018,6 +1774,50 @@ function applySimple(row,kind){
   var b=btnIn(row,kind);if(!b)return;var txt=b.getAttribute("data-done")||"";
   b.parentNode.removeChild(b);setBusy(row,false);row.appendChild(doneLine(txt));
 }
+// « Chercher des similaires » EN LIVE (v29) : Exa trouve les jumelles, Stan les
+// crible, et on AFFICHE les sociétés trouvées (retenu/écarté + raison) dans la
+// mini-fenêtre — elles entrent dans la liste au prochain rafraîchissement. Petite
+// croix pour fermer (pas un gros bouton) ; on ATTEND vraiment le résultat.
+function applySimilar(row){
+  var target=row.getAttribute("data-target")||"";
+  var b=btnIn(row,"similar_request");if(b)b.parentNode.removeChild(b);setBusy(row,false);
+  var box=document.createElement("div");box.className="cb-simbox";
+  var x=document.createElement("button");x.type="button";x.className="cb-srch-x";x.setAttribute("aria-label","\u00d7");x.textContent="\u00d7";
+  x.addEventListener("click",function(){if(box.parentNode)box.parentNode.removeChild(box);});
+  box.appendChild(x);
+  var head=document.createElement("p");head.className="cb-sim-head";
+  var sp=document.createElement("span");sp.className="cb-spin";head.appendChild(sp);
+  head.appendChild(document.createTextNode(" "+SIMS));box.appendChild(head);
+  row.appendChild(box);
+  var W2="";try{W2=(new URL(window.location.href)).searchParams.get("email")||"";}catch(e){}
+  var PV2=false;try{PV2=!!(new URL(window.location.href)).searchParams.get("preview");}catch(e){}
+  function fin(msg){head.innerHTML="";head.appendChild(document.createTextNode(msg));}
+  if(PV2){setTimeout(function(){fin(SIMNONE);},1500);return;}
+  fetch(SIMU,{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({token:T,target:target,who:W2})})
+  .then(function(r){return r.json();})
+  .then(function(j){
+    if(!j||!j.ok){fin(SIMERR);return;}
+    var res=(j.results||[]);
+    if(!res.length){fin(SIMNONE);return;}
+    fin("");head.style.display="none";
+    var n=0;res.forEach(function(o){
+      var kept=(o.verdict==="kept");n++;
+      var it=document.createElement("div");it.className="cb-sim-it";
+      var pill=document.createElement("span");pill.className="cb-verdict cb-verdict-lg";
+      pill.style.background=kept?"#047857":"#b91c1c";pill.textContent=(kept?VK:VO).toUpperCase();
+      var nm=document.createElement("b");nm.textContent=o.company;
+      it.appendChild(pill);it.appendChild(nm);
+      if(o.reason){var rp=document.createElement("p");rp.className="cb-sim-r";rp.textContent=o.reason;it.appendChild(rp);}
+      box.appendChild(it);
+    });
+    var foot=document.createElement("p");foot.className="cb-sim-foot";
+    var nk=res.filter(function(o){return o.verdict==="kept";}).length;
+    foot.textContent=(nk?SIMDK:SIMDO).replace("{n}",String(n));
+    box.appendChild(foot);
+  })
+  .catch(function(){fin(SIMERR);});
+}
 function hypApplied(kind){
   var f=document.getElementById("cb-hyp-form");if(f&&f.parentNode)f.parentNode.removeChild(f);
   var w=document.querySelector(".cb-hyp-act");
@@ -1027,13 +1827,20 @@ Array.prototype.forEach.call(document.querySelectorAll(".cb-act button"),functio
   b.addEventListener("click",function(){
     var row=b.closest(".cb-act");if(!row)return;
     var k=b.getAttribute("data-kind");
+    // « Similaires » gère son PROPRE appel live (/cibles/similar) — pas de double-record.
+    if(k==="similar_request"){applySimilar(row);return;}
+    // Secteur + verdict de la société (portés par la ligne) → agrégation des avis.
+    var card=b.closest("[data-name]");
+    var extra=card?{sector:(card.getAttribute("data-sector")||""),status:(card.getAttribute("data-status")||"")}:{};
     setBusy(row,true);
     send(k,row.getAttribute("data-target"),"",function(ok){
       if(!ok){setBusy(row,false);showErr(row);return;}
-      if(k==="yes"||k==="no"){applyDecision(row,k,false);}
+      if(k==="yes"||k==="no"){applyDecisionLight(row,k);
+        // Après un 👎, re-vérifie si un MOTIF émerge (proposition de correction thèse).
+        if(k==="no"&&window.__cbCheckAvis)setTimeout(window.__cbCheckAvis,600);}
       else if(k==="memo_request"){applyMemo(row,false);}
       else{applySimple(row,k);}
-    });
+    },extra);
   });
 });
 // ── Hypothèse de stratégie (carte en tête) : valider ou corriger ──
@@ -1136,4 +1943,4 @@ try{
   var seen=false;try{seen=!!localStorage.getItem(vk);}catch(e){}
   if(!seen&&!PV){send("view","","",function(ok){if(ok){try{localStorage.setItem(vk,"1");}catch(e){}}});}
 }catch(e){}
-})();</script><!-- v:9iPivqaBrJ --></body></html>
+})();</script><!-- v:MAEgnvWDqQ --></body></html>
