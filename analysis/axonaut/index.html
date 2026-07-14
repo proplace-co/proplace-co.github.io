@@ -1,0 +1,672 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Axonaut — analyse FinTech | Proplace</title><meta name="description" content="FinTech · Plateforme d&#x27;Orchestration d&#x27;Agents IA (Agentic Workflow Automation) · Series A"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/axonaut/"><meta property="og:type" content="article"><meta property="og:title" content="Axonaut — analyse FinTech | Proplace"><meta property="og:description" content="FinTech · Plateforme d&#x27;Orchestration d&#x27;Agents IA (Agentic Workflow Automation) · Series A"><meta property="og:url" content="https://proplace.co/analysis/axonaut/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Axonaut — FinTech", "description": "FinTech · Plateforme d'Orchestration d'Agents IA (Agentic Workflow Automation) · Series A", "inLanguage": "fr", "url": "https://proplace.co/analysis/axonaut/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/axonaut/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "Axonaut"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Axonaut</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Axonaut"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Series A</span>
+<span class="sb-tag">FinTech</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Axonaut</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>France ·</span> FinTech · Plateforme d'Orchestration d'Agents IA (Agentic Workflow Automation) · Series A</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Logiciels d'orchestration et de déploiement d'agents IA autonomes pour l'automatisation des processus d'affaires des ETI et Grandes Entreprises.</p>
+<a href="https://axonaut.com" target="_blank"><i class="fas fa-globe"></i> Site web</a>
+<a href="https://www.linkedin.com/in/nicolasricard" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<a href="mailto:nricard@axonaut.com"><i class="fas fa-envelope"></i> nricard@axonaut.com</a>
+</div>
+</div>
+<span class="sb-nav-heading">Contact</span>
+<a class="nav-item bg-yellow" href="#fiche-contact">🤝 Fiche pour contacter Axonaut</a>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorer Axonaut plus en détail ?</h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur Axonaut</a>
+</div>
+<div class="divider"></div>
+
+
+<div class="section">
+<h3>S'abonner à la newsletter Proplace ?</h3>
+<p class="meta-desc">Recevez les dernières nouvelles en M&amp;A et levée de fonds.</p>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+</div>
+<div class="section">
+<h3>Vous souhaitez un deal flow propriétaire ?</h3>
+<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+</div>
+<div class="sidebar-logo-wrap">
+<img alt="Logo " src="https://www.datocms-assets.com/159754/1771019733-logo-.png" style="max-width: 110px; height: auto; margin: 0 auto 10px; display: block; opacity: 0.85;"/>
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Axonaut</h1>
+<h2 class="subtitle-category">FinTech ➜ Plateforme d'Orchestration d'Agents IA (Agentic Workflow Automation) ➜ L'outil tout-en-un de gestion pour simplifier le quotidien des TPE et PME</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div><div style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin:0 0 22px;box-shadow:0 2px 6px rgba(15,23,42,.08)"><div style="background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><div style="font-size:15px;font-weight:700"><h2 id="fiche-contact" style="font-size:15px;font-weight:700;margin:0;padding:0;color:#fff;display:inline">🤝 Comment contacter Axonaut</h2></div><div><span style="background:#059669;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.04em"></span></div></div><div style="padding:15px 18px;background:#eef4fb"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #e0e7ff">Logique du deal</div><div style="font-size:13px;color:#0f172a;line-height:1.5"></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #e0e7ff">Séquence d'approche CEO</div><div style="margin-bottom:10px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden"><div style="display:flex;justify-content:space-between;align-items:center;background:#f1f5f9;padding:6px 10px;border-bottom:1px solid #e2e8f0"><span style="font-size:12px;font-weight:600;color:#334155">in Observation factuelle + question ouverte</span><button onclick="navigator.clipboard.writeText(this.parentNode.nextElementSibling.innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer" type="button">Copier</button></div><div style="white-space:pre-wrap;font-size:12.5px;color:#0f172a;line-height:1.5;padding:9px 11px;background:#fff">[Prénom],
+
+J'ai noté qu'Axonaut a obtenu son immatriculation PDP en octobre 2025 — une certification que peu d'éditeurs ont franchie à ce stade.
+
+Ce qui m'interpelle : avec l'obligation e-facturation qui s'impose aux TPE, est-ce que tu observes que le critère de choix de tes clients bascule du prix vers la conformité réglementaire ? Je me pose la question sur la dynamique d'acquisition client que ça crée concrètement pour vous.
+
+[Prénom]</div></div><div style="margin-bottom:10px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden"><div style="display:flex;justify-content:space-between;align-items:center;background:#f1f5f9;padding:6px 10px;border-bottom:1px solid #e2e8f0"><span style="font-size:12px;font-weight:600;color:#334155">✉ Angle stratégique — synergie à explorer</span><button onclick="navigator.clipboard.writeText(this.parentNode.nextElementSibling.innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer" type="button">Copier</button></div><div style="white-space:pre-wrap;font-size:12.5px;color:#0f172a;line-height:1.5;padding:9px 11px;background:#fff">[Prénom],
+
+En réfléchissant à ce que tu construis, une combinaison me semble peu explorée : un réseau de conseil ancré sur des centaines de milliers de TPE, couplé à un socle SaaS certifié PDP, pourrait neutraliser l'offensive des néo-experts-comptables qui captent aujourd'hui les créateurs d'entreprises via des outils intégrés.
+
+Je pense que la valeur n'est pas seulement dans le logiciel — c'est dans le repositionnement de la conformité comme brique indispensable d'une offre conseil plus large.
+
+Curieux d'avoir ton regard là-dessus.
+
+[Prénom]</div></div><div style="margin-bottom:10px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden"><div style="display:flex;justify-content:space-between;align-items:center;background:#f1f5f9;padding:6px 10px;border-bottom:1px solid #e2e8f0"><span style="font-size:12px;font-weight:600;color:#334155">✉ Proposition d'échange court</span><button onclick="navigator.clipboard.writeText(this.parentNode.nextElementSibling.innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer" type="button">Copier</button></div><div style="white-space:pre-wrap;font-size:12.5px;color:#0f172a;line-height:1.5;padding:9px 11px;background:#fff">[Prénom],
+
+Je ne veux pas allonger les échanges écrits sur un sujet qui mérite 20 minutes de conversation directe.
+
+Si tu as un créneau la semaine prochaine — un appel court, sans ordre du jour formel — je serais partant pour échanger sur ce que tu vois venir sur ton marché et te partager ce que j'observe de mon côté.
+
+Tu me dis si ça t'intéresse.
+
+[Prénom]</div></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #e0e7ff">Objections probables</div><div style="margin-bottom:8px;font-size:12.5px;line-height:1.45"><div style="color:#b91c1c"><b>« Je ne suis pas en train de chercher à vendre ou à m'associer. »</b></div><div style="color:#0f172a">↳ Je comprends, et ce n'est pas l'objet de mon approche. Je m'intéresse à la dynamique de marché que crée la certification PDP — c'est un sujet que peu de gens ont vécu de l'intérieur. Si l'échange n'apporte rien de concret pour toi, on s'arrête là. Mais je pense qu'une conversation de 20 minutes entre dirigeants sur ce que tu observes vaut le temps, indépendamment de toute autre considération.</div></div><div style="margin-bottom:8px;font-size:12.5px;line-height:1.45"><div style="color:#b91c1c"><b>« On est en pleine phase d'accélération, je n'ai pas de bande passante pour ce type d'échange. »</b></div><div style="color:#0f172a">↳ C'est exactement le bon signal — une croissance de 40 % en un an avec une obligation réglementaire qui s'accélère, ça laisse peu de marge. Je ne te propose pas un processus, juste un échange court et sans suite obligatoire. Si dans trois mois le timing est meilleur, je reviendrai vers toi. Tu me dis.</div></div></div></div><div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Axonaut" data-h="" data-i="FinTech" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/axonaut/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title">Résumé du marché</h2>
+<div class="split-container">
+<div class="text-col">
+<h4 class="kicker">SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>Data &amp; Analytics &gt; Plateforme d'Orchestration d'Agents IA<br/>B2B &gt; SaaS</p>
+<div class="score-row sr-green"><span class="sr-label">MARCHÉ ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span><span class="sr-note">× 25% = 22 pts</span></div><div class="score-row sr-blue"><span class="sr-label">MARCHÉ GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:76%"></span></span><span class="sr-val">76/100</span><span class="sr-note">× 25% = 19 pts</span></div><div class="score-row sr-green"><span class="sr-label">MARCHÉ PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:84%"></span></span><span class="sr-val">84/100</span><span class="sr-note">× 25% = 21 pts</span></div><div class="score-row sr-green"><span class="sr-label">MARCHÉ RÉCOMPENSANT ?</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">× 25% = 20 pts</span></div>
+<div class="score-row sr-green sr-total"><span class="sr-label">SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div>
+<p>Ce marché en pleine mutation réglementaire constitue un puissant vent arrière pour notre thèse axée sur la productivité des PME, sous réserve de verrouiller la distribution commerciale locale.</p>
+<h4>DÉFINITION du Marché</h4>
+<p>Le marché englobe l'automatisation de la gestion d'entreprise et de la facturation numérique obligatoire pour les millions de TPE et PME françaises. Actuellement, la gestion administrative reste cassée par l'usage incohérent de fichiers bureautiques non sécurisés et d'outils déconnectés qui compliquent les rapprochements d'écritures. Cette couche applicative intermédiaire se situe juste en amont des réceptacles comptables classiques, captant ainsi la valeur de saisie et de pilotage du cash.</p>
+<h4>Notre THÈSE de Marché</h4>
+<p>La transition forcée par la loi vers la facturation électronique a définitivement détruit les processus papier historiques des micro-entreprises françaises. Les éditeurs de logiciels traditionnels ne peuvent pas lutter efficacement car leur structure technologique lourde s'adresse avant tout aux experts-comptables plutôt qu'à l'expérience utilisateur finale du gérant de TPE.</p>
+<p>Le levier pour une startup réside dans l'intégration invisible de la facturation réglementaire au flux d'affaires opérationnel courant. Cette transition réglementaire offre une fenêtre d'opportunité critique qui se refermera avec l'achèvement du déploiement légal imposé d'ici deux ans.</p>
+<h4>Notre CONVICTION &amp; PARI sur ce Marché:</h4>
+<p><span class="conv-badge sr-green">HAUTE CONVICTION</span></p>
+<p>Bien que la concurrence sur l'acquisition de masse des TPE soit intense en raison de solutions parfois gratuites, l'obligation législative crée un marché captif prêt à surpayer un outil complet facilitateur de vie. Nous faisons le pari d'une intégration profonde où le compte bancaire et l'immatriculation d'État d'Axonaut forceront l'archivage définitif des logiciels non certifiés. Un entretien concluant avec le fondateur montrera sa capacité à prouver que le taux d'activation de ses clients reste supérieur à 75% dès le premier devis.</p>
+<h4>MARCHÉ ATTRACTIF (Score: 88/100)</h4>
+<p>L'urgence de mise en conformité balaie le risque d'évangélisation client, transformant ce marché en un gisement d'acquisition naturel pour l'investisseur.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille du Marché</span><span class="sr-val">87/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une dynamique globale qui s'adresse à plus de 3 millions de petites entreprises locales prêtes pour leur transformation logicielle.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Facteurs de Croissance</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Accélération nette stimulée par le calendrier légal et la recherche de productivité interne en période inflationniste.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing - Pourquoi Maintenant</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'obligation imminente d'immatriculation pour l'émission des transactions électroniques sécurisées structure notre calendrier.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Risques de Marché</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le principal écueil réside dans un risque de standardisation accélérée du traitement de la facture réduisant la capacité de facturation à forte valeur.</div></li></ul>
+<h4>MARCHÉ GAGNABLE (Score: 76/100)</h4>
+<p>Le paysage demeure compétitif et fortement morcelé, nécessitant des stratégies de relations de proximité solides pour verrouiller les parts de marché.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Acteurs Historiques</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des acteurs de renom qui peinent à offrir l'agilité produit indispensable pour le segment micro-B2B.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Challengers</span><span class="sr-val">74/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des concurrents bien identifiés mais souvent contraints à des investissements publicitaires directs massifs et complexes à rentabiliser.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Espaces Innovants</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une opportunité forte d'automatiser entièrement le flux à l'aide de couches d'automatisation et de réconciliation de données.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Défendabilité</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La pérennité se construit sur l'intégration des flux bancaires des clients, générant des coûts d'abandon particulièrement élevés.</div></li></ul>
+<h4>MARCHÉ PÉNÉTRABLE (Score: 84/100)</h4>
+<p>La flexibilité de la vente indirecte de proximité autorise des schémas d'acquisition très directs contournant la saturation des enchères Web standard.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle GTM</span><span class="sr-val">86/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un modèle performant s'appuyant sur l'incitation à la vente chez les intégrateurs régionaux de proximité.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de Tarification</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Tarification standard de type SaaS, extrêmement claire, réduisant la friction au moment de l'inscription initiale.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Ratios d'Efficacité</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les ratios d'efficacité se stabilisent grâce au fort taux d'orientation naturel des partenaires prescripteurs.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Facteurs de Croissance</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Potentiel élevé de hausse du revenu moyen par compte à travers l'offre de comptes professionnels intégrés.</div></li></ul>
+<h4>MARCHÉ RÉCOMPENSANT (Score: 80/100)</h4>
+<p>Le secteur offre des perspectives de valorisation historiquement exceptionnelles de par l'importance stratégique du traitement des flux de trésorerie.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Activité d'Investissement</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Intérêt marqué des fonds d'investissement mondiaux de premier ordre pour les briques bancaires intégrées.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Multiples de Valorisation</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un historique de transactions montrant des primes significatives sur les plateformes gérant la facturation récurrente.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Acheteurs Stratégiques</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les acteurs bancaires traditionnels, d'assurance et d'infrastructure de paiement souhaitant fidéliser les flux financiers des PME.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Retour Attendu</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La dynamique globale correspond en tous points aux impératifs d'indépendance commerciale et de rentabilité visés par notre thèse.</div></li></ul>
+<h4 class="kicker">SYNTHÈSE DES SECTIONS</h4>
+<p>La convergence d'une demande forte induite par la loi et d'une distribution commerciale par réseau indirect dessine pour Axonaut une opportunité majeure d'acquisition pérenne.</p>
+<h4 class="kicker">CONFIANCE DE LA DONNÉE</h4>
+<p>Données solides sur les aspects d'immatriculation d'État et de revenus 2024 d'Axonaut. Analyse s'appuyant sur l'examen de plus de 5 publications professionnelles robustes.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-97dde83cd52aed8b4500e73620af1378-mc3hdigm.jpg"/>
+</div>
+</div>
+</div>
+&lt;-- No content rendered because memo_type is fast --&gt;
+<div class="section-container" id="company">
+<h2 class="section-title">Analyse approfondie de l'entreprise</h2>
+<h3 id="value-proposition">Proposition de valeur</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Proposition de Valeur</h4>
+<p>L'outil tout-en-un de gestion pour simplifier le quotidien des TPE et PME. Axonaut est une application super simple sur ordinateur et téléphone qui remplace tous les carnets, fichiers Excel et factures papiers pour les petits commerçants et artisans. Elle leur permet de faire des devis, d'envoyer des factures, de suivre ce qu'ils gagnent et de payer leurs impôts sans se tromper et sans y passer des heures.</p>
+<h4 class="kicker">Profil Client Idéal (ICP)</h4>
+<p>Dirigeants de TPE et PME françaises, petits commerçants et artisans cherchant à automatiser la facturation, la comptabilité et la relation client.</p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>B2B. Axonaut cible explicitement les entreprises (TPE/PME) avec une plateforme SaaS de gestion d'entreprise.</p>
+<h4 class="kicker">Secteur</h4>
+<p>Data &amp; Analytics &gt; Plateforme d'Orchestration d'Agents IA (Agentic Workflow Automation) avec un positionnement CRM/ERP et facturation pour TPE/PME.</p>
+<h4 class="kicker">Contact &amp; Légal</h4>
+<p>Siège en France. Aucune adresse email, numéro de téléphone, adresse physique ou année de création n'est précisée dans la source. Entité légale: Axonaut.</p>
+<h4 class="kicker">Exemples de Clients Clés &amp; Témoignages</h4>
+<p>Données non disponibles dans la source.</p></div>
+<h3 id="product">Produit</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution Principale</h4>
+<p>Plateforme tout-en-un SaaS pour la gestion d'entreprise incluant CRM, ERP et facturation pour TPE/PME.</p>
+<h4 class="kicker">Encyclopédie des Fonctionnalités</h4>
+<p>Création de devis | Envoi de factures | Suivi des gains | Gestion des impôts | Observatoire de trésorerie | Compte Pro pour interconnecter flux bancaires et facturation | Facturation compatible Peppol.</p>
+<h4 class="kicker">Capacités Techniques</h4>
+<p>Application ordinateur et téléphone | Intégration native des comptes professionnels | Connexion Peppol | Déploiement SaaS | Immatriculation officielle comme plateforme agréée pour la facturation électronique.</p>
+<h4 class="kicker">Cas d'Usage</h4>
+<p>Remplacer carnets papiers, Excel et factures manuelles pour les TPE/PME | Automatiser la chaîne de facturation | Suivre la trésorerie et conformité réglementaire | Simplifier la gestion quotidienne sans outils déconnectés.</p></div>
+<h3 id="business-model">Modèle économique</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Analyse du Modèle Commercial</h4>
+<p>SaaS / Abonnement mensuel et annuel.</p>
+<h4 class="kicker">Flux de Revenus &amp; Niveaux de Tarification</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Fonctionnalités des Plans</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Coûts Cachés &amp; Conditions</h4>
+<p>Données non disponibles dans la source.</p></div>
+<h3 id="team">Équipe</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'Entreprise</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Analyse de l'Équipe</h4>
+<p>Nicolas Ricard (CEO et co-fondateur).</p>
+<h4 class="kicker">Offres d'Emploi &amp; Titres</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Effectif Estimé</h4>
+<p>Basé sur les données disponibles:</p>
+<p>Product &amp; Engineering: Inconnu</p>
+<p>Marketing: Inconnu</p>
+<p>Sales: Inconnu</p>
+<p>Support &amp; IT: Inconnu</p>
+<p>General &amp; Admin (G&amp;A): Inconnu</p></div>
+<h3 id="ceo">PDG</h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>Data &amp; Analytics &gt; Plateforme d'Orchestration d'Agents IA (Agentic Workflow Automation)</li><li>B2B &gt; SaaS</li><li>10M€ raised from investors (funding date in Dec, 2022)</li></ul>
+<br/>
+<strong>SCORE DE PRÉ-SÉLECTION</strong><br/>
+Thèse : <hr/><div class="score-row sr-green sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:84%"></span></span><span class="sr-val">84/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">TRACTION &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:81%"></span></span><span class="sr-val">81/100</span></div><hr/><div class="score-row sr-amber sr-total"><span class="sr-label">SCORE DE PRÉ-SÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82.4/100</span><span class="sr-note">🟡 SIGNAL POSITIF (80-84)</span></div><hr/>❓ En bref : Axonaut est une Plateforme d'Orchestration d'Agents IA qui permet aux dirigeants de TPE et PME de simplifier la gestion quotidienne de leur entreprise en automatisant la facturation, la comptabilité et la relation client via une interface unique.
+<p>⚠️ Le PROBLÈME : Le gérant de TPE doit naviguer chaque soir entre quatre outils déconnectés pour relancer ses impayés et éditer ses devis, perdant deux heures d'exploitation par jour et risquant une non-conformité réglementaire.</p>
+<p>✅ La SOLUTION : Une plateforme consolidée qui centralise toutes les données commerciales et bancaires pour automatiser la chaîne de facturation en un clic, rendant la gestion comptable invisible pour le chef d'entreprise.</p>
+🚀 Le GTM : Un modèle de distribution mixte s'appuyant sur un réseau de distribution indirect de partenaires intégrateurs et d'experts-comptables pour acquérir le segment fragmenté des TPE à un coût d'acquisition minimal.<hr/><strong>👨🏻 EXCELLENCE DE L'ÉQUIPE (Score: 82/100)</strong><br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Adéquation Fondateur-Marché</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc"></div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Historique de l'Équipe</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les fondateurs ont démontré une capacité d'exécution remarquable à Toulouse, validée par une Série A majeure de 10 millions d'euros en décembre 2022.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'équipe s'est structurée autour d'un socle d'ingénieurs et de commerciaux performants capables d'adresser une clientèle de masse avec un support client hautement industrialisé.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Complétude du Board</span><span class="sr-val">81/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une structure équilibrée entre développement produit et gestion des réseaux indirects de partenaires commerciaux.</div></li></ul>
+<br/>
+<strong>🌊 OPPORTUNITÉ DE MARCHÉ (Score: 85/100)</strong><br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille &amp; Croissance</span><span class="sr-val">86/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché français des PME est gigantesque et se structure autour de l'obligation de la facture électronique à l'horizon 2026/2027.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing - Pourquoi Maintenant</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La réforme de la facturation électronique agit comme un catalyseur commercial forçant la numérisation immédiate de millions d'entreprises.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Concurrence</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Face à des géants ou des nouveaux acteurs comme Pennylane, Axonaut se positionne comme l'alternative d'automatisation agile et accessible.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Vecteurs d'Expansion</span><span class="sr-val">86/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'expansion récente vers la Belgique et la connexion à Peppol valident les ambitions transfrontalières de l'entreprise.</div></li></ul>
+<br/>
+<strong>💡 INNOVATION PRODUIT (Score: 80/100)</strong><br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Agrégation native des comptes pro, de la facturation et du CRM historique en une interface unifiée sans rupture de flux.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Product-Market Fit</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Retours clients extrêmement positifs attestant d'une réduction drastique du temps passé par les créateurs sur la gestion financière.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Scalabilité</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un socle technologique conçu pour supporter des dizaines de milliers de comptes d'utilisateurs simultanés.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Barrières à l'Entrée</span><span class="sr-val">77/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'obtention de l'immatriculation officielle comme plateforme agréée crée une barrière réglementaire essentielle face aux acteurs non régulés.</div></li></ul>
+<br/>
+<strong>💼 MODÈLE D'AFFAIRES (Score: 84/100)</strong><br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Analyse des Coûts</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle de tarification transparent par utilisateur, hautement prévisible et parfaitement dimensionné pour le budget des TPE.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Flux de Revenus</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Revenus entièrement récurrents (SaaS MRR) avec une excellente rétention nette liée à la centralisation des données critiques.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">86/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Lancement réussi du Compte Pro pour interconnecter nativement les flux financiers et de facturation des clients.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Croissance efficace de 7 millions d'euros de chiffre d'affaires en 2024 avec une maîtrise rigoureuse de la consommation de capital depuis la Série A.</div></li></ul>
+<br/>
+<strong>📈 TRACTION &amp; CROISSANCE (Score: 81/100)</strong><br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Croissance du Chiffre d'Affaires</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Forte accélération des revenus passant de 5 millions d'euros en 2023 à 7 millions d'euros en 2024 (croissance de 40%).</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Adoption croissante par les dirigeants et les réseaux de prestataires informatiques locaux.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Progression des Indicateurs</span><span class="sr-val">81/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Rythme soutenu de lancements comprenant les outils d'observatoires de trésorerie et la facturation compatible Peppol.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">79/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Constitution active d'un canal de distribution avec un objectif ciblé de partenaires d'ici 24 mois en France.</div></li></ul>
+<hr/><strong>🔍 RISQUE À RECOUVRIR :</strong><br/>
+L'hypothèse critique repose sur la capacité d'Axonaut à recruter et fidéliser son canal de distribution indirect de partenaires (30 à 100 partenaires ciblés) face aux pressions commerciales et commissions agressives des acteurs géants du marché. Ce risque d'exécution commerciale sera résoluble à court terme par l'observation de la vélocité de signature de nouveaux partenaires et de leur contribution réelle au MRR sur les 12 prochains mois.
+<h4 class="kicker">AVANTAGES CONCURRENTIELS CLÉS</h4>
+<ul><li>Obtention de l'immatriculation réglementaire officielle sécurisant la légitimité d'usage vis-à-vis des exigences étatiques.</li><li>Modèle d'intégration technologique combinant nativement le Compte Pro avec la console de facturation pour éliminer la réconciliation manuelle.</li><li>Stratégie de partenariats indirects unique ciblant les revendeurs informatiques régionaux avec un intéressement récurrent attractif de 40%.</li><li>Positionnement tarifaire ultra-compétitif dimensionné pour le marché de masse des petites et très petites entreprises.</li></ul>
+<p><strong>🧱 DOUVE (MOAT) :</strong> MODÉRÉE</p>
+<p>Le moat primaire d'Axonaut repose sur des coûts de transfert importants créés par l'intégration de toute l'activité administrative de la TPE (devis, clients, comptabilité) au sein d'une seule console propriétaire. L'effet de réseau s'accélère via l'écosystème de partenaires et de cabinets d'expertise comptable qui standardisent l'usage de la plateforme pour leurs propres clients. La barrière réglementaire d'agrément officiel pour la facturation électronique fournit une couche secondaire robuste de protection à long terme.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Scénario Haussier : Axonaut s'impose comme le système d'exploitation financier par défaut des 3 millions de TPE en France en transformant la contrainte étatique de la facturation électronique en un moteur de conversion de masse automatisé.</li><li>Scénario Baissier : La complexité de l'animation d'un réseau indirect freine la rentabilité du coût d'acquisition client au profit d'acteurs de premier plan mieux financés qui captent la majorité de la distribution bancaire et comptable.</li></ul>
+<p><strong>🚩 SIGNAUX D'ALERTE</strong></p>
+<ul><li>Risques Universels : Une pression importante sur les marges provoquée par l'intensification de la concurrence sur la facturation électronique standardisée gratuite.</li><li>Incohérences de Thèse : Risque de dispersion produit si le ciblage de la TPE dérive vers des fonctionnalités complexes exigeant un support client trop lourd.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/55/55/1784023200000/Mir7NOt-RmUHuoSE3zfMEg/CVlzjznWIWOvzTfMF_VpYAjwOPSvrxGPu1MlrTmjb2FMYv5G-42EmOxqVeSp-56qdAugYcznWz6TxTXg_Uv20Uq2vrgvvtmXkkx7QyNzbbNNDbvnO3ET1j0NwbmkRK91gj84dAPTblq6lhTrxOUbYQ/xYdTlgszgi6kcgzZa5CZatKXWyPS3109jXtyaHLPICQ"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">Analyse SWOT</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Forces</h3><ul><li>Axonaut a enregistré une croissance de 40 % de son chiffre d'affaires en 2024 pour atteindre 7 millions d'euros.</li><li>Son programme de partenaires propose jusqu'à 40 % de commissions récurrentes pour attirer intégrateurs et revendeurs B2B.</li><li>L'immatriculation officielle obtenue en 2025 renforce sa crédibilité réglementaire auprès des TPE françaises.</li><li>La connexion à Peppol facilite l'interopérabilité et l'expansion transfrontalière vers la Belgique.</li><li>Le lancement du Compte Pro en 2024 cible directement les besoins des très petites entreprises en gestion.</li></ul></div>
+<div class="swot-item s-red"><h3>Faiblesses</h3><ul><li>Aucun nouveau tour de financement n'a été annoncé depuis la Série A de 10 millions d'euros en 2022.</li><li>Le chiffre d'affaires de 7 millions d'euros reste faible pour financer une accélération face à des concurrents mieux capitalisés.</li><li>La stratégie repose exclusivement sur la croissance organique et partenariale sans recours aux acquisitions.</li><li>L'objectif de 100 partenaires en France sur 24 mois dépend d'une exécution encore non prouvée.</li><li>L'absence de levées récentes limite la capacité à recruter rapidement des talents ou à intensifier le marketing.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunités</h3><ul><li>La réforme de la facturation électronique agit comme catalyseur commercial direct pour le canal de distribution.</li><li>L'atteinte de 30 partenaires qualifiés en douze mois peut multiplier rapidement les leads sans coûts d'acquisition élevés.</li><li>L'expansion en Belgique via Peppol constitue une première étape vers une présence européenne structurée.</li><li>Les mises à jour continues comme l'Observatoire de trésorerie renforcent la rétention et la valeur perçue du produit.</li><li>Les partenariats avec MSP et prestataires informatiques permettent de pénétrer des segments TPE encore sous-équipés.</li></ul></div>
+<div class="swot-item s-orange"><h3>Menaces</h3><ul><li>Des acteurs mieux financés peuvent copier le positionnement et éroder les parts de marché sur le segment TPE.</li><li>Tout retard dans le recrutement des partenaires laisse le champ libre à des concurrents déjà implantés.</li><li>Les exigences de conformité réglementaire permanente exigent des investissements techniques soutenus avec des ressources limitées.</li><li>Une saturation rapide du marché français des outils de facturation et CRM pour TPE pourrait freiner la croissance.</li><li>L'absence de nouvelles levées de fonds rend l'entreprise vulnérable à une éventuelle pénurie de liquidités en cas de ralentissement.</li></ul></div>
+</div>
+</div>
+<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Axonaut ?</span><span class="i18n-en">Explore Axonaut further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
+ else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
+ +'<input name="email" type="email" placeholder="Email professionnel" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
+ +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
+ +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
+    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
+    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><style>
+/* Étoile favori (★) en tête de la cellule Société — dorée dès l'état INACTIF (☆) pour être
+   repérable comme « à cliquer », pleine et vive à l'état actif (★). */
+.op-fav{display:inline-block;vertical-align:baseline;margin:0 7px 0 0;padding:0;font-size:17px;
+line-height:1;color:#d9b64a;background:none;border:none;cursor:pointer;
+transition:color .12s,transform .12s}
+.op-fav:hover{color:#e5a91c;transform:scale(1.2)}
+.op-fav.on{color:#e5a91c}
+.fav-count{font-variant-numeric:tabular-nums;font-weight:800}
+/* Page /actualites/favoris/ : état vide + encart « créez votre thèse ». */
+.fav-empty-box{margin:26px 0;padding:24px 20px;border:1px dashed var(--line);border-radius:12px;
+background:var(--bg);text-align:center;color:var(--sub);font-size:14px;line-height:1.55}
+.fav-empty-box a{color:var(--accent-dk);font-weight:700;text-decoration:none}
+.fav-empty-box a:hover{text-decoration:underline}
+.fav-tease{margin:22px 0 6px;padding:16px 18px;border:1px solid var(--accent);border-radius:12px;
+background:var(--bg)}
+.fav-tease-h{font-size:15px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.fav-tease-p{font-size:13.5px;color:var(--sub);line-height:1.5;margin:0 0 10px}
+.fav-tease .tm-read{margin:0}
+/* Composeur de thèse in-browser + évaluation groupée (Phase B). */
+.fav-th-text{width:100%;min-height:64px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+font-family:inherit;font-size:13.5px;line-height:1.5;color:var(--ink);resize:vertical;margin:0 0 8px}
+.fav-th-text:focus{outline:none;border-color:var(--accent)}
+.fav-btn{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:9px;padding:9px 15px;cursor:pointer;transition:opacity .15s}
+.fav-btn:hover{opacity:.85}
+.fav-btn:disabled{opacity:.5;cursor:default}
+.fav-th-edit{margin-left:10px;font-size:12.5px;font-weight:600;color:var(--accent-dk);background:none;
+border:none;cursor:pointer;text-decoration:underline}
+.fav-th-label{font-size:13px;color:var(--sub);font-style:italic;margin:0 0 8px}
+.fav-th-hint{font-size:12px;color:#b91c1c;margin:6px 0 0}
+/* Verdict d'un favori (plein largeur sous la ligne, comme .op-eval-panel). */
+.fav-verdict{grid-column:1/-1;margin-top:2px}
+.fav-verdict:empty{margin:0}
+.fav-v{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;padding:3px 10px;margin-top:6px}
+.fav-v-yes{color:#047857;background:rgba(4,120,87,.10)}
+.fav-v-no{color:#b91c1c;background:rgba(185,28,28,.08)}
+.fav-v-err{color:var(--mid);background:var(--bg)}
+.fav-v-load{color:var(--mid);font-size:12.5px;font-weight:600;margin-top:6px;display:inline-block}
+.fav-vr{display:block;font-size:12.5px;color:var(--sub);line-height:1.45;margin-top:4px}
+</style><script>(function(){
+var K="proplace_favoris";
+// Bridge « certain » vers /cibles/ : un ?cb=<token> dans l'URL (posé par le lien du /cibles/ du
+// client, ou un email Proplace) lie ce navigateur à CE client → chaque ★ est aussi reflétée dans
+// un store SERVEUR scopé au token, retrouvée ensuite dans son onglet Favoris même sur un autre
+// appareil. Sans token (visiteur anonyme), sync() est un no-op → comportement inchangé.
+var TKK="proplace_cb_token",SYNC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/fav-sync";
+function readTok(){try{return localStorage.getItem(TKK)||"";}catch(e){return "";}}
+function writeTok(t){try{localStorage.setItem(TKK,t);}catch(e){}}
+function captureTok(){var t="";try{t=((new URL(window.location.href)).searchParams.get("cb")||"").trim();}catch(e){}
+ if(/^[A-Za-z0-9]{16}$/.test(t)){writeTok(t);return t;}return readTok();}
+var TOK=captureTok();
+function sync(op,removed){if(!TOK)return;try{
+ fetch(SYNC,{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
+  body:JSON.stringify({token:TOK,remove:!!removed,op:op})}).catch(function(){});
+}catch(e){}}
+function EN(){try{var l=localStorage.getItem("proplace_lang");if(l)return l==="en";}catch(e){}
+ return (navigator.language||"").slice(0,2).toLowerCase()==="en";}
+function read(){try{return JSON.parse(localStorage.getItem(K)||"[]")||[];}catch(e){return [];}}
+function write(a){try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}}
+function normU(u){return (u||"").toLowerCase().trim().replace(/[#?].*$/,"").replace(/\/+$/,"");}
+function normN(n){return (n||"").toLowerCase().replace(/\s+/g," ").trim();}
+function keyOf(u,c){return normU(u)||normN(c);}
+function opFromBtn(b){var d=b.dataset,u=d.u||"",c=d.co||"";
+ return {id:keyOf(u,c),co:c,url:u,disp:d.disp||"",ind:d.i||"",vert:d.v||"",amtD:d.amtd||"",
+  amt:parseInt(d.amt||"0",10)||0,pays:d.pays||"",paysFull:d.paysfull||"",date:d.date||"",
+  typeK:d.typek||"",typeFr:d.typefr||"",ts:Date.now()};}
+function idx(a,id){for(var i=0;i<a.length;i++)if(a[i].id===id)return i;return -1;}
+function paint(){var a=read(),ids={};a.forEach(function(o){ids[o.id]=1;});
+ [].slice.call(document.querySelectorAll(".op-fav")).forEach(function(b){
+  var id=keyOf(b.dataset.u||"",b.dataset.co||""),on=!!ids[id];
+  b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false");
+  b.textContent=on?"★":"☆";
+  var t=on?(EN()?"Remove from favourites":"Retirer des favoris"):(EN()?"Add to favourites":"Mettre en favori");
+  b.title=t;b.setAttribute("aria-label",t);});
+ var n=a.length;[].slice.call(document.querySelectorAll(".fav-count")).forEach(function(e){e.textContent=String(n);});}
+window.__favPaint=paint;
+document.addEventListener("click",function(ev){
+ var b=ev.target&&ev.target.closest?ev.target.closest(".op-fav"):null;if(!b)return;
+ ev.preventDefault();ev.stopPropagation();
+ var a=read(),op=opFromBtn(b),k=idx(a,op.id),removed=k>=0;
+ if(k>=0)a.splice(k,1);else a.unshift(op);
+ write(a);paint();sync(op,removed);if(window.__favRender)window.__favRender();});
+window.addEventListener("storage",function(e){if(e.key===K){paint();if(window.__favRender)window.__favRender();}});
+if(document.readyState!=="loading")paint();else document.addEventListener("DOMContentLoaded",paint);
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
