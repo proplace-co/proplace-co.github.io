@@ -121,6 +121,12 @@ font-size:13px;color:var(--mid)}
 .site-ft nav{display:flex;gap:18px;flex-wrap:wrap}
 .site-ft nav a{color:var(--mid)}
 .site-ft nav a:hover{color:var(--accent-dk)}
+/* v74 (R5) — mobile : AUCUNE glisse horizontale de page (/actualites ET /cibles,
+   _BASE_CSS est partagé via _head). Ceinture : overflow-x:clip — PAS hidden (règle
+   v58 : hidden crée un conteneur de défilement et TUE le position:sticky des barres
+   collées) ; clip borde sans créer de scroller → les stickies survivent. Les
+   débordements réels (SVG larges, chips longues…) restent corrigés à la source. */
+@media(max-width:760px){html,body{overflow-x:clip}}
 
 .bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
 .bcrumb a{color:#777;text-decoration:none}
@@ -162,6 +168,14 @@ html[data-pplang=en] .i18n-fr{display:none}
 @media(max-width:760px){
  .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
  .pph .pph-home{display:none}
+ /* v74 (R5) — le SEUL débordeur réel mesuré à 390px est CETTE nav (Connexion +
+    pastille News|Analysis + EN|FR ≈ 309px pour ~264px disponibles) : elle devient
+    son PROPRE défileur horizontal (règle « wide content » : overflow-x:auto sur la
+    pièce INTERNE — jamais sur un ancêtre d'une barre sticky). Alignée à gauche en
+    mobile : un débordement côté start (flex-end) serait inatteignable au scroll. */
+ .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pph nav::-webkit-scrollbar{display:none}
  .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
  .pph-sect a{padding:6px 10px;font-size:12px}
  .pph-lang button{padding:5px 7px;font-size:11px}
@@ -405,6 +419,9 @@ padding:3px 11px;border-radius:11px;color:#fff;white-space:nowrap;text-align:cen
 .cb-verdict-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.04em;
 text-transform:uppercase;padding:2px 7px;border-radius:9px;border:1px solid #d9e0e8;
 background:#f6f8fb;color:#93a1b2;white-space:nowrap}
+/* v70 (retour CEO n°1) — étiquette verdict REDONDANTE avec le badge affiché (Retenu/Analysé⇄MATCH ·
+   Écarté⇄NO MATCH · À trancher⇄CALL) : masquée mais gardée dans le DOM (paint() la re-toggle). */
+.cb-verdict-tag.cb-vt-dup{display:none}
 .cb-uchev{margin-left:auto;color:#9fb0c2;font-size:19px;font-weight:700;transform:rotate(90deg);transition:transform .15s}
 .cb-urow[open] .cb-uchev{transform:rotate(-90deg)}
 .cb-ubody{padding:2px 16px 14px 47px}
@@ -772,6 +789,10 @@ color:#0f1f33;display:flex;align-items:center;gap:10px}
 .cb-cols li{position:relative;padding:0 0 7px 22px;font-size:14px;line-height:1.5;color:#34455a}
 .cb-look li:before{content:"\2713";position:absolute;left:0;color:#4AC67F;font-weight:800}
 .cb-rule li:before{content:"\2715";position:absolute;left:0;color:#c0566a;font-weight:800}
+/* v72 (item ROI) — ligne ROI discrète juste AU-DESSUS du module RDV : une phrase
+   calme, sans encadré, nombres en gras sobre. */
+.cb-roi{margin:30px 0 0;font-size:13px;color:#6a7686;text-align:center;line-height:1.6}
+.cb-roi b{color:#2c3a4d;font-weight:800}
 .cb-rdv{border-top:1px solid #e2e7ee;padding-top:30px;margin-top:40px}
 .cb-rdv h2{font-size:22px;font-weight:800;color:#0f1f33;margin:0 0 8px}
 .cb-rdv p{font-size:15px;color:#56697e;line-height:1.6;margin:0 0 18px}
@@ -914,6 +935,17 @@ border:1px solid #d4d9e2;border-radius:999px;padding:4px 10px;cursor:pointer}
 .cb-crit.on i{color:#9eaaba}
 .cb-flt-none{flex-basis:100%;font-size:12.5px;color:#8a99aa;margin:4px 0 0;display:none}
 .cb-flt-none.on{display:block}
+/* v72 (item 6) — état vide INTELLIGENT : quand les filtres ne matchent rien dans l'onglet
+   courant mais matchent AILLEURS, une ligne calme par onglet gagnant, avec un vrai bouton
+   « Voir → » (même zone/ton que .cb-flt-none — jamais une alerte). */
+.cb-flt-hint{margin:2px 0 10px;padding:9px 12px;background:#f6f8fb;border:1px solid #e3e9f1;
+border-radius:10px;font-size:12.5px;color:#54627a;display:none}
+.cb-flt-hint.on{display:block}
+.cb-flt-hint p{margin:2px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cb-flt-hint b{color:#0f1f33}
+.cb-flt-hint button{font-family:inherit;font-size:11.5px;font-weight:700;color:#185c38;background:#fff;
+border:1px solid #bcd8c8;border-radius:999px;padding:3px 10px;cursor:pointer}
+.cb-flt-hint button:hover{background:#eef7f1;border-color:#8fc4a6}
 /* évaluateur (sous le panneau) : tester une société — distinct de la recherche */
 .cb-evalwrap{margin:0 0 16px}
 .cb-eval-lbl{font-size:12px;font-weight:700;color:#56697e;margin:0 0 6px}
@@ -1163,6 +1195,22 @@ white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* (4) « Chercher des similaires » = bleu TRÈS clair (distinct : ajoute des leads) */
 .cb-btn-similar3{background:#f2f7ff;color:#3b6fd4;border:1px solid #dbe6fb}
 .cb-btn-similar3:hover{background:#e8f1ff;border-color:#c3d7f7}
+/* v72 (item 3) — échelle mémo : lien discret « Lancer le mémo détaillé → » SOUS le
+   bouton « Voir le mémo rapide » (texte, pas un 2e gros bouton) ;
+   « ⏳ Mémo en préparation… » = fantôme désactivé — v74 (R1) : plus jamais BAKÉ,
+   uniquement injecté EN VIVANT par _react_js (tir réel de la session / rejeu <24 h).
+   v75 (P4) — TEXTE NU, sans chrome de bouton : le sélecteur porte .cb-act button…
+   (spécificité 0,1,1) qui repeignait ce <button> en PILULE SOMBRE (le piège documenté
+   sur .cb-simbox) → on gagne avec .cb-act button.cb-det-launch (0,2,1). L'élément
+   RESTE un <button> (a11y + tout le circuit v72.1 detailed_request inchangé) ; seul
+   le LOOK change : navy discret, souligné au survol, la → conservée dans le libellé. */
+.cb-act button.cb-det-launch,button.cb-det-launch{font-family:inherit;font-size:12.5px;font-weight:600;
+color:#3a5a7c;background:none;border:none;border-radius:0;padding:0;margin:-2px 0 0;cursor:pointer;
+text-decoration:none;text-align:left}
+.cb-act button.cb-det-launch:hover,button.cb-det-launch:hover{color:#1d4ed8;background:none;
+text-decoration:underline;text-underline-offset:3px}
+.cb-uh-btn.cb-memo-preparing,.cb-uh-btn.cb-memo-preparing:hover{background:#f4f6f9;color:#8a97a8;
+border:1px dashed #c9d3de;cursor:default}
 /* v38.4 (point 13) — mobile : boutons mémo/similaires CENTRÉS et empilés dessous */
 @media(max-width:640px){.cb-uh-act{flex-direction:column;align-items:center;margin-top:12px}
 .cb-uh-btn,.cb-memo-quick,.cb-btn-similar3{width:100%;max-width:320px;min-width:200px}}
@@ -1254,12 +1302,27 @@ color:#8a99aa;font-size:12px;font-weight:600;cursor:pointer}
 .cb-simbox{position:relative;margin:10px 0 0;background:#f6f8fb;border:1px solid #e2e8f0;
 border-radius:9px;padding:11px 30px 11px 13px}
 .cb-simbox .cb-srch-x{position:absolute;top:8px;right:9px}
+/* v70 (retour CEO n°2a) — fermeture LÉGÈRE de la mini-fenêtre similaires : simple croix texte
+   (même style que la ✕ du panneau moteurs .cb-engovl-x). Sélecteur .cb-simbox .cb-sim-x (2 classes)
+   pour GAGNER sur .cb-act button (la boîte vit dans un conteneur .cb-act → pilule sombre sinon). */
+.cb-simbox .cb-sim-x{position:absolute;top:8px;right:9px;background:none;border:none;
+color:#8a99aa;font-size:14px;cursor:pointer;padding:2px 5px;line-height:1;border-radius:0}
+.cb-simbox .cb-sim-x:hover{background:none;border:none;color:#0f1f33}
 .cb-sim-head{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:#3b6fd4;margin:0}
 .cb-sim-it{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:9px 0 0;
 padding-top:9px;border-top:1px solid #eaeef3}
 .cb-sim-it>b{font-size:13.5px;color:#0f1f33}
 .cb-sim-r{flex-basis:100%;margin:2px 0 0;font-size:12px;color:#56697e;line-height:1.45}
 .cb-sim-foot{margin:10px 0 0;font-size:12px;font-weight:700;color:#0f6e3f}
+/* v70 (retour CEO n°2c) — résultat cliquable (similaires + évaluateur) : curseur main,
+   il navigue vers la carte injectée dans le tunnel (__cbGoRow). */
+.cb-sim-go{cursor:pointer}
+.cb-sim-it.cb-sim-go:hover{background:#eef3f9}
+/* v70 (retour CEO n°2b) — ligne MINIMALE injectée en direct dans le tunnel (jumelle criblée /
+   éval ad hoc) : la vraie carte arrive à la prochaine republication ; en attendant, la ligne
+   compte et se filtre comme les autres (data-* complets) et porte « ajoutée à l'instant ». */
+.cb-urow.cb-inj .cb-uhead{cursor:pointer}
+.cb-urow.cb-inj .cb-reasonbox{margin-top:7px}
 /* bandeau PROACTIF « vous jugez, il apprend » dans « Vos critères » */
 /* v69 (F0) — plus de barre gauche PROPRE (le liseré de statut cb-eff-* du row est la SEULE
    barre verticale) : bord uniforme, fond teinté conservé. */
@@ -1295,6 +1358,19 @@ cursor:pointer;display:inline-flex;align-items:center;gap:4px;white-space:nowrap
 #cb-eval-out{margin:8px 0 0}
 @media(max-width:860px){.cb-evalbar{flex-wrap:wrap}.cb-evalbar .cb-xall{margin-left:0;width:100%;justify-content:flex-end;margin-top:4px}
 .cb-eval-q2{flex:1 1 100%;order:5}}
+/* v74 (R3) — import de liste VISIBLE sous l'évaluateur : lien de bascule calme
+   (souligné pointillé, comme cb-det-launch) + textarea « une société par ligne »
+   + compteur « N sociétés » en mini — cohérent avec le chrome de l'évaluateur. */
+.cb-eval-listrow{display:flex;align-items:center;gap:8px;margin:5px 0 0}
+.cb-eval-listlink{background:none;border:none;padding:1px 0;font-family:inherit;font-size:11.5px;
+font-weight:600;color:#5f7288;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+.cb-eval-listlink:hover{color:#0f1f33}
+.cb-eval-ta-n{font-size:11px;font-weight:700;color:#8a99aa}
+.cb-eval-ta{display:block;width:100%;box-sizing:border-box;margin:6px 0 0;font-family:inherit;
+font-size:12.5px;line-height:1.55;color:#14202e;background:#fff;border:1px solid #ccd6e0;
+border-radius:8px;padding:8px 10px;resize:vertical;min-height:96px}
+.cb-eval-ta:focus{border-color:#0f1f33;outline:none}
+.cb-eval-ta::placeholder{color:#a3b0bf}
 /* favoris importés des ACTUALITÉS : société pas encore évaluée + bouton Évaluer */
 .cb-extfav .cb-uh-top .cb-rr-name{color:#0f1f33}
 .cb-extfav-badge{font-size:10px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
@@ -1348,8 +1424,13 @@ text-decoration:underline;text-underline-offset:2px}
 /* v55 (points 3+6) — PLUS de défilement horizontal : overflow-x:auto retiré ; la barre PASSE À LA
    LIGNE (flex-wrap:wrap) en dernier recours plutôt que de scroller/clipper — mais après compaction
    tout tient sur UNE ligne à ~1180px. Reste COLLÉE en haut au scroll vertical (position:sticky;top:0). */
+/* v74 (R4) — mobile : la barre ENTIÈRE (dates → tunnel → cluster droit, même repliée
+   sur 2-3 lignes : le sticky porte sur .cb-tabbar donc sur TOUT le bloc) reste collée.
+   -webkit-sticky = repli anciens Safari iOS ; et JAMAIS d'overflow(-x) hidden/auto sur
+   un ancêtre (.cb-ulist/.cb-wrap/body) — la ceinture anti-glisse v74 utilise
+   overflow-x:clip (site_publish._BASE_CSS), qui ne crée PAS de conteneur de défilement. */
 .cb-tabbar{display:flex;align-items:center;gap:6px 8px;flex-wrap:wrap;margin:2px 0 0;
-padding:9px 2px 9px;border-bottom:1px solid #e6eaef;position:sticky;top:0;z-index:30;background:#fff}
+padding:9px 2px 9px;border-bottom:1px solid #e6eaef;position:-webkit-sticky;position:sticky;top:0;z-index:30;background:#fff}
 .cb-tabbar .cb-fchips{flex-wrap:nowrap}
 /* v38.3 — bouton « ⚙ Vos critères » à gauche de la ligne d'onglets (noir, comme avant) */
 /* v38.5 (point 5) — « Vos critères » PLUS GROS et plus large */
@@ -1564,7 +1645,11 @@ font-size:13px;line-height:1}
 /* légende du tunnel (au-dessus de la liste, orientation) */
 .cb-funnel-hint{margin:2px 0 8px;font-size:12.5px;color:#54627a;line-height:1.4}
 .cb-funnel-hint b{color:#0f1f33}
-.cb-funnel-hint .cb-fh-ar{color:#b9c6d4;font-weight:800;margin:0 4px}
+/* v72 (funnel visual) — mini glyphe entonnoir (3 barres décroissantes, gris-vert calme)
+   à gauche de la légende ; hors du span data-i18n → survit à la bascule FR|EN. */
+.cb-funnel-glyph{width:18px;height:13px;fill:#7fa392;vertical-align:-2px;margin-right:6px;flex:0 0 auto}
+/* v70 (retour CEO n°3) — la légende passe au gabarit **gras** (data-i18n-md, bascule FR|EN) :
+   les flèches › sont du texte simple — plus de span .cb-fh-ar. */
 /* v66.1 (revue #7) — RETIRÉ : le filet rouge du 👎-sur-CALL (v49) sur-spécifiait toutes les
    bordures cb-eff-* → une carte pouce-bas gardait un filet « Écarté » alors que son statut effectif
    était À trancher/Validé. Le repère « vous avez donné un avis » reste porté par le texte .cb-yourcall. */
@@ -1602,6 +1687,18 @@ border:1px solid #d5dde6;border-radius:6px;padding:4px 7px;background:#fff}
 background:#eef2f6;border:1px solid #cfd8e2;border-radius:6px;padding:4px 9px;cursor:pointer;line-height:1}
 .cb-cs-note-ok:hover{background:#e2e8ef;border-color:#b9c6d4}
 .cb-cs-note-ok:disabled{opacity:.5;cursor:default}
+/* v74 (R2) — garde « Analysé sans mémo » : mini-confirmation CALME dans le sélecteur
+   (pas de window.confirm) — encart clair, question courte, 2 boutons discrets. */
+.cb-anagate{margin:7px 0 0;padding:9px 11px;background:#f4f8fd;border:1px solid #cddef7;
+border-radius:8px}
+.cb-anagate-q{margin:0 0 7px;font-size:11.5px;line-height:1.45;color:#243040;font-weight:600}
+.cb-anagate-r{display:flex;gap:6px;flex-wrap:wrap}
+.cb-anagate-go{font-family:inherit;font-size:11px;font-weight:700;color:#fff;background:#2563eb;
+border:1px solid #2563eb;border-radius:7px;padding:5px 11px;cursor:pointer;line-height:1.2}
+.cb-anagate-go:hover{background:#1d4ed8}
+.cb-anagate-no{font-family:inherit;font-size:11px;font-weight:600;color:#56697e;background:#fff;
+border:1px solid #cfd8e2;border-radius:7px;padding:5px 11px;cursor:pointer;line-height:1.2}
+.cb-anagate-no:hover{background:#eef2f6}
 /* Override de FUNNEL posé par le JS (routage d'onglet) : visuel minimal, sauf un filet
    rouge discret pour un dossier écarté par le CEO (comme le « CALL NO »). */
 .cb-urow.cb-cs-set-ecarte{border-left:3px solid #f0b8b4}
@@ -1730,6 +1827,8 @@ font-size:13px;color:#0f1f33;text-align:left}
 button.cb-engovl-it{cursor:pointer}
 button.cb-engovl-it:hover{background:#f1f5f9}
 .cb-engovl-nm{flex:1 1 auto;font-weight:600;overflow-wrap:anywhere}
+/* v70 (retour CEO n°5) — mini badge de statut courant (palette cb-sb-*) dans la liste. */
+.cb-engovl-it .cb-status-badge.cb-engovl-st{flex:0 0 auto;font-size:9px;padding:2px 8px;min-width:0}
 .cb-engovl-sc{flex:0 0 auto;font-size:11px;font-weight:700;color:#56697e;background:#eef2f6;
 border-radius:6px;padding:2px 7px}
 .cb-engovl-go{flex:0 0 auto;color:#4ac67f;font-weight:800}
@@ -1743,6 +1842,34 @@ border-radius:6px;padding:2px 7px}
 .cb-engovl-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9985;
 background:#0f1f33;color:#fff;font-size:12.5px;font-weight:600;padding:9px 16px;border-radius:999px;
 box-shadow:0 8px 24px rgba(15,31,51,.3);pointer-events:none}
+/* ═══ v71 (F3) — « ✉ Préparer l'approche » sur les VALIDÉES : bouton navy fantôme dans la
+   colonne droite, AFFICHÉ par CSS seulement quand le statut effectif est Validé (le pattern
+   cb-callmini v69 : .cb-eff-valide stampée par __cbFunnelCount suit les changements live). */
+.cb-apprwrap{display:none;margin-top:7px}
+.cb-urow.cb-eff-valide .cb-apprwrap{display:block}
+.cb-appr-btn{width:100%;box-sizing:border-box;font-family:inherit;font-size:12px;font-weight:700;
+padding:7px 10px;border-radius:9px;border:1px solid #c9d6e4;background:none;color:#1d3557;
+cursor:pointer;text-align:center}
+.cb-appr-btn:hover{background:#f1f5f9;border-color:#9fb3c8}
+/* Mini-modal brouillon (réutilise le chrome .cb-engovl) : objet + corps ÉDITABLES + actions. */
+.cb-engovl-box.cb-appr-box{width:min(620px,94vw);max-height:min(84vh,700px)}
+.cb-appr-body{display:flex;flex-direction:column;gap:7px;padding:13px 16px 15px;overflow-y:auto}
+.cb-appr-subj-l{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#8a93a3}
+.cb-appr-subj{font-family:inherit;font-size:13.5px;font-weight:600;color:#0f1f33;
+border:1px solid #dde3ea;border-radius:8px;padding:8px 11px}
+.cb-appr-subj:focus{outline:none;border-color:#1d3557;box-shadow:0 0 0 3px rgba(29,53,87,.12)}
+.cb-appr-ta{font-family:inherit;font-size:13.5px;line-height:1.55;color:#2b3a4d;min-height:220px;
+border:1px solid #dde3ea;border-radius:8px;padding:10px 12px;resize:vertical}
+.cb-appr-ta:focus{outline:none;border-color:#1d3557;box-shadow:0 0 0 3px rgba(29,53,87,.12)}
+.cb-appr-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.cb-appr-acts button,.cb-appr-acts a{font-family:inherit;font-size:12.5px;font-weight:700;
+padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;line-height:1.2}
+.cb-appr-copy{border:none;background:#1d3557;color:#fff}
+.cb-appr-copy:hover{background:#16283f}
+.cb-appr-mailto{border:1px solid #c9d6e4;background:none;color:#1d3557}
+.cb-appr-mailto:hover{background:#f1f5f9}
+.cb-appr-mailto-off{opacity:.45;cursor:not-allowed}
+.cb-appr-mailto-off:hover{background:none}
 /* description dirigeant du moteur (ce qu'il scrute, pourquoi c'est puissant) */
 .cb-eng-desc{font-size:11.5px;line-height:1.5;color:#6b7a8d;margin:3px 0 1px}
 /* v9 — « Vos réglages » : réglages clés de la thèse qui personnalisent le moteur.
@@ -1760,6 +1887,12 @@ border-radius:6px;border:1px dashed #c9d4e0;background:#fff;color:#4a5a70;cursor
 .cb-eng-more:hover{background:#f4f6f9;border-color:#aebccc}
 .cb-eng-chips{line-height:1.6}
 .cb-eng-pnote{display:block;margin-top:6px;font-size:10.5px;line-height:1.4;color:#9aa3b2;font-style:italic}
+/* v71 (F2) — « ✎ Ajuster ce moteur » : bouton fantôme calme sous la carte moteur.
+   Il pré-remplit la boîte de correction de thèse (copilote NL) — jamais d'édition directe. */
+.cb-eng-adjust{margin-top:8px;font-family:inherit;font-size:11.5px;font-weight:700;
+padding:4px 10px;border-radius:8px;border:1px dashed #c9d4e0;background:none;color:#4a5a70;
+cursor:pointer;align-self:flex-start}
+.cb-eng-adjust:hover{background:#f4f6f9;border-color:#aebccc;color:#0f1f33}
 .cb-eng-sparkwrap{height:26px;display:flex;align-items:flex-end}
 .cb-eng-spark{width:100%;height:26px;display:block}
 /* v59 — palette CALME : un moteur qui SOURCE est actif (vert), même si match=0.
@@ -1780,6 +1913,187 @@ border-radius:6px;border:1px dashed #c9d4e0;background:#fff;color:#4a5a70;cursor
 /* v66 — A1 : la pilule FR|EN locale (.cb-langpill/.cb-lang-btn) est SUPPRIMÉE — la bascule
    de langue est désormais celle du HEADER GLOBAL du site (.pph-lang, site_publish), la page
    écoute son événement « pplang » (voir _i18n_js). */
+/* ═══════════ v73 — BLOCS EXTRAITS DU MÉMO (at-publish) ═══════════
+   ① SWOT 2×2 sur la carte DÉPLIÉE : PLEINEMENT VISIBLE, jamais repliable (« c'est tout
+   l'intérêt »). Teintes douces cohérentes page, titres 10px uppercase colorés, puces
+   fines « — » comme les why-points. Stack ≤700px. */
+.cb-swotsec .cb-sechd{color:#0f1f33}
+.cb-swot{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:7px 0 0}
+.cb-swot-q{border-radius:10px;padding:14px 16px;border:1px solid transparent}
+.cb-swot-s{background:#f0faf4;border-color:#d3ecdd}
+.cb-swot-w{background:#fdf1f1;border-color:#f4d9d7}
+.cb-swot-o{background:#eff6ff;border-color:#d8e6f9}
+.cb-swot-t{background:#fffbeb;border-color:#f3e5c0}
+.cb-swot-q h5{margin:0 0 8px;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.cb-swot-s h5{color:#0f6e3f}.cb-swot-w h5{color:#b3261e}.cb-swot-o h5{color:#1d4ed8}.cb-swot-t h5{color:#b45309}
+.cb-swot-q ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.cb-swot-q li{position:relative;padding-left:15px;font-size:12.5px;line-height:1.5;color:#2b3a4d}
+.cb-swot-q li:before{content:"—";position:absolute;left:0;top:0;font-weight:800}
+.cb-swot-s li:before{color:#0f6e3f}.cb-swot-w li:before{color:#b3261e}
+.cb-swot-o li:before{color:#1d4ed8}.cb-swot-t li:before{color:#b45309}
+@media(max-width:700px){.cb-swot{grid-template-columns:1fr}}
+/* ② exec summary LONGUE : 1re phrase sur la ligne repliée, texte complet en TÊTE du déplié */
+.cb-execfull{margin:0;font-size:13.5px;line-height:1.6;color:#34455a;font-style:italic}
+/* ③ volet « 🧭 Plan d'action — le détail du mémo » (MA/VC) : HTML mémo scrubé, chrome cb-deep */
+.cb-planbody h3{font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#0f1f33;margin:12px 0 4px}
+.cb-planbody .text-block{font-size:13px;line-height:1.55;color:#34455a;margin:0 0 8px}
+.cb-planbody .section-title{display:none}
+/* ═══════════ v73 — « 📄 Dossier comité » (VALIDÉES) ═══════════
+   Bouton dans la colonne d'actions, gaté CSS par le statut effectif (pattern .cb-apprwrap
+   v71 : .cb-eff-valide stampée par __cbFunnelCount suit les changements live) ; rendu
+   SEULEMENT si le worker a extrait des blocs dossier du mémo (template inerte dans la ligne). */
+.cb-doswrap{display:none;margin-top:7px}
+.cb-urow.cb-eff-valide .cb-doswrap{display:block}
+.cb-dossier-btn{width:100%;box-sizing:border-box;font-family:inherit;font-size:12px;font-weight:800;
+padding:7px 10px;border-radius:9px;border:1px solid #0f1f33;background:#0f1f33;color:#fff;
+cursor:pointer;text-align:center}
+.cb-dossier-btn:hover{background:#16283f}
+/* overlay PLEIN ÉCRAN blanc, scroll propre ; barre d'outils sticky ; page A4 centrée ~800px */
+.cb-dosovl{position:fixed;inset:0;z-index:9990;background:#fff;overflow-y:auto;overscroll-behavior:contain}
+.cb-dos-bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:10px;
+padding:10px 18px;background:#fff;border-bottom:1px solid #e6eaef}
+.cb-dos-bar-t{flex:1 1 auto;min-width:0;font-size:14px;font-weight:800;color:#0f1f33;
+white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cb-dos-hint{flex:0 1 auto;font-size:11px;color:#8a99aa;font-style:italic}
+.cb-dos-bar button{font-family:inherit;font-size:12.5px;font-weight:700;border-radius:9px;
+padding:7px 12px;cursor:pointer;line-height:1.2}
+.cb-dos-reset{border:1px solid #c9d6e4;background:none;color:#1d3557}
+.cb-dos-reset:hover{background:#f1f5f9}
+.cb-dos-print{border:1px solid #0f1f33;background:#0f1f33;color:#fff}
+.cb-dos-print:hover{background:#16283f}
+.cb-dos-x{border:none;background:none;color:#8a99aa;font-size:15px;padding:4px 6px}
+.cb-dos-x:hover{color:#0f1f33}
+.cb-dos-page{max-width:800px;margin:0 auto;padding:36px 22px 70px}
+/* document A4 : header brandé (wordmark = logo du site) · identité · sections */
+.cb-dos-head{display:flex;align-items:center;justify-content:space-between;gap:12px;
+padding:0 0 12px;border-bottom:2px solid #0f1f33;margin:0 0 22px}
+.cb-dos-logo{height:20px;width:auto;display:block}
+.cb-dos-kick{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#56697e}
+.cb-dos-doc h1{margin:0 0 4px;font-size:26px;line-height:1.2;color:#0f1f33}
+.cb-dos-tag{margin:0 0 10px;font-size:14px;line-height:1.5;color:#56697e;font-style:italic}
+.cb-dos-pills{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 22px}
+.cb-dos-pill{font-size:11px;font-weight:800;border-radius:999px;padding:3px 10px;background:#eef2f6;color:#334155}
+.cb-dos-pill-score{background:#0f1f33;color:#fff}
+.cb-dos-pill-val{background:#f6efd4;color:#8a6d08}
+.cb-dos-sec{margin:0 0 24px}
+.cb-dos-h{margin:0 0 8px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+color:#185c38;border-bottom:1px solid #e6eaef;padding-bottom:5px}
+/* chaque bloc de contenu est ÉDITABLE (contenteditable, cellules de tables comprises) */
+.cb-dos-ed{font-size:13px;line-height:1.6;color:#2b3a4d;border-radius:8px}
+.cb-dos-ed:hover{outline:1px dashed #c9d6e4;outline-offset:4px}
+.cb-dos-ed:focus{outline:2px solid #bfd4f6;outline-offset:4px}
+.cb-dos-doc h1:hover,.cb-dos-tag:hover{outline:1px dashed #c9d6e4;outline-offset:4px}
+.cb-dos-doc h1:focus,.cb-dos-tag:focus{outline:2px solid #bfd4f6;outline-offset:4px}
+.cb-dos-ed p{margin:0 0 8px}
+.cb-dos-ed h3{font-size:13px;margin:12px 0 5px;color:#0f1f33}
+.cb-dos-ed table{width:100%!important;max-width:100%!important;border-collapse:collapse;table-layout:auto}
+.cb-dos-ed td,.cb-dos-ed th{padding:4px 6px!important;font-size:10.5px!important;line-height:1.35!important;vertical-align:top}
+/* neutralise les wrappers hérités de la page mémo (jamais de mise en page imbriquée) */
+.cb-dos-ed .memo-table-fallback,.cb-dos-ed .table-container,.cb-dos-ed .text-block{display:block!important;
+width:100%!important;max-width:100%!important;padding:0!important;margin:0 0 10px!important;
+background:transparent!important;border:none!important;box-shadow:none!important}
+.cb-dos-note{margin:6px 0 0;font-size:11px;color:#8a99aa;font-style:italic}
+/* v75 (revue #3) — avis « contenu mis à jour depuis vos modifications » (par section) */
+.cb-dos-stale{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 8px;
+padding:6px 9px;border:1px solid #ead9a8;background:#fdf8e9;border-radius:8px;
+font-size:11.5px;color:#8a6d08}
+.cb-dos-stale-go{border:1px solid #d8c27a;background:#fff;border-radius:999px;
+padding:2px 10px;font-size:11px;font-weight:700;color:#8a6d08;cursor:pointer}
+.cb-dos-stale-go:hover{background:#f6efd4}
+.cb-dos-stale-x{margin-left:auto;border:none;background:none;font-size:12px;
+color:#b3a26a;cursor:pointer;line-height:1;padding:2px}
+.cb-dos-annex{margin:26px 0 0;font-size:12px;color:#56697e}
+.cb-dos-annex a{color:#1d3557;word-break:break-all}
+.cb-dos-foot{margin:28px 0 0;padding-top:10px;border-top:1px solid #e6eaef;font-size:11px;color:#8a99aa;
+display:flex;justify-content:space-between;gap:10px}
+@media(max-width:640px){.cb-dos-page{padding:22px 14px 50px}.cb-dos-bar{flex-wrap:wrap}.cb-dos-hint{display:none}}
+/* ═══════════ v75 — PIPELINE MÉMO VISIBLE + MANETTE DE DÉBIT ═══════════ */
+/* Rangée FINE juste AU-DESSUS de la barre d'onglets (HORS sticky : .cb-tabbar reste
+   seule collée, règles une-ligne intactes). Deux mini-labels calmes cliquables —
+   « ⚡ X analysées demain » (au-dessus du chip Retenues, + stepper) et
+   « ✓ Y analysées aujourd'hui » (poussé à droite, au-dessus du chip Analysées). */
+.cb-pipeline-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0 -4px;
+padding:0 2px;font-size:11px;color:#56697e}
+.cb-pipe-lbl{display:inline-flex;align-items:center;gap:4px;background:none;border:none;padding:2px 0;
+font-family:inherit;font-size:11px;font-weight:600;cursor:pointer;color:#56697e}
+.cb-pipe-lbl i{font-style:normal;font-weight:800}
+.cb-pipe-lbl:hover{text-decoration:underline;text-underline-offset:3px}
+.cb-pipe-tmr{color:#0f6e3f}.cb-pipe-tmr i{color:#0f6e3f}
+.cb-pipe-today{margin-left:auto;color:#1d4ed8}.cb-pipe-today i{color:#1d4ed8}
+/* Stepper segmenté fin « [−] N mémos/jour [+] » : cohérent avec les chips (999px, 10.5-11px),
+   chiffre en gras, ± ghost. À 0 → chiffre ambré (état « en pause » à côté). */
+.cb-pipe-step{display:inline-flex;align-items:center;gap:5px;border:1px solid #dde4ec;
+border-radius:999px;padding:1px 7px;background:#fff}
+.cb-pipe-step b{font-size:11.5px;color:#0f1f33;min-width:12px;text-align:center}
+.cb-pipe-step.cb-pipe-zero b{color:#b3600f}
+.cb-pipe-step .cb-pipe-w{font-size:10.5px;color:#8a99aa;font-weight:600}
+.cb-pipe-minus,.cb-pipe-plus{background:none;border:none;padding:0 3px;font-family:inherit;
+font-size:13px;font-weight:800;color:#8a99aa;cursor:pointer;line-height:1}
+.cb-pipe-minus:hover,.cb-pipe-plus:hover{color:#0f1f33}
+.cb-pipe-minus:disabled,.cb-pipe-plus:disabled{opacity:.35;cursor:default}
+.cb-pipe-pause{font-size:10.5px;font-weight:700;color:#b3600f;background:#fdeede;
+border:1px solid #f6d6ad;border-radius:999px;padding:2px 8px}
+.cb-pipe-pause[hidden]{display:none}
+.cb-pipe-confirm{font-size:10.5px;font-weight:600;color:#0f6e3f}
+.cb-pipe-confirm.err{color:#b3261e}
+@media(max-width:720px){.cb-pipe-today{margin-left:0}}
+/* Overlays pipeline (chrome .cb-engovl réutilisé) : hedge OBLIGATOIRE en tête du panneau
+   « demain » (miroir du wording cockpit MemoAuditDaily) + badges d'état par item. */
+.cb-pipe-hedge{margin:0;padding:10px 16px 4px;font-size:11.5px;line-height:1.45;
+color:#8a6d0c;font-style:italic}
+.cb-pipe-st{flex:0 0 auto;font-size:9px;font-weight:800;border-radius:999px;padding:2px 8px}
+.cb-pipe-st-sched{background:#e9f0ff;color:#1d4ed8}
+.cb-pipe-st-done{background:#e7f7ee;color:#0f6e3f}
+.cb-pipe-st-prog{background:#fdeede;color:#b3600f}
+.cb-pipe-st-stuck{background:#fdecec;color:#b3261e}
+.cb-pipe-memo-a{flex:0 0 auto;font-size:11px;font-weight:700;color:#1d4ed8;text-decoration:none}
+.cb-pipe-memo-a:hover{text-decoration:underline}
+.cb-pipe-fire{flex:0 0 auto;font-family:inherit;font-size:10.5px;font-weight:700;color:#0f6e3f;
+background:#e7f7ee;border:1px solid #c4ecd6;border-radius:999px;padding:3px 10px;cursor:pointer}
+.cb-pipe-fire:hover{background:#d3f2e0}
+.cb-pipe-fired{flex:0 0 auto;font-size:10.5px;color:#8a99aa;font-style:italic}
+/* item d'overlay pipeline : la ligne société (goRow) + l'action ⚡/lien mémo côte à côte */
+.cb-engovl-list .cb-pipe-li{display:flex;align-items:center;gap:8px}
+.cb-pipe-li .cb-engovl-it{flex:1 1 auto}
+/* v75 (P5) — mini-boîte « pourquoi ce OUI/NON ? » révélée après une décision data-tpv :
+   même famille que .cb-cs-note (input fin + OK), insérée là où la décision a eu lieu. */
+.cb-whybox{display:flex;gap:5px;align-items:center;margin:7px 0 0;max-width:420px}
+.cb-whybox input{flex:1 1 auto;min-width:0;font-family:inherit;font-size:11px;color:#243040;
+border:1px solid #dde4ec;border-radius:8px;padding:5px 8px;background:#fff}
+.cb-whybox input::placeholder{color:#a3b0bf}
+.cb-whybox button{flex:0 0 auto;font-family:inherit;font-size:10.5px;font-weight:700;color:#56697e;
+background:#eef2f6;border:1px solid #dde4ec;border-radius:8px;padding:5px 10px;cursor:pointer}
+.cb-whybox button:hover{background:#e2e8ef;border-color:#b9c6d4}
+.cb-whybox button:disabled{opacity:.5;cursor:default}
+.cb-whybox.err input{border-color:#e3b0ad}
+/* v75 (P6b) — 📄 fantôme (ligne validée SANS template dossier baké) + mini-popover honnête */
+.cb-dossier-btn.cb-dossier-ghost{background:#fff;color:#0f1f33;border:1px dashed #9fb0c4}
+.cb-dossier-btn.cb-dossier-ghost:hover{background:#f1f5f9}
+.cb-dossier-pop{margin:7px 0 0;padding:8px 10px;border:1px solid #dde4ec;background:#f8fafc;
+border-radius:9px;font-size:11.5px;line-height:1.45;color:#334155}
+.cb-dossier-pop .cb-dp-r{display:flex;gap:7px;margin:7px 0 0;flex-wrap:wrap}
+.cb-dossier-pop button{font-family:inherit;font-size:11px;font-weight:700;border-radius:999px;
+padding:4px 11px;cursor:pointer}
+.cb-dossier-pop .cb-dp-go{background:#0f1f33;color:#fff;border:1px solid #0f1f33}
+.cb-dossier-pop .cb-dp-go:hover{background:#243755}
+.cb-dossier-pop .cb-dp-no{background:none;color:#56697e;border:1px solid #dde4ec}
+.cb-dossier-pop .cb-dp-no:hover{background:#eef2f6}
+/* Export PDF : @page A4 marges 14mm ; body.cb-printing (posé par _dossier_js le temps du
+   print) MASQUE tout le chrome de la page — seul le dossier reste, en flux statique
+   multi-pages ; sauts propres entre sections ; couleurs de tables préservées. */
+@page{size:A4;margin:14mm}
+@media print{
+body.cb-printing>*:not(.cb-dosovl){display:none!important}
+html{overflow:visible!important;height:auto!important}
+body.cb-printing{overflow:visible!important;height:auto!important}
+body.cb-printing .cb-dosovl{position:static!important;overflow:visible!important}
+body.cb-printing .cb-dos-bar{display:none!important}
+body.cb-printing .cb-dos-page{max-width:none;padding:0}
+body.cb-printing .cb-dos-sec{break-inside:avoid;page-break-inside:avoid}
+body.cb-printing .cb-dos-stale{display:none!important}
+body.cb-printing .cb-dos-ed:hover,body.cb-printing .cb-dos-ed:focus{outline:none}
+.cb-dosovl,.cb-dosovl *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
 </style></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
@@ -1821,7 +2135,7 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><main class="cb-wrap"><div class="cb-grid"><div class="cb-left"><p class="cb-kicker">Croissance externe · sélection sur mesure</p><div class="cb-h1row"><h1 class="cb-h1">Quelques cibles qui pourraient intéresser profund</h1></div><div class="cb-hyp"><div class="cb-hyp-hdr" data-i18n="hyp_title">Notre hypothèse sur votre stratégie</div><p class="cb-hyp-sub" data-i18n="hyp_sub">Toute la sélection ci-contre découle de cette hypothèse. Si elle est à côté, corrigez-la — je réaligne la recherche et vous renvoie une sélection corrigée.</p><p class="cb-intro">Je suis parti de l&#x27;hypothèse que vous cherchiez à consolider une position de premier plan dans la verticale des logiciels B2B à forte composante IA, en ciblant prioritairement des équipes françaises ou européennes encore en phase d&#x27;amorçage — là où la valorisation reste raisonnable et où un rapprochement rapide crée un avantage décisif :</p><ul class="cb-points"><li>en vous rapprochant d&#x27;équipes fondatrices de haut niveau — issues de grandes écoles ou d&#x27;opérateurs aguerris de l&#x27;écosystème tech français — avant qu&#x27;elles n&#x27;entrent dans un cycle de financement plus compétitif ;</li><li>en combinant des briques logicielles complémentaires (intelligence climatique, ingénierie IA, vérification de données, automatisation métier) pour construire une offre plus large et plus défendable qu&#x27;aucune de ces sociétés ne pourrait bâtir seule ;</li><li>en agissant tôt, au moment où ces entreprises ont levé suffisamment pour prouver leur concept mais pas encore assez pour s&#x27;autonomiser durablement.</li></ul><div class="cb-hyp-act"><button type="button" id="cb-hyp-ok" data-i18n="hyp_ok_btn">✓ C&#x27;est exactement ça</button><button type="button" id="cb-hyp-edit" data-i18n="hyp_edit_btn">✎ Corriger cette hypothèse</button></div><div id="cb-hyp-form" style="display:none"><textarea id="cb-hyp-txt" maxlength="1200"></textarea><button type="button" id="cb-hyp-send" data-i18n="hyp_send">Mettre à jour Stan avec ces corrections</button></div></div><p class="cb-cta-line">Je serais ravi d'affiner ces hypothèses avec vous afin de trouver des cibles qui vous intéressent vraiment — lors d'une rencontre, d'une visio (<a href="#rdv" class="cb-ilink">réserver un créneau</a>), par téléphone au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou par email <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>.</p><a class="cb-cta-top" href="#rdv">📅 Planifiez un rendez-vous stratégique</a></div><div class="cb-right"><p class="cb-sec-label" data-i18n="targets_label">Les cibles, par ordre de pertinence</p><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">1</span><h3 class="cb-name">Carbonmaps</h3></div><div class="cb-meta"><a class="cb-pill" href="https://carbonmaps.io" target="_blank" rel="noopener nofollow">🌐 Site</a></div></div><p class="cb-what">Plateforme cloud dédiée à l&#x27;industrie agroalimentaire, qui permet à une entreprise de calculer, suivre et publier l&#x27;empreinte carbone de ses produits, sites et fournisseurs — avec des données auditables et conformes aux référentiels réglementaires en vigueur en Europe.</p><ul class="cb-why"><li>Le secteur agroalimentaire est sous pression réglementaire croissante (CSRD, affichage environnemental) : Carbon Maps répond à un besoin qui n&#x27;est plus optionnel pour ses clients.</li><li>Un tour de table de 4,1 M€ en seed (juillet 2023) confirme la traction initiale tout en laissant la société dans une fenêtre où un rapprochement reste structurant pour les deux parties.</li><li>La couverture fonctionnelle — du niveau produit jusqu&#x27;au niveau fournisseur — est rare à ce stade de maturité et difficile à reproduire rapidement.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Elle apporte une verticale réglementaire concrète à votre portefeuille B2B, avec une base de clients industriels que peu d&#x27;acteurs logiciels de cette taille peuvent revendiquer.</p><div class="cb-act" data-target="Carbonmaps"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">2</span><h3 class="cb-name">Cognyx</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-contact">👤 Matthias Berahya-Lazarus</span><a class="cb-pill" href="https://cognyx.io" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://fr.linkedin.com/in/matthias-berahya-lazarus-2662422" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Société française, soutenue par des investisseurs institutionnels, qui repense l&#x27;ingénierie matérielle (hardware engineering) à l&#x27;ère de l&#x27;IA — avec un produit natif IA destiné aux équipes techniques B2B.</p><ul class="cb-why"><li>Le fondateur identifié, Matthias Berahya-Lazarus, est un interlocuteur direct et accessible — un avantage concret pour engager une conversation de rapprochement sans intermédiaire.</li><li>Un financement pré-seed d&#x27;environ 1,7–1,8 M€ levé en 2024 place la société exactement dans la fenêtre où les fondateurs restent ouverts à des discussions stratégiques avant de s&#x27;engager dans un Series A.</li><li>L&#x27;angle hardware-IA est encore peu occupé par des acteurs logiciels purs en France, ce qui confère à Cognyx une position de niche défendable.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Elle complète une offre IA orientée logiciel par une dimension infrastructure et ingénierie que vos clients les plus techniques pourraient valoriser immédiatement.</p><div class="cb-act" data-target="Cognyx"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">3</span><h3 class="cb-name">Ubby AI</h3></div><div class="cb-meta"><a class="cb-pill" href="https://ubby.ai" target="_blank" rel="noopener nofollow">🌐 Site</a></div></div><p class="cb-what">Startup SaaS IA B2B fondée en 2023, basée à Paris, dont le produit s&#x27;adresse à des équipes professionnelles avec une approche native IA dès la conception.</p><ul class="cb-why"><li>Fondée par un profil issu des grandes écoles françaises, la société bénéficie d&#x27;un réseau et d&#x27;une crédibilité qui accélèrent l&#x27;accès aux décideurs en entreprise.</li><li>Créée en 2023, elle est encore dans la phase où l&#x27;équipe fondatrice cherche à valider son marché — un moment propice pour un rapprochement qui apporte ressources et distribution plutôt que simple capital.</li><li>L&#x27;approche IA-native, construite sans héritage technologique, facilite l&#x27;intégration dans un ensemble logiciel plus large sans dette technique lourde.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Sa jeunesse et son architecture IA-first en font une brique d&#x27;accélération idéale si vous souhaitez enrichir rapidement votre couche d&#x27;intelligence dans un domaine métier précis.</p><div class="cb-act" data-target="Ubby AI"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">4</span><h3 class="cb-name">Phone Verif</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-contact">👤 Erwann Robin</span><a class="cb-pill" href="https://www.linkedin.com/in/ACwAAAA97ZMBfT7dtpEMpwTc2tM5Z6d3fO6tWiI" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://www.linkedin.com/in/ACwAAAA97ZMBfT7dtpEMpwTc2tM5Z6d3fO6tWiI" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Solution B2B de vérification téléphonique, fondée en France par Erwann Robin, ancien opérateur chez BlaBlaCar.</p><ul class="cb-why"><li>Erwann Robin a construit et opéré des systèmes à très grande échelle chez BlaBlaCar — ce profil d&#x27;exécutant éprouvé est un gage de robustesse produit et de capacité à industrialiser rapidement.</li><li>La société vient tout juste d&#x27;être lancée, ce qui signifie qu&#x27;un rapprochement aujourd&#x27;hui peut encore façonner la trajectoire produit et commerciale dans votre sens.</li><li>La vérification de données de contact est un composant transversal : elle s&#x27;intègre naturellement dans des flux CRM, onboarding ou conformité que vous opérez peut-être déjà.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Elle représente une opportunité rare d&#x27;embarquer un opérateur de premier plan à un stade où son projet est encore entièrement modelable par un partenaire stratégique ambitieux.</p><div class="cb-act" data-target="Phone Verif"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">5</span><h3 class="cb-name">GetMint</h3></div><div class="cb-meta"><a class="cb-pill" href="https://getmint.ai" target="_blank" rel="noopener nofollow">🌐 Site</a></div></div><p class="cb-what">Plateforme IA B2B native, fondée en 2025 en France, ayant réalisé un tour de table pré-seed de 4 M$ — ce qui en fait l&#x27;une des levées pré-seed les plus significatives de sa génération en France.</p><ul class="cb-why"><li>Le fondateur, diplômé de l&#x27;ESSEC, apporte une compréhension fine des enjeux business des grandes entreprises françaises — un atout commercial direct pour pénétrer des comptes mid-market ou corporate.</li><li>Une levée de 4 M$ à ce stade signale une conviction forte des investisseurs sur le potentiel du produit, tout en laissant la société dans une phase où un rapprochement industriel reste plus pertinent qu&#x27;un nouveau tour financier.</li><li>Fondée en 2025, GetMint n&#x27;a pas encore de contraintes organisationnelles lourdes : c&#x27;est le moment le plus favorable pour aligner les cultures et les feuilles de route.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Sa capitalisation initiale solide et son profil fondateur orienté grands comptes en font un accélérateur crédible pour votre présence sur le segment des entreprises établies.</p><div class="cb-act" data-target="GetMint"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-teaser"><b>+ 108 autres cibles identifiées</b> et à découvrir ensemble — je vous les présente de vive voix, avec le détail des rapprochements les plus prometteurs.</div></div></div><div class="cb-crit"><h2 data-i18n="method_heading">Notre méthode de sélection</h2><p class="cb-crit-intro">Pour construire cette sélection, j&#x27;ai cadré la recherche autour de deux questions simples : est-ce que cette société opère dans un domaine où vous pouvez créer de la valeur concrète, et est-ce que le moment est le bon pour engager une conversation ? Chaque société retenue répond positivement aux deux — les autres ont été écartées, non par défaut de qualité, mais parce qu&#x27;elles ne réunissaient pas les deux conditions simultanément.</p><div class="cb-funnel"><div class="cb-fun"><b>2062</b><span>sociétés passées au crible</span></div><div class="cb-fun"><b>113</b><span>retenues comme cibles sérieuses</span></div><div class="cb-fun hl"><b>5</b><span>présentées ici en détail</span></div></div><details class="cb-ang" open><summary>Logiciels B2B à composante IA, marché français et européen</summary><div class="cb-ang-body"><p class="cb-ang-why">C&#x27;est le cœur de la consolidation visée : des produits construits pour des clients professionnels, avec une architecture IA qui crée un avantage durable sur des concurrents plus anciens.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Produit conçu nativement pour un usage IA, sans couche d&#x27;intelligence ajoutée après coup</li><li>Clientèle B2B clairement identifiée, avec au moins un segment sectoriel précis</li><li>Siège en France ou dans un pays francophone européen, pour faciliter l&#x27;intégration opérationnelle et juridique</li><li>Équipe fondatrice restreinte (1 à 3 personnes), ce qui simplifie les discussions et la prise de décision</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les sociétés dont le produit est un outil grand public ou freemium sans modèle de revenus B2B établi</li><li>Nous écartons les plateformes dont l&#x27;IA est un argument marketing sans différenciation technique réelle</li></ul></div></div></div></details><details class="cb-ang"><summary>Profil fondateur : opérateurs aguerris et diplômés de grandes écoles</summary><div class="cb-ang-body"><p class="cb-ang-why">Dans les sociétés très jeunes, le fondateur est le produit autant que la technologie : sa capacité d&#x27;exécution et son réseau déterminent la vitesse à laquelle la société peut se développer après un rapprochement.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Fondateur ayant exercé un rôle opérationnel senior dans une entreprise tech française reconnue</li><li>Ou fondateur diplômé d&#x27;une grande école d&#x27;ingénieurs ou de commerce française (Polytechnique, HEC, ESSEC, Centrale, etc.)</li><li>Capacité démontrée à recruter ou à lever des fonds, même à petite échelle</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les projets portés par des équipes sans expérience opérationnelle identifiable, où le risque d&#x27;exécution post-rapprochement serait trop élevé</li><li>Nous écartons les fondateurs dont le parcours est exclusivement académique sans exposition à des environnements commerciaux exigeants</li></ul></div></div></div></details><details class="cb-ang"><summary>Stade de financement : amorçage récent ou création très récente</summary><div class="cb-ang-body"><p class="cb-ang-why">C&#x27;est la fenêtre où un rapprochement apporte le plus : la société a prouvé qu&#x27;elle existe et qu&#x27;elle attire des capitaux, mais elle n&#x27;a pas encore les moyens de s&#x27;autonomiser sur plusieurs années.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Levée de fonds inférieure à 10 M€ réalisée dans les 12 à 18 derniers mois</li><li>Ou société fondée dans les 18 derniers mois, sans financement institutionnel encore bouclé</li><li>Valorisation implicite qui laisse de la place à une structuration avantageuse pour les deux parties</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les sociétés ayant déjà réalisé un Series A ou au-delà, où les attentes de valorisation et la gouvernance existante compliquent significativement tout rapprochement</li><li>Nous écartons les sociétés dont le dernier financement date de plus de deux ans sans activité récente visible, signe possible de difficultés non communiquées</li></ul></div></div></div></details><details class="cb-ang"><summary>Verticalisation sectorielle à fort enjeu réglementaire ou data</summary><div class="cb-ang-body"><p class="cb-ang-why">Les logiciels ancrés dans une contrainte réglementaire ou dans un flux de données critique créent une dépendance client structurelle — ce qui se traduit par une rétention élevée et une valeur durable dans un portefeuille consolidé.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Produit adressant une obligation légale ou réglementaire (reporting ESG, conformité sectorielle, vérification d&#x27;identité ou de données)</li><li>Données propriétaires ou intégrations techniques qui rendent le changement de fournisseur coûteux pour le client</li><li>Secteur cible avec un cycle de décision court et une capacité à payer établie (agroalimentaire, fintech, RH, logistique)</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les outils horizontaux sans ancrage sectoriel fort, dont la différenciation repose uniquement sur le prix</li><li>Nous écartons les sociétés dont la proposition de valeur dépend d&#x27;un partenariat exclusif avec un tiers non maîtrisé</li></ul></div></div></div></details></div><div class="cb-rdv" id="rdv"><h2>Échangeons 20 minutes</h2><p>Choisissez un créneau ci-dessous, ou contactez-moi directement au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>. Je serais ravi d'affiner cette sélection avec votre retour.</p><script>(function(){try{var u=new URL(window.location.href);if(!u.searchParams.get('company_name')){u.searchParams.set('company_name',"profund");history.replaceState(null,'',u);}}catch(e){}})();</script><div style="width:100%;min-height:560px;" data-fillout-id="aDx8z7Hzksus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div><script src="https://server.fillout.com/embed/v1/"></script></div><p class="cb-note">Sélection établie par Proplace, votre Corporate Developer augmenté. Lien privé — merci de ne pas le diffuser.</p></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+})();</script><main class="cb-wrap"><div class="cb-grid"><div class="cb-left"><p class="cb-kicker" data-i18n="kicker">Croissance externe · sélection sur mesure</p><div class="cb-h1row"><h1 class="cb-h1"><span data-i18n="h1" data-i18n-co="profund">Quelques cibles qui pourraient intéresser profund</span></h1></div><div class="cb-hyp"><div class="cb-hyp-hdr" data-i18n="hyp_title">Notre hypothèse sur votre stratégie</div><p class="cb-hyp-sub" data-i18n="hyp_sub">Toute la sélection ci-contre découle de cette hypothèse. Si elle est à côté, corrigez-la — je réaligne la recherche et vous renvoie une sélection corrigée.</p><p class="cb-intro">Je suis parti de l&#x27;hypothèse que vous cherchiez à accélérer votre présence sur le marché des logiciels B2B à forte composante IA, en ciblant des équipes fondatrices françaises ou européennes encore en phase d&#x27;amorçage, avant qu&#x27;elles ne soient captées par des fonds :</p><ul class="cb-points"><li>en vous rapprochant de sociétés dont le produit est natif IA ou data, ce qui évite de racheter une dette technologique à reconstruire de zéro</li><li>en concentrant la recherche sur des fondateurs issus de parcours d&#x27;excellence ou d&#x27;expériences opérationnelles reconnues, gage de capacité d&#x27;exécution post-rapprochement</li><li>en intervenant tôt dans la vie de ces entreprises, là où la valorisation reste raisonnable et où l&#x27;intégration culturelle est encore possible</li></ul><div class="cb-hyp-act"><button type="button" id="cb-hyp-ok" data-i18n="hyp_ok_btn">✓ C&#x27;est exactement ça</button><button type="button" id="cb-hyp-edit" data-i18n="hyp_edit_btn">✎ Corriger cette hypothèse</button></div><div id="cb-hyp-form" style="display:none"><textarea id="cb-hyp-txt" maxlength="1200"></textarea><button type="button" id="cb-hyp-send" data-i18n="hyp_send">Mettre à jour Stan avec ces corrections</button></div></div><p class="cb-cta-line">Je serais ravi d'affiner ces hypothèses avec vous afin de trouver des cibles qui vous intéressent vraiment — lors d'une rencontre, d'une visio (<a href="#rdv" class="cb-ilink">réserver un créneau</a>), par téléphone au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou par email <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>.</p><a class="cb-cta-top" href="#rdv">📅 Planifiez un rendez-vous stratégique</a></div><div class="cb-right"><p class="cb-sec-label" data-i18n="targets_label">Les cibles, par ordre de pertinence</p><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">1</span><h3 class="cb-name">Carbonmaps</h3></div><div class="cb-meta"><a class="cb-pill" href="https://carbonmaps.io" target="_blank" rel="noopener nofollow">🌐 Site</a></div></div><p class="cb-what">Plateforme SaaS cloud dédiée à la mesure et au reporting carbone pour l&#x27;industrie agroalimentaire, permettant aux entreprises de calculer l&#x27;empreinte carbone de leurs produits, sites et fournisseurs de façon automatisée et auditée — basée en Europe.</p><ul class="cb-why"><li>Le secteur agroalimentaire est sous pression réglementaire croissante (CSRD, affichage environnemental) : Carbon Maps répond à un besoin qui va devenir obligatoire pour des milliers d&#x27;entreprises en Europe.</li><li>La levée de 4,1 M€ en seed en juillet 2023 confirme une validation externe du marché, sans que la société ait encore atteint une taille qui rendrait un rapprochement complexe ou coûteux.</li><li>Un produit structuré autour de la donnée fournisseur et de la traçabilité produit crée une forte barrière à la sortie côté client, ce qui protège la valeur après intégration.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Si votre logique est d&#x27;adresser la transition environnementale comme une verticale logicielle à part entière, Carbon Maps apporte un produit déjà certifiable, un marché captif et une équipe qui a su convaincre des investisseurs sérieux à un stade précoce.</p><div class="cb-act" data-target="Carbonmaps"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">2</span><h3 class="cb-name">Cognyx</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-contact">👤 Matthias Berahya-Lazarus</span><a class="cb-pill" href="https://cognyx.io" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://fr.linkedin.com/in/matthias-berahya-lazarus-2662422" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Société française soutenue par des fonds de capital-risque, qui repense l&#x27;ingénierie matérielle à l&#x27;ère de l&#x27;IA — positionnée en B2B, avec un produit natif IA, basée en France.</p><ul class="cb-why"><li>Le fondateur identifié, Matthias Berahya-Lazarus, est un interlocuteur direct et accessible, ce qui facilite une première conversation discrète avant toute démarche formelle.</li><li>Une levée pré-seed d&#x27;environ 1,7–1,8 M€ en 2024 indique que la société est en tout début de construction commerciale : c&#x27;est précisément le moment où un partenaire stratégique peut peser davantage qu&#x27;un fonds financier.</li><li>L&#x27;ingénierie matérielle assistée par IA est un segment rare en France, ce qui limiterait la concurrence d&#x27;acquéreurs alternatifs sur ce dossier.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Cognyx représente une opportunité de prendre pied sur un segment technologique de niche, avec un fondateur identifié et joignable, à un moment où la société a encore besoin d&#x27;un ancrage industriel plus qu&#x27;d&#x27;un tour de table supplémentaire.</p><div class="cb-act" data-target="Cognyx"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">3</span><h3 class="cb-name">Ubby AI</h3></div><div class="cb-meta"><a class="cb-pill" href="https://ubby.ai" target="_blank" rel="noopener nofollow">🌐 Site</a></div></div><p class="cb-what">Startup SaaS B2B à composante IA, fondée en 2023 et basée à Paris, dont le positionnement précis reste à confirmer mais qui s&#x27;inscrit dans l&#x27;écosystème des outils métier intelligents.</p><ul class="cb-why"><li>Fondée en 2023 par un profil issu des grandes écoles françaises, la société est dans une fenêtre où une conversation stratégique peut précéder toute logique de levée de fonds concurrente.</li><li>Paris concentre aujourd&#x27;hui les meilleurs profils IA francophones : une société fondée ici avec ce type de pedigree fondateur attire naturellement des talents difficiles à recruter autrement.</li><li>Le stade très précoce permet d&#x27;envisager un rapprochement sur la base du talent et de la vision autant que du produit, ce qui élargit les modalités possibles.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Si vous cherchez à intégrer une capacité IA construite de l&#x27;intérieur plutôt que de la sous-traiter, Ubby AI mérite une conversation exploratoire rapide, avant que d&#x27;autres acteurs ne positionnent une offre.</p><div class="cb-act" data-target="Ubby AI"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">4</span><h3 class="cb-name">Phone Verif</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-contact">👤 Erwann Robin</span><a class="cb-pill" href="https://www.linkedin.com/in/ACwAAAA97ZMBfT7dtpEMpwTc2tM5Z6d3fO6tWiI" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://www.linkedin.com/in/ACwAAAA97ZMBfT7dtpEMpwTc2tM5Z6d3fO6tWiI" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Solution B2B de vérification téléphonique basée en France, fondée très récemment par Erwann Robin, ancien opérateur chez BlaBlaCar.</p><ul class="cb-why"><li>Erwann Robin a construit et opéré des systèmes à fort volume chez BlaBlaCar, l&#x27;une des rares scale-ups françaises à avoir atteint une dimension internationale : c&#x27;est une garantie d&#x27;exécution que peu de fondateurs à ce stade peuvent offrir.</li><li>La vérification d&#x27;identité et de contact est une brique critique pour de nombreux secteurs (fintech, marketplace, RH) : une solution propriétaire dans ce domaine peut devenir un actif stratégique transversal.</li><li>La société étant lancée depuis moins de deux mois, il n&#x27;existe pas encore de dynamique concurrentielle autour de ce dossier — c&#x27;est une fenêtre courte.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Phone Verif illustre exactement le profil où la valeur tient d&#x27;abord à l&#x27;opérateur derrière le projet : un rapprochement précoce permettrait de sécuriser un fondateur expérimenté avant qu&#x27;il ne lève et ne devienne inabordable.</p><div class="cb-act" data-target="Phone Verif"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">5</span><h3 class="cb-name">GetMint</h3></div><div class="cb-meta"><a class="cb-pill" href="https://getmint.ai" target="_blank" rel="noopener nofollow">🌐 Site</a></div></div><p class="cb-what">Plateforme SaaS B2B native IA, fondée en 2025 en France, portée par un fondateur diplômé de l&#x27;ESSEC, ayant réalisé une levée pré-seed de 4 M$.</p><ul class="cb-why"><li>Une levée de 4 M$ au stade pré-seed en 2025 est un signal fort : des investisseurs ont accepté une valorisation élevée très tôt, ce qui reflète soit une traction réelle, soit un fondateur dont le marché reconnaît la crédibilité.</li><li>Un fondateur ESSEC avec cette capacité à lever rapidement dispose généralement d&#x27;un réseau commercial et institutionnel qui accélère l&#x27;accès aux premiers clients grands comptes — un atout direct post-intégration.</li><li>Fondée en 2025, GetMint n&#x27;a pas encore construit de dépendances organisationnelles lourdes : c&#x27;est le moment le plus simple pour aligner les cultures et les ambitions.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> GetMint combine un fondateur crédible, une levée récente qui valide l&#x27;intérêt du marché et un produit encore malléable : c&#x27;est le type de dossier où intervenir maintenant évite de payer deux à trois fois plus cher dans dix-huit mois.</p><div class="cb-act" data-target="GetMint"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-teaser"><b>+ 110 autres cibles identifiées</b> et à découvrir ensemble — je vous les présente de vive voix, avec le détail des rapprochements les plus prometteurs.</div></div></div><div class="cb-crit"><h2 data-i18n="method_heading">Notre méthode de sélection</h2><p class="cb-crit-intro">Pour construire cette liste, nous avons défini des critères de sélection précis autour de deux grandes questions : le profil de l&#x27;entreprise correspond-il à votre terrain d&#x27;action naturel, et y a-t-il une fenêtre d&#x27;opportunité concrète aujourd&#x27;hui ? Ce cadre nous a permis de parcourir un ensemble large de sociétés et de ne retenir que celles qui répondaient simultanément aux deux.</p><div class="cb-funnel"><div class="cb-fun"><b>2087</b><span>sociétés passées au crible</span></div><div class="cb-fun"><b>115</b><span>retenues comme cibles sérieuses</span></div><div class="cb-fun hl"><b>5</b><span>présentées ici en détail</span></div></div><details class="cb-ang" open><summary>Logiciels B2B à composante IA, stade amorçage</summary><div class="cb-ang-body"><p class="cb-ang-why">C&#x27;est là que se créent les positions de marché durables : les sociétés qui construisent aujourd&#x27;hui une couche IA dans un métier précis seront difficiles à déloger dans trois ans.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Produit conçu nativement autour de la donnée ou de l&#x27;IA, pas une surcouche ajoutée après coup</li><li>Équipe fondatrice réduite (1 à 3 personnes), ce qui facilite l&#x27;alignement post-rapprochement</li><li>Première validation commerciale visible : un client, une lettre d&#x27;intention, ou une levée de fonds récente</li><li>Siège en France ou dans un pays francophone européen, pour limiter les frictions opérationnelles</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les sociétés dont le produit IA repose entièrement sur des API tierces sans couche propriétaire, car la valeur serait trop fragile</li><li>Nous écartons les équipes ayant déjà plusieurs dizaines de salariés à ce stade, où la complexité d&#x27;intégration dépasse souvent le bénéfice attendu</li></ul></div></div></div></details><details class="cb-ang"><summary>Qualité et trajectoire des fondateurs</summary><div class="cb-ang-body"><p class="cb-ang-why">À l&#x27;amorçage, le produit est souvent encore en construction : c&#x27;est la capacité d&#x27;exécution de l&#x27;équipe fondatrice qui détermine si la valeur sera au rendez-vous dans dix-huit mois.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Fondateur ayant opéré dans une entreprise technologique reconnue (scale-up, grand groupe tech) ou issu d&#x27;une formation d&#x27;excellence</li><li>Historique de livraison : a-t-il déjà lancé, vendu ou piloté un produit jusqu&#x27;à ses premiers clients ?</li><li>Fondateur joignable directement, sans intermédiaire institutionnel imposé</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les projets portés par des équipes sans aucune expérience sectorielle ou technique vérifiable, où le risque d&#x27;exécution est trop élevé pour un rapprochement</li><li>Nous écartons les fondateurs déjà engagés dans des discussions avancées avec des fonds, qui réduiraient votre marge de manœuvre</li></ul></div></div></div></details><details class="cb-ang"><summary>Fenêtre d&#x27;opportunité : levée récente ou création très récente</summary><div class="cb-ang-body"><p class="cb-ang-why">Une société qui vient de lever ou de se créer est dans une phase où un partenaire stratégique apporte plus qu&#x27;un chèque : distribution, clients, légitimité — ce qui change la nature de la conversation.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Levée de fonds inférieure à 10 M€, réalisée dans les douze derniers mois</li><li>Ou société créée dans les dix-huit derniers mois, avant tout tour de table structuré</li><li>Absence d&#x27;investisseur institutionnel dominant qui imposerait ses conditions à une cession</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les sociétés ayant déjà levé au-delà de ce seuil, où la valorisation implicite rend un rapprochement précoce économiquement peu justifiable</li><li>Nous écartons les dossiers où plusieurs fonds sont déjà au capital avec des droits de préemption croisés, source de complexité juridique disproportionnée</li></ul></div></div></div></details><details class="cb-ang"><summary>Verticalisation sectorielle à fort enjeu réglementaire ou opérationnel</summary><div class="cb-ang-body"><p class="cb-ang-why">Un logiciel B2B ancré dans une contrainte réglementaire ou un processus critique crée une dépendance client structurelle, ce qui protège les revenus et justifie des cycles de vente plus courts.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Secteur soumis à une obligation de reporting ou de conformité croissante (environnement, identité, ingénierie)</li><li>Produit qui s&#x27;intègre dans un flux de travail existant plutôt que de le remplacer entièrement</li><li>Potentiel d&#x27;extension à d&#x27;autres verticales ou géographies sans refonte du cœur du produit</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les solutions purement horizontales sans ancrage métier, où la concurrence avec des acteurs globaux (éditeurs américains, hyperscalers) serait frontale et défavorable</li><li>Nous écartons les produits dont le marché adressable dépend d&#x27;une réglementation encore incertaine ou susceptible d&#x27;être abandonnée</li></ul></div></div></div></details></div><p class="cb-roi"><span data-i18n="roi_month">Ce mois :</span> <b>1969</b> <span data-i18n="roi_eval">sociétés évaluées pour vous</span> · <b>0</b> <span data-i18n="roi_val">validées</span> <span data-i18n="roi_analyst">— l&#x27;équivalent d&#x27;environ 3 semaines d&#x27;un analyste.</span></p><div class="cb-rdv" id="rdv"><h2>Échangeons 20 minutes</h2><p>Choisissez un créneau ci-dessous, ou contactez-moi directement au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>. Je serais ravi d'affiner cette sélection avec votre retour.</p><script>(function(){try{var u=new URL(window.location.href);if(!u.searchParams.get('company_name')){u.searchParams.set('company_name',"profund");history.replaceState(null,'',u);}}catch(e){}})();</script><div style="width:100%;min-height:560px;" data-fillout-id="aDx8z7Hzksus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div><script src="https://server.fillout.com/embed/v1/"></script></div><p class="cb-note">Sélection établie par Proplace, votre Corporate Developer augmenté. Lien privé — merci de ne pas le diffuser.</p></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -1865,6 +2179,11 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 })();</script><script>(function(){
 var U="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/react",RD="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/reactions",T="DAFA6YhhYRGebRco",TC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/thesis-chat",SIMS="";
 var SIMU="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/similar",SIMDK="",SIMDO="",SIMNONE="",SIMERR="Envoi impossible \u2014 r\u00e9essayez dans un instant.",VK="",VO="";
+// v72.1 (revue #2/#9) — texte NEUTRE « demande transmise » (act_done_memo) : affiché à la
+// place de la promesse « en préparation » quand le serveur répond triggered=false.
+var DETS="Demande transmise \u2713 \u2014 je reviens vers vous rapidement.";
+// v74 (R1) — « ⏳ Mémo en préparation… » : libellé du fantôme VIVANT (plus jamais baké).
+var PREP="\u23f3 M\u00e9mo en pr\u00e9paration\u2026";
 // Identité du destinataire quand le lien a été envoyé avec &email=… (facultatif) :
 // permet de savoir QUEL dirigeant a réagi si le même lien part à plusieurs personnes.
 var W="";try{W=(new URL(window.location.href)).searchParams.get("email")||"";}catch(e){}
@@ -1883,8 +2202,11 @@ function send(kind,target,message,cb,extra){
 function doneLine(txt){var d=document.createElement("p");d.className="cb-act-done";d.textContent=txt;return d;}
 function btnIn(row,kind){var bs=row.querySelectorAll("button");
   for(var i=0;i<bs.length;i++){if(bs[i].getAttribute("data-kind")===kind)return bs[i];}return null;}
-function rowFor(target){var rows=document.querySelectorAll(".cb-act");
-  for(var i=0;i<rows.length;i++){if((rows[i].getAttribute("data-target")||"")===target)return rows[i];}return null;}
+// v72.1 (revue #1) — TOUTES les lignes .cb-act d'une cible : chaque carte unifiée en
+// porte DEUX au même data-target (pouces act_mini + boutons cb-uh-act) — s'arrêter à
+// la première rendait le rejeu detailed/analysis muet (il tombait sur les pouces).
+function rowsFor(target){var out=[],rows=document.querySelectorAll(".cb-act");
+  for(var i=0;i<rows.length;i++){if((rows[i].getAttribute("data-target")||"")===target)out.push(rows[i]);}return out;}
 function setBusy(row,v){Array.prototype.forEach.call(row.querySelectorAll("button"),function(x){x.disabled=v;x.style.opacity=v?.45:1;});}
 function showErr(row){var w=row.querySelector(".cb-act-err");
   if(!w){w=document.createElement("span");w.className="cb-act-err";
@@ -1961,15 +2283,54 @@ function applySimple(row,kind){
   var b=btnIn(row,kind);if(!b)return;var txt=b.getAttribute("data-done")||"";
   b.parentNode.removeChild(b);setBusy(row,false);row.appendChild(doneLine(txt));
 }
+// ── v74 (R1) — ⏳ VIVANT : « Mémo en préparation… » n'existe QUE (a) juste après un tir
+// RÉEL de cette session (clic ⚡ / « Lancer le mémo détaillé » avec j.triggered=true) et
+// (b) au rejeu d'une réaction triggered FRAÎCHE (<24 h) sur une ligne toujours sans mémo.
+// Le serveur ne bake plus jamais ce fantôme (v74) : plus de promesse éternellement fausse.
+function prepBtn(){
+  var b=document.createElement("button");b.type="button";b.disabled=true;
+  b.className="cb-memo-preparing cb-uh-btn";b.setAttribute("data-i18n","memo_preparing");
+  var d=window.__cbLangDict||{};
+  b.textContent=(typeof d.memo_preparing==="string"&&d.memo_preparing)?d.memo_preparing:PREP;
+  return b;
+}
+function applyPreparing(row,kind){
+  // Remplace le bouton déclencheur (⚡ analysis_request OU « Lancer le mémo détaillé »)
+  // par le fantôme ⏳ désactivé, À SA PLACE dans l'échelle. Idempotent (bouton absent → no-op).
+  // setBusy AVANT le remplacement : il ré-active TOUS les boutons de la ligne — appelé
+  // après, il ré-activerait le fantôme ⏳ fraîchement inséré (doit rester disabled).
+  var b=btnIn(row,kind);if(!b)return;
+  setBusy(row,false);b.parentNode.replaceChild(prepBtn(),b);
+}
+function freshTs(ts){
+  if(!ts)return false;var t=Date.parse(ts);
+  return isFinite(t)&&(Date.now()-t)<86400000;   // 24 h — au-delà : relance honnête (⚡ laissé vivant)
+}
+function replayFire(row,kind,ts){
+  // v74 (R1b) — rejeu HONNÊTE d'un tir de mémo : la ligne a-t-elle DÉJÀ son mémo ?
+  //  · analysis_request → un memo_url baké (data-memo-url) = l'échelle montre déjà
+  //    « Voir le mémo » (le ⚡ n'est plus rendu) → rien à rejouer ;
+  //  · detailed_request → mémo DÉTAILLÉ baké (data-memo-kind="detailed") → idem.
+  // Sinon : réaction fraîche (<24 h) → ⏳ vivant ; plus vieille → bouton laissé VIVANT
+  // (le mémo n'a jamais paru : le CEO peut relancer, le worker est idempotent).
+  var card=(row.closest?row.closest("[data-name]"):null);
+  var done=(kind==="detailed_request")
+    ?((card?(card.getAttribute("data-memo-kind")||""):"")==="detailed")
+    :!!(card&&(card.getAttribute("data-memo-url")||""));
+  if(done)return;
+  if(freshTs(ts))applyPreparing(row,kind);
+}
 // « Chercher des similaires » EN LIVE (v29) : Exa trouve les jumelles, Stan les
 // crible, et on AFFICHE les sociétés trouvées (retenu/écarté + raison) dans la
-// mini-fenêtre — elles entrent dans la liste au prochain rafraîchissement. Petite
-// croix pour fermer (pas un gros bouton) ; on ATTEND vraiment le résultat.
+// mini-fenêtre. v70 (retour CEO n°2b) — elles n'attendent PLUS la republication :
+// chaque jumelle criblée est INJECTÉE en direct dans le tunnel (__cbInjectRow,
+// ligne minimale « ajoutée à l'instant ») et chaque item devient CLIQUABLE →
+// navigue vers sa carte (__cbGoRow). Croix de fermeture LÉGÈRE (style .cb-engovl-x).
 function applySimilar(row){
   var target=row.getAttribute("data-target")||"";
   var b=btnIn(row,"similar_request");if(b)b.parentNode.removeChild(b);setBusy(row,false);
   var box=document.createElement("div");box.className="cb-simbox";
-  var x=document.createElement("button");x.type="button";x.className="cb-srch-x";x.setAttribute("aria-label","\u00d7");x.textContent="\u00d7";
+  var x=document.createElement("button");x.type="button";x.className="cb-sim-x";x.setAttribute("aria-label","\u00d7");x.textContent="\u00d7";
   x.addEventListener("click",function(){if(box.parentNode)box.parentNode.removeChild(box);});
   box.appendChild(x);
   var head=document.createElement("p");head.className="cb-sim-head";
@@ -1996,6 +2357,14 @@ function applySimilar(row){
       var nm=document.createElement("b");nm.textContent=o.company;
       it.appendChild(pill);it.appendChild(nm);
       if(o.reason){var rp=document.createElement("p");rp.className="cb-sim-r";rp.textContent=o.reason;it.appendChild(rp);}
+      // v70 (retour CEO n°2b/2c) — la jumelle criblée entre DANS le tunnel tout de suite
+      // (ligne minimale injectée, comptée par __cbFunnelCount) et l'item navigue vers sa
+      // carte au clic (vrai clic d'onglet + scroll + flash). stopPropagation : ne pas
+      // déplier/replier la carte hôte en même temps.
+      var injected=window.__cbInjectRow?window.__cbInjectRow({name:o.company,reason:o.reason||"",kept:kept}):null;
+      if(injected){it.classList.add("cb-sim-go");
+        it.addEventListener("click",function(ev){ev.stopPropagation();
+          if(window.__cbGoRow)window.__cbGoRow(o.company);});}
       box.appendChild(it);
     });
     var foot=document.createElement("p");foot.className="cb-sim-foot";
@@ -2006,7 +2375,10 @@ function applySimilar(row){
   .catch(function(){fin(SIMERR);});
 }
 function hypApplied(kind){
-  var f=document.getElementById("cb-hyp-form");if(f&&f.parentNode)f.parentNode.removeChild(f);
+  // v72 (revue #5) — le formulaire est CACHÉ (display:none), plus JAMAIS retiré du DOM :
+  // « ✎ Ajuster ce moteur » (v71 F2) doit pouvoir le re-révéler + y semer sa graine même
+  // après un thesis_ok/thesis_edit rejoué (sinon le geste mourait pour les CEOs engagés).
+  var f=document.getElementById("cb-hyp-form");if(f)f.style.display="none";
   var w=document.querySelector(".cb-hyp-act");
   if(w&&w.parentNode)w.parentNode.replaceChild(doneLine(kind==="thesis_ok"?"Merci \u2014 hypoth\u00e8se confirm\u00e9e, la s\u00e9lection ci-contre est align\u00e9e \u2713":"Merci \u2014 je r\u00e9aligne la s\u00e9lection sur votre strat\u00e9gie et vous renvoie une version corrig\u00e9e \u2713"),w);
 }
@@ -2020,12 +2392,20 @@ Array.prototype.forEach.call(document.querySelectorAll(".cb-act button"),functio
     var card=b.closest("[data-name]");
     var extra=card?{sector:(card.getAttribute("data-sector")||""),status:(card.getAttribute("data-status")||"")}:{};
     setBusy(row,true);
-    send(k,row.getAttribute("data-target"),"",function(ok){
+    send(k,row.getAttribute("data-target"),"",function(ok,j){
       if(!ok){setBusy(row,false);showErr(row);return;}
       if(k==="yes"||k==="no"){applyDecisionLight(row,k);
         // Après un 👎, re-vérifie si un MOTIF émerge (proposition de correction thèse).
         if(k==="no"&&window.__cbCheckAvis)setTimeout(window.__cbCheckAvis,600);}
       else if(k==="memo_request"){applyMemo(row,false);}
+      else if(k==="analysis_request"||k==="detailed_request"){
+        // v72.1 (revue #2/#9) + v74 (R1a) — feedback HONNÊTE : fabrication réellement
+        // démarrée (j.triggered) → l'échelle passe au ⏳ VIVANT « Mémo en préparation… »
+        // (le done-feedback d'avant) ; sinon message neutre « demande transmise » — et
+        // comme le serveur ne déduplique que les tirs réussis, recharger permet de réessayer.
+        if(j&&j.triggered){applyPreparing(row,k);}
+        else{var b2=btnIn(row,k);if(b2)b2.parentNode.removeChild(b2);
+          setBusy(row,false);row.appendChild(doneLine(DETS));}}
       else{applySimple(row,k);}
     },extra);
   });
@@ -2037,7 +2417,8 @@ if(ho){ho.addEventListener("click",function(){
   hypDisable(true);
   send("thesis_ok","","",function(ok){
     var w=document.querySelector(".cb-hyp-act");
-    if(ok&&w){var f=document.getElementById("cb-hyp-form");if(f)f.parentNode.removeChild(f);
+    // v72 (revue #5) — même règle qu'hypApplied : caché, pas retiré (✎ re-révèle).
+    if(ok&&w){var f=document.getElementById("cb-hyp-form");if(f)f.style.display="none";
       w.parentNode.replaceChild(doneLine("Merci \u2014 hypoth\u00e8se confirm\u00e9e, la s\u00e9lection ci-contre est align\u00e9e \u2713"),w);}
     else{hypDisable(false);}
   });
@@ -2114,15 +2495,37 @@ fetch(RD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.st
      if(rx.kind==="thesis_ok"||rx.kind==="thesis_edit"){hyp=hyp||rx.kind;return;}
      var tg=rx.target||"";
      if(rx.kind==="note"){notes[tg]=true;return;}
-     (per[tg]=per[tg]||{})[rx.kind]=true;
+     // v72.1 (revue #2/#9) — un detailed_request AVORTÉ (triggered=false) n'est PAS
+     // rejoué : le serveur ne le déduplique plus → le bouton reste vivant = réessai
+     // possible (jamais de ✓ « en préparation » repeint sur un tir qui n'a pas eu lieu).
+     // v74 (R1b) — même honnêteté pour analysis_request : un ⚡ avorté reste vivant.
+     if((rx.kind==="analysis_request"||rx.kind==="detailed_request")&&!rx.triggered)return;
+     var st0=(per[tg]=per[tg]||{});st0[rx.kind]=true;
+     // v74 (R1b) — dernier ts par kind (le payload /cibles/reactions porte ts) :
+     // le rejeu ⏳ « en préparation » ne vaut que pour un tir FRAIS (<24 h).
+     var tsk=rx.kind+"_ts";var tv=String(rx.ts||"");
+     if(tv&&(!st0[tsk]||tv>st0[tsk]))st0[tsk]=tv;
    });
    if(hyp)hypApplied(hyp);
    for(var tg in per){
-     var row=rowFor(tg);if(!row)continue;
+     // v72.1 (revue #1) — rejeu PAR LIGNE ET PAR KIND : rowFor s'arrêtait à la
+     // PREMIÈRE .cb-act de la cible (les pouces act_mini) — le rejeu de
+     // detailed_request/analysis_request (boutons dans cb-uh-act) mourait en
+     // silence et le bouton re-cliquable re-tirait webhook + réaction. On applique
+     // chaque handler à TOUTES les lignes : applyDecision/applyMemo/applySimple
+     // sont idempotents (no-op quand le bouton visé n'est pas dans la ligne).
+     var rows=rowsFor(tg);if(!rows.length)continue;
      var st=per[tg];
-     if(st.yes||st.no){applyDecision(row,st.yes?"yes":"no",!!notes[tg]);}
-     if(st.memo_request){applyMemo(row,!!st.detailed_request);}
-     if(st.analysis_request){applySimple(row,"analysis_request");}
+     for(var ri=0;ri<rows.length;ri++){var row=rows[ri];
+       if(st.yes||st.no){applyDecision(row,st.yes?"yes":"no",!!notes[tg]);}
+       if(st.memo_request){applyMemo(row,!!st.detailed_request);}
+       // v74 (R1b) — rejeu ⏳ HONNÊTE des tirs de mémo (⚡ / « Lancer le mémo
+       // détaillé ») : réaction triggered FRAÎCHE (<24 h) sur une ligne toujours
+       // sans mémo → « ⏳ Mémo en préparation… » vivant ; plus vieille → bouton
+       // laissé VIVANT (relance honnête) ; mémo déjà baké → no-op (échelle vraie).
+       if(st.analysis_request){replayFire(row,"analysis_request",st.analysis_request_ts||"");}
+       if(st.detailed_request){replayFire(row,"detailed_request",st.detailed_request_ts||"");}
+     }
    }
  }).catch(function(){});
 }catch(e){}
@@ -2135,7 +2538,7 @@ try{
   if(!seen&&!PV){send("view","","",function(ok){if(ok){try{localStorage.setItem(vk,"1");}catch(e){}}});}
 }catch(e){}
 })();</script><script>(function(){
-var CBI18N={"fr": {"title": "Cibles de croissance externe — sélection Proplace", "desc": "Une sélection de sociétés de rapprochement, classées par pertinence.", "kicker": "Croissance externe · sélection sur mesure", "h1": "Quelques cibles qui pourraient intéresser {name}", "h1_generic": "Quelques cibles qui pourraient vous intéresser", "cta_lead": "Je serais ravi d'affiner ces hypothèses avec vous afin de trouver des cibles qui vous intéressent vraiment — lors d'une rencontre, d'une visio ({cal}), par téléphone au {phone} ou par email {email}.", "cal_word": "réserver un créneau", "button": "📅 Planifiez un rendez-vous stratégique", "targets_label": "Les cibles, par ordre de pertinence", "fit_label": "Alignement avec votre stratégie", "teaser": "<b>+ {n} autre{s} cible{s} identifiée{s}</b> et à découvrir ensemble — je vous les présente de vive voix, avec le détail des rapprochements les plus prometteurs.", "upstream_teaser": "<b>+ {n} autre{s} société{s} identifiée{s} en amont</b> de ces études, à explorer ensemble — je vous les présente de vive voix.", "method_heading": "Notre méthode de sélection", "crit_intro_fallback": "J'ai cadré la recherche autour de critères précis : la nature de l'activité, la couverture géographique et le profil des acteurs.", "funnel_screened": "sociétés passées au crible", "funnel_kept": "retenue{s} comme cible{s} sérieuse{s}", "funnel_prekept": "retenue{s} comme cible{s} sérieuse{s}", "funnel_named": "présentée{s} ici en détail", "look_for": "Ce que nous recherchons", "rule_out": "Ce que nous écartons", "yes_btn": "👍 Oui, à creuser", "no_btn": "👎 Pas pour nous", "memo_btn": "Demander le mémo rapide", "memo_ready": "Mémo d'analyse disponible", "memo_open": "Ouvrir le mémo rapide", "act_done_memo_link": "Le voici ✓ — on en parle quand vous voulez.", "syn_label": "Synergies avec votre groupe — le détail du mémo", "memo_sum_label": "Résumé du mémo d'analyse", "detailed_btn": "Demander le mémo détaillé de cette société", "detailed_done": "Mémo détaillé en préparation ✓ — je vous le fais parvenir dès qu'il est prêt.", "why_ph": "Un mot sur pourquoi ? (facultatif — ça affine la prochaine sélection)", "why_send": "Envoyer", "why_done": "Merci, bien noté ✓ — ça nourrit la mise à jour de votre stratégie.", "analysis_btn": "📊 Recevoir l'analyse détaillée", "act_done_yes": "Bien noté ✓ — nous en parlerons.", "act_done_no": "Bien noté ✓ — merci pour la précision.", "act_done_memo": "Demande transmise ✓ — je reviens vers vous rapidement.", "act_done_analysis": "Bien reçu ✓ — je reviens vers vous rapidement.", "act_err": "Envoi impossible — réessayez dans un instant.", "hyp_title": "Notre hypothèse sur votre stratégie", "hyp_sub": "Toute la sélection ci-contre découle de cette hypothèse. Si elle est à côté, corrigez-la — je réaligne la recherche et vous renvoie une sélection corrigée.", "hyp_ok_btn": "✓ C'est exactement ça", "hyp_edit_btn": "✎ Corriger cette hypothèse", "hyp_send": "Mettre à jour Stan avec ces corrections", "hyp_ok_done": "Merci — hypothèse confirmée, la sélection ci-contre est alignée ✓", "hyp_edit_done": "Merci — je réaligne la sélection sur votre stratégie et vous renvoie une version corrigée ✓", "rdv_heading": "Échangeons 20 minutes", "rdv_sub": "Choisissez un créneau ci-dessous, ou contactez-moi directement au {phone} ou {email}. Je serais ravi d'affiner cette sélection avec votre retour.", "note": "Sélection établie par Proplace, votre Corporate Developer augmenté. Lien privé — merci de ne pas le diffuser.", "jrnl_title": "📊 Journal de vos pouces", "jrnl_loading": "Chargement…", "jrnl_empty": "Aucun pouce pour l'instant — cliquez 👍/👎 sur les cartes pour guider votre thèse.", "jrnl_err": "Impossible de charger le journal pour l'instant — rouvrez-le dans un instant.", "jrnl_more": "+%n de plus", "jrnl_like": "Secteurs que vous aimez", "jrnl_avoid": "Secteurs que vous évitez", "jrnl_infer": "Secteurs déduits des sociétés actuellement affichées.", "jrnl_suggest": "Vous écartez souvent le secteur « %s » — pensez à le retirer ou à le préciser dans votre thèse ci-dessus.", "jrnl_today": "aujourd'hui", "jrnl_yest": "hier", "jrnl_days": "il y a %n j", "stan_decided": "Stan a décidé en autonomie", "stan_analysis": "L'analyse de Stan", "vt_match": "MATCH — retenu : correspond à vos critères.", "vt_out": "NO MATCH — écarté par vos critères.", "vt_call": "CALL — le choix n°1 de Stan : à trancher OUI/NON maintenant.", "vt_consider": "CONSIDER — solide, mérite un regard plus attentif.", "vt_monitor": "MONITOR — à surveiller, pas prioritaire pour l'instant.", "vt_pass": "PASS — non pertinent pour le moment."}, "en": {"title": "External-growth targets — a Proplace shortlist", "desc": "A shortlist of combination targets, ranked by relevance.", "kicker": "External growth · tailored shortlist", "h1": "A few targets that could interest {name}", "h1_generic": "A few targets that could interest you", "cta_lead": "I'd be glad to refine these hypotheses with you, to find targets that genuinely interest you — over a meeting, a video call ({cal}), by phone at {phone} or by email {email}.", "cal_word": "book a slot", "button": "📅 Schedule your strategy call", "targets_label": "The targets, by relevance", "fit_label": "Fit with your strategy", "teaser": "<b>+ {n} more target{s} identified</b>, to explore together — I'll walk you through them, with the rationale for the most promising combinations.", "upstream_teaser": "<b>+ {n} more compan{ies} identified upstream</b> of these deep dives, to explore together — I'll walk you through them.", "method_heading": "How we built this shortlist", "crit_intro_fallback": "I focused the search on a few precise criteria — the nature of the activity, geographic footprint and the profile of the players.", "funnel_screened": "companies screened", "funnel_kept": "kept as serious target{s}", "funnel_prekept": "kept as serious target{s}", "funnel_named": "presented here in detail", "look_for": "What we look for", "rule_out": "What we set aside", "yes_btn": "👍 Yes, worth digging", "no_btn": "👎 Not for us", "memo_btn": "Request the quick memo", "memo_ready": "Analysis memo available", "memo_open": "Open the quick memo", "act_done_memo_link": "Here it is ✓ — happy to discuss whenever.", "syn_label": "Synergies with your group — the memo detail", "memo_sum_label": "Analysis memo summary", "detailed_btn": "Request this company's detailed memo", "detailed_done": "Detailed memo in preparation ✓ — I'll send it over as soon as it's ready.", "why_ph": "A word on why? (optional — it sharpens the next shortlist)", "why_send": "Send", "why_done": "Thank you, noted ✓ — it feeds your strategy update.", "analysis_btn": "📊 Get the detailed analysis", "act_done_yes": "Noted ✓ — we'll discuss it.", "act_done_no": "Noted ✓ — thanks for the steer.", "act_done_memo": "Request sent ✓ — I'll get back to you shortly.", "act_done_analysis": "Received ✓ — I'll get back to you shortly.", "act_err": "Could not send — please try again in a moment.", "hyp_title": "Our hypothesis about your strategy", "hyp_sub": "Everything in this shortlist flows from this hypothesis. If it's off, correct it — I'll realign the search and send you a corrected shortlist.", "hyp_ok_btn": "✓ That's exactly it", "hyp_edit_btn": "✎ Correct this hypothesis", "hyp_send": "Update Stan with these corrections", "hyp_ok_done": "Thank you — hypothesis confirmed, the shortlist is aligned ✓", "hyp_edit_done": "Thank you — I'll realign the shortlist to your strategy and send you a corrected version ✓", "rdv_heading": "Let's talk for 20 minutes", "rdv_sub": "Pick a slot below, or reach me directly at {phone} or {email}. I'd be glad to refine this shortlist with your input.", "note": "Shortlist prepared by Proplace, your augmented Corporate Developer. Private link — please do not share.", "jrnl_title": "📊 Your thumbs journal", "jrnl_loading": "Loading…", "jrnl_empty": "No thumbs yet — click 👍/👎 on the cards to steer your thesis.", "jrnl_err": "Could not load the journal right now — reopen it in a moment.", "jrnl_more": "+%n more", "jrnl_like": "Sectors you like", "jrnl_avoid": "Sectors you avoid", "jrnl_infer": "Sectors inferred from the companies currently shown.", "jrnl_suggest": "You often rule out the “%s” sector — consider removing it or refining it in your thesis above.", "jrnl_today": "today", "jrnl_yest": "yesterday", "jrnl_days": "%n d ago", "stan_decided": "Stan decided autonomously", "stan_analysis": "Stan's analysis", "vt_match": "MATCH — kept: it fits your criteria.", "vt_out": "NO MATCH — ruled out by your criteria.", "vt_call": "CALL — Stan's top pick: worth a YES/NO decision now.", "vt_consider": "CONSIDER — solid, worth a closer look.", "vt_monitor": "MONITOR — keep an eye on it, not a priority yet.", "vt_pass": "PASS — not relevant right now."}};
+var CBI18N={"fr": {"title": "Cibles de croissance externe — sélection Proplace", "desc": "Une sélection de sociétés de rapprochement, classées par pertinence.", "kicker": "Croissance externe · sélection sur mesure", "h1": "Quelques cibles qui pourraient intéresser {co}", "h1_generic": "Quelques cibles qui pourraient vous intéresser", "cta_lead": "Je serais ravi d'affiner ces hypothèses avec vous afin de trouver des cibles qui vous intéressent vraiment — lors d'une rencontre, d'une visio ({cal}), par téléphone au {phone} ou par email {email}.", "cal_word": "réserver un créneau", "button": "📅 Planifiez un rendez-vous stratégique", "targets_label": "Les cibles, par ordre de pertinence", "fit_label": "Alignement avec votre stratégie", "teaser": "<b>+ {n} autre{s} cible{s} identifiée{s}</b> et à découvrir ensemble — je vous les présente de vive voix, avec le détail des rapprochements les plus prometteurs.", "upstream_teaser": "<b>+ {n} autre{s} société{s} identifiée{s} en amont</b> de ces études, à explorer ensemble — je vous les présente de vive voix.", "method_heading": "Notre méthode de sélection", "crit_intro_fallback": "J'ai cadré la recherche autour de critères précis : la nature de l'activité, la couverture géographique et le profil des acteurs.", "funnel_screened": "sociétés passées au crible", "funnel_kept": "retenue{s} comme cible{s} sérieuse{s}", "funnel_prekept": "retenue{s} comme cible{s} sérieuse{s}", "funnel_named": "présentée{s} ici en détail", "look_for": "Ce que nous recherchons", "rule_out": "Ce que nous écartons", "yes_btn": "👍 Oui, à creuser", "no_btn": "👎 Pas pour nous", "memo_btn": "Demander le mémo rapide", "memo_ready": "Mémo d'analyse disponible", "memo_open": "Ouvrir le mémo rapide", "act_done_memo_link": "Le voici ✓ — on en parle quand vous voulez.", "syn_label": "Synergies avec votre groupe — le détail du mémo", "memo_sum_label": "Résumé du mémo d'analyse", "detailed_btn": "Demander le mémo détaillé de cette société", "detailed_done": "Mémo détaillé en préparation ✓ — je vous le fais parvenir dès qu'il est prêt.", "why_ph": "Un mot sur pourquoi ? (facultatif — ça affine la prochaine sélection)", "why_send": "Envoyer", "why_done": "Merci, bien noté ✓ — ça nourrit la mise à jour de votre stratégie.", "analysis_btn": "📊 Recevoir l'analyse détaillée", "act_done_yes": "Bien noté ✓ — nous en parlerons.", "act_done_no": "Bien noté ✓ — merci pour la précision.", "act_done_memo": "Demande transmise ✓ — je reviens vers vous rapidement.", "act_done_analysis": "Bien reçu ✓ — je reviens vers vous rapidement.", "act_err": "Envoi impossible — réessayez dans un instant.", "memo_preparing": "⏳ Mémo en préparation…", "hyp_title": "Notre hypothèse sur votre stratégie", "hyp_sub": "Toute la sélection ci-contre découle de cette hypothèse. Si elle est à côté, corrigez-la — je réaligne la recherche et vous renvoie une sélection corrigée.", "hyp_ok_btn": "✓ C'est exactement ça", "hyp_edit_btn": "✎ Corriger cette hypothèse", "hyp_send": "Mettre à jour Stan avec ces corrections", "hyp_ok_done": "Merci — hypothèse confirmée, la sélection ci-contre est alignée ✓", "hyp_edit_done": "Merci — je réaligne la sélection sur votre stratégie et vous renvoie une version corrigée ✓", "rdv_heading": "Échangeons 20 minutes", "rdv_sub": "Choisissez un créneau ci-dessous, ou contactez-moi directement au {phone} ou {email}. Je serais ravi d'affiner cette sélection avec votre retour.", "note": "Sélection établie par Proplace, votre Corporate Developer augmenté. Lien privé — merci de ne pas le diffuser.", "jrnl_title": "📊 Journal de vos pouces", "jrnl_loading": "Chargement…", "jrnl_empty": "Aucun pouce pour l'instant — cliquez 👍/👎 sur les cartes pour guider votre thèse.", "jrnl_err": "Impossible de charger le journal pour l'instant — rouvrez-le dans un instant.", "jrnl_more": "+%n de plus", "jrnl_like": "Secteurs que vous aimez", "jrnl_avoid": "Secteurs que vous évitez", "jrnl_infer": "Secteurs déduits des sociétés actuellement affichées.", "jrnl_suggest": "Vous écartez souvent le secteur « %s » — pensez à le retirer ou à le préciser dans votre thèse ci-dessus.", "jrnl_today": "aujourd'hui", "jrnl_yest": "hier", "jrnl_days": "il y a %n j", "stan_decided": "Stan a décidé en autonomie", "stan_analysis": "L'analyse de Stan", "vt_match": "MATCH — retenu : correspond à vos critères.", "vt_out": "NO MATCH — écarté par vos critères.", "vt_call": "CALL — le choix n°1 de Stan : à trancher OUI/NON maintenant.", "vt_consider": "CONSIDER — solide, mérite un regard plus attentif.", "vt_monitor": "MONITOR — à surveiller, pas prioritaire pour l'instant.", "vt_pass": "PASS — non pertinent pour le moment.", "roi_month": "Ce mois :", "roi_eval": "sociétés évaluées pour vous", "roi_val": "validées", "roi_appr": "approches préparées", "roi_analyst": "— l'équivalent d'environ 3 semaines d'un analyste.", "swot_title": "Lecture stratégique", "swot_s": "Forces", "swot_w": "Faiblesses", "swot_o": "Opportunités", "swot_t": "Menaces", "memo_plan_label": "Plan d'action — le détail du mémo", "dossier_btn": "📄 Dossier comité", "dossier_kicker": "Dossier comité", "dossier_title": "Dossier comité — {co}", "dossier_hint": "Chaque bloc est éditable — vos retouches restent enregistrées sur cet appareil.", "dossier_reset": "↺ Rétablir l'original", "dossier_reset_done": "✓ Rétabli", "dossier_print": "📋 Exporter PDF", "dos_close": "Fermer", "dos_exec": "Synthèse exécutive", "dos_swot": "SWOT", "dos_syn": "Synergies chiffrées", "dos_pnl": "P&L — l'essentiel", "dos_cf": "Flux de trésorerie — l'essentiel", "dos_roi": "ROI & sensibilité", "dos_reco": "La recommandation", "dos_plan": "Plan d'action", "dos_annex": "Mémo complet (annexe) :", "dos_footer": "Préparé avec Proplace", "dos_table_note": "Tableau condensé — le tableau complet vit dans le mémo.", "dos_stale": "Contenu mis à jour depuis vos modifications —", "dos_stale_restore": "Restaurer mes notes", "dossier_ghost_nomemo": "Le dossier se construit à partir du mémo. ⚡ Lancer le mémo rapide maintenant ?", "dossier_ghost_launch": "⚡ Lancer", "dossier_ghost_cancel": "Annuler", "dossier_ghost_stale": "Le dossier sera prêt à la prochaine actualisation de la page.", "dossier_ghost_refresh": "🔄 Actualiser", "dossier_ghost_ok": "OK"}, "en": {"title": "External-growth targets — a Proplace shortlist", "desc": "A shortlist of combination targets, ranked by relevance.", "kicker": "External growth · tailored shortlist", "h1": "A few targets that could interest {co}", "h1_generic": "A few targets that could interest you", "cta_lead": "I'd be glad to refine these hypotheses with you, to find targets that genuinely interest you — over a meeting, a video call ({cal}), by phone at {phone} or by email {email}.", "cal_word": "book a slot", "button": "📅 Schedule your strategy call", "targets_label": "The targets, by relevance", "fit_label": "Fit with your strategy", "teaser": "<b>+ {n} more target{s} identified</b>, to explore together — I'll walk you through them, with the rationale for the most promising combinations.", "upstream_teaser": "<b>+ {n} more compan{ies} identified upstream</b> of these deep dives, to explore together — I'll walk you through them.", "method_heading": "How we built this shortlist", "crit_intro_fallback": "I focused the search on a few precise criteria — the nature of the activity, geographic footprint and the profile of the players.", "funnel_screened": "companies screened", "funnel_kept": "kept as serious target{s}", "funnel_prekept": "kept as serious target{s}", "funnel_named": "presented here in detail", "look_for": "What we look for", "rule_out": "What we set aside", "yes_btn": "👍 Yes, worth digging", "no_btn": "👎 Not for us", "memo_btn": "Request the quick memo", "memo_ready": "Analysis memo available", "memo_open": "Open the quick memo", "act_done_memo_link": "Here it is ✓ — happy to discuss whenever.", "syn_label": "Synergies with your group — the memo detail", "memo_sum_label": "Analysis memo summary", "detailed_btn": "Request this company's detailed memo", "detailed_done": "Detailed memo in preparation ✓ — I'll send it over as soon as it's ready.", "why_ph": "A word on why? (optional — it sharpens the next shortlist)", "why_send": "Send", "why_done": "Thank you, noted ✓ — it feeds your strategy update.", "analysis_btn": "📊 Get the detailed analysis", "act_done_yes": "Noted ✓ — we'll discuss it.", "act_done_no": "Noted ✓ — thanks for the steer.", "act_done_memo": "Request sent ✓ — I'll get back to you shortly.", "act_done_analysis": "Received ✓ — I'll get back to you shortly.", "act_err": "Could not send — please try again in a moment.", "memo_preparing": "⏳ Memo in preparation…", "hyp_title": "Our hypothesis about your strategy", "hyp_sub": "Everything in this shortlist flows from this hypothesis. If it's off, correct it — I'll realign the search and send you a corrected shortlist.", "hyp_ok_btn": "✓ That's exactly it", "hyp_edit_btn": "✎ Correct this hypothesis", "hyp_send": "Update Stan with these corrections", "hyp_ok_done": "Thank you — hypothesis confirmed, the shortlist is aligned ✓", "hyp_edit_done": "Thank you — I'll realign the shortlist to your strategy and send you a corrected version ✓", "rdv_heading": "Let's talk for 20 minutes", "rdv_sub": "Pick a slot below, or reach me directly at {phone} or {email}. I'd be glad to refine this shortlist with your input.", "note": "Shortlist prepared by Proplace, your augmented Corporate Developer. Private link — please do not share.", "jrnl_title": "📊 Your thumbs journal", "jrnl_loading": "Loading…", "jrnl_empty": "No thumbs yet — click 👍/👎 on the cards to steer your thesis.", "jrnl_err": "Could not load the journal right now — reopen it in a moment.", "jrnl_more": "+%n more", "jrnl_like": "Sectors you like", "jrnl_avoid": "Sectors you avoid", "jrnl_infer": "Sectors inferred from the companies currently shown.", "jrnl_suggest": "You often rule out the “%s” sector — consider removing it or refining it in your thesis above.", "jrnl_today": "today", "jrnl_yest": "yesterday", "jrnl_days": "%n d ago", "stan_decided": "Stan decided autonomously", "stan_analysis": "Stan's analysis", "vt_match": "MATCH — kept: it fits your criteria.", "vt_out": "NO MATCH — ruled out by your criteria.", "vt_call": "CALL — Stan's top pick: worth a YES/NO decision now.", "vt_consider": "CONSIDER — solid, worth a closer look.", "vt_monitor": "MONITOR — keep an eye on it, not a priority yet.", "vt_pass": "PASS — not relevant right now.", "roi_month": "This month:", "roi_eval": "companies evaluated for you", "roi_val": "validated", "roi_appr": "approaches prepared", "roi_analyst": "— roughly the equivalent of 3 weeks of an analyst's work.", "swot_title": "Strategic read", "swot_s": "Strengths", "swot_w": "Weaknesses", "swot_o": "Opportunities", "swot_t": "Threats", "memo_plan_label": "Action plan — the memo detail", "dossier_btn": "📄 Committee brief", "dossier_kicker": "Committee brief", "dossier_title": "Committee brief — {co}", "dossier_hint": "Every block is editable — your edits stay saved on this device.", "dossier_reset": "↺ Restore the original", "dossier_reset_done": "✓ Restored", "dossier_print": "📋 Export PDF", "dos_close": "Close", "dos_exec": "Executive summary", "dos_swot": "SWOT", "dos_syn": "Quantified synergies", "dos_pnl": "P&L — the essentials", "dos_cf": "Cash flow — the essentials", "dos_roi": "ROI & sensitivity", "dos_reco": "The recommendation", "dos_plan": "Action plan", "dos_annex": "Full memo (annex):", "dos_footer": "Prepared with Proplace", "dos_table_note": "Condensed table — the full table lives in the memo.", "dos_stale": "Content updated since your edits —", "dos_stale_restore": "Restore my notes", "dossier_ghost_nomemo": "The brief is built from the memo. ⚡ Launch the quick memo now?", "dossier_ghost_launch": "⚡ Launch", "dossier_ghost_cancel": "Cancel", "dossier_ghost_stale": "The brief will be ready at the next page refresh.", "dossier_ghost_refresh": "🔄 Refresh", "dossier_ghost_ok": "OK"}};
 var BAKED="fr";
 function fmt(t,el){if(t.indexOf("{co}")>=0){t=t.replace(/\{co\}/g,el.getAttribute("data-i18n-co")||"");}return t;}
 // v69 (F3) — data-i18n-md : libellés à marqueurs **gras** (tuto_1..6). Tout est échappé
@@ -2165,4 +2568,4 @@ document.addEventListener("pplang",function(ev){var l=(ev&&ev.detail);if(l==="fr
 // le « pplang » d'init du header, émis à DOMContentLoaded, resynchronise ENSUITE sur la
 // langue site (attendre DOMContentLoaded ici re-écraserait ce resync — ordre des listeners).
 apply(BAKED==="en"?"en":"fr");
-})();</script><!-- v:dwgdcELiiu --></body></html>
+})();</script><!-- v:n2mofHZxhN --></body></html>
