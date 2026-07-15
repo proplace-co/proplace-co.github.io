@@ -121,6 +121,12 @@ font-size:13px;color:var(--mid)}
 .site-ft nav{display:flex;gap:18px;flex-wrap:wrap}
 .site-ft nav a{color:var(--mid)}
 .site-ft nav a:hover{color:var(--accent-dk)}
+/* v74 (R5) — mobile : AUCUNE glisse horizontale de page (/actualites ET /cibles,
+   _BASE_CSS est partagé via _head). Ceinture : overflow-x:clip — PAS hidden (règle
+   v58 : hidden crée un conteneur de défilement et TUE le position:sticky des barres
+   collées) ; clip borde sans créer de scroller → les stickies survivent. Les
+   débordements réels (SVG larges, chips longues…) restent corrigés à la source. */
+@media(max-width:760px){html,body{overflow-x:clip}}
 
 .bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
 .bcrumb a{color:#777;text-decoration:none}
@@ -162,6 +168,14 @@ html[data-pplang=en] .i18n-fr{display:none}
 @media(max-width:760px){
  .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
  .pph .pph-home{display:none}
+ /* v74 (R5) — le SEUL débordeur réel mesuré à 390px est CETTE nav (Connexion +
+    pastille News|Analysis + EN|FR ≈ 309px pour ~264px disponibles) : elle devient
+    son PROPRE défileur horizontal (règle « wide content » : overflow-x:auto sur la
+    pièce INTERNE — jamais sur un ancêtre d'une barre sticky). Alignée à gauche en
+    mobile : un débordement côté start (flex-end) serait inatteignable au scroll. */
+ .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pph nav::-webkit-scrollbar{display:none}
  .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
  .pph-sect a{padding:6px 10px;font-size:12px}
  .pph-lang button{padding:5px 7px;font-size:11px}
