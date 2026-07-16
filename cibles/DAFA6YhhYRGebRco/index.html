@@ -1,4 +1,4 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cibles de croissance externe — sélection Proplace</title><meta name="description" content="Une sélection de sociétés de rapprochement, classées par pertinence."><meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://proplace.co/cibles/DAFA6YhhYRGebRco/"><meta property="og:site_name" content="Proplace"><meta property="og:title" content="Cibles de croissance externe — sélection Proplace"><meta property="og:description" content="Une sélection de sociétés de rapprochement, classées par pertinence."><meta property="og:url" content="https://proplace.co/cibles/DAFA6YhhYRGebRco/"><meta property="og:image" content="https://proplace.co/logo.png"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Cibles de croissance externe — sélection Proplace"><meta name="twitter:description" content="Une sélection de sociétés de rapprochement, classées par pertinence."><meta name="twitter:image" content="https://proplace.co/logo.png"><link rel="icon" href="/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cibles de croissance externe — sélection Proplace</title><meta name="description" content="Une sélection de sociétés de rapprochement, classées par pertinence."><meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://proplace.co/cibles/DAFA6YhhYRGebRco/"><meta property="og:site_name" content="Proplace"><meta property="og:title" content="Cibles de croissance externe — sélection Proplace"><meta property="og:description" content="Une sélection de sociétés de rapprochement, classées par pertinence."><meta property="og:url" content="https://proplace.co/cibles/DAFA6YhhYRGebRco/"><meta property="og:image" content="https://proplace.co/logo.png"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Cibles de croissance externe — sélection Proplace"><meta name="twitter:description" content="Une sélection de sociétés de rapprochement, classées par pertinence."><meta name="twitter:image" content="https://proplace.co/logo.png"><link rel="icon" href="/favicon.png"><link rel="alternate" type="application/rss+xml" title="Proplace — M&amp;A &amp; levées de fonds" href="https://proplace.co/actualites/feed.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--accent:#4AC67F;--accent-dk:#36a866;--ink:#0A0A0A;--sub:#444;--mid:#777;
 --line:#E8E8E4;--bg:#F6F6F3;--white:#fff;--maxw:760px}
 *{box-sizing:border-box}
@@ -179,6 +179,9 @@ html[data-pplang=en] .i18n-fr{display:none}
  .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
  .pph-sect a{padding:6px 10px;font-size:12px}
  .pph-lang button{padding:5px 7px;font-size:11px}
+ /* v75 (bug #7) — la pastille EN|FR est hors du <nav> (défileur) : collée à droite du
+    header, toujours atteignable même quand le <nav> déborde/scrolle. */
+ .pph-lang{margin-left:auto;flex:0 0 auto}
 }
 
 .ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
@@ -407,14 +410,14 @@ padding:12px 14px;flex-wrap:wrap}
 .cb-ustate-det{background:#f1f5f9;color:#56697e;border:1px solid #e2e8f0}
 .cb-ustate-pending{background:#fdf6e3;color:#8a6d1a;border:1px solid #e8d9a8}
 /* v52 — BADGE DE STATUT PRIMAIRE (en-tête de carte) : pastille pleine, couleur = onglet du tunnel
-   (Retenu vert · Analysé bleu · À trancher orange · Validé or · Écarté rouge). Le verdict BRUT de
-   Stan devient une petite étiquette secondaire, discrète et contournée, juste à sa droite. */
+   (Retenu vert · Analysé bleu · À trancher orange · Validé violet [v83 FIX E] · Écarté rouge). Le
+   verdict BRUT de Stan devient une petite étiquette secondaire, discrète et contournée, à sa droite. */
 .cb-status-badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.03em;
 padding:3px 11px;border-radius:11px;color:#fff;white-space:nowrap;text-align:center;min-width:56px}
 .cb-sb-retenu{background:#16a34a}
 .cb-sb-ana{background:#1d4ed8}
 .cb-sb-pending{background:#e67e22}
-.cb-sb-valide{background:#caa008}
+.cb-sb-valide{background:#6d28d9}   /* v83 (FIX E) — Validé = violet plein (était or #caa008) */
 .cb-sb-ecarte{background:#dc2626}
 .cb-verdict-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.04em;
 text-transform:uppercase;padding:2px 7px;border-radius:9px;border:1px solid #d9e0e8;
@@ -422,6 +425,13 @@ background:#f6f8fb;color:#93a1b2;white-space:nowrap}
 /* v70 (retour CEO n°1) — étiquette verdict REDONDANTE avec le badge affiché (Retenu/Analysé⇄MATCH ·
    Écarté⇄NO MATCH · À trancher⇄CALL) : masquée mais gardée dans le DOM (paint() la re-toggle). */
 .cb-verdict-tag.cb-vt-dup{display:none}
+/* #6 (v81) — étiquette CALL décisionnelle (CALL PENDING/YES/NO) : TOUJOURS visible, couleur
+   selon la décision. v83 (FIX E) — pending=ambre, yes=VERT CLAIR (le « go » ; était or), no=rouge.
+   paint() (_status_js) ne fait que basculer la CLASSE d'état → cette CSS pilote bake ET live. */
+.cb-vt-call{font-weight:800}
+.cb-vt-call.cb-vtc-pending{border-color:#fcd9a8;background:#fff6e9;color:#b45309}
+.cb-vt-call.cb-vtc-yes{border-color:#bbf7d0;background:#f0fdf4;color:#15803d}
+.cb-vt-call.cb-vtc-no{border-color:#f2c9c6;background:#fdeceb;color:#b3261e}
 .cb-uchev{margin-left:auto;color:#9fb0c2;font-size:19px;font-weight:700;transform:rotate(90deg);transition:transform .15s}
 .cb-urow[open] .cb-uchev{transform:rotate(-90deg)}
 .cb-ubody{padding:2px 16px 14px 47px}
@@ -791,7 +801,9 @@ color:#0f1f33;display:flex;align-items:center;gap:10px}
 .cb-rule li:before{content:"\2715";position:absolute;left:0;color:#c0566a;font-weight:800}
 /* v72 (item ROI) — ligne ROI discrète juste AU-DESSUS du module RDV : une phrase
    calme, sans encadré, nombres en gras sobre. */
-.cb-roi{margin:30px 0 0;font-size:13px;color:#6a7686;text-align:center;line-height:1.6}
+/* #5a (v81) — respiration APRÈS la ligne ROI, AVANT le bandeau radar (qui la suit
+   immédiatement dans le corps) : marge basse dédiée pour aérer les deux blocs. */
+.cb-roi{margin:30px 0 28px;font-size:13px;color:#6a7686;text-align:center;line-height:1.6}
 .cb-roi b{color:#2c3a4d;font-weight:800}
 .cb-rdv{border-top:1px solid #e2e7ee;padding-top:30px;margin-top:40px}
 .cb-rdv h2{font-size:22px;font-weight:800;color:#0f1f33;margin:0 0 8px}
@@ -880,6 +892,14 @@ box-shadow:inset 0 2px 4px rgba(15,31,51,.14);cursor:default}
    décision prise → la ligne change de statut effectif et le cluster disparaît. */
 .cb-callmini{display:none;align-items:center;gap:6px;margin-left:4px;white-space:nowrap}
 .cb-urow.cb-eff-pending .cb-callmini{display:inline-flex}
+/* v76 (bug #5) — pastille « en attente » (⏳ À trancher) sur la ligne REPLIÉE d'un CALL :
+   l'état pending se lit sans déplier. Même gating que le mini cluster (.cb-eff-pending) →
+   décision prise = la ligne change de statut effectif et la pastille disparaît. */
+.cb-pend-chip{display:none;align-items:center;gap:3px;margin-left:6px;white-space:nowrap;
+font-size:10.5px;font-weight:800;letter-spacing:.02em;color:#8a5a0c;background:#fdeede;
+border:1px solid #f6d6ad;border-radius:999px;padding:2px 8px;line-height:1.3}
+.cb-urow.cb-eff-pending .cb-pend-chip{display:inline-flex}
+@media(max-width:640px){.cb-pend-chip{margin-left:0}}
 .cb-cm-lbl{font-size:11.5px;font-weight:700;color:#8a6d1a}
 .cb-callmini button{font-family:inherit;font-size:11.5px;font-weight:800;padding:3px 9px;
 border-radius:8px;cursor:pointer;background:#fff;line-height:1.2}
@@ -938,7 +958,7 @@ border:1px solid #d4d9e2;border-radius:999px;padding:4px 10px;cursor:pointer}
 /* v72 (item 6) — état vide INTELLIGENT : quand les filtres ne matchent rien dans l'onglet
    courant mais matchent AILLEURS, une ligne calme par onglet gagnant, avec un vrai bouton
    « Voir → » (même zone/ton que .cb-flt-none — jamais une alerte). */
-.cb-flt-hint{margin:2px 0 10px;padding:9px 12px;background:#f6f8fb;border:1px solid #e3e9f1;
+.cb-flt-hint{margin:16px 0 10px;padding:9px 12px;background:#f6f8fb;border:1px solid #e3e9f1;
 border-radius:10px;font-size:12.5px;color:#54627a;display:none}
 .cb-flt-hint.on{display:block}
 .cb-flt-hint p{margin:2px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -1204,9 +1224,12 @@ white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
    sur .cb-simbox) → on gagne avec .cb-act button.cb-det-launch (0,2,1). L'élément
    RESTE un <button> (a11y + tout le circuit v72.1 detailed_request inchangé) ; seul
    le LOOK change : navy discret, souligné au survol, la → conservée dans le libellé. */
-.cb-act button.cb-det-launch,button.cb-det-launch{font-family:inherit;font-size:12.5px;font-weight:600;
-color:#3a5a7c;background:none;border:none;border-radius:0;padding:0;margin:-2px 0 0;cursor:pointer;
-text-decoration:none;text-align:left}
+/* v76 (item 2) — CENTRÉ + poids NORMAL : bloc pleine largeur de la colonne d'actions
+   (sous « Voir le mémo rapide »), plus jamais aligné-gauche ni gras. Reste un lien nu
+   navy (même circuit v72.1 detailed_request, même <button> a11y). */
+.cb-act button.cb-det-launch,button.cb-det-launch{font-family:inherit;font-size:12.5px;font-weight:400;
+color:#3a5a7c;background:none;border:none;border-radius:0;padding:0;margin:1px 0 0;cursor:pointer;
+text-decoration:none;text-align:center;display:block;width:100%;box-sizing:border-box}
 .cb-act button.cb-det-launch:hover,button.cb-det-launch:hover{color:#1d4ed8;background:none;
 text-decoration:underline;text-underline-offset:3px}
 .cb-uh-btn.cb-memo-preparing,.cb-uh-btn.cb-memo-preparing:hover{background:#f4f6f9;color:#8a97a8;
@@ -1515,11 +1538,18 @@ padding:7px 11px;font-size:12px;line-height:1.5;color:#56697e}
 .cb-tabbar .cb-xall #cb-refresh.cb-refresh-busy{opacity:.65;cursor:default}
 /* ═══ v38.4 — ligne de titre : aide (?) + Actualiser + date (points 5+6) ═══ */
 .cb-h1row{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:0 0 18px}
-.cb-h1row .cb-h1{margin:0}
+/* v76 (item 5) — le titre PREND l'espace et se replie (min-width:0 : il peut rétrécir
+   sous sa largeur min → jamais de poussée hors page) ; le cluster d'actions (🔄 + « actualisée
+   le … ») ne rétrécit pas et enveloppe : si c'est trop serré, l'horodatage passe sur sa
+   propre sous-ligne sous le bouton (flex-wrap du cluster). Vérifié à 1180 ET 390 px. */
+.cb-h1row .cb-h1{margin:0;flex:1 1 auto;min-width:0;overflow-wrap:break-word;word-break:break-word}
 .cb-help-btn{flex:0 0 auto;width:24px;height:24px;border-radius:50%;border:1.5px solid #c8d2de;
 background:#fff;color:#56697e;font-weight:800;font-size:13px;cursor:pointer;line-height:1;padding:0}
 .cb-help-btn:hover,.cb-help-btn.on{border-color:#0f1f33;color:#0f1f33}
-.cb-h1-actions{margin-left:auto;display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cb-h1-actions{margin-left:auto;display:inline-flex;align-items:center;gap:8px 10px;flex-wrap:wrap;
+flex:0 0 auto;justify-content:flex-end;max-width:100%}
+.cb-h1-actions .cb-refresh-h1{flex:0 0 auto}
+.cb-h1-actions .cb-upd{flex:0 0 auto}
 .cb-refresh-h1{display:inline-flex;align-items:center;gap:5px;background:#eefaf2;border:1px solid #b7e0c6;
 color:#185c38;border-radius:8px;padding:6px 12px;font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer}
 .cb-refresh-h1:hover{background:#e0f5e8}
@@ -1637,11 +1667,12 @@ font-size:13px;line-height:1}
 .cb-tabbar .cb-fchips .cb-f-pending i{color:#e0801f}
 .cb-tabbar .cb-fchips .cb-f-pending.on{background:#e67e22;border-color:#e67e22;color:#fff}
 .cb-tabbar .cb-fchips .cb-f-pending.on i{color:#ffe6cf}
-/* « Validées » = crème/or (l'objectif atteint) ; solide quand actif */
-.cb-tabbar .cb-fchips .cb-f-callyes{background:#fbf3d9;border-color:#ecdca0;color:#8a6d0c}
-.cb-tabbar .cb-fchips .cb-f-callyes i{color:#b9930f}
-.cb-tabbar .cb-fchips .cb-f-callyes.on{background:#caa008;border-color:#caa008;color:#fff}
-.cb-tabbar .cb-fchips .cb-f-callyes.on i{color:#fbf0c9}
+/* v83 (FIX E) — « Validées » = VIOLET (l'objectif atteint), NETTEMENT distinct du vert Retenues,
+   au repos ET rempli (.on = violet plein) ; plus jamais l'or (confondu avec les favoris). */
+.cb-tabbar .cb-fchips .cb-f-callyes{background:#f4f0fe;border-color:#dccdf9;color:#6d28d9}
+.cb-tabbar .cb-fchips .cb-f-callyes i{color:#9d7cd8}
+.cb-tabbar .cb-fchips .cb-f-callyes.on{background:#6d28d9;border-color:#6d28d9;color:#fff}
+.cb-tabbar .cb-fchips .cb-f-callyes.on i{color:#e9ddfb}
 /* légende du tunnel (au-dessus de la liste, orientation) */
 .cb-funnel-hint{margin:2px 0 8px;font-size:12.5px;color:#54627a;line-height:1.4}
 .cb-funnel-hint b{color:#0f1f33}
@@ -1673,7 +1704,7 @@ font-size:13px;line-height:1}
    avec l'onglet Analysées / le badge cb-sb-ana / le liseré cb-eff-ana). */
 .cb-cs-btn.on[data-cs="Analysé"]{background:#2563eb;border-color:#2563eb;color:#fff}
 .cb-cs-btn.on[data-cs="À trancher"]{background:#e67e22;border-color:#e67e22;color:#fff}
-.cb-cs-btn.on[data-cs="Validé"]{background:#caa008;border-color:#caa008;color:#fff}
+.cb-cs-btn.on[data-cs="Validé"]{background:#6d28d9;border-color:#6d28d9;color:#fff}   /* v83 (FIX E) — violet (était or) */
 .cb-cs-btn.on[data-cs="Écarté"]{background:#dc2626;border-color:#dc2626;color:#fff}
 .cb-cs-ok{font-size:11px;font-weight:700;color:#0f6e3f;opacity:0;transition:opacity .15s;flex:0 0 auto}
 .cb-cs-ok.on{opacity:1}
@@ -1705,12 +1736,12 @@ border:1px solid #cfd8e2;border-radius:7px;padding:5px 11px;cursor:pointer;line-
 /* v66 — A5 : liseré gauche par STATUT EFFECTIF (override CEO OU naturel), stampé par
    __cbFunnelCount (classe cb-eff-* unique par ligne). Teintes PASTEL des couleurs du
    tunnel : Retenu #16a34a → #b7e4c7 · Analysé #2563eb → #bfd4f6 · À trancher #e67e22 →
-   #f6d7b0 · Validé #caa008 → #ecdca0 · Écarté #dc2626 → #f0b8b4 (même filet que
-   cb-cs-set-ecarte : la classe eff COUVRE ce cas, même propriété → jamais de double filet). */
+   #f6d7b0 · Validé #6d28d9 → #dccdf9 (v83 FIX E, violet) · Écarté #dc2626 → #f0b8b4 (même filet
+   que cb-cs-set-ecarte : la classe eff COUVRE ce cas, même propriété → jamais de double filet). */
 .cb-urow.cb-eff-kept{border-left:3px solid #b7e4c7}
 .cb-urow.cb-eff-ana{border-left:3px solid #bfd4f6}
 .cb-urow.cb-eff-pending{border-left:3px solid #f6d7b0}
-.cb-urow.cb-eff-valide{border-left:3px solid #ecdca0}
+.cb-urow.cb-eff-valide{border-left:3px solid #dccdf9}   /* v83 (FIX E) — violet pastel (était or #ecdca0) */
 .cb-urow.cb-eff-ecarte{border-left:3px solid #f0b8b4}
 /* v66 — A5-bis : les rejets de Stan (#cb-rows-rej, visibles sous « Écartées ») portent le
    MÊME filet rouge doux que les écartées CEO → barre UNIFORME sur toutes les cartes de l'onglet. */
@@ -1720,7 +1751,7 @@ border:1px solid #cfd8e2;border-radius:7px;padding:5px 11px;cursor:pointer;line-
 .cb-rub-bridge b.cb-cs-tag{display:inline-block;padding:2px 9px;border-radius:6px;color:#fff;font-weight:800;font-size:11px;margin-right:6px}
 .cb-cs-tag.cs-retenu{background:#16a34a}
 .cb-cs-tag.cs-pending{background:#e67e22}
-.cb-cs-tag.cs-valide{background:#caa008}
+.cb-cs-tag.cs-valide{background:#6d28d9}   /* v83 (FIX E) — violet (était or) */
 .cb-cs-tag.cs-ecarte{background:#dc2626}
 .cb-rub-call3{margin:7px 0 0;font-size:12px;color:#54627a;font-style:italic}
 /* ═══════════ v53 — accordéon « ➕ Sourcing » (à gauche de la barre d'onglets) ═══════════
@@ -1949,7 +1980,7 @@ padding:7px 10px;border-radius:9px;border:1px solid #0f1f33;background:#0f1f33;c
 cursor:pointer;text-align:center}
 .cb-dossier-btn:hover{background:#16283f}
 /* overlay PLEIN ÉCRAN blanc, scroll propre ; barre d'outils sticky ; page A4 centrée ~800px */
-.cb-dosovl{position:fixed;inset:0;z-index:9990;background:#fff;overflow-y:auto;overscroll-behavior:contain}
+.cb-dosovl{position:fixed;inset:0;z-index:9990;background:#fff;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain}
 .cb-dos-bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:10px;
 padding:10px 18px;background:#fff;border-bottom:1px solid #e6eaef}
 .cb-dos-bar-t{flex:1 1 auto;min-width:0;font-size:14px;font-weight:800;color:#0f1f33;
@@ -1988,6 +2019,11 @@ color:#185c38;border-bottom:1px solid #e6eaef;padding-bottom:5px}
 .cb-dos-ed h3{font-size:13px;margin:12px 0 5px;color:#0f1f33}
 .cb-dos-ed table{width:100%!important;max-width:100%!important;border-collapse:collapse;table-layout:auto}
 .cb-dos-ed td,.cb-dos-ed th{padding:4px 6px!important;font-size:10.5px!important;line-height:1.35!important;vertical-align:top}
+/* v76 (item 1) — conteneur de défilement autour de CHAQUE table (P&L/CF très larges
+   Y1..Y6 + Formula + Source) : la table déborde DANS ce conteneur, jamais hors de la
+   colonne A4 → le document A4 ne glisse PLUS horizontalement (écran). */
+.cb-dostbl{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;margin:0 0 10px}
+.cb-dos-ed .cb-dostbl table{margin:0!important}
 /* neutralise les wrappers hérités de la page mémo (jamais de mise en page imbriquée) */
 .cb-dos-ed .memo-table-fallback,.cb-dos-ed .table-container,.cb-dos-ed .text-block{display:block!important;
 width:100%!important;max-width:100%!important;padding:0!important;margin:0 0 10px!important;
@@ -2007,40 +2043,78 @@ color:#b3a26a;cursor:pointer;line-height:1;padding:2px}
 .cb-dos-foot{margin:28px 0 0;padding-top:10px;border-top:1px solid #e6eaef;font-size:11px;color:#8a99aa;
 display:flex;justify-content:space-between;gap:10px}
 @media(max-width:640px){.cb-dos-page{padding:22px 14px 50px}.cb-dos-bar{flex-wrap:wrap}.cb-dos-hint{display:none}}
-/* ═══════════ v75 — PIPELINE MÉMO VISIBLE + MANETTE DE DÉBIT ═══════════ */
-/* Rangée FINE juste AU-DESSUS de la barre d'onglets (HORS sticky : .cb-tabbar reste
-   seule collée, règles une-ligne intactes). Deux mini-labels calmes cliquables —
-   « ⚡ X analysées demain » (au-dessus du chip Retenues, + stepper) et
-   « ✓ Y analysées aujourd'hui » (poussé à droite, au-dessus du chip Analysées). */
-.cb-pipeline-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0 -4px;
-padding:0 2px;font-size:11px;color:#56697e}
-.cb-pipe-lbl{display:inline-flex;align-items:center;gap:4px;background:none;border:none;padding:2px 0;
-font-family:inherit;font-size:11px;font-weight:600;cursor:pointer;color:#56697e}
-.cb-pipe-lbl i{font-style:normal;font-weight:800}
-.cb-pipe-lbl:hover{text-decoration:underline;text-underline-offset:3px}
-.cb-pipe-tmr{color:#0f6e3f}.cb-pipe-tmr i{color:#0f6e3f}
-.cb-pipe-today{margin-left:auto;color:#1d4ed8}.cb-pipe-today i{color:#1d4ed8}
-/* Stepper segmenté fin « [−] N mémos/jour [+] » : cohérent avec les chips (999px, 10.5-11px),
-   chiffre en gras, ± ghost. À 0 → chiffre ambré (état « en pause » à côté). */
-.cb-pipe-step{display:inline-flex;align-items:center;gap:5px;border:1px solid #dde4ec;
-border-radius:999px;padding:1px 7px;background:#fff}
-.cb-pipe-step b{font-size:11.5px;color:#0f1f33;min-width:12px;text-align:center}
-.cb-pipe-step.cb-pipe-zero b{color:#b3600f}
-.cb-pipe-step .cb-pipe-w{font-size:10.5px;color:#8a99aa;font-weight:600}
-.cb-pipe-minus,.cb-pipe-plus{background:none;border:none;padding:0 3px;font-family:inherit;
-font-size:13px;font-weight:800;color:#8a99aa;cursor:pointer;line-height:1}
-.cb-pipe-minus:hover,.cb-pipe-plus:hover{color:#0f1f33}
-.cb-pipe-minus:disabled,.cb-pipe-plus:disabled{opacity:.35;cursor:default}
-.cb-pipe-pause{font-size:10.5px;font-weight:700;color:#b3600f;background:#fdeede;
-border:1px solid #f6d6ad;border-radius:999px;padding:2px 8px}
+/* ═══════════ v75/v81/v83 — PIPELINE MÉMO : PILULE COMPACTE (une ligne, au-dessus des chips) ═══════════ */
+/* v83 (FIX D · Option A) — pilule ÉPURÉE et CENTRÉE, sur SA propre ligne, JUSTE au-dessus des
+   chips du funnel : « ⚡ [−] {rythme} mémo/jour [+] · {Y} analysées aujourd'hui · 📋 la file → · ? »
+   + point « en direct » v82. Plus de mot « Machine », plus de badge autonome « X demain ». Elle
+   tient sur UNE ligne desktop ; sur mobile elle se replie proprement (flex-wrap) et ne chevauche
+   JAMAIS les chips (qui restent nets dessous). Le « ? » ouvre un popover d'aide (funnel + pipeline). */
+.cb-pipeline-row{position:relative;display:flex;align-items:center;justify-content:center;
+flex-wrap:wrap;gap:6px;margin:12px 0 12px;padding:0}
+.cb-pipe-pill{display:inline-flex;align-items:center;flex-wrap:wrap;gap:6px 7px;max-width:100%;
+border:1px solid #dbe7e0;border-radius:14px;background:#f4f9f6;padding:5px 12px;
+font-family:inherit;font-size:11.5px;font-weight:600;color:#54627a;line-height:1.5}
+.cb-pipe-mach{display:inline-flex;align-items:center;gap:3px;font-weight:800;color:#0f6e3f;white-space:nowrap}
+.cb-pipe-dot{color:#b7c6bd;font-weight:800;user-select:none}
+/* Manette de débit : [−] N mémos/jour [+] (à 0 → ambre + « en pause »). */
+.cb-pipe-tmr-ctl{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.cb-pipe-tmr-ctl.cb-pipe-zero .cb-pipe-rate,.cb-pipe-tmr-ctl.cb-pipe-zero .cb-pipe-rate i,
+.cb-pipe-tmr-ctl.cb-pipe-zero .cb-pipe-minus,.cb-pipe-tmr-ctl.cb-pipe-zero .cb-pipe-plus{color:#b3600f}
+.cb-pipe-rate{display:inline-flex;align-items:center;gap:4px;color:#334155;white-space:nowrap}
+.cb-pipe-rate i{font-style:normal;font-weight:800;color:#0f1f33;font-variant-numeric:tabular-nums}
+.cb-pipe-minus,.cb-pipe-plus{background:#fff;border:1px solid #cfe0d6;border-radius:999px;
+width:19px;height:19px;padding:0;font-family:inherit;font-size:14px;font-weight:800;color:#0f6e3f;
+cursor:pointer;line-height:1;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.cb-pipe-minus:hover,.cb-pipe-plus:hover{background:#e7f7ee;border-color:#a7ddbe}
+.cb-pipe-minus:disabled,.cb-pipe-plus:disabled{opacity:.4;cursor:default}
+.cb-pipe-pause{font-size:10px;font-weight:800;color:#b3600f;background:#fff;
+border:1px solid #f6d6ad;border-radius:999px;padding:0 7px;margin-left:1px;white-space:nowrap}
 .cb-pipe-pause[hidden]{display:none}
-.cb-pipe-confirm{font-size:10.5px;font-weight:600;color:#0f6e3f}
+/* Signaux « demain » / « aujourd'hui » : boutons-texte cliquables (ouvrent leurs overlays). */
+.cb-pipe-stat{display:inline-flex;align-items:center;gap:4px;background:none;border:none;
+padding:1px 2px;font-family:inherit;font-size:11.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+.cb-pipe-stat i{font-style:normal;font-weight:800;font-variant-numeric:tabular-nums}
+.cb-pipe-stat:hover{text-decoration:underline;text-underline-offset:3px}
+.cb-pipe-today{color:#1d4ed8}.cb-pipe-today i{color:#1d4ed8}
+/* Lien « 📋 la file → » (ouvre le MÊME overlay que « demain »). */
+.cb-pipe-queue{background:none;border:none;padding:1px 2px;font-family:inherit;font-size:11.5px;
+font-weight:600;color:#54627a;cursor:pointer;white-space:nowrap}
+.cb-pipe-queue:hover{color:#0f1f33;text-decoration:underline;text-underline-offset:3px}
+/* Bouton d'aide « ? » + popover explicatif (funnel + pipeline). */
+.cb-pipe-help{margin-left:1px;width:18px;height:18px;padding:0;flex:0 0 auto;
+background:#fff;border:1px solid #cfd8e2;border-radius:999px;color:#56697e;font-family:inherit;
+font-size:11px;font-weight:800;cursor:pointer;line-height:1;display:inline-flex;align-items:center;justify-content:center}
+.cb-pipe-help:hover{background:#eef2f6;color:#0f1f33;border-color:#b9c6d4}
+.cb-pipe-confirm{flex:1 1 100%;font-size:10.5px;font-weight:700;color:#0f6e3f;padding:2px 2px 0}
+.cb-pipe-confirm:empty{padding:0}
 .cb-pipe-confirm.err{color:#b3261e}
-@media(max-width:720px){.cb-pipe-today{margin-left:0}}
+/* FIX 3 (revue #3) — z-index:40 > .cb-tabbar (30). Le popover d'aide, ancré dans .cb-pipeline-row
+   (position:relative SANS z-index → aucun contexte d'empilement propre), le disputait à la tabbar
+   sticky au MÊME z-index:30 dans le contexte racine ; la tabbar opaque (plus loin dans le DOM)
+   gagnait le départage par ordre → elle recouvrait le popover. 40 le fait passer AU-DESSUS. */
+.cb-pipe-pop{position:absolute;top:100%;left:0;z-index:40;margin-top:6px;max-width:min(430px,92vw);
+background:#fff;border:1px solid #dbe3ec;border-radius:12px;box-shadow:0 16px 38px -12px rgba(15,31,51,.30);
+padding:12px 14px}
+.cb-pipe-pop[hidden]{display:none}
+.cb-pipe-pop-t{margin:0 0 5px;font-size:12px;font-weight:800;color:#0f1f33}
+.cb-pipe-pop-b{margin:0;font-size:11.5px;line-height:1.55;color:#48566a}
+/* .cb-chipw : enrobage inline des chips (hérité) — inoffensif sans relocalisation. */
+.cb-chipw{position:relative;display:inline-flex;flex:0 0 auto}
+/* ≤760px — les chips du funnel DÉFILENT horizontalement (règle v58 : overflow sur .cb-fchips
+   seul, jamais un ancêtre du sticky) au lieu de se replier ; la pilule pipeline, elle, se
+   replie librement au-dessus (sa propre ligne). */
+@media(max-width:760px){
+.cb-tabbar .cb-fchips{flex-wrap:nowrap;overflow-x:auto;overflow-y:visible;
+-webkit-overflow-scrolling:touch;scrollbar-width:none;max-width:100%;padding-bottom:2px}
+.cb-tabbar .cb-fchips::-webkit-scrollbar{height:0;display:none}
+.cb-chipw{align-items:center}
+}
 /* Overlays pipeline (chrome .cb-engovl réutilisé) : hedge OBLIGATOIRE en tête du panneau
    « demain » (miroir du wording cockpit MemoAuditDaily) + badges d'état par item. */
 .cb-pipe-hedge{margin:0;padding:10px 16px 4px;font-size:11.5px;line-height:1.45;
 color:#8a6d0c;font-style:italic}
+/* FIX 2 — note honnête « {k} de votre sélection ci-dessous » sous le hedge de l'overlay demain */
+.cb-pipe-selnote{margin:0;padding:2px 16px 6px;font-size:11px;color:#8a99aa}
 .cb-pipe-st{flex:0 0 auto;font-size:9px;font-weight:800;border-radius:999px;padding:2px 8px}
 .cb-pipe-st-sched{background:#e9f0ff;color:#1d4ed8}
 .cb-pipe-st-done{background:#e7f7ee;color:#0f6e3f}
@@ -2054,7 +2128,40 @@ background:#e7f7ee;border:1px solid #c4ecd6;border-radius:999px;padding:3px 10px
 .cb-pipe-fired{flex:0 0 auto;font-size:10.5px;color:#8a99aa;font-style:italic}
 /* item d'overlay pipeline : la ligne société (goRow) + l'action ⚡/lien mémo côte à côte */
 .cb-engovl-list .cb-pipe-li{display:flex;align-items:center;gap:8px}
-.cb-pipe-li .cb-engovl-it{flex:1 1 auto}
+/* #3a (v81) — le NOM prend TOUTE la largeur restante (flex-basis:0 + min-width:0) → il se coupe
+   par MOT et jamais caractère par caractère (« Arlaud Vente Entreprises et Commerces » lisible) ;
+   les cellules fixes (#rang, pastille d'état, « terminé », « voir le mémo → ») gardent leur
+   largeur et restent alignées. S'applique aux DEUX overlays pipeline (aujourd'hui, file). */
+.cb-pipe-li>.cb-engovl-it{flex:1 1 0%;min-width:0;width:auto}
+.cb-pipe-li .cb-engovl-nm{flex:1 1 auto;min-width:0;word-break:normal;overflow-wrap:anywhere}
+/* #3a (v81) — MOBILE étroit : sur une ligne portant AUSSI une action large (« ⚡ Lancer
+   maintenant »), le nom serait écrasé sous un mot (« Graneet » coupé « Gra/ne/t »). On laisse
+   la ligne SE REPLIER : le nom garde ≥58% de largeur (donc coupe par MOT), l'action bascule sur
+   une 2e ligne, poussée à droite. Vaut pour les DEUX overlays (aujourd'hui, file). */
+@media(max-width:560px){
+.cb-engovl-list .cb-pipe-li{flex-wrap:wrap;row-gap:5px}
+.cb-pipe-li>.cb-engovl-it{flex:1 1 58%;min-width:58%}
+.cb-pipe-li>.cb-pipe-fire,.cb-pipe-li>.cb-pipe-fired,.cb-pipe-li>.cb-pipe-memo-a,.cb-pipe-li>.cb-q-done{margin-left:auto}
+}
+/* ═══ v80 — FILE DE TRAITEMENT (overlay QUEUE, chrome .cb-engovl réutilisé) ═══
+   Lien discret DANS la rangée pipeline (au-dessus de la barre d'onglets) ouvrant l'overlay
+   qui liste TOUT le pool du dispatcher, dans l'ordre de tirage. Design calme, cohérent avec
+   les badges pipeline. */
+.cb-pipe-queue{flex:0 0 auto;background:none;border:none;padding:2px 0;font-family:inherit;
+font-size:11px;font-weight:600;color:#56697e;cursor:pointer;white-space:nowrap}
+.cb-pipe-queue:hover{color:#0f1f33;text-decoration:underline;text-underline-offset:3px}
+/* overlay QUEUE : un peu plus large (rang + pastille + nom + action) ; la liste défile
+   jusqu'à ~120 lignes (chrome .cb-engovl-box : overflow caché + .cb-engovl-list scroll). */
+.cb-engovl-box.cb-q-box{width:min(580px,94vw)}
+.cb-q-li{gap:7px}
+.cb-q-pos{flex:0 0 auto;font-size:10px;font-weight:800;color:#8a99aa;min-width:28px;
+text-align:right;font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+.cb-q-when{flex:0 0 auto;font-size:8.5px;font-weight:800;border-radius:999px;padding:2px 7px;
+white-space:nowrap;line-height:1.3}
+.cb-q-when-t{background:#eafaf1;color:#0f6e3f;border:1px solid #c4ecd6}
+.cb-q-when-l{background:#f1f5f9;color:#8a99aa;border:1px solid #e6ecf2}
+.cb-q-done{flex:0 0 auto;font-size:10px;font-weight:800;color:#0f6e3f;background:#e7f7ee;
+border-radius:999px;padding:2px 8px}
 /* v75 (P5) — mini-boîte « pourquoi ce OUI/NON ? » révélée après une décision data-tpv :
    même famille que .cb-cs-note (input fin + OK), insérée là où la décision a eu lieu. */
 .cb-whybox{display:flex;gap:5px;align-items:center;margin:7px 0 0;max-width:420px}
@@ -2089,12 +2196,91 @@ body.cb-printing{overflow:visible!important;height:auto!important}
 body.cb-printing .cb-dosovl{position:static!important;overflow:visible!important}
 body.cb-printing .cb-dos-bar{display:none!important}
 body.cb-printing .cb-dos-page{max-width:none;padding:0}
-body.cb-printing .cb-dos-sec{break-inside:avoid;page-break-inside:avoid}
+/* v76 (item 1) — PAGINATION : les sections FLUENT et se coupent naturellement. Le bug
+   « page 1 = SWOT seul + grand vide » venait d'un break-inside:avoid posé sur TOUTE la
+   section : un bloc plus haut qu'une page (P&L 14 lignes, flux de trésorerie) ne pouvant
+   être gardé entier était renvoyé à la page suivante en laissant un vide. On RETIRE
+   l'avoid des grosses sections ; on ne le garde que sur les PETITS blocs. */
+body.cb-printing .cb-dos-sec{break-inside:auto;page-break-inside:auto}
+body.cb-printing .cb-dos-head,body.cb-printing .cb-swot-q,
+body.cb-printing .cb-dos-pills{break-inside:avoid;page-break-inside:avoid}
+/* v77 (revue #2) — la grille SWOT 2×2 (.cb-swot) est un PETIT bloc : elle doit rester
+   atomique. v76 ayant retiré l'avoid de .cb-dos-sec, rien n'empêchait plus le moteur de
+   couper la grille entre ses deux rangées (Forces/Faiblesses sur une page, Opportunités/
+   Menaces sur la suivante). On re-scelle explicitement la grille SWOT — les GROSSES tables
+   financières, elles, gardent leur break-inside:auto. */
+body.cb-printing .cb-swot{break-inside:avoid;page-break-inside:avoid}
+body.cb-printing .cb-dos-h{break-after:avoid;page-break-after:avoid}
+body.cb-printing .cb-dos-ed tr{break-inside:avoid;page-break-inside:avoid}
+/* v76 (item 1) — les tables financières TIENNENT en A4 portrait : petite police,
+   cellules qui reviennent à la ligne (le nowrap inline des chiffres est neutralisé),
+   colonne « source » traînante MASQUÉE (les CHIFFRES Y1..Y6 priment). Jamais de
+   conteneur de défilement à l'impression → overflow visible. Orientation A4 portrait
+   conservée pour tout le document (jamais de bascule paysage). */
+body.cb-printing .cb-dostbl{overflow:visible!important;max-width:none!important;margin:0 0 8px}
+body.cb-printing .cb-dos-ed table{font-size:6.8pt!important;width:100%!important;max-width:100%!important;
+table-layout:auto!important;border-collapse:collapse!important}
+body.cb-printing .cb-dos-ed td,body.cb-printing .cb-dos-ed th{font-size:6.8pt!important;padding:2px 4px!important;
+white-space:normal!important;word-break:break-word!important;overflow-wrap:anywhere!important;
+line-height:1.25!important;min-width:0!important;max-width:none!important}
+body.cb-printing .cb-dos-src-col{display:none!important}
 body.cb-printing .cb-dos-stale{display:none!important}
 body.cb-printing .cb-dos-ed:hover,body.cb-printing .cb-dos-ed:focus{outline:none}
 .cb-dosovl,.cb-dosovl *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
 }
-</style></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+/* ═══ v78 · RADAR CONCURRENTIEL INVERSÉ — bandeau + badges (design CALME) ═══ */
+.cb-radar{margin:0 0 14px;border:1px solid #dce6df;border-radius:12px;background:#f4f9f5;
+overflow:hidden}
+.cb-radar-sum{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;cursor:pointer;
+list-style:none;padding:12px 15px;font-size:14px;line-height:1.4;user-select:none}
+.cb-radar-sum::-webkit-details-marker{display:none}
+.cb-radar-t{font-weight:700;color:#14361f}
+.cb-radar-sub{font-size:12.5px;color:#5c6f62;font-style:italic}
+.cb-radar-chev{margin-left:auto;color:#7a9184;transition:transform .18s ease;font-size:18px}
+.cb-radar[open] .cb-radar-chev{transform:rotate(90deg)}
+.cb-radar-list{padding:2px 8px 10px;display:flex;flex-direction:column;gap:2px}
+.cb-radar-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:7px 8px;
+border-top:1px solid #e6efe9;font-size:13.5px}
+.cb-radar-nm{font-weight:600;color:#1a2b20}
+.cb-radar-go{font:inherit;font-weight:600;color:#0f5fbf;background:none;border:none;
+padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.cb-radar-go:hover{color:#0a4a96}
+.cb-radar-d{color:#809086;font-size:12px}
+.cb-radar-src{margin-left:auto;color:#5c6f62;font-size:12.5px;text-decoration:none;
+white-space:nowrap}
+.cb-radar-src:hover{color:#14361f;text-decoration:underline}
+/* v83 (FIX B) — ligne hors-page honnête : mention calme + lien mémo (à droite avec la source) */
+.cb-radar-note{color:#7a8a7f;font-size:12.5px;font-style:italic}
+.cb-radar-memo{color:#0f5fbf;font-size:12.5px;text-decoration:none;white-space:nowrap;font-weight:600}
+.cb-radar-memo:hover{color:#0a4a96;text-decoration:underline}
+.cb-radar-badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;
+padding:2px 8px;border-radius:999px;white-space:nowrap;line-height:1.5}
+.cb-rb-acq{background:#fdecec;color:#a12626}
+.cb-rb-raise{background:#e7f6ec;color:#1a7a3e}
+.cb-rb-acqr{background:#e8f0fb;color:#1f5aa8}
+.cb-radar-badge-src{margin-left:3px;color:#8a94a3;text-decoration:none;font-weight:700}
+.cb-radar-badge-src:hover{color:#14361f}
+@media (prefers-color-scheme:dark){
+.cb-radar{border-color:#2b3b31;background:#16211a}
+.cb-radar-t{color:#d9efe0}.cb-radar-sub{color:#93a89b}
+.cb-radar-row{border-top-color:#243128}.cb-radar-nm{color:#e6f0ea}
+.cb-radar-go{color:#6db3ff}
+.cb-radar-note{color:#8ba394}.cb-radar-memo{color:#6db3ff}.cb-radar-memo:hover{color:#93c4ff}
+/* v83 (FIX E) — variantes sombres Validé (violet) + CALL YES (vert clair). Placées après TOUTES
+   les règles claires correspondantes → elles l'emportent en schéma sombre. Les états PLEINS
+   (badge, chip .on, sélecteur, tag pont) gardent un violet solide (texte blanc) ; les états
+   TEINTÉS (chip au repos, filet eff-valide, étiquette CALL YES) suivent les teintes sombres. */
+.cb-tabbar .cb-fchips .cb-f-callyes{background:#1e1630;border-color:#3d2f5e;color:#c4b5fd}
+.cb-tabbar .cb-fchips .cb-f-callyes i{color:#a98fe0}
+.cb-tabbar .cb-fchips .cb-f-callyes.on{background:#7c3aed;border-color:#7c3aed;color:#fff}
+.cb-tabbar .cb-fchips .cb-f-callyes.on i{color:#e9ddfb}
+.cb-sb-valide{background:#7c3aed}
+.cb-cs-btn.on[data-cs="Validé"]{background:#7c3aed;border-color:#7c3aed;color:#fff}
+.cb-cs-tag.cs-valide{background:#7c3aed}
+.cb-urow.cb-eff-valide{border-left-color:#3d2f5e}
+.cb-vt-call.cb-vtc-yes{border-color:#215038;background:#102519;color:#5fd98d}
+}
+</style></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana" href="/analysis/" data-i18n="analysis">Analysis</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -2135,7 +2321,7 @@ apply(l);}
 function init(){apply(getLang());
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><main class="cb-wrap"><div class="cb-grid"><div class="cb-left"><p class="cb-kicker" data-i18n="kicker">Croissance externe · sélection sur mesure</p><div class="cb-h1row"><h1 class="cb-h1"><span data-i18n="h1" data-i18n-co="profund">Quelques cibles qui pourraient intéresser profund</span></h1></div><div class="cb-hyp"><div class="cb-hyp-hdr" data-i18n="hyp_title">Notre hypothèse sur votre stratégie</div><p class="cb-hyp-sub" data-i18n="hyp_sub">Toute la sélection ci-contre découle de cette hypothèse. Si elle est à côté, corrigez-la — je réaligne la recherche et vous renvoie une sélection corrigée.</p><p class="cb-intro">Je suis parti de l&#x27;hypothèse que vous cherchiez à accélérer votre présence sur le marché des logiciels B2B à forte composante IA, en ciblant des équipes fondatrices françaises ou européennes encore en phase d&#x27;amorçage, avant qu&#x27;elles ne soient captées par des fonds :</p><ul class="cb-points"><li>en vous rapprochant de sociétés dont le produit est natif IA ou data, ce qui évite de racheter une dette technologique à reconstruire de zéro</li><li>en concentrant la recherche sur des fondateurs issus de parcours d&#x27;excellence ou d&#x27;expériences opérationnelles reconnues, gage de capacité d&#x27;exécution post-rapprochement</li><li>en intervenant tôt dans la vie de ces entreprises, là où la valorisation reste raisonnable et où l&#x27;intégration culturelle est encore possible</li></ul><div class="cb-hyp-act"><button type="button" id="cb-hyp-ok" data-i18n="hyp_ok_btn">✓ C&#x27;est exactement ça</button><button type="button" id="cb-hyp-edit" data-i18n="hyp_edit_btn">✎ Corriger cette hypothèse</button></div><div id="cb-hyp-form" style="display:none"><textarea id="cb-hyp-txt" maxlength="1200"></textarea><button type="button" id="cb-hyp-send" data-i18n="hyp_send">Mettre à jour Stan avec ces corrections</button></div></div><p class="cb-cta-line">Je serais ravi d'affiner ces hypothèses avec vous afin de trouver des cibles qui vous intéressent vraiment — lors d'une rencontre, d'une visio (<a href="#rdv" class="cb-ilink">réserver un créneau</a>), par téléphone au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou par email <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>.</p><a class="cb-cta-top" href="#rdv">📅 Planifiez un rendez-vous stratégique</a></div><div class="cb-right"><p class="cb-sec-label" data-i18n="targets_label">Les cibles, par ordre de pertinence</p><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">1</span><h3 class="cb-name">Carbonmaps</h3></div><div class="cb-meta"><a class="cb-pill" href="https://carbonmaps.io" target="_blank" rel="noopener nofollow">🌐 Site</a></div></div><p class="cb-what">Plateforme SaaS cloud dédiée à la mesure et au reporting carbone pour l&#x27;industrie agroalimentaire, permettant aux entreprises de calculer l&#x27;empreinte carbone de leurs produits, sites et fournisseurs de façon automatisée et auditée — basée en Europe.</p><ul class="cb-why"><li>Le secteur agroalimentaire est sous pression réglementaire croissante (CSRD, affichage environnemental) : Carbon Maps répond à un besoin qui va devenir obligatoire pour des milliers d&#x27;entreprises en Europe.</li><li>La levée de 4,1 M€ en seed en juillet 2023 confirme une validation externe du marché, sans que la société ait encore atteint une taille qui rendrait un rapprochement complexe ou coûteux.</li><li>Un produit structuré autour de la donnée fournisseur et de la traçabilité produit crée une forte barrière à la sortie côté client, ce qui protège la valeur après intégration.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Si votre logique est d&#x27;adresser la transition environnementale comme une verticale logicielle à part entière, Carbon Maps apporte un produit déjà certifiable, un marché captif et une équipe qui a su convaincre des investisseurs sérieux à un stade précoce.</p><div class="cb-act" data-target="Carbonmaps"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">2</span><h3 class="cb-name">Cognyx</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-contact">👤 Matthias Berahya-Lazarus</span><a class="cb-pill" href="https://cognyx.io" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://fr.linkedin.com/in/matthias-berahya-lazarus-2662422" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Société française soutenue par des fonds de capital-risque, qui repense l&#x27;ingénierie matérielle à l&#x27;ère de l&#x27;IA — positionnée en B2B, avec un produit natif IA, basée en France.</p><ul class="cb-why"><li>Le fondateur identifié, Matthias Berahya-Lazarus, est un interlocuteur direct et accessible, ce qui facilite une première conversation discrète avant toute démarche formelle.</li><li>Une levée pré-seed d&#x27;environ 1,7–1,8 M€ en 2024 indique que la société est en tout début de construction commerciale : c&#x27;est précisément le moment où un partenaire stratégique peut peser davantage qu&#x27;un fonds financier.</li><li>L&#x27;ingénierie matérielle assistée par IA est un segment rare en France, ce qui limiterait la concurrence d&#x27;acquéreurs alternatifs sur ce dossier.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Cognyx représente une opportunité de prendre pied sur un segment technologique de niche, avec un fondateur identifié et joignable, à un moment où la société a encore besoin d&#x27;un ancrage industriel plus qu&#x27;d&#x27;un tour de table supplémentaire.</p><div class="cb-act" data-target="Cognyx"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">3</span><h3 class="cb-name">Ubby AI</h3></div><div class="cb-meta"><a class="cb-pill" href="https://ubby.ai" target="_blank" rel="noopener nofollow">🌐 Site</a></div></div><p class="cb-what">Startup SaaS B2B à composante IA, fondée en 2023 et basée à Paris, dont le positionnement précis reste à confirmer mais qui s&#x27;inscrit dans l&#x27;écosystème des outils métier intelligents.</p><ul class="cb-why"><li>Fondée en 2023 par un profil issu des grandes écoles françaises, la société est dans une fenêtre où une conversation stratégique peut précéder toute logique de levée de fonds concurrente.</li><li>Paris concentre aujourd&#x27;hui les meilleurs profils IA francophones : une société fondée ici avec ce type de pedigree fondateur attire naturellement des talents difficiles à recruter autrement.</li><li>Le stade très précoce permet d&#x27;envisager un rapprochement sur la base du talent et de la vision autant que du produit, ce qui élargit les modalités possibles.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Si vous cherchez à intégrer une capacité IA construite de l&#x27;intérieur plutôt que de la sous-traiter, Ubby AI mérite une conversation exploratoire rapide, avant que d&#x27;autres acteurs ne positionnent une offre.</p><div class="cb-act" data-target="Ubby AI"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">4</span><h3 class="cb-name">Phone Verif</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-contact">👤 Erwann Robin</span><a class="cb-pill" href="https://www.linkedin.com/in/ACwAAAA97ZMBfT7dtpEMpwTc2tM5Z6d3fO6tWiI" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://www.linkedin.com/in/ACwAAAA97ZMBfT7dtpEMpwTc2tM5Z6d3fO6tWiI" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Solution B2B de vérification téléphonique basée en France, fondée très récemment par Erwann Robin, ancien opérateur chez BlaBlaCar.</p><ul class="cb-why"><li>Erwann Robin a construit et opéré des systèmes à fort volume chez BlaBlaCar, l&#x27;une des rares scale-ups françaises à avoir atteint une dimension internationale : c&#x27;est une garantie d&#x27;exécution que peu de fondateurs à ce stade peuvent offrir.</li><li>La vérification d&#x27;identité et de contact est une brique critique pour de nombreux secteurs (fintech, marketplace, RH) : une solution propriétaire dans ce domaine peut devenir un actif stratégique transversal.</li><li>La société étant lancée depuis moins de deux mois, il n&#x27;existe pas encore de dynamique concurrentielle autour de ce dossier — c&#x27;est une fenêtre courte.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Phone Verif illustre exactement le profil où la valeur tient d&#x27;abord à l&#x27;opérateur derrière le projet : un rapprochement précoce permettrait de sécuriser un fondateur expérimenté avant qu&#x27;il ne lève et ne devienne inabordable.</p><div class="cb-act" data-target="Phone Verif"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">5</span><h3 class="cb-name">GetMint</h3></div><div class="cb-meta"><a class="cb-pill" href="https://getmint.ai" target="_blank" rel="noopener nofollow">🌐 Site</a></div></div><p class="cb-what">Plateforme SaaS B2B native IA, fondée en 2025 en France, portée par un fondateur diplômé de l&#x27;ESSEC, ayant réalisé une levée pré-seed de 4 M$.</p><ul class="cb-why"><li>Une levée de 4 M$ au stade pré-seed en 2025 est un signal fort : des investisseurs ont accepté une valorisation élevée très tôt, ce qui reflète soit une traction réelle, soit un fondateur dont le marché reconnaît la crédibilité.</li><li>Un fondateur ESSEC avec cette capacité à lever rapidement dispose généralement d&#x27;un réseau commercial et institutionnel qui accélère l&#x27;accès aux premiers clients grands comptes — un atout direct post-intégration.</li><li>Fondée en 2025, GetMint n&#x27;a pas encore construit de dépendances organisationnelles lourdes : c&#x27;est le moment le plus simple pour aligner les cultures et les ambitions.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> GetMint combine un fondateur crédible, une levée récente qui valide l&#x27;intérêt du marché et un produit encore malléable : c&#x27;est le type de dossier où intervenir maintenant évite de payer deux à trois fois plus cher dans dix-huit mois.</p><div class="cb-act" data-target="GetMint"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-teaser"><b>+ 110 autres cibles identifiées</b> et à découvrir ensemble — je vous les présente de vive voix, avec le détail des rapprochements les plus prometteurs.</div></div></div><div class="cb-crit"><h2 data-i18n="method_heading">Notre méthode de sélection</h2><p class="cb-crit-intro">Pour construire cette liste, nous avons défini des critères de sélection précis autour de deux grandes questions : le profil de l&#x27;entreprise correspond-il à votre terrain d&#x27;action naturel, et y a-t-il une fenêtre d&#x27;opportunité concrète aujourd&#x27;hui ? Ce cadre nous a permis de parcourir un ensemble large de sociétés et de ne retenir que celles qui répondaient simultanément aux deux.</p><div class="cb-funnel"><div class="cb-fun"><b>2087</b><span>sociétés passées au crible</span></div><div class="cb-fun"><b>115</b><span>retenues comme cibles sérieuses</span></div><div class="cb-fun hl"><b>5</b><span>présentées ici en détail</span></div></div><details class="cb-ang" open><summary>Logiciels B2B à composante IA, stade amorçage</summary><div class="cb-ang-body"><p class="cb-ang-why">C&#x27;est là que se créent les positions de marché durables : les sociétés qui construisent aujourd&#x27;hui une couche IA dans un métier précis seront difficiles à déloger dans trois ans.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Produit conçu nativement autour de la donnée ou de l&#x27;IA, pas une surcouche ajoutée après coup</li><li>Équipe fondatrice réduite (1 à 3 personnes), ce qui facilite l&#x27;alignement post-rapprochement</li><li>Première validation commerciale visible : un client, une lettre d&#x27;intention, ou une levée de fonds récente</li><li>Siège en France ou dans un pays francophone européen, pour limiter les frictions opérationnelles</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les sociétés dont le produit IA repose entièrement sur des API tierces sans couche propriétaire, car la valeur serait trop fragile</li><li>Nous écartons les équipes ayant déjà plusieurs dizaines de salariés à ce stade, où la complexité d&#x27;intégration dépasse souvent le bénéfice attendu</li></ul></div></div></div></details><details class="cb-ang"><summary>Qualité et trajectoire des fondateurs</summary><div class="cb-ang-body"><p class="cb-ang-why">À l&#x27;amorçage, le produit est souvent encore en construction : c&#x27;est la capacité d&#x27;exécution de l&#x27;équipe fondatrice qui détermine si la valeur sera au rendez-vous dans dix-huit mois.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Fondateur ayant opéré dans une entreprise technologique reconnue (scale-up, grand groupe tech) ou issu d&#x27;une formation d&#x27;excellence</li><li>Historique de livraison : a-t-il déjà lancé, vendu ou piloté un produit jusqu&#x27;à ses premiers clients ?</li><li>Fondateur joignable directement, sans intermédiaire institutionnel imposé</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les projets portés par des équipes sans aucune expérience sectorielle ou technique vérifiable, où le risque d&#x27;exécution est trop élevé pour un rapprochement</li><li>Nous écartons les fondateurs déjà engagés dans des discussions avancées avec des fonds, qui réduiraient votre marge de manœuvre</li></ul></div></div></div></details><details class="cb-ang"><summary>Fenêtre d&#x27;opportunité : levée récente ou création très récente</summary><div class="cb-ang-body"><p class="cb-ang-why">Une société qui vient de lever ou de se créer est dans une phase où un partenaire stratégique apporte plus qu&#x27;un chèque : distribution, clients, légitimité — ce qui change la nature de la conversation.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Levée de fonds inférieure à 10 M€, réalisée dans les douze derniers mois</li><li>Ou société créée dans les dix-huit derniers mois, avant tout tour de table structuré</li><li>Absence d&#x27;investisseur institutionnel dominant qui imposerait ses conditions à une cession</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les sociétés ayant déjà levé au-delà de ce seuil, où la valorisation implicite rend un rapprochement précoce économiquement peu justifiable</li><li>Nous écartons les dossiers où plusieurs fonds sont déjà au capital avec des droits de préemption croisés, source de complexité juridique disproportionnée</li></ul></div></div></div></details><details class="cb-ang"><summary>Verticalisation sectorielle à fort enjeu réglementaire ou opérationnel</summary><div class="cb-ang-body"><p class="cb-ang-why">Un logiciel B2B ancré dans une contrainte réglementaire ou un processus critique crée une dépendance client structurelle, ce qui protège les revenus et justifie des cycles de vente plus courts.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Secteur soumis à une obligation de reporting ou de conformité croissante (environnement, identité, ingénierie)</li><li>Produit qui s&#x27;intègre dans un flux de travail existant plutôt que de le remplacer entièrement</li><li>Potentiel d&#x27;extension à d&#x27;autres verticales ou géographies sans refonte du cœur du produit</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les solutions purement horizontales sans ancrage métier, où la concurrence avec des acteurs globaux (éditeurs américains, hyperscalers) serait frontale et défavorable</li><li>Nous écartons les produits dont le marché adressable dépend d&#x27;une réglementation encore incertaine ou susceptible d&#x27;être abandonnée</li></ul></div></div></div></details></div><p class="cb-roi"><span data-i18n="roi_month">Ce mois :</span> <b>1969</b> <span data-i18n="roi_eval">sociétés évaluées pour vous</span> · <b>0</b> <span data-i18n="roi_val">validées</span> <span data-i18n="roi_analyst">— l&#x27;équivalent d&#x27;environ 3 semaines d&#x27;un analyste.</span></p><div class="cb-rdv" id="rdv"><h2>Échangeons 20 minutes</h2><p>Choisissez un créneau ci-dessous, ou contactez-moi directement au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>. Je serais ravi d'affiner cette sélection avec votre retour.</p><script>(function(){try{var u=new URL(window.location.href);if(!u.searchParams.get('company_name')){u.searchParams.set('company_name',"profund");history.replaceState(null,'',u);}}catch(e){}})();</script><div style="width:100%;min-height:560px;" data-fillout-id="aDx8z7Hzksus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div><script src="https://server.fillout.com/embed/v1/"></script></div><p class="cb-note">Sélection établie par Proplace, votre Corporate Developer augmenté. Lien privé — merci de ne pas le diffuser.</p></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+})();</script><main class="cb-wrap"><div class="cb-grid"><div class="cb-left"><p class="cb-kicker" data-i18n="kicker">Croissance externe · sélection sur mesure</p><div class="cb-h1row"><h1 class="cb-h1"><span data-i18n="h1" data-i18n-co="profund">Quelques cibles qui pourraient intéresser profund</span></h1></div><div class="cb-hyp"><div class="cb-hyp-hdr" data-i18n="hyp_title">Notre hypothèse sur votre stratégie</div><p class="cb-hyp-sub" data-i18n="hyp_sub">Toute la sélection ci-contre découle de cette hypothèse. Si elle est à côté, corrigez-la — je réaligne la recherche et vous renvoie une sélection corrigée.</p><p class="cb-intro">Je suis parti de l&#x27;hypothèse que vous cherchiez à accélérer votre présence sur le marché des logiciels B2B à forte composante IA, en ciblant des équipes fondatrices françaises ou européennes encore en phase d&#x27;amorçage, avant qu&#x27;elles ne soient captées par des fonds institutionnels :</p><ul class="cb-points"><li>en vous rapprochant de sociétés dont le produit est déjà construit autour de l&#x27;IA — et non simplement « augmenté » par elle — ce qui réduit le risque d&#x27;intégration technologique post-acquisition</li><li>en concentrant la recherche sur des fondateurs issus de parcours d&#x27;excellence ou d&#x27;expériences opérationnelles reconnues, gage d&#x27;une capacité d&#x27;exécution éprouvée</li><li>en intervenant à un stade où la valorisation reste raisonnable et où le dialogue avec les fondateurs est encore ouvert, avant les tours de table qui ferment les options</li></ul><div class="cb-hyp-act"><button type="button" id="cb-hyp-ok" data-i18n="hyp_ok_btn">✓ C&#x27;est exactement ça</button><button type="button" id="cb-hyp-edit" data-i18n="hyp_edit_btn">✎ Corriger cette hypothèse</button></div><div id="cb-hyp-form" style="display:none"><textarea id="cb-hyp-txt" maxlength="1200"></textarea><button type="button" id="cb-hyp-send" data-i18n="hyp_send">Mettre à jour Stan avec ces corrections</button></div></div><p class="cb-cta-line">Je serais ravi d'affiner ces hypothèses avec vous afin de trouver des cibles qui vous intéressent vraiment — lors d'une rencontre, d'une visio (<a href="#rdv" class="cb-ilink">réserver un créneau</a>), par téléphone au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou par email <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>.</p><a class="cb-cta-top" href="#rdv">📅 Planifiez un rendez-vous stratégique</a></div><div class="cb-right"><p class="cb-sec-label" data-i18n="targets_label">Les cibles, par ordre de pertinence</p><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">1</span><h3 class="cb-name">Carbonmaps</h3></div><div class="cb-meta"><a class="cb-pill" href="https://carbonmaps.io" target="_blank" rel="noopener nofollow">🌐 Site</a></div></div><p class="cb-what">Plateforme cloud dédiée à la mesure et au pilotage des émissions carbone pour l&#x27;industrie agroalimentaire, permettant aux entreprises de calculer l&#x27;empreinte carbone de leurs produits, sites et fournisseurs de façon dynamique et auditée — basée en Europe.</p><ul class="cb-why"><li>Le secteur agroalimentaire fait face à une pression réglementaire et client croissante sur la traçabilité carbone : Carbonmaps répond à un besoin structurel, pas à une tendance passagère.</li><li>La levée de 4,1 M€ en seed réalisée en juillet 2023 confirme une validation externe du marché tout en laissant la société dans une fenêtre où un rapprochement reste envisageable sans se heurter à des valorisations de série B.</li><li>La couverture multi-niveaux — produit, site, fournisseur, corporate — est un avantage concurrentiel rare à ce stade : elle évite aux clients de jongler entre plusieurs outils.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Si votre ambition est de vous positionner sur la durabilité comme couche logicielle incontournable de la chaîne alimentaire européenne, Carbonmaps apporte immédiatement un produit mature, une base clients dans un secteur régulé et une équipe déjà rodée à la complexité des données d&#x27;émissions.</p><div class="cb-act" data-target="Carbonmaps"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">2</span><h3 class="cb-name">Cognyx</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-contact">👤 Matthias Berahya-Lazarus</span><a class="cb-pill" href="https://cognyx.io" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://fr.linkedin.com/in/matthias-berahya-lazarus-2662422" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Société française soutenue par des investisseurs en capital-risque, qui repense l&#x27;ingénierie matérielle (hardware engineering) à l&#x27;ère de l&#x27;IA — fondée et dirigée par Matthias Berahya-Lazarus.</p><ul class="cb-why"><li>L&#x27;intersection hardware / IA est l&#x27;un des rares segments où la barrière à l&#x27;entrée reste élevée : une acquisition précoce permet de sécuriser une compétence difficile à reconstituer en interne.</li><li>Un tour de pré-seed d&#x27;environ 1,7–1,8 M€ annoncé en 2024 signale une société qui vient de valider ses premières hypothèses produit sans avoir encore dilué significativement ses fondateurs — moment idéal pour engager une conversation.</li><li>La présence d&#x27;un interlocuteur identifié (Matthias Berahya-Lazarus) simplifie l&#x27;entrée en relation et réduit le délai d&#x27;une première prise de contact qualifiée.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Pour un acquéreur qui cherche à intégrer une brique d&#x27;ingénierie IA différenciante, Cognyx représente une opportunité de capturer une expertise de niche avant qu&#x27;elle ne soit absorbée par un acteur américain ou un grand groupe industriel.</p><div class="cb-act" data-target="Cognyx"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">3</span><h3 class="cb-name">Ubby AI</h3></div><div class="cb-meta"><a class="cb-pill" href="https://ubby.ai" target="_blank" rel="noopener nofollow">🌐 Site</a></div></div><p class="cb-what">Plateforme SaaS B2B native IA, fondée en 2023 et basée à Paris, dont l&#x27;offre s&#x27;adresse aux entreprises — les détails produit restent à approfondir directement avec l&#x27;équipe.</p><ul class="cb-why"><li>Fondée en 2023 par un profil issu des grandes écoles françaises, la société se situe dans la fenêtre de création où l&#x27;orientation stratégique est encore malléable et où un rapprochement peut façonner la trajectoire produit.</li><li>Le positionnement « AI-native » dès la conception — et non une couche IA ajoutée a posteriori — est un critère de qualité technique qui conditionne la scalabilité future.</li><li>La jeunesse de la structure signifie une organisation légère, peu de dette organisationnelle et une intégration post-acquisition potentiellement plus fluide.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Si vous souhaitez intégrer une capacité IA construite from scratch plutôt que de racheter une technologie héritée, Ubby AI mérite une conversation exploratoire rapide, précisément parce que la fenêtre d&#x27;opportunité à ce stade est courte.</p><div class="cb-act" data-target="Ubby AI"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">4</span><h3 class="cb-name">Phone Verif</h3></div><div class="cb-meta"><span class="cb-pill cb-pill-contact">👤 Erwann Robin</span><a class="cb-pill" href="https://www.linkedin.com/in/ACwAAAA97ZMBfT7dtpEMpwTc2tM5Z6d3fO6tWiI" target="_blank" rel="noopener nofollow">🌐 Site</a><a class="cb-pill" href="https://www.linkedin.com/in/ACwAAAA97ZMBfT7dtpEMpwTc2tM5Z6d3fO6tWiI" target="_blank" rel="noopener nofollow">in · LinkedIn</a></div></div><p class="cb-what">Solution B2B de vérification téléphonique basée en France, fondée très récemment par Erwann Robin, ancien opérateur chez BlaBlaCar.</p><ul class="cb-why"><li>Erwann Robin a construit et opéré des systèmes à grande échelle chez BlaBlaCar, l&#x27;une des rares licornes françaises du transport : c&#x27;est une garantie d&#x27;exécution que peu de fondateurs à ce stade peuvent offrir.</li><li>La vérification d&#x27;identité et de contact est une infrastructure critique pour de nombreux secteurs (fintech, marketplace, RH) — une acquisition précoce peut transformer cette brique en actif transversal au sein d&#x27;un portefeuille.</li><li>La société étant lancée depuis moins de deux mois, aucun investisseur institutionnel n&#x27;a encore structuré la table de capitalisation : c&#x27;est le moment où le dialogue avec le fondateur est le plus direct et le plus ouvert.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> Pour un acquéreur qui valorise les fondateurs-opérateurs capables de scaler vite, Phone Verif combine un profil fondateur de premier plan et une technologie d&#x27;infrastructure à fort potentiel de réutilisation — à condition d&#x27;agir avant que la concurrence ne s&#x27;y intéresse.</p><div class="cb-act" data-target="Phone Verif"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-card"><div class="cb-card-head"><div class="cb-head-l"><span class="cb-rank">5</span><h3 class="cb-name">GetMint</h3></div><div class="cb-meta"><a class="cb-pill" href="https://getmint.ai" target="_blank" rel="noopener nofollow">🌐 Site</a></div></div><p class="cb-what">Plateforme logicielle B2B native IA, fondée en 2025 et basée en France, en phase de pré-amorçage — les détails de l&#x27;offre sont à préciser directement avec l&#x27;équipe.</p><ul class="cb-why"><li>Fondée par un diplômé de l&#x27;ESSEC et ayant déjà levé 4 M$ en pré-seed en un seul tour, GetMint présente un profil rare : un fondateur de grande école avec une capacité démontrée à convaincre des investisseurs exigeants dès le départ.</li><li>Une levée de cette taille à un stade aussi précoce indique une conviction forte des investisseurs sur le marché adressé — ce signal externe réduit une partie du risque d&#x27;évaluation pour un acquéreur.</li><li>Fondée en 2025, la société n&#x27;a pas encore construit de rigidités organisationnelles : c&#x27;est le moment où l&#x27;alignement stratégique entre acquéreur et fondateur est le plus facile à construire.</li></ul><p class="cb-fit"><b>Alignement avec votre stratégie :</b> GetMint illustre exactement le profil que cette recherche a cherché à identifier : un fondateur de haut niveau, une technologie IA construite dès l&#x27;origine pour le B2B, et une fenêtre d&#x27;entrée qui se fermera dès le prochain tour de table.</p><div class="cb-act" data-target="GetMint"><button type="button" data-kind="analysis_request" data-done="Bien reçu ✓ — je reviens vers vous rapidement.">📊 Recevoir l&#x27;analyse détaillée</button></div></div><div class="cb-teaser"><b>+ 119 autres cibles identifiées</b> et à découvrir ensemble — je vous les présente de vive voix, avec le détail des rapprochements les plus prometteurs.</div></div></div><div class="cb-crit"><h2 data-i18n="method_heading">Notre méthode de sélection</h2><p class="cb-crit-intro">Pour structurer cette recherche, j&#x27;ai défini deux niveaux de filtre successifs : d&#x27;abord un cadre sectoriel et géographique strict (logiciels B2B, IA native, France et Europe francophone), puis une lecture qualitative du profil fondateur et du moment de vie de chaque société, pour ne retenir que les situations où un rapprochement a du sens aujourd&#x27;hui — pas dans dix-huit mois. Sur 124 sociétés examinées, 5 ressortent comme prioritaires ; les 119 autres restent disponibles et méritent d&#x27;être parcourues ensemble pour affiner ce qui compte vraiment pour vous.</p><div class="cb-funnel"><div class="cb-fun"><b>2254</b><span>sociétés passées au crible</span></div><div class="cb-fun"><b>124</b><span>retenues comme cibles sérieuses</span></div><div class="cb-fun hl"><b>5</b><span>présentées ici en détail</span></div></div><details class="cb-ang" open><summary>Intelligence artificielle native en B2B</summary><div class="cb-ang-body"><p class="cb-ang-why">Une société dont le produit est construit autour de l&#x27;IA dès sa conception offre une trajectoire de différenciation durable, là où une IA « greffée » sur un produit existant génère une dette technique difficile à absorber post-acquisition.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Produit conçu dès l&#x27;origine avec l&#x27;IA comme couche centrale, non comme fonctionnalité additionnelle</li><li>Cas d&#x27;usage B2B clairement définis avec des clients ou des pilotes actifs</li><li>Équipe technique capable d&#x27;expliquer les choix d&#x27;architecture de façon transparente</li><li>Marché adressable suffisamment large pour justifier une intégration dans un ensemble plus grand</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les sociétés qui se revendiquent « IA » uniquement pour des raisons de communication, sans que le modèle ou les données propriétaires ne constituent un vrai avantage compétitif</li><li>Nous écartons les plateformes dont l&#x27;offre est indifférenciée par rapport aux grandes solutions génériques du marché</li></ul></div></div></div></details><details class="cb-ang"><summary>Profil fondateur et moment de création</summary><div class="cb-ang-body"><p class="cb-ang-why">À un stade précoce, la qualité de l&#x27;équipe fondatrice est souvent le seul actif tangible : un fondateur capable d&#x27;exécuter vite et de recruter les bons profils détermine la trajectoire de la société bien plus que le produit initial.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Fondateur issu d&#x27;une grande école française ou ayant une expérience opérationnelle significative dans une entreprise tech reconnue</li><li>Société fondée depuis moins de 18 à 24 mois, laissant une vraie marge de manœuvre pour co-construire la direction stratégique</li><li>Fondateur principal encore très impliqué dans le produit et les ventes — signe d&#x27;une culture d&#x27;exécution, pas seulement de levée de fonds</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les sociétés dont les fondateurs ont déjà cédé une part significative du capital à des fonds qui imposeraient leurs conditions dans toute discussion de rapprochement</li><li>Nous écartons les équipes dont la composition a déjà connu des ruptures majeures, signe de fragilité organisationnelle précoce</li></ul></div></div></div></details><details class="cb-ang"><summary>Stade de financement et ouverture au dialogue</summary><div class="cb-ang-body"><p class="cb-ang-why">Le moment où une société vient de boucler un premier tour modeste est précisément celui où les fondateurs sont les plus ouverts à des conversations stratégiques — avant que la dynamique concurrentielle des tours suivants ne referme les options.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Levée de fonds récente (moins de 18 mois) comprise entre quelques centaines de milliers et 10 M€, signalant une validation sans sur-dilution</li><li>Absence d&#x27;investisseur lead avec droit de veto sur les opérations stratégiques</li><li>Fondateur accessible directement, sans intermédiaire institutionnel imposé</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les sociétés ayant déjà réalisé un tour de série A ou au-delà, où la gouvernance et les attentes de valorisation compliquent structurellement tout rapprochement rapide</li><li>Nous écartons les situations où la société est déjà en discussion exclusive avec un autre acquéreur ou en processus de cession formalisé</li></ul></div></div></div></details><details class="cb-ang"><summary>Ancrage géographique France / Europe francophone</summary><div class="cb-ang-body"><p class="cb-ang-why">Un ancrage local facilite l&#x27;intégration opérationnelle, réduit les frictions réglementaires et permet de s&#x27;appuyer sur des réseaux de recrutement et de distribution que vous connaissez déjà.</p><div class="cb-cols"><div class="cb-look"><h4 data-i18n="look_for">Ce que nous recherchons</h4><ul><li>Siège social en France ou dans un pays européen francophone, avec une équipe principalement basée localement</li><li>Clients ou partenaires commerciaux déjà présents sur le marché français ou européen</li><li>Culture d&#x27;entreprise compatible avec un environnement de travail francophone</li></ul></div><div class="cb-rule"><h4 data-i18n="rule_out">Ce que nous écartons</h4><ul><li>Nous écartons les sociétés dont l&#x27;essentiel de l&#x27;activité, des clients et de l&#x27;équipe est concentré hors d&#x27;Europe, ce qui rendrait l&#x27;intégration disproportionnellement complexe</li><li>Nous écartons les structures dont la documentation juridique et les contrats clients sont exclusivement régis par un droit non européen, source de complications inutiles</li></ul></div></div></div></details></div><p class="cb-roi"><span data-i18n="roi_month">Ce mois :</span> <b>2125</b> <span data-i18n="roi_eval">sociétés évaluées pour vous</span> · <b>0</b> <span data-i18n="roi_val">validées</span> <span data-i18n="roi_analyst">— l&#x27;équivalent d&#x27;environ 3 semaines d&#x27;un analyste.</span></p><div class="cb-rdv" id="rdv"><h2>Échangeons 20 minutes</h2><p>Choisissez un créneau ci-dessous, ou contactez-moi directement au <a href="tel:+33683107286" class="cb-ilink">+33 6 83 10 72 86</a> ou <a href="mailto:alexandre@proplace.co" class="cb-ilink">alexandre@proplace.co</a>. Je serais ravi d'affiner cette sélection avec votre retour.</p><script>(function(){try{var u=new URL(window.location.href);if(!u.searchParams.get('company_name')){u.searchParams.set('company_name',"profund");history.replaceState(null,'',u);}}catch(e){}})();</script><div style="width:100%;min-height:560px;" data-fillout-id="aDx8z7Hzksus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div><script src="https://server.fillout.com/embed/v1/"></script></div><p class="cb-note">Sélection établie par Proplace, votre Corporate Developer augmenté. Lien privé — merci de ne pas le diffuser.</p></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -2568,4 +2754,4 @@ document.addEventListener("pplang",function(ev){var l=(ev&&ev.detail);if(l==="fr
 // le « pplang » d'init du header, émis à DOMContentLoaded, resynchronise ENSUITE sur la
 // langue site (attendre DOMContentLoaded ici re-écraserait ce resync — ordre des listeners).
 apply(BAKED==="en"?"en":"fr");
-})();</script><!-- v:n2mofHZxhN --></body></html>
+})();</script><!-- v:msUBx6zcdP --></body></html>
