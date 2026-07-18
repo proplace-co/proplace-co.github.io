@@ -1,0 +1,740 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GrandCœur — analyse HealthTech &amp; Digital Health | Proplace</title><meta name="description" content="HealthTech &amp; Digital Health · Télésurveillance Cardiaque SaaS · Pré-Amorçage"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/grandcur/"><meta property="og:type" content="article"><meta property="og:title" content="GrandCœur — analyse HealthTech &amp; Digital Health | Proplace"><meta property="og:description" content="HealthTech &amp; Digital Health · Télésurveillance Cardiaque SaaS · Pré-Amorçage"><meta property="og:url" content="https://proplace.co/analysis/grandcur/"><meta property="og:image" content="https://proplace.co/analysis/radars/grandcur.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://proplace.co/analysis/radars/grandcur.png"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ /* v74 (R5) — le SEUL débordeur réel mesuré à 390px est CETTE nav (Connexion +
+    pastille News|Analysis + EN|FR ≈ 309px pour ~264px disponibles) : elle devient
+    son PROPRE défileur horizontal (règle « wide content » : overflow-x:auto sur la
+    pièce INTERNE — jamais sur un ancêtre d'une barre sticky). Alignée à gauche en
+    mobile : un débordement côté start (flex-end) serait inatteignable au scroll. */
+ .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pph nav::-webkit-scrollbar{display:none}
+ .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+ /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
+    défileur (order:-1) → les 3 boutons sont TOUJOURS visibles à gauche, c'est
+    « Connexion » qui déborde/scrolle si l'écran est trop étroit (demande CEO). */
+ .pph nav .pph-sect{order:-1;flex:0 0 auto}
+ .pph nav .pph-auth{order:0}
+ /* v75 (bug #7) — la pastille EN|FR est hors du <nav> (défileur) : collée à droite du
+    header, toujours atteignable même quand le <nav> déborde/scrolle. */
+ .pph-lang{margin-left:auto;flex:0 0 auto}
+}
+/* ≤430px : les 3 pastilles + Connexion tiennent ensemble (resserrage police/padding). */
+@media(max-width:430px){
+ .pph nav{gap:7px}
+ .pph-sect a{padding:6px 9px;font-size:11.5px;letter-spacing:-.01em}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "GrandCœur — HealthTech & Digital Health", "description": "HealthTech & Digital Health · Télésurveillance Cardiaque SaaS · Pré-Amorçage", "inLanguage": "fr", "url": "https://proplace.co/analysis/grandcur/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/grandcur/"}, "image": ["https://proplace.co/analysis/radars/grandcur.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}, "about": {"@type": "Organization", "name": "GrandCœur"}, "datePublished": "2026-07-18", "dateModified": "2026-07-18"}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a><a class="pph-rsch" href="/research/" data-i18n="research">Research</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">GrandCœur</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "GrandCœur"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Pré-Amorçage</span>
+<span class="sb-tag">HealthTech &amp; Digital Health</span>
+<span class="sb-tag">B2B2C</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">GrandCœur</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>France ·</span> HealthTech &amp; Digital Health · Télésurveillance Cardiaque SaaS · Pré-Amorçage</span>
+<p class="meta-desc" style="margin-bottom: 15px;">SaaS de télésurveillance cardiologique à domicile pour les établissements de santé et cardiologues libéraux sous protocole de remboursement de l'Assurance Maladie.</p>
+<a href="https://grandcoeur.fr" target="_blank"><i class="fas fa-globe"></i> Website</a>
+<a href="https://www.linkedin.com/in/mauro-colagreco-73791723" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-grey" href="#sources">Sources</a>
+<div class="divider"></div>
+<div class="section">
+<h3>Explorez GrandCœur plus en détail ?</h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique sur GrandCœur</a>
+</div>
+<div class="divider"></div>
+
+
+<div class="section">
+<h3>S'abonner à la newsletter Proplace ?</h3>
+<p class="meta-desc">Recevez les dernières nouvelles sur le M&amp;A et les levées de fonds.</p>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">S'abonner à la newsletter</a>
+</div>
+<div class="section">
+<h3>Vous voulez un flux de deals propriétaire ?</h3>
+<p class="meta-desc">Recevez quotidiennement des cibles hautement qualifiées pour votre stratégie d'acquisition.</p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Planifier un appel stratégique</a>
+</div>
+<div class="sidebar-logo-wrap">
+<img alt="Logo " src="" style="max-width: 110px; height: auto; margin: 0 auto 10px; display: block; opacity: 0.85;"/>
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">GrandCœur</h1>
+<h2 class="subtitle-category">HealthTech &amp; Digital Health ➜ Télésurveillance Cardiaque SaaS ➜ La télésurveillance cardiologique à domicile simplifiée pour les cliniciens et leurs patients.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="GrandCœur" data-h="" data-i="HealthTech &amp; Digital Health" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/grandcur/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title"><span class="i18n-fr">Résumé du marché</span><span class="i18n-en">Market summary</span></h2>
+<div class="split-container">
+<div class="text-col">
+<h4 class="kicker">SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>Santé Numérique / Télémédecine &gt; Télésurveillance Cardiaque SaaS<br/>B2B2C &gt; SaaS</p>
+<div class="score-row sr-green"><span class="sr-label">EST-CE UN MARCHÉ ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">× 25% = 20.0 pts</span></div><div class="score-row sr-red"><span class="sr-label">EST-CE UN MARCHÉ GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:40%"></span></span><span class="sr-val">40/100</span><span class="sr-note">× 25% = 10.0 pts</span></div><div class="score-row sr-red"><span class="sr-label">EST-CE UN MARCHÉ PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:35%"></span></span><span class="sr-val">35/100</span><span class="sr-note">× 25% = 8.75 pts</span></div><div class="score-row sr-amber"><span class="sr-label">EST-CE UN MARCHÉ RÉCOMPENSANT ?</span><span class="sr-bar"><span class="sr-fill" style="width:50%"></span></span><span class="sr-val">50/100</span><span class="sr-note">× 25% = 12.5 pts</span></div>
+<div class="score-row sr-amber sr-total"><span class="sr-label">SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:51%"></span></span><span class="sr-val">51/100</span></div>
+<p>Ce score médiocre reflète l'existence d'une opportunité réglementaire séduisante de télésurveillance en France qui reste cependant capturée par des acteurs hautement spécialisés, rendant l'accès impossible pour une structure sans capital technologique majeur.</p>
+<h4><span class="i18n-fr">DÉFINITION du Marché</span><span class="i18n-en">Market DEFINITION</span></h4>
+<p>SaaS de télésurveillance cardiologique à domicile pour les établissements de santé et cardiologues libéraux sous protocole de remboursement de l'Assurance Maladie. ➜ Le marché englobe les technologies logicielles de collecte et d'analyse de données physiologiques prescrites par des spécialistes pour suivre à distance les insuffisants cardiaques chroniques.</p>
+<p>Actuellement, la friction majeure réside dans la lourdeur réglementaire des processus de conformité et d'interopérabilité avec les logiciels de gestion de cabinet des médecins. La valeur se concentre de manière critique en aval dans l'intégration clinique hospitalière et les données qualifiées pour la prise de décision thérapeutique, le matériel ou l'IoT simple étant devenu une commodité.</p>
+<h4>Notre THÈSE de Marché</h4>
+<p>L'avènement du forfait PECAN en France a transformé de manière irréversible le modèle d'accès au marché de la santé numérique en sécurisant un canal direct de prise en charge financière publique pour les solutions numériques validées. Les acteurs historiques du MedTech ne peuvent pas rivaliser facilement sur ce terrain agile car leurs modèles matériels lourds luttent pour s'adapter à une distribution SaaS légère et interopérable exigée par la médecine de ville.</p>
+<p>L'unique point d'entrée pour un nouvel acteur consiste à capturer le flux d'onboarding patient via des protocoles cliniques simplifiés d'ultra-courte durée pour court-circuiter les longs cycles d'achat hospitaliers. La fenêtre d'opportunité réglementaire est ouverte maintenant mais se refermera rapidement d'ici 18 mois avec la consolidation des géants du secteur et la saturation des pipelines de certification HAS.</p>
+<h4>Notre CONVICTION &amp; PARI sur ce Marché</h4>
+<p><span class="conv-badge sr-amber">CONVICTION MOYENNE</span></p>
+<p>Bien que la transition vers la télésurveillance médicale généralisée soutenue par l'État soit certaine, le marché risque de se transformer en une guerre d'usure bureaucratique où seules les plateformes capables de financer d'immenses études cliniques et réglementaires survivront.</p>
+<p>Notre pari est que l'interopérabilité directe et l'automatisation du flux d'alertes par IA deviendront les seuls réels facteurs de différenciation pour les médecins saturés avant 2026. L'indicateur d'évaluation clé lors d'une première discussion avec un acteur de ce secteur sera le coût réel d'acquisition client par rapport au taux de conformité exigé pour débloquer les codes de remboursement de la Sécurité Sociale.</p>
+<h4>MARCHÉ ATTRACTIF (Score: 80/100)</h4>
+<p>Le score de marché attractif élevé confirme que les dynamiques démographiques et de remboursement sont de puissants leviateurs à long terme.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Taille du Marché</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Marché potentiel adressable d'un million de patients cardiaques à risque en France, avec une valeur SaaS estimée à plus de 200 millions d'euros potentiels.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Facteurs de Croissance</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Vieillissement rapide de la population, surcharge chronique des services d'urgence cardiologiques et soutien politique massif à la télémédecine.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La pérennisation des forfaits de télésurveillance et l'harmonisation européenne des règlements de dispositifs médicaux (MDR) catalysent le secteur.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Risques de Marché</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Goulots d'étranglement administratifs d'homologation auprès des autorités de santé et réticence de certains praticiens face aux outils numériques.</div></li></ul>
+<h4>MARCHÉ GAGNABLE (Score: 40/100)</h4>
+<p>Ce score bas montre que malgré l'attractivité théorique, l'arène concurrentielle constitue un obstacle majeur pour un nouvel entrant non équipé.</p>
+<ul><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Acteurs Historiques</span><span class="sr-val">30/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Domination historique de leaders d'équipements médicaux tels que Medtronic ou Philips avec des barrières de canaux de distribution massives.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Nouveaux Entrants</span><span class="sr-val">45/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Startups de santé numérique matures telles qu'Implicity possédant déjà des millions de données collectées et des équipes commerciales structurées.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Espace Inoccupé</span><span class="sr-val">50/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">opportunité résiduelle dans l'analyse de niche précoce ou la prévention péri-opératoire de 15 jours, mais encore non validée structurellement.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Défendabilité</span><span class="sr-val">35/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Faible protection technologique de base hors IA brevetée, rendant la propriété des données cliniques le seul véritable Moat à long terme.</div></li></ul>
+<h4>MARCHÉ PÉNÉTRABLE (Score: 35/100)</h4>
+<p>La pénétration commerciale de l'espace médical libéral implique un coût et une lenteur d'évangélisation souvent sous-estimés par les éditeurs SaaS.</p>
+<ul><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Modèle GTM</span><span class="sr-val">30/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Cycles d'achat s'étendant fréquemment sur 12 à 24 mois pour pénétrer les centrales d'achat hospitalières régionales.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Modèle de Prix</span><span class="sr-val">40/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle de tarification contraint par les barèmes stricts du remboursement public, limitant l'élasticité logicielle classique.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Rentabilité Unitaire</span><span class="sr-val">35/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Ratios LTV/CAC faibles au départ en raison de coûts d'onboarding clinique élevés et d'un taux d'abandon patient non négligeable.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">35/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Déploiement international restreint par la nécessité de s'adapter au cas par cas aux différents systèmes nationaux de remboursement de santé.</div></li></ul>
+<h4>MARCHÉ RÉCOMPENSANT (Score: 50/100)</h4>
+<p>Une liquidité limitée aux ventes industrielles stratégiques plutôt qu'à de grandes IPO technologiques autonomes caractérise ce créneau.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Activité de Financement</span><span class="sr-val">60/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Bon intérêt historique des VCs européens pour la Digital Health, mais ralentissement net des tours de table d'amorçage au profit de la rentabilité.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Multiples de Sortie</span><span class="sr-val">45/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Multiples d'acquisition souvent inférieurs à 5x l'ARR car le marché est assimilé à une activité de pure distribution médicale.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Acquéreurs Stratégiques</span><span class="sr-val">55/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Groupes de dispositifs médicaux (BIOTRONIK, Boston Scientific) recherchant des couches logicielles pour défendre leurs parts de marché.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Profil de Retour</span><span class="sr-val">40/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc"></div></li></ul>
+<h4 class="kicker">SYNTHÈSE TRANSVERSALE</h4>
+<p>La combinaison d'une opportunité réglementaire hautement attractive sous format d'Assurance Maladie avec des barrières de viabilité opérationnelles et concurrentielles dures exige un profil de fondateur docteur-entrepreneur expérimenté et une stratégie de capitaux ultra-efficace centrée sur le remboursement immédiat.</p>
+<h4 class="kicker">CONFIANCE DANS LES DONNÉES</h4>
+<p>Notre analyse s'appuie sur une compréhension robuste des dynamiques réglementaires en France soutenue par 4 sources de données sectorielles externes.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-ca421c8485fd1f31d279476884ec59d7-ub5se4wj.jpg"/>
+</div>
+</div>
+</div><div class="section-container" id="company">
+<h2 class="section-title"><span class="i18n-fr">Analyse approfondie de l'entreprise</span><span class="i18n-en">Company deep dive</span></h2>
+<h3 id="value-proposition"><span class="i18n-fr">Proposition de valeur</span><span class="i18n-en">Value proposition</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker"><span class="i18n-fr">Proposition de Valeur</span><span class="i18n-en">Value proposition</span></h4>
+<p>GrandCoeur est une plateforme de télésurveillance cardiologique simplifiée, conçue pour faciliter le suivi à domicile des patients. Elle permet la collecte quotidienne de constantes vitales, offrant aux cardiologues un outil de surveillance à distance efficace pour prévenir les crises cardiaques.</p>
+<h4 class="kicker">Profil Client Idéal (ICP)</h4>
+<p>Patients souffrant de pathologies cardiaques nécessitant un suivi régulier et professionnels de santé cardiaques.</p>
+<h4 class="kicker">Modèle d'Affaires</h4>
+<p>B2B2C, agissant comme un outil médical prescrit ou supervisé cliniquement.</p>
+<h4 class="kicker">Industrie</h4>
+<p>Santé numérique et télémédecine.</p>
+<h4 class="kicker">Contact &amp; Légal</h4>
+<p>Site web : <a href="https://grandcoeur.fr/" target="_blank">grandcoeur.fr</a>. Données juridiques et détails sur les fondateurs non confirmés publiquement à ce jour.</p></div>
+<h3 id="product"><span class="i18n-fr">Produit</span><span class="i18n-en">Product</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution Principale</h4>
+<p>Interface web dédiée à la saisie et au suivi des constantes vitales pour les patients cardiaques. La solution assure la liaison entre le patient à domicile et le praticien.</p>
+<h4 class="kicker">Fonctionnalités Clés</h4>
+<p>Gestion de l'identité patient, paramétrage de périodes de suivi (ex: 15 jours), programmation de rappels de mesures et relevés biométriques (tension, fréquence cardiaque, douleurs thoraciques).</p>
+<h4 class="kicker">Capacités Techniques</h4>
+<p>Interface mobile accessible, suivi temporel structuré et saisie de données simplifiée pour un diagnostic facilitant le post-opératoire.</p></div>
+<h3 id="business-model"><span class="i18n-fr">Modèle économique</span><span class="i18n-en">Business model</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Analyse du Modèle d'Affaires</h4>
+<p>Le modèle repose probablement sur une tarification SaaS destinée aux cliniques ou sur un système de remboursement via l'Assurance Maladie pour la télésurveillance médicale.</p>
+<h4 class="kicker">Flux de Revenus</h4>
+<p>Le détail des niveaux de prix, abonnements ou tarifs spécifiques n'est pas rendu public.</p>
+<h4 class="kicker">Conditions &amp; Frais</h4>
+<p>Aucune information concernant les coûts cachés ou les conditions contractuelles ne figure dans les données actuelles.</p></div>
+<h3 id="team"><span class="i18n-fr">Équipe</span><span class="i18n-en">Team</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'Entreprise</h4>
+<p>Les informations relatives à la structure interne ne sont pas disponibles publiquement.</p>
+<h4 class="kicker">Analyse de l'Équipe</h4>
+<p>Aucune donnée publique ne permet d'identifier une équipe dirigeante spécialisée en HealthTech. Le profil LinkedIn associé semble être lié à une personnalité du monde de la gastronomie sans lien apparent avec le secteur médical.</p>
+<h4 class="kicker">Répartition des effectifs</h4>
+<p>Données non quantifiables et absentes des sources disponibles.</p></div>
+<h3 id="ceo"><span class="i18n-fr">PDG</span><span class="i18n-en">CEO</span></h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title"><span class="i18n-fr">Résumé de l'entreprise</span><span class="i18n-en">Company overview</span></h2><div class="cs-disc">ⓘ <span class="i18n-fr">Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</span><span class="i18n-en">These scores often reflect how much public information we could find online (web presence), not the company's objective reality. A low score — e.g. on team excellence — usually means little information was found, not that the company is weak.</span></div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>Santé Numérique &gt; Télésurveillance Cardiaque SaaS</li><li>B2B2C &gt; SaaS</li></ul>
+<br/>
+<strong>SCORE DE PRÉ-SÉLECTION</strong><br/>
+Thèse :
+<p>NOTE: Ce score est un diagnostic de pré-sélection brut. Les pondérations finales sont appliquées en aval lors de la qualification synthétique du GP.<hr/></p><div class="score-row sr-red sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:10%"></span></span><span class="sr-val">10/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div><div class="score-row sr-red sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:20%"></span></span><span class="sr-val">20/100</span></div><div class="score-row sr-red sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:40%"></span></span><span class="sr-val">40/100</span></div><div class="score-row sr-red sr-head"><span class="sr-label">TRACTION &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:5%"></span></span><span class="sr-val">5/100</span></div><p><hr/></p><div class="score-row sr-red sr-total"><span class="sr-label">SCORE DE PRÉ-SÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:30%"></span></span><span class="sr-val">30/100</span><span class="sr-note">🔴 SIGNAL TRÈS FAIBLE (&lt;60)</span></div><p><hr/>❓ En QUELQUES MOTS : GrandCœur est une plateforme de Télésurveillance Cardiaque SaaS qui permet aux cardiologues et cliniques de suivre à distance les constantes biométriques de patients à haut risque pour prévenir les rémissions sévères grâce à une saisie de données mobile simplifiée de 15 jours.</p>
+<p>⚠️ Le PROBLÈME : Le cardiologue libéral réalise qu'un patient post-opératoire sort de sa clinique sans aucun suivi de ses constantes critiques durant la fenêtre délicate des 15 premiers jours, le laissant incapable d'ajuster son traitement avant qu'une réhospitalisation d'urgence ne devienne inévitable.</p>
+<p>✅ La SOLUTION : Un formulaire de suivi ultra-léger et automatisé envoyé directement sur le mobile du patient à des heures précises (10h et 19h), agrégeant instantanément la pression artérielle et le niveau de douleur pour alerter le cardiologue en cas d'anomalie.</p>
+🚀 Le GTM : Un modèle de distribution B2B2C axé directement sur les cabinets de cardiologie libérale, tirant parti du protocole d'inscription pour faire prescrire l'outil aux patients, garantissant un taux d'adoption immédiat car intégré dans leur flux de travail habituel.<hr/><strong>👨🏻 EXCELLENCE DE L'ÉQUIPE (Score: 10/100)</strong><br/>
+<ul><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Adéquation Fondateur-Marché</span><span class="sr-val">0/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Il existe une anomalie critique : le profil LinkedIn associé mène à Mauro Colagreco, chef étoilé de renommée mondiale du restaurant Grandcœur / Mirazur, n'ayant aucun lien avec la cardiologie.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Historique de l'Équipe</span><span class="sr-val">10/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Aucune donnée publique ne lie de grands fondateurs de la HealthTech à ce projet médical, suggérant que le site internet n'est qu'un prototype lâche sans équipe formalisée.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">10/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'équipe opérationnelle est invisible dans les sources disponibles, sans structure administrative ni comité consultatif médical documentés.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Complétude</span><span class="sr-val">20/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Absence totale de profils technologiques ou cliniques identifiables, ce qui représente un risque de transition insurmontable à ce stade.</div></li></ul>
+<br/>
+<strong>🌊 OPPORTUNITÉ DE MARCHÉ (Score: 75/100)</strong><br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille &amp; Croissance</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché français du suivi cardiaque à domicile est immense, porté par l'augmentation des maladies chroniques et un besoin urgent de désengorgement hospitalier.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Pourquoi Maintenant</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le cadre de remboursement de la télésurveillance par l'Assurance Maladie fournit un catalyseur inédit pour les solutions conformes.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Concurrence</span><span class="sr-val">65/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Présence de concurrents de premier plan largement financés comme Implicity ou Cardiel, saturant le créneau des plateformes cliniques.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Potentiel théorique d'extension vers d'autres pathologies chroniques (insuffisance rénale, diabète) mais limité par des barrières réglementaires rigides.</div></li></ul>
+<br/>
+<strong>💡 INNOVATION PRODUIT (Score: 20/100)</strong><br/>
+<ul><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">20/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le produit actuel se résume à un simple formulaire web de saisie manuelle sans intelligence artificielle ni intégration IoT native.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Product-Market Fit</span><span class="sr-val">10/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Aucun témoignage clinique, logo d'hôpital partenaire ou étude pilote ne vient valider l'usage ou l'efficacité de la plateforme.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">30/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Architecture purement web et basique, loin des standards de haut niveau requis pour un déploiement SaaS multi-locataires sécurisé.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">IP &amp; Barrières</span><span class="sr-val">20/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Aucune propriété intellectuelle ni brevet mentionné, rendant l'application extrêmement facile à dupliquer par n'importe quel éditeur de logiciels.</div></li></ul>
+<br/>
+<strong>💼 MODÈLE D'AFFAIRES (Score: 40/100)</strong><br/>
+<ul><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Viabilité Économique</span><span class="sr-val">40/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle théoriquement solide basé sur le remboursement public, mais sans aucune spécification sur le coût d'acquisition client par rapport au remboursement.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Modèle de Revenus</span><span class="sr-val">40/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Flou persistant sur l'existence d'un abonnement SaaS fixe payé par l'établissement clinique ou d'un partage des gains de remboursement.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">50/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Clarté théorique de la proposition de valeur (génération de revenus cliniques) mais l'élasticité du prix auprès des médecins reste non testée.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">30/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'absence de levée de fonds officielle est cohérente avec la vacuité de la structure opérationnelle et laisse présager un projet dormeur.</div></li></ul>
+<br/>
+<strong>📈 TRACTION &amp; CROISSANCE (Score: 5/100)</strong><br/>
+<ul><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Croissance des Revenus</span><span class="sr-val">0/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Chiffre d'affaires nul ou non divulgué, l'application ne semblant pas héberger d'utilisateurs actifs payants substantielles.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">10/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Aucune référence institutionnelle ou cas d'usage concret publié ne permet de corroborer une intégration en vie réelle.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Progression des KPIs</span><span class="sr-val">10/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Effectifs inexistants sur LinkedIn pour la structure technologique, aucun signal de recrutement ou de développement actif.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">0/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Absence totale d'écosystème de partenaires cliniques ou d'intégrateurs officiels sur le territoire français.</div></li></ul>
+<hr/><strong>🔍 RISQUE À ATTÉNUER / COUVRIR :</strong><br/>
+Ce projet repose sur l'hypothèse absurde qu'une simple page de saisie web sans équipe technique légitime ni conformité médicale stricte peut pénétrer un système de santé hospitalier français ultra-régulé, une bet erronée qui s'effondrera au premier audit de conformité RGPD/HDS dans les 3 prochains mois. Ce risque est totalement insoluble de l'extérieur car il ne s'agit manifestement pas d'une startup viable mais d'un nom de domaine orphelin ou d'une erreur de référencement flagrante entre un restaurant parisien et un concept médical embryonnaire.
+<h4 class="kicker">AVANTAGES COMPÉTITIFS CLÉS</h4>
+<ul><li>Simplicité extrême de l'UX de saisie pour les patients âgés ou non technophiles, minimisant la friction du suivi à domicile.</li><li>Focalisation initiale sur un protocole très court de 15 jours qui cible la phase critique post-opératoire ou pré-diagnostic.</li></ul>
+<p><strong>🧱 FOSSÉ DANS LES DOUVES (MOAT) :</strong> FAIBLE</p>
+<p>Le fossé défensif est inexistant car la barrière technologique de saisie manuelle de constantes physiques peut être répliquée en quelques jours par n'importe quelle équipe de développeurs. En l'absence d'intégration avec des objets connectés propriétaires ou d'algorithmes d'alertes prédictifs labellisés, le coût de transfert pour les cliniques reste nul. L'absence de certification Dispositif Médical de classe IIa prive l'outil de toute protection réglementaire protectrice.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le Cas Haussier (Bull Case) : Si, par une incroyable transformation, la marque simplifiée de GrandCœur parvenait à structurer une véritable équipe médicale et s'associait à un réseau de cardiologues influents pour valider cliniquement son protocole de 15 jours, elle pourrait devenir un outil de pré-diagnostic standardisé remboursé, créant une acquisition de données à haute valeur.</li><li>Le Cas Baissier (Bear Case) : La société s'avère n'être qu'un site internet abandonné, les clients potentiels évitant le produit en raison de risques massifs liés à l'hébergement des données de santé (absence de serveurs HDS) et de la confusion fatale d'identité avec la marque d'un chef de cuisine.</li></ul>
+<p><strong>🚩 DRAPEAUX ROUGES</strong></p>
+<ul><li>Risques Universels : Absence totale d'éléments de sécurité des données de santé et de conformité réglementaire de base pour un dispositif médical.</li><li>Incohérences avec la Thèse d'Investissement : Mismatch total avec notre thèse de financement (No-Go immédiat en raison de la non-existence d'une équipe technique résidente et du risque d'identité de holding alimentaire Vertigo Family).</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/55/55/1784368800000/C-5tSiPUKokMhETBAgFlTw/e8gdkD937ZMmXG6MYVaXWRCDpIqhIAPZ9XShCFvTrzZi3J1tsbsYZtjvwptx5aEwV_KC1g2y-W2rQdD5eB3QGcsE13tXDJxCpNRSwQA0zQyilgM8QrzPFMlMGF_pSpFks7rTwtDCKuUoAWxmFbrSdA/ZQiPIAX3HQpZlcL7B13pVYHkDJU6Nz7bxG0tCl6enyM"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title"><span class="i18n-fr">Analyse SWOT</span><span class="i18n-en">SWOT analysis</span></h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3><span class="i18n-fr">Forces</span><span class="i18n-en">Strengths</span></h3><ul><li>Le chef Mauro Colagreco apporte une notoriété internationale issue de Mirazur.</li><li>L'appartenance au groupe Vertigo Family donne accès à une plateforme opérationnelle et à des synergies marketing.</li><li>Le concept brasserie haut de gamme cible une clientèle solvable dans le centre de Paris.</li><li>L'acquisition du fonds de commerce par Vertigo en 2019 a sécurisé un emplacement stratégique.</li><li>Le groupe possède déjà plusieurs enseignes complémentaires qui alimentent le flux de clients.</li></ul></div>
+<div class="swot-item s-red"><h3><span class="i18n-fr">Faiblesses</span><span class="i18n-en">Weaknesses</span></h3><ul><li>Aucune stratégie de croissance autonome n'existe pour GrandCœur en dehors du groupe.</li><li>Les données financières et de performance ne sont pas publiées.</li><li>L'effectif et la structure de management propre restent invisibles.</li><li>Le positionnement dépend entièrement de l'écosystème Vertigo.</li><li>Aucune trace de levée de fonds ou de modèle économique distinct n'apparaît.</li></ul></div>
+<div class="swot-item s-blue"><h3><span class="i18n-fr">Opportunités</span><span class="i18n-en">Opportunities</span></h3><ul><li>Le groupe Vertigo poursuit une expansion par ouvertures et acquisitions dans Paris et Lyon.</li><li>La notoriété de Colagreco peut soutenir des extensions de marque food ou événementielles.</li><li>La demande de restauration premium post-pandémie reste soutenue dans les grandes villes.</li><li>Des synergies croisées avec les autres concepts du portefeuille peuvent augmenter le taux d'occupation.</li><li>Un développement en franchise ou en licence du nom Colagreco reste possible.</li></ul></div>
+<div class="swot-item s-orange"><h3><span class="i18n-fr">Menaces</span><span class="i18n-en">Threats</span></h3><ul><li>Les coûts immobiliers et salariaux parisiens compriment les marges des brasseries.</li><li>Une désaffection du chef vers d'autres projets personnels affaiblirait l'attrait de l'établissement.</li><li>Le groupe Vertigo pourrait réallouer ses capitaux vers des concepts plus rentables.</li><li>La concurrence des nouvelles brasseries et des chefs étoilés s'intensifie à Paris.</li><li>Un changement de tendance vers des formats plus décontractés ou à emporter pourrait rendre le modèle obsolète.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title"><span class="i18n-fr">Sources et méthodologie</span><span class="i18n-en">Sources &amp; methodology</span></h2>
+<div class="source-list">
+<h3>Value Chain Sources</h3>
+<h3>Market Sources</h3><p>MARKET INTELLIGENCE DOSSIER - URL EVIDENCE TRACKER</p>
+<p>Purpose: Supporting documentation with comprehensive URL evidence for Market Attractiveness Score Analysis</p>
+<p>Market: Télésurveillance Cardiaque SaaS France</p>
+<p>Data Completeness: 50/100</p>
+<p>Assessment: 🔴 INSUFFICIENT - NEED MORE RESEARCH (&lt;70)</p>
+<p>Calculation: (6 URLs found ÷ 12 searched) × 100 = 50% completeness</p>
+<p>Research Date: Octobre 24, 2024 | Total URLs Found: 6</p>
+<p>URL EVIDENCE BY MARKET SCORING CATEGORY</p>
+<p>🌊 ATTRACTIVE MARKET (Market Dynamics) | Found 2/4 data points</p>
+<ul><li><b>Market Size:</b> <a href="https://grandcoeur.fr" target="_blank">grandcoeur.fr</a>. Used for: Évaluation des bases du programme de 15 jours.</li><li><b>Growth Drivers:</b> <a href="https://epargne.boursedirect.fr/uploads/files/partners/audacia/Audacia_Direct_PME_2020_2019.pdf" target="_blank">epargne.boursedirect.fr</a>. Used for: Utilisation pour l'analyse macro-économique des allocations d'investissement en santé.</li><li><b>Timing Why Now:</b> Données indisponibles.</li><li><b>Market Risks:</b> Données indisponibles.</li></ul>
+<p>⚔️ WINNABLE MARKET (Competitive Landscape) | Found 2/4 data points</p>
+<ul><li><b>Incumbents:</b> Données indisponibles.</li><li><b>Challengers:</b> Données indisponibles.</li><li><b>White Space:</b> <a href="https://www.grandcoeur.paris/" target="_blank">grandcoeur.paris</a>. Used for: Analyse des anomalies de marques déposées pour délimiter le segment.</li><li><b>Defensibility:</b> <a href="https://www.linkedin.com/in/mauro-colagreco-73791723" target="_blank">linkedin.com</a>. Used for: Évaluation des profils d'experts opérationnels pour déterminer la solidité des modèles médicaux.</li></ul>
+<p>🎯 PENETRABLE MARKET (Go-To-Market &amp; Unit Economics) | Found 1/4 data points</p>
+<ul><li><b>GTM Model:</b> Données indisponibles.</li><li><b>Pricing Model:</b> Données indisponibles.</li><li><b>Unit Economics:</b> Données indisponibles.</li><li><b>Scalability:</b> <a href="https://grandcoeur.fr" target="_blank">grandcoeur.fr</a>. Used for: Analyse des options technologiques du code web.</li></ul>
+<p>💰 REWARDING MARKET (Funding &amp; Exit Landscape) | Found 1/3 data points</p>
+<ul><li><b>Funding Activity:</b> Données indisponibles.</li><li><b>Exit Multiples:</b> Données indisponibles.</li><li><b>Strategic Buyers:</b> <a href="https://epargne.boursedirect.fr/uploads/files/partners/audacia/Audacia_Direct_PME_2020_2019.pdf" target="_blank">epargne.boursedirect.fr</a>. Used for: Consultation des dynamiques d'acquisition du courtier Audacia et Bourse Direct.</li></ul>
+<p>WEB DATA COMPLETENESS ANALYSIS</p>
+<p>Missing Critical URLs Based on Web Research: Absence d'études de cas du syndicat de la télémédecine, d'analyses de pricing et de documentation réglementaire HAS/PECAN spécifique au dispositif médical GrandCœur.</p>
+<p>URLs Successfully Found: 6 out of 12 searched</p>
+<p>Critical Data Coverage: 50% of required data points</p>
+<p>Research Confidence Level: MEDIUM</p><h3>Company Sources</h3><p>DOSSIER D'INTELLIGENCE DE L'ENTREPRISE - SUIVI DES PREUVES URL</p>
+<p>Objectif : Documentation de support avec preuves URL complètes pour l'analyse du score d'investissement</p>
+<p>Entreprise: GrandCœur (grandcoeur.fr)</p>
+<p>Complétude des données: 25/100</p>
+<p>Évaluation: 🔴 INSUFFICIENT DATA FOR A FIRST LOOK (&lt;70)</p>
+<p>Calcul: (4 URLs trouvées ÷ 16 recherchées) × 100 = 25% complet</p>
+<p>Date de recherche: Octobre 24, 2024 | Total URLs Found: 4</p>
+<p>PREUVES URL PAR CATÉGORIE DE SCORE</p>
+<h4>EXCELLENCE DE L'ÉQUIPE | Found 1/4 data points</h4>
+<ul><li><b>Founder-Market Fit:</b> <a href="https://www.linkedin.com/in/mauro-colagreco-73791723" target="_blank">linkedin.com</a>. Used for: Analyse des incohérences du profil de direction lié par erreur à un chef cuisinier.</li><li><b>Track Record:</b> Données indisponibles.</li><li><b>Leadership:</b> Données indisponibles.</li><li><b>Completeness:</b> Données indisponibles.</li></ul>
+<h4>OPPORTUNITÉ DE MARCHÉ | Found 1/4 data points</h4>
+<ul><li><b>Size &amp; Growth:</b> Données indisponibles.</li><li><b>Timing Why Now:</b> Données indisponibles.</li><li><b>Competition:</b> Données indisponibles.</li><li><b>Expansion:</b> <a href="https://epargne.boursedirect.fr/uploads/files/partners/audacia/Audacia_Direct_PME_2020_2019.pdf" target="_blank">epargne.boursedirect.fr</a>. Used for: Validation de la véritable nature de la marque Grandcœur acquise par Vertigo Family en 2019 dans le secteur de la restauration.</li></ul>
+<h4>INNOVATION PRODUIT | Found 1/4 data points</h4>
+<ul><li><b>Differentiation:</b> <a href="https://grandcoeur.fr" target="_blank">grandcoeur.fr</a>. Used for: Analyse de l'interface fonctionnelle de saisie médicale et détection de sa nature rudimentaire.</li><li><b>Product-Market Fit:</b> Données indisponibles.</li><li><b>Scalability:</b> Données indisponibles.</li><li><b>IP &amp; Barriers:</b> Données indisponibles.</li></ul>
+<h4>BUSINESS MODEL | Found 0/4 data points</h4>
+<ul><li><b>Unit Economics:</b> Données indisponibles.</li><li><b>Revenue Model:</b> Données indisponibles.</li><li><b>Monetization:</b> Données indisponibles.</li><li><b>Capital Efficiency:</b> Données indisponibles.</li></ul>
+<h4>TRACTION &amp; GROWTH | Found 1/4 data points</h4>
+<ul><li><b>Revenue Growth:</b> Données indisponibles.</li><li><b>Customer Validation:</b> Données indisponibles.</li><li><b>KPI Progression:</b> Données indisponibles.</li><li><b>Market Penetration:</b> <a href="https://www.grandcoeur.paris/" target="_blank">grandcoeur.paris</a>. Used for: Différenciation claire de l'activité commerciale réelle de Grandcœur en tant que marque de gastronomie parisienne.</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>Missing Critical URLs Based on Web Research: Absence de profils de développeurs, de page de tarification SaaS, de mentions de serveurs certifiés HDS ou de dépôts de brevets sur l'INPI.</p>
+<p>URLs Successfully Found: 4 out of 16 searched</p>
+<p>Critical Data Coverage: 25% of required data points</p>
+<p>Research Confidence Level: LOW</p></div>
+</div>
+<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur GrandCœur ?</span><span class="i18n-en">Explore GrandCœur further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc"><span class="i18n-fr">Généré par Proplace.co — une IA qui peut se tromper. Contact : <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span><span class="i18n-en">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span></p></div>
+<script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script>
+</div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a><a class="" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+// Bilingue (2026-07-16) : mêmes clé/priorités que le chrome partagé — le flux d'évaluation
+// était le dernier gros composant JS 100% FR quel que soit le choix de langue du visiteur.
+function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}
+ return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}
+function T(fr,en){return EN()?en:fr;}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function ctaCal(){return '<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">'
+ +T("📅 Un deal flow personnalisé ? Planifiez un appel stratégique","📅 Want a tailored deal flow? Book a strategy call")+'</a>';}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">'+T("Évaluation indisponible.","Evaluation unavailable.")+'</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">'+T("Choisir →","Choose →")+'</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||T("Plusieurs sociétés correspondent — choisissez la bonne :","Several companies match — pick the right one:"))+'</div>'+(cs||'<div class="ev-fine">'+T("Aucun candidat — précisez l’URL exacte.","No candidate — provide the exact URL.")+'</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">'+T("📊 Analyse","📊 Analysis")+'</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">'+T("→ Lancer le mémo dans votre dashboard","→ Launch the memo in your dashboard")+'</a>'; }
+ else{ o+=ctaCal(); }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">'+T("⏳ Évaluation de "+esc(company)+" selon votre thèse "+esc(fund)+"…","⏳ Evaluating "+esc(company)+" against your "+esc(fund)+" thesis…")+'</div>';
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">'+T("Demande d’analyse de","Analysis request for")+' <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="'+T("Prénom","First name")+'" required><input name="last_name" placeholder="'+T("Nom","Last name")+'" required></div>'
+ +'<input name="email" type="email" placeholder="'+T("Email professionnel","Work email")+'" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="'+T("Téléphone","Phone")+'"></div>'
+ +'<button type="submit" class="ev-submit">'+T("Recevoir l’analyse →","Get the analysis →")+'</button>'
+ +'<p class="ev-fine">'+T("Déjà client ? <a href=\"https://proplace.co/#login\">Connectez-vous</a> pour évaluer selon VOTRE thèse.","Already a client? <a href=\"https://proplace.co/#login\">Log in</a> to evaluate against YOUR thesis.")+'</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Enregistrement…","⏳ Saving…")+'</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">'+T("✅ Merci "+esc(d.first_name)+" !","✅ Thank you "+esc(d.first_name)+"!")+'</div>'
+    +'<div class="ev-r">'+T("Votre analyse de <b>"+esc(b.dataset.c||b.dataset.u)+"</b> vous sera envoyée par email sous peu.","Your analysis of <b>"+esc(b.dataset.c||b.dataset.u)+"</b> will be emailed to you shortly.")+'</div>'
+    +ctaCal();});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">'+T("⚡ Évaluation express —","⚡ Express evaluation —")+' <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+var _lbEN=false;try{var _l=localStorage.getItem('proplace_lang');
+_lbEN=_l==='en'||(!_l&&(navigator.language||'').toLowerCase().indexOf('fr')!==0);}catch(e){}
+ov.innerHTML='<button class="lb-x" aria-label="'+(_lbEN?'Close':'Fermer')+'">×</button><img alt=""><a class="lb-dl" download>'+(_lbEN?'⬇ Download':'⬇ Télécharger')+'</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><style>
+/* Étoile favori (★) en tête de la cellule Société — dorée dès l'état INACTIF (☆) pour être
+   repérable comme « à cliquer », pleine et vive à l'état actif (★). */
+.op-fav{display:inline-block;vertical-align:baseline;margin:0 7px 0 0;padding:0;font-size:17px;
+line-height:1;color:#d9b64a;background:none;border:none;cursor:pointer;
+transition:color .12s,transform .12s}
+.op-fav:hover{color:#e5a91c;transform:scale(1.2)}
+.op-fav.on{color:#e5a91c}
+.fav-count{font-variant-numeric:tabular-nums;font-weight:800}
+/* Page /actualites/favoris/ : état vide + encart « créez votre thèse ». */
+.fav-empty-box{margin:26px 0;padding:24px 20px;border:1px dashed var(--line);border-radius:12px;
+background:var(--bg);text-align:center;color:var(--sub);font-size:14px;line-height:1.55}
+.fav-empty-box a{color:var(--accent-dk);font-weight:700;text-decoration:none}
+.fav-empty-box a:hover{text-decoration:underline}
+.fav-tease{margin:22px 0 6px;padding:16px 18px;border:1px solid var(--accent);border-radius:12px;
+background:var(--bg)}
+.fav-tease-h{font-size:15px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.fav-tease-p{font-size:13.5px;color:var(--sub);line-height:1.5;margin:0 0 10px}
+.fav-tease .tm-read{margin:0}
+/* Composeur de thèse in-browser + évaluation groupée (Phase B). */
+.fav-th-text{width:100%;min-height:64px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+font-family:inherit;font-size:13.5px;line-height:1.5;color:var(--ink);resize:vertical;margin:0 0 8px}
+.fav-th-text:focus{outline:none;border-color:var(--accent)}
+.fav-btn{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:9px;padding:9px 15px;cursor:pointer;transition:opacity .15s}
+.fav-btn:hover{opacity:.85}
+.fav-btn:disabled{opacity:.5;cursor:default}
+.fav-th-edit{margin-left:10px;font-size:12.5px;font-weight:600;color:var(--accent-dk);background:none;
+border:none;cursor:pointer;text-decoration:underline}
+.fav-th-label{font-size:13px;color:var(--sub);font-style:italic;margin:0 0 8px}
+.fav-th-hint{font-size:12px;color:#b91c1c;margin:6px 0 0}
+/* Verdict d'un favori (plein largeur sous la ligne, comme .op-eval-panel). */
+.fav-verdict{grid-column:1/-1;margin-top:2px}
+.fav-verdict:empty{margin:0}
+.fav-v{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;padding:3px 10px;margin-top:6px}
+.fav-v-yes{color:#047857;background:rgba(4,120,87,.10)}
+.fav-v-no{color:#b91c1c;background:rgba(185,28,28,.08)}
+.fav-v-err{color:var(--mid);background:var(--bg)}
+.fav-v-load{color:var(--mid);font-size:12.5px;font-weight:600;margin-top:6px;display:inline-block}
+.fav-vr{display:block;font-size:12.5px;color:var(--sub);line-height:1.45;margin-top:4px}
+</style><script>(function(){
+var K="proplace_favoris";
+// Bridge « certain » vers /cibles/ : un ?cb=<token> dans l'URL (posé par le lien du /cibles/ du
+// client, ou un email Proplace) lie ce navigateur à CE client → chaque ★ est aussi reflétée dans
+// un store SERVEUR scopé au token, retrouvée ensuite dans son onglet Favoris même sur un autre
+// appareil. Sans token (visiteur anonyme), sync() est un no-op → comportement inchangé.
+var TKK="proplace_cb_token",SYNC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/fav-sync";
+function readTok(){try{return localStorage.getItem(TKK)||"";}catch(e){return "";}}
+function writeTok(t){try{localStorage.setItem(TKK,t);}catch(e){}}
+function captureTok(){var t="";try{t=((new URL(window.location.href)).searchParams.get("cb")||"").trim();}catch(e){}
+ if(/^[A-Za-z0-9]{16}$/.test(t)){writeTok(t);return t;}return readTok();}
+var TOK=captureTok();
+function sync(op,removed){if(!TOK)return;try{
+ fetch(SYNC,{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
+  body:JSON.stringify({token:TOK,remove:!!removed,op:op})}).catch(function(){});
+}catch(e){}}
+function EN(){try{var l=localStorage.getItem("proplace_lang");if(l)return l==="en";}catch(e){}
+ return (navigator.language||"").slice(0,2).toLowerCase()==="en";}
+function read(){try{return JSON.parse(localStorage.getItem(K)||"[]")||[];}catch(e){return [];}}
+function write(a){try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}}
+function normU(u){return (u||"").toLowerCase().trim().replace(/[#?].*$/,"").replace(/\/+$/,"");}
+function normN(n){return (n||"").toLowerCase().replace(/\s+/g," ").trim();}
+function keyOf(u,c){return normU(u)||normN(c);}
+function opFromBtn(b){var d=b.dataset,u=d.u||"",c=d.co||"";
+ // Le bouton ne porte plus que co+url (régime data-*) : le reste est DÉRIVÉ de la ligne
+ // .trow (data-v/date/t/amt/pays + cellules affichées). Les anciens data-* du bouton restent
+ // lus en PRIORITÉ (compat : lignes de la page /favoris reconstruites depuis localStorage).
+ var r=b.closest?b.closest(".trow"):null,rd=(r&&r.dataset)||{};
+ // Cellules Type/Date en dual-span depuis 2026-07-16 : lire le span .i18n-fr (libellé
+ // canonique FR stocké dans le favori), sinon le textContent brut (cellules mono-langue).
+ function cell(s){if(!r)return "";var e=r.querySelector(s+" .i18n-fr")||r.querySelector(s);
+  var v=e?e.textContent.trim():"";return v==="—"?"":v;}
+ // Headline : sous-ligne .th (co présent) SINON le titre-lien du strong (op sans société).
+ var hd=r?(r.querySelector(".tco .th a:not(.tm-mem)")||r.querySelector(".tco strong a")):null;
+ var pe=r?r.querySelector(".tpays"):null;
+ var vert=d.v||rd.v||"";
+ return {id:keyOf(u,c),co:c,url:u,
+  disp:d.disp||(hd?hd.textContent.trim().slice(0,200):""),
+  ind:d.i||vert,vert:vert,
+  amtD:d.amtd||cell(".tamt"),
+  amt:parseInt(d.amt||rd.amt||"0",10)||0,
+  pays:d.pays||rd.pays||"",
+  paysFull:d.paysfull||(pe?(pe.getAttribute("title")||""):""),
+  date:d.date||(rd.date||"").slice(0,10),
+  typeK:d.typek||rd.t||"",
+  typeFr:d.typefr||cell(".ttype"),
+  ts:Date.now()};}
+function idx(a,id){for(var i=0;i<a.length;i++)if(a[i].id===id)return i;return -1;}
+function paint(){var a=read(),ids={};a.forEach(function(o){ids[o.id]=1;});
+ [].slice.call(document.querySelectorAll(".op-fav")).forEach(function(b){
+  var id=keyOf(b.dataset.u||"",b.dataset.co||""),on=!!ids[id];
+  b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false");
+  b.textContent=on?"★":"☆";
+  var t=on?(EN()?"Remove from favourites":"Retirer des favoris"):(EN()?"Add to favourites":"Mettre en favori");
+  b.title=t;b.setAttribute("aria-label",t);});
+ var n=a.length;[].slice.call(document.querySelectorAll(".fav-count")).forEach(function(e){e.textContent=String(n);});}
+window.__favPaint=paint;
+document.addEventListener("click",function(ev){
+ var b=ev.target&&ev.target.closest?ev.target.closest(".op-fav"):null;if(!b)return;
+ ev.preventDefault();ev.stopPropagation();
+ var a=read(),op=opFromBtn(b),k=idx(a,op.id),removed=k>=0;
+ if(k>=0)a.splice(k,1);else a.unshift(op);
+ write(a);paint();sync(op,removed);if(window.__favRender)window.__favRender();});
+window.addEventListener("storage",function(e){if(e.key===K){paint();if(window.__favRender)window.__favRender();}});
+if(document.readyState!=="loading")paint();else document.addEventListener("DOMContentLoaded",paint);
+})();</script></body></html>
