@@ -134,12 +134,12 @@ try{var st=document.createElement("style");st.textContent=
 ".pph-acct{position:relative;display:inline-flex;align-items:center}"+
 ".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer}"+
 ".pph-acct-caret{font-size:10px;line-height:1}"+
-".pph-acct-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:120;display:flex;flex-direction:column}"+
+/* position:FIXED (coordonnées posées en JS via getBoundingClientRect) : le menu
+   échappe au défileur overflow-x:auto de .pph nav en mobile (sinon clippé). */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
 ".pph-acct-menu[hidden]{display:none}"+
 ".pph-acct-menu a{display:block;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0}"+
-".pph-acct-menu a:hover{background:#eef9f2;color:#185c38}"+
-/* Footer (bas de page) : le menu s'ouvre VERS LE HAUT pour ne pas déborder */
-".pph-acct--up .pph-acct-menu{top:auto;bottom:calc(100% + 8px)}";
+".pph-acct-menu a:hover{background:#eef9f2;color:#185c38}";
 document.head.appendChild(st);}catch(e){}
 var D={
  en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
@@ -161,6 +161,13 @@ var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria
 "</div></div>";
 return {i:1,h:h};}
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
 /* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
    apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
 function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
@@ -170,7 +177,7 @@ var wrap=b.parentNode;var menu=wrap?wrap.querySelector(".pph-acct-menu"):null;if
 var willOpen=menu.hasAttribute("hidden");
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
-if(willOpen){menu.removeAttribute("hidden");b.setAttribute("aria-expanded","true");}
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
 else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
 });}
 function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
@@ -188,7 +195,6 @@ var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button
 var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
-var _fa=pf?pf.querySelector(".pph-acct"):null;if(_fa)_fa.className="pph-acct pph-acct--up";
 wireAcct();}
 function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
 var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
@@ -201,7 +207,9 @@ apply(l);}
 function init(){apply(getLang());
 if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
 document.addEventListener("click",closeAcct);
-document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});}
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",closeAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Aumatech</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Aumatech"}]}</script></div><div class="main-wrapper">
@@ -464,12 +472,12 @@ try{var st=document.createElement("style");st.textContent=
 ".pph-acct{position:relative;display:inline-flex;align-items:center}"+
 ".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer}"+
 ".pph-acct-caret{font-size:10px;line-height:1}"+
-".pph-acct-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:120;display:flex;flex-direction:column}"+
+/* position:FIXED (coordonnées posées en JS via getBoundingClientRect) : le menu
+   échappe au défileur overflow-x:auto de .pph nav en mobile (sinon clippé). */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
 ".pph-acct-menu[hidden]{display:none}"+
 ".pph-acct-menu a{display:block;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0}"+
-".pph-acct-menu a:hover{background:#eef9f2;color:#185c38}"+
-/* Footer (bas de page) : le menu s'ouvre VERS LE HAUT pour ne pas déborder */
-".pph-acct--up .pph-acct-menu{top:auto;bottom:calc(100% + 8px)}";
+".pph-acct-menu a:hover{background:#eef9f2;color:#185c38}";
 document.head.appendChild(st);}catch(e){}
 var D={
  en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
@@ -491,6 +499,13 @@ var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria
 "</div></div>";
 return {i:1,h:h};}
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
 /* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
    apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
 function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
@@ -500,7 +515,7 @@ var wrap=b.parentNode;var menu=wrap?wrap.querySelector(".pph-acct-menu"):null;if
 var willOpen=menu.hasAttribute("hidden");
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
-if(willOpen){menu.removeAttribute("hidden");b.setAttribute("aria-expanded","true");}
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
 else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
 });}
 function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
@@ -518,7 +533,6 @@ var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button
 var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
-var _fa=pf?pf.querySelector(".pph-acct"):null;if(_fa)_fa.className="pph-acct pph-acct--up";
 wireAcct();}
 function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
 var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
@@ -531,7 +545,9 @@ apply(l);}
 function init(){apply(getLang());
 if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
 document.addEventListener("click",closeAcct);
-document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});}
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",closeAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
