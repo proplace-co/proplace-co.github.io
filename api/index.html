@@ -223,6 +223,7 @@
         <div class="pl-3 space-y-1 text-neutral-500">
           <a href="#endpoint-list-funds" class="block py-0.5 hover:text-ink">listFunds</a>
           <a href="#endpoint-get-fund" class="block py-0.5 hover:text-ink">getFund</a>
+          <a href="#endpoint-list-deals" class="block py-0.5 hover:text-ink">listDeals</a>
           <a href="#endpoint-screen" class="block py-0.5 hover:text-ink">screenDeal</a>
           <a href="#endpoint-trigger-memo" class="block py-0.5 hover:text-ink">triggerMemo</a>
           <a href="#endpoint-get-memo" class="block py-0.5 hover:text-ink">getMemo</a>
@@ -448,6 +449,79 @@ console.log(await r.json());</code></pre>
           </div>
           <span class="text-xs text-neutral-500">operationId: <code>getFund</code></span>
         </div>
+      </div>
+
+      <!-- Endpoint: listDeals -->
+      <div id="endpoint-list-deals" class="endpoint-card border border-neutral-200 rounded-xl p-6 my-6 not-prose">
+        <div class="flex items-start justify-between flex-wrap gap-3 mb-3">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="method-get text-xs font-mono font-semibold px-2 py-1 rounded">GET</span>
+              <code class="font-semibold text-base">/v1/funds/{fund_type}/deals</code>
+            </div>
+            <p class="text-sm text-neutral-600 m-0">The enriched deal roster for a fund — every company Proplace has sourced &amp; qualified, as canonical rows you can drop into your own CRM: verdict, conviction score, the decision-maker's name, LinkedIn, email &amp; phone, the company LinkedIn, both memo links, and the CEO decision loop. This is the enrichment layer — it augments your existing deal-flow, it doesn't replace your tool.</p>
+          </div>
+          <span class="text-xs text-neutral-500">operationId: <code>listDeals</code></span>
+        </div>
+        <div class="mt-4 text-sm">
+          <div class="text-xs font-semibold text-neutral-500 uppercase mb-2">Query parameters</div>
+          <table class="w-full text-sm">
+            <thead><tr class="text-left text-neutral-500 border-b border-neutral-200"><th class="py-1 pr-4 font-medium">Param</th><th class="py-1 pr-4 font-medium">Type</th><th class="py-1 font-medium">Notes</th></tr></thead>
+            <tbody>
+              <tr class="border-b border-neutral-100"><td class="py-1 pr-4"><code>status</code></td><td class="py-1 pr-4 text-neutral-600">string</td><td class="py-1 text-neutral-600">Optional. Filter by verdict — <code>CALL</code>, <code>CONSIDER</code>, <code>MONITOR</code>, <code>PASS</code>. Omit for all.</td></tr>
+              <tr><td class="py-1 pr-4"><code>limit</code></td><td class="py-1 pr-4 text-neutral-600">integer</td><td class="py-1 text-neutral-600">Optional. Max rows (default 200).</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <details class="mt-4">
+          <summary class="text-sm font-medium text-accent">Show request/response ↓</summary>
+          <div class="grid md:grid-cols-2 gap-4 mt-3">
+            <div>
+              <div class="text-xs font-semibold text-neutral-500 uppercase mb-2">Request</div>
+              <pre class="!m-0"><code class="language-bash">curl -s \
+  "https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/funds/s4bt/deals?status=CALL&limit=50" \
+  -H "Authorization: Bearer $PROPLACE_API_KEY"</code></pre>
+            </div>
+            <div>
+              <div class="text-xs font-semibold text-neutral-500 uppercase mb-2">Response</div>
+              <pre class="!m-0"><code class="language-json">{
+  "fund_type": "s4bt",
+  "count": 1,
+  "deals": [
+    {
+      "deal_id": "rec0Abc123",
+      "company_name": "Thrust Carbon",
+      "website": "https://thrustcarbon.com",
+      "sector": "Travel sustainability",
+      "country": "United Kingdom",
+      "stage": "seed",
+      "linkedin_company": "https://linkedin.com/company/thrust-carbon",
+      "verdict": "CALL",
+      "gp_final_decision": "Advancing to a call",
+      "conviction_score": 84.0,
+      "summary": "Carbon accounting for corporate travel...",
+      "angle": "consolidation-travel-esg",
+      "founder": {
+        "name": "Kit Brennan",
+        "first_name": "Kit",
+        "last_name": "Brennan",
+        "linkedin": "https://linkedin.com/in/kitbrennan",
+        "email": "kit@thrustcarbon.com",
+        "phone": "+44 20 7946 0000"
+      },
+      "memo_url": "https://analysis.proplace.co/thrust-carbon-v2",
+      "memo_pdf_url": "https://memo.proplace.co/thrust-carbon.pdf",
+      "memo_type": "detailed",
+      "ceo_status": "Validé",
+      "ceo_decision": "yes",
+      "ceo_note": "Great fit — intro me."
+    }
+  ]
+}</code></pre>
+            </div>
+          </div>
+          <p class="text-xs text-neutral-500 mt-3 mb-0">Fields are best-effort: any value Proplace hasn't computed yet comes back as an empty string (or <code>null</code> for <code>conviction_score</code>), never omitted — so your column mapping is stable. Contact fields (<code>email</code>, <code>linkedin</code>) only ever carry a <em>verified real</em> value — an empty string means we don't have it yet, never a placeholder.</p>
+        </details>
       </div>
 
       <!-- Endpoint: screenDeal -->
