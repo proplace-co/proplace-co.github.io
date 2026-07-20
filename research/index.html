@@ -826,6 +826,7 @@ var TX={
      search:'Rechercher dans le vivier…',more:'Voir les %n% suivants',
      badgeDone:'✓ CARTE FAITE',badgeDraft:'✓ DÉJÀ ANALYSÉ',
      seeCard:'✓ Voir la carte mentale →',goAgain:'↻ Refaire une carte mentale',
+     sectMore:'+ %n% secteurs',sectLess:'− Moins de secteurs',
      need:'Colle un lien à analyser.',needText:'Colle le texte à analyser.',
      left:'il te reste %n% mindmap(s) aujourd\'hui',
      anon:'1 mindmap gratuite par jour · <a href="https://proplace.co/#login">connecte-toi</a> pour publier',
@@ -848,6 +849,7 @@ var TX={
      search:'Search the pool…',more:'Show %n% more',
      badgeDone:'✓ MAPPED',badgeDraft:'✓ ANALYSED',
      seeCard:'✓ See the mindmap →',goAgain:'↻ Map it again',
+     sectMore:'+ %n% sectors',sectLess:'− Fewer sectors',
      need:'Paste a link to analyse.',needText:'Paste the text to analyse.',
      left:'%n% mindmap(s) left today',
      anon:'1 free mindmap per day · <a href="https://proplace.co/#login">log in</a> to publish',
@@ -955,18 +957,34 @@ function paintKinds(){
   b.onclick=function(){KIND=b.getAttribute('data-k')||'';SHOWN=PAGE;repaint();};});
 }
 function repaint(){paintDates();paintKinds();paintPills();paintFeed();}
+// Avec 36 flux, le vivier produit ~26 secteurs dont beaucoup à 1 contenu : tout afficher
+// ferait un mur de pilules. On montre les plus fournis, le reste derrière « + N secteurs ».
+var SECT_TOP=12,SECT_ALL=false;
 function paintPills(){
  var t=T(),box=$('rs-pills');if(!box)return;
  var win=POOL.filter(inWindow);
+ var live=SECTORS.map(function(s){return {s:s,n:s.items.filter(inWindow).length};})
+   .filter(function(o){return o.n>0;})
+   .sort(function(a,b){return b.n-a.n;});
+ var shown=(SECT_ALL||live.length<=SECT_TOP)?live:live.slice(0,SECT_TOP);
+ // Un secteur sélectionné reste visible même s'il sort du haut du classement.
+ if(SEL&&!shown.some(function(o){return o.s.sector===SEL;})){
+  var cur=live.filter(function(o){return o.s.sector===SEL;});
+  shown=shown.concat(cur);
+ }
  var html='<button type="button" class="rs-pill'+(SEL?'':' on')+'" data-s="">'+esc(t.all)
   +' <i>'+win.length+'</i></button>';
- SECTORS.forEach(function(s){
-  var n=s.items.filter(inWindow).length;
-  if(!n)return;                      // un secteur vide sur la fenêtre choisie n'a rien à dire
-  html+='<button type="button" class="rs-pill'+(SEL===s.sector?' on':'')+'" data-s="'+esc(s.sector)+'">'
-   +esc(s.sector_fr||s.sector)+' <i>'+n+'</i></button>';});
+ shown.forEach(function(o){
+  html+='<button type="button" class="rs-pill'+(SEL===o.s.sector?' on':'')+'" data-s="'
+   +esc(o.s.sector)+'">'+esc(o.s.sector_fr||o.s.sector)+' <i>'+o.n+'</i></button>';});
+ var rest=live.length-shown.length;
+ if(rest>0||SECT_ALL)
+  html+='<button type="button" class="rs-pill rs-secmore">'
+   +esc(SECT_ALL?t.sectLess:t.sectMore.replace('%n%',rest))+'</button>';
  box.innerHTML=html;
  box.querySelectorAll('.rs-pill').forEach(function(b){
+  if(b.classList.contains('rs-secmore')){
+   b.onclick=function(){SECT_ALL=!SECT_ALL;paintPills();};return;}
   b.onclick=function(){SEL=b.getAttribute('data-s')||'';SHOWN=PAGE;paintPills();paintFeed();};});
 }
 function paintFeed(){
