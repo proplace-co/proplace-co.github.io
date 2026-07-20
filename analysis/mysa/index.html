@@ -1,4 +1,4 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>mysa — analyse Mobility &amp; Transportation | Proplace</title><meta name="description" content="Mobility &amp; Transportation · Plateforme SaaS d&#x27;orchestration de l&#x27;hébergement d&#x27;affaires · Seed"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/mysa/"><meta property="og:type" content="article"><meta property="og:title" content="mysa — analyse Mobility &amp; Transportation | Proplace"><meta property="og:description" content="Mobility &amp; Transportation · Plateforme SaaS d&#x27;orchestration de l&#x27;hébergement d&#x27;affaires · Seed"><meta property="og:url" content="https://proplace.co/analysis/mysa/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>mysa — analyse Mobility &amp; Transportation | Proplace</title><meta name="description" content="Mobility &amp; Transportation · Plateforme SaaS d&#x27;orchestration de l&#x27;hébergement d&#x27;affaires · Seed"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/mysa/"><meta property="og:type" content="article"><meta property="og:title" content="mysa — analyse Mobility &amp; Transportation | Proplace"><meta property="og:description" content="Mobility &amp; Transportation · Plateforme SaaS d&#x27;orchestration de l&#x27;hébergement d&#x27;affaires · Seed"><meta property="og:url" content="https://proplace.co/analysis/mysa/"><meta property="og:image" content="https://proplace.co/analysis/radars/mysa.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://proplace.co/analysis/radars/mysa.png"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
 /* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
    sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
    lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
@@ -44,9 +44,20 @@ align-items:center;gap:18px;flex-wrap:nowrap}
 gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
 .pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
 .pph nav>a:hover{color:#0a0a0a}
-.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
-border-radius:9px;font-weight:600}
-.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* (retour CEO 20/07) — mobile : « Mon compte » s'affichait À LA VERTICALE (un mot,
+   voire une lettre, par ligne). Cause : dans .pph nav (flex), .pph-sect et .pph-lang
+   sont en flex:0 0 auto mais PAS .pph-auth → c'était le SEUL enfant compressible, il
+   absorbait tout le débordement et rétrécissait à ~0, forçant le texte du bouton à
+   passer à la ligne. Il devient incompressible : c'est le défileur horizontal du nav
+   (v74) qui prend le relais, comme prévu. */
+.pph .pph-auth{flex:0 0 auto;display:inline-flex;align-items:center;white-space:nowrap}
+.pph .pph-auth button,.pph .pph-acct,.pph .pph-acct-btn{flex:0 0 auto;white-space:nowrap}
+/* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
+   « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
+   couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
+.pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600;border:none;cursor:pointer;font-family:inherit;line-height:1.2}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover,.pph button.cta:hover,.pph .pph-auth button.cta:hover{background:#36a866}
 /* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
 .pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
 border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
@@ -69,9 +80,32 @@ html[data-pplang=en] .i18n-fr{display:none}
 @media(max-width:760px){
  .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
  .pph .pph-home{display:none}
- .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ /* v74 (R5) — le SEUL débordeur réel mesuré à 390px est CETTE nav (Connexion +
+    pastille News|Analysis + EN|FR ≈ 309px pour ~264px disponibles) : elle devient
+    son PROPRE défileur horizontal (règle « wide content » : overflow-x:auto sur la
+    pièce INTERNE — jamais sur un ancêtre d'une barre sticky). Alignée à gauche en
+    mobile : un débordement côté start (flex-end) serait inatteignable au scroll. */
+ .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pph nav::-webkit-scrollbar{display:none}
+ /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
+    (même piège que la couleur du CTA, retour CEO 19/07). */
+ .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
  .pph-sect a{padding:6px 10px;font-size:12px}
  .pph-lang button{padding:5px 7px;font-size:11px}
+ /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
+    défileur (order:-1) → les 3 boutons sont TOUJOURS visibles à gauche, c'est
+    « Connexion » qui déborde/scrolle si l'écran est trop étroit (demande CEO). */
+ .pph nav .pph-sect{order:-1;flex:0 0 auto}
+ .pph nav .pph-auth{order:0}
+ /* v75 (bug #7) — la pastille EN|FR est hors du <nav> (défileur) : collée à droite du
+    header, toujours atteignable même quand le <nav> déborde/scrolle. */
+ .pph-lang{margin-left:auto;flex:0 0 auto}
+}
+/* ≤430px : les 3 pastilles + Connexion tiennent ensemble (resserrage police/padding). */
+@media(max-width:430px){
+ .pph nav{gap:7px}
+ .pph-sect a{padding:6px 9px;font-size:11.5px;letter-spacing:-.01em}
 }
 
 .ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
@@ -99,7 +133,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "mysa — Mobility & Transportation", "description": "Mobility & Transportation · Plateforme SaaS d'orchestration de l'hébergement d'affaires · Seed", "inLanguage": "fr", "url": "https://proplace.co/analysis/mysa/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/mysa/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}}, "about": {"@type": "Organization", "name": "mysa"}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "mysa — Mobility & Transportation", "description": "Mobility & Transportation · Plateforme SaaS d'orchestration de l'hébergement d'affaires · Seed", "inLanguage": "fr", "url": "https://proplace.co/analysis/mysa/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/mysa/"}, "image": ["https://proplace.co/analysis/radars/mysa.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}, "about": {"@type": "Organization", "name": "mysa"}, "datePublished": "2026-07-20", "dateModified": "2026-07-20"}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a><a class="pph-rsch" href="/research/" data-i18n="research">Research</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -108,27 +142,112 @@ try{var st=document.createElement("style");st.textContent=
 "html[data-pplang=en] a.i18n-en{display:inline-block}"+
 ".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
 ".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
-".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
 document.head.appendChild(st);}catch(e){}
 var D={
- en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
- fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
 };
 function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
 return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
-if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+var mSet="https://analysis.proplace.co/thesis/?fund="+f;
+var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
+var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
+'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
+'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
+"</div></div>";
+return {i:1,h:h};}
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
 try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
-var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
-Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
 function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
 var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
 function go(l){
@@ -138,6 +257,11 @@ var alt=altUrl(l);
 if(alt&&alt!==here){location.href=alt;return;}
 apply(l);}
 function init(){apply(getLang());
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">mysa</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "mysa"}]}</script></div><div class="main-wrapper">
@@ -194,7 +318,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <h2 class="subtitle-category">Mobility &amp; Transportation ➜ Plateforme SaaS d'orchestration de l'hébergement d'affaires ➜ La colonne vertébrale technologique pour l'hébergement d'affaires mondial.</h2>
 <div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
 <div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="mysa" data-h="" data-i="Mobility &amp; Transportation" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/mysa/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="market-summary">
-<h2 class="section-title">Résumé du Marché</h2>
+<h2 class="section-title"><span class="i18n-fr">Résumé du Marché</span><span class="i18n-en">Market summary</span></h2>
 <div class="split-container">
 <div class="text-col">
 <p data-mn-split="">MARKET OPPORTUNITY SCORE\nMobility &amp; Transportation &gt; Écosystème SaaS pour hébergement d'affaires corporatif.\nB2B &gt; SaaS\n\n═════════════════════\n\nDYNAMIQUE DE MARCHÉ : 82/100\nCOMPÉTITIVITÉ : 78/100\nGTM ET UNIT ECONOMICS : 85/100\nPOTENTIEL DE SORTIE : 80/100\n\n─────────────────────\n</p><div class="score-row sr-green sr-total"><span class="sr-label">SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:81%"></span></span><span class="sr-val">81/100</span></div><p>\nCe marché constitue un vent arriére puissant pour Mysa car il subit une pression structurelle de numérisation forcée par les nouveaux standards de conformité post-pandémie.\n\n═════════════════════\n\n❓ Définition du Marché\nLe marché cible est celui de la gestion technologique de l'hébergement d'affaires (Corporate Housing Tech), où les entreprises achètent des solutions de logement pour missions longues.</p><p data-mn-split="">La friction structurelle réside dans l'incapacité des systèmes ERP existants à vérifier la qualité et la conformité de milliers de propriétés non-standardisées en temps réel. Mysa se positionne au centre de la chaîne de valeur, entre les agrégateurs de demande (TMC) et les inventaires fragmentés, capturant la marge sur le flux de conformité et de données.\n\n💬 Notre Thèse de Marché\nLe passage du voyage d'affaires 'transit' vers le voyage 'résidentiel' est un changement irréversible dans les politiques RH mondiales.</p><p data-mn-split="">Les acteurs historiques (TMC traditionnelles) ne peuvent pas répondre à ce besoin car leur architecture logicielle est optimisée pour le ticket GDS aérien et non pour la complexité des baux de location et des normes sanitaires évolutives. L'attaque par la modularité (API-first) permet d'exploiter la lassitude des acheteurs face aux solutions monolithiques fermées. La fenêtre d'opportunité est ouverte par la standardisation imminente des protocoles de conformité logement, qui deviendront insurmontables pour les pure-players manuels d'ici 24 mois.\n\n🧠 Conviction et Pari :\n🟢 HAUTE CONVICTION\nLe défi majeur est la résistance des intermédiaires traditionnels qui craignent la transparence totale des prix.</p><p data-mn-split="">Notre pari est que l'exigence de devoir de protection (Duty of Care) des grandes entreprises forcera ces intermédiaires à adopter la technologie de Mysa pour rester assurables. Dans 18 mois, le succès se mesurera par l'adoption de 'Verify IQ' comme pré-requis dans les appels d'offres publics de logement au Royaume-Uni.\n\n═════════════════════\n\n🌊 MARCHÉ ATTRACTIF | Score: 82/100\n• Taille (25%) | Score: 80/100: Marché global plurimilliardaire avec un segment Extended Stay en forte croissance.\n• Moteurs de Croissance (25%) | Score: 88/100: Globalisation des missions de conseil et besoin de flexibilité post-COVID.\n• Timing (25%) | Score: 85/100: Convergence de l'IA (pour le scan de factures) et de la régression des frais de déplacement traditionnels.\n• Risques (25%) | Score: 75/100: Risque de consolidation rapide des inventaires par des plateformes grand public type Airbnb.\n\n⚔️ MARCHÉ GAGNABLE | Score: 78/100\n• Acteurs Historiques (25%) | Score: 82/100: Les géants comme American Express GBT sont des partenaires potentiels mais aussi des barrières.\n• Challengers (25%) | Score: 78/100: AltoVita est le concurrent le plus féroce sur le terrain tech.\n• Espace Vierge (25%) | Score: 84/100: Manque criant de 'colonne vertébrale' neutre connectant toutes les sources d'offre.\n• Défendabilité (25%) | Score: 68/100: Nécessité de construire des effets de réseau rapides pour éviter d'être réduit à une simple suite logicielle.\n\n🎯 MARCHÉ PÉNÉTRABLE | Score: 85/100\n• Modèle GTM (25%) | Score: 90/100: Le modèle de partenariat TMC permet une distribution massive sans CAC direct explosif.\n• Modèle de Prix (25%) | Score: 82/100: Le 'Pay-as-you-go' modulaire réduit drastiquement le cycle de vente corporatif.\n\n💰 MARCHÉ RÉCOMPENSANT | Score: 80/100\n• Sorties Stratégiques (25%) | Score: 85/100: Les acquéreurs potentiels incluent SAP Concur ou des plateformes de paiement corporate.\n\n─────────────────────\n⚡ SYNTHÈSE :\nLe motif 'Haute Attractivité / GTM Solide' indique que le succès dépendra moins de l'innovation produit pure que de la capacité à verrouiller les partenariats de distribution avant les concurrents mieux financés.\n\n🌐 CONFIANCE : Marché bien documenté via les rapports TravelTech (5 URLs analysées).</p>
@@ -211,14 +335,14 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <h2 class="section-title">Analyse Approfondie de l'Entreprise</h2>
 <div class="split-container">
 <div class="text-col">
-<h3 id="value-proposition">Proposition de Valeur</h3>
+<h3 id="value-proposition"><span class="i18n-fr">Proposition de Valeur</span><span class="i18n-en">Value proposition</span></h3>
 <strong>Proposition de Valeur:</strong> mysa agit comme une 'colonne vertébrale' technologique connectant les acheteurs et les fournisseurs pour transformer l'hébergement d'entreprise en un système intégré plutôt qu'une série de transactions déconnectées. La colonne vertébrale technologique pour l'hébergement d'affaires mondial. Mysa simplifie et connecte tout l'écosystème de l'hébergement d'affaires, permettant aux entreprises de réserver et gérer des séjours complexes via une interface unique et sécurisée plutôt que par des transactions fragmentées. Un gestionnaire de voyages chez Fidelity doit naviguer entre des dizaines d'e-mails, de PDF de conformité et de portails de réservation déconnectés pour sécuriser un séjour de longue durée, perdant une visibilité critique sur les données et la sécurité.<br/><br/><strong>Profil Client Idéal (ICP):</strong> Acheteurs de voyages d'affaires (Corporate Buyers), chaînes hôtelières et marques, gestionnaires d'appartements (Hotel Operators), sociétés de gestion de voyages (TMC) et de relogement (RMC). Gestionnaires de voyages chez Fidelity International. Grands comptes comme Fidelity. Travel Management Companies (TMC), Relocation Management Companies (RMC), acheteurs de grands comptes. Mid-sized Indian businesses pour autres Mysa fintech mais focus TravelTech. Omni-channel commerce, quick commerce, manufacturing, hospitality, FinTech, real estate pour fintech Mysa.<br/><br/><strong>B2B ou B2C:</strong> B2B - Plateforme d'écosystème pour les professionnels du voyage et de l'hébergement. B2B &gt; SaaS. B2B fintech pour Mysa finance. B2B pour thermostats comparaisons mais focus principal B2B TravelTech.<br/><br/><strong>Industrie:</strong> Technologie du voyage d'affaires (TravelTech / Corporate Accommodation). SaaS / TravelTech / Accommodation. Mobility &amp; Transportation &gt; Écosystème SaaS pour hébergement d'affaires corporatif. Corporate Housing Tech, gestion technologique de l'hébergement d'affaires. Corporate Accommodation Tech.
 
-<h3 id="product">Produit</h3>
+<h3 id="product"><span class="i18n-fr">Produit</span><span class="i18n-en">Product</span></h3>
 <strong>Solution Centrale:</strong> Optimise by mysa, un écosystème modulaire qui orchestre les besoins d'hébergement via une structure connectée. Plateforme SaaS d'orchestration de l'hébergement d'affaires. Mysa agit comme un système d'exploitation central (Optimise IQ) qui synchronise l'inventaire, la vérification de conformité sans papier et le sourcing via une API standardisée, éliminant les silos transactionnels. La colonne vertébrale technologique pour l'hébergement d'affaires mondial. Pour fintech: AI-driven platform streamlines ERP systems et fragmented banking, accounts payable automation, expense management, ERP synchronisation. Smart thermostat pour getmysa.com: smart thermostats, ENERGY STAR certified, app control, in-floor heating.<br/><br/><strong>Encyclopédie des Fonctionnalités:</strong><h3 id="business-model">Modèle d'Affaires</h3>
 <strong>Analyse du Modèle d'Affaires:</strong> Modèle SaaS/Plateforme modulaire. SaaS modulaire. Engagement flexible, engager là où cela a du sens aujourd'hui et étendre plus tard. Revenus récurrents basés sur l'adoption des modules. LTV élevée par compte corporatif. Pay-as-you-go modulaire. Pour fintech: zero upfront cost, no migration required.<br/><br/><strong>Revenue Streams &amp; Pricing Tiers:</strong> Tarification basée sur l'adoption des modules (Optimise IQ, Book IQ, Source IQ, Verify IQ). Données non disponibles dans la source pour prix spécifiques, devises, fréquences de facturation.
 
-<h3 id="team">Équipe</h3>
+<h3 id="team"><span class="i18n-fr">Équipe</span><span class="i18n-en">Team</span></h3>
 <strong>Culture d'Entreprise:</strong> Collaboration, accessibilité (pour toutes les tailles d'entreprises), agilité, progressisme (moderniser sans perturber), approche humaine et réalisme pragmatique. Société technologique façonnée par une expérience réelle de l'hébergement. Équipe façonnée par l'expérience réelle du terrain hôtelier. Pour Mysa Care: roll-up acquisitions organic growth, quality-driven portfolio dementia complex-care.<br/><br/><strong>Analyse de l'Équipe:</strong> Chris Breen, Chief Executive Officer Mysa Care (2022-présent). Director Of Operations Achieve together (2020-2022, 2 ans 1 mois). Director Of Operations Priory (2015-2019, 4 ans 7 mois). Loyalty &amp; Tenure: mandats longs. Excellence de l'Équipe 83/100. Founder-Market Fit 90/100, Track Record 80/100, Leadership 78/100, Complétude 84/100. <h3 id="ceo">CEO</h3>
 <ul>
 <li></li>
@@ -227,7 +351,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <li></li>
 </ul>
 <h3 id="company-summary-2">Synthèse de l'Entreprise</h3>
-<ul><li>Ce risque se résoudra par l'observation de la vitesse d'adoption des modules 'Source IQ' par les grands réseaux de distribution dans les 12 prochains mois.\n\n</li></ul>
+<ul><li>Les poids de la thèse sont appliqués dans le pipeline de qualification synthétique GP après détection de l'angle.\n\n═════════════════════\nEXCELLENCE DE L'ÉQUIPE       83/100\nOPPORTUNITÉ DE MARCHÉ      85/100\nINNOVATION PRODUIT        88/100\nMODÈLE D'AFFAIRES           80/100\nTRACTION ET CROISSANCE     78/100\n─────────────────────\nSCORE DE PRÉ-SÉLECTION:   82.8/100 → 🟡 SIGNAL POSITIF (80-84)\n\n══════════════════════\n\n❓ En bref : Mysa est une plateforme SaaS d'écosystème intégré qui permet aux acheteurs de voyages corporatifs d'orchestrer leurs besoins d'hébergement en connectant directement l'offre et la demande via une structure technologique modulaire.\n\n⚠️ Le PROBLÈME : Un gestionnaire de voyages chez Fidelity doit naviguer entre des dizaines d'e-mails, de PDF de conformité et de portails de réservation déconnectés pour sécuriser un séjour de longue durée, perdant une visibilité critique sur les données et la sécurité.\n\n✅ La SOLUTION : Mysa agit comme un système d'exploitation central (Optimise IQ) qui synchronise l'inventaire, la vérification de conformité sans papier et le sourcing via une API standardisée, éliminant les silos transactionnels.\n\n🚀 Le GTM : Le mouvement GTM primaire cible les Travel Management Companies (TMC) et les acheteurs de grands comptes comme Fidelity, car ces nœuds du réseau contrôlent des volumes massifs de séjours longs sans disposer de l'infrastructure technologique pour les automatiser.\n\n══════════════════════\n\n👨🏻 EXCELLENCE DE L'ÉQUIPE | Score: 83/100\n• Founder-Market Fit (25%) | Score: 90/100: Chris Breen est un opérateur aguerri avec près de 10 ans de direction opérationnelle dans des secteurs ultra-réglementés (Priory, Achieve together), possédant le secret acquis que la conformité opérationnelle est le principal goulot d'étranglement de l'hébergement.\n• Track Record (25%) | Score: 80/100: Le passé de Chris montre une montée en puissance dans de grandes organisations britanniques avec des mandats longs de 4 à 5 ans, validant une capacité de construction durable, bien que l'historique de startup pure soit nouveau.\n• Leadership (25%) | Score: 78/100: L'équipe est façonnée par l'expérience réelle du terrain hôtelier, mais la visibilité sur la profondeur technique de l'ingénierie reste modérée.\n• Complétude (25%) | Score: 84/100: Équilibre solide entre expertise opérationnelle et vision technologique, avec une présence notable de conseillers seniors de l'industrie comme Fidelity.\n\n🌊 OPPORTUNITÉ DE MARCHÉ | Score: 85/100\n• Taille et Croissance (25%) | Score: 82/100: Le marché de l'hébergement corporate de longue durée pèse des milliards mais reste technologiquement sous-desservi par rapport à l'hôtellerie de transit.\n• Timing / Pourquoi Maintenant (25%) | Score: 88/100: Le passage massif au travail hybride et aux missions prolongées crée une urgence pour des solutions de logement corporate structurées et auditables.\n• Compétition (25%) | Score: 80/100: Face à des challengers comme AltoVita, Mysa se différencie par sa nature de 'colonne vertébrale' modulaire plutôt que simple place de marché.\n• Expansion (25%) | Score: 90/100: Capacité évidente à s'étendre des TMC vers les RMC (Relocation Management Companies) et à l'échelle mondiale avec un modèle SaaS léger.\n\n💡 INNOVATION PRODUIT | Score: 88/100\n• Différenciation (25%) | Score: 92/100: L'architecture modulaire IQ permet une intégration 'à la carte' là où les concurrents imposent souvent des migrations de systèmes complets.\n• Product-Market Fit (25%) | Score: 86/100: Les témoignages de leaders comme Carol Fergus (Fidelity) valident que le produit répond à un besoin critique d'automatisation des flux RFP et de conformité.\n• Évolutivité (25%) | Score: 88/100: Utilisation de standards API de type NDC pour l'hébergement, permettant une distribution technologique à grande échelle sans friction manuelle.\n• Propriété Intellectuelle et Barrières (25%) | Score: 86/100: La conformité 'Verify IQ' sans papier et les connexions directes propriétaires créent un effet de réseau entre acheteurs et opérateurs.\n\n💼 MODÈLE D'AFFAIRES | Score: 80/100\n• Économie Unitaire (25%) | Score: 78/100: Le modèle SaaS modulaire suggère une LTV élevée par compte corporatif, bien que la tarification exacte reste confidentielle.\n• Modèle de Revenu (25%) | Score: 85/100: Revenus récurrents basés sur l'adoption des modules, offrant une forte prédictibilité une fois le client intégré.\n• Monétisation (25%) | Score: 82/100: La clarté de la proposition de valeur sur la réduction des coûts de distribution facilite l'adoption sans frais de configuration prohibitifs.\n• Efficacité du Capital (25%) | Score: 75/100: Avec 11M$ levés récemment, l'équipe semble bien capitalisée, mais l'accélération du recrutement pour l'expansion mondiale doit être surveillée.\n\n📈 TRACTION ET CROISSANCE | Score: 78/100\n• Croissance du Revenu (25%) | Score: 75/100: Croissance signalée comme robuste mais les chiffres exacts de MRR restent privés.\n• Validation Client (25%) | Score: 88/100: Signature de clients de prestige comme Fidelity International, agissant comme un tampon de crédibilité majeur.\n• Progression des KPI (25%) | Score: 74/100: L'équipe augmente sa présence sur LinkedIn et ses partenariats, indiquant une phase d'exécution rapide post-financement.\n• Pénétration du Marché (25%) | Score: 75/100: Focalisation actuelle sur le marché UK/Global Travel, avec des vecteurs d'expansion clairs vers les États-Unis.\n\n─────────────────────\n🔍 RISQUE À COUVRIR :\nL'hypothèse centrale est que les Travel Management Companies (TMC) accepteront de céder le contrôle de leur processus de sourcing à un tiers technologique sans craindre une désintermédiation à long terme. Ce risque se résoudra par l'observation de la vitesse d'adoption des modules 'Source IQ' par les grands réseaux de distribution dans les 12 prochains mois.\n\n</li></ul>
 <br/>
 <strong>🗝️ AVANTAGES COMPÉTITIFS CLÉS :</strong> \n• Architecture Modulaire IQ : Permet aux entreprises d'adopter des briques spécifiques (Sourcing, Booking, Vérification) sans remplacer leurs outils existants, brisant la barrière à l'entrée.\n• Standardisation de type NDC : Applique les standards de l'aérien à l'hébergement complexe, créant une fluidité de données unique sur le marché.\n• Validation Institutionnelle (Fidelity) : Le soutien précoce de directeurs globaux du voyage crée une preuve sociale irréfutable pour le segment Enterprise.\n• Focus Conformité (Verify IQ) : La numérisation totale de la conformité réglementaire réduit les risques juridiques pour les acheteurs, un point de douleur majeur.\n\n🧱 MOAT : MODÉRÉ\nLe mécanisme de barrière primaire repose sur l'intégration systémique du module 'Verify IQ' dans le workflow de conformité des entreprises : une fois qu'un acheteur a numérisé ses standards de sécurité sur Mysa, le coût de transfert vers un autre système devient prohibitif. Cet effet se renforce à mesure que d'autres opérateurs rejoignent la plateforme pour être pré-validés, créant une boucle de rétroaction entre offre certifiée et demande sécurisée. Une couche secondaire de défense est constituée par les connexions API directes propriétaires avec les opérateurs hôteliers, difficiles à répliquer rapidement pour un nouvel entrant.\n\n⚖️ PARI ASYMÉTRIQUE\n• Cas Haussier (Bull Case) : Mysa devient la norme NDC pour tout l'hébergement long séjour mondial, forçant toutes les TMC et RMC à passer par ses API pour garantir la conformité et le sourcing.\n• Cas Baissier (Bear Case) : Les grandes plateformes comme Airbnb for Work ou Booking.com intègrent nativement des outils de conformité similaires, rendant la solution de Mysa superflue et la limitant à un marché de niche pour séjours ultra-complexes.\n\n🚩 SIGNAUX D'ALERTE\n• Risques Universels : Conflit de distribution potentiel avec les partenaires TMC si Mysa commence à capturer trop de valeur transactionnelle.\n• Inadéquation à la Thèse : Le déploiement dans le secteur des soins (Mysa Care) suggère une possible confusion de marque ou une dispersion des efforts du fondateur Chris Breen entre deux entités distinctes (Care vs Tech Travel).\n\n📝 KIT DE PRÉPARATION AU PREMIER RENDEZ-VOUS\nCette analyse suggère que Mysa possède une brique technologique structurelle majeure mais doit prouver qu'elle peut devenir un standard plutôt qu'un simple outil de niche. Les questions suivantes visent à tester la solidité de la capture de valeur face aux géants du voyage.\n\n• Angle d'investissement : Un pari sur la transformation du logement corporate d'une série de transactions manuelles en un flux de données structuré dirigé par un expert opérationnel.\n\n• Questions tueuses :\n- Comment gérez-vous le conflit d'intérêt avec les TMC qui voient dans votre module 'Source IQ' un risque de perte de leur relation privilégiée avec les fournisseurs ?\n- Chris Breen : Quelle est la répartition réelle de votre temps et de votre capital entre Mysa Care et Mysa Travel, et comment empêchez-vous ces deux mondes de créer une dispersion opérationnelle ?\n- Quel est le coût d'acquisition client (CAC) sur le segment Enterprise et comment ce ratio a-t-il évolué depuis l'intégration de Fidelity ?\n\n• Signal Go/No-Go : Un signal 'Go' serait la preuve que Mysa est déjà intégré comme standard obligatoire dans les RFP de trois nouvelles multinationales de taille équivalente à Fidelity. Un 'No-Go' serait d'apprendre que la plateforme est utilisée uniquement en mode 'ad-hoc' sans intégration API structurelle.\n\n🌐 CONFIANCE DES DONNÉES : MOYENNE\n• La distinction entre 'Mysa Care' et 'Mysa Travel' dans les sources nécessite une clarification directe pour s'assurer que l'équipe traveltech est distincte et pleinement engagée.\n• LACUNES : Chiffres de revenus précis (MRR) • Répartition de l'actionnariat entre les entités.<br/>
 </div>
@@ -235,7 +359,7 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <img alt="Company Analysis" class="sticky-img" src="https://placid-fra.fra1.digitaloceanspaces.com/production/rest-images/9e7podoyeqhi9/int-d33087e6e2e54dff0c666bdfbd3ac55b-l5dmmd80.jpg"/>
 </div>
 </div>
-</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title">Résumé de l'entreprise</h2><div class="cs-disc">ⓘ Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>Mobility &amp; Transportation &gt; Écosystème SaaS pour hébergement d'affaires corporatif.</li><li>B2B &gt; SaaS</li><li>11,0M€ raised from SignalBase and unidentified partners (octobre 2, 2024)</li></ul>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title"><span class="i18n-fr">Résumé de l'entreprise</span><span class="i18n-en">Company overview</span></h2><div class="cs-disc">ⓘ <span class="i18n-fr">Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</span><span class="i18n-en">These scores often reflect how much public information we could find online (web presence), not the company's objective reality. A low score — e.g. on team excellence — usually means little information was found, not that the company is weak.</span></div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>Mobility &amp; Transportation &gt; Écosystème SaaS pour hébergement d'affaires corporatif.</li><li>B2B &gt; SaaS</li><li>11,0M€ raised from SignalBase and unidentified partners (octobre 2, 2024)</li></ul>
 <br/>
 <strong>PRE-SCREENING SCORE</strong><br/>
 Thesis :
@@ -243,7 +367,7 @@ Thesis :
 <p>⚠️ Le PROBLÈME : Un gestionnaire de voyages chez Fidelity doit naviguer entre des dizaines d'e-mails, de PDF de conformité et de portails de réservation déconnectés pour sécuriser un séjour de longue durée, perdant une visibilité critique sur les données et la sécurité.</p>
 <p>✅ La SOLUTION : Mysa agit comme un système d'exploitation central (Optimise IQ) qui synchronise l'inventaire, la vérification de conformité sans papier et le sourcing via une API standardisée, éliminant les silos transactionnels.</p>
 🚀 Le GTM : Le mouvement GTM primaire cible les Travel Management Companies (TMC) et les acheteurs de grands comptes comme Fidelity, car ces nœuds du réseau contrôlent des volumes massifs de séjours longs sans disposer de l'infrastructure technologique pour les automatiser.<hr/><div class="score-row sr-green sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE | Score</span><span class="sr-bar"><span class="sr-fill" style="width:83%"></span></span><span class="sr-val">83/100</span></div>
-<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Founder-Market Fit</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc"></div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Track Record</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le passé de Chris montre une montée en puissance dans de grandes organisations britanniques avec des mandats longs de 4 à 5 ans, validant une capacité de construction durable, bien que l'historique de startup pure soit nouveau.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'équipe est façonnée par l'expérience réelle du terrain hôtelier, mais la visibilité sur la profondeur technique de l'ingénierie reste modérée.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Complétude</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Équilibre solide entre expertise opérationnelle et vision technologique, avec une présence notable de conseillers seniors de l'industrie comme Fidelity.</div></li></ul>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Founder-Market Fit</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Chris Breen est un opérateur aguerri avec près de 10 ans de direction opérationnelle dans des secteurs ultra-réglementés (Priory, Achieve together), possédant le secret acquis que la conformité opérationnelle est le principal goulot d'étranglement de l'hébergement.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Track Record</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le passé de Chris montre une montée en puissance dans de grandes organisations britanniques avec des mandats longs de 4 à 5 ans, validant une capacité de construction durable, bien que l'historique de startup pure soit nouveau.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'équipe est façonnée par l'expérience réelle du terrain hôtelier, mais la visibilité sur la profondeur technique de l'ingénierie reste modérée.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Complétude</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Équilibre solide entre expertise opérationnelle et vision technologique, avec une présence notable de conseillers seniors de l'industrie comme Fidelity.</div></li></ul>
 <br/>
 <div class="score-row sr-green sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ | Score</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
 <ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille et Croissance</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché de l'hébergement corporate de longue durée pèse des milliards mais reste technologiquement sous-desservi par rapport à l'hôtellerie de transit.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing / Pourquoi Maintenant</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le passage massif au travail hybride et aux missions prolongées crée une urgence pour des solutions de logement corporate structurées et auditables.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Compétition</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Face à des challengers comme AltoVita, Mysa se différencie par sa nature de colonne vertébrale modulaire plutôt que simple place de marché.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Capacité évidente à s'étendre des TMC vers les RMC (Relocation Management Companies) et à l'échelle mondiale avec un modèle SaaS léger.</div></li></ul>
@@ -265,32 +389,32 @@ L'hypothèse centrale est que les Travel Management Companies (TMC) accepteront 
 <h4 class="kicker">PARI ASYMÉTRIQUE</h4>
 <ul><li>Cas Haussier (Bull Case) : Mysa devient la norme NDC pour tout l'hébergement long séjour mondial, forçant toutes les TMC et RMC à passer par ses API pour garantir la conformité et le sourcing.</li><li>Cas Baissier (Bear Case) : Les grandes plateformes comme Airbnb for Work ou Booking.com intègrent nativement des outils de conformité similaires, rendant la solution de Mysa superflue et la limitant à un marché de niche pour séjours ultra-complexes.</li></ul>
 <p><strong>🚩 SIGNAUX D'ALERTE</strong></p>
-<ul><li>Risques Universels : Conflit de distribution potentiel avec les partenaires TMC si Mysa commence à capturer trop de valeur transactionnelle.</li><li>Inadéquation à la Thèse : Le déploiement dans le secteur des soins (Mysa Care) suggère une possible confusion de marque ou une dispersion des efforts du fondateur Chris Breen entre deux entités distinctes (Care vs Tech Travel).</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/54/54/1781294400000/lTlgQE6SIhmfxpFSbkbFcw/U-gjcq27aZGDU6Q3E6cKL8WtMdKDP9nKc8uADCJZseiC24c6SS1Yl1YGZ20_vFu9k-gFsdTohw19retI7K21qO8asA5tpK1MnUyQqXBLTKhprixvSdz-7kmflyIaOGkn6CFubL4-5GY7rsuJ4gamrw/Q_lgtLUZd0p749A1OBQg8ZjciGcHV51U58bVX_z5i_k"/></div></div></div>
+<ul><li>Risques Universels : Conflit de distribution potentiel avec les partenaires TMC si Mysa commence à capturer trop de valeur transactionnelle.</li><li>Inadéquation à la Thèse : Le déploiement dans le secteur des soins (Mysa Care) suggère une possible confusion de marque ou une dispersion des efforts du fondateur Chris Breen entre deux entités distinctes (Care vs Tech Travel).</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/55/55/1784548800000/1s57ohIHHdal2wVcBHwz3Q/scTMjoSlrQO7dW1j3oyeDt-82M8mTrLGHgB4LpDBqerZII2czPzUW3ON6yLqagHPM2vwMwL5uNAn6x1AqJW1JpGkt0aCa7K1GL09JeRHI3WN7-dKV3xbLL6LvrgkdmFY5ic1AKvg123gNrn8dLZjcw/wJNJJu3EFNmZKObd5MWIPKJYCF0RH_6uuMu2hir520Q"/></div></div></div>
 <div class="section-container" id="swot">
-<h2 class="section-title">Analyse SWOT</h2>
+<h2 class="section-title"><span class="i18n-fr">Analyse SWOT</span><span class="i18n-en">SWOT analysis</span></h2>
 <div class="swot-grid">
-<div class="swot-item s-green"><h3>Forces</h3><ul>
+<div class="swot-item s-green"><h3><span class="i18n-fr">Forces</span><span class="i18n-en">Strengths</span></h3><ul>
 <li>Chris Breen apporte une expertise opérationnelle éprouvée de près de sept ans en tant que directeur des opérations chez Priory et Achieve Together.</li>
-<li></li>
+<li>Le PDG démontre une ténacité exceptionnelle avec des mandats longs de 4 ans et 7 mois, puis 2 ans et 1 mois, avant de co-fonder Mysa Care.</li>
 <li></li>
 <li>Mysa Care poursuit un roll-up d'actifs ciblés en soins spécialisés, avec un portefeuille de 41 foyers et 144 lits après l'acquisition de Safe Haven.</li>
 <li>Soutien de private equity par Downing Development Capital finance les acquisitions et la croissance organique dans les soins à la démence.</li>
 </ul></div>
-<div class="swot-item s-red"><h3>Faiblesses</h3><ul>
+<div class="swot-item s-red"><h3><span class="i18n-fr">Faiblesses</span><span class="i18n-en">Weaknesses</span></h3><ul>
 <li>Mysa Care reste une startup méconnue avec seulement 869 followers LinkedIn, signalant une faible visibilité de marque.</li>
 <li></li>
 <li>Le score en leadership est à 75/100, inféré des rôles passés sans preuves explicites de construction d'équipes.</li>
 <li>Fondée en 2022, l'entreprise manque d'historique de performance à grande échelle en tant qu'entité indépendante.</li>
 <li>Pas de co-fondateur mentionné pour complémenter les forces opérationnelles du PDG en vision ou écosystème.</li>
 </ul></div>
-<div class="swot-item s-blue"><h3>Opportunités</h3><ul>
+<div class="swot-item s-blue"><h3><span class="i18n-fr">Opportunités</span><span class="i18n-en">Opportunities</span></h3><ul>
 <li>La population vieillissante au Royaume-Uni augmente la demande pour les soins spécialisés en démence et complexes.</li>
 <li>Stratégie de bolt-on acquisitions permet d'accélérer l'expansion du portefeuille au-delà des 41 foyers actuels.</li>
 <li>Croissance organique via extension de 11 lits en développement renforce la capacité sans dilution immédiate.</li>
 <li>Expertise opérationnelle du PDG désamorce les risques réglementaires dans la prestation de soins à domicile.</li>
 <li>Partenariat avec Downing Ventures ouvre des opportunités de financement pour une échelle nationale.</li>
 </ul></div>
-<div class="swot-item s-orange"><h3>Menaces</h3><ul>
+<div class="swot-item s-orange"><h3><span class="i18n-fr">Menaces</span><span class="i18n-en">Threats</span></h3><ul>
 <li>Le secteur des soins est hautement réglementé, avec des risques de non-conformité impactant les opérations.</li>
 <li>Concurrence intense des acteurs établis comme Priory, où le PDG a travaillé, limite les parts de marché.</li>
 <li>Pression économique sur les foyers de soins réduit les marges et freine les acquisitions.</li>
@@ -310,7 +434,7 @@ L'hypothèse centrale est que les Travel Management Companies (TMC) accepteront 
 
 
 
-&lt;&gt;&gt;</code><div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur mysa ?</span><span class="i18n-en">Explore mysa further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+&lt;&gt;&gt;</code><div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur mysa ?</span><span class="i18n-en">Explore mysa further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc"><span class="i18n-fr">Généré par Proplace.co — une IA qui peut se tromper. Contact : <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span><span class="i18n-en">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a><a class="" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -319,27 +443,112 @@ try{var st=document.createElement("style");st.textContent=
 "html[data-pplang=en] a.i18n-en{display:inline-block}"+
 ".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
 ".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
-".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
 document.head.appendChild(st);}catch(e){}
 var D={
- en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
- fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
 };
 function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
 return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
-if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+var mSet="https://analysis.proplace.co/thesis/?fund="+f;
+var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
+var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
+'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
+'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
+"</div></div>";
+return {i:1,h:h};}
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
 try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
-var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
-Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
 function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
 var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
 function go(l){
@@ -349,6 +558,11 @@ var alt=altUrl(l);
 if(alt&&alt!==here){location.href=alt;return;}
 apply(l);}
 function init(){apply(getLang());
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
@@ -369,6 +583,10 @@ border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;tr
 .comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
 .comp-row a:hover{color:var(--accent-dk)}
 .comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
 /* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
 .op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
 .op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
@@ -419,26 +637,33 @@ border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
 </style><script>(function(){
 var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
 function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+// Bilingue (2026-07-16) : mêmes clé/priorités que le chrome partagé — le flux d'évaluation
+// était le dernier gros composant JS 100% FR quel que soit le choix de langue du visiteur.
+function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}
+ return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}
+function T(fr,en){return EN()?en:fr;}
 function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function ctaCal(){return '<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">'
+ +T("📅 Un deal flow personnalisé ? Planifiez un appel stratégique","📅 Want a tailored deal flow? Book a strategy call")+'</a>';}
 function verdict(res,fund){
- if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(!res)return '<div class="ev-err">'+T("Évaluation indisponible.","Evaluation unavailable.")+'</div>';
  if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
  if(res.needs_disambiguation){
   var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
    return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
-    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
-  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">'+T("Choisir →","Choose →")+'</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||T("Plusieurs sociétés correspondent — choisissez la bonne :","Several companies match — pick the right one:"))+'</div>'+(cs||'<div class="ev-fine">'+T("Aucun candidat — précisez l’URL exacte.","No candidate — provide the exact URL.")+'</div>');
  }
  var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
- var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">'+T("📊 Analyse","📊 Analysis")+'</div>');
  if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
- if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
- else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">'+T("→ Lancer le mémo dans votre dashboard","→ Launch the memo in your dashboard")+'</a>'; }
+ else{ o+=ctaCal(); }
  return o;
 }
 function run(panel,company,fund,leadRec,logged){
  panel.dataset.fund=fund;
- panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ panel.innerHTML='<div class="ev-load">'+T("⏳ Évaluation de "+esc(company)+" selon votre thèse "+esc(fund)+"…","⏳ Evaluating "+esc(company)+" against your "+esc(fund)+" thesis…")+'</div>';
  var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
  if(leadRec)body.companies[0].lead_record_id=leadRec;
  fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
@@ -447,23 +672,23 @@ function run(panel,company,fund,leadRec,logged){
 }
 function leadForm(panel,b){
  panel.innerHTML='<form class="ev-form">'
- +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
- +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
- +'<input name="email" type="email" placeholder="Email professionnel" required>'
- +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
- +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
- +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ +'<p class="ev-lbl">'+T("Demande d’analyse de","Analysis request for")+' <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="'+T("Prénom","First name")+'" required><input name="last_name" placeholder="'+T("Nom","Last name")+'" required></div>'
+ +'<input name="email" type="email" placeholder="'+T("Email professionnel","Work email")+'" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="'+T("Téléphone","Phone")+'"></div>'
+ +'<button type="submit" class="ev-submit">'+T("Recevoir l’analyse →","Get the analysis →")+'</button>'
+ +'<p class="ev-fine">'+T("Déjà client ? <a href=\"https://proplace.co/#login\">Connectez-vous</a> pour évaluer selon VOTRE thèse.","Already a client? <a href=\"https://proplace.co/#login\">Log in</a> to evaluate against YOUR thesis.")+'</p></form>';
  panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
   var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
   if(!d.email)return;
-  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Enregistrement…","⏳ Saving…")+'</div>';
   fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
    company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
    first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
   .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
-   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
-    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
-    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+   panel.innerHTML='<div class="ev-ok">'+T("✅ Merci "+esc(d.first_name)+" !","✅ Thank you "+esc(d.first_name)+"!")+'</div>'
+    +'<div class="ev-r">'+T("Votre analyse de <b>"+esc(b.dataset.c||b.dataset.u)+"</b> vous sera envoyée par email sous peu.","Your analysis of <b>"+esc(b.dataset.c||b.dataset.u)+"</b> will be emailed to you shortly.")+'</div>'
+    +ctaCal();});
  };
 }
 // Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
@@ -474,7 +699,7 @@ function deeplink(){
   var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
   var host=document.querySelector("main")||document.body;
   var box=document.createElement("div");box.className="ev-deeplink";
-  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  box.innerHTML='<div class="ev-dl-h">'+T("⚡ Évaluation express —","⚡ Express evaluation —")+' <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
   host.insertBefore(box,host.firstChild);
   var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
   try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
@@ -517,7 +742,9 @@ color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;t
 .lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
 </style><script>(function(){
 var ov=document.createElement('div');ov.className='lb-ov';
-ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+var _lbEN=false;try{var _l=localStorage.getItem('proplace_lang');
+_lbEN=_l==='en'||(!_l&&(navigator.language||'').toLowerCase().indexOf('fr')!==0);}catch(e){}
+ov.innerHTML='<button class="lb-x" aria-label="'+(_lbEN?'Close':'Fermer')+'">×</button><img alt=""><a class="lb-dl" download>'+(_lbEN?'⬇ Download':'⬇ Télécharger')+'</a>';
 document.body.appendChild(ov);
 var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
 function close(){ov.classList.remove('on');im.src='';}
@@ -530,6 +757,111 @@ document.addEventListener('click',function(e){
  if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
  e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
 });
+})();</script><style>
+/* Étoile favori (★) en tête de la cellule Société — dorée dès l'état INACTIF (☆) pour être
+   repérable comme « à cliquer », pleine et vive à l'état actif (★). */
+.op-fav{display:inline-block;vertical-align:baseline;margin:0 7px 0 0;padding:0;font-size:17px;
+line-height:1;color:#d9b64a;background:none;border:none;cursor:pointer;
+transition:color .12s,transform .12s}
+.op-fav:hover{color:#e5a91c;transform:scale(1.2)}
+.op-fav.on{color:#e5a91c}
+.fav-count{font-variant-numeric:tabular-nums;font-weight:800}
+/* Page /actualites/favoris/ : état vide + encart « créez votre thèse ». */
+.fav-empty-box{margin:26px 0;padding:24px 20px;border:1px dashed var(--line);border-radius:12px;
+background:var(--bg);text-align:center;color:var(--sub);font-size:14px;line-height:1.55}
+.fav-empty-box a{color:var(--accent-dk);font-weight:700;text-decoration:none}
+.fav-empty-box a:hover{text-decoration:underline}
+.fav-tease{margin:22px 0 6px;padding:16px 18px;border:1px solid var(--accent);border-radius:12px;
+background:var(--bg)}
+.fav-tease-h{font-size:15px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.fav-tease-p{font-size:13.5px;color:var(--sub);line-height:1.5;margin:0 0 10px}
+.fav-tease .tm-read{margin:0}
+/* Composeur de thèse in-browser + évaluation groupée (Phase B). */
+.fav-th-text{width:100%;min-height:64px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+font-family:inherit;font-size:13.5px;line-height:1.5;color:var(--ink);resize:vertical;margin:0 0 8px}
+.fav-th-text:focus{outline:none;border-color:var(--accent)}
+.fav-btn{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:9px;padding:9px 15px;cursor:pointer;transition:opacity .15s}
+.fav-btn:hover{opacity:.85}
+.fav-btn:disabled{opacity:.5;cursor:default}
+.fav-th-edit{margin-left:10px;font-size:12.5px;font-weight:600;color:var(--accent-dk);background:none;
+border:none;cursor:pointer;text-decoration:underline}
+.fav-th-label{font-size:13px;color:var(--sub);font-style:italic;margin:0 0 8px}
+.fav-th-hint{font-size:12px;color:#b91c1c;margin:6px 0 0}
+/* Verdict d'un favori (plein largeur sous la ligne, comme .op-eval-panel). */
+.fav-verdict{grid-column:1/-1;margin-top:2px}
+.fav-verdict:empty{margin:0}
+.fav-v{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;padding:3px 10px;margin-top:6px}
+.fav-v-yes{color:#047857;background:rgba(4,120,87,.10)}
+.fav-v-no{color:#b91c1c;background:rgba(185,28,28,.08)}
+.fav-v-err{color:var(--mid);background:var(--bg)}
+.fav-v-load{color:var(--mid);font-size:12.5px;font-weight:600;margin-top:6px;display:inline-block}
+.fav-vr{display:block;font-size:12.5px;color:var(--sub);line-height:1.45;margin-top:4px}
+</style><script>(function(){
+var K="proplace_favoris";
+// Bridge « certain » vers /cibles/ : un ?cb=<token> dans l'URL (posé par le lien du /cibles/ du
+// client, ou un email Proplace) lie ce navigateur à CE client → chaque ★ est aussi reflétée dans
+// un store SERVEUR scopé au token, retrouvée ensuite dans son onglet Favoris même sur un autre
+// appareil. Sans token (visiteur anonyme), sync() est un no-op → comportement inchangé.
+var TKK="proplace_cb_token",SYNC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/fav-sync";
+function readTok(){try{return localStorage.getItem(TKK)||"";}catch(e){return "";}}
+function writeTok(t){try{localStorage.setItem(TKK,t);}catch(e){}}
+function captureTok(){var t="";try{t=((new URL(window.location.href)).searchParams.get("cb")||"").trim();}catch(e){}
+ if(/^[A-Za-z0-9]{16}$/.test(t)){writeTok(t);return t;}return readTok();}
+var TOK=captureTok();
+function sync(op,removed){if(!TOK)return;try{
+ fetch(SYNC,{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
+  body:JSON.stringify({token:TOK,remove:!!removed,op:op})}).catch(function(){});
+}catch(e){}}
+function EN(){try{var l=localStorage.getItem("proplace_lang");if(l)return l==="en";}catch(e){}
+ return (navigator.language||"").slice(0,2).toLowerCase()==="en";}
+function read(){try{return JSON.parse(localStorage.getItem(K)||"[]")||[];}catch(e){return [];}}
+function write(a){try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}}
+function normU(u){return (u||"").toLowerCase().trim().replace(/[#?].*$/,"").replace(/\/+$/,"");}
+function normN(n){return (n||"").toLowerCase().replace(/\s+/g," ").trim();}
+function keyOf(u,c){return normU(u)||normN(c);}
+function opFromBtn(b){var d=b.dataset,u=d.u||"",c=d.co||"";
+ // Le bouton ne porte plus que co+url (régime data-*) : le reste est DÉRIVÉ de la ligne
+ // .trow (data-v/date/t/amt/pays + cellules affichées). Les anciens data-* du bouton restent
+ // lus en PRIORITÉ (compat : lignes de la page /favoris reconstruites depuis localStorage).
+ var r=b.closest?b.closest(".trow"):null,rd=(r&&r.dataset)||{};
+ // Cellules Type/Date en dual-span depuis 2026-07-16 : lire le span .i18n-fr (libellé
+ // canonique FR stocké dans le favori), sinon le textContent brut (cellules mono-langue).
+ function cell(s){if(!r)return "";var e=r.querySelector(s+" .i18n-fr")||r.querySelector(s);
+  var v=e?e.textContent.trim():"";return v==="—"?"":v;}
+ // Headline : sous-ligne .th (co présent) SINON le titre-lien du strong (op sans société).
+ var hd=r?(r.querySelector(".tco .th a:not(.tm-mem)")||r.querySelector(".tco strong a")):null;
+ var pe=r?r.querySelector(".tpays"):null;
+ var vert=d.v||rd.v||"";
+ return {id:keyOf(u,c),co:c,url:u,
+  disp:d.disp||(hd?hd.textContent.trim().slice(0,200):""),
+  ind:d.i||vert,vert:vert,
+  amtD:d.amtd||cell(".tamt"),
+  amt:parseInt(d.amt||rd.amt||"0",10)||0,
+  pays:d.pays||rd.pays||"",
+  paysFull:d.paysfull||(pe?(pe.getAttribute("title")||""):""),
+  date:d.date||(rd.date||"").slice(0,10),
+  typeK:d.typek||rd.t||"",
+  typeFr:d.typefr||cell(".ttype"),
+  ts:Date.now()};}
+function idx(a,id){for(var i=0;i<a.length;i++)if(a[i].id===id)return i;return -1;}
+function paint(){var a=read(),ids={};a.forEach(function(o){ids[o.id]=1;});
+ [].slice.call(document.querySelectorAll(".op-fav")).forEach(function(b){
+  var id=keyOf(b.dataset.u||"",b.dataset.co||""),on=!!ids[id];
+  b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false");
+  b.textContent=on?"★":"☆";
+  var t=on?(EN()?"Remove from favourites":"Retirer des favoris"):(EN()?"Add to favourites":"Mettre en favori");
+  b.title=t;b.setAttribute("aria-label",t);});
+ var n=a.length;[].slice.call(document.querySelectorAll(".fav-count")).forEach(function(e){e.textContent=String(n);});}
+window.__favPaint=paint;
+document.addEventListener("click",function(ev){
+ var b=ev.target&&ev.target.closest?ev.target.closest(".op-fav"):null;if(!b)return;
+ ev.preventDefault();ev.stopPropagation();
+ var a=read(),op=opFromBtn(b),k=idx(a,op.id),removed=k>=0;
+ if(k>=0)a.splice(k,1);else a.unshift(op);
+ write(a);paint();sync(op,removed);if(window.__favRender)window.__favRender();});
+window.addEventListener("storage",function(e){if(e.key===K){paint();if(window.__favRender)window.__favRender();}});
+if(document.readyState!=="loading")paint();else document.addEventListener("DOMContentLoaded",paint);
 })();</script><script id="memo-scrollspy">(function(){
 var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
 if(!items.length||!('IntersectionObserver' in window))return;
