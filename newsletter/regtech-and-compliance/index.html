@@ -143,9 +143,12 @@ align-items:center;gap:18px;flex-wrap:nowrap}
 gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
 .pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
 .pph nav>a:hover{color:#0a0a0a}
-.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
-border-radius:9px;font-weight:600}
-.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
+   « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
+   couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
+.pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600;border:none;cursor:pointer;font-family:inherit;line-height:1.2}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover,.pph button.cta:hover,.pph .pph-auth button.cta:hover{background:#36a866}
 /* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
 .pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
 border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
@@ -509,18 +512,59 @@ try{var st=document.createElement("style");st.textContent=
 "html[data-pplang=en] a.i18n-en{display:inline-block}"+
 ".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
 ".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
-".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+".pph-acct{position:relative;display:inline-flex;align-items:center}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED (coordonnées posées en JS via getBoundingClientRect) : le menu
+   échappe au défileur overflow-x:auto de .pph nav en mobile (sinon clippé). */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a{display:block;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0}"+
+".pph-acct-menu a:hover{background:#eef9f2;color:#185c38}";
 document.head.appendChild(st);}catch(e){}
 var D={
- en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
- fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
 };
 function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
 return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
-if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+var mSet="https://analysis.proplace.co/thesis/?fund="+f;
+var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
+var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
+'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
+'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+"</div></div>";
+return {i:1,h:h};}
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var wrap=b.parentNode;var menu=wrap?wrap.querySelector(".pph-acct-menu"):null;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
 /* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
@@ -533,7 +577,8 @@ var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
 var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
-Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
 function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
 var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
 function go(l){
@@ -543,6 +588,11 @@ var alt=altUrl(l);
 if(alt&&alt!==here){location.href=alt;return;}
 apply(l);}
 function init(){apply(getLang());
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",closeAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();</script><main class="wrap tm-wrap"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Accueil</a><span class="sep">›</span><a href="/actualites/" data-i18n="news">Actualités</a><span class="sep">›</span><a href="/actualites/operations/" data-i18n="ops">Opérations</a><span class="sep">›</span><a href="/actualites/operations/secteur/regtech-and-compliance/">RegTech &amp; Compliance</a><span class="sep">›</span><span class="cur">Newsletter</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Actualités", "item": "https://proplace.co/actualites/"}, {"@type": "ListItem", "position": 3, "name": "Opérations", "item": "https://proplace.co/actualites/operations/"}, {"@type": "ListItem", "position": 4, "name": "RegTech & Compliance", "item": "https://proplace.co/actualites/operations/secteur/regtech-and-compliance/"}, {"@type": "ListItem", "position": 5, "name": "Newsletter"}]}</script><div class="lvl-zone"><div class="type-nav lvl-nav"><a href="/actualites/operations/" data-i18n="allOps">🌍 Toutes les opérations</a><span class="lvl-grp"><a class="" href="/actualites/operations/secteur/regtech-and-compliance/">🗂 RegTech &amp; Compliance</a><a class="" href="/actualites/operations/fusions-acquisitions/regtech-and-compliance/">M&amp;A</a><a class="" data-i18n="fundr" href="/actualites/operations/levees-de-fonds/regtech-and-compliance/">Levées</a></span><a class="on" data-i18n="subscribe" href="https://proplace.co/newsletter/regtech-and-compliance/">📬 S'abonner</a><a class="fav-nav " href="/actualites/favoris/"><span class="i18n-fr">★ Mes favoris</span><span class="i18n-en">★ My favourites</span> (<span class="fav-count">0</span>)</a></div><a class="tm-read lvl-read" href="/actualites/operations/secteur/regtech-and-compliance/2026-07-18/"><span class="i18n-fr">📰 Lire la dernière analyse RegTech &amp; Compliance (18 juillet 2026) →</span><span class="i18n-en">📰 Read the latest RegTech &amp; Compliance analysis (July 18, 2026) →</span></a></div><div class="tm-herowrap"><div class="tm-hero"><p class="tm-eyebrow"><span class="i18n-fr">Newsletter · secteur</span><span class="i18n-en">Newsletter · sector</span></p><h1 class="tm-h1"><span class="i18n-fr">La newsletter RegTech &amp; Compliance</span><span class="i18n-en">The RegTech &amp; Compliance newsletter</span></h1><p class="tm-dek"><span class="i18n-fr">Chaque jour, uniquement les opérations M&amp;A et levées de fonds du secteur RegTech &amp; Compliance en France &amp; Europe — avec les chiffres clés, les sources et les acquéreurs actifs. Gratuit, désinscription en un clic.</span><span class="i18n-en">Every day, only the M&amp;A deals and fundraisings of the RegTech &amp; Compliance sector in France &amp; Europe — with key figures, sources and active buyers. Free, one-click unsubscribe.</span></p></div><a class="tm-hero-viz" href="/actualites/operations/cartes/pouls-regtech-and-compliance-2026-07-18.png" title="Le pouls du secteur RegTech &amp; Compliance"><img src="/actualites/operations/cartes/pouls-regtech-and-compliance-2026-07-18.png" loading="lazy" alt="Le pouls du secteur RegTech &amp; Compliance — chiffres clés et opérations par jour" onerror="this.parentNode.style.display='none'"/></a></div><aside class="cta-box" style="text-align:left"><h3><span class="i18n-fr">Recevoir les opérations RegTech &amp; Compliance par email</span><span class="i18n-en">Get RegTech &amp; Compliance deals by email</span></h3><form id="nlp-form" class="nlp-form" novalidate><input type="email" id="nlp-email" required placeholder="votre@email.com" aria-label="Votre adresse email"><input type="text" id="nlp-web" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0;width:0;border:0;padding:0" aria-hidden="true"><button class="btn" type="submit"><span class="i18n-fr">S'abonner →</span><span class="i18n-en">Subscribe →</span></button></form><p id="nlp-msg" class="nlp-msg"></p><ul class="nlp-points"><li><span class="i18n-fr">📊 Le pouls du secteur RegTech &amp; Compliance : volume, montants, tendance.</span><span class="i18n-en">📊 The RegTech &amp; Compliance sector pulse: volume, amounts, trend.</span></li><li><span class="i18n-fr">🤝 Chaque opération du jour, avec ses sources presse.</span><span class="i18n-en">🤝 Every deal of the day, with its press sources.</span></li><li><span class="i18n-fr">🏢 Les acquéreurs actifs du moment dans votre marché.</span><span class="i18n-en">🏢 The buyers currently active in your market.</span></li><li><span class="i18n-fr">📩 Un email par jour, seulement les jours où votre secteur bouge.</span><span class="i18n-en">📩 One email a day, only on days when your sector moves.</span></li></ul></aside><p class="lead" style="margin-top:26px"><span class="i18n-fr">Cette newsletter est <strong>en plus</strong> de la <a href="https://proplace.co/newsletter">newsletter générale Proplace</a> (tous secteurs) — elle ne couvre que RegTech &amp; Compliance. Vous pouvez vous abonner aux deux.</span><span class="i18n-en">This newsletter comes <strong>in addition</strong> to the <a href="https://proplace.co/newsletter">general Proplace newsletter</a> (all sectors) — it only covers RegTech &amp; Compliance. You can subscribe to both.</span></p><p class="lead" style="margin-top:8px"><span class="i18n-fr">Voir les opérations en ligne : <a href="/actualites/operations/secteur/regtech-and-compliance/">toutes les opérations RegTech &amp; Compliance</a> · <a href="/actualites/operations/fusions-acquisitions/regtech-and-compliance/">fusions-acquisitions</a> · <a href="/actualites/operations/levees-de-fonds/regtech-and-compliance/">levées de fonds</a></span><span class="i18n-en">Browse deals online: <a href="/actualites/operations/secteur/regtech-and-compliance/">all RegTech &amp; Compliance deals</a> · <a href="/actualites/operations/fusions-acquisitions/regtech-and-compliance/">mergers &amp; acquisitions</a> · <a href="/actualites/operations/levees-de-fonds/regtech-and-compliance/">fundraisings</a></span></p><a class="back" href="/actualites/operations/secteur/regtech-and-compliance/"><span class="i18n-fr">← Les opérations RegTech &amp; Compliance</span><span class="i18n-en">← RegTech &amp; Compliance deals</span></a></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="on" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a><a class="" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
@@ -554,18 +604,59 @@ try{var st=document.createElement("style");st.textContent=
 "html[data-pplang=en] a.i18n-en{display:inline-block}"+
 ".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
 ".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
-".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+".pph-acct{position:relative;display:inline-flex;align-items:center}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED (coordonnées posées en JS via getBoundingClientRect) : le menu
+   échappe au défileur overflow-x:auto de .pph nav en mobile (sinon clippé). */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a{display:block;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0}"+
+".pph-acct-menu a:hover{background:#eef9f2;color:#185c38}";
 document.head.appendChild(st);}catch(e){}
 var D={
- en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
- fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
 };
 function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
 return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
-if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+var mSet="https://analysis.proplace.co/thesis/?fund="+f;
+var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
+var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
+'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
+'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+"</div></div>";
+return {i:1,h:h};}
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var wrap=b.parentNode;var menu=wrap?wrap.querySelector(".pph-acct-menu"):null;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
 /* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
@@ -578,7 +669,8 @@ var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
 var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
-Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
 function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
 var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
 function go(l){
@@ -588,6 +680,11 @@ var alt=altUrl(l);
 if(alt&&alt!==here){location.href=alt;return;}
 apply(l);}
 function init(){apply(getLang());
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",closeAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();</script><script>(function(){var f=document.getElementById("nlp-form"),m=document.getElementById("nlp-msg");if(!f)return;function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}var em0=document.getElementById("nlp-email");function ph(){if(!em0)return;em0.setAttribute("placeholder",EN()?"your@email.com":"votre@email.com");em0.setAttribute("aria-label",EN()?"Your email address":"Votre adresse email");}ph();document.addEventListener("pplang",ph);f.addEventListener("submit",function(ev){ev.preventDefault();var em=(document.getElementById("nlp-email").value||"").trim();var hp=(document.getElementById("nlp-web").value||"").trim();if(!em){return;}m.className="nlp-msg";m.textContent=EN()?"Subscribing…":"Inscription en cours…";fetch("https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/newsletter/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:em,sector:"regtech-and-compliance",website:hp})}).then(function(r){return r.json();}).then(function(j){if(j&&j.ok){m.className="nlp-msg ok";m.textContent=EN()?"Done! You'll receive the RegTech &amp; Compliance newsletter from the next edition.":"C'est noté ! Vous recevrez la newsletter RegTech &amp; Compliance dès la prochaine édition.";f.reset();}else{m.className="nlp-msg err";m.textContent=(j&&j.error)||(EN()?"Something went wrong — retry.":"Une erreur est survenue — réessayez.");}}).catch(function(){m.className="nlp-msg err";m.textContent=EN()?"Something went wrong — retry in a few seconds.":"Une erreur est survenue — réessayez dans quelques secondes.";});});})();</script><style>
