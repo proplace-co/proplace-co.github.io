@@ -143,6 +143,14 @@ align-items:center;gap:18px;flex-wrap:nowrap}
 gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
 .pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
 .pph nav>a:hover{color:#0a0a0a}
+/* (retour CEO 20/07) — mobile : « Mon compte » s'affichait À LA VERTICALE (un mot,
+   voire une lettre, par ligne). Cause : dans .pph nav (flex), .pph-sect et .pph-lang
+   sont en flex:0 0 auto mais PAS .pph-auth → c'était le SEUL enfant compressible, il
+   absorbait tout le débordement et rétrécissait à ~0, forçant le texte du bouton à
+   passer à la ligne. Il devient incompressible : c'est le défileur horizontal du nav
+   (v74) qui prend le relais, comme prévu. */
+.pph .pph-auth{flex:0 0 auto;display:inline-flex;align-items:center;white-space:nowrap}
+.pph .pph-auth button,.pph .pph-acct,.pph .pph-acct-btn{flex:0 0 auto;white-space:nowrap}
 /* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
    « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
    couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
@@ -179,7 +187,9 @@ html[data-pplang=en] .i18n-fr{display:none}
  .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
  -webkit-overflow-scrolling:touch;scrollbar-width:none}
  .pph nav::-webkit-scrollbar{display:none}
- .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
+    (même piège que la couleur du CTA, retour CEO 19/07). */
+ .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
  .pph-sect a{padding:6px 10px;font-size:12px}
  .pph-lang button{padding:5px 7px;font-size:11px}
  /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
@@ -409,7 +419,7 @@ a.tm-sec-name:hover .tm-sec-go{opacity:1}
 .tm-secmenu.tm-daymenu{padding:8px}
 .tm-secmenu.tm-daymenu:not([hidden]){display:flex;flex-direction:column;gap:4px}
 .tm-secmenu.tm-daymenu a{padding:11px 14px;font-size:13.5px}
-:root{--ink2:#243040;--mute:#9eaaba}.tm-h1,h1{font-family:'Inter','Helvetica Neue',system-ui,sans-serif}.tm-dek{max-width:none}.anx-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 0 8px}.count{font-size:12.5px;font-weight:700;color:var(--mid);margin:0;text-transform:uppercase;letter-spacing:.04em}.reset{font-size:12.5px;font-weight:600;color:var(--accent-dk);background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;font-family:inherit}.reset:hover{border-color:var(--accent)}.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}.chips-l{font-size:12.5px;font-weight:600;color:var(--mid);margin-right:2px}.chip{font-size:12px;font-weight:500;color:var(--sub);text-align:left;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer;font-family:inherit}.chip i{color:var(--mid);font-style:normal;font-size:.9em}.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}.chip.on i{color:#9eaaba}.card .cg span.ctag{cursor:pointer;transition:all .12s}.card .cg span.ctag:hover{background:var(--ink);color:#fff;border-color:var(--ink)}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:14px}.card{position:relative;display:flex;flex-direction:column;gap:7px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;color:inherit;transition:border-color .15s,transform .15s}.card:hover{border-color:var(--accent);transform:translateY(-2px)}.card .chd{display:flex;align-items:center;gap:10px}.card .cn{font-size:17px;font-weight:800;letter-spacing:-.01em;color:var(--ink);line-height:1.25;text-decoration:none}.card a.cn:hover{color:var(--accent-dk);text-decoration:none}.card .cc{display:flex;flex-wrap:wrap;gap:6px}.card .cc a{font-size:11.5px;font-weight:600;color:var(--sub);background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px;text-decoration:none;transition:all .12s}.card .cc a:hover{border-color:var(--accent);color:var(--accent-dk);text-decoration:none}.card .cm{font-size:12px;font-weight:600;color:var(--mid)}.card .cr{margin:3px 0}.card .cr img{width:100%;max-height:200px;object-fit:contain;border-radius:8px;background:#fafbfc;cursor:zoom-in}.card .cfield{margin:1px 0}.card .clbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--mid)}.card .cval{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.4}.card .cpos{font-size:13px;font-weight:400;color:var(--sub);line-height:1.55;background:var(--bg);border-radius:8px;padding:8px 11px;margin:2px 0 0}.card .cg{display:flex;flex-wrap:wrap;gap:5px}.card .cg span{font-size:10.5px;font-weight:700;color:var(--sub);background:var(--bg);border:1px solid var(--line);padding:2px 7px;border-radius:6px}.card .cl{display:block;text-align:center;font-size:13px;font-weight:700;color:#fff;background:var(--ink);border-radius:10px;padding:10px 14px;text-decoration:none;margin:auto 0 0}.card .cl:hover{opacity:.85;color:#fff;text-decoration:none}.card .cf{margin-top:6px;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:flex-end;gap:4px 10px}.card .cpub{font-size:10px;font-style:italic;font-weight:400;color:#9eaaba;white-space:nowrap;margin-left:auto}.alb{position:fixed;inset:0;background:rgba(11,25,41,.88);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out;padding:20px}.alb img{max-width:94vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5);border-radius:8px;background:#fff}.tm-secmenu button.on span:first-child::before{content:'\2713  ';color:#36a866;font-weight:800}@media(max-width:820px){.tm-search{flex:1 1 100%}}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Research Proplace", "description": "Research notes: the best analyses from thinkers, VCs and tech experts, summarized as mind maps and linked to companies to evaluate. By Proplace.", "url": "https://proplace.co/en/research/", "inLanguage": "en-US", "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}, "mainEntity": {"@type": "ItemList", "numberOfItems": 6, "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://proplace.co/en/research/les-defis-de-lautoresearch-physique-securite-et-optimisation/", "name": "The Challenges of Physical AutoResearch: Safety and Optimization"}, {"@type": "ListItem", "position": 2, "url": "https://proplace.co/en/research/controle-de-leffort-de-raisonnement-dans-les-llm/", "name": "Controlling Reasoning Effort in LLMs"}, {"@type": "ListItem", "position": 3, "url": "https://proplace.co/en/research/glm-52-loptimisation-des-modeles-de-langage-a-grande-echelle/", "name": "GLM-5.2: Optimizing Large Language Models"}, {"@type": "ListItem", "position": 4, "url": "https://proplace.co/en/research/lentreprise-native-de-lia-400x-la-productivite-humaine/", "name": "The AI-Native Company: 400x Human Productivity"}, {"@type": "ListItem", "position": 5, "url": "https://proplace.co/en/research/le-cadre-de-vente-essentiel-pour-les-fondateurs-et-le-pmf/", "name": "The Essential Sales Framework for Founders and PMF"}, {"@type": "ListItem", "position": 6, "url": "https://proplace.co/en/research/inference-rapide-pour-llm-le-role-du-hardware-specialise/", "name": "Fast Inference for LLMs: The Role of Specialized Hardware"}]}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana" href="/analysis/" data-i18n="analysis">Analysis</a><a class="pph-rsch on" href="/research/" data-i18n="research">Research</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><script>(function(){
+:root{--ink2:#243040;--mute:#9eaaba}.tm-h1,h1{font-family:'Inter','Helvetica Neue',system-ui,sans-serif}.tm-dek{max-width:none}.anx-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 0 8px}.count{font-size:12.5px;font-weight:700;color:var(--mid);margin:0;text-transform:uppercase;letter-spacing:.04em}.reset{font-size:12.5px;font-weight:600;color:var(--accent-dk);background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;font-family:inherit}.reset:hover{border-color:var(--accent)}.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}.chips-l{font-size:12.5px;font-weight:600;color:var(--mid);margin-right:2px}.chip{font-size:12px;font-weight:500;color:var(--sub);text-align:left;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer;font-family:inherit}.chip i{color:var(--mid);font-style:normal;font-size:.9em}.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}.chip.on i{color:#9eaaba}.card .cg span.ctag{cursor:pointer;transition:all .12s}.card .cg span.ctag:hover{background:var(--ink);color:#fff;border-color:var(--ink)}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:14px}.card{position:relative;display:flex;flex-direction:column;gap:7px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;color:inherit;transition:border-color .15s,transform .15s}.card:hover{border-color:var(--accent);transform:translateY(-2px)}.card .chd{display:flex;align-items:center;gap:10px}.card .cn{font-size:17px;font-weight:800;letter-spacing:-.01em;color:var(--ink);line-height:1.25;text-decoration:none}.card a.cn:hover{color:var(--accent-dk);text-decoration:none}.card .cc{display:flex;flex-wrap:wrap;gap:6px}.card .cc a{font-size:11.5px;font-weight:600;color:var(--sub);background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px;text-decoration:none;transition:all .12s}.card .cc a:hover{border-color:var(--accent);color:var(--accent-dk);text-decoration:none}.card .cm{font-size:12px;font-weight:600;color:var(--mid)}.card .cr{margin:3px 0}.card .cr img{width:100%;max-height:200px;object-fit:contain;border-radius:8px;background:#fafbfc;cursor:zoom-in}.card .cfield{margin:1px 0}.card .clbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--mid)}.card .cval{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.4}.card .cpos{font-size:13px;font-weight:400;color:var(--sub);line-height:1.55;background:var(--bg);border-radius:8px;padding:8px 11px;margin:2px 0 0}.card .cg{display:flex;flex-wrap:wrap;gap:5px}.card .cg span{font-size:10.5px;font-weight:700;color:var(--sub);background:var(--bg);border:1px solid var(--line);padding:2px 7px;border-radius:6px}.card .cl{display:block;text-align:center;font-size:13px;font-weight:700;color:#fff;background:var(--ink);border-radius:10px;padding:10px 14px;text-decoration:none;margin:auto 0 0}.card .cl:hover{opacity:.85;color:#fff;text-decoration:none}.card .cf{margin-top:6px;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:flex-end;gap:4px 10px}.card .cpub{font-size:10px;font-style:italic;font-weight:400;color:#9eaaba;white-space:nowrap;margin-left:auto}.alb{position:fixed;inset:0;background:rgba(11,25,41,.88);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out;padding:20px}.alb img{max-width:94vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5);border-radius:8px;background:#fff}.tm-secmenu button.on span:first-child::before{content:'\2713  ';color:#36a866;font-weight:800}@media(max-width:820px){.tm-search{flex:1 1 100%}}.rs-studio{margin:22px 0 6px;border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden}.rs-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:16px 20px;border-bottom:1px solid var(--line);background:var(--bg)}.rs-title{font-size:15px;font-weight:800;color:var(--ink);margin:0;letter-spacing:-.01em}.rs-sub{font-size:12.5px;color:var(--mid);margin:0;flex:1 1 240px}.rs-quota{font-size:11.5px;font-weight:700;color:var(--mid);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px;white-space:nowrap}.rs-quota.rs-out{color:#b4232a;border-color:#f0c9cb;background:#fdf5f5}.rs-body{padding:16px 20px 20px}.rs-pills{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}.rs-pill{font-size:12px;font-weight:600;color:var(--sub);background:#fff;cursor:pointer;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-family:inherit}.rs-pill i{color:var(--mid);font-style:normal;font-size:.9em}.rs-pill.on{background:var(--ink);color:#fff;border-color:var(--ink)}.rs-pill.on i{color:#9eaaba}.rs-feed{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,258px),1fr));gap:12px}.rs-it{display:flex;flex-direction:column;gap:7px;border:1px solid var(--line);border-radius:14px;padding:13px 15px;background:#fff;transition:border-color .15s,transform .15s}.rs-it:hover{border-color:var(--accent);transform:translateY(-2px)}.rs-it-top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.rs-kind{font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--sub);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:2px 7px}.rs-it-date{font-size:10.5px;font-style:italic;color:#9eaaba;margin-left:auto}.rs-it-t{font-size:14px;font-weight:700;color:var(--ink);line-height:1.32;margin:0}.rs-it-t a{color:inherit;text-decoration:none}.rs-it-t a:hover{color:var(--accent-dk)}.rs-it-src{font-size:11.5px;font-weight:600;color:var(--mid)}.rs-it-thumb{width:100%;height:104px;object-fit:cover;border-radius:9px;background:var(--bg)}.rs-go{margin-top:auto;font-size:12.5px;font-weight:700;color:#fff;background:var(--ink);border:0;border-radius:9px;padding:9px 12px;cursor:pointer;font-family:inherit;width:100%}.rs-go:hover{opacity:.85}.rs-empty{font-size:13px;color:var(--mute);margin:6px 0 0}.rs-sep{display:flex;align-items:center;gap:12px;margin:22px 0 14px}.rs-sep::before,.rs-sep::after{content:'';flex:1;height:1px;background:var(--line)}.rs-sep span{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--mid)}.rs-modes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.rs-mode{font-size:12.5px;font-weight:600;color:var(--sub);background:#fff;cursor:pointer;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-family:inherit}.rs-mode.on{background:var(--ink);color:#fff;border-color:var(--ink)}.rs-in,.rs-ta{width:100%;font-family:inherit;font-size:13.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:11px;padding:11px 13px;margin-bottom:9px}.rs-in:focus,.rs-ta:focus{outline:none;border-color:var(--accent)}.rs-ta{min-height:132px;line-height:1.5;resize:vertical}.rs-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.rs-btn{font-size:13.5px;font-weight:700;color:#fff;background:var(--ink);border:0;border-radius:11px;padding:11px 18px;cursor:pointer;font-family:inherit}.rs-btn:hover{opacity:.85}.rs-btn[disabled]{opacity:.45;cursor:not-allowed}.rs-btn-pub{background:#0f7a44}.rs-hint{font-size:12px;color:var(--mid)}.rs-hint a{color:var(--accent-dk);font-weight:700}.rs-err{font-size:12.5px;font-weight:600;color:#b4232a;background:#fdf5f5;border:1px solid #f0c9cb;border-radius:10px;padding:10px 13px;margin-top:11px}.rs-ok{font-size:12.5px;font-weight:600;color:#0f7a44;background:#f1f9f4;border:1px solid #cfe8d9;border-radius:10px;padding:10px 13px;margin-top:11px}.rs-ok a{color:#0f7a44;font-weight:800}.rs-prev{margin-top:16px;border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--bg)}.rs-prev h4{font-size:17px;font-weight:800;color:var(--ink);margin:0 0 6px;line-height:1.25}.rs-prev-meta{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}.rs-prev-meta span{font-size:10.5px;font-weight:700;color:var(--sub);background:#fff;border:1px solid var(--line);padding:3px 8px;border-radius:6px}.rs-prev img{width:100%;max-height:340px;object-fit:contain;border-radius:10px;background:#fff;border:1px solid var(--line);cursor:zoom-in}.rs-prev-sum{font-size:13px;color:var(--sub);line-height:1.55;margin:10px 0 0}.rs-spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:rsspin .7s linear infinite;vertical-align:-2px;margin-right:7px}@keyframes rsspin{to{transform:rotate(360deg)}}@media(max-width:600px){.rs-body{padding:14px 14px 18px}.rs-head{padding:14px}}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Research Proplace", "description": "Research notes: the best analyses from thinkers, VCs and tech experts, summarized as mind maps and linked to companies to evaluate. By Proplace.", "url": "https://proplace.co/en/research/", "inLanguage": "en-US", "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}, "mainEntity": {"@type": "ItemList", "numberOfItems": 6, "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://proplace.co/en/research/les-defis-de-lautoresearch-physique-securite-et-optimisation/", "name": "The Challenges of Physical AutoResearch: Safety and Optimization"}, {"@type": "ListItem", "position": 2, "url": "https://proplace.co/en/research/controle-de-leffort-de-raisonnement-dans-les-llm/", "name": "Controlling Reasoning Effort in LLMs"}, {"@type": "ListItem", "position": 3, "url": "https://proplace.co/en/research/glm-52-loptimisation-des-modeles-de-langage-a-grande-echelle/", "name": "GLM-5.2: Optimizing Large Language Models"}, {"@type": "ListItem", "position": 4, "url": "https://proplace.co/en/research/lentreprise-native-de-lia-400x-la-productivite-humaine/", "name": "The AI-Native Company: 400x Human Productivity"}, {"@type": "ListItem", "position": 5, "url": "https://proplace.co/en/research/le-cadre-de-vente-essentiel-pour-les-fondateurs-et-le-pmf/", "name": "The Essential Sales Framework for Founders and PMF"}, {"@type": "ListItem", "position": 6, "url": "https://proplace.co/en/research/inference-rapide-pour-llm-le-role-du-hardware-specialise/", "name": "Fast Inference for LLMs: The Role of Specialized Hardware"}]}}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana" href="/analysis/" data-i18n="analysis">Analysis</a><a class="pph-rsch on" href="/research/" data-i18n="research">Research</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -420,15 +430,25 @@ try{var st=document.createElement("style");st.textContent=
 ".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
 ".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
 /* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
-".pph-acct{position:relative;display:inline-flex;align-items:center}"+
-".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer}"+
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
 ".pph-acct-caret{font-size:10px;line-height:1}"+
-/* position:FIXED (coordonnées posées en JS via getBoundingClientRect) : le menu
-   échappe au défileur overflow-x:auto de .pph nav en mobile (sinon clippé). */
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
 ".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
 ".pph-acct-menu[hidden]{display:none}"+
-".pph-acct-menu a{display:block;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0}"+
-".pph-acct-menu a:hover{background:#eef9f2;color:#185c38}";
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
 document.head.appendChild(st);}catch(e){}
 var D={
  en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
@@ -447,6 +467,8 @@ var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria
 '<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
 '<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
 '<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
 "</div></div>";
 return {i:1,h:h};}
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
@@ -457,20 +479,42 @@ var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
 var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
 var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
 menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
 /* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
    apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
 function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
 if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
 b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
-var wrap=b.parentNode;var menu=wrap?wrap.querySelector(".pph-acct-menu"):null;if(!menu)return;
+var menu=b.__menu;if(!menu)return;
 var willOpen=menu.hasAttribute("hidden");
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
 if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
 else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
-});}
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
 function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
 /* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
@@ -479,9 +523,14 @@ try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
 try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
 try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
-var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
 wireAcct();}
@@ -498,10 +547,10 @@ if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
 document.addEventListener("click",closeAcct);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
 window.addEventListener("resize",closeAcct);
-window.addEventListener("scroll",closeAcct,true);}
+window.addEventListener("scroll",onScrollAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><main class="wrap tm-wrap"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Accueil</a><span class="sep">›</span><span class="cur" data-i18n="research">Research</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Research"}]}</script><div class="tm-herowrap"><div class="tm-hero"><p class="tm-eyebrow"><span class="i18n-fr">Annuaire · Research</span><span class="i18n-en">Directory · Research</span></p><h1 class="tm-h1"><span class="i18n-fr">La recherche des meilleurs experts</span><span class="i18n-en">Research from the best experts</span></h1><p class="tm-dek"><span class="i18n-fr">Les meilleures analyses de penseurs, VC et experts tech du jour — résumées en cartes mentales, classées par secteur, et reliées à des sociétés concrètes à évaluer. Cherchez, filtrez, explorez.</span><span class="i18n-en">The best analyses from thinkers, VCs and tech experts — distilled into mindmaps, sorted by sector, and linked to concrete companies to evaluate. Search, filter, explore.</span></p></div></div><div class="tm-bar"><div class="tm-bar-in"><div id="fIndustry"></div><div id="fDate"></div><div id="fCountry"></div><div id="fAuthor"></div><button type="button" class="reset" id="reset"><span class="i18n-fr">Réinitialiser</span><span class="i18n-en">Reset</span></button><input id="q" class="tm-search" type="search" placeholder="Rechercher…" aria-label="Rechercher une fiche" autocomplete="off"></div><div class="chips" id="fTags"></div></div><div class="anx-tools"><p class="count" id="count"></p></div><div class="grid" id="grid"><div class="card"><div class="chd"><a class="cn" href="/en/research/les-defis-de-lautoresearch-physique-securite-et-optimisation/">The Challenges of Physical AutoResearch: Safety and Optimization</a></div><div class="cc"><a href="https://x.com/DrJimFan/status/2067283904986517866" target="_blank" rel="noopener">🔗 Source de l'article</a></div><div class="cm">✍ DrJimFan</div><div class="cfield"><div class="clbl">Industrie</div><div class="cval">Robotics &amp; Automation</div></div><div class="cfield"><div class="clbl">Marché</div><div class="cval">Development of robotic automation systems for physical research and experimentation.</div></div><div class="cpos">DrJimFan&#x27;s article highlights the underlying complexities of implementing Physical AutoResearch systems, emphasizing that conceptual simplicity masks rigorous engineering and design. It details the three essential pillars for enabling fleets of robots to…</div><div class="cr"><img src="/en/research/mindmaps/les-defis-de-lautoresearch-physique-securite-et-optimisation.png" alt="Carte mentale — The Challenges of Physical AutoResearch: Safety and Optimization" loading="lazy"></div><div class="cg"><span>AI / ML</span><span>Deep Tech / R&amp;D</span><span>Hardware</span></div><a class="cl" href="/en/research/les-defis-de-lautoresearch-physique-securite-et-optimisation/">🧠 Ouvrir la carte mentale →</a><div class="cf"><span class="cpub">Publié le 20 juillet 2026</span></div></div><div class="card"><div class="chd"><a class="cn" href="/en/research/controle-de-leffort-de-raisonnement-dans-les-llm/">Controlling Reasoning Effort in LLMs</a></div><div class="cc"><a href="https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms" target="_blank" rel="noopener">🔗 Source de l'article</a></div><div class="cm">✍ Sebastian Raschka, PhD</div><div class="cfield"><div class="clbl">Industrie</div><div class="cval">Developer &amp; IT Infrastructure</div></div><div class="cfield"><div class="clbl">Marché</div><div class="cval">Development and optimization of Language Models (LLMs) with modulable reasoning capabilities for various applications.</div></div><div class="cpos">This article explores how large language models (LLMs) are trained to have variable reasoning effort modes, ranging from low to high. It explains that &quot;reasoning models&quot; in the context of AI generate intermediate reasoning traces, allowing for step-by-step…</div><div class="cr"><img src="/en/research/mindmaps/controle-de-leffort-de-raisonnement-dans-les-llm.png" alt="Carte mentale — Controlling Reasoning Effort in LLMs" loading="lazy"></div><div class="cg"><span>AI / ML</span><span>Developer</span><span>Deep Tech</span><span>B2B Software &amp; Cloud</span></div><a class="cl" href="/en/research/controle-de-leffort-de-raisonnement-dans-les-llm/">🧠 Ouvrir la carte mentale →</a><div class="cf"><span class="cpub">Publié le 19 juillet 2026</span></div></div><div class="card"><div class="chd"><a class="cn" href="/en/research/glm-52-loptimisation-des-modeles-de-langage-a-grande-echelle/">GLM-5.2: Optimizing Large Language Models</a></div><div class="cc"><a href="https://x.com/rasbt/status/2067612153020838055" target="_blank" rel="noopener">🔗 Source de l'article</a></div><div class="cm">✍ @rasbt · États-Unis</div><div class="cfield"><div class="clbl">Industrie</div><div class="cval">Data &amp; Analytics</div></div><div class="cfield"><div class="clbl">Marché</div><div class="cval">Optimization of open-source Large Language Model (LLM) inference to reduce costs and improve efficiency.</div></div><div class="cpos">The article highlights the release of the GLM-5.2 model, presented as the most powerful open-weight model to date. It builds upon previous architectures GLM-5 and GLM-5.1, integrating advanced attention mechanisms such as Multi-head Latent Attention (MLA) and…</div><div class="cr"><img src="/en/research/mindmaps/glm-52-loptimisation-des-modeles-de-langage-a-grande-echelle.png" alt="Carte mentale — GLM-5.2: Optimizing Large Language Models" loading="lazy"></div><div class="cg"><span>AI / ML</span><span>Deep Tech</span><span>Developer &amp; IT Infrastructure</span></div><a class="cl" href="/en/research/glm-52-loptimisation-des-modeles-de-langage-a-grande-echelle/">🧠 Ouvrir la carte mentale →</a><div class="cf"><span class="cpub">Publié le 19 juillet 2026</span></div></div><div class="card"><div class="chd"><a class="cn" href="/en/research/lentreprise-native-de-lia-400x-la-productivite-humaine/">The AI-Native Company: 400x Human Productivity</a></div><div class="cc"><a href="https://youtu.be/eBUyTS7SzV4?is=Asw5sh8Rj9Q3mlAa" target="_blank" rel="noopener">🔗 Source de l'article</a></div><div class="cm">✍ Garry Tan (Y Combinator) · États-Unis</div><div class="cfield"><div class="clbl">Industrie</div><div class="cval">Horizontal &amp; Productivity SaaS</div></div><div class="cfield"><div class="clbl">Marché</div><div class="cval">Software and tools for creating and managing AI-native organizations, optimizing individual and collective productivity.</div></div><div class="cpos">Garry Tan, CEO of Y Combinator, states that AI should not be treated as a mere autocomplete tool, but as a workforce. He observes a 400x productivity increase for individuals and companies that adopt an &quot;AI-native&quot; approach. This transformation is made…</div><div class="cr"><img src="/en/research/mindmaps/lentreprise-native-de-lia-400x-la-productivite-humaine.png" alt="Carte mentale — The AI-Native Company: 400x Human Productivity" loading="lazy"></div><div class="cg"><span>AI / ML</span><span>B2B Software &amp; Cloud</span><span>Future of Work &amp; HR Tech</span><span>Developer Tools</span></div><a class="cl" href="/en/research/lentreprise-native-de-lia-400x-la-productivite-humaine/">🧠 Ouvrir la carte mentale →</a><div class="cf"><span class="cpub">Publié le 19 juillet 2026</span></div></div><div class="card"><div class="chd"><a class="cn" href="/en/research/le-cadre-de-vente-essentiel-pour-les-fondateurs-et-le-pmf/">The Essential Sales Framework for Founders and PMF</a></div><div class="cc"><a href="https://www.youtube.com/watch?v=5bnpMYSdqbM" target="_blank" rel="noopener">🔗 Source de l'article</a></div><div class="cm">✍ Mark Roberge · États-Unis</div><div class="cfield"><div class="clbl">Industrie</div><div class="cval">B2B Software &amp; Cloud</div></div><div class="cfield"><div class="clbl">Marché</div><div class="cval">B2B startup sales and growth strategies, with a focus on evaluating Product-Market Fit and the impact of AI on CPQ tools.</div></div><div class="cpos">Mark Roberge, a Harvard professor and VC, challenges the common definition of Product-Market Fit (PMF), stating that it&#x27;s not just about revenue or customer count, but about a product that customers don&#x27;t want to give up. He emphasizes that retention is often…</div><div class="cr"><img src="/en/research/mindmaps/le-cadre-de-vente-essentiel-pour-les-fondateurs-et-le-pmf.png" alt="Carte mentale — The Essential Sales Framework for Founders and PMF" loading="lazy"></div><div class="cg"><span>B2B</span><span>SaaS</span><span>AI / ML</span><span>Enterprise Sales</span></div><a class="cl" href="/en/research/le-cadre-de-vente-essentiel-pour-les-fondateurs-et-le-pmf/">🧠 Ouvrir la carte mentale →</a><div class="cf"><span class="cpub">Publié le 19 juillet 2026</span></div></div><div class="card"><div class="chd"><a class="cn" href="/en/research/inference-rapide-pour-llm-le-role-du-hardware-specialise/">Fast Inference for LLMs: The Role of Specialized Hardware</a></div><div class="cc"><a href="https://x.com/AndrewYNg/status/2078144569594761591" target="_blank" rel="noopener">🔗 Source de l'article</a></div><div class="cm">✍ Andrew Ng</div><div class="cfield"><div class="clbl">Industrie</div><div class="cval">Developer &amp; IT Infrastructure</div></div><div class="cfield"><div class="clbl">Marché</div><div class="cval">Hardware and software optimized for fast inference of Large Language Models (LLMs)</div></div><div class="cpos">Andrew Ng highlights the crucial importance of fast inference for applications based on Large Language Models (LLMs), particularly for complex agentic workflows and real-time applications. He emphasizes that the main bottleneck during text generation by a…</div><div class="cr"><img src="/en/research/mindmaps/inference-rapide-pour-llm-le-role-du-hardware-specialise.png" alt="Carte mentale — Fast Inference for LLMs: The Role of Specialized Hardware" loading="lazy"></div><div class="cg"><span>AI / ML</span><span>Hardware</span><span>Deep Tech</span></div><a class="cl" href="/en/research/inference-rapide-pour-llm-le-role-du-hardware-specialise/">🧠 Ouvrir la carte mentale →</a><div class="cf"><span class="cpub">Publié le 18 juillet 2026</span></div></div></div></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a><a class="on" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+})();</script><main class="wrap tm-wrap"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Accueil</a><span class="sep">›</span><span class="cur" data-i18n="research">Research</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Research"}]}</script><div class="tm-herowrap"><div class="tm-hero"><p class="tm-eyebrow"><span class="i18n-fr">Annuaire · Research</span><span class="i18n-en">Directory · Research</span></p><h1 class="tm-h1"><span class="i18n-fr">La recherche des meilleurs experts</span><span class="i18n-en">Research from the best experts</span></h1><p class="tm-dek"><span class="i18n-fr">Les meilleures analyses de penseurs, VC et experts tech du jour — résumées en cartes mentales, classées par secteur, et reliées à des sociétés concrètes à évaluer. Cherchez, filtrez, explorez.</span><span class="i18n-en">The best analyses from thinkers, VCs and tech experts — distilled into mindmaps, sorted by sector, and linked to concrete companies to evaluate. Search, filter, explore.</span></p></div></div><section class="rs-studio" id="rs-studio"><div class="rs-head"><p class="rs-title"><span class="i18n-fr">⚡ À explorer aujourd'hui</span><span class="i18n-en">⚡ Worth exploring today</span></p><p class="rs-sub" id="rs-count"></p><span class="rs-quota" id="rs-quota"></span></div><div class="rs-body"><div class="rs-pills" id="rs-pills"></div><div class="rs-feed" id="rs-feed"></div><p class="rs-empty" id="rs-feed-empty" hidden></p><div class="rs-sep"><span><span class="i18n-fr">L'atelier</span><span class="i18n-en">The studio</span></span></div><p class="rs-hint" style="margin:0 0 11px"><span class="i18n-fr">Un article, une vidéo, un transcript — et vous en ressortez une carte mentale, un résumé et les sociétés à évaluer.</span><span class="i18n-en">An article, a video, a transcript — you get back a mindmap, a summary and the companies worth evaluating.</span></p><div class="rs-modes" id="rs-modes"><button type="button" class="rs-mode on" data-k="url"><span class="i18n-fr">🔗 Lien</span><span class="i18n-en">🔗 Link</span></button><button type="button" class="rs-mode" data-k="youtube"><span class="i18n-fr">🎥 YouTube</span><span class="i18n-en">🎥 YouTube</span></button><button type="button" class="rs-mode" data-k="text"><span class="i18n-fr">📝 Texte collé</span><span class="i18n-en">📝 Pasted text</span></button></div><input class="rs-in" id="rs-url" type="url" autocomplete="off" placeholder=""><textarea class="rs-ta" id="rs-text" hidden placeholder=""></textarea><div class="rs-actions"><button type="button" class="rs-btn" id="rs-run"></button><span class="rs-hint" id="rs-hint"></span></div><div id="rs-msg"></div><div class="rs-prev" id="rs-prev" hidden></div></div></section><div class="tm-bar"><div class="tm-bar-in"><div id="fIndustry"></div><div id="fDate"></div><div id="fCountry"></div><div id="fAuthor"></div><button type="button" class="reset" id="reset"><span class="i18n-fr">Réinitialiser</span><span class="i18n-en">Reset</span></button><input id="q" class="tm-search" type="search" placeholder="Rechercher…" aria-label="Rechercher une fiche" autocomplete="off"></div><div class="chips" id="fTags"></div></div><div class="anx-tools"><p class="count" id="count"></p></div><div class="grid" id="grid"><div class="card"><div class="chd"><a class="cn" href="/en/research/les-defis-de-lautoresearch-physique-securite-et-optimisation/">The Challenges of Physical AutoResearch: Safety and Optimization</a></div><div class="cc"><a href="https://x.com/DrJimFan/status/2067283904986517866" target="_blank" rel="noopener">🔗 Source de l'article</a></div><div class="cm">✍ DrJimFan</div><div class="cfield"><div class="clbl">Industrie</div><div class="cval">Robotics &amp; Automation</div></div><div class="cfield"><div class="clbl">Marché</div><div class="cval">Development of robotic automation systems for physical research and experimentation.</div></div><div class="cpos">DrJimFan&#x27;s article highlights the underlying complexities of implementing Physical AutoResearch systems, emphasizing that conceptual simplicity masks rigorous engineering and design. It details the three essential pillars for enabling fleets of robots to…</div><div class="cr"><img src="/en/research/mindmaps/les-defis-de-lautoresearch-physique-securite-et-optimisation.png" alt="Carte mentale — The Challenges of Physical AutoResearch: Safety and Optimization" loading="lazy"></div><div class="cg"><span>AI / ML</span><span>Deep Tech / R&amp;D</span><span>Hardware</span></div><a class="cl" href="/en/research/les-defis-de-lautoresearch-physique-securite-et-optimisation/">🧠 Ouvrir la carte mentale →</a><div class="cf"><span class="cpub">Publié le 20 juillet 2026</span></div></div><div class="card"><div class="chd"><a class="cn" href="/en/research/controle-de-leffort-de-raisonnement-dans-les-llm/">Controlling Reasoning Effort in LLMs</a></div><div class="cc"><a href="https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms" target="_blank" rel="noopener">🔗 Source de l'article</a></div><div class="cm">✍ Sebastian Raschka, PhD</div><div class="cfield"><div class="clbl">Industrie</div><div class="cval">Developer &amp; IT Infrastructure</div></div><div class="cfield"><div class="clbl">Marché</div><div class="cval">Development and optimization of Language Models (LLMs) with modulable reasoning capabilities for various applications.</div></div><div class="cpos">This article explores how large language models (LLMs) are trained to have variable reasoning effort modes, ranging from low to high. It explains that &quot;reasoning models&quot; in the context of AI generate intermediate reasoning traces, allowing for step-by-step…</div><div class="cr"><img src="/en/research/mindmaps/controle-de-leffort-de-raisonnement-dans-les-llm.png" alt="Carte mentale — Controlling Reasoning Effort in LLMs" loading="lazy"></div><div class="cg"><span>AI / ML</span><span>Developer</span><span>Deep Tech</span><span>B2B Software &amp; Cloud</span></div><a class="cl" href="/en/research/controle-de-leffort-de-raisonnement-dans-les-llm/">🧠 Ouvrir la carte mentale →</a><div class="cf"><span class="cpub">Publié le 19 juillet 2026</span></div></div><div class="card"><div class="chd"><a class="cn" href="/en/research/glm-52-loptimisation-des-modeles-de-langage-a-grande-echelle/">GLM-5.2: Optimizing Large Language Models</a></div><div class="cc"><a href="https://x.com/rasbt/status/2067612153020838055" target="_blank" rel="noopener">🔗 Source de l'article</a></div><div class="cm">✍ @rasbt · États-Unis</div><div class="cfield"><div class="clbl">Industrie</div><div class="cval">Data &amp; Analytics</div></div><div class="cfield"><div class="clbl">Marché</div><div class="cval">Optimization of open-source Large Language Model (LLM) inference to reduce costs and improve efficiency.</div></div><div class="cpos">The article highlights the release of the GLM-5.2 model, presented as the most powerful open-weight model to date. It builds upon previous architectures GLM-5 and GLM-5.1, integrating advanced attention mechanisms such as Multi-head Latent Attention (MLA) and…</div><div class="cr"><img src="/en/research/mindmaps/glm-52-loptimisation-des-modeles-de-langage-a-grande-echelle.png" alt="Carte mentale — GLM-5.2: Optimizing Large Language Models" loading="lazy"></div><div class="cg"><span>AI / ML</span><span>Deep Tech</span><span>Developer &amp; IT Infrastructure</span></div><a class="cl" href="/en/research/glm-52-loptimisation-des-modeles-de-langage-a-grande-echelle/">🧠 Ouvrir la carte mentale →</a><div class="cf"><span class="cpub">Publié le 19 juillet 2026</span></div></div><div class="card"><div class="chd"><a class="cn" href="/en/research/lentreprise-native-de-lia-400x-la-productivite-humaine/">The AI-Native Company: 400x Human Productivity</a></div><div class="cc"><a href="https://youtu.be/eBUyTS7SzV4?is=Asw5sh8Rj9Q3mlAa" target="_blank" rel="noopener">🔗 Source de l'article</a></div><div class="cm">✍ Garry Tan (Y Combinator) · États-Unis</div><div class="cfield"><div class="clbl">Industrie</div><div class="cval">Horizontal &amp; Productivity SaaS</div></div><div class="cfield"><div class="clbl">Marché</div><div class="cval">Software and tools for creating and managing AI-native organizations, optimizing individual and collective productivity.</div></div><div class="cpos">Garry Tan, CEO of Y Combinator, states that AI should not be treated as a mere autocomplete tool, but as a workforce. He observes a 400x productivity increase for individuals and companies that adopt an &quot;AI-native&quot; approach. This transformation is made…</div><div class="cr"><img src="/en/research/mindmaps/lentreprise-native-de-lia-400x-la-productivite-humaine.png" alt="Carte mentale — The AI-Native Company: 400x Human Productivity" loading="lazy"></div><div class="cg"><span>AI / ML</span><span>B2B Software &amp; Cloud</span><span>Future of Work &amp; HR Tech</span><span>Developer Tools</span></div><a class="cl" href="/en/research/lentreprise-native-de-lia-400x-la-productivite-humaine/">🧠 Ouvrir la carte mentale →</a><div class="cf"><span class="cpub">Publié le 19 juillet 2026</span></div></div><div class="card"><div class="chd"><a class="cn" href="/en/research/le-cadre-de-vente-essentiel-pour-les-fondateurs-et-le-pmf/">The Essential Sales Framework for Founders and PMF</a></div><div class="cc"><a href="https://www.youtube.com/watch?v=5bnpMYSdqbM" target="_blank" rel="noopener">🔗 Source de l'article</a></div><div class="cm">✍ Mark Roberge · États-Unis</div><div class="cfield"><div class="clbl">Industrie</div><div class="cval">B2B Software &amp; Cloud</div></div><div class="cfield"><div class="clbl">Marché</div><div class="cval">B2B startup sales and growth strategies, with a focus on evaluating Product-Market Fit and the impact of AI on CPQ tools.</div></div><div class="cpos">Mark Roberge, a Harvard professor and VC, challenges the common definition of Product-Market Fit (PMF), stating that it&#x27;s not just about revenue or customer count, but about a product that customers don&#x27;t want to give up. He emphasizes that retention is often…</div><div class="cr"><img src="/en/research/mindmaps/le-cadre-de-vente-essentiel-pour-les-fondateurs-et-le-pmf.png" alt="Carte mentale — The Essential Sales Framework for Founders and PMF" loading="lazy"></div><div class="cg"><span>B2B</span><span>SaaS</span><span>AI / ML</span><span>Enterprise Sales</span></div><a class="cl" href="/en/research/le-cadre-de-vente-essentiel-pour-les-fondateurs-et-le-pmf/">🧠 Ouvrir la carte mentale →</a><div class="cf"><span class="cpub">Publié le 19 juillet 2026</span></div></div><div class="card"><div class="chd"><a class="cn" href="/en/research/inference-rapide-pour-llm-le-role-du-hardware-specialise/">Fast Inference for LLMs: The Role of Specialized Hardware</a></div><div class="cc"><a href="https://x.com/AndrewYNg/status/2078144569594761591" target="_blank" rel="noopener">🔗 Source de l'article</a></div><div class="cm">✍ Andrew Ng</div><div class="cfield"><div class="clbl">Industrie</div><div class="cval">Developer &amp; IT Infrastructure</div></div><div class="cfield"><div class="clbl">Marché</div><div class="cval">Hardware and software optimized for fast inference of Large Language Models (LLMs)</div></div><div class="cpos">Andrew Ng highlights the crucial importance of fast inference for applications based on Large Language Models (LLMs), particularly for complex agentic workflows and real-time applications. He emphasizes that the main bottleneck during text generation by a…</div><div class="cr"><img src="/en/research/mindmaps/inference-rapide-pour-llm-le-role-du-hardware-specialise.png" alt="Carte mentale — Fast Inference for LLMs: The Role of Specialized Hardware" loading="lazy"></div><div class="cg"><span>AI / ML</span><span>Hardware</span><span>Deep Tech</span></div><a class="cl" href="/en/research/inference-rapide-pour-llm-le-role-du-hardware-specialise/">🧠 Ouvrir la carte mentale →</a><div class="cf"><span class="cpub">Publié le 18 juillet 2026</span></div></div></div></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a><a class="on" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -512,15 +561,25 @@ try{var st=document.createElement("style");st.textContent=
 ".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
 ".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
 /* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
-".pph-acct{position:relative;display:inline-flex;align-items:center}"+
-".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer}"+
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
 ".pph-acct-caret{font-size:10px;line-height:1}"+
-/* position:FIXED (coordonnées posées en JS via getBoundingClientRect) : le menu
-   échappe au défileur overflow-x:auto de .pph nav en mobile (sinon clippé). */
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
 ".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
 ".pph-acct-menu[hidden]{display:none}"+
-".pph-acct-menu a{display:block;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0}"+
-".pph-acct-menu a:hover{background:#eef9f2;color:#185c38}";
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
 document.head.appendChild(st);}catch(e){}
 var D={
  en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
@@ -539,6 +598,8 @@ var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria
 '<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
 '<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
 '<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
 "</div></div>";
 return {i:1,h:h};}
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
@@ -549,20 +610,42 @@ var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
 var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
 var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
 menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
 /* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
    apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
 function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
 if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
 b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
-var wrap=b.parentNode;var menu=wrap?wrap.querySelector(".pph-acct-menu"):null;if(!menu)return;
+var menu=b.__menu;if(!menu)return;
 var willOpen=menu.hasAttribute("hidden");
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
 if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
 else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
-});}
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
 function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
 /* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
@@ -571,9 +654,14 @@ try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
 try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
 try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
-var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
 wireAcct();}
@@ -590,7 +678,7 @@ if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
 document.addEventListener("click",closeAcct);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
 window.addEventListener("resize",closeAcct);
-window.addEventListener("scroll",closeAcct,true);}
+window.addEventListener("scroll",onScrollAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();</script><div class="alb" id="alb"><img src="" alt=""></div><script>window.__RESEARCH__=[{"title": "Controlling Reasoning Effort in LLMs", "url": "/en/research/controle-de-leffort-de-raisonnement-dans-les-llm/", "industry": "Developer & IT Infrastructure", "market": "Development and optimization of Language Models (LLMs) with modulable reasoning capabilities for various applications.", "summary": "This article explores how large language models (LLMs) are trained to have variable reasoning effort modes, ranging from low to high. It explains that \"reasoning models\" in the context of AI generate intermediate reasoning traces, allowing for step-by-step…", "author": "Sebastian Raschka, PhD", "country": "", "cc": "", "source_url": "https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms", "published": "2026-07-19", "mindmap": "/en/research/mindmaps/controle-de-leffort-de-raisonnement-dans-les-llm.png", "tags": ["AI / ML", "Developer", "Deep Tech", "B2B Software & Cloud"]}, {"title": "GLM-5.2: Optimizing Large Language Models", "url": "/en/research/glm-52-loptimisation-des-modeles-de-langage-a-grande-echelle/", "industry": "Data & Analytics", "market": "Optimization of open-source Large Language Model (LLM) inference to reduce costs and improve efficiency.", "summary": "The article highlights the release of the GLM-5.2 model, presented as the most powerful open-weight model to date. It builds upon previous architectures GLM-5 and GLM-5.1, integrating advanced attention mechanisms such as Multi-head Latent Attention (MLA) and…", "author": "@rasbt", "country": "États-Unis", "cc": "US", "source_url": "https://x.com/rasbt/status/2067612153020838055", "published": "2026-07-19", "mindmap": "/en/research/mindmaps/glm-52-loptimisation-des-modeles-de-langage-a-grande-echelle.png", "tags": ["AI / ML", "Deep Tech", "Developer & IT Infrastructure"]}, {"title": "Fast Inference for LLMs: The Role of Specialized Hardware", "url": "/en/research/inference-rapide-pour-llm-le-role-du-hardware-specialise/", "industry": "Developer & IT Infrastructure", "market": "Hardware and software optimized for fast inference of Large Language Models (LLMs)", "summary": "Andrew Ng highlights the crucial importance of fast inference for applications based on Large Language Models (LLMs), particularly for complex agentic workflows and real-time applications. He emphasizes that the main bottleneck during text generation by a…", "author": "Andrew Ng", "country": "", "cc": "", "source_url": "https://x.com/AndrewYNg/status/2078144569594761591", "published": "2026-07-18", "mindmap": "/en/research/mindmaps/inference-rapide-pour-llm-le-role-du-hardware-specialise.png", "tags": ["AI / ML", "Hardware", "Deep Tech"]}, {"title": "The AI-Native Company: 400x Human Productivity", "url": "/en/research/lentreprise-native-de-lia-400x-la-productivite-humaine/", "industry": "Horizontal & Productivity SaaS", "market": "Software and tools for creating and managing AI-native organizations, optimizing individual and collective productivity.", "summary": "Garry Tan, CEO of Y Combinator, states that AI should not be treated as a mere autocomplete tool, but as a workforce. He observes a 400x productivity increase for individuals and companies that adopt an \"AI-native\" approach. This transformation is made…", "author": "Garry Tan (Y Combinator)", "country": "États-Unis", "cc": "US", "source_url": "https://youtu.be/eBUyTS7SzV4?is=Asw5sh8Rj9Q3mlAa", "published": "2026-07-19", "mindmap": "/en/research/mindmaps/lentreprise-native-de-lia-400x-la-productivite-humaine.png", "tags": ["AI / ML", "B2B Software & Cloud", "Future of Work & HR Tech", "Developer Tools"]}, {"title": "The Essential Sales Framework for Founders and PMF", "url": "/en/research/le-cadre-de-vente-essentiel-pour-les-fondateurs-et-le-pmf/", "industry": "B2B Software & Cloud", "market": "B2B startup sales and growth strategies, with a focus on evaluating Product-Market Fit and the impact of AI on CPQ tools.", "summary": "Mark Roberge, a Harvard professor and VC, challenges the common definition of Product-Market Fit (PMF), stating that it's not just about revenue or customer count, but about a product that customers don't want to give up. He emphasizes that retention is often…", "author": "Mark Roberge", "country": "États-Unis", "cc": "US", "source_url": "https://www.youtube.com/watch?v=5bnpMYSdqbM", "published": "2026-07-19", "mindmap": "/en/research/mindmaps/le-cadre-de-vente-essentiel-pour-les-fondateurs-et-le-pmf.png", "tags": ["B2B", "SaaS", "AI / ML", "Enterprise Sales"]}, {"title": "The Challenges of Physical AutoResearch: Safety and Optimization", "url": "/en/research/les-defis-de-lautoresearch-physique-securite-et-optimisation/", "industry": "Robotics & Automation", "market": "Development of robotic automation systems for physical research and experimentation.", "summary": "DrJimFan's article highlights the underlying complexities of implementing Physical AutoResearch systems, emphasizing that conceptual simplicity masks rigorous engineering and design. It details the three essential pillars for enabling fleets of robots to…", "author": "DrJimFan", "country": "", "cc": "", "source_url": "https://x.com/DrJimFan/status/2067283904986517866", "published": "2026-07-20", "mindmap": "/en/research/mindmaps/les-defis-de-lautoresearch-physique-securite-et-optimisation.png", "tags": ["AI / ML", "Deep Tech / R&D", "Hardware"]}];</script><script>
@@ -724,4 +812,252 @@ document.getElementById('reset').onclick=function(){q='';FACETS.forEach(function
 document.addEventListener('click',function(e){var im=e.target.closest&&e.target.closest('.cr img');if(im){var lb=document.getElementById('alb');if(lb){lb.querySelector('img').src=im.src;lb.style.display='flex';}}});
 (function(){var lb=document.getElementById('alb');if(lb)lb.onclick=function(){this.style.display='none';};})();
 render();
+</script><script>
+(function(){
+var API="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run";
+var LANG=function(){try{var v=localStorage.getItem('proplace_lang');if(v==='en'||v==='fr')return v;}catch(e){}
+ return (document.documentElement.getAttribute('data-pplang')||'fr');};
+var TX={
+ fr:{run:'🧠 Générer la carte mentale',running:'Génération en cours…',
+     phUrl:'https://exemple.com/article-a-analyser',
+     phYt:'https://youtu.be/… ou https://www.youtube.com/watch?v=…',
+     phText:'Colle ici le texte de l\'article, la newsletter ou le transcript…',
+     need:'Colle un lien à analyser.',needText:'Colle le texte à analyser.',
+     left:'il te reste %n% mindmap(s) aujourd\'hui',
+     anon:'1 mindmap gratuite par jour · <a href="https://proplace.co/login">connecte-toi</a> pour publier',
+     unlimited:'accès illimité',
+     pub:'🚀 Publier sur /research',publishing:'Publication…',
+     pubAnon:'Connecte-toi pour publier ta fiche sur proplace.co.',
+     done:'Fiche publiée : ',
+     wait:'La publication met une minute à apparaître en ligne (le site se reconstruit).',
+     none:'Rien de neuf dans le vivier pour l\'instant — reviens après le run du matin.',
+     all:'Tous',count:'%n% contenus prêts à explorer',
+     go:'→ En faire une carte mentale',
+     kind:{article:'Article',video:'Vidéo',newsletter:'Newsletter',post:'Post'},
+     today:"aujourd'hui",yest:'hier',days:'il y a %n% j',
+     off:'Vivier indisponible pour le moment.'},
+ en:{run:'🧠 Generate the mindmap',running:'Generating…',
+     phUrl:'https://example.com/article-to-analyse',
+     phYt:'https://youtu.be/… or https://www.youtube.com/watch?v=…',
+     phText:'Paste the article, newsletter or transcript here…',
+     need:'Paste a link to analyse.',needText:'Paste the text to analyse.',
+     left:'%n% mindmap(s) left today',
+     anon:'1 free mindmap per day · <a href="https://proplace.co/login">log in</a> to publish',
+     unlimited:'unlimited access',
+     pub:'🚀 Publish to /research',publishing:'Publishing…',
+     pubAnon:'Log in to publish your research note on proplace.co.',
+     done:'Published: ',
+     wait:'It takes a minute to appear online (the site rebuilds).',
+     none:'Nothing new in the pool yet — check back after the morning run.',
+     all:'All',count:'%n% items ready to explore',
+     go:'→ Turn into a mindmap',
+     kind:{article:'Article',video:'Video',newsletter:'Newsletter',post:'Post'},
+     today:'today',yest:'yesterday',days:'%n%d ago',
+     off:'Pool unavailable right now.'}
+};
+function T(){return TX[LANG()]||TX.fr;}
+function esc(s){return (s||'').replace(/[&<>"]/g,function(c){
+ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function $(id){return document.getElementById(id);}
+
+// Session Proplace (cookie .proplace.co) — identité DÉCLARÉE : elle sert de clé de
+// comptage et de traçabilité, le serveur reste seul juge de ce qui est permis.
+function sessionEmail(){
+ try{var raw=document.cookie.split('; ').find(function(r){return r.indexOf('proplace_auth=')===0;});
+  if(!raw)return '';
+  return (JSON.parse(atob(decodeURIComponent(raw.split('=')[1]))).email||'').toLowerCase();
+ }catch(e){return '';}
+}
+var EMAIL=sessionEmail();
+
+function ago(iso){var t=T();if(!iso)return '';
+ var d=new Date(iso);if(isNaN(d))return '';
+ var n=Math.floor((Date.now()-d.getTime())/86400000);
+ if(n<=0)return t.today;if(n===1)return t.yest;return t.days.replace('%n%',n);}
+
+// ── Plafonds : on AFFICHE l'état, on ne l'applique pas ──────────────────────
+var QUOTA=null;
+function paintQuota(){
+ var t=T(),el=$('rs-quota'),hint=$('rs-hint');if(!el)return;
+ if(!QUOTA){el.textContent='';if(hint)hint.innerHTML='';return;}
+ if(!QUOTA.logged_in){
+  el.textContent=t.left.replace('%n%',QUOTA.remaining);
+  el.className='rs-quota'+(QUOTA.remaining<=0?' rs-out':'');
+  if(hint)hint.innerHTML=t.anon;
+  return;
+ }
+ el.textContent=QUOTA.unlimited?t.unlimited:t.left.replace('%n%',QUOTA.remaining);
+ el.className='rs-quota'+((!QUOTA.unlimited&&QUOTA.remaining<=0)?' rs-out':'');
+ if(hint)hint.textContent=QUOTA.email||'';
+}
+function loadQuota(){
+ fetch(API+'/research/quota',{method:'POST',headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({email:EMAIL})}).then(function(r){return r.json();}).then(function(d){
+  if(d&&d.status==='success'){QUOTA=d.quota;paintQuota();}
+ }).catch(function(){});
+}
+
+// ── ① Vivier du jour ────────────────────────────────────────────────────────
+var POOL=[],SECTORS=[],SEL='';
+function paintPills(){
+ var t=T(),box=$('rs-pills');if(!box)return;
+ var html='<button type="button" class="rs-pill'+(SEL?'':' on')+'" data-s="">'+esc(t.all)
+  +' <i>'+POOL.length+'</i></button>';
+ SECTORS.forEach(function(s){
+  html+='<button type="button" class="rs-pill'+(SEL===s.sector?' on':'')+'" data-s="'+esc(s.sector)+'">'
+   +esc(s.sector_fr||s.sector)+' <i>'+s.items.length+'</i></button>';});
+ box.innerHTML=html;
+ box.querySelectorAll('.rs-pill').forEach(function(b){
+  b.onclick=function(){SEL=b.getAttribute('data-s')||'';paintPills();paintFeed();};});
+}
+function paintFeed(){
+ var t=T(),box=$('rs-feed'),empty=$('rs-feed-empty');if(!box)return;
+ var items=SEL?POOL.filter(function(i){return i.sector===SEL;}):POOL;
+ if(!items.length){box.innerHTML='';if(empty){empty.textContent=t.none;empty.hidden=false;}return;}
+ if(empty)empty.hidden=true;
+ box.innerHTML=items.map(function(it,i){
+  var k=(t.kind[it.kind]||it.kind||'').toUpperCase();
+  var thumb=it.thumbnail?'<img class="rs-it-thumb" src="'+esc(it.thumbnail)+'" alt="" loading="lazy" '
+   +'onerror="this.style.display=\'none\'">':'';
+  return '<article class="rs-it">'
+   +'<div class="rs-it-top"><span class="rs-kind">'+esc(k)+'</span>'
+   +'<span class="rs-it-date">'+esc(ago(it.published_at))+'</span></div>'
+   +thumb
+   +'<p class="rs-it-t"><a href="'+esc(it.url)+'" target="_blank" rel="noopener">'+esc(it.title)+'</a></p>'
+   +'<p class="rs-it-src">'+esc(it.source||'')+'</p>'
+   +'<button type="button" class="rs-go" data-i="'+i+'">'+esc(t.go)+'</button>'
+   +'</article>';}).join('');
+ box.querySelectorAll('.rs-go').forEach(function(b){
+  b.onclick=function(){pick(items[parseInt(b.getAttribute('data-i'),10)]);};});
+}
+function pick(it){
+ if(!it)return;
+ setMode(it.ingest_kind==='youtube'?'youtube':'url');
+ var u=$('rs-url');if(u){u.value=it.url;}
+ var st=$('rs-studio');
+ if(st&&st.scrollIntoView){$('rs-run').scrollIntoView({behavior:'smooth',block:'center'});}
+ if(u)u.focus({preventScroll:true});
+}
+function loadPool(){
+ fetch(API+'/research/candidates').then(function(r){return r.json();}).then(function(d){
+  var p=(d&&d.pool)||{};
+  POOL=p.items||[];SECTORS=p.sectors||[];
+  var c=$('rs-count');if(c)c.textContent=T().count.replace('%n%',POOL.length);
+  paintPills();paintFeed();
+ }).catch(function(){
+  var e=$('rs-feed-empty');if(e){e.textContent=T().off;e.hidden=false;}});
+}
+
+// ── ② Atelier ───────────────────────────────────────────────────────────────
+var MODE='url',CARD=null,BUSY=false;
+function setMode(k){
+ MODE=k;
+ document.querySelectorAll('.rs-mode').forEach(function(b){
+  b.classList.toggle('on',b.getAttribute('data-k')===k);});
+ var u=$('rs-url'),x=$('rs-text'),t=T();
+ u.hidden=(k==='text');x.hidden=(k!=='text');
+ u.placeholder=(k==='youtube'?t.phYt:t.phUrl);
+ x.placeholder=t.phText;
+}
+function msg(kind,html){
+ var b=$('rs-msg');if(!b)return;
+ b.innerHTML=html?'<div class="'+(kind==='ok'?'rs-ok':'rs-err')+'">'+html+'</div>':'';
+}
+function setBusy(on,label){
+ BUSY=on;var b=$('rs-run');if(!b)return;
+ b.disabled=on;
+ b.innerHTML=on?'<span class="rs-spin"></span>'+esc(label):esc(T().run);
+}
+// Spawn + poll : les routes /research/* rendent {job_id}, le résultat arrive par /status.
+function job(path,body){
+ return fetch(API+path,{method:'POST',headers:{'Content-Type':'application/json'},
+  body:JSON.stringify(Object.assign({email:EMAIL},body))})
+ .then(function(r){return r.json();}).then(function(spawn){
+  if(!spawn||spawn.status==='error')throw new Error((spawn&&spawn.message)||'Erreur backend');
+  var id=spawn.job_id;if(!id)throw new Error('Pas de job_id');
+  var t0=Date.now();
+  return (function poll(){
+   return new Promise(function(r){setTimeout(r,2500);}).then(function(){
+    if(Date.now()-t0>6*60*1000)throw new Error('Timeout');
+    return fetch(API+'/research/status/'+id).then(function(r){return r.json();})
+     .then(function(d){return (d&&d.status==='running')?poll():d;});});})();
+ });
+}
+function run(){
+ if(BUSY)return;
+ var t=T(),u=($('rs-url').value||'').trim(),x=($('rs-text').value||'').trim();
+ if(MODE==='text'&&!x){msg('err',esc(t.needText));return;}
+ if(MODE!=='text'&&!u){msg('err',esc(t.need));return;}
+ msg('');CARD=null;$('rs-prev').hidden=true;
+ setBusy(true,t.running);
+ job('/research/ingest',{kind:MODE,raw:(MODE==='text'?x:''),source_url:(MODE==='text'?'':u)})
+ .then(function(res){
+  if(!res||res.status==='error'){msg('err',esc((res&&res.message)||'Erreur backend'));return;}
+  CARD=res;paintPreview(res);loadQuota();
+ }).catch(function(e){msg('err',esc(e.message||'Erreur'));})
+ .then(function(){setBusy(false);});
+}
+function paintPreview(c){
+ var t=T(),box=$('rs-prev');if(!box)return;
+ var tags=[];
+ if(c.industry)tags.push(c.industry);
+ if(c.market)tags.push(c.market);
+ if(c.author)tags.push(c.author);
+ var png=c.mindmap_png_b64?'<img src="data:image/png;base64,'+c.mindmap_png_b64+'" alt="">':'';
+ var sum=(c.summary_md||'').replace(/[#*_`>]/g,'').trim().slice(0,420);
+ // Si l'appel plafonds n'a pas abouti, on se rabat sur la présence d'une session plutôt
+ // que de bloquer un visiteur connecté : de toute façon le serveur retranche.
+ var canPub=!!(QUOTA?QUOTA.logged_in:EMAIL);
+ box.innerHTML='<h4>'+esc(c.title||'')+'</h4>'
+  +(tags.length?'<div class="rs-prev-meta">'+tags.map(function(x){
+    return '<span>'+esc(x)+'</span>';}).join('')+'</div>':'')
+  +png
+  +(sum?'<p class="rs-prev-sum">'+esc(sum)+'…</p>':'')
+  +'<div class="rs-actions" style="margin-top:13px">'
+  +'<button type="button" class="rs-btn rs-btn-pub" id="rs-pub"'+(canPub?'':' disabled')+'>'
+  +esc(t.pub)+'</button>'
+  +(canPub?'':'<span class="rs-hint">'+esc(t.pubAnon)+'</span>')
+  +'</div>';
+ box.hidden=false;
+ var pb=$('rs-pub');if(pb)pb.onclick=publish;
+ box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function publish(){
+ if(!CARD)return;
+ var t=T(),b=$('rs-pub');
+ b.disabled=true;b.innerHTML='<span class="rs-spin"></span>'+esc(t.publishing);
+ var payload={};
+ Object.keys(CARD).forEach(function(k){if(k!=='mindmap_png_b64')payload[k]=CARD[k];});
+ job('/research/publish',payload).then(function(res){
+  if(!res||res.ok===false||res.status==='error'){
+   msg('err',esc((res&&(res.error||res.message))||'Échec de la publication'));
+   b.disabled=false;b.textContent=t.pub;return;}
+  var url=res.url||'';
+  msg('ok',esc(t.done)+'<a href="'+esc(url)+'" target="_blank" rel="noopener">'+esc(url)+'</a>'
+   +'<br><span style="font-weight:400">'+esc(t.wait)+'</span>');
+  b.textContent='✓';
+ }).catch(function(e){
+  msg('err',esc(e.message||'Erreur'));b.disabled=false;b.textContent=t.pub;});
+}
+
+function boot(){
+ if(!$('rs-studio'))return;
+ setMode('url');
+ $('rs-run').textContent=T().run;
+ $('rs-run').onclick=run;
+ document.querySelectorAll('.rs-mode').forEach(function(b){
+  b.onclick=function(){setMode(b.getAttribute('data-k'));};});
+ // Zoom sur la mindmap d'aperçu via la lightbox déjà présente sur l'annuaire.
+ $('rs-prev').addEventListener('click',function(e){
+  if(e.target.tagName!=='IMG')return;
+  var lb=document.getElementById('alb');
+  if(lb){lb.querySelector('img').src=e.target.src;lb.style.display='flex';}});
+ document.addEventListener('pplang',function(){
+  $('rs-run').textContent=T().run;setMode(MODE);paintQuota();
+  var c=$('rs-count');if(c)c.textContent=T().count.replace('%n%',POOL.length);
+  paintPills();paintFeed();});
+ loadQuota();loadPool();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+})();
 </script></body></html>
