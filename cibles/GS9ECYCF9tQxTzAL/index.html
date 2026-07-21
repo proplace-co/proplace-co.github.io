@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="cerfrance"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-21T19:08:58Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="cerfrance"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-21T19:29:43Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -2563,6 +2563,12 @@ padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;line-heig
    prospects en cours (pas seulement les Validées) : le sales pilote son pipeline
    depuis la carte. Scopé #cb-rows-kept.cb-prospect → JAMAIS sur une page client. */
 #cb-rows-kept.cb-prospect .cb-stg{display:flex}
+/* v112.2 — RENDU PARESSEUX natif : plus de cap sur les cartes → le navigateur ne rend
+   que les cartes visibles à l'écran (le reste au scroll), la page reste rapide même à
+   600+ cartes. contain-intrinsic-size = hauteur placeholder (scrollbar stable). Les
+   handlers sont en délégation document → marchent même sur une carte non rendue. */
+.cb-urow{content-visibility:auto;contain-intrinsic-size:auto 84px}
+.cb-urow.cb-open{content-visibility:visible}
 /* v112 — lanceur Missive (poste de travail sales, pages outbound seulement). */
 .cb-missive{display:flex;align-items:center;gap:12px;margin:0 0 16px;padding:12px 16px;
   border:1px solid #d9e6dd;background:#f3f8f5;border-radius:12px;font-size:13px;color:#243b30}
@@ -4379,4 +4385,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:6b1c68fa8e --></body></html>
+})();</script><!-- v:ceb9f01ef7 --></body></html>
