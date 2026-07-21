@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="cerfrance"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-21T19:29:43Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="cerfrance"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-21T20:14:46Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -2591,8 +2591,13 @@ padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;line-heig
 .cb-convwrap{margin-top:4px}
 /* v112.1 — en MODE LIGNE (density-table, rangée non ouverte) les actions sont en flex-row
    CENTRÉ : pas de margin-top (sinon le bouton 💬 est décalé vers le bas + rallonge la ligne). */
-.cb-density-table .cb-urow:not(.cb-open) .cb-convwrap{margin-top:0}
-.cb-density-table .cb-urow:not(.cb-open) .cb-conv-btn{padding:2px 7px}
+.cb-density-table .cb-urow:not(.cb-open) .cb-convwrap{margin:0;display:inline-flex;align-items:center;align-self:center}
+.cb-density-table .cb-urow:not(.cb-open) .cb-conv-btn{padding:1px 6px;font-size:13px;line-height:1.1}
+/* v112.2 — les 3 wraps d'action (approche / conversation / dossier) alignés au centre
+   vertical en mode ligne, sans margin, pour que la hauteur de ligne reste minimale. */
+.cb-density-table .cb-urow:not(.cb-open) .cb-uh-act{align-items:center}
+.cb-density-table .cb-urow:not(.cb-open) .cb-apprwrap,
+.cb-density-table .cb-urow:not(.cb-open) .cb-doswrap{margin:0;align-self:center}
 .cb-conv-btn{font-family:inherit;font-size:14px;line-height:1;padding:4px 7px;border-radius:7px;
   border:1px solid #cfe0d5;background:#fff;cursor:pointer}
 .cb-conv-btn:hover{background:#f1f7f3;border-color:#9fc4ac}
@@ -4385,4 +4390,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:ceb9f01ef7 --></body></html>
+})();</script><!-- v:310659d774 --></body></html>
