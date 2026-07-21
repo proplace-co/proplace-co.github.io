@@ -143,6 +143,14 @@ align-items:center;gap:18px;flex-wrap:nowrap}
 gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
 .pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
 .pph nav>a:hover{color:#0a0a0a}
+/* (retour CEO 20/07) — mobile : « Mon compte » s'affichait À LA VERTICALE (un mot,
+   voire une lettre, par ligne). Cause : dans .pph nav (flex), .pph-sect et .pph-lang
+   sont en flex:0 0 auto mais PAS .pph-auth → c'était le SEUL enfant compressible, il
+   absorbait tout le débordement et rétrécissait à ~0, forçant le texte du bouton à
+   passer à la ligne. Il devient incompressible : c'est le défileur horizontal du nav
+   (v74) qui prend le relais, comme prévu. */
+.pph .pph-auth{flex:0 0 auto;display:inline-flex;align-items:center;white-space:nowrap}
+.pph .pph-auth button,.pph .pph-acct,.pph .pph-acct-btn{flex:0 0 auto;white-space:nowrap}
 /* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
    « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
    couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
@@ -179,7 +187,9 @@ html[data-pplang=en] .i18n-fr{display:none}
  .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
  -webkit-overflow-scrolling:touch;scrollbar-width:none}
  .pph nav::-webkit-scrollbar{display:none}
- .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
+    (même piège que la couleur du CTA, retour CEO 19/07). */
+ .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
  .pph-sect a{padding:6px 10px;font-size:12px}
  .pph-lang button{padding:5px 7px;font-size:11px}
  /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
@@ -302,15 +312,25 @@ try{var st=document.createElement("style");st.textContent=
 ".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
 ".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
 /* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
-".pph-acct{position:relative;display:inline-flex;align-items:center}"+
-".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer}"+
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
 ".pph-acct-caret{font-size:10px;line-height:1}"+
-/* position:FIXED (coordonnées posées en JS via getBoundingClientRect) : le menu
-   échappe au défileur overflow-x:auto de .pph nav en mobile (sinon clippé). */
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
 ".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
 ".pph-acct-menu[hidden]{display:none}"+
-".pph-acct-menu a{display:block;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0}"+
-".pph-acct-menu a:hover{background:#eef9f2;color:#185c38}";
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
 document.head.appendChild(st);}catch(e){}
 var D={
  en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
@@ -329,6 +349,8 @@ var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria
 '<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
 '<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
 '<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
 "</div></div>";
 return {i:1,h:h};}
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
@@ -339,20 +361,42 @@ var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
 var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
 var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
 menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
 /* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
    apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
 function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
 if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
 b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
-var wrap=b.parentNode;var menu=wrap?wrap.querySelector(".pph-acct-menu"):null;if(!menu)return;
+var menu=b.__menu;if(!menu)return;
 var willOpen=menu.hasAttribute("hidden");
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
 if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
 else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
-});}
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
 function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
 /* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
@@ -361,9 +405,14 @@ try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
 try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
 try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
-var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
 wireAcct();}
@@ -380,10 +429,10 @@ if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
 document.addEventListener("click",closeAcct);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
 window.addEventListener("resize",closeAcct);
-window.addEventListener("scroll",closeAcct,true);}
+window.addEventListener("scroll",onScrollAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><main class="wrap"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Accueil</a><span class="sep">›</span><a href="/actualites/" data-i18n="news">Actualités</a><span class="sep">›</span><span class="cur">juillet 2026</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Actualités", "item": "https://proplace.co/actualites/"}, {"@type": "ListItem", "position": 3, "name": "juillet 2026"}]}</script><div class="lvl-zone"><div class="type-nav lvl-nav"><span class="lvl-grp"><a class="" data-i18n="allOps" href="/actualites/operations/">🌍 Toutes les opérations</a><a class="" href="/actualites/operations/fusions-acquisitions/">M&amp;A</a><a class="" data-i18n="fundr" href="/actualites/operations/levees-de-fonds/">Levées</a></span><a class="" data-i18n="bySector" href="/actualites/operations/secteurs/">🗂 Par secteur</a><a class="" data-i18n="dayAnalysis" href="/actualites/">📰 L'analyse de toutes les opérations du jour</a><a class="fav-nav " href="/actualites/favoris/"><span class="i18n-fr">★ Mes favoris</span><span class="i18n-en">★ My favourites</span> (<span class="fav-count">0</span>)</a></div></div><div class="idx-hero"><p class="eyebrow"><span class="i18n-fr">Actualités · archive mensuelle</span><span class="i18n-en">News · monthly archive</span></p><h1><span class="i18n-fr">M&amp;A &amp; levées de fonds en France — juillet 2026</span><span class="i18n-en">M&amp;A &amp; fundraisings in France — July 2026</span></h1><p class="lead"><span class="i18n-fr">Les opérations de fusions-acquisitions et de levées de fonds analysées en juillet 2026, jour par jour.</span><span class="i18n-en">The M&amp;A deals and fundraisings analysed in July 2026, day by day.</span></p></div><aside class="cta-box"><h3><span class='i18n-fr'>Suivre l'actualité quotidienne du M&amp;A et des levées de fonds en France et en Europe selon vos propres critères.</span><span class='i18n-en'>Follow the daily M&amp;A and fundraising news in France and Europe, on your own criteria.</span></h3><p><span class='i18n-fr'>Les opérations M&amp;A et levées de fonds en France &amp; Europe, décryptées tous les jours. Gratuit, désinscription en un clic.</span><span class='i18n-en'>M&amp;A deals and fundraisings in France &amp; Europe, decoded every day. Free, one-click unsubscribe.</span></p><a class="btn" href="https://proplace.co/newsletter"><span class="i18n-fr">S'abonner à la newsletter →</span><span class="i18n-en">Subscribe to the newsletter →</span></a></aside><ul class="idx-list"><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-20/"><span class="d"><span class="i18n-fr">20 juillet 2026</span><span class="i18n-en">July 20, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 20 juillet 2026</div><p class="x">Pharma, énergie, pet food et deeptech : une journée où le capital se repositionne sur les infrastructures du réel — bioproduction, gaz liquéfié…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-19/"><span class="d"><span class="i18n-fr">19 juillet 2026</span><span class="i18n-en">July 19, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 19 juillet 2026</div><p class="x">De la réalité mixte au ciment bas carbone, de la livraison mondiale à la souveraineté spatiale : l&#x27;Europe rachète, consolide et lève — le panorama du jour…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-18/"><span class="d"><span class="i18n-fr">18 juillet 2026</span><span class="i18n-en">July 18, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 18 juillet 2026</div><p class="x">Du bâtiment à l&#x27;espace, de l&#x27;IA aux matières recyclées : le capital se déploie aujourd&#x27;hui sur des actifs tangibles autant que sur des paris…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-17/"><span class="d"><span class="i18n-fr">17 juillet 2026</span><span class="i18n-en">July 17, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 17 juillet 2026</div><p class="x">Uber absorbe la livraison mondiale, Vinci achète un intégrateur SAP allemand à prime de 95 %, et l&#x27;IA européenne attire un capital institutionnel inédit …</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-16/"><span class="d"><span class="i18n-fr">16 juillet 2026</span><span class="i18n-en">July 16, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 16 juillet 2026</div><p class="x">Défense, deeptech et consolidation industrielle dominent une journée dense — de Thales-Exail à Helsing, le capital européen choisit ses camps.</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-15/"><span class="d"><span class="i18n-fr">15 juillet 2026</span><span class="i18n-en">July 15, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 15 juillet 2026</div><p class="x">Défense, IA et infrastructure : le capital européen choisit ses batailles pendant que le M&amp;A pharma et aérien s&#x27;emballe — le tour d&#x27;horizon du jour pour…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-14/"><span class="d"><span class="i18n-fr">14 juillet 2026</span><span class="i18n-en">July 14, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 14 juillet 2026</div><p class="x">Souveraineté tech, défense autonome et énergie du futur concentrent le capital ce 14 juillet — des ateliers girondins de thermorégulation aux drones…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-13/"><span class="d"><span class="i18n-fr">13 juillet 2026</span><span class="i18n-en">July 13, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 13 juillet 2026</div><p class="x">Énergie, défense, infrastructure critique et RH globale concentrent le capital ce dimanche — de la fusion nucléaire aux réseaux électriques, en passant…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-12/"><span class="d"><span class="i18n-fr">12 juillet 2026</span><span class="i18n-en">July 12, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 12 juillet 2026</div><p class="x">Consolidation tous azimuts — de la prothèse bionique aux créneaux aéroportuaires, du dernier kilomètre européen à la voix IA : les mouvements du capital…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-11/"><span class="d"><span class="i18n-fr">11 juillet 2026</span><span class="i18n-en">July 11, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 11 juillet 2026</div><p class="x">Consolidation industrielle dans le Grand Ouest, private equity sur l&#x27;aérien européen et capital défense en ébullition — pendant que la France deeptech…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-10/"><span class="d"><span class="i18n-fr">10 juillet 2026</span><span class="i18n-en">July 10, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 10 juillet 2026</div><p class="x">Spatial stratégique, consolidation industrielle et capital deeptech : la journée dessine les lignes de fracture entre actifs souverains qui partent et…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-09/"><span class="d"><span class="i18n-fr">9 juillet 2026</span><span class="i18n-en">July 9, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 9 juillet 2026</div><p class="x">Défense sous-marine, consolidation RH, drones et fusion nucléaire : une journée où le capital européen choisit ses batailles — M&amp;A, LBO et levées deeptech…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-04/"><span class="d"><span class="i18n-fr">4 juillet 2026</span><span class="i18n-en">July 4, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 4 juillet 2026</div><p class="x">Défense, énergie, crypto et restructurations industrielles : le capital se repositionne sur ce qui résiste — tour d&#x27;horizon complet pour décideurs et…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-03/"><span class="d"><span class="i18n-fr">3 juillet 2026</span><span class="i18n-en">July 3, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 3 juillet 2026</div><p class="x">Défense, énergie, santé et infrastructure numérique concentrent le capital ce jeudi — de Munich à Montpellier, de Copenhague à Oslo, le tour d&#x27;horizon…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-02/"><span class="d"><span class="i18n-fr">2 juillet 2026</span><span class="i18n-en">July 2, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 2 juillet 2026</div><p class="x">Schneider rachète l&#x27;IA industrielle à 18 fois le chiffre d&#x27;affaires, Bain démantèle le moteur thermique de Volkswagen, Tehtris ressuscite sous Jolt…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-01/"><span class="d"><span class="i18n-fr">1 juillet 2026</span><span class="i18n-en">July 1, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 1 juillet 2026</div><p class="x">Seize opérations ce 1er juillet, de l&#x27;intelligence industrielle à la défense autonome : Schneider rachète Cognite à 3,1 Md$, EDF cède ses actifs…</p></a></li></ul><a class="back" href="/actualites/" data-i18n="backAllNews">← Toutes les actualités</a></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="on" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a><a class="" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+})();</script><main class="wrap"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Accueil</a><span class="sep">›</span><a href="/actualites/" data-i18n="news">Actualités</a><span class="sep">›</span><span class="cur">juillet 2026</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Actualités", "item": "https://proplace.co/actualites/"}, {"@type": "ListItem", "position": 3, "name": "juillet 2026"}]}</script><div class="lvl-zone"><div class="type-nav lvl-nav"><span class="lvl-grp"><a class="" data-i18n="allOps" href="/actualites/operations/">🌍 Toutes les opérations</a><a class="" href="/actualites/operations/fusions-acquisitions/">M&amp;A</a><a class="" data-i18n="fundr" href="/actualites/operations/levees-de-fonds/">Levées</a></span><a class="" data-i18n="bySector" href="/actualites/operations/secteurs/">🗂 Par secteur</a><a class="" data-i18n="dayAnalysis" href="/actualites/">📰 L'analyse de toutes les opérations du jour</a><a class="fav-nav " href="/actualites/favoris/"><span class="i18n-fr">★ Mes favoris</span><span class="i18n-en">★ My favourites</span> (<span class="fav-count">0</span>)</a></div></div><div class="idx-hero"><p class="eyebrow"><span class="i18n-fr">Actualités · archive mensuelle</span><span class="i18n-en">News · monthly archive</span></p><h1><span class="i18n-fr">M&amp;A &amp; levées de fonds en France — juillet 2026</span><span class="i18n-en">M&amp;A &amp; fundraisings in France — July 2026</span></h1><p class="lead"><span class="i18n-fr">Les opérations de fusions-acquisitions et de levées de fonds analysées en juillet 2026, jour par jour.</span><span class="i18n-en">The M&amp;A deals and fundraisings analysed in July 2026, day by day.</span></p></div><aside class="cta-box"><h3><span class='i18n-fr'>Suivre l'actualité quotidienne du M&amp;A et des levées de fonds en France et en Europe selon vos propres critères.</span><span class='i18n-en'>Follow the daily M&amp;A and fundraising news in France and Europe, on your own criteria.</span></h3><p><span class='i18n-fr'>Les opérations M&amp;A et levées de fonds en France &amp; Europe, décryptées tous les jours. Gratuit, désinscription en un clic.</span><span class='i18n-en'>M&amp;A deals and fundraisings in France &amp; Europe, decoded every day. Free, one-click unsubscribe.</span></p><a class="btn" href="https://proplace.co/newsletter"><span class="i18n-fr">S'abonner à la newsletter →</span><span class="i18n-en">Subscribe to the newsletter →</span></a></aside><ul class="idx-list"><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-21/"><span class="d"><span class="i18n-fr">21 juillet 2026</span><span class="i18n-en">July 21, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 21 juillet 2026</div><p class="x">Tourisme, énergie, matériaux, cybersécurité, IA : une journée de consolidations patientes et de paris profonds sur la prochaine infrastructure du monde …</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-20/"><span class="d"><span class="i18n-fr">20 juillet 2026</span><span class="i18n-en">July 20, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 20 juillet 2026</div><p class="x">Pharma, énergie, pet food et deeptech : une journée où le capital se repositionne sur les infrastructures du réel — bioproduction, gaz liquéfié…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-19/"><span class="d"><span class="i18n-fr">19 juillet 2026</span><span class="i18n-en">July 19, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 19 juillet 2026</div><p class="x">De la réalité mixte au ciment bas carbone, de la livraison mondiale à la souveraineté spatiale : l&#x27;Europe rachète, consolide et lève — le panorama du jour…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-18/"><span class="d"><span class="i18n-fr">18 juillet 2026</span><span class="i18n-en">July 18, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 18 juillet 2026</div><p class="x">Du bâtiment à l&#x27;espace, de l&#x27;IA aux matières recyclées : le capital se déploie aujourd&#x27;hui sur des actifs tangibles autant que sur des paris…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-17/"><span class="d"><span class="i18n-fr">17 juillet 2026</span><span class="i18n-en">July 17, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 17 juillet 2026</div><p class="x">Uber absorbe la livraison mondiale, Vinci achète un intégrateur SAP allemand à prime de 95 %, et l&#x27;IA européenne attire un capital institutionnel inédit …</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-16/"><span class="d"><span class="i18n-fr">16 juillet 2026</span><span class="i18n-en">July 16, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 16 juillet 2026</div><p class="x">Défense, deeptech et consolidation industrielle dominent une journée dense — de Thales-Exail à Helsing, le capital européen choisit ses camps.</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-15/"><span class="d"><span class="i18n-fr">15 juillet 2026</span><span class="i18n-en">July 15, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 15 juillet 2026</div><p class="x">Défense, IA et infrastructure : le capital européen choisit ses batailles pendant que le M&amp;A pharma et aérien s&#x27;emballe — le tour d&#x27;horizon du jour pour…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-14/"><span class="d"><span class="i18n-fr">14 juillet 2026</span><span class="i18n-en">July 14, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 14 juillet 2026</div><p class="x">Souveraineté tech, défense autonome et énergie du futur concentrent le capital ce 14 juillet — des ateliers girondins de thermorégulation aux drones…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-13/"><span class="d"><span class="i18n-fr">13 juillet 2026</span><span class="i18n-en">July 13, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 13 juillet 2026</div><p class="x">Énergie, défense, infrastructure critique et RH globale concentrent le capital ce dimanche — de la fusion nucléaire aux réseaux électriques, en passant…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-12/"><span class="d"><span class="i18n-fr">12 juillet 2026</span><span class="i18n-en">July 12, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 12 juillet 2026</div><p class="x">Consolidation tous azimuts — de la prothèse bionique aux créneaux aéroportuaires, du dernier kilomètre européen à la voix IA : les mouvements du capital…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-11/"><span class="d"><span class="i18n-fr">11 juillet 2026</span><span class="i18n-en">July 11, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 11 juillet 2026</div><p class="x">Consolidation industrielle dans le Grand Ouest, private equity sur l&#x27;aérien européen et capital défense en ébullition — pendant que la France deeptech…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-10/"><span class="d"><span class="i18n-fr">10 juillet 2026</span><span class="i18n-en">July 10, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 10 juillet 2026</div><p class="x">Spatial stratégique, consolidation industrielle et capital deeptech : la journée dessine les lignes de fracture entre actifs souverains qui partent et…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-09/"><span class="d"><span class="i18n-fr">9 juillet 2026</span><span class="i18n-en">July 9, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 9 juillet 2026</div><p class="x">Défense sous-marine, consolidation RH, drones et fusion nucléaire : une journée où le capital européen choisit ses batailles — M&amp;A, LBO et levées deeptech…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-04/"><span class="d"><span class="i18n-fr">4 juillet 2026</span><span class="i18n-en">July 4, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 4 juillet 2026</div><p class="x">Défense, énergie, crypto et restructurations industrielles : le capital se repositionne sur ce qui résiste — tour d&#x27;horizon complet pour décideurs et…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-03/"><span class="d"><span class="i18n-fr">3 juillet 2026</span><span class="i18n-en">July 3, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 3 juillet 2026</div><p class="x">Défense, énergie, santé et infrastructure numérique concentrent le capital ce jeudi — de Munich à Montpellier, de Copenhague à Oslo, le tour d&#x27;horizon…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-02/"><span class="d"><span class="i18n-fr">2 juillet 2026</span><span class="i18n-en">July 2, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 2 juillet 2026</div><p class="x">Schneider rachète l&#x27;IA industrielle à 18 fois le chiffre d&#x27;affaires, Bain démantèle le moteur thermique de Volkswagen, Tehtris ressuscite sous Jolt…</p></a></li><li><a class="card" href="/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-07-01/"><span class="d"><span class="i18n-fr">1 juillet 2026</span><span class="i18n-en">July 1, 2026</span></span><div class="t">Analyse des opérations M&amp;A &amp; levée de fonds du 1 juillet 2026</div><p class="x">Seize opérations ce 1er juillet, de l&#x27;intelligence industrielle à la défense autonome : Schneider rachète Cognite à 3,1 Md$, EDF cède ses actifs…</p></a></li></ul><a class="back" href="/actualites/" data-i18n="backAllNews">← Toutes les actualités</a></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="on" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a><a class="" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -394,15 +443,25 @@ try{var st=document.createElement("style");st.textContent=
 ".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
 ".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
 /* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
-".pph-acct{position:relative;display:inline-flex;align-items:center}"+
-".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer}"+
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
 ".pph-acct-caret{font-size:10px;line-height:1}"+
-/* position:FIXED (coordonnées posées en JS via getBoundingClientRect) : le menu
-   échappe au défileur overflow-x:auto de .pph nav en mobile (sinon clippé). */
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
 ".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
 ".pph-acct-menu[hidden]{display:none}"+
-".pph-acct-menu a{display:block;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0}"+
-".pph-acct-menu a:hover{background:#eef9f2;color:#185c38}";
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
 document.head.appendChild(st);}catch(e){}
 var D={
  en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
@@ -421,6 +480,8 @@ var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria
 '<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
 '<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
 '<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
 "</div></div>";
 return {i:1,h:h};}
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
@@ -431,20 +492,42 @@ var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
 var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
 var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
 menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
 /* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
    apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
 function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
 if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
 b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
-var wrap=b.parentNode;var menu=wrap?wrap.querySelector(".pph-acct-menu"):null;if(!menu)return;
+var menu=b.__menu;if(!menu)return;
 var willOpen=menu.hasAttribute("hidden");
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
 if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
 else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
-});}
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
 function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
 /* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
@@ -453,9 +536,14 @@ try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
 try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
 try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
-var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
 wireAcct();}
@@ -472,7 +560,7 @@ if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
 document.addEventListener("click",closeAcct);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
 window.addEventListener("resize",closeAcct);
-window.addEventListener("scroll",closeAcct,true);}
+window.addEventListener("scroll",onScrollAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();</script></body></html>
