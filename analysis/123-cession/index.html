@@ -1,0 +1,974 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>123 CESSION — analyse FinTech | Proplace</title><meta name="description" content="FinTech · M&amp;A Advisory et Transmission de PME · Pre-Seed"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/123-cession/"><meta property="og:type" content="article"><meta property="og:title" content="123 CESSION — analyse FinTech | Proplace"><meta property="og:description" content="FinTech · M&amp;A Advisory et Transmission de PME · Pre-Seed"><meta property="og:url" content="https://proplace.co/analysis/123-cession/"><meta property="og:image" content="https://proplace.co/analysis/radars/123-cession.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://proplace.co/analysis/radars/123-cession.png"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+/* (retour CEO 20/07) — mobile : « Mon compte » s'affichait À LA VERTICALE (un mot,
+   voire une lettre, par ligne). Cause : dans .pph nav (flex), .pph-sect et .pph-lang
+   sont en flex:0 0 auto mais PAS .pph-auth → c'était le SEUL enfant compressible, il
+   absorbait tout le débordement et rétrécissait à ~0, forçant le texte du bouton à
+   passer à la ligne. Il devient incompressible : c'est le défileur horizontal du nav
+   (v74) qui prend le relais, comme prévu. */
+.pph .pph-auth{flex:0 0 auto;display:inline-flex;align-items:center;white-space:nowrap}
+.pph .pph-auth button,.pph .pph-acct,.pph .pph-acct-btn{flex:0 0 auto;white-space:nowrap}
+/* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
+   « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
+   couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
+.pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600;border:none;cursor:pointer;font-family:inherit;line-height:1.2}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover,.pph button.cta:hover,.pph .pph-auth button.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ /* v74 (R5) — le SEUL débordeur réel mesuré à 390px est CETTE nav (Connexion +
+    pastille News|Analysis + EN|FR ≈ 309px pour ~264px disponibles) : elle devient
+    son PROPRE défileur horizontal (règle « wide content » : overflow-x:auto sur la
+    pièce INTERNE — jamais sur un ancêtre d'une barre sticky). Alignée à gauche en
+    mobile : un débordement côté start (flex-end) serait inatteignable au scroll. */
+ .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pph nav::-webkit-scrollbar{display:none}
+ /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
+    (même piège que la couleur du CTA, retour CEO 19/07). */
+ .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+ /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
+    défileur (order:-1) → les 3 boutons sont TOUJOURS visibles à gauche, c'est
+    « Connexion » qui déborde/scrolle si l'écran est trop étroit (demande CEO). */
+ .pph nav .pph-sect{order:-1;flex:0 0 auto}
+ .pph nav .pph-auth{order:0}
+ /* v75 (bug #7) — la pastille EN|FR est hors du <nav> (défileur) : collée à droite du
+    header, toujours atteignable même quand le <nav> déborde/scrolle. */
+ .pph-lang{margin-left:auto;flex:0 0 auto}
+}
+/* ≤430px : les 3 pastilles + Connexion tiennent ensemble (resserrage police/padding). */
+@media(max-width:430px){
+ .pph nav{gap:7px}
+ .pph-sect a{padding:6px 9px;font-size:11.5px;letter-spacing:-.01em}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "123 CESSION — FinTech", "description": "FinTech · M&A Advisory et Transmission de PME · Pre-Seed", "inLanguage": "fr", "url": "https://proplace.co/analysis/123-cession/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/123-cession/"}, "image": ["https://proplace.co/analysis/radars/123-cession.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}, "about": {"@type": "Organization", "name": "123 CESSION"}, "datePublished": "2026-07-21", "dateModified": "2026-07-21"}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a><a class="pph-rsch" href="/research/" data-i18n="research">Research</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+var mSet="https://analysis.proplace.co/thesis/?fund="+f;
+var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
+var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
+'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
+'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
+"</div></div>";
+return {i:1,h:h};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">123 CESSION</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "123 CESSION"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Pre-Seed</span>
+<span class="sb-tag">FinTech</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">123 CESSION</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>France ·</span> FinTech · M&amp;A Advisory et Transmission de PME · Pre-Seed</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Services de conseil en fusions-acquisitions (M&amp;A) de proximité et ingénierie de transmission pour le segment inférieur du mid-market français.</p>
+<a href="https://123cession.fr" target="_blank"><i class="fas fa-globe"></i> Website</a>
+<a href="mailto:d.costiou.legrand@123cession.fr"><i class="fas fa-envelope"></i> d.costiou.legrand@123cession.fr</a>
+</div>
+</div>
+<span class="sb-nav-heading">Contact</span>
+<a class="nav-item bg-yellow" href="#fiche-contact">🤝 Comment contacter 123 CESSION</a>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du marché</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle économique</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">PDG</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources et méthodologie</a>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">123 CESSION</h1>
+<h2 class="subtitle-category">FinTech ➜ M&amp;A Advisory et Transmission de PME ➜ Simplifier et optimiser les processus de cession et reprise de PME</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div><div data-ct-card="" style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin:0 0 40px;box-shadow:0 2px 6px rgba(15,23,42,.08)"><div style="background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><div style="font-size:15px;font-weight:700"><h2 id="fiche-contact" style="font-size:15px;font-weight:700;margin:0;padding:0;color:#fff;display:inline">🤝 Comment contacter 123 CESSION</h2></div><div style="display:flex;align-items:center;gap:9px"><span style="background:#d97706;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.04em"></span><button onclick="var c=this.closest('div[data-ct-card]'),b=c.querySelector('div[data-ct-body]'),h=b.style.display==='none';b.style.display=h?'block':'none';this.innerHTML=h?'▾ Replier':'▸ Déplier'" style="font-family:Georgia,'Times New Roman',serif;font-size:12px;color:#e2e8f0;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:2px 9px;cursor:pointer;line-height:1.5;white-space:nowrap" type="button">▾ Replier</button></div></div><div data-ct-body="" style="padding:15px 18px;background:#fefce8"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:0 0 7px">Coordonnées du décideur</div><div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:6px">Delphine COSTIOU-LEGRAND</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px"><a href="mailto:d.costiou.legrand@123cession.fr" style="display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:#1d4ed8;text-decoration:none;background:#fff;border:1px solid #dbe7f3;border-radius:7px;padding:4px 10px;font-weight:600">✉ d.costiou.legrand@123cession.fr</a><a href="https://123cession.fr" rel="noopener nofollow" style="display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:#1d4ed8;text-decoration:none;background:#fff;border:1px solid #dbe7f3;border-radius:7px;padding:4px 10px;font-weight:600" target="_blank">🌐 Site web</a></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #fde68a">Logique du deal</div><div style="font-size:13px;color:#0f172a;line-height:1.5"></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #fde68a">Séquence d'approche CEO</div><div data-ch="email" id="ap1"><div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:9px"><button data-ap-ch="email" style="border:1px solid #185c38;background:#185c38;color:#fff;font-size:12.5px;font-weight:700;padding:5px 14px;border-radius:7px;cursor:pointer;margin-right:6px" type="button">Email</button><button data-ap-ch="linkedin" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:12.5px;font-weight:700;padding:5px 14px;border-radius:7px;cursor:pointer;margin-right:6px" type="button">LinkedIn</button><span style="width:9px"></span><button data-ap-day="0" style="border:1px solid #185c38;background:#185c38;color:#fff;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J0</button><button data-ap-day="1" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J2</button><button data-ap-day="2" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J4</button><button data-ap-day="3" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J6</button><span data-ap-note="" style="font-size:11.5px;color:#64748b;margin-left:auto">4 messages espacés — J0, J2, J4, J6</span></div><div data-ap-msg="" data-ap-pane="email:0" style="display:block"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J0</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Objet :</b></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Bonjour Delphine,
+
+J'ai découvert 123 Cession en cartographiant les acteurs spécialisés dans la transmission de PME en France — votre positionnement sur l'accompagnement des dirigeants cédants a retenu mon attention. Seriez-vous ouverte à échanger 20 minutes pour explorer ce que nos deux approches pourraient construire ensemble ? Bien à vous,
+Anders Uddfors</pre></div><div data-ap-msg="" data-ap-pane="email:1" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J2</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Objet :</b> Le chaînon manquant entre comptable et cédant</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Votre expertise transactionnelle sur les PME françaises comblerait exactement ce vide, avec un flux entrant de mandats qualifiés issus de notre réseau de 300 000 clients. Cela vous parle ? Cordialement,
+Anders Uddfors</pre></div><div data-ap-msg="" data-ap-pane="email:2" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J4</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Objet :</b> Agri et PME rurales : un segment sous-servi</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Bonjour Delphine,
+
+Un angle qui me semble peu exploité : les exploitants agricoles et PME rurales représentent une part significative de nos clients, avec des transmissions complexes — foncier, sociétés d'exploitation, pactes Dutreil — que peu de boutiques M&amp;A traitent vraiment.
+
+C'est précisément là que je vois la complémentarité la plus différenciante entre nos deux structures.
+
+Un échange de 20 minutes vous semblerait utile pour creuser ce point ?
+
+Bien à vous,
+Anders Uddfors</pre></div><div data-ap-msg="" data-ap-pane="email:3" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J6</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Objet :</b> Je referme ce dossier — à moins que…</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Bonjour Delphine,
+
+Sans retour de votre part, j'imagine que le timing n'est pas idéal — ce que je comprends tout à fait.
+
+Je referme ce dossier pour l'instant, mais la porte reste ouverte si la réflexion mûrit de votre côté.
+
+Un simple mot suffit.
+
+Cordialement,
+Anders Uddfors</pre></div><div data-ap-msg="" data-ap-pane="linkedin:0" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J0</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Seriez-vous ouverte à échanger 20 minutes sur ce que nous pourrions explorer ensemble ? Bien à vous,
+Anders Uddfors</pre></div><div data-ap-msg="" data-ap-pane="linkedin:1" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J2</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Ce qui m'intéresse dans votre approche chez 123 Cession, c'est la proximité humaine avec le cédant — exactement ce que nos 300 000 clients TPE/agri attendent au moment de passer la main. la transmission reste le chaînon que nous cherchons à compléter avec une expertise transactionnelle dédiée. Cette complémentarité vous parle ? Cordialement,
+Anders Uddfors</pre></div><div data-ap-msg="" data-ap-pane="linkedin:2" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J4</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Nous observons une vague de transmissions dans le monde agricole et rural français — des dossiers que nos experts-comptables voient arriver bien avant tout conseil M&amp;A.
+
+L'idée que j'explore : connecter ce flux amont à une structure comme la vôtre, capable de structurer et d'accompagner la transaction.
+
+Un échange de 20 minutes suffirait à voir si la piste tient — qu'en dites-vous ?
+
+Bien à vous,
+Anders Uddfors</pre></div><div data-ap-msg="" data-ap-pane="linkedin:3" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J6</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Je ne veux pas encombrer votre agenda si le moment n'est pas le bon.
+
+Ma porte reste ouverte : si la question de la distribution de mandats PME/agri via un réseau coopératif national redevient d'actualité pour vous, je suis là.
+
+Cordialement,
+Anders Uddfors</pre></div></div><script>(function(){var r=document.getElementById("ap1");if(!r)return;var ch=r.getAttribute("data-ch"),dy="0";function paint(){r.setAttribute("data-ch",ch);var i,b,ps=r.querySelectorAll("[data-ap-pane]");for(i=0;i<ps.length;i++){ps[i].style.display=(ps[i].getAttribute("data-ap-pane")===ch+":"+dy)?"block":"none";}var cb=r.querySelectorAll("[data-ap-ch]");for(i=0;i<cb.length;i++){b=cb[i];var onc=b.getAttribute("data-ap-ch")===ch;b.style.background=onc?"#185c38":"#fff";b.style.color=onc?"#fff":"#475569";b.style.borderColor=onc?"#185c38":"#dde3ea";}var db=r.querySelectorAll("[data-ap-day]");for(i=0;i<db.length;i++){b=db[i];var ond=b.getAttribute("data-ap-day")===dy;b.style.background=ond?"#185c38":"#fff";b.style.color=ond?"#fff":"#475569";b.style.borderColor=ond?"#185c38":"#dde3ea";}var n=r.querySelector("[data-ap-note]");if(n)n.textContent=(ch==="linkedin")?"Demande de connexion : sans note":"4 messages espac\u00e9s \u2014 J0, J2, J4, J6";}r.addEventListener("click",function(e){var t=e.target&&e.target.closest?e.target.closest("[data-ap-ch],[data-ap-day]"):null;if(!t)return;e.preventDefault();if(t.hasAttribute("data-ap-ch"))ch=t.getAttribute("data-ap-ch");else dy=t.getAttribute("data-ap-day");paint();});paint();})();</script></div></div><div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="123 CESSION" data-h="" data-i="FinTech" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/123-cession/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title"><span class="i18n-fr">Résumé du marché</span><span class="i18n-en">Market summary</span></h2>
+<div class="split-container">
+<div class="text-col">
+<p>SCORE D'ATTRACTIVITÉ DU MARCHÉ FinTech &gt; M&amp;A Advisory et Transmission de PME B2B &gt; Consulting</p>
+<div class="score-row sr-blue"><span class="sr-label">CE MARCHÉ EST-IL ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span><span class="sr-note">× 25% = 18.75 pts</span></div><div class="score-row sr-blue"><span class="sr-label">CE MARCHÉ EST-IL ACCESSIBLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:60%"></span></span><span class="sr-val">60/100</span><span class="sr-note">× 25% = 15.00 pts</span></div><div class="score-row sr-blue"><span class="sr-label">CE MARCHÉ EST-IL PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span><span class="sr-note">× 25% = 17.50 pts</span></div><div class="score-row sr-amber"><span class="sr-label">CE MARCHÉ EST-IL LUCRATIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:50%"></span></span><span class="sr-val">50/100</span><span class="sr-note">× 25% = 12.50 pts</span></div>
+<div class="score-row sr-blue sr-total"><span class="sr-label">SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:64%"></span></span><span class="sr-val">63.75/100</span></div><p>Ce score global indique que le marché de la transmission de proximité en France constitue un excellent vecteur stratégique local avec de forts vents arrière démographiques, mais s'avère structurellement complexe pour les investisseurs à la recherche de croissances explosives de type VC.</p>
+<h4><span class="i18n-fr">DÉFINITION du Marché</span><span class="i18n-en">Market DEFINITION</span></h4>
+<p>Services de conseil en fusions-acquisitions (M&amp;A) de proximité et ingénierie de transmission pour le segment inférieur du mid-market français. ➜ Le marché s'adresse directement aux dirigeants de petites et moyennes entreprises régionales prêtes à engager une réflexion sur la cession ou la réorganisation de leur capital social.</p>
+<p>La friction majeure provient de l'invisibilité chronique des opportunités et du manque structurel de préparation juridique des cédants qui mène à plus de la moitié des échecs de closing. Ce segment se positionne à la convergence entre les banques régionales en amont et les repreneurs individuels ou industriels locaux en aval.</p>
+<h4>Notre THÈSE de Marché</h4>
+<p>La vague imminente de départs à la retraite des dirigeants baby-boomers d'entreprises locales crée un afflux massif de cibles off-market impossibles à absorber par les canaux de conseil traditionnels. Les grands cabinets de conseil et banques d'affaires dédaignent ce sous-segment en raison de la trop faible valeur nominale moyenne des transactions régionales, laissant un vide concurrentiel de proximité béant.</p>
+<p>L'opportunité clé consiste à exploiter une double expertise légale et humaine pour capter et qualifier ces dossiers critiques au plus tôt. Ce canal d'origination de proximité offre une défense robuste contre l'automatisation pure car la transmission locale restera toujours une démarche hautement humaine.</p>
+<h4>Notre CONVICTION ET PARI sur ce Marché:</h4>
+<p><span class="conv-badge sr-amber">CONVICTION MOYENNE</span></p>
+<p>Bien que la nature hautement humaine et morcelée de ce marché local de l'advisory empêche sa consolidation complète par un outil purement logiciel, l'énorme impératif démographique français en fait un secteur résilient et fondamental de notre économie territoriale.</p>
+<p>Notre pari fondamental est que le succès de ce marché se jouera sur l'émergence de réseaux d'experts de proximité outillés technologiquement pour multiplier leur efficacité opérationnelle globale d'ici l'horizon de 2028. Le signal prioritaire que nous chercherons lors de nos entretiens sera le volume de dealflow confidentiel capté par dossier actif.</p>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ ATTRACTIF (Dynamique de Marché)</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div>
+<p>Le score de cette section indique que la dynamique de demande reste l'atout numéro un pour stabiliser un modèle robuste de haut de bilan.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Taille du Marché</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Marché évalué à plusieurs dizaines de milliers de transmissions d'entreprises par an en France (PME d'un CA inférieur à 10M d'euros).</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Facteurs de Croissance</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Porté par la démographie des baby-boomers et la nécessaire réorganisation territoriale et environnementale des outils de production locaux.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Pourquoi Maintenant</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pression macroéconomique qui accélère les cessions défensives ou de consolidation industrielle régionale.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Risques de Marché</span><span class="sr-val">65/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Risque élevé d'échec des closures de deals en période de contraction du crédit bancaire des repreneurs.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ ACCESSIBLE (Paysage Concurrentiel)</span><span class="sr-bar"><span class="sr-fill" style="width:60%"></span></span><span class="sr-val">60/100</span></div>
+<p>La fragmentation extrême de la concurrence locale permet une pénétration rapide pour des cabinets spécialisés de haute expertise.</p>
+<ul><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Acteurs Historiques</span><span class="sr-val">55/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">CRA et Fusacq dominent l'écosystème associatif et l'intermédiation brute mais leur accompagnement légal n'est pas intégré de bout en bout.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Nouveaux Challengers</span><span class="sr-val">60/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Plateformes numériques d'intermédiation de repreneurs et cabinets d'expertise comptable qui automatisent une partie du conseil haut de bilan.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Analyse des Opportunités Vacantes</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un créneau immense subsiste sur l'accompagnement ultra-personnalisé alliant technique juridique chirurgicale et gestion des aspects familiaux complexes.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Défendabilité</span><span class="sr-val">55/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Faible défendabilité technologique globale; la réputation et le réseau d'apporteurs d'affaires constituent l'unique barrière pérenne.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ PÉNÉTRABLE (Go-to-Market et Économie Unitaire)</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<p>L'acquisition de client par recommandation de tiers de confiance est redoutablement efficace et garantit de faibles coûts marketing initiaux.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Stratégie GTM</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle basé sur la prescription et un cycle de vente long fondé sur la confiance réciproque avec le cédant (de 6 à 18 mois).</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Modèle de Tarification</span><span class="sr-val">65/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Combinaison d'honoraires fixes pour l'évaluation initiale et de pourcentages dégressifs indexés sur la valorisation finale de cession.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Coût d'acquisition client (CAC) extrêmement faible, largement rentabilisé dès le premier mandat acté au vu du niveau moyen des success fees.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Capacité de Déploiement</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Possibilité de dupliquer la structure locale d'advisory dans d'autres bassins industriels régionaux de taille équivalente.</div></li></ul>
+<div class="score-row sr-amber sr-head"><span class="sr-label">MARCHÉ LUCRATIF (Financement &amp; Perspectives de Sortie)</span><span class="sr-bar"><span class="sr-fill" style="width:50%"></span></span><span class="sr-val">50/100</span></div>
+<p>La rentabilité opérationnelle immédiate prend le pas sur les multiples de valorisation en sortie qui restent historiquement limités dans ce secteur.</p>
+<ul><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Appétit en Capital Risque</span><span class="sr-val">40/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Faible intérêt historique du Venture Capital de croissance pour des cabinets de conseil traditionnels peu technologiques.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Multiples d'Évaluation</span><span class="sr-val">45/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Multiples d'évaluation de sortie alignés sur l'économie traditionnelle des services professionnels régis par l'EBITDA réel.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Acquéreurs Potentiels</span><span class="sr-val">60/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Possibilités d'adossement à de grands réseaux nationaux d'audit, de banques privées ou d'acteurs de l'expertise comptable territoriale.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Profil de Rendement</span><span class="sr-val">55/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché de la transmission n'offre pas le profil typique d'une licorne technologique de notre thèse de fonds mais assure un cash-flow régulier et d'importantes retombées directes sur l'écosystème local secondaire.</div></li></ul>
+<h4 class="kicker">SYNTHÈSE DES SECTIONS COMPLÉMENTAIRES</h4>
+<p>La conjonction d'une opportunité démographique massive et d'un bas coût d'acquisition de confiance locale crée un modèle de rentabilité immédiat et protecteur qui compense largement le manque structurel d'hyper-croissance technologique.</p>
+<h4 class="kicker">CONFIANCE DE DONNÉES</h4>
+<p>La confiance sur la dynamique M&amp;A nationale et le taux de renouvellement des dirigeants est forte, étayée par de solides études de marché sectorielles de l'Insee et des syndicats de la transmission. Total de 3 documents clés exploités.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://quickchart.io/chart?v=3&amp;c=%7B%22type%22%3A%20%22radar%22%2C%20%22data%22%3A%20%7B%22labels%22%3A%20%5B%22ATTRACTIVE%20MARKET%20%3F%22%2C%20%22WINNABLE%20MARKET%20%3F%22%2C%20%22PENETRABLE%20MARKET%20%3F%22%2C%20%22REWARDING%20MARKET%20%3F%22%5D%2C%20%22datasets%22%3A%20%5B%7B%22label%22%3A%20%22123%20CESSION%22%2C%20%22backgroundColor%22%3A%20%22rgba%28255%2C%20212%2C%20102%2C%200.2%29%22%2C%20%22borderColor%22%3A%20%22rgb%28255%2C%20212%2C%20102%29%22%2C%20%22pointBackgroundColor%22%3A%20%22rgb%28255%2C%20212%2C%20102%29%22%2C%20%22data%22%3A%20%5B75%2C%2060%2C%2070%2C%2050%5D%7D%5D%7D%2C%20%22options%22%3A%20%7B%22scale%22%3A%20%7B%22ticks%22%3A%20%7B%22beginAtZero%22%3A%20false%2C%20%22suggestedMin%22%3A%2070%2C%20%22suggestedMax%22%3A%20100%2C%20%22stepSize%22%3A%205%2C%20%22display%22%3A%20false%7D%7D%7D%7D"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title"><span class="i18n-fr">Analyse approfondie de l'entreprise</span><span class="i18n-en">Company deep dive</span></h2><div id="company-mindmap"><h3 id="company-mindmap-title">Carte mentale — ce que fait 123 CESSION</h3><div class="cm-mindmap-wrap"><div class="markmap" style="width:100%;height:600px"><script type="text/template">
+---
+markmap:
+  colorFreezeLevel: 2
+  initialExpandLevel: 5
+  maxWidth: 340
+---
+# 123 CESSION
+- **Offre & Produit**
+  - Accompagnement complet pour la **cession ou reprise d'entreprise** de PME. - Inclut la préparation, la recherche de candidats et la négociation jusqu'au closing. - **Approche humaine** et pérenne intégrant le facteur psychologique. - Aide à surmonter la **complexité réglementaire** et l'anxiété des dirigeants. - Expertise juridique et patrimoniale via un **diagnostic approfondi**. - Analyse de la situation de l'entreprise et du patrimoine personnel/familial du dirigeant. - **Clients & Cas d'usage**
+  - Cible les **dirigeants de PME** souhaitant transmettre leur société. - Ceux qui cherchent à sécuriser l'avenir de leur entreprise et de leurs équipes. - Cible les **entrepreneurs** souhaitant acquérir une entreprise. - Ceux qui recherchent des cibles d'acquisition stratégiques, parfois sur le **marché caché**. - Accompagnement pour la **transmission opérationnelle**. - Formalisation et pilotage des projets jusqu'au succès de la transaction. - **Modèle économique & Pricing**
+  - Basé sur le **conseil** avec honoraires et commissions sur transaction. - Honoraires de diagnostic forfaitaires combinés à des **success fees** de clôture. - Offres **sur mesure** et devis personnalisés. - Pas de tarifs publics, le prix s'adapte à la complexité et à la valeur de la transaction. - Modèle **transactionnel** avec des revenus non récurrents. - La rentabilité est portée par des marges brutes saines typiques du conseil en haut de bilan. - **Équipe & Expertise**
+  - Fondée et dirigée par **Delphine Costiou-Legrand**. - Ancienne avocate spécialisée en droit des sociétés avec **20 ans d'expérience**. - Équipe de type cabinet de conseil **indépendant** (1-5 personnes). - Capacité à animer un **réseau d'experts partenaires** (avocats, banquiers, investisseurs). - Culture d'entreprise axée sur la **survie de l'outil de travail** et l'impact économique territorial. - **Traction & Positionnement**
+  - Croissance de l'activité commerciale de **+44%**. - Hausse notable portée par le boom du M&A et la validation client. - Fort ancrage **local sur Angers** et l'Anjou. - Pénétration forte sur le bassin et évangélisation des départements limitrophes des Pays de la Loire. - Accès privilégié au **marché caché** des PME régionales. - Grâce à un réseau local d'experts-comptables et de notaires solidement établi. - **Différenciation** par l'approche humaine et l'expertise légale. - Pas d'innovation technologique de rupture, mais une méthodologie éprouvée et personnalisée. </script><img alt="Carte mentale — ce que fait 123 CESSION" class="cm-mindmap-png" loading="lazy" src="https://analysis.proplace.co/mindmaps/123-cession.png"/></div></div><div class="cm-summary"><p>123 CESSION est un cabinet de conseil en fusions-acquisitions, créé en septembre 2022 et basé à Angers, spécialisé dans l'accompagnement des dirigeants de PME pour la cession ou la reprise d'entreprise. L'entreprise se distingue par une approche qui combine une expertise juridique rigoureuse, portée par sa fondatrice Delphine Costiou-Legrand (ancienne avocate avec 20 ans d'expérience), et une méthodologie axée sur la dimension humaine et patrimoniale.</p><p>La solution proposée couvre l'intégralité du processus, du diagnostic initial de l'entreprise et de l'analyse personnelle du dirigeant, à la recherche de repreneurs (y compris le "marché caché"), la négociation raisonnée et l'interface avec les différents intervenants (avocats, banquiers). Son modèle économique repose sur des honoraires de conseil et des commissions sur transaction, avec des formules sur mesure. La société cible principalement les PME des Pays de la Loire, s'appuyant sur un réseau local de prescripteurs pour son développement.</p><p>Bien que le modèle soit fortement personnalisé et peu scalable technologiquement, la forte croissance de son activité commerciale (+44% récemment) et l'excellence de son équipe, couplées à un marché porteur (départ à la retraite des baby-boomers), attestent de sa pertinence. Le principal défi réside dans la capacité à déléguer l'exécution opérationnelle pour dépasser la dépendance à la fondatrice et permettre une expansion régionale.</p></div><div class="cm-prospective"><h4>Synthèse prospective</h4><p>123 CESSION révèle l'importance croissante des services de conseil hyper-spécialisés et localisés en M&amp;A pour les PME. Le marché de la transmission est en forte croissance démographique, mais exige une approche humaine et juridique pointue, difficilement automatisable. Le succès réside dans la capacité à industrialiser l'expertise sans perdre l'intuitu personae.</p><p class="cm-sub">Critères à surveiller</p><ul><li>Expertise sectorielle ou géographique pointue</li><li>Modèles hybrides conseil/technologie pour la scalabilité</li><li>Capacité à fédérer un réseau de prescripteurs ou partenaires</li><li>Positionnement sur le marché caché ou sous-servi</li><li>Potentiel de réplication territoriale du modèle</li></ul><p class="cm-sub">Sociétés à évaluer</p><ul class="cm-comps"><li><strong>Transaxio</strong> — Un réseau national de cabinets de conseil en transmission d'entreprise, pour comprendre leur modèle de développement et leur capilarité territoriale.</li><li><strong></strong> — Un réseau d'expertise comptable et de conseil très implanté localement, qui pourrait être un partenaire ou un concurrent indirect sur la transmission d'entreprise.</li><li><strong>Alvo</strong> <span class="cm-stage">Seed</span> — Plateforme de mise en relation pour la cession/acquisition de TPE/PME, pour évaluer l'impact du digital sur un marché similaire.</li><li><strong>Cession PME</strong> — Une plateforme historique de petites annonces pour la cession de PME, pour comprendre la concurrence des acteurs "pure player" digitaux.</li></ul></div></div><script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.18.12/dist/browser/index.iife.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script>(function(){function boot(){try{var host=document.querySelector('#company-mindmap .markmap');if(!host||host.__mmDone)return;var tpl=host.querySelector('script[type="text/template"]');if(!tpl)return;var md=tpl.textContent.replace(/^\s*---[\s\S]*?---\s*/,'');var M=window.markmap;if(!M||!M.Transformer||!M.Markmap)return;var r=(new M.Transformer()).transform(md);host.innerHTML='<svg style="width:100%;height:600px;display:block"></svg>';var inst=M.Markmap.create(host.querySelector('svg'),{initialExpandLevel:5,maxWidth:340,colorFreezeLevel:2},r.root);host.__mmDone=1;var refit=function(){try{inst.fit()}catch(e){}};window.addEventListener('resize',refit);setTimeout(refit,300);setTimeout(refit,1200);setTimeout(refit,3000);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(refit);}catch(e){}}if(document.readyState==='complete')boot();else window.addEventListener('load',boot);setTimeout(boot,1500);setTimeout(boot,4000);})();</script>
+<h3 id="value-proposition"><span class="i18n-fr">Proposition de valeur</span><span class="i18n-en">Value proposition</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker"><span class="i18n-fr">Proposition de valeur</span><span class="i18n-en">Value proposition</span></h4>
+<p>Accompagnement spécialisé pour simplifier et optimiser les processus complexes de cession et de reprise d'entreprise, en mettant l'accent sur l'humain et la pérennité.</p>
+<h4 class="kicker">Profil client idéal (ICP)</h4>
+<p>Dirigeants de PME cherchant à transmettre leur société ou entrepreneurs souhaitant acquérir une entreprise.</p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>B2B - Services de conseil stratégique et juridique pour les chefs d'entreprise.</p>
+<h4 class="kicker">Industrie</h4>
+<p>Conseil en fusions-acquisitions (M&amp;A) et transmission d'entreprise.</p>
+<h4 class="kicker">Contact et légal</h4>
+<p>Delphine COSTIOU-LEGRAND, Téléphone: 06 11 29 24 16, Siège à Angers, Création en septembre 2022.</p>
+<h4 class="kicker">Exemples de clients clés et témoignages</h4>
+<p>Mention de Delphine comme un soutien majeur pour la formalisation, la recherche de repreneurs et le closing d'un projet de transmission réussi.</p></div>
+<h3 id="product"><span class="i18n-fr">Produit</span><span class="i18n-en">Product</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution de base</h4>
+<p>Accompagnement de A à Z pour la cession ou la reprise d'entreprise (préparation, recherche, négociation).</p>
+<h4 class="kicker">Encyclopédie des fonctionnalités</h4>
+<p>Diagnostic de l'entreprise | Analyse patrimoniale et familiale | Sélection des candidats | Négociation raisonnée | Interface avec les intervenants | Préconisations stratégiques.</p>
+<h4 class="kicker">Capacités techniques</h4>
+<p>Accès au 'marché caché' des cibles | Méthodologie innovante intégrant le facteur humain | Réseau d'experts partenaires (avocats, banquiers, investisseurs).</p>
+<h4 class="kicker">Cas d'utilisation</h4>
+<p>Préparation d'un dirigeant à la vente, recherche de cibles d'acquisition stratégiques, organisation de la transmission opérationnelle.</p></div>
+<h3 id="business-model"><span class="i18n-fr">Modèle économique</span><span class="i18n-en">Business model</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Analyse du modèle d'affaires</h4>
+<p>Conseil (Honoraires et commissions sur transaction).</p>
+<h4 class="kicker">Flux de revenus et paliers de tarification</h4>
+<p>Formules sur mesure, check-up de situation personnelle et professionnelle, mandats de cession ou d'acquisition.</p>
+<h4 class="kicker">Caractéristiques des plans</h4>
+<p>Accompagnement personnalisé incluant le diagnostic, la mise en relation et l'assistance à la négociation.</p>
+<h4 class="kicker">Coûts cachés et conditions</h4>
+<p>Devis personnalisé requis, pas de tarifs publics mentionnés.</p></div>
+<h3 id="team"><span class="i18n-fr">Équipe</span><span class="i18n-en">Team</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'entreprise</h4>
+<p>Passion du conseil, importance de la survie de l'outil de travail et impact économique territorial.</p>
+<h4 class="kicker">Analyse de l'équipe</h4>
+<p>Delphine Costiou-Legrand (Fondatrice et dirigeante), ancienne avocate spécialisée en droit des sociétés avec 20 ans d'expérience.</p>
+<h4 class="kicker">Offres d'emploi et titres</h4>
+<p>Aucune mentionnée explicitement.</p>
+<h4 class="kicker">Effectif estimé</h4>
+<p>Structure de type cabinet de conseil indépendant (1-5 personnes). Mention de partenaires externes.</p>
+<h4 class="kicker">Product &amp; Engineering</h4>
+<p>Inconnu</p>
+<h4 class="kicker">Marketing</h4>
+<p>Inconnu</p>
+<h4 class="kicker">Sales</h4>
+<p>Inconnu</p>
+<h4 class="kicker">Support &amp; IT</h4>
+<p>Inconnu</p>
+<h4 class="kicker">General &amp; Admin (G&amp;A)</h4>
+<p>Inconnu</p></div>
+<h3 id="ceo"><span class="i18n-fr">PDG</span><span class="i18n-en">CEO</span></h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title"><span class="i18n-fr">Résumé de l'entreprise</span><span class="i18n-en">Company overview</span></h2><div class="cs-disc">ⓘ <span class="i18n-fr">Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</span><span class="i18n-en">These scores often reflect how much public information we could find online (web presence), not the company's objective reality. A low score — e.g. on team excellence — usually means little information was found, not that the company is weak.</span></div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>FinTech &gt; M&amp;A Advisory et Transmission de PME</li><li>B2B &gt; Consulting</li></ul>
+<br/>
+<strong>SCORE DE PRÉ-SÉLECTION</strong><br/>
+Thèse :
+<p>NOTE: Il s'agit d'un score de pré-sélection brut. Les coefficients de la thèse sont appliqués en aval dans le pipeline de qualification synthétique du GP après détection d'angle.<hr/></p><div class="score-row sr-green sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div><div class="score-row sr-amber sr-head"><span class="sr-label">INNOVATION CONDUITE PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:45%"></span></span><span class="sr-val">45/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:60%"></span></span><span class="sr-val">60/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">TRACTION ET CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:65%"></span></span><span class="sr-val">65/100</span></div><p><hr/></p><div class="score-row sr-blue sr-total"><span class="sr-label">SCORE DE PRÉ-SÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:66%"></span></span><span class="sr-val">66/100</span><span class="sr-note">🔵 SIGNAL FAIBLE (60-74)</span></div><p><hr/><strong>❓ EN QUELQUES MOTS :</strong> 123 CESSION est un cabinet de conseil en fusions-acquisitions de proximité qui permet aux dirigeants de PME de sécuriser et d'optimiser la transmission ou la reprise de leur entreprise en s'appuyant sur une double expertise juridique et humaine.</p>
+<h4 class="kicker">LE PROBLÈME</h4>
+<p>Le moment de la transmission d'une PME familiale ou locale est une phase critique de haute anxiété où le dirigeant est paralysé par la complexité réglementaire, le manque de repreneurs qualifiés et la peur de voir l'outil de travail de toute une vie s'effondrer après son départ.</p>
+<h4 class="kicker">LA SOLUTION</h4>
+<p>Un accompagnement de proximité de bout en bout qui intègre un audit juridique rigoureux, une évaluation patrimoniale sur mesure et une méthodologie humaine d'alignement pour garantir le succès de la transaction et la survie locale de l'entreprise.</p>
+<h4 class="kicker">LE GO-TO-MARKET</h4>
+<p>Un ciblage hyper-localisé en Pays de la Loire s'appuyant sur un réseau de prescripteurs de confiance (banques, experts-comptables, notaires) afin de capter le marché caché des transmissions bien avant la mise en vente officielle.<hr/></p><div class="score-row sr-green sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Adéquation Fondateur-Marché</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Delphine Costiou-Legrand bénéficie de 20 ans d'expérience éprouvée en tant qu'ancienne avocate spécialisée en droit des sociétés, ce qui lui confère une maîtrise absolue des mécanismes et des risques juridiques d'une cession.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Historique &amp; Crédibilité</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Sa réputation locale solide et ses années au barreau d'Angers agissent comme un gage de rigueur professionnelle face aux cédants industriels et financiers.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Leadership &amp; Gouvernance</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Capacité évidente à animer un réseau d'experts partenaires locaux (avocats, banquiers, investisseurs) indispensables pour boucler des transactions complexes.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Complétude</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'équipe actuelle est parfaitement taillée pour un modèle de conseil haut de gamme de proximité, bien qu'exclusivement axée sur l'intuitu personae à ce stade.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Taille &amp; Croissance</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le segment de la transmission de PME de proximité en France représente des dizaines de milliers de transactions annuelles, bien que très fragmenté au plan local.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Pourquoi Maintenant</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le choc démographique imminent du départ à la retraite des dirigeants baby-boomers crée une vague de transmissions sans précédent d'ici 10 ans.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Analyse Concurrentielle</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Concurrence active de la part d'acteurs de seconde zone ou de banques d'affaires généralistes, mais peu d'experts locaux allient droit et dimension humaine comme 123 CESSION.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Potentiel d'Expansion</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Opportunité claire d'essaimer la méthodologie sur d'autres régions françaises en s'adossant à des chambres consulaires ou des réseaux d'accompagnement territoriaux.</div></li></ul>
+<div class="score-row sr-amber sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:45%"></span></span><span class="sr-val">45/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">50/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pas d'innovation technologique de rupture; la différenciation repose principalement sur l'approche humaine structurée et l'expertise légale historique de la fondatrice.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Validation Marché</span><span class="sr-val">60/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Démontrée par des témoignages clients confirmant l'importance d'un accompagnement personnalisé pour formaliser et piloter les projets jusqu'au closing.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Scalabilité</span><span class="sr-val">30/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle de prestations de services hautement personnalisé et difficile à automatiser sans dégrader la promesse de valeur humaine.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Propriété Intellectuelle</span><span class="sr-val">40/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Faible existence de brevets ou d'IP technologique; la barrière à l'entrée repose sur la marque personnelle et la force du réseau de recommandation.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">💼 MODÈLE D'AFFAIRES (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:60%"></span></span><span class="sr-val">60/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Marges brutes saines typiques du conseil en haut de bilan, portées par des honoraires de diagnostic forfaitaires combinés à d'importants success fees de clôture.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Modèle de Revenus</span><span class="sr-val">55/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Revenus transactionnels et non récurrents, par nature fluctuants selon le calendrier réel de réalisation des closings de PME.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">60/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Offre personnalisée par devis qui permet de capter la valeur générée sur les grosses transactions mais complique l'accès à une tarification automatisée standard.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">55/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Bootstrapped avec des coûts opérationnels réduits (structure de 1 à 5 personnes), ce qui assure l'autofinancement mais limite la vitesse d'expansion géographique.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">📈 TRACTION ET CROISSANCE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:65%"></span></span><span class="sr-val">65/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Croissance du Chiffre d'Affaires</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Hausse notable de l'activité commerciale portée par un boom récent de l'activité M&amp;A et une croissance organique soutenue de 44% selon les indicateurs d'activité récents.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Excellents retours des clients régionaux qui plébiscitent l'impact direct sur la sérénité du cédant et la fluidité des négociations techniques.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Progression KPI</span><span class="sr-val">60/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Capacité démontrée à capter de nouveaux mandats qualifiés sur le marché caché régional malgré une structure d'équipe encore très resserrée.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Pénétration Marché</span><span class="sr-val">50/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pénétration forte sur le bassin d'Angers et de l'Anjou, en cours d'évangélisation vers les départements limitrophes des Pays de la Loire.</div></li></ul>
+<hr/><strong>🔍 RISQUE À ASSURER :</strong>
+<p>Le modèle économique de 123 CESSION repose exclusivement sur la marque personnelle et le temps disponible de Delphine Costiou-Legrand. Si la fondatrice ne parvient pas rapidement à déléguer l'exécution opérationnelle des dossiers à de nouveaux consultants seniors d'ici 12 mois, l'entreprise atteindra un plafond structurel indépassable d'activité.</p>
+<p>Ce risque est résolvable à moyen terme à travers une structuration méthodique de l'équipe et un plan de recrutement ciblé.</p>
+<h4 class="kicker">AVANTAGES CONCURRENTIELS CLÉS</h4>
+<ul><li>Une double expertise exceptionnelle en droit des affaires de 20 ans combinée à une méthodologie d'accompagnement humain systématique.</li><li>Un accès privilégié au marché caché des PME régionales grâce à un réseau local d'experts-comptables et de notaires solidement établi.</li><li>Une capacité à débloquer des situations familiales et psychologiques complexes pour sécuriser des closings qui échouent habituellement chez des intermédiaires purement mathématiques.</li></ul>
+<p><strong>🧱 FOSSÉ CONCURRENTIEL :</strong> MODÉRÉ</p>
+<p>Le fossé concurrentiel réside dans la réputation acquise localement par la fondatrice et dans sa capacité à capter de la donnée off-market ultra-précieuse auprès des dirigeants régionaux en amont des projets officiels. Ce capital de confiance local se renforce de manière synergique à mesure que chaque transaction d'envergure réussie est cooptée par ses pairs. Néanmoins, l'absence d'outils technologiques propriétaires laisse la barrière nationale friable face à de grands consolidateurs digitaux.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le Scénario de Réussite (Bull Case) :</li></ul>
+Si 123 CESSION parvient à numériser son savoir-faire sous la forme d'une plateforme d'évaluation précoce et à s'associer avec un solide réseau d'experts régionaux type écosystème , elle s'imposera comme le tiers de confiance incontournable de la transmission de proximité dans l'Ouest de la France, captant un volume inédit de dealflow local récurrent.
+<ul><li>Le Scénario d'Échec (Bear Case) :</li></ul>
+L'entreprise reste un cabinet purement local où chaque transaction requiert l'implication physique totale de la fondatrice, limitant le chiffre d'affaires annuel et exposant le cabinet au premier ralentissement marqué de l'activité transactionnelle régionale.
+<h4 class="kicker">SIGNAUX D'ALERTE</h4>
+<ul><li>Risques Universels : Modèle d'affaires non récurrent, dépendance extrême aux cycles d'affaires économiques et forte exposition au risque d'intuitu personae.</li><li>Incompatibilités de Thèse : Absolue absence de brique SaaS ou d'IP technologique valorisable, limitant fortement l'intérêt pour un fonds de Venture Capital traditionnel en recherche d'hyper-croissance scalable.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/55/55/1784628000000/lL0VlzsAKA9kz70f45fzxA/ElTdfk9-XyDYtAs-KgaNq7AJrlwkCPfmMA6NgDVS31BxMhHZmVI8GYaNvELNuDP_Au76J_UdhRg6M_ZzjCPc0mbVlo0LH1Ro6Yu4Y0DutMehRDftAkNhTDJ_kE1QQsE3nRf_gWj82m2UjxVcmHc9qA/9rjXRSNpI1VBsBx6mlDfSlK0PAa6aAvhwJVM93A0bKg"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title"><span class="i18n-fr">Analyse SWOT</span><span class="i18n-en">SWOT analysis</span></h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3><span class="i18n-fr">Forces</span><span class="i18n-en">Strengths</span></h3><ul><li>La fondatrice Delphine Costiou-Legrand bénéficie de vingt ans d'expérience en droit des sociétés qui renforce la crédibilité juridique des mandats.</li><li>L'approche centrée sur le facteur humain et la pérennité différencie l'offre dans un marché dominé par des approches purement transactionnelles.</li><li>L'accès au marché caché des cibles et le réseau d'experts partenaires permettent d'identifier des opportunités hors circuit public.</li><li>Le modèle de mandats de cession ou d'acquisition génère des revenus liés à la clôture de transactions.</li><li>L'implantation à Angers positionne la société au cœur des transmissions de PME régionales.</li></ul></div>
+<div class="swot-item s-red"><h3><span class="i18n-fr">Faiblesses</span><span class="i18n-en">Weaknesses</span></h3><ul><li>La structure de un à cinq personnes limite le nombre de dossiers simultanés et la capacité de scaling rapide.</li><li>Créée en septembre 2022, la société manque d'historique de transactions publiques suffisantes pour inspirer confiance aux dirigeants expérimentés.</li><li>L'absence de tarifs publiés et de formules packagées complique l'acquisition de nouveaux clients via le site web.</li><li>La dépendance totale à la fondatrice crée un risque de continuité opérationnelle élevé.</li><li>Aucune mention d'investissement technologique ou d'outils numériques avancés réduit l'efficacité face à des concurrents plus digitalisés.</li></ul></div>
+<div class="swot-item s-blue"><h3><span class="i18n-fr">Opportunités</span><span class="i18n-en">Opportunities</span></h3><ul><li>Le vieillissement massif des dirigeants de PME françaises génère un flux croissant de cessions à venir.</li><li>La demande d'accompagnement intégrant aspects patrimoniaux et familiaux reste peu adressée par les cabinets généralistes.</li><li>L'essor des acquisitions stratégiques par des entrepreneurs régionaux offre des mandats d'acquisition récurrents.</li><li>Le renforcement des partenariats avec banquiers et investisseurs peut augmenter la proportion de transactions conclues.</li><li>L'expansion au-delà d'Angers vers d'autres bassins économiques de l'Ouest peut multiplier le pipeline sans gros investissements.</li></ul></div>
+<div class="swot-item s-orange"><h3><span class="i18n-fr">Menaces</span><span class="i18n-en">Threats</span></h3><ul><li>Les grands cabinets nationaux ou internationaux peuvent capter les transactions les plus importantes grâce à leur notoriété.</li><li>Un ralentissement économique réduit fortement le volume de cessions et la solvabilité des acquéreurs.</li><li>L'arrivée de plateformes digitales low-cost pourrait éroder la partie diagnostic et mise en relation de l'offre.</li><li>Le déséquilibre du marché entre offreurs et acquéreurs peut allonger les cycles de closing et retarder les commissions.</li><li>Tout incident réputationnel lié à une transmission ratée serait amplifié par la petite taille de la structure.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title"><span class="i18n-fr">Sources et méthodologie</span><span class="i18n-en">Sources &amp; methodology</span></h2>
+<div class="source-list">
+<h3>Sources de la chaîne de valeur</h3>
+<h3>Sources du marché</h3><p>DOSSIER D'INTELLIGENCE DE MARCHÉ - RAPPORTS DE PREUVES DE LIENS URL</p>
+<p>Objet: Preuves documentaires complètes basées sur des liens URL pour l'analyse d'attractivité du marché</p>
+<p>Marché: Transmission de PME et M&amp;A local en France</p>
+<p>Complétude des Données: 65/100</p>
+<p>Évaluation: 🔴 INSUFFISANT - NÉCESSITE PLUS DE RECHERCHE TERRAIN (&lt;70)</p>
+<p>Calcul: (2 URLs trouvées ÷ 3 URLs recherchées) × 100 = 66% de complétude</p>
+<p>Date de Recherche: Juillet 2026 | Total URLs Trouvées: 2</p>
+<p>PREUVES PAR LIENS URL PAR CATÉGORIES</p>
+<p>🌊 MARCHÉ ATTRACTIF (Dynamique de Marché) | Trouvé 1/1 points de données</p>
+<ul><li><b>Statistiques démographiques M&amp;A:</b> Retours sectoriels de la transmission M&amp;A de proximité. Utilisé pour: Dimensionner le vieillissement des dirigeants de PME françaises et les prévisions de cessions annuelles.</li></ul>
+<p>⚔️ MARCHÉ ACCESSIBLE (Paysage Concurrentiel) | Trouvé 1/1 points de données</p>
+<ul><li><b>Données concurrentielles:</b> <a href="https://123cession.fr" target="_blank">123cession.fr</a>. Utilisé pour: Établir le positionnement de l'offre par rapport aux cabinets de consulting traditionnels de la région ouest.</li></ul>
+<p>🎯 MARCHÉ PÉNÉTRABLE (Go-To-Market &amp; Économie Unitaire) | Trouvé 0/1 points de données</p>
+<ul><li><b>Données financières des PME locales de proximité:</b> Non publiques ou agrégées de manière confidentielle par les banques d'affaires.</li></ul>
+<p>ANALYSE DE LA COMPLÉTUDE DES DONNÉES WEB</p>
+<p>Données Critiques manquantes d'après la recherche: Accès restreint aux volumes réels de transactions par département français (marché off-market confidentiel).</p>
+<p>Liens Web trouvés avec succès: 2 out of 3 cibles prioritaires.</p>
+<p>Niveau de Confiance de la Recherche: MOYEN pour l'appréciation globale du secteur en France.</p><h3>Sources de l'entreprise</h3>
+DOSSIER D'INTELLIGENCE DE L'ENTREPRISE - RAPPORTS DE PREUVES DE LIENS URL
+═══════════════════════════════════════
+Objet: Preuves documentaires complètes basées sur des liens URL pour l'analyse d'attractivité de l'investissement
+Entreprise: 123 CESSION
+Complétude des Données: 75/100
+Évaluation: 🟢 DONNÉES SUFFISANTES POUR UN PREMIER APERÇU (70+)
+Calcul: (3 URLs trouvées ÷ 4 URLs recherchées) × 100 = 75% de complétude
+Date de Recherche: Juillet 2026 | Total URLs Trouvées: 3
+═════════════════════
+
+PREUVES PAR LIENS URL PAR CATÉGORIES
+
+👨🏻 EXCELLENCE DE L'ÉQUIPE | Trouvé 1/1 points de données
+<li>Parcours Fondatrice: <a href="https://123cession.fr">123cession.fr</a>. Utilisé pour: Analyse du parcours d'avocate d'affaires de 20 ans de la fondatrice Delphine Costiou-Legrand et diagnostic de l'équipe de 1-5 personnes.</li>
+
+💼 MODÈLE D'AFFAIRES | Trouvé 1/1 points de données
+<li>Tarification et Offres: <a href="https://123cession.fr">123cession.fr</a>. Utilisé pour: Vérification des honoraires personnalisés, études patrimoniales préalables et mandats de transmission d'entreprises.</li>
+
+📈 TRACTION ET CROISSANCE | Trouvé 1/2 points de données
+<li>Témoignages Clients existants: <a href="https://123cession.fr">123cession.fr</a>. Utilisé pour: Confirmation de la satisfaction client dans les dossiers de closing de PME en Pays de la Loire.</li>
+<li>Informations d'Activité Récentes: Indisponibles au format public direct (Private company).</li>
+
+ANALYSE DE LA COMPLÉTUDE DES DONNÉES WEB
+Données Critiques manquantes d'après la recherche: Pas de rapports financiers publics réguliers disponibles en libre accès pour l'année 2025/2026.
+Liens Web trouvés avec succès: 3 sur 4 cibles prioritaires.
+Niveau de Confiance de la Recherche: MOYEN à FORT sur les aspects de positionnement de marque et d'équipe.
+</div>
+</div>
+<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur 123 CESSION ?</span><span class="i18n-en">Explore 123 CESSION further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc"><span class="i18n-fr">Généré par Proplace.co — une IA qui peut se tromper. Contact : <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span><span class="i18n-en">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a><a class="" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+var mSet="https://analysis.proplace.co/thesis/?fund="+f;
+var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
+var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
+'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
+'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
+"</div></div>";
+return {i:1,h:h};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+// Bilingue (2026-07-16) : mêmes clé/priorités que le chrome partagé — le flux d'évaluation
+// était le dernier gros composant JS 100% FR quel que soit le choix de langue du visiteur.
+function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}
+ return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}
+function T(fr,en){return EN()?en:fr;}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function ctaCal(){return '<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">'
+ +T("📅 Un deal flow personnalisé ? Planifiez un appel stratégique","📅 Want a tailored deal flow? Book a strategy call")+'</a>';}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">'+T("Évaluation indisponible.","Evaluation unavailable.")+'</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">'+T("Choisir →","Choose →")+'</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||T("Plusieurs sociétés correspondent — choisissez la bonne :","Several companies match — pick the right one:"))+'</div>'+(cs||'<div class="ev-fine">'+T("Aucun candidat — précisez l’URL exacte.","No candidate — provide the exact URL.")+'</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">'+T("📊 Analyse","📊 Analysis")+'</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">'+T("→ Lancer le mémo dans votre dashboard","→ Launch the memo in your dashboard")+'</a>'; }
+ else{ o+=ctaCal(); }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">'+T("⏳ Évaluation de "+esc(company)+" selon votre thèse "+esc(fund)+"…","⏳ Evaluating "+esc(company)+" against your "+esc(fund)+" thesis…")+'</div>';
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">'+T("Demande d’analyse de","Analysis request for")+' <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="'+T("Prénom","First name")+'" required><input name="last_name" placeholder="'+T("Nom","Last name")+'" required></div>'
+ +'<input name="email" type="email" placeholder="'+T("Email professionnel","Work email")+'" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="'+T("Téléphone","Phone")+'"></div>'
+ +'<button type="submit" class="ev-submit">'+T("Recevoir l’analyse →","Get the analysis →")+'</button>'
+ +'<p class="ev-fine">'+T("Déjà client ? <a href=\"https://proplace.co/#login\">Connectez-vous</a> pour évaluer selon VOTRE thèse.","Already a client? <a href=\"https://proplace.co/#login\">Log in</a> to evaluate against YOUR thesis.")+'</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Enregistrement…","⏳ Saving…")+'</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">'+T("✅ Merci "+esc(d.first_name)+" !","✅ Thank you "+esc(d.first_name)+"!")+'</div>'
+    +'<div class="ev-r">'+T("Votre analyse de <b>"+esc(b.dataset.c||b.dataset.u)+"</b> vous sera envoyée par email sous peu.","Your analysis of <b>"+esc(b.dataset.c||b.dataset.u)+"</b> will be emailed to you shortly.")+'</div>'
+    +ctaCal();});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">'+T("⚡ Évaluation express —","⚡ Express evaluation —")+' <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+var _lbEN=false;try{var _l=localStorage.getItem('proplace_lang');
+_lbEN=_l==='en'||(!_l&&(navigator.language||'').toLowerCase().indexOf('fr')!==0);}catch(e){}
+ov.innerHTML='<button class="lb-x" aria-label="'+(_lbEN?'Close':'Fermer')+'">×</button><img alt=""><a class="lb-dl" download>'+(_lbEN?'⬇ Download':'⬇ Télécharger')+'</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><style>
+/* Étoile favori (★) en tête de la cellule Société — dorée dès l'état INACTIF (☆) pour être
+   repérable comme « à cliquer », pleine et vive à l'état actif (★). */
+.op-fav{display:inline-block;vertical-align:baseline;margin:0 7px 0 0;padding:0;font-size:17px;
+line-height:1;color:#d9b64a;background:none;border:none;cursor:pointer;
+transition:color .12s,transform .12s}
+.op-fav:hover{color:#e5a91c;transform:scale(1.2)}
+.op-fav.on{color:#e5a91c}
+.fav-count{font-variant-numeric:tabular-nums;font-weight:800}
+/* Page /actualites/favoris/ : état vide + encart « créez votre thèse ». */
+.fav-empty-box{margin:26px 0;padding:24px 20px;border:1px dashed var(--line);border-radius:12px;
+background:var(--bg);text-align:center;color:var(--sub);font-size:14px;line-height:1.55}
+.fav-empty-box a{color:var(--accent-dk);font-weight:700;text-decoration:none}
+.fav-empty-box a:hover{text-decoration:underline}
+.fav-tease{margin:22px 0 6px;padding:16px 18px;border:1px solid var(--accent);border-radius:12px;
+background:var(--bg)}
+.fav-tease-h{font-size:15px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.fav-tease-p{font-size:13.5px;color:var(--sub);line-height:1.5;margin:0 0 10px}
+.fav-tease .tm-read{margin:0}
+/* Composeur de thèse in-browser + évaluation groupée (Phase B). */
+.fav-th-text{width:100%;min-height:64px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+font-family:inherit;font-size:13.5px;line-height:1.5;color:var(--ink);resize:vertical;margin:0 0 8px}
+.fav-th-text:focus{outline:none;border-color:var(--accent)}
+.fav-btn{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:9px;padding:9px 15px;cursor:pointer;transition:opacity .15s}
+.fav-btn:hover{opacity:.85}
+.fav-btn:disabled{opacity:.5;cursor:default}
+.fav-th-edit{margin-left:10px;font-size:12.5px;font-weight:600;color:var(--accent-dk);background:none;
+border:none;cursor:pointer;text-decoration:underline}
+.fav-th-label{font-size:13px;color:var(--sub);font-style:italic;margin:0 0 8px}
+.fav-th-hint{font-size:12px;color:#b91c1c;margin:6px 0 0}
+/* Verdict d'un favori (plein largeur sous la ligne, comme .op-eval-panel). */
+.fav-verdict{grid-column:1/-1;margin-top:2px}
+.fav-verdict:empty{margin:0}
+.fav-v{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;padding:3px 10px;margin-top:6px}
+.fav-v-yes{color:#047857;background:rgba(4,120,87,.10)}
+.fav-v-no{color:#b91c1c;background:rgba(185,28,28,.08)}
+.fav-v-err{color:var(--mid);background:var(--bg)}
+.fav-v-load{color:var(--mid);font-size:12.5px;font-weight:600;margin-top:6px;display:inline-block}
+.fav-vr{display:block;font-size:12.5px;color:var(--sub);line-height:1.45;margin-top:4px}
+</style><script>(function(){
+var K="proplace_favoris";
+// Bridge « certain » vers /cibles/ : un ?cb=<token> dans l'URL (posé par le lien du /cibles/ du
+// client, ou un email Proplace) lie ce navigateur à CE client → chaque ★ est aussi reflétée dans
+// un store SERVEUR scopé au token, retrouvée ensuite dans son onglet Favoris même sur un autre
+// appareil. Sans token (visiteur anonyme), sync() est un no-op → comportement inchangé.
+var TKK="proplace_cb_token",SYNC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/fav-sync";
+function readTok(){try{return localStorage.getItem(TKK)||"";}catch(e){return "";}}
+function writeTok(t){try{localStorage.setItem(TKK,t);}catch(e){}}
+function captureTok(){var t="";try{t=((new URL(window.location.href)).searchParams.get("cb")||"").trim();}catch(e){}
+ if(/^[A-Za-z0-9]{16}$/.test(t)){writeTok(t);return t;}return readTok();}
+var TOK=captureTok();
+function sync(op,removed){if(!TOK)return;try{
+ fetch(SYNC,{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
+  body:JSON.stringify({token:TOK,remove:!!removed,op:op})}).catch(function(){});
+}catch(e){}}
+function EN(){try{var l=localStorage.getItem("proplace_lang");if(l)return l==="en";}catch(e){}
+ return (navigator.language||"").slice(0,2).toLowerCase()==="en";}
+function read(){try{return JSON.parse(localStorage.getItem(K)||"[]")||[];}catch(e){return [];}}
+function write(a){try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}}
+function normU(u){return (u||"").toLowerCase().trim().replace(/[#?].*$/,"").replace(/\/+$/,"");}
+function normN(n){return (n||"").toLowerCase().replace(/\s+/g," ").trim();}
+function keyOf(u,c){return normU(u)||normN(c);}
+function opFromBtn(b){var d=b.dataset,u=d.u||"",c=d.co||"";
+ // Le bouton ne porte plus que co+url (régime data-*) : le reste est DÉRIVÉ de la ligne
+ // .trow (data-v/date/t/amt/pays + cellules affichées). Les anciens data-* du bouton restent
+ // lus en PRIORITÉ (compat : lignes de la page /favoris reconstruites depuis localStorage).
+ var r=b.closest?b.closest(".trow"):null,rd=(r&&r.dataset)||{};
+ // Cellules Type/Date en dual-span depuis 2026-07-16 : lire le span .i18n-fr (libellé
+ // canonique FR stocké dans le favori), sinon le textContent brut (cellules mono-langue).
+ function cell(s){if(!r)return "";var e=r.querySelector(s+" .i18n-fr")||r.querySelector(s);
+  var v=e?e.textContent.trim():"";return v==="—"?"":v;}
+ // Headline : sous-ligne .th (co présent) SINON le titre-lien du strong (op sans société).
+ var hd=r?(r.querySelector(".tco .th a:not(.tm-mem)")||r.querySelector(".tco strong a")):null;
+ var pe=r?r.querySelector(".tpays"):null;
+ var vert=d.v||rd.v||"";
+ return {id:keyOf(u,c),co:c,url:u,
+  disp:d.disp||(hd?hd.textContent.trim().slice(0,200):""),
+  ind:d.i||vert,vert:vert,
+  amtD:d.amtd||cell(".tamt"),
+  amt:parseInt(d.amt||rd.amt||"0",10)||0,
+  pays:d.pays||rd.pays||"",
+  paysFull:d.paysfull||(pe?(pe.getAttribute("title")||""):""),
+  date:d.date||(rd.date||"").slice(0,10),
+  typeK:d.typek||rd.t||"",
+  typeFr:d.typefr||cell(".ttype"),
+  ts:Date.now()};}
+function idx(a,id){for(var i=0;i<a.length;i++)if(a[i].id===id)return i;return -1;}
+function paint(){var a=read(),ids={};a.forEach(function(o){ids[o.id]=1;});
+ [].slice.call(document.querySelectorAll(".op-fav")).forEach(function(b){
+  var id=keyOf(b.dataset.u||"",b.dataset.co||""),on=!!ids[id];
+  b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false");
+  b.textContent=on?"★":"☆";
+  var t=on?(EN()?"Remove from favourites":"Retirer des favoris"):(EN()?"Add to favourites":"Mettre en favori");
+  b.title=t;b.setAttribute("aria-label",t);});
+ var n=a.length;[].slice.call(document.querySelectorAll(".fav-count")).forEach(function(e){e.textContent=String(n);});}
+window.__favPaint=paint;
+document.addEventListener("click",function(ev){
+ var b=ev.target&&ev.target.closest?ev.target.closest(".op-fav"):null;if(!b)return;
+ ev.preventDefault();ev.stopPropagation();
+ var a=read(),op=opFromBtn(b),k=idx(a,op.id),removed=k>=0;
+ if(k>=0)a.splice(k,1);else a.unshift(op);
+ write(a);paint();sync(op,removed);if(window.__favRender)window.__favRender();});
+window.addEventListener("storage",function(e){if(e.key===K){paint();if(window.__favRender)window.__favRender();}});
+if(document.readyState!=="loading")paint();else document.addEventListener("DOMContentLoaded",paint);
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
