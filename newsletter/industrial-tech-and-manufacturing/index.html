@@ -1,4 +1,4 @@
-<!doctype html><html lang="fr" data-pplang-sync="1"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Newsletter Industrial Tech &amp; Manufacturing — M&amp;A &amp; levées de fonds | Proplace</title><meta name="description" content="Recevez chaque jour les opérations M&amp;A et levées de fonds du secteur Industrial Tech &amp; Manufacturing en France et en Europe — décryptées par Proplace…"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/newsletter/industrial-tech-and-manufacturing/"><meta property="og:site_name" content="Proplace"><meta property="og:title" content="Newsletter Industrial Tech &amp; Manufacturing — M&amp;A &amp; levées de fonds | Proplace"><meta property="og:description" content="Recevez chaque jour les opérations M&amp;A et levées de fonds du secteur Industrial Tech &amp; Manufacturing en France et en Europe — décryptées par Proplace…"><meta property="og:url" content="https://proplace.co/newsletter/industrial-tech-and-manufacturing/"><meta property="og:image" content="https://proplace.co/actualites/operations/cartes/pouls-industrial-tech-and-manufacturing-2026-07-19.png"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Newsletter Industrial Tech &amp; Manufacturing — M&amp;A &amp; levées de fonds | Proplace"><meta name="twitter:description" content="Recevez chaque jour les opérations M&amp;A et levées de fonds du secteur Industrial Tech &amp; Manufacturing en France et en Europe — décryptées par Proplace…"><meta name="twitter:image" content="https://proplace.co/actualites/operations/cartes/pouls-industrial-tech-and-manufacturing-2026-07-19.png"><link rel="icon" href="/favicon.png"><link rel="alternate" type="application/rss+xml" title="Proplace — M&amp;A &amp; levées de fonds" href="https://proplace.co/actualites/feed.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
+<!doctype html><html lang="fr" data-pplang-sync="1"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Newsletter Industrial Tech &amp; Manufacturing — M&amp;A &amp; levées de fonds | Proplace</title><meta name="description" content="Recevez chaque jour les opérations M&amp;A et levées de fonds du secteur Industrial Tech &amp; Manufacturing en France et en Europe — décryptées par Proplace…"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/newsletter/industrial-tech-and-manufacturing/"><meta property="og:site_name" content="Proplace"><meta property="og:title" content="Newsletter Industrial Tech &amp; Manufacturing — M&amp;A &amp; levées de fonds | Proplace"><meta property="og:description" content="Recevez chaque jour les opérations M&amp;A et levées de fonds du secteur Industrial Tech &amp; Manufacturing en France et en Europe — décryptées par Proplace…"><meta property="og:url" content="https://proplace.co/newsletter/industrial-tech-and-manufacturing/"><meta property="og:image" content="https://proplace.co/actualites/operations/cartes/pouls-industrial-tech-and-manufacturing-2026-07-21.png"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Newsletter Industrial Tech &amp; Manufacturing — M&amp;A &amp; levées de fonds | Proplace"><meta name="twitter:description" content="Recevez chaque jour les opérations M&amp;A et levées de fonds du secteur Industrial Tech &amp; Manufacturing en France et en Europe — décryptées par Proplace…"><meta name="twitter:image" content="https://proplace.co/actualites/operations/cartes/pouls-industrial-tech-and-manufacturing-2026-07-21.png"><link rel="icon" href="/favicon.png"><link rel="alternate" type="application/rss+xml" title="Proplace — M&amp;A &amp; levées de fonds" href="https://proplace.co/actualites/feed.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--accent:#4AC67F;--accent-dk:#36a866;--ink:#0A0A0A;--sub:#444;--mid:#777;
 --line:#E8E8E4;--bg:#F6F6F3;--white:#fff;--maxw:760px}
 *{box-sizing:border-box}
@@ -143,6 +143,14 @@ align-items:center;gap:18px;flex-wrap:nowrap}
 gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
 .pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
 .pph nav>a:hover{color:#0a0a0a}
+/* (retour CEO 20/07) — mobile : « Mon compte » s'affichait À LA VERTICALE (un mot,
+   voire une lettre, par ligne). Cause : dans .pph nav (flex), .pph-sect et .pph-lang
+   sont en flex:0 0 auto mais PAS .pph-auth → c'était le SEUL enfant compressible, il
+   absorbait tout le débordement et rétrécissait à ~0, forçant le texte du bouton à
+   passer à la ligne. Il devient incompressible : c'est le défileur horizontal du nav
+   (v74) qui prend le relais, comme prévu. */
+.pph .pph-auth{flex:0 0 auto;display:inline-flex;align-items:center;white-space:nowrap}
+.pph .pph-auth button,.pph .pph-acct,.pph .pph-acct-btn{flex:0 0 auto;white-space:nowrap}
 /* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
    « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
    couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
@@ -179,7 +187,9 @@ html[data-pplang=en] .i18n-fr{display:none}
  .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
  -webkit-overflow-scrolling:touch;scrollbar-width:none}
  .pph nav::-webkit-scrollbar{display:none}
- .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
+    (même piège que la couleur du CTA, retour CEO 19/07). */
+ .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
  .pph-sect a{padding:6px 10px;font-size:12px}
  .pph-lang button{padding:5px 7px;font-size:11px}
  /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
@@ -514,15 +524,25 @@ try{var st=document.createElement("style");st.textContent=
 ".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
 ".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
 /* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
-".pph-acct{position:relative;display:inline-flex;align-items:center}"+
-".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer}"+
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
 ".pph-acct-caret{font-size:10px;line-height:1}"+
-/* position:FIXED (coordonnées posées en JS via getBoundingClientRect) : le menu
-   échappe au défileur overflow-x:auto de .pph nav en mobile (sinon clippé). */
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
 ".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
 ".pph-acct-menu[hidden]{display:none}"+
-".pph-acct-menu a{display:block;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0}"+
-".pph-acct-menu a:hover{background:#eef9f2;color:#185c38}";
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
 document.head.appendChild(st);}catch(e){}
 var D={
  en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
@@ -541,6 +561,8 @@ var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria
 '<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
 '<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
 '<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
 "</div></div>";
 return {i:1,h:h};}
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
@@ -551,20 +573,42 @@ var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
 var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
 var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
 menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
 /* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
    apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
 function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
 if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
 b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
-var wrap=b.parentNode;var menu=wrap?wrap.querySelector(".pph-acct-menu"):null;if(!menu)return;
+var menu=b.__menu;if(!menu)return;
 var willOpen=menu.hasAttribute("hidden");
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
 if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
 else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
-});}
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
 function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
 /* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
@@ -573,9 +617,14 @@ try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
 try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
 try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
-var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
 wireAcct();}
@@ -592,10 +641,10 @@ if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
 document.addEventListener("click",closeAcct);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
 window.addEventListener("resize",closeAcct);
-window.addEventListener("scroll",closeAcct,true);}
+window.addEventListener("scroll",onScrollAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><main class="wrap tm-wrap"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Accueil</a><span class="sep">›</span><a href="/actualites/" data-i18n="news">Actualités</a><span class="sep">›</span><a href="/actualites/operations/" data-i18n="ops">Opérations</a><span class="sep">›</span><a href="/actualites/operations/secteur/industrial-tech-and-manufacturing/">Industrial Tech &amp; Manufacturing</a><span class="sep">›</span><span class="cur">Newsletter</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Actualités", "item": "https://proplace.co/actualites/"}, {"@type": "ListItem", "position": 3, "name": "Opérations", "item": "https://proplace.co/actualites/operations/"}, {"@type": "ListItem", "position": 4, "name": "Industrial Tech & Manufacturing", "item": "https://proplace.co/actualites/operations/secteur/industrial-tech-and-manufacturing/"}, {"@type": "ListItem", "position": 5, "name": "Newsletter"}]}</script><div class="lvl-zone"><div class="type-nav lvl-nav"><a href="/actualites/operations/" data-i18n="allOps">🌍 Toutes les opérations</a><span class="lvl-grp"><a class="" href="/actualites/operations/secteur/industrial-tech-and-manufacturing/">🗂 Industrial Tech &amp; Manufacturing</a><a class="" href="/actualites/operations/fusions-acquisitions/industrial-tech-and-manufacturing/">M&amp;A</a><a class="" data-i18n="fundr" href="/actualites/operations/levees-de-fonds/industrial-tech-and-manufacturing/">Levées</a></span><a class="on" data-i18n="subscribe" href="https://proplace.co/newsletter/industrial-tech-and-manufacturing/">📬 S'abonner</a><a class="fav-nav " href="/actualites/favoris/"><span class="i18n-fr">★ Mes favoris</span><span class="i18n-en">★ My favourites</span> (<span class="fav-count">0</span>)</a></div><a class="tm-read lvl-read" href="/actualites/operations/secteur/industrial-tech-and-manufacturing/2026-07-19/"><span class="i18n-fr">📰 Lire la dernière analyse Industrial Tech &amp; Manufacturing (19 juillet 2026) →</span><span class="i18n-en">📰 Read the latest Industrial Tech &amp; Manufacturing analysis (July 19, 2026) →</span></a></div><div class="tm-herowrap"><div class="tm-hero"><p class="tm-eyebrow"><span class="i18n-fr">Newsletter · secteur</span><span class="i18n-en">Newsletter · sector</span></p><h1 class="tm-h1"><span class="i18n-fr">La newsletter Industrial Tech &amp; Manufacturing</span><span class="i18n-en">The Industrial Tech &amp; Manufacturing newsletter</span></h1><p class="tm-dek"><span class="i18n-fr">Chaque jour, uniquement les opérations M&amp;A et levées de fonds du secteur Industrial Tech &amp; Manufacturing en France &amp; Europe — avec les chiffres clés, les sources et les acquéreurs actifs. Gratuit, désinscription en un clic.</span><span class="i18n-en">Every day, only the M&amp;A deals and fundraisings of the Industrial Tech &amp; Manufacturing sector in France &amp; Europe — with key figures, sources and active buyers. Free, one-click unsubscribe.</span></p></div><a class="tm-hero-viz" href="/actualites/operations/cartes/pouls-industrial-tech-and-manufacturing-2026-07-19.png" title="Le pouls du secteur Industrial Tech &amp; Manufacturing"><img src="/actualites/operations/cartes/pouls-industrial-tech-and-manufacturing-2026-07-19.png" loading="lazy" alt="Le pouls du secteur Industrial Tech &amp; Manufacturing — chiffres clés et opérations par jour" onerror="this.parentNode.style.display='none'"/></a></div><aside class="cta-box" style="text-align:left"><h3><span class="i18n-fr">Recevoir les opérations Industrial Tech &amp; Manufacturing par email</span><span class="i18n-en">Get Industrial Tech &amp; Manufacturing deals by email</span></h3><form id="nlp-form" class="nlp-form" novalidate><input type="email" id="nlp-email" required placeholder="votre@email.com" aria-label="Votre adresse email"><input type="text" id="nlp-web" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0;width:0;border:0;padding:0" aria-hidden="true"><button class="btn" type="submit"><span class="i18n-fr">S'abonner →</span><span class="i18n-en">Subscribe →</span></button></form><p id="nlp-msg" class="nlp-msg"></p><ul class="nlp-points"><li><span class="i18n-fr">📊 Le pouls du secteur Industrial Tech &amp; Manufacturing : volume, montants, tendance.</span><span class="i18n-en">📊 The Industrial Tech &amp; Manufacturing sector pulse: volume, amounts, trend.</span></li><li><span class="i18n-fr">🤝 Chaque opération du jour, avec ses sources presse.</span><span class="i18n-en">🤝 Every deal of the day, with its press sources.</span></li><li><span class="i18n-fr">🏢 Les acquéreurs actifs du moment dans votre marché.</span><span class="i18n-en">🏢 The buyers currently active in your market.</span></li><li><span class="i18n-fr">📩 Un email par jour, seulement les jours où votre secteur bouge.</span><span class="i18n-en">📩 One email a day, only on days when your sector moves.</span></li></ul></aside><p class="lead" style="margin-top:26px"><span class="i18n-fr">Cette newsletter est <strong>en plus</strong> de la <a href="https://proplace.co/newsletter">newsletter générale Proplace</a> (tous secteurs) — elle ne couvre que Industrial Tech &amp; Manufacturing. Vous pouvez vous abonner aux deux.</span><span class="i18n-en">This newsletter comes <strong>in addition</strong> to the <a href="https://proplace.co/newsletter">general Proplace newsletter</a> (all sectors) — it only covers Industrial Tech &amp; Manufacturing. You can subscribe to both.</span></p><p class="lead" style="margin-top:8px"><span class="i18n-fr">Voir les opérations en ligne : <a href="/actualites/operations/secteur/industrial-tech-and-manufacturing/">toutes les opérations Industrial Tech &amp; Manufacturing</a> · <a href="/actualites/operations/fusions-acquisitions/industrial-tech-and-manufacturing/">fusions-acquisitions</a> · <a href="/actualites/operations/levees-de-fonds/industrial-tech-and-manufacturing/">levées de fonds</a></span><span class="i18n-en">Browse deals online: <a href="/actualites/operations/secteur/industrial-tech-and-manufacturing/">all Industrial Tech &amp; Manufacturing deals</a> · <a href="/actualites/operations/fusions-acquisitions/industrial-tech-and-manufacturing/">mergers &amp; acquisitions</a> · <a href="/actualites/operations/levees-de-fonds/industrial-tech-and-manufacturing/">fundraisings</a></span></p><a class="back" href="/actualites/operations/secteur/industrial-tech-and-manufacturing/"><span class="i18n-fr">← Les opérations Industrial Tech &amp; Manufacturing</span><span class="i18n-en">← Industrial Tech &amp; Manufacturing deals</span></a></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="on" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a><a class="" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+})();</script><main class="wrap tm-wrap"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Accueil</a><span class="sep">›</span><a href="/actualites/" data-i18n="news">Actualités</a><span class="sep">›</span><a href="/actualites/operations/" data-i18n="ops">Opérations</a><span class="sep">›</span><a href="/actualites/operations/secteur/industrial-tech-and-manufacturing/">Industrial Tech &amp; Manufacturing</a><span class="sep">›</span><span class="cur">Newsletter</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Actualités", "item": "https://proplace.co/actualites/"}, {"@type": "ListItem", "position": 3, "name": "Opérations", "item": "https://proplace.co/actualites/operations/"}, {"@type": "ListItem", "position": 4, "name": "Industrial Tech & Manufacturing", "item": "https://proplace.co/actualites/operations/secteur/industrial-tech-and-manufacturing/"}, {"@type": "ListItem", "position": 5, "name": "Newsletter"}]}</script><div class="lvl-zone"><div class="type-nav lvl-nav"><a href="/actualites/operations/" data-i18n="allOps">🌍 Toutes les opérations</a><span class="lvl-grp"><a class="" href="/actualites/operations/secteur/industrial-tech-and-manufacturing/">🗂 Industrial Tech &amp; Manufacturing</a><a class="" href="/actualites/operations/fusions-acquisitions/industrial-tech-and-manufacturing/">M&amp;A</a><a class="" data-i18n="fundr" href="/actualites/operations/levees-de-fonds/industrial-tech-and-manufacturing/">Levées</a></span><a class="on" data-i18n="subscribe" href="https://proplace.co/newsletter/industrial-tech-and-manufacturing/">📬 S'abonner</a><a class="fav-nav " href="/actualites/favoris/"><span class="i18n-fr">★ Mes favoris</span><span class="i18n-en">★ My favourites</span> (<span class="fav-count">0</span>)</a></div><a class="tm-read lvl-read" href="/actualites/operations/secteur/industrial-tech-and-manufacturing/2026-07-21/"><span class="i18n-fr">📰 Lire la dernière analyse Industrial Tech &amp; Manufacturing (21 juillet 2026) →</span><span class="i18n-en">📰 Read the latest Industrial Tech &amp; Manufacturing analysis (July 21, 2026) →</span></a></div><div class="tm-herowrap"><div class="tm-hero"><p class="tm-eyebrow"><span class="i18n-fr">Newsletter · secteur</span><span class="i18n-en">Newsletter · sector</span></p><h1 class="tm-h1"><span class="i18n-fr">La newsletter Industrial Tech &amp; Manufacturing</span><span class="i18n-en">The Industrial Tech &amp; Manufacturing newsletter</span></h1><p class="tm-dek"><span class="i18n-fr">Chaque jour, uniquement les opérations M&amp;A et levées de fonds du secteur Industrial Tech &amp; Manufacturing en France &amp; Europe — avec les chiffres clés, les sources et les acquéreurs actifs. Gratuit, désinscription en un clic.</span><span class="i18n-en">Every day, only the M&amp;A deals and fundraisings of the Industrial Tech &amp; Manufacturing sector in France &amp; Europe — with key figures, sources and active buyers. Free, one-click unsubscribe.</span></p></div><a class="tm-hero-viz" href="/actualites/operations/cartes/pouls-industrial-tech-and-manufacturing-2026-07-21.png" title="Le pouls du secteur Industrial Tech &amp; Manufacturing"><img src="/actualites/operations/cartes/pouls-industrial-tech-and-manufacturing-2026-07-21.png" loading="lazy" alt="Le pouls du secteur Industrial Tech &amp; Manufacturing — chiffres clés et opérations par jour" onerror="this.parentNode.style.display='none'"/></a></div><aside class="cta-box" style="text-align:left"><h3><span class="i18n-fr">Recevoir les opérations Industrial Tech &amp; Manufacturing par email</span><span class="i18n-en">Get Industrial Tech &amp; Manufacturing deals by email</span></h3><form id="nlp-form" class="nlp-form" novalidate><input type="email" id="nlp-email" required placeholder="votre@email.com" aria-label="Votre adresse email"><input type="text" id="nlp-web" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0;width:0;border:0;padding:0" aria-hidden="true"><button class="btn" type="submit"><span class="i18n-fr">S'abonner →</span><span class="i18n-en">Subscribe →</span></button></form><p id="nlp-msg" class="nlp-msg"></p><ul class="nlp-points"><li><span class="i18n-fr">📊 Le pouls du secteur Industrial Tech &amp; Manufacturing : volume, montants, tendance.</span><span class="i18n-en">📊 The Industrial Tech &amp; Manufacturing sector pulse: volume, amounts, trend.</span></li><li><span class="i18n-fr">🤝 Chaque opération du jour, avec ses sources presse.</span><span class="i18n-en">🤝 Every deal of the day, with its press sources.</span></li><li><span class="i18n-fr">🏢 Les acquéreurs actifs du moment dans votre marché.</span><span class="i18n-en">🏢 The buyers currently active in your market.</span></li><li><span class="i18n-fr">📩 Un email par jour, seulement les jours où votre secteur bouge.</span><span class="i18n-en">📩 One email a day, only on days when your sector moves.</span></li></ul></aside><p class="lead" style="margin-top:26px"><span class="i18n-fr">Cette newsletter est <strong>en plus</strong> de la <a href="https://proplace.co/newsletter">newsletter générale Proplace</a> (tous secteurs) — elle ne couvre que Industrial Tech &amp; Manufacturing. Vous pouvez vous abonner aux deux.</span><span class="i18n-en">This newsletter comes <strong>in addition</strong> to the <a href="https://proplace.co/newsletter">general Proplace newsletter</a> (all sectors) — it only covers Industrial Tech &amp; Manufacturing. You can subscribe to both.</span></p><p class="lead" style="margin-top:8px"><span class="i18n-fr">Voir les opérations en ligne : <a href="/actualites/operations/secteur/industrial-tech-and-manufacturing/">toutes les opérations Industrial Tech &amp; Manufacturing</a> · <a href="/actualites/operations/fusions-acquisitions/industrial-tech-and-manufacturing/">fusions-acquisitions</a> · <a href="/actualites/operations/levees-de-fonds/industrial-tech-and-manufacturing/">levées de fonds</a></span><span class="i18n-en">Browse deals online: <a href="/actualites/operations/secteur/industrial-tech-and-manufacturing/">all Industrial Tech &amp; Manufacturing deals</a> · <a href="/actualites/operations/fusions-acquisitions/industrial-tech-and-manufacturing/">mergers &amp; acquisitions</a> · <a href="/actualites/operations/levees-de-fonds/industrial-tech-and-manufacturing/">fundraisings</a></span></p><a class="back" href="/actualites/operations/secteur/industrial-tech-and-manufacturing/"><span class="i18n-fr">← Les opérations Industrial Tech &amp; Manufacturing</span><span class="i18n-en">← Industrial Tech &amp; Manufacturing deals</span></a></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="on" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a><a class="" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -606,15 +655,25 @@ try{var st=document.createElement("style");st.textContent=
 ".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
 ".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
 /* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
-".pph-acct{position:relative;display:inline-flex;align-items:center}"+
-".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer}"+
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
 ".pph-acct-caret{font-size:10px;line-height:1}"+
-/* position:FIXED (coordonnées posées en JS via getBoundingClientRect) : le menu
-   échappe au défileur overflow-x:auto de .pph nav en mobile (sinon clippé). */
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
 ".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
 ".pph-acct-menu[hidden]{display:none}"+
-".pph-acct-menu a{display:block;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0}"+
-".pph-acct-menu a:hover{background:#eef9f2;color:#185c38}";
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
 document.head.appendChild(st);}catch(e){}
 var D={
  en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
@@ -633,6 +692,8 @@ var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria
 '<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
 '<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
 '<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
 "</div></div>";
 return {i:1,h:h};}
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
@@ -643,20 +704,42 @@ var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
 var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
 var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
 menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
 /* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
    apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
 function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
 if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
 b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
-var wrap=b.parentNode;var menu=wrap?wrap.querySelector(".pph-acct-menu"):null;if(!menu)return;
+var menu=b.__menu;if(!menu)return;
 var willOpen=menu.hasAttribute("hidden");
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
 if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
 else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
-});}
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
 function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
 Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
 /* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
@@ -665,9 +748,14 @@ try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
 try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
 try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
-var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
 wireAcct();}
@@ -684,7 +772,7 @@ if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
 document.addEventListener("click",closeAcct);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
 window.addEventListener("resize",closeAcct);
-window.addEventListener("scroll",closeAcct,true);}
+window.addEventListener("scroll",onScrollAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();</script><script>(function(){var f=document.getElementById("nlp-form"),m=document.getElementById("nlp-msg");if(!f)return;function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}var em0=document.getElementById("nlp-email");function ph(){if(!em0)return;em0.setAttribute("placeholder",EN()?"your@email.com":"votre@email.com");em0.setAttribute("aria-label",EN()?"Your email address":"Votre adresse email");}ph();document.addEventListener("pplang",ph);f.addEventListener("submit",function(ev){ev.preventDefault();var em=(document.getElementById("nlp-email").value||"").trim();var hp=(document.getElementById("nlp-web").value||"").trim();if(!em){return;}m.className="nlp-msg";m.textContent=EN()?"Subscribing…":"Inscription en cours…";fetch("https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/newsletter/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:em,sector:"industrial-tech-and-manufacturing",website:hp})}).then(function(r){return r.json();}).then(function(j){if(j&&j.ok){m.className="nlp-msg ok";m.textContent=EN()?"Done! You'll receive the Industrial Tech &amp; Manufacturing newsletter from the next edition.":"C'est noté ! Vous recevrez la newsletter Industrial Tech &amp; Manufacturing dès la prochaine édition.";f.reset();}else{m.className="nlp-msg err";m.textContent=(j&&j.error)||(EN()?"Something went wrong — retry.":"Une erreur est survenue — réessayez.");}}).catch(function(){m.className="nlp-msg err";m.textContent=EN()?"Something went wrong — retry in a few seconds.":"Une erreur est survenue — réessayez dans quelques secondes.";});});})();</script><style>
