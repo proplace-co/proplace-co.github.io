@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="Investment Criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-21T15:44:04Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="Investment Criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-21T18:44:24Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -1129,6 +1129,11 @@ color:#8a99aa;background:none;border:none;cursor:pointer;text-decoration:underli
 .cb-since-gone-chips{margin:6px 0 0;display:flex;flex-wrap:wrap;gap:6px}
 .cb-since-chip-gone{color:#8a99aa;border-color:#dbe2ea;background:#f6f8fb;text-decoration:line-through}
 .cb-since-chip-gone:hover{background:#eef2f6;color:#5b6b7f;border-color:#cbd5e0}
+.cb-since-tog{position:absolute;top:7px;right:30px;background:none;border:none;color:#8fb7a1;
+  cursor:pointer;font-size:13px;line-height:1;padding:2px}
+.cb-since-tog:hover{color:#0f5a34}
+.cb-since-box.mini .cb-since-chips,.cb-since-box.mini .cb-since-gone,
+.cb-since-box.mini .cb-since-gone-chips,.cb-since-box.mini .cb-since-more{display:none}
 .cb-since-x{position:absolute;top:7px;right:9px;background:none;border:none;color:#8fb7a1;
 font-size:18px;line-height:1;cursor:pointer;padding:0}
 .cb-since-x:hover{color:#0f5a34}
@@ -2567,9 +2572,21 @@ padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;line-heig
 .cb-missive-btn{flex:0 0 auto;background:#185c38;color:#fff;text-decoration:none;
   font-weight:700;font-size:12.5px;padding:8px 14px;border-radius:8px;white-space:nowrap}
 .cb-missive-btn:hover{background:#124a2d}
+.cb-missive-btn.alt{background:#fff;color:#185c38;border:1px solid #cfe0d5}
+.cb-missive-btn.alt:hover{background:#f1f7f3}
+.cb-missive-tog{margin-left:2px;background:none;border:none;cursor:pointer;font-size:15px;
+  color:#5c7a68;flex:0 0 auto;line-height:1;padding:4px}
+.cb-missive-mini{display:none;flex:1 1 auto;font-weight:700;color:#243b30;font-size:12.5px}
+.cb-missive.collapsed{padding:7px 14px}
+.cb-missive.collapsed .cb-missive-txt,.cb-missive.collapsed .cb-missive-btn{display:none}
+.cb-missive.collapsed .cb-missive-mini{display:inline}
 @media(max-width:520px){.cb-missive{flex-wrap:wrap}}
 /* v112 — bouton + overlay « Conversation » (poste sales, pages outbound). */
 .cb-convwrap{margin-top:4px}
+/* v112.1 — en MODE LIGNE (density-table, rangée non ouverte) les actions sont en flex-row
+   CENTRÉ : pas de margin-top (sinon le bouton 💬 est décalé vers le bas + rallonge la ligne). */
+.cb-density-table .cb-urow:not(.cb-open) .cb-convwrap{margin-top:0}
+.cb-density-table .cb-urow:not(.cb-open) .cb-conv-btn{padding:2px 7px}
 .cb-conv-btn{font-family:inherit;font-size:14px;line-height:1;padding:4px 7px;border-radius:7px;
   border:1px solid #cfe0d5;background:#fff;cursor:pointer}
 .cb-conv-btn:hover{background:#f1f7f3;border-color:#9fc4ac}
@@ -4347,4 +4364,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:3d8c1c2d05 --></body></html>
+})();</script><!-- v:76dc0d0a15 --></body></html>
