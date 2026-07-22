@@ -1,0 +1,966 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Novo Nordisk — analyse Biotech &amp; Pharma | Proplace</title><meta name="description" content="Biotech &amp; Pharma · Thérapies Biologiques et Dispositifs d&#x27;Administration Cardio-Métaboliques · Public"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/novo-nordisk/"><meta property="og:type" content="article"><meta property="og:title" content="Novo Nordisk — analyse Biotech &amp; Pharma | Proplace"><meta property="og:description" content="Biotech &amp; Pharma · Thérapies Biologiques et Dispositifs d&#x27;Administration Cardio-Métaboliques · Public"><meta property="og:url" content="https://proplace.co/analysis/novo-nordisk/"><meta property="og:image" content="https://proplace.co/analysis/radars/novo-nordisk.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://proplace.co/analysis/radars/novo-nordisk.png"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+/* (retour CEO 20/07) — mobile : « Mon compte » s'affichait À LA VERTICALE (un mot,
+   voire une lettre, par ligne). Cause : dans .pph nav (flex), .pph-sect et .pph-lang
+   sont en flex:0 0 auto mais PAS .pph-auth → c'était le SEUL enfant compressible, il
+   absorbait tout le débordement et rétrécissait à ~0, forçant le texte du bouton à
+   passer à la ligne. Il devient incompressible : c'est le défileur horizontal du nav
+   (v74) qui prend le relais, comme prévu. */
+.pph .pph-auth{flex:0 0 auto;display:inline-flex;align-items:center;white-space:nowrap}
+.pph .pph-auth button,.pph .pph-acct,.pph .pph-acct-btn{flex:0 0 auto;white-space:nowrap}
+/* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
+   « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
+   couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
+.pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600;border:none;cursor:pointer;font-family:inherit;line-height:1.2}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover,.pph button.cta:hover,.pph .pph-auth button.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ /* v74 (R5) — le SEUL débordeur réel mesuré à 390px est CETTE nav (Connexion +
+    pastille News|Analysis + EN|FR ≈ 309px pour ~264px disponibles) : elle devient
+    son PROPRE défileur horizontal (règle « wide content » : overflow-x:auto sur la
+    pièce INTERNE — jamais sur un ancêtre d'une barre sticky). Alignée à gauche en
+    mobile : un débordement côté start (flex-end) serait inatteignable au scroll. */
+ .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pph nav::-webkit-scrollbar{display:none}
+ /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
+    (même piège que la couleur du CTA, retour CEO 19/07). */
+ .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+ /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
+    défileur (order:-1) → les 3 boutons sont TOUJOURS visibles à gauche, c'est
+    « Connexion » qui déborde/scrolle si l'écran est trop étroit (demande CEO). */
+ .pph nav .pph-sect{order:-1;flex:0 0 auto}
+ .pph nav .pph-auth{order:0}
+ /* v75 (bug #7) — la pastille EN|FR est hors du <nav> (défileur) : collée à droite du
+    header, toujours atteignable même quand le <nav> déborde/scrolle. */
+ .pph-lang{margin-left:auto;flex:0 0 auto}
+}
+/* ≤430px : les 3 pastilles + Connexion tiennent ensemble (resserrage police/padding). */
+@media(max-width:430px){
+ .pph nav{gap:7px}
+ .pph-sect a{padding:6px 9px;font-size:11.5px;letter-spacing:-.01em}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Novo Nordisk — Biotech & Pharma", "description": "Biotech & Pharma · Thérapies Biologiques et Dispositifs d'Administration Cardio-Métaboliques · Public", "inLanguage": "fr", "url": "https://proplace.co/analysis/novo-nordisk/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/novo-nordisk/"}, "image": ["https://proplace.co/analysis/radars/novo-nordisk.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}, "about": {"@type": "Organization", "name": "Novo Nordisk"}, "datePublished": "2026-07-22", "dateModified": "2026-07-22"}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a><a class="pph-rsch" href="/research/" data-i18n="research">Research</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+var mSet="https://analysis.proplace.co/thesis/?fund="+f;
+var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
+var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
+'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
+'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
+"</div></div>";
+return {i:1,h:h};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Novo Nordisk</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Novo Nordisk"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">Danemark</span>
+<span class="sb-tag">Public</span>
+<span class="sb-tag">Biotech &amp; Pharma</span>
+<span class="sb-tag">B2B2C</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Novo Nordisk</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/dk.png" srcset="https://flagcdn.com/32x24/dk.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>Danemark ·</span> Biotech &amp; Pharma · Thérapies Biologiques et Dispositifs d'Administration Cardio-Métaboliques · Public</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Le marché ultra-régulé de la biopharmacie métabolique et des dispositifs d'injection connectés pour la gestion du diabète de type 1/2 et de l'obésité clinique.</p>
+<a href="https://www.novonordisk.fr/" target="_blank"><i class="fas fa-globe"></i> Website</a>
+<a href="https://dk.linkedin.com/in/doustdar" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du marché</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle économique</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">PDG</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources et méthodologie</a>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Novo Nordisk</h1>
+<h2 class="subtitle-category">Biotech &amp; Pharma ➜ Thérapies Biologiques et Dispositifs d'Administration Cardio-Métaboliques ➜ Transformation des idées en traitements innovants pour les personnes vivant avec des maladies chroniques graves</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div><div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Novo Nordisk" data-h="" data-i="Biotech &amp; Pharma" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/novo-nordisk/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title"><span class="i18n-fr">Résumé du marché</span><span class="i18n-en">Market summary</span></h2>
+<div class="split-container">
+<div class="text-col">
+<h4 class="kicker">SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>Biopharmacie et Santé &gt; Thérapies Biologiques et Dispositifs d'Administration Cardio-Métaboliques<br/>B2B2C &gt; Échelle Globale et Vente d'Actifs</p>
+<div class="score-row sr-green"><span class="sr-label">CE MARCHÉ EST-IL ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:95%"></span></span><span class="sr-val">95/100</span><span class="sr-note">× 25% = 23.75 pts</span></div><div class="score-row sr-green"><span class="sr-label">CE MARCHÉ EST-IL GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">× 25% = 20.00 pts</span></div><div class="score-row sr-blue"><span class="sr-label">CE MARCHÉ EST-IL PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span><span class="sr-note">× 25% = 18.75 pts</span></div><div class="score-row sr-green"><span class="sr-label">CE MARCHÉ EST-IL RENTABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:90%"></span></span><span class="sr-val">90/100</span><span class="sr-note">× 25% = 22.50 pts</span></div>
+<div class="score-row sr-green sr-total"><span class="sr-label">SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<p>Ce score global indique que le marché présente un vent arrière séculaire d'une force historique, mais exige une maîtrise clinique et industrielle de niveau mondial pour surmonter des barrières d'accès et de concurrence sans merci.</p>
+<h4>DÉFINITION du marché</h4>
+<p>Le marché ultra-régulé de la biopharmacie métabolique et des dispositifs d'injection connectés pour la gestion du diabète de type 1/2 et de l'obésité clinique se définit par l'administration ambulatoire de molécules peptidiques de haute précision via des dispositifs simples d'usage. Les patients achètent une assurance de régulation endocrine continue afin de prévenir des complications cardio-métaboliques graves et chroniques.</p>
+<p>La friction sectorielle réside dans la contrainte logistique de l'approvisionnement constant et la douleur associée à l'injection physique hebdomadaire, des points d'échec où l'expérience patient fait défaut. La valeur se concentre massivement en amont dans la propriété intellectuelle de la synthèse moléculaire et la chaîne d'approvisionnement des stylos connectés, écrasant les distributeurs de santé en aval.</p>
+<h4>Notre THÈSE de Marché</h4>
+<p>La donne a radicalement changé avec la transformation du traitement de l'obésité d'un problème esthétique en une urgence médicale mondiale de premier plan. Les acteurs historiques se trouvent paralysés par une dépendance absolue aux injectables jetables qui bride leur capacité de montée en échelle logistique rapide face à une demande hors normes.</p>
+<p>L'axe d'attaque décisif appartient désormais aux plateformes d'administration alternatives comme les implants à libération continue d'une autonomie de plusieurs mois. Le créneau est grand ouvert pour capter des parts de marché majeures avant que les géants du duopole ne verrouillent les nouvelles technologies via des partenariats exclusifs sous 24 mois.</p>
+<h4>Notre CONVICTION et PARI sur ce Marché :</h4>
+<p><span class="conv-badge sr-green">HAUTE CONVICTION</span></p>
+<p>Bien que la menace d'un contrôle drastique des prix par les États soit le risque de désinvestissement le plus rationnel, les données cliniques consolidant l'impact du sémaglutide sur la réduction des accidents vasculaires placent les payeurs dans l'obligation de financer ces molécules.</p>
+<p>Notre pari d'ici 2028 est que la commodité d'usage via des dispositifs à longue durée s'imposera comme le critère ultime d'adhésion, dictant ainsi la répartition des parts de marché. Le signal crucial lors des prochains calls sera la confirmation du taux d'observance des patients à 18 mois avec les nouveaux types d'implants.</p>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ ATTRACTIF (Dynamique de marché)</span><span class="sr-bar"><span class="sr-fill" style="width:95%"></span></span><span class="sr-val">95/100</span></div>
+<p>Une opportunité colossale et indiscutable portée par une tendance démographique et médicale lourde à l'échelle mondiale.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille du marché</span><span class="sr-val">98/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Ce marché pèse plusieurs dizaines de milliards de dollars avec un taux de croissance annuel supérieur à 15%, stimulé par la pandémie silencieuse du diabète et de l'obésité.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Facteurs de Croissance</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'élargissement des indications cliniques aux pathologies cardiovasculaires, les approbations pédiatriques et l'urbanisation mondiale agissent comme des moteurs structurels.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Why Now</span><span class="sr-val">93/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le franchissement des seuils d'approbation réglementaire pour des thérapies à haut dosage et les premiers essais cliniques d'implants de semaglutide marquent un tournant.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Risques de Marché</span><span class="sr-val">94/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les contraintes de remboursement des mutuelles et des gouvernements, combinées à d'éventuels effets secondaires à long terme sous haute surveillance.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ GAGNABLE (Paysage Concurrentiel)</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<p>Une lutte acharnée qui laisse peu de place aux opportunistes non armés d'une innovation radicale.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Acteurs Historiques</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Novo Nordisk et Eli Lilly dominent de façon hégémonique le secteur avec des forces de vente et des capacités cliniques géantes.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Nouveaux Entrants</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des biotechs spécialisées comme Viking Therapeutics ou Vivani Medical qui lèvent des fonds pour s'attaquer au marché des injectables et des implants.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Espace Vierge</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le segment des dispositifs d'administration durables et de l'optimisation par la santé numérique reste largement à conquérir.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Défendabilité</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des barrières élevées basées sur des essais cliniques extrêmement complexes et d'épaisses grappes de brevets.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ PÉNÉTRABLE (GTM et Économie Unitaire)</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div>
+<p>L'acquisition de parts de marché reste soumise aux dure réalités des réseaux de prescription médicale.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Modèle GTM</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un modèle de distribution B2B2C complexe nécessitant l'adhésion des réseaux hospitaliers, des cliniciens et la validation des assureurs.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Modèle de Prix</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des prix régulés à l'échelle nationale, nécessitant de constantes renégociations de remboursement par dossier de soin.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des coûts initiaux de co-développement colossaux compensés ensuite par d'excellentes marges opérationnelles à grand volume.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Évolutivité / Scalabilité</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Limitée à court terme par la capacité d'approvisionnement mondial des injecteurs, forçant à investir massivement en Capex.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ RENTABLE (Financement et Sorties)</span><span class="sr-bar"><span class="sr-fill" style="width:90%"></span></span><span class="sr-val">90/100</span></div>
+<p>La valorisation stratégique de ces innovations atteint des sommets inégalés dans l'histoire de la pharmacie.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Activité de Financement</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des flux de capitaux massifs s'orientent vers les biotechs métaboliques et la recherche sur les peptides de nouvelle génération.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Multiples de Sorties</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des valorisations stratégiques très élevées lors des opérations de rachat de licences technologiques cliniques par les cadors du secteur.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Acquéreurs Stratégiques</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Eli Lilly et Novo Nordisk agissent comme des consolidateurs naturels, affichant un appétit démesuré pour toute technologie améliorant l'observance.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Profil de Rendement</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Très attractif pour les innovations d'implants de peptides, car la réduction drastique des coûts d'observance justifie des primes d'acquisition exceptionnelles de la part de l'industrie.</div></li></ul>
+<h4 class="kicker">SYNTHÈSE TRANSVERSALE</h4>
+<p>L'alliance d'une dynamique de marché explosive et d'une concurrence féroce signifie qu'un nouvel acteur ne peut pas gagner par simple pénétration commerciale mais doit imposer un saut technologique radical sur le dispositif physique de délivrance, exigeant une équipe dotée d'une très forte expertise industrielle réglementaire plutôt que de simples commerciaux de terrain.</p>
+<h4 class="kicker">CONFIANCE DE DONNÉES</h4>
+<p>Les bases de données cliniques publiques et les états financiers des leaders apportent une visibilité totale sur les tailles de marché et les litiges, bien que la distribution interne des ventes par géographie fine reste jalousement gardée. Sourcing basé sur 8 URLs de référence.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://quickchart.io/chart?v=3&amp;c=%7B%22type%22%3A%20%22radar%22%2C%20%22data%22%3A%20%7B%22labels%22%3A%20%5B%22ATTRACTIVE%20MARKET%20%3F%22%2C%20%22WINNABLE%20MARKET%20%3F%22%2C%20%22PENETRABLE%20MARKET%20%3F%22%2C%20%22REWARDING%20MARKET%20%3F%22%5D%2C%20%22datasets%22%3A%20%5B%7B%22label%22%3A%20%22Novo%20Nordisk%22%2C%20%22backgroundColor%22%3A%20%22rgba%28255%2C%20212%2C%20102%2C%200.2%29%22%2C%20%22borderColor%22%3A%20%22rgb%28255%2C%20212%2C%20102%29%22%2C%20%22pointBackgroundColor%22%3A%20%22rgb%28255%2C%20212%2C%20102%29%22%2C%20%22data%22%3A%20%5B95%2C%2080%2C%2075%2C%2090%5D%7D%5D%7D%2C%20%22options%22%3A%20%7B%22scale%22%3A%20%7B%22ticks%22%3A%20%7B%22beginAtZero%22%3A%20false%2C%20%22suggestedMin%22%3A%2070%2C%20%22suggestedMax%22%3A%20100%2C%20%22stepSize%22%3A%205%2C%20%22display%22%3A%20false%7D%7D%7D%7D"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title"><span class="i18n-fr">Analyse approfondie de l'entreprise</span><span class="i18n-en">Company deep dive</span></h2><div id="company-mindmap"><h3 id="company-mindmap-title">Carte mentale — ce que fait Novo Nordisk</h3><div class="cm-mindmap-wrap"><div class="markmap" style="width:100%;height:600px"><script type="text/template">
+---
+markmap:
+  colorFreezeLevel: 2
+  initialExpandLevel: 5
+  maxWidth: 340
+---
+# Novo Nordisk
+- **Offre & Produit**
+  - Développe des traitements innovants pour maladies chroniques graves, axés sur l'amélioration de la qualité de vie.
+    - Conçoit des **médicaments** et des **dispositifs d'administration** (stylos injecteurs) pour simplifier l'observance.
+      - Fournit environ **50% de l'insuline mondiale**, démontrant une capacité de production massive.
+  - La R&D se diversifie vers un champ plus large des maladies cardio-métaboliques.
+    - Explore des biothérapies par **cellules souches** et des solutions de **santé numériques**.
+    - Évalue des implants à libération prolongée comme le **NPM-139 de Vivani Medical** pour le sémaglutide.
+- **Clients & Cas d'Usage**
+  - Cible les patients atteints de maladies chroniques graves et les professionnels de santé.
+    - Traite le **diabète de type 1 et 2** avec des solutions comme les stylos injecteurs d'insuline.
+    - Prend en charge l'**obésité** avec des médicaments de nouvelle génération comme le sémaglutide (Wegovy, Ozempic).
+  - S'adresse également aux maladies hémorragiques rares et aux troubles de la croissance.
+    - Vise à réduire la contrainte logistique et mentale des **injections quotidiennes**.
+- **Modèle Économique**
+  - Génère des revenus par la vente mondiale de produits pharmaceutiques et de dispositifs médicaux.
+    - Les **stylos injecteurs** et les molécules de spécialité offrent des marges industrielles brutes exceptionnelles.
+  - Les flux de revenus sont récurrents grâce aux traitements à vie pour les maladies chroniques.
+    - Met en place des programmes sociaux comme **'Changing Diabetes in Children'** pour l'accès aux soins.
+  - Le modèle est capitalistique avec de gros investissements en R&D et en infrastructures.
+    - Les coûts sont largement autofinancés par la **génération de trésorerie opérationnelle**.
+- **Équipe & Direction**
+  - Culture d'entreprise axée sur le **'triple bottom line'** (social, environnemental, financier).
+    - Maziar Doustdar, CEO depuis 2024, a une carrière de plus de **28 ans** chez Novo Nordisk, de stagiaire à PDG.
+      - Son expérience couvre les opérations internationales, le développement commercial et le marketing.
+  - L'entreprise compte plus de **69 000 collaborateurs** dans le monde.
+    - Dirige des essais cliniques dans plus de **40 pays**.
+- **Position Marché & Traction**
+  - Leader mondial avec une croissance fulgurante grâce à des blockbusters comme **Ozempic et Wegovy**.
+    - Affronte une compétition féroce avec **Eli Lilly** (Zepbound, Mounjaro) dans le marché des GLP-1.
+      - Des litiges juridiques sont en cours concernant la publicité comparative des produits.
+  - Bénéficie d'une forte dépendance des patients et cliniciens à ses molécules.
+    - Le portefeuille de brevets et les certifications réglementaires (FDA, EMA) créent des **barrières à l'entrée quasi infranchissables**.
+  - Expansion continue avec de vastes opportunités dans les maladies cardiovasculaires et rénales.
+    - Pénètre le marché mondial avec une présence physique et clinique établie, verrouillant la distribution locale.
+</script><img alt="Carte mentale — ce que fait Novo Nordisk" class="cm-mindmap-png" loading="lazy" src="https://analysis.proplace.co/mindmaps/novo-nordisk.png"/></div></div><div class="cm-summary"><p>Novo Nordisk est une entreprise biopharmaceutique danoise, fondée il y a près de 100 ans, spécialisée dans le développement et la production de traitements innovants pour les maladies chroniques graves. Son offre principale cible le diabète, l'obésité, les maladies hémorragiques rares et les troubles de la croissance, en fournissant des médicaments et des dispositifs d'administration comme des stylos injecteurs.</p><p>L'entreprise se distingue par son approche de triple responsabilité (financière, sociale et environnementale) et son engagement contre la stigmatisation des maladies chroniques. Elle est un acteur majeur dans la production d'insuline, fournissant environ <strong>50%</strong> de l'approvisionnement mondial, et développe des thérapies de nouvelle génération comme le sémaglutide.</p><p>Dirigée par Maziar Doustdar, un CEO ayant plus de <strong>28 ans</strong> d'expérience au sein de l'entreprise, Novo Nordisk emploie plus de <strong>69 000 collaborateurs</strong> et opère à l'échelle mondiale. Son modèle économique repose sur la vente de médicaments et de dispositifs médicaux, avec une forte dépendance aux brevets et aux certifications réglementaires qui constituent de solides barrières à l'entrée.</p></div><div class="cm-prospective"><h4>Synthèse prospective</h4><p>Novo Nordisk révèle un marché biopharmaceutique en pleine transformation, où l'innovation dans les thérapies pour maladies chroniques et les systèmes d'administration est cruciale. La compétition intense et les enjeux réglementaires sur les prix soulignent l'importance de la capacité industrielle et de l'intégration technologique pour maintenir le leadership.</p><p class="cm-sub">Critères à surveiller</p><ul><li>Entreprises développant des solutions innovantes pour les maladies chroniques (diabète, obésité, cardiovasculaires)</li><li>Startups spécialisées dans les dispositifs d'administration de médicaments (implants, systèmes connectés)</li><li>Sociétés avec une expertise en chimie des peptides ou en biothérapies de nouvelle génération</li><li>Acteurs cherchant à améliorer l'observance thérapeutique et l'accès aux soins</li></ul><p class="cm-sub">Sociétés à évaluer</p><ul class="cm-comps"><li><strong>Vivani Medical</strong> <span class="cm-stage">Public (NASDAQ: VANI)</span> — Partenaire de Novo Nordisk pour l'évaluation de l'implant de sémaglutide NPM-139, illustre l'innovation dans les dispositifs de délivrance prolongée.</li><li><strong>Intarcia Therapeutics</strong> — Développait des systèmes d'administration de médicaments par pompe osmotique implantable pour le diabète de type 2, bien que rencontrant des défis réglementaires, montre l'intérêt pour les solutions à long terme.</li><li><strong>Fractyl Health</strong> <span class="cm-stage">Public (NASDAQ: GUTS)</span> — Développe des thérapies basées sur l'intestin pour le diabète de type 2 et l'obésité, offrant une approche différente des traitements injectables.</li><li><strong>Carmot Therapeutics</strong> — Acquise par Roche, développe des agonistes de récepteurs GLP-1/GIP pour l'obésité et le diabète, illustrant la valeur de la R&amp;D dans ce domaine.</li><li><strong>Eli Lilly and Company</strong> <span class="cm-stage">Public</span> — Principal concurrent direct de Novo Nordisk sur le marché des GLP-1, leader en innovation et capacités de production.</li></ul></div></div><script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.18.12/dist/browser/index.iife.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script>(function(){function boot(){try{var host=document.querySelector('#company-mindmap .markmap');if(!host||host.__mmDone)return;var tpl=host.querySelector('script[type="text/template"]');if(!tpl)return;var md=tpl.textContent.replace(/^\s*---[\s\S]*?---\s*/,'');var M=window.markmap;if(!M||!M.Transformer||!M.Markmap)return;var r=(new M.Transformer()).transform(md);host.innerHTML='<svg style="width:100%;height:600px;display:block"></svg>';var inst=M.Markmap.create(host.querySelector('svg'),{initialExpandLevel:5,maxWidth:340,colorFreezeLevel:2},r.root);host.__mmDone=1;var refit=function(){try{inst.fit()}catch(e){}};window.addEventListener('resize',refit);setTimeout(refit,300);setTimeout(refit,1200);setTimeout(refit,3000);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(refit);}catch(e){}}if(document.readyState==='complete')boot();else window.addEventListener('load',boot);setTimeout(boot,1500);setTimeout(boot,4000);})();</script>
+<h3 id="value-proposition"><span class="i18n-fr">Proposition de valeur</span><span class="i18n-en">Value proposition</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker"><span class="i18n-fr">Proposition de Valeur</span><span class="i18n-en">Value proposition</span></h4>
+<p>Transformation des idées en traitements innovants pour les personnes vivant avec des maladies chroniques graves, avec une approche de triple responsabilité financière, sociale et environnementale. Novo Nordisk crée des médicaments spéciaux et des stylos injecteurs très faciles à utiliser pour aider les gens du monde entier à soigner leur diabète et à mieux contrôler leur poids au quotidien.</p>
+<h4 class="kicker">Profil Client Idéal (ICP)</h4>
+<p>Patients atteints de diabète, obésité, maladies hémorragiques rares, troubles de la croissance et maladies cardio-métaboliques, ainsi que les professionnels de santé.</p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>B2B et B2C (Production de médicaments pour les systèmes de santé et solutions directes pour les patients).</p>
+<h4 class="kicker">Secteur</h4>
+<p>Biopharmaceutique / Santé.</p>
+<h4 class="kicker">Contact &amp; Légal</h4>
+<p>Email : dprfrance@novonordisk.com. Siège en France et site de production à Chartres. Entité : Novo Nordisk. Fondé il y a près de 100 ans (environ 1923). CEO Maziar Doustdar (Président et CEO depuis 2024, riche de plus de 28 ans d'expérience au sein de l'entreprise).</p>
+<h4 class="kicker">Exemples de Clients Clés &amp; Témoignages</h4>
+<p>Marie Darting, Pernille Thomasen, Safiatou Diallo, Raghu Ramaswamy, Riyanka Dixit, Sandipa Dey.</p></div>
+<h3 id="product"><span class="i18n-fr">Produit</span><span class="i18n-en">Product</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution Principale</h4>
+<p>Développement et production de médicaments innovants et de dispositifs d'administration (stylos injecteurs) pour le traitement du diabète, de l'obésité et des maladies chroniques graves.</p>
+<h4 class="kicker">Encyclopédie des Fonctionnalités</h4>
+<p>Production d'insuline | Stylos injecteurs d'insuline | Biothérapies par cellules souches | Solutions de santé numériques | Dispositifs médicaux | Essais cliniques mondiaux.</p>
+<h4 class="kicker">Capacités Techniques</h4>
+<p>Capacité de production mondiale (50% de l'insuline mondiale) | R&amp;D diversifiée (cardio-métabolique) | Ambition environnementale 'circular for zero' | Présence dans plus de 40 pays pour essais cliniques.</p>
+<h4 class="kicker">Cas d'Usage</h4>
+<p>Traitement du diabète de type 1 et 2 | Prise en charge de l'obésité | Soins des maladies hémorragiques rares | Traitement des troubles de la croissance.</p></div>
+<h3 id="business-model"><span class="i18n-fr">Modèle économique</span><span class="i18n-en">Business model</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Analyse du Modèle Économique</h4>
+<p>Production pharmaceutique et distribution mondiale.</p>
+<h4 class="kicker">Flux de Revenus &amp; Niveaux de Tarification</h4>
+<p>Vente de médicaments (insuline) et de dispositifs médicaux (stylos injecteurs). Programmes spécifiques d'accès aux soins comme 'Changing Diabetes in Children'.</p>
+<h4 class="kicker">Caractéristiques des Plans</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Coûts Cachés &amp; Conditions</h4>
+<p>Données non disponibles dans la source.</p></div>
+<h3 id="team"><span class="i18n-fr">Équipe</span><span class="i18n-en">Team</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'Entreprise</h4>
+<p>Valeurs axées sur le 'triple bottom line' (social, environnement, finance). Engagement contre la stigmatisation (obésité) et pour l'accès aux soins des populations vulnérables. Mission centrée sur le patient et impact sur les maladies chroniques.</p>
+<h4 class="kicker">Analyse de l'Équipe</h4>
+<p>Maziar Doustdar (Président et CEO depuis 2024, parcours complet chez Novo Nordisk depuis 1995 occupant divers postes de direction internationale). Autres membres clés : Marie Darting, Pernille Thomasen, Sandipa Dey, Raghu Ramaswamy, Riyanka Dixit.</p>
+<h4 class="kicker">Offres d'Emploi &amp; Titres</h4>
+<p>437 offres d'emploi disponibles.</p>
+<h4 class="kicker">Effectif Estimé</h4>
+<p>+69 000 collaborateurs.</p></div>
+<h3 id="ceo"><span class="i18n-fr">PDG</span><span class="i18n-en">CEO</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">EXECUTIVE ASSESSMENT</h4>
+<ul><li>Sa carrière chez Novo Nordisk démontre une ascension logique dans le domaine pharmaceutique, passant par des rôles commerciaux, de gestion de produit et de direction générale, ancrée dans une mission de santé publique.</li><li><strong></strong> Extrêmement élevé. Novo Nordisk est une entreprise pharmaceutique mondiale de premier plan, reconnue pour son innovation et son impact sur la santé. L'expérience s'étend sur plusieurs continents, indiquant une capacité à naviguer des marchés complexes. Son éducation à LBS renforce ce signal.</li><li><strong>Loyalty &amp; Tenure:</strong> Très élevé. Maziar Doustdar a passé toute sa carrière chez Novo Nordisk, une période de plus de 28 ans, ce qui est un indicateur exceptionnel de loyauté, d'engagement et de capacité à évoluer au sein d'une même organisation pour en atteindre le sommet.</li><li><strong>Commercial Fit:</strong> Excellent. Son expérience en tant que Président et CEO de Novo Nordisk, avec une carrière traversant de multiples fonctions commerciales, opérationnelles et stratégiques au sein de la même entreprise, le positionne comme un expert absolu du domaine pharmaceutique et des maladies chroniques, dé-risquant considérablement toute initiative future dans ce secteur.</li></ul>
+<h4 class="kicker">PROFESSIONAL NARRATIVE</h4>
+<p data-mn-split="">La carrière de Maziar Doustdar est un témoignage d'une progression délibérée et constante au sein d'une seule organisation, Novo Nordisk, sur près de trois décennies. Ayant débuté en tant que stagiaire, il a sculpté un parcours ascendant traversant diverses fonctions nationales et internationales, de la gestion commerciale à la direction de zones géographiques clés, accumulant une connaissance approfondie de l'industrie pharmaceutique mondiale.</p><p data-mn-split="">Cette trajectoire culmine avec son rôle actuel de Président et CEO, illustrant sa capacité à évoluer stratégiquement, à diriger des équipes mondiales et à maintenir une vision centrée sur le patient tout en s'adaptant aux défis réglementaires et commerciaux de l'industrie.</p>
+<h4 class="kicker">DETAILED CAREER TIMELINE</h4>
+<ul><li>2024 – Présent | Novo Nordisk</li><li><strong>Rôle:</strong> Président et CEO</li><li><strong>Focus:</strong> Définir la vision stratégique et la direction globale de l'entreprise pour lutter contre les maladies métaboliques et cardiovasculaires, en dirigeant l'innovation mondiale et en assurant la croissance axée sur le patient.</li><li>2017 – 2023 | Novo Nordisk</li><li><strong>Rôle:</strong> Executive Vice President and Head of International Operations</li><li><strong>Analysis:</strong> Responsable des opérations internationales pour Novo Nordisk, supervisant les stratégies de marché et la performance dans une vaste géographie. Ce rôle démontre une consolidation des responsabilités exécutives et une capacité à diriger des équipes multiculturelles à grande échelle.</li><li>2014 – 2017 | Novo Nordisk</li><li><strong>Rôle:</strong> Senior Vice President, International Operations Region A+</li><li><strong>Analysis:</strong> Promotion et élargissement des responsabilités à une région internationale significative, nécessitant une expertise en gestion de marché et en leadership stratégique.</li><li>2011 – 2014 | Novo Nordisk</li><li><strong>Rôle:</strong> Senior Vice President, International Operations Region A</li><li><strong>Analysis:</strong> Responsabilités exécutives accrues pour une région d'opérations internationales, soulignant une progression constante dans l'organigramme de l'entreprise.</li><li>2008 – 2011 | Novo Nordisk</li><li><strong>Rôle:</strong> Vice President, Business Development and Strategy</li><li><strong>Analysis:</strong> Transition vers un rôle central dans la définition de la stratégie d'entreprise et le développement commercial, indiquant une compréhension approfondie des mécanismes de croissance de l'entreprise.</li><li>2006 – 2008 | Novo Nordisk</li><li><strong>Rôle:</strong> General Manager, Novo Nordisk China Pharmaceuticals</li><li><strong>Analysis:</strong> Première expérience en tant que directeur général d'une filiale majeure, démontrant une capacité à prendre des décisions stratégiques et opérationnelles pour un marché clé.</li><li>2003 – 2006 | Novo Nordisk</li><li><strong>Rôle:</strong> Director, Marketing &amp; Sales, Novo Nordisk UK</li><li><strong>Analysis:</strong> Direction des fonctions marketing et ventes pour un pays développé, axée sur la génération de revenus et la stratégie de marché.</li><li>2001 – 2003 | Novo Nordisk</li><li><strong>Rôle:</strong> Director, Commercial Efficiency, Novo Nordisk International Operations</li><li><strong>Analysis:</strong> Rôle axé sur l'optimisation et l'efficacité commerciale à l'échelle internationale, indiquant une orientation vers l'amélioration des processus et la performance.</li><li>1999 – 2001 | Novo Nordisk</li><li><strong>Rôle:</strong> Regional Marketing Manager, South East Europe, Novo Nordisk International Operations</li><li><strong>Analysis:</strong> Gestion du marketing pour une région spécifique, soulignant une expertise en adaptation des stratégies marketing aux marchés locaux.</li><li>1996 – 1999 | Novo Nordisk</li><li><strong>Rôle:</strong> National Product Manager, Denmark, Novo Nordisk Denmark</li><li><strong>Analysis:</strong> Premières responsabilités de gestion de produit à l'échelle nationale, concentrées sur le cycle de vie des produits et la stratégie de marché.</li><li>1995 – 1996 | Novo Nordisk</li><li><strong>Rôle:</strong> Commercial Trainee (Sales and Marketing), Novo Nordisk Denmark</li><li><strong>Analysis:</strong> Position d'entrée montrant une immersion précoce dans les fonctions commerciales, établissant les bases de sa carrière.</li></ul>
+<h4 class="kicker">ACADEMIC BACKGROUND</h4>
+<ul><li><strong>Institution:</strong> London Business School</li><li><strong>Degree:</strong> MBA</li><li><strong>Signal:</strong> Target School.</li></ul>
+<ul><li><strong>Institution:</strong> University of Westminster</li><li><strong>Degree:</strong> Bsc (Hons) Applied Biology</li><li><strong>Signal:</strong> Université réputée.</li></ul>
+</div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title"><span class="i18n-fr">Résumé de l'entreprise</span><span class="i18n-en">Company overview</span></h2><div class="cs-disc">ⓘ <span class="i18n-fr">Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</span><span class="i18n-en">These scores often reflect how much public information we could find online (web presence), not the company's objective reality. A low score — e.g. on team excellence — usually means little information was found, not that the company is weak.</span></div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>Biopharmacie et Santé &gt; Thérapies Biologiques et Dispositifs d'Administration Cardio-Métaboliques</li><li>B2B2C &gt; Échelle Globale et Vente d'Actifs</li></ul>
+<br/>
+<strong>SCORE DE PRÉ-SÉLECTION</strong><br/>
+Thèse : <hr/><div class="score-row sr-green sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:92%"></span></span><span class="sr-val">92/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:95%"></span></span><span class="sr-val">95/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:90%"></span></span><span class="sr-val">90/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">TRACTION ET CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:94%"></span></span><span class="sr-val">94/100</span></div><hr/><div class="score-row sr-green sr-total"><span class="sr-label">SCORE DE PRÉ-SÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:92%"></span></span><span class="sr-val">91.8/100</span><span class="sr-note">🟢 SIGNAL STRATÉGIQUE MAJEUR (85-100)</span></div><hr/><strong>❓ EN QUELQUES MOTS :</strong> Novo Nordisk conçoit des thérapies cardio-métaboliques de pointe et des dispositifs d'administration pour permettre aux patients atteints de maladies chroniques de stabiliser leur métabolisme à long terme via des injections hautement bio-disponibles et précises.
+<h4 class="kicker">LE PROBLÈME</h4>
+<p>Le moment critique survient lorsqu'un patient atteint de diabète ou d'obésité morbide fait face à une non-observance thérapeutique ou à de violents pics glycémiques en raison de la contrainte logistique et mentale d'injections quotidiennes irrégulières ou douloureuses.</p>
+<h4 class="kicker">LA SOLUTION</h4>
+<p>L'introduction d'un système d'administration de peptides à action prolongée (comme le sémaglutide) couplé à des stylos injecteurs intelligents de haute précision qui élimine la friction de la prise quotidienne en stabilisant les niveaux d'hormones de manière continue.</p>
+<h4 class="kicker">LE GTM</h4>
+<p>Le partenariat étroit avec les réseaux de payeurs mondiaux et les prescripteurs cliniques en ciblant d'abord les patients insulinodépendants sévères, car ce segment présente un besoin d'observance absolu rendant toute alternative générique ou comportementale immédiatement obsolète.<hr/></p><div class="score-row sr-green sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (25%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:92%"></span></span><span class="sr-val">92/100</span></div>
+<p>Une équipe de direction ultraspécialisée et institutionnalisée, menée par un CEO pur produit de l'organisation.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Fit Fondateur-Marché</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc"></div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Track Record</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une progression constante depuis les fonctions de stagiaire commercial jusqu'au rôle de Vice-Président Exécutif des Opérations Internationales, gérant des milliards de dollars de CA.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un style axé sur la mission de santé publique qui orchestre plus de 69 000 collaborateurs à l'échelle globale et oriente les essais cliniques dans 40+ pays.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Complétude de l'Équipe</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une couverture exceptionnelle des fonctions de R&amp;D, d'accès au marché et d'échelle industrielle, bien que le profil très institutionnel puisse manquer d'agilité face à de pures innovations de rupture logicielles.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (25%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:95%"></span></span><span class="sr-val">95/100</span></div>
+<p>Un secteur transformé par l'explosion de la demande de traitements contre l'obésité et les maladies cardiovasculaires.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille et Croissance</span><span class="sr-val">96/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché ultra-régulé de la biopharmacie métabolique et des dispositifs d'injection connectés progresse à un rythme sans précédent, porté par une crise sanitaire globale liée à l'obésité.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Why Now</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La transition vers les thérapies de nouvelle génération (GLP-1) et les implants sous-cutanés crée une urgence immédiate pour s'accaparer les capacités de production mondiales.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Compétition</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une situation de duopole féroce avec Eli Lilly (Wegovy/Ozempic vs Zepbound/Mounjaro) caractérisée par d'intenses guerres marketing et des litiges juridiques sur l'efficacité clinique.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">100/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une pénétration internationale établie et des opportunités massives d'incursion dans les maladies cardiovasculaires et rénales adjacentes.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:90%"></span></span><span class="sr-val">90/100</span></div>
+<p>Une maîtrise inégalée de la chimie des peptides et des technologies de délivrance continue.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des actifs propriétaires comme le sémaglutide et des plateformes d'implants de pointe en cours d’évaluation avec Vivani Medical (NPM-139).</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Product-Market Fit</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une dépendance absolue des patients et des cliniciens aux molécules de Novo Nordisk, qui fournissent plus de 50% de l’insuline mondiale.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Scalabilité</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des contraintes physiques de production lourdes nécessitant d'importants investissements d'infrastructures pour surmonter les goulots d'étranglement de la chaîne d'approvisionnement.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Propriété Intellectuelle et Barrières</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un portefeuille de brevets hautement défendu et des certifications réglementaires (FDA, EMA) agissant comme des barrières à l'entrée quasi infranchissables.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">💼 MODÈLE D'AFFAIRES (15%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span></div>
+<p>Un modèle hautement rentable mais exposé aux pressions politiques sur les prix.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Unit Economics</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des marges industrielles brutes exceptionnelles sur les stylos injecteurs et les molécules de spécialité, en dépit d'une structure de coûts R&amp;D lourde.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de Revenu</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des flux récurrents via des traitements à vie pour les maladies chroniques et des contrats d'approvisionnement étatiques.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des stratégies différenciées entre les marchés premium occidentaux et les programmes sociaux comme Changing Diabetes in Children.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des coûts d'investissement géants (Capex) pour étendre les usines, mais largement autofinancés par la génération de trésorerie opérationnelle explosive.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">📈 TRACTION ET CROISSANCE (15%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:94%"></span></span><span class="sr-val">94/100</span></div>
+<p>Une croissance historique mais contestée par un rival agressif.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Croissance du Chiffre d'Affaires</span><span class="sr-val">94/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Croissance fulgurante portée par les blockbusters Ozempic et Wegovy, bien que le rythme affiche un léger ralentissement face aux gains de part de marché d'Eli Lilly.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Validation des Clients</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des dizaines de millions d'utilisateurs quotidiens et une reconnaissance universelle par les institutions médicales mondiales.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Progression des KPI</span><span class="sr-val">93/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Extension stratégique rapide du réseau industriel et ouverture de 437 postes pour soutenir le scale-up de production.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">94/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Présence physique et clinique mondiale établie dans plus de 40 pays, verrouillant la distribution locale.</div></li></ul>
+<hr/><strong>🔍 RISQUE À RESTER MAÎTRE (DILIGENCE) :</strong>
+<p>L'hypothèse critique de Novo Nordisk est que sa capacité de production industrielle pourra monter en charge assez vite pour conserver son leadership mondial face à l'avancée agressive d'Eli Lilly, sous peine de voir ses parts de marché s'effondrer définitivement au profit de son rival dès que les capacités d'approvisionnement globales de ce dernier se stabiliseront.</p>
+<p>Ce risque majeur ne peut être résolu que par l'observation continue des jalons de livraison industrielle d'usines neuves et l'efficacité clinique à long terme des nouvelles plateformes d'administration de peptides.</p>
+<h4 class="kicker">AVANTAGES CONCURRENTIELS CLÉS</h4>
+<ul><li>Maîtrise de la chaîne de production d'insuline et de peptides, Novo Nordisk contrôlant à elle seule environ 50% de l'approvisionnement mondial en insuline.</li><li>Écosystème captif de dispositifs d'administration propriétaires (stylos injecteurs) qui verrouille le patient et le médecin dans un protocole d'utilisation exclusif.</li><li>Marque médicale ultra-reconnue et relations institutionnelles séculaires auprès des gouvernements et des payeurs mondiaux pour optimiser l'accès au marché.</li><li>Portefeuille clinique étendu sur le sémaglutide à haute dose et accords d'évaluation technologique d'avant-garde comme les implants à libération prolongée NPM-139 de Vivani Medical.</li></ul>
+<p><strong>🧱 REMPART DE DÉFENSE (MOAT) :</strong> FORT</p>
+<p data-mn-split="">La barrière de défense principale repose sur les économies d'échelle massives combinées aux brevets moléculaires stricts du sémaglutide, empêchant tout concurrent d'égaler le coût unitaire de fabrication et les droits exclusifs sur la molécule à court terme. Cette dynamique s'auto-renforce à mesure que le réseau mondial d'essais cliniques et la collecte de données en vie réelle accumulés sur des dizaines de millions de patients créent une barrière de confiance scientifique insurmontable pour les génériqueurs.</p><p data-mn-split="">De surcroît, le contrôle direct des dispositifs physiques d'injection brevetés constitue un second niveau de verrouillage des utilisateurs, rendant le coût de switch vers une autre thérapie extrêmement complexe pour les hôpitaux et les patients.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le Scénario Bull :</li></ul>
+La validation clinique et industrielle de l'implant à diffusion continue élimine définitivement les problèmes d'observance des patients tout en élargissant l'avantage thérapeutique aux affections cardio-métaboliques globales, faisant de Novo Nordisk l'infrastructure indispensable et monopolistique de la santé métabolique d'ici 2030.
+<ul><li>Le Scénario Bear :</li></ul>
+Les retards permanents dans la mise en service des capacités de production mondiales et l'agressivité d'Eli Lilly combinée à de potentielles actions de réglementation étatique sur le prix des médicaments GLP-1 érodent la rentabilité et forcent Novo Nordisk à céder son trône d'ici deux ans.
+<h4 class="kicker">SIGNAUX D'ALERTE</h4>
+<ul><li>Risques Universels : Une pression réglementaire croissante des gouvernements occidentaux sur les prix de vente du Wegovy et de l'Ozempic, associée à la vulnérabilité de la chaîne d'approvisionnement monosite pour certains composants clés.</li><li>Incompatibilités avec la Thèse : Le profil de croissance de Novo Nordisk, bien qu'exceptionnel, implique un besoin colossal en dépenses de capital (CAPEX) infrastructurelles qui peut heurter les priorités d'investissement agiles et orientées software-margin d'un fonds de capital-développement classique.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/55/55/1784714400000/X_pUtWPG1HtuxPyLkvKXuw/MX1HQ_zsAcJyL_Q4z6SuCVCazRUI_USwBEymC4UYI4izKiGsJ8t3661g6CNvr2RU_4BaWZ84rmw5mXb9cACqugqpdWybpcxxrQGzR1dL3-NMqcPV-eA0emJiEEj2xKNTamlUFTmX9-GiWzHq0cg8AQ/e2AN3SWLebivVgHaCELriNH87WcO-bDbD0yeQKgr6pA"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title"><span class="i18n-fr">Analyse SWOT</span><span class="i18n-en">SWOT analysis</span></h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3><span class="i18n-fr">Forces</span><span class="i18n-en">Strengths</span></h3><ul><li>Maziar Doustdar a dirigé Novo Nordisk pendant 28 ans en gravissant tous les échelons jusqu'au poste de CEO, assurant une continuité stratégique exceptionnelle.</li><li>Novo Nordisk contrôle 50 % de la production mondiale d'insuline et dispose d'un réseau de fabrication et d'essais cliniques dans plus de 40 pays.</li><li>Le portefeuille de traitements GLP-1 comme Ozempic et Wegovy génère une croissance soutenue dans le traitement du diabète et de l'obésité.</li><li>La stratégie de triple bottom line intègre responsabilité financière, sociale et environnementale, renforçant la légitimité réglementaire et sociale.</li><li>Les partenariats comme l'accord d'évaluation avec Vivani Medical permettent d'explorer des implants à libération prolongée de semaglutide.</li></ul></div>
+<div class="swot-item s-red"><h3><span class="i18n-fr">Faiblesses</span><span class="i18n-en">Weaknesses</span></h3><ul><li>Une carrière entièrement menée au sein de Novo Nordisk limite potentiellement l'exposition à des modèles disruptifs ou à des environnements de start-up.</li><li>La croissance des ventes de Wegovy et Ozempic ralentit face à l'avancée de Zepbound et Mounjaro d'Eli Lilly.</li><li>Le recours systématique aux actions en justice contre les campagnes publicitaires concurrentes révèle une dépendance à la protection judiciaire plutôt qu'à la différenciation produit.</li><li>La production repose encore largement sur des stylos injecteurs hebdomadaires, exposant l'entreprise aux problèmes d'observance des patients.</li><li>Plus de 69 000 employés et une organisation de plus de cent ans génèrent une inertie structurelle face à des innovations radicales de livraison.</li></ul></div>
+<div class="swot-item s-blue"><h3><span class="i18n-fr">Opportunités</span><span class="i18n-en">Opportunities</span></h3><ul><li>Un implant à semaglutide basé sur la plateforme NanoPortal pourrait transformer l'administration chronique et réduire les abandons de traitement.</li><li>L'expansion des indications cardio-métaboliques et des maladies hémorragiques rares permet de diversifier les revenus au-delà du diabète.</li><li>Les programmes d'accès comme Changing Diabetes in Children ouvrent des marchés à faible revenu tout en renforçant la position de leader social.</li><li>Les débats réglementaires sur les peptides à la FDA offrent une fenêtre pour défendre des formulations à haute dose et bloquer de nouveaux entrants.</li><li>Des collaborations ciblées sur les plateformes de livraison longue durée peuvent sécuriser une avance technologique dans l'espace GLP-1.</li></ul></div>
+<div class="swot-item s-orange"><h3><span class="i18n-fr">Menaces</span><span class="i18n-en">Threats</span></h3><ul><li>Eli Lilly gagne régulièrement des parts de marché grâce à une communication plus agressive et à des données d'essais plus récentes.</li><li>L'arrivée potentielle d'implants concurrents ou de génériques à semaglutide pourrait éroder rapidement les marges sur les injectables hebdomadaires.</li><li>Les régulateurs pourraient autoriser de nouveaux peptides qui fragmentent le duopole actuel Lilly-Novo Nordisk.</li><li>Une décision défavorable dans le procès contre Eli Lilly pourrait valider les allégations de supériorité concurrente et affaiblir la confiance des patients.</li><li>Des pressions sur les prix dans les systèmes de santé européens et américains menacent la rentabilité des traitements chroniques à fort volume.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title"><span class="i18n-fr">Sources et méthodologie</span><span class="i18n-en">Sources &amp; methodology</span></h2>
+<div class="source-list">
+<h3>Sources de la chaîne de valeur</h3>
+<ul style="list-style: none; padding: 0;"></ul>
+<h3>Sources du marché</h3><p>DOSSIER D'INTELLIGENCE DU MARCHÉ - SUIVI DES PREUVES URL</p>
+<p>Objectif : Documentation de support avec preuves URL complètes pour l'analyse d'attractivité du marché</p>
+<p>Marché : Le marché ultra-régulé de la biopharmacie métabolique et des dispositifs d'injection connectés pour la gestion du diabète de type 1/2 et de l'obésité clinique</p>
+<p>Complétude des Données : 85/100</p>
+<p>Évaluation : 🟢 DONNÉES SUFFISANTES POUR DÉCISION D'INVESTISSEMENT (70+)</p>
+<p>Calcul : (6 URL trouvées / 7 URL recherchées) x 100 = 85.7% de complétude</p>
+<p>Date de Recherche : Juillet 2026 | Total d'URL Trouvées : 6</p>
+<p>PREUVES URL PAR CATÉGORIE D'ÉVALUATION DU MARCHÉ</p>
+<p>🌊 MARCHÉ ATTRACTIF (Dynamique de marché) | Trouvé 2/2 points de données</p>
+<ul><li><b>Taille du marché :</b> <a href="https://www.foreignpolicyjournal.com/2026/07/18/fda-advisors-set-to-debate-seven-new-peptides-putting-eli-lilly-nyse-lly-and-novo-nordisk-nyse-nvo-in-focus/" target="_blank">foreignpolicyjournal.com</a>. Utilisé pour : Analyse sectorielle et perspectives de développement des peptides.</li><li><b>Facteurs de croissance :</b> <a href="https://www.foreignpolicyjournal.com/2026/07/18/fda-advisors-set-to-debate-seven-new-peptides-putting-eli-lilly-nyse-lly-and-novo-nordisk-nyse-nvo-in-focus/" target="_blank">foreignpolicyjournal.com</a>. Utilisé pour : Analyse des besoins mondiaux et des barrières médico-réglementaires.</li></ul>
+<p>⚔️ MARCHÉ GAGNABLE (Paysage concurrentiel) | Trouvé 2/2 points de données</p>
+<ul><li><b>Acteurs historiques :</b> <a href="https://www.mobihealthnews.com/news/novo-nordisk-sues-eli-lilly-over-alleged-deceptive-glp-1-ads" target="_blank">mobihealthnews.com</a>. Utilisé pour : Suivi des parts de marché du duopole Lilly/Novo.</li><li><b>Nouveaux entrants :</b> <a href="https://www.foreignpolicyjournal.com/2026/07/16/vivani-medical-nasdaq-vani-targets-august-human-trial-for-semaglutide-implant-following-novo-nordisk-evaluation-deal/" target="_blank">foreignpolicyjournal.com</a>. Utilisé pour : Analyse du défi des technologies alternatives d'implants de peptides.</li></ul>
+<p>🎯 MARCHÉ PÉNÉTRABLE (GTM et Économie unitaire) | Trouvé 1/2 points de données</p>
+<ul><li><b>Modèle GTM :</b> <a href="https://www.foreignpolicyjournal.com/2026/07/16/vivani-medical-nasdaq-vani-targets-august-human-trial-for-semaglutide-implant-following-novo-nordisk-evaluation-deal/" target="_blank">foreignpolicyjournal.com</a>. Utilisé pour : Évaluation des modes d'administration et de l'amélioration de l'observance thérapeutique.</li><li><b>Modèle de tarification :</b> <a href="https://www.cnbc.com/2026/07/21/novo-nordisk-sues-eli-lilly-glp-1-ads.html" target="_blank">cnbc.com</a>. Utilisé pour : Étalonnage des comparateurs d'efficacité clinique et tarifs associés.</li></ul>
+<p>💰 MARCHÉ RENTABLE (Financement et sorties) | Trouvé 1/1 points de données</p>
+<ul><li><b>Activités de financement :</b> <a href="https://www.foreignpolicyjournal.com/2026/07/16/vivani-medical-nasdaq-vani-targets-august-human-trial-for-semaglutide-implant-following-novo-nordisk-evaluation-deal/" target="_blank">foreignpolicyjournal.com</a>. Utilisé pour : Intérêt pour les transactions de licence hâtives.</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>Données critiques manquantes : Rapports de payback de CAC et d'économie de prescription des réseaux intégrés de distribution</p>
+<p>Séquences d'exploration réussies : 6 sur 7 recherchées</p>
+<p>Couverture globale des données clés : 85.7%</p>
+<p>Niveau de confiance des résultats : ÉLEVÉ</p><h3>Sources de l'entreprise</h3>
+<ul style="list-style: none; padding: 0;">
+<li><a href="https://dk.linkedin.com/in/doustdar">Lien profil LinkedIn Maziar Doustdar</a></li>
+<li>Track Record : <a href="https://dk.linkedin.com/in/doustdar">Lien profil LinkedIn Maziar Doustdar</a></li>
+<li>Leadership : <a href="https://www.novonordisk.fr/">Lien site officiel Novo Nordisk</a></li>
+<li>Complétude : <a href="https://www.novonordisk.fr/">Lien site web</a></li>
+<li>Taille et Croissance : <a href="https://www.foreignpolicyjournal.com/2026/07/18/fda-advisors-set-to-debate-seven-new-peptides-putting-eli-lilly-nyse-lly-and-novo-nordisk-nyse-nvo-in-focus/">Lien dynamique marché</a></li>
+<li>Timing 'Why Now' : <a href="https://www.cnbc.com/2026/07/21/novo-nordisk-sues-eli-lilly-glp-1-ads.html">Lien presse</a></li>
+<li>Compétition : <a href="https://www.mobihealthnews.com/news/novo-nordisk-sues-eli-lilly-over-alleged-deceptive-glp-1-ads">Lien rapport compétition</a></li>
+<li>Expansion : <a href="https://www.foreignpolicyjournal.com/2026/07/16/vivani-medical-nasdaq-vani-targets-august-human-trial-for-semaglutide-implant-following-novo-nordisk-evaluation-deal/">Lien plateforme implants</a></li>
+<li>Différenciation : <a href="https://www.foreignpolicyjournal.com/2026/07/16/vivani-medical-nasdaq-vani-targets-august-human-trial-for-semaglutide-implant-following-novo-nordisk-evaluation-deal/">Lien technologie NanoPortal</a></li>
+</ul>
+</div>
+</div>
+
+
+
+&gt;<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Novo Nordisk ?</span><span class="i18n-en">Explore Novo Nordisk further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc"><span class="i18n-fr">Généré par Proplace.co — une IA qui peut se tromper. Contact : <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span><span class="i18n-en">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a><a class="" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+var mSet="https://analysis.proplace.co/thesis/?fund="+f;
+var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
+var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
+'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
+'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
+"</div></div>";
+return {i:1,h:h};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+// Bilingue (2026-07-16) : mêmes clé/priorités que le chrome partagé — le flux d'évaluation
+// était le dernier gros composant JS 100% FR quel que soit le choix de langue du visiteur.
+function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}
+ return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}
+function T(fr,en){return EN()?en:fr;}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function ctaCal(){return '<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">'
+ +T("📅 Un deal flow personnalisé ? Planifiez un appel stratégique","📅 Want a tailored deal flow? Book a strategy call")+'</a>';}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">'+T("Évaluation indisponible.","Evaluation unavailable.")+'</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">'+T("Choisir →","Choose →")+'</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||T("Plusieurs sociétés correspondent — choisissez la bonne :","Several companies match — pick the right one:"))+'</div>'+(cs||'<div class="ev-fine">'+T("Aucun candidat — précisez l’URL exacte.","No candidate — provide the exact URL.")+'</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">'+T("📊 Analyse","📊 Analysis")+'</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">'+T("→ Lancer le mémo dans votre dashboard","→ Launch the memo in your dashboard")+'</a>'; }
+ else{ o+=ctaCal(); }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">'+T("⏳ Évaluation de "+esc(company)+" selon votre thèse "+esc(fund)+"…","⏳ Evaluating "+esc(company)+" against your "+esc(fund)+" thesis…")+'</div>';
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">'+T("Demande d’analyse de","Analysis request for")+' <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="'+T("Prénom","First name")+'" required><input name="last_name" placeholder="'+T("Nom","Last name")+'" required></div>'
+ +'<input name="email" type="email" placeholder="'+T("Email professionnel","Work email")+'" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="'+T("Téléphone","Phone")+'"></div>'
+ +'<button type="submit" class="ev-submit">'+T("Recevoir l’analyse →","Get the analysis →")+'</button>'
+ +'<p class="ev-fine">'+T("Déjà client ? <a href=\"https://proplace.co/#login\">Connectez-vous</a> pour évaluer selon VOTRE thèse.","Already a client? <a href=\"https://proplace.co/#login\">Log in</a> to evaluate against YOUR thesis.")+'</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Enregistrement…","⏳ Saving…")+'</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">'+T("✅ Merci "+esc(d.first_name)+" !","✅ Thank you "+esc(d.first_name)+"!")+'</div>'
+    +'<div class="ev-r">'+T("Votre analyse de <b>"+esc(b.dataset.c||b.dataset.u)+"</b> vous sera envoyée par email sous peu.","Your analysis of <b>"+esc(b.dataset.c||b.dataset.u)+"</b> will be emailed to you shortly.")+'</div>'
+    +ctaCal();});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">'+T("⚡ Évaluation express —","⚡ Express evaluation —")+' <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+var _lbEN=false;try{var _l=localStorage.getItem('proplace_lang');
+_lbEN=_l==='en'||(!_l&&(navigator.language||'').toLowerCase().indexOf('fr')!==0);}catch(e){}
+ov.innerHTML='<button class="lb-x" aria-label="'+(_lbEN?'Close':'Fermer')+'">×</button><img alt=""><a class="lb-dl" download>'+(_lbEN?'⬇ Download':'⬇ Télécharger')+'</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><style>
+/* Étoile favori (★) en tête de la cellule Société — dorée dès l'état INACTIF (☆) pour être
+   repérable comme « à cliquer », pleine et vive à l'état actif (★). */
+.op-fav{display:inline-block;vertical-align:baseline;margin:0 7px 0 0;padding:0;font-size:17px;
+line-height:1;color:#d9b64a;background:none;border:none;cursor:pointer;
+transition:color .12s,transform .12s}
+.op-fav:hover{color:#e5a91c;transform:scale(1.2)}
+.op-fav.on{color:#e5a91c}
+.fav-count{font-variant-numeric:tabular-nums;font-weight:800}
+/* Page /actualites/favoris/ : état vide + encart « créez votre thèse ». */
+.fav-empty-box{margin:26px 0;padding:24px 20px;border:1px dashed var(--line);border-radius:12px;
+background:var(--bg);text-align:center;color:var(--sub);font-size:14px;line-height:1.55}
+.fav-empty-box a{color:var(--accent-dk);font-weight:700;text-decoration:none}
+.fav-empty-box a:hover{text-decoration:underline}
+.fav-tease{margin:22px 0 6px;padding:16px 18px;border:1px solid var(--accent);border-radius:12px;
+background:var(--bg)}
+.fav-tease-h{font-size:15px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.fav-tease-p{font-size:13.5px;color:var(--sub);line-height:1.5;margin:0 0 10px}
+.fav-tease .tm-read{margin:0}
+/* Composeur de thèse in-browser + évaluation groupée (Phase B). */
+.fav-th-text{width:100%;min-height:64px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+font-family:inherit;font-size:13.5px;line-height:1.5;color:var(--ink);resize:vertical;margin:0 0 8px}
+.fav-th-text:focus{outline:none;border-color:var(--accent)}
+.fav-btn{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:9px;padding:9px 15px;cursor:pointer;transition:opacity .15s}
+.fav-btn:hover{opacity:.85}
+.fav-btn:disabled{opacity:.5;cursor:default}
+.fav-th-edit{margin-left:10px;font-size:12.5px;font-weight:600;color:var(--accent-dk);background:none;
+border:none;cursor:pointer;text-decoration:underline}
+.fav-th-label{font-size:13px;color:var(--sub);font-style:italic;margin:0 0 8px}
+.fav-th-hint{font-size:12px;color:#b91c1c;margin:6px 0 0}
+/* Verdict d'un favori (plein largeur sous la ligne, comme .op-eval-panel). */
+.fav-verdict{grid-column:1/-1;margin-top:2px}
+.fav-verdict:empty{margin:0}
+.fav-v{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;padding:3px 10px;margin-top:6px}
+.fav-v-yes{color:#047857;background:rgba(4,120,87,.10)}
+.fav-v-no{color:#b91c1c;background:rgba(185,28,28,.08)}
+.fav-v-err{color:var(--mid);background:var(--bg)}
+.fav-v-load{color:var(--mid);font-size:12.5px;font-weight:600;margin-top:6px;display:inline-block}
+.fav-vr{display:block;font-size:12.5px;color:var(--sub);line-height:1.45;margin-top:4px}
+</style><script>(function(){
+var K="proplace_favoris";
+// Bridge « certain » vers /cibles/ : un ?cb=<token> dans l'URL (posé par le lien du /cibles/ du
+// client, ou un email Proplace) lie ce navigateur à CE client → chaque ★ est aussi reflétée dans
+// un store SERVEUR scopé au token, retrouvée ensuite dans son onglet Favoris même sur un autre
+// appareil. Sans token (visiteur anonyme), sync() est un no-op → comportement inchangé.
+var TKK="proplace_cb_token",SYNC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/fav-sync";
+function readTok(){try{return localStorage.getItem(TKK)||"";}catch(e){return "";}}
+function writeTok(t){try{localStorage.setItem(TKK,t);}catch(e){}}
+function captureTok(){var t="";try{t=((new URL(window.location.href)).searchParams.get("cb")||"").trim();}catch(e){}
+ if(/^[A-Za-z0-9]{16}$/.test(t)){writeTok(t);return t;}return readTok();}
+var TOK=captureTok();
+function sync(op,removed){if(!TOK)return;try{
+ fetch(SYNC,{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
+  body:JSON.stringify({token:TOK,remove:!!removed,op:op})}).catch(function(){});
+}catch(e){}}
+function EN(){try{var l=localStorage.getItem("proplace_lang");if(l)return l==="en";}catch(e){}
+ return (navigator.language||"").slice(0,2).toLowerCase()==="en";}
+function read(){try{return JSON.parse(localStorage.getItem(K)||"[]")||[];}catch(e){return [];}}
+function write(a){try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}}
+function normU(u){return (u||"").toLowerCase().trim().replace(/[#?].*$/,"").replace(/\/+$/,"");}
+function normN(n){return (n||"").toLowerCase().replace(/\s+/g," ").trim();}
+function keyOf(u,c){return normU(u)||normN(c);}
+function opFromBtn(b){var d=b.dataset,u=d.u||"",c=d.co||"";
+ // Le bouton ne porte plus que co+url (régime data-*) : le reste est DÉRIVÉ de la ligne
+ // .trow (data-v/date/t/amt/pays + cellules affichées). Les anciens data-* du bouton restent
+ // lus en PRIORITÉ (compat : lignes de la page /favoris reconstruites depuis localStorage).
+ var r=b.closest?b.closest(".trow"):null,rd=(r&&r.dataset)||{};
+ // Cellules Type/Date en dual-span depuis 2026-07-16 : lire le span .i18n-fr (libellé
+ // canonique FR stocké dans le favori), sinon le textContent brut (cellules mono-langue).
+ function cell(s){if(!r)return "";var e=r.querySelector(s+" .i18n-fr")||r.querySelector(s);
+  var v=e?e.textContent.trim():"";return v==="—"?"":v;}
+ // Headline : sous-ligne .th (co présent) SINON le titre-lien du strong (op sans société).
+ var hd=r?(r.querySelector(".tco .th a:not(.tm-mem)")||r.querySelector(".tco strong a")):null;
+ var pe=r?r.querySelector(".tpays"):null;
+ var vert=d.v||rd.v||"";
+ return {id:keyOf(u,c),co:c,url:u,
+  disp:d.disp||(hd?hd.textContent.trim().slice(0,200):""),
+  ind:d.i||vert,vert:vert,
+  amtD:d.amtd||cell(".tamt"),
+  amt:parseInt(d.amt||rd.amt||"0",10)||0,
+  pays:d.pays||rd.pays||"",
+  paysFull:d.paysfull||(pe?(pe.getAttribute("title")||""):""),
+  date:d.date||(rd.date||"").slice(0,10),
+  typeK:d.typek||rd.t||"",
+  typeFr:d.typefr||cell(".ttype"),
+  ts:Date.now()};}
+function idx(a,id){for(var i=0;i<a.length;i++)if(a[i].id===id)return i;return -1;}
+function paint(){var a=read(),ids={};a.forEach(function(o){ids[o.id]=1;});
+ [].slice.call(document.querySelectorAll(".op-fav")).forEach(function(b){
+  var id=keyOf(b.dataset.u||"",b.dataset.co||""),on=!!ids[id];
+  b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false");
+  b.textContent=on?"★":"☆";
+  var t=on?(EN()?"Remove from favourites":"Retirer des favoris"):(EN()?"Add to favourites":"Mettre en favori");
+  b.title=t;b.setAttribute("aria-label",t);});
+ var n=a.length;[].slice.call(document.querySelectorAll(".fav-count")).forEach(function(e){e.textContent=String(n);});}
+window.__favPaint=paint;
+document.addEventListener("click",function(ev){
+ var b=ev.target&&ev.target.closest?ev.target.closest(".op-fav"):null;if(!b)return;
+ ev.preventDefault();ev.stopPropagation();
+ var a=read(),op=opFromBtn(b),k=idx(a,op.id),removed=k>=0;
+ if(k>=0)a.splice(k,1);else a.unshift(op);
+ write(a);paint();sync(op,removed);if(window.__favRender)window.__favRender();});
+window.addEventListener("storage",function(e){if(e.key===K){paint();if(window.__favRender)window.__favRender();}});
+if(document.readyState!=="loading")paint();else document.addEventListener("DOMContentLoaded",paint);
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
