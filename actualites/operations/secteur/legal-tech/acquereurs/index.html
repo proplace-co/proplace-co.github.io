@@ -1,4 +1,4 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Qui rachète en Legal Tech — les acquéreurs actifs | Proplace</title><meta name="description" content="Les acquéreurs actifs du secteur Legal Tech en France &amp; Europe : qui rachète qui, industriels et fonds, suivi chaque jour par Proplace."><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/actualites/operations/secteur/legal-tech/acquereurs/"><meta property="og:site_name" content="Proplace"><meta property="og:title" content="Qui rachète en Legal Tech — les acquéreurs actifs | Proplace"><meta property="og:description" content="Les acquéreurs actifs du secteur Legal Tech en France &amp; Europe : qui rachète qui, industriels et fonds, suivi chaque jour par Proplace."><meta property="og:url" content="https://proplace.co/actualites/operations/secteur/legal-tech/acquereurs/"><meta property="og:image" content="https://proplace.co/logo.png"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Qui rachète en Legal Tech — les acquéreurs actifs | Proplace"><meta name="twitter:description" content="Les acquéreurs actifs du secteur Legal Tech en France &amp; Europe : qui rachète qui, industriels et fonds, suivi chaque jour par Proplace."><meta name="twitter:image" content="https://proplace.co/logo.png"><link rel="icon" href="/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
+<!doctype html><html lang="fr" data-pplang-sync="1"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Qui rachète en Legal Tech — les acquéreurs actifs | Proplace</title><meta name="description" content="Les acquéreurs actifs du secteur Legal Tech en France &amp; Europe : qui rachète qui, industriels et fonds, suivi chaque jour par Proplace."><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/actualites/operations/secteur/legal-tech/acquereurs/"><meta property="og:site_name" content="Proplace"><meta property="og:title" content="Qui rachète en Legal Tech — les acquéreurs actifs | Proplace"><meta property="og:description" content="Les acquéreurs actifs du secteur Legal Tech en France &amp; Europe : qui rachète qui, industriels et fonds, suivi chaque jour par Proplace."><meta property="og:url" content="https://proplace.co/actualites/operations/secteur/legal-tech/acquereurs/"><meta property="og:image" content="https://proplace.co/logo.png"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Qui rachète en Legal Tech — les acquéreurs actifs | Proplace"><meta name="twitter:description" content="Les acquéreurs actifs du secteur Legal Tech en France &amp; Europe : qui rachète qui, industriels et fonds, suivi chaque jour par Proplace."><meta name="twitter:image" content="https://proplace.co/logo.png"><link rel="icon" href="/favicon.png"><link rel="alternate" type="application/rss+xml" title="Proplace — M&amp;A &amp; levées de fonds" href="https://proplace.co/actualites/feed.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--accent:#4AC67F;--accent-dk:#36a866;--ink:#0A0A0A;--sub:#444;--mid:#777;
 --line:#E8E8E4;--bg:#F6F6F3;--white:#fff;--maxw:760px}
 *{box-sizing:border-box}
@@ -121,6 +121,12 @@ font-size:13px;color:var(--mid)}
 .site-ft nav{display:flex;gap:18px;flex-wrap:wrap}
 .site-ft nav a{color:var(--mid)}
 .site-ft nav a:hover{color:var(--accent-dk)}
+/* v74 (R5) — mobile : AUCUNE glisse horizontale de page (/actualites ET /cibles,
+   _BASE_CSS est partagé via _head). Ceinture : overflow-x:clip — PAS hidden (règle
+   v58 : hidden crée un conteneur de défilement et TUE le position:sticky des barres
+   collées) ; clip borde sans créer de scroller → les stickies survivent. Les
+   débordements réels (SVG larges, chips longues…) restent corrigés à la source. */
+@media(max-width:760px){html,body{overflow-x:clip}}
 
 .bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
 .bcrumb a{color:#777;text-decoration:none}
@@ -137,9 +143,20 @@ align-items:center;gap:18px;flex-wrap:nowrap}
 gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
 .pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
 .pph nav>a:hover{color:#0a0a0a}
-.pph a.cta,.pph .pph-auth a.cta{color:#fff;background:#4AC67F;padding:8px 14px;
-border-radius:9px;font-weight:600}
-.pph a.cta:hover,.pph .pph-auth a.cta:hover{background:#36a866}
+/* (retour CEO 20/07) — mobile : « Mon compte » s'affichait À LA VERTICALE (un mot,
+   voire une lettre, par ligne). Cause : dans .pph nav (flex), .pph-sect et .pph-lang
+   sont en flex:0 0 auto mais PAS .pph-auth → c'était le SEUL enfant compressible, il
+   absorbait tout le débordement et rétrécissait à ~0, forçant le texte du bouton à
+   passer à la ligne. Il devient incompressible : c'est le défileur horizontal du nav
+   (v74) qui prend le relais, comme prévu. */
+.pph .pph-auth{flex:0 0 auto;display:inline-flex;align-items:center;white-space:nowrap}
+.pph .pph-auth button,.pph .pph-acct,.pph .pph-acct-btn{flex:0 0 auto;white-space:nowrap}
+/* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
+   « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
+   couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
+.pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600;border:none;cursor:pointer;font-family:inherit;line-height:1.2}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover,.pph button.cta:hover,.pph .pph-auth button.cta:hover{background:#36a866}
 /* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
 .pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
 border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
@@ -162,9 +179,32 @@ html[data-pplang=en] .i18n-fr{display:none}
 @media(max-width:760px){
  .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
  .pph .pph-home{display:none}
- .pph a.cta,.pph .pph-auth a.cta{padding:6px 10px;font-size:12px}
+ /* v74 (R5) — le SEUL débordeur réel mesuré à 390px est CETTE nav (Connexion +
+    pastille News|Analysis + EN|FR ≈ 309px pour ~264px disponibles) : elle devient
+    son PROPRE défileur horizontal (règle « wide content » : overflow-x:auto sur la
+    pièce INTERNE — jamais sur un ancêtre d'une barre sticky). Alignée à gauche en
+    mobile : un débordement côté start (flex-end) serait inatteignable au scroll. */
+ .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pph nav::-webkit-scrollbar{display:none}
+ /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
+    (même piège que la couleur du CTA, retour CEO 19/07). */
+ .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
  .pph-sect a{padding:6px 10px;font-size:12px}
  .pph-lang button{padding:5px 7px;font-size:11px}
+ /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
+    défileur (order:-1) → les 3 boutons sont TOUJOURS visibles à gauche, c'est
+    « Connexion » qui déborde/scrolle si l'écran est trop étroit (demande CEO). */
+ .pph nav .pph-sect{order:-1;flex:0 0 auto}
+ .pph nav .pph-auth{order:0}
+ /* v75 (bug #7) — la pastille EN|FR est hors du <nav> (défileur) : collée à droite du
+    header, toujours atteignable même quand le <nav> déborde/scrolle. */
+ .pph-lang{margin-left:auto;flex:0 0 auto}
+}
+/* ≤430px : les 3 pastilles + Connexion tiennent ensemble (resserrage police/padding). */
+@media(max-width:430px){
+ .pph nav{gap:7px}
+ .pph-sect a{padding:6px 9px;font-size:11.5px;letter-spacing:-.01em}
 }
 
 .ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
@@ -192,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Qui rachète en Legal Tech", "url": "https://proplace.co/actualites/operations/secteur/legal-tech/acquereurs/", "numberOfItems": 3, "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": "Organization", "name": "Amarris"}}, {"@type": "ListItem", "position": 2, "item": {"@type": "Organization", "name": "DeepIP"}}, {"@type": "ListItem", "position": 3, "item": {"@type": "Organization", "name": "LegalPlace"}}]}</script></head><style>
+</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Qui rachète en Legal Tech", "url": "https://proplace.co/actualites/operations/secteur/legal-tech/acquereurs/", "numberOfItems": 4, "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": "Organization", "name": "Amarris"}}, {"@type": "ListItem", "position": 2, "item": {"@type": "Organization", "name": "DeepIP"}}, {"@type": "ListItem", "position": 3, "item": {"@type": "Organization", "name": "LegalPlace"}}, {"@type": "ListItem", "position": 4, "item": {"@type": "Organization", "name": "Silae"}}]}</script></head><style>
 .ops-filter{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 26px}
 .ops-filter button{font-size:13px;font-weight:600;border:1px solid var(--line);background:#fff;
 color:var(--sub);border-radius:999px;padding:6px 14px;cursor:pointer;transition:all .15s}
@@ -212,7 +252,14 @@ border-top:1px solid var(--line);align-items:baseline}
 .opc>a:hover{color:var(--accent-dk)}
 .opm{font-size:13px;color:var(--mid);margin-top:5px}
 .optag{display:inline-block;font-size:11px;font-weight:600;color:var(--sub);background:var(--bg);
-border:1px solid var(--line);border-radius:5px;padding:1px 7px;margin:6px 5px 0 0}
+border:1px solid var(--line);border-radius:5px;padding:1px 7px;margin:6px 5px 0 0;cursor:pointer;
+font-family:inherit;line-height:1.5;transition:background .12s,color .12s,border-color .12s}
+.optag:hover{border-color:var(--accent);color:var(--ink)}
+.optag.on{background:var(--accent);color:#06281a;border-color:var(--accent)}
+/* Barre des tags actifs (filtre par tag, façon /cibles) : injectée par le board JS sous les compteurs. */
+.tm-tagbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px;font-size:12.5px;color:var(--sub);font-weight:600}
+.tm-tagchip{font-size:12px;font-weight:700;border:1px solid var(--accent);background:var(--accent);color:#06281a;border-radius:999px;padding:4px 11px;cursor:pointer;font-family:inherit}
+.tm-tagchip:hover{background:var(--accent-dk);border-color:var(--accent-dk);color:#fff}
 @media(max-width:560px){.oplist li{grid-template-columns:1fr;gap:4px}
 .opd{order:-1;color:var(--accent-dk)}}
 
@@ -280,6 +327,8 @@ box-shadow:0 10px 26px rgba(10,10,10,.28);pointer-events:none;transform:translat
    Collée sous le header. Séparée du tableau par un simple trait — zéro relief, zéro mur de chips. */
 .tm-bar{position:sticky;top:60px;z-index:30;background:var(--white);padding:11px 0 12px;border-bottom:1px solid var(--line);margin:0 0 6px}
 .tm-bar-in{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+/* Contrôles de la barre de filtres : pill blanche bordée, actif VERT (style d'origine — le gris
+   /cibles a été retiré à la demande du CEO). */
 .tm-seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
 .tm-seg button{font-size:12.5px;font-weight:500;border:none;background:#fff;color:var(--sub);padding:6px 13px;cursor:pointer;transition:background .12s}
 .tm-seg button:hover{background:var(--bg)}
@@ -293,16 +342,9 @@ box-shadow:0 10px 26px rgba(10,10,10,.28);pointer-events:none;transform:translat
    bouton « Plus de filtres » semble ne rien faire). */
 .tm-bar-more[hidden]{display:none}
 .tm-mine{flex-basis:100%;font-size:12.5px;color:var(--accent-dk);font-weight:700;margin:0}
-/* Menu déroulant Secteur (à GAUCHE de la barre) : bouton pill + panneau flottant (liste + compteurs). */
-.tm-secdd{position:relative}
-.tm-secbtn{font-size:12.5px;font-weight:500;border:1px solid var(--line);background:#fff;color:var(--sub);border-radius:999px;padding:6px 14px;cursor:pointer;white-space:nowrap;transition:all .12s}
-.tm-secbtn:hover{border-color:var(--accent)}
-.tm-secbtn b{color:var(--ink);font-weight:700}
-.tm-secmenu{position:absolute;top:calc(100% + 6px);left:0;z-index:45;width:280px;max-height:340px;overflow-y:auto;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 34px -12px rgba(10,10,10,.22);padding:6px}
-.tm-secmenu button,.tm-secmenu a{display:flex;justify-content:space-between;align-items:center;gap:14px;width:100%;text-align:left;font-size:13px;font-weight:500;color:var(--sub);background:none;border:none;border-radius:8px;padding:8px 12px;cursor:pointer;text-decoration:none}
-.tm-secmenu button:hover,.tm-secmenu a:hover{background:var(--bg);text-decoration:none}
-.tm-secmenu button.on,.tm-secmenu a.on{background:var(--bg);color:var(--ink);font-weight:700}
-.tm-secmenu .tm-secn{flex:none;color:var(--mid);font-weight:600;font-variant-numeric:tabular-nums}
+/* Menus déroulants (Secteur/Pays/Stade + picker « 📅 Jour ») : CSS déplacé dans _DAYPICKER_CSS,
+   inclus via _TYPE_CSS → présent sur les pages board ET la page d'ANALYSE (qui ne charge pas
+   _TERMINAL_CSS). Sinon le bouton/menu Jour de l'article restait NON STYLÉ. */
 /* Multi-select Secteur : pastille couleur du secteur (--sec-c) devant le libellé + ✓ vert si coché. */
 .secdot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--sec-c,var(--accent));margin-right:8px;flex:none;vertical-align:middle}
 .tm-secmenu button.on>span:first-child::before{content:"✓ ";color:var(--accent-dk);font-weight:800}
@@ -394,6 +436,20 @@ a.tm-sec-name:hover .tm-sec-go{opacity:1}
  .trow .op-eval{margin-top:9px}
 }
 
+.tm-secdd{position:relative}
+.tm-secbtn{font-size:12.5px;font-weight:500;border:1px solid var(--line);background:#fff;color:var(--sub);border-radius:999px;padding:6px 14px;cursor:pointer;white-space:nowrap;transition:all .12s}
+.tm-secbtn:hover{border-color:var(--accent)}
+.tm-secbtn b{color:var(--ink);font-weight:700}
+.tm-secmenu{position:absolute;top:calc(100% + 6px);left:0;z-index:45;width:280px;max-height:340px;overflow-y:auto;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 34px -12px rgba(10,10,10,.22);padding:6px}
+.tm-secmenu button,.tm-secmenu a{display:flex;justify-content:space-between;align-items:center;gap:14px;width:100%;text-align:left;font-size:13px;font-weight:500;color:var(--sub);background:none;border:none;border-radius:8px;padding:8px 12px;cursor:pointer;text-decoration:none}
+.tm-secmenu button:hover,.tm-secmenu a:hover{background:var(--bg);text-decoration:none}
+.tm-secmenu button.on,.tm-secmenu a.on{background:var(--bg);color:var(--ink);font-weight:700}
+.tm-secmenu .tm-secn{flex:none;color:var(--mid);font-weight:600;font-variant-numeric:tabular-nums}
+/* Menu « 📅 Jour » : jours aérés. display:flex UNIQUEMENT ouvert (:not([hidden])) — sinon écrase le hidden UA. */
+.tm-secmenu.tm-daymenu{padding:8px}
+.tm-secmenu.tm-daymenu:not([hidden]){display:flex;flex-direction:column;gap:4px}
+.tm-secmenu.tm-daymenu a{padding:11px 14px;font-size:13.5px}
+
 .type-viz{display:flex;gap:18px;flex-wrap:wrap;margin:22px 0 6px}
 .type-viz-i{flex:1 1 380px;display:block;border:1px solid var(--line);border-radius:14px;overflow:hidden;
 line-height:0;transition:border-color .15s,transform .15s}
@@ -416,6 +472,16 @@ overflow:hidden;background:var(--white)}
 border-radius:999px;padding:6px 14px;text-decoration:none;transition:border-color .15s,color .15s}
 .type-nav a:hover{border-color:var(--accent);color:var(--ink)}
 .type-nav a.on{color:var(--accent-dk);border-color:var(--accent)}
+/* « ★ Mes favoris » : bouton PLUS VISIBLE dans la boussole — identité ambre des favoris (même
+   or que l'étoile .op-fav.on et le badge « Pas encore évaluée »), pour ressortir des pills neutres. */
+.type-nav a.fav-nav{color:#8a6d1a;font-weight:800;background:#fdf6e3;border-color:#e8d9a8}
+.type-nav a.fav-nav:hover{color:#6b5414;background:#fbefc9;border-color:#e5a91c}
+.type-nav a.fav-nav.on{color:#6b5414;background:#fbefc9;border-color:#e5a91c}
+.type-nav a.fav-nav .fav-count{color:#8a6d1a}
+/* BOUSSOLE — le menu « 📅 Jour » suit DIRECTEMENT les chips de niveau (plus de margin-left:auto :
+   collé au groupe, plus clair). Se replie sous les chips sur mobile (flex-wrap). Le style gris du
+   sélecteur vient désormais de la base .tm-seg / .tm-secbtn (unifiés, point 4). */
+.lvl-dates{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
 /* « Qui rachète » — paysage des acquéreurs (par secteur). Liste lisible : nom + badges + cibles. */
 .acq-land{margin:22px 0 0}
 .acq-h{font-size:19px;font-weight:800;letter-spacing:-.01em;margin:0 0 6px;color:var(--ink)}
@@ -438,7 +504,7 @@ border-radius:999px;padding:6px 14px;text-decoration:none;transition:border-colo
    colonne Évaluer du tableau. Le panneau s'ouvre pleine largeur sous la ligne. Le nom n'est plus cliquable. */
 .acq-head .op-eval{margin-left:auto;align-self:center}
 .acq-head .op-eval-panel{flex:1 1 100%;order:9;margin-top:8px}
-</style><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news on" href="/actualites/" data-i18n="news">News</a><a class="pph-ana" href="/analysis/" data-i18n="analysis">Analysis</a></span><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></nav></div></header><script>(function(){
+</style><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news on" href="/actualites/" data-i18n="news">News</a><a class="pph-ana" href="/analysis/" data-i18n="analysis">Analysis</a><a class="pph-rsch" href="/research/" data-i18n="research">Research</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -447,27 +513,112 @@ try{var st=document.createElement("style");st.textContent=
 "html[data-pplang=en] a.i18n-en{display:inline-block}"+
 ".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
 ".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
-".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
 document.head.appendChild(st);}catch(e){}
 var D={
- en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
- fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
 };
 function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
 return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
-if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+var mSet="https://analysis.proplace.co/thesis/?fund="+f;
+var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
+var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
+'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
+'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
+"</div></div>";
+return {i:1,h:h};}
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
 try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
-var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
-Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
 function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
 var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
 function go(l){
@@ -477,9 +628,14 @@ var alt=altUrl(l);
 if(alt&&alt!==here){location.href=alt;return;}
 apply(l);}
 function init(){apply(getLang());
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><main class="wrap tm-wrap"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Accueil</a><span class="sep">›</span><a href="/actualites/" data-i18n="news">Actualités</a><span class="sep">›</span><a href="/actualites/operations/" data-i18n="ops">Opérations</a><span class="sep">›</span><a href="/actualites/operations/secteur/legal-tech/">Legal Tech</a><span class="sep">›</span><span class="cur">Qui rachète</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Actualités", "item": "https://proplace.co/actualites/"}, {"@type": "ListItem", "position": 3, "name": "Opérations", "item": "https://proplace.co/actualites/operations/"}, {"@type": "ListItem", "position": 4, "name": "Legal Tech", "item": "https://proplace.co/actualites/operations/secteur/legal-tech/"}, {"@type": "ListItem", "position": 5, "name": "Qui rachète"}]}</script><div class="lvl-zone"><div class="type-nav lvl-nav"><a href="/actualites/operations/" data-i18n="allOps">🌍 Toutes les opérations</a><span class="lvl-grp"><a class="" href="/actualites/operations/secteur/legal-tech/">🗂 Legal Tech</a><a class="" href="/actualites/operations/fusions-acquisitions/legal-tech/">M&amp;A</a><a class="" data-i18n="fundr" href="/actualites/operations/levees-de-fonds/legal-tech/">Levées</a></span><a class="" data-i18n="subscribe" href="https://proplace.co/newsletter/legal-tech/">📬 S'abonner</a><a class="" href="/actualites/favoris/"><span class="i18n-fr">★ Mes favoris</span><span class="i18n-en">★ My favourites</span> (<span class="fav-count">0</span>)</a></div></div><div class="tm-hero"><p class="tm-eyebrow">Consolidation · Legal Tech</p><h1 class="tm-h1">Qui rachète en Legal Tech</h1><p class="tm-dek">Qui rachète qui — les acheteurs les plus actifs en <b>Legal Tech</b>, depuis qu'on suit le marché (5 opérations).</p></div><div class="acq-land"><h2 class="acq-h">🏢 Qui rachète en Legal Tech</h2><div class="acq-row"><div class="acq-head"><span class="acq-n">Amarris</span><span class="acq-b acq-b-strat">🏭 Acheteur industriel</span><span class="acq-c">1 rachat</span><button type="button" class="op-eval" data-c="Amarris" data-h="" data-i="" data-u="">⚡ Évaluer</button><div class="op-eval-panel" hidden></div></div><div class="acq-tg">a racheté : <a href="https://www.lejournaldesentreprises.com/breve/le-groupe-dexpertise-comptable-girondin-morlans-rachete-par-le-groupe-nantais-amarris-2144964" rel="nofollow noopener" target="_blank">Morlans</a></div></div><div class="acq-row"><div class="acq-head"><span class="acq-n">DeepIP</span><span class="acq-b acq-b-strat">🏭 Acheteur industriel</span><span class="acq-c">1 rachat</span><button type="button" class="op-eval" data-c="DeepIP" data-h="" data-i="" data-u="">⚡ Évaluer</button><div class="op-eval-panel" hidden></div></div><div class="acq-tg">a racheté : <a href="https://mesinfos.fr/75000-paris/legaltech-deepip-accelere-sur-l-ia-en-rachetant-patentmaker-334517.html" rel="nofollow noopener" target="_blank">PatentMaker</a></div></div><div class="acq-row"><div class="acq-head"><span class="acq-n">LegalPlace</span><span class="acq-b acq-b-strat">🏭 Acheteur industriel</span><span class="acq-c">1 rachat</span><button type="button" class="op-eval" data-c="LegalPlace" data-h="" data-i="" data-u="">⚡ Évaluer</button><div class="op-eval-panel" hidden></div></div><div class="acq-tg">a racheté : <a href="https://polesocietes.com/actualites/levee-de-fonds/consolidation-majeure-dans-la-legaltech-legalplace-s-offre-legalstart" rel="nofollow noopener" target="_blank">Legalstart</a></div></div></div><p style="margin:18px 0 0"><a class="back" href="/actualites/operations/acquereurs/">→ Les consolidateurs de tous les secteurs</a></p><aside class="cta-box"><h3><span class='i18n-fr'>Suivre chaque jour les opérations M&amp;A et levées de fonds du secteur Legal Tech.</span><span class='i18n-en'>Follow the daily M&amp;A deals and fundraisings of the Legal Tech sector.</span></h3><p><span class='i18n-fr'>Uniquement les opérations Legal Tech en France &amp; Europe, décryptées tous les jours dans une newsletter dédiée. Gratuit, désinscription en un clic.</span><span class='i18n-en'>Only Legal Tech deals in France &amp; Europe, decoded every day in a dedicated newsletter. Free, one-click unsubscribe.</span></p><a class="btn" href="https://proplace.co/newsletter/legal-tech/"><span class="i18n-fr">S'abonner à la newsletter Legal Tech →</span><span class="i18n-en">Subscribe to the Legal Tech newsletter →</span></a></aside><a class="back" href="/actualites/operations/secteur/legal-tech/">← Toutes les opérations Legal Tech</a></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="on" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+})();</script><main class="wrap tm-wrap"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Accueil</a><span class="sep">›</span><a href="/actualites/" data-i18n="news">Actualités</a><span class="sep">›</span><a href="/actualites/operations/" data-i18n="ops">Opérations</a><span class="sep">›</span><a href="/actualites/operations/secteur/legal-tech/">Legal Tech</a><span class="sep">›</span><span class="cur">Qui rachète</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Actualités", "item": "https://proplace.co/actualites/"}, {"@type": "ListItem", "position": 3, "name": "Opérations", "item": "https://proplace.co/actualites/operations/"}, {"@type": "ListItem", "position": 4, "name": "Legal Tech", "item": "https://proplace.co/actualites/operations/secteur/legal-tech/"}, {"@type": "ListItem", "position": 5, "name": "Qui rachète"}]}</script><div class="lvl-zone"><div class="type-nav lvl-nav"><a href="/actualites/operations/" data-i18n="allOps">🌍 Toutes les opérations</a><span class="lvl-grp"><a class="" href="/actualites/operations/secteur/legal-tech/">🗂 Legal Tech</a><a class="" href="/actualites/operations/fusions-acquisitions/legal-tech/">M&amp;A</a><a class="" data-i18n="fundr" href="/actualites/operations/levees-de-fonds/legal-tech/">Levées</a></span><a class="" data-i18n="subscribe" href="https://proplace.co/newsletter/legal-tech/">📬 S'abonner</a><a class="fav-nav " href="/actualites/favoris/"><span class="i18n-fr">★ Mes favoris</span><span class="i18n-en">★ My favourites</span> (<span class="fav-count">0</span>)</a></div></div><div class="tm-hero"><p class="tm-eyebrow"><span class="i18n-fr">Consolidation · Legal Tech</span><span class="i18n-en">Consolidation · Legal Tech</span></p><h1 class="tm-h1"><span class="i18n-fr">Qui rachète en Legal Tech</span><span class="i18n-en">Who's buying in Legal Tech</span></h1><p class="tm-dek"><span class="i18n-fr">Qui rachète qui — les acheteurs les plus actifs en <b>Legal Tech</b>, depuis qu'on suit le marché (6 opérations).</span><span class="i18n-en">Who buys whom — the most active buyers in <b>Legal Tech</b>, since we started tracking the market (6 deals).</span></p></div><div class="acq-land"><h2 class="acq-h"><span class="i18n-fr">🏢 Qui rachète en Legal Tech</span><span class="i18n-en">🏢 Who's buying in Legal Tech</span></h2><div class="acq-row"><div class="acq-head"><span class="acq-n">Amarris</span><span class="acq-b acq-b-strat"><span class="i18n-fr">🏭 Acheteur industriel</span><span class="i18n-en">🏭 Strategic buyer</span></span><span class="acq-c"><span class="i18n-fr">1 rachat</span><span class="i18n-en">1 acquisition</span></span><button type="button" class="op-eval" data-c="Amarris" data-h="" data-i="" data-u=""><span class="i18n-fr">⚡ Évaluer</span><span class="i18n-en">⚡ Evaluate</span></button><div class="op-eval-panel" hidden></div></div><div class="acq-tg"><span class="i18n-fr">a racheté :</span><span class="i18n-en">acquired:</span> <a href="https://www.lejournaldesentreprises.com/breve/le-groupe-dexpertise-comptable-girondin-morlans-rachete-par-le-groupe-nantais-amarris-2144964" rel="nofollow noopener" target="_blank">Morlans</a></div></div><div class="acq-row"><div class="acq-head"><span class="acq-n">DeepIP</span><span class="acq-b acq-b-strat"><span class="i18n-fr">🏭 Acheteur industriel</span><span class="i18n-en">🏭 Strategic buyer</span></span><span class="acq-c"><span class="i18n-fr">1 rachat</span><span class="i18n-en">1 acquisition</span></span><button type="button" class="op-eval" data-c="DeepIP" data-h="" data-i="" data-u=""><span class="i18n-fr">⚡ Évaluer</span><span class="i18n-en">⚡ Evaluate</span></button><div class="op-eval-panel" hidden></div></div><div class="acq-tg"><span class="i18n-fr">a racheté :</span><span class="i18n-en">acquired:</span> <a href="https://mesinfos.fr/75000-paris/legaltech-deepip-accelere-sur-l-ia-en-rachetant-patentmaker-334517.html" rel="nofollow noopener" target="_blank">PatentMaker</a></div></div><div class="acq-row"><div class="acq-head"><span class="acq-n">LegalPlace</span><span class="acq-b acq-b-strat"><span class="i18n-fr">🏭 Acheteur industriel</span><span class="i18n-en">🏭 Strategic buyer</span></span><span class="acq-c"><span class="i18n-fr">1 rachat</span><span class="i18n-en">1 acquisition</span></span><button type="button" class="op-eval" data-c="LegalPlace" data-h="" data-i="" data-u=""><span class="i18n-fr">⚡ Évaluer</span><span class="i18n-en">⚡ Evaluate</span></button><div class="op-eval-panel" hidden></div></div><div class="acq-tg"><span class="i18n-fr">a racheté :</span><span class="i18n-en">acquired:</span> <a href="https://polesocietes.com/actualites/levee-de-fonds/consolidation-majeure-dans-la-legaltech-legalplace-s-offre-legalstart" rel="nofollow noopener" target="_blank">Legalstart</a></div></div><div class="acq-row"><div class="acq-head"><span class="acq-n">Silae</span><span class="acq-b acq-b-strat"><span class="i18n-fr">🏭 Acheteur industriel</span><span class="i18n-en">🏭 Strategic buyer</span></span><span class="acq-c"><span class="i18n-fr">1 rachat</span><span class="i18n-en">1 acquisition</span></span><button type="button" class="op-eval" data-c="Silae" data-h="" data-i="" data-u=""><span class="i18n-fr">⚡ Évaluer</span><span class="i18n-en">⚡ Evaluate</span></button><div class="op-eval-panel" hidden></div></div><div class="acq-tg"><span class="i18n-fr">a racheté :</span><span class="i18n-en">acquired:</span> <a href="http://direct.lemondeduchiffre.fr/a-la-une/80047-silae-s-offre-kanoon-pour-s-imposer-sur-le-marche-de-la-legaltech-rh.html" rel="nofollow noopener" target="_blank">Kanoon</a></div></div></div><p style="margin:18px 0 0"><a class="back" href="/actualites/operations/acquereurs/"><span class="i18n-fr">→ Les consolidateurs de tous les secteurs</span><span class="i18n-en">→ The consolidators across all sectors</span></a></p><aside class="cta-box"><h3><span class='i18n-fr'>Suivre chaque jour les opérations M&amp;A et levées de fonds du secteur Legal Tech.</span><span class='i18n-en'>Follow the daily M&amp;A deals and fundraisings of the Legal Tech sector.</span></h3><p><span class='i18n-fr'>Uniquement les opérations Legal Tech en France &amp; Europe, décryptées tous les jours dans une newsletter dédiée. Gratuit, désinscription en un clic.</span><span class='i18n-en'>Only Legal Tech deals in France &amp; Europe, decoded every day in a dedicated newsletter. Free, one-click unsubscribe.</span></p><a class="btn" href="https://proplace.co/newsletter/legal-tech/"><span class="i18n-fr">S'abonner à la newsletter Legal Tech →</span><span class="i18n-en">Subscribe to the Legal Tech newsletter →</span></a></aside><a class="back" href="/actualites/operations/secteur/legal-tech/"><span class="i18n-fr">← Toutes les opérations Legal Tech</span><span class="i18n-en">← All Legal Tech deals</span></a></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="on" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a><a class="" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -488,27 +644,112 @@ try{var st=document.createElement("style");st.textContent=
 "html[data-pplang=en] a.i18n-en{display:inline-block}"+
 ".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
 ".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
-".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}";
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
 document.head.appendChild(st);}catch(e){}
 var D={
- en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",dashboard:"Open dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
- fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",dashboard:"Ouvrir le dashboard",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
 };
 function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
 return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
-if(s&&s.fund_type){return {i:1,h:'<a class="cta" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(s.fund_type)+'">'+t.dashboard+"</a>"};}
+if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+var mSet="https://analysis.proplace.co/thesis/?fund="+f;
+var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
+var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
+'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
+'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
+"</div></div>";
+return {i:1,h:h};}
 return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
 function apply(lang){var t=D[lang];
 try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
 try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
 var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
 var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
 var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
-var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";location.reload();};}
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
 if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
-Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
 function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
 var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
 function go(l){
@@ -518,6 +759,11 @@ var alt=altUrl(l);
 if(alt&&alt!==here){location.href=alt;return;}
 apply(l);}
 function init(){apply(getLang());
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();</script><style>
@@ -592,26 +838,33 @@ border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
 </style><script>(function(){
 var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
 function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+// Bilingue (2026-07-16) : mêmes clé/priorités que le chrome partagé — le flux d'évaluation
+// était le dernier gros composant JS 100% FR quel que soit le choix de langue du visiteur.
+function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}
+ return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}
+function T(fr,en){return EN()?en:fr;}
 function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function ctaCal(){return '<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">'
+ +T("📅 Un deal flow personnalisé ? Planifiez un appel stratégique","📅 Want a tailored deal flow? Book a strategy call")+'</a>';}
 function verdict(res,fund){
- if(!res)return '<div class="ev-err">Évaluation indisponible.</div>';
+ if(!res)return '<div class="ev-err">'+T("Évaluation indisponible.","Evaluation unavailable.")+'</div>';
  if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
  if(res.needs_disambiguation){
   var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
    return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
-    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">Choisir →</button></div>';}).join("");
-  return '<div class="ev-r">🔀 '+esc(res.reasoning||"Plusieurs sociétés correspondent — choisissez la bonne :")+'</div>'+(cs||'<div class="ev-fine">Aucun candidat — précisez l’URL exacte.</div>');
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">'+T("Choisir →","Choose →")+'</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||T("Plusieurs sociétés correspondent — choisissez la bonne :","Several companies match — pick the right one:"))+'</div>'+(cs||'<div class="ev-fine">'+T("Aucun candidat — précisez l’URL exacte.","No candidate — provide the exact URL.")+'</div>');
  }
  var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
- var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">📊 Analyse</div>');
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">'+T("📊 Analyse","📊 Analysis")+'</div>');
  if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
- if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">→ Lancer le mémo dans votre dashboard</a>'; }
- else{ o+='<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>'; }
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">'+T("→ Lancer le mémo dans votre dashboard","→ Launch the memo in your dashboard")+'</a>'; }
+ else{ o+=ctaCal(); }
  return o;
 }
 function run(panel,company,fund,leadRec,logged){
  panel.dataset.fund=fund;
- panel.innerHTML='<div class="ev-load">⏳ Évaluation de '+esc(company)+" selon votre thèse "+esc(fund)+"…</div>";
+ panel.innerHTML='<div class="ev-load">'+T("⏳ Évaluation de "+esc(company)+" selon votre thèse "+esc(fund)+"…","⏳ Evaluating "+esc(company)+" against your "+esc(fund)+" thesis…")+'</div>';
  var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
  if(leadRec)body.companies[0].lead_record_id=leadRec;
  fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
@@ -620,23 +873,23 @@ function run(panel,company,fund,leadRec,logged){
 }
 function leadForm(panel,b){
  panel.innerHTML='<form class="ev-form">'
- +'<p class="ev-lbl">Demande d’analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
- +'<div class="ev-row"><input name="first_name" placeholder="Prénom" required><input name="last_name" placeholder="Nom" required></div>'
- +'<input name="email" type="email" placeholder="Email professionnel" required>'
- +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="Téléphone"></div>'
- +'<button type="submit" class="ev-submit">Recevoir l’analyse →</button>'
- +'<p class="ev-fine">Déjà client ? <a href="https://proplace.co/#login">Connectez-vous</a> pour évaluer selon VOTRE thèse.</p></form>';
+ +'<p class="ev-lbl">'+T("Demande d’analyse de","Analysis request for")+' <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="'+T("Prénom","First name")+'" required><input name="last_name" placeholder="'+T("Nom","Last name")+'" required></div>'
+ +'<input name="email" type="email" placeholder="'+T("Email professionnel","Work email")+'" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="'+T("Téléphone","Phone")+'"></div>'
+ +'<button type="submit" class="ev-submit">'+T("Recevoir l’analyse →","Get the analysis →")+'</button>'
+ +'<p class="ev-fine">'+T("Déjà client ? <a href=\"https://proplace.co/#login\">Connectez-vous</a> pour évaluer selon VOTRE thèse.","Already a client? <a href=\"https://proplace.co/#login\">Log in</a> to evaluate against YOUR thesis.")+'</p></form>';
  panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
   var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
   if(!d.email)return;
-  panel.innerHTML='<div class="ev-load">⏳ Enregistrement…</div>';
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Enregistrement…","⏳ Saving…")+'</div>';
   fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
    company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
    first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
   .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
-   panel.innerHTML='<div class="ev-ok">✅ Merci '+esc(d.first_name)+' !</div>'
-    +'<div class="ev-r">Votre analyse de <b>'+esc(b.dataset.c||b.dataset.u)+'</b> vous sera envoyée par email sous peu.</div>'
-    +'<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">📅 Un deal flow personnalisé ? Planifiez un appel stratégique</a>';});
+   panel.innerHTML='<div class="ev-ok">'+T("✅ Merci "+esc(d.first_name)+" !","✅ Thank you "+esc(d.first_name)+"!")+'</div>'
+    +'<div class="ev-r">'+T("Votre analyse de <b>"+esc(b.dataset.c||b.dataset.u)+"</b> vous sera envoyée par email sous peu.","Your analysis of <b>"+esc(b.dataset.c||b.dataset.u)+"</b> will be emailed to you shortly.")+'</div>'
+    +ctaCal();});
  };
 }
 // Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
@@ -647,7 +900,7 @@ function deeplink(){
   var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
   var host=document.querySelector("main")||document.body;
   var box=document.createElement("div");box.className="ev-deeplink";
-  box.innerHTML='<div class="ev-dl-h">⚡ Évaluation express — <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  box.innerHTML='<div class="ev-dl-h">'+T("⚡ Évaluation express —","⚡ Express evaluation —")+' <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
   host.insertBefore(box,host.firstChild);
   var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
   try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
@@ -690,7 +943,9 @@ color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;t
 .lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
 </style><script>(function(){
 var ov=document.createElement('div');ov.className='lb-ov';
-ov.innerHTML='<button class="lb-x" aria-label="Fermer">×</button><img alt=""><a class="lb-dl" download>⬇ Télécharger</a>';
+var _lbEN=false;try{var _l=localStorage.getItem('proplace_lang');
+_lbEN=_l==='en'||(!_l&&(navigator.language||'').toLowerCase().indexOf('fr')!==0);}catch(e){}
+ov.innerHTML='<button class="lb-x" aria-label="'+(_lbEN?'Close':'Fermer')+'">×</button><img alt=""><a class="lb-dl" download>'+(_lbEN?'⬇ Download':'⬇ Télécharger')+'</a>';
 document.body.appendChild(ov);
 var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
 function close(){ov.classList.remove('on');im.src='';}
@@ -704,11 +959,12 @@ document.addEventListener('click',function(e){
  e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
 });
 })();</script><style>
-/* Étoile favori (★) en tête de la cellule Société — sobre, ambre à l'état actif. */
-.op-fav{display:inline-block;vertical-align:baseline;margin:0 6px 0 0;padding:0;font-size:15px;
-line-height:1;color:var(--line);background:none;border:none;cursor:pointer;
+/* Étoile favori (★) en tête de la cellule Société — dorée dès l'état INACTIF (☆) pour être
+   repérable comme « à cliquer », pleine et vive à l'état actif (★). */
+.op-fav{display:inline-block;vertical-align:baseline;margin:0 7px 0 0;padding:0;font-size:17px;
+line-height:1;color:#d9b64a;background:none;border:none;cursor:pointer;
 transition:color .12s,transform .12s}
-.op-fav:hover{color:#e5a91c;transform:scale(1.15)}
+.op-fav:hover{color:#e5a91c;transform:scale(1.2)}
 .op-fav.on{color:#e5a91c}
 .fav-count{font-variant-numeric:tabular-nums;font-weight:800}
 /* Page /actualites/favoris/ : état vide + encart « créez votre thèse ». */
@@ -766,9 +1022,29 @@ function normU(u){return (u||"").toLowerCase().trim().replace(/[#?].*$/,"").repl
 function normN(n){return (n||"").toLowerCase().replace(/\s+/g," ").trim();}
 function keyOf(u,c){return normU(u)||normN(c);}
 function opFromBtn(b){var d=b.dataset,u=d.u||"",c=d.co||"";
- return {id:keyOf(u,c),co:c,url:u,disp:d.disp||"",ind:d.i||"",vert:d.v||"",amtD:d.amtd||"",
-  amt:parseInt(d.amt||"0",10)||0,pays:d.pays||"",paysFull:d.paysfull||"",date:d.date||"",
-  typeK:d.typek||"",typeFr:d.typefr||"",ts:Date.now()};}
+ // Le bouton ne porte plus que co+url (régime data-*) : le reste est DÉRIVÉ de la ligne
+ // .trow (data-v/date/t/amt/pays + cellules affichées). Les anciens data-* du bouton restent
+ // lus en PRIORITÉ (compat : lignes de la page /favoris reconstruites depuis localStorage).
+ var r=b.closest?b.closest(".trow"):null,rd=(r&&r.dataset)||{};
+ // Cellules Type/Date en dual-span depuis 2026-07-16 : lire le span .i18n-fr (libellé
+ // canonique FR stocké dans le favori), sinon le textContent brut (cellules mono-langue).
+ function cell(s){if(!r)return "";var e=r.querySelector(s+" .i18n-fr")||r.querySelector(s);
+  var v=e?e.textContent.trim():"";return v==="—"?"":v;}
+ // Headline : sous-ligne .th (co présent) SINON le titre-lien du strong (op sans société).
+ var hd=r?(r.querySelector(".tco .th a:not(.tm-mem)")||r.querySelector(".tco strong a")):null;
+ var pe=r?r.querySelector(".tpays"):null;
+ var vert=d.v||rd.v||"";
+ return {id:keyOf(u,c),co:c,url:u,
+  disp:d.disp||(hd?hd.textContent.trim().slice(0,200):""),
+  ind:d.i||vert,vert:vert,
+  amtD:d.amtd||cell(".tamt"),
+  amt:parseInt(d.amt||rd.amt||"0",10)||0,
+  pays:d.pays||rd.pays||"",
+  paysFull:d.paysfull||(pe?(pe.getAttribute("title")||""):""),
+  date:d.date||(rd.date||"").slice(0,10),
+  typeK:d.typek||rd.t||"",
+  typeFr:d.typefr||cell(".ttype"),
+  ts:Date.now()};}
 function idx(a,id){for(var i=0;i<a.length;i++)if(a[i].id===id)return i;return -1;}
 function paint(){var a=read(),ids={};a.forEach(function(o){ids[o.id]=1;});
  [].slice.call(document.querySelectorAll(".op-fav")).forEach(function(b){
