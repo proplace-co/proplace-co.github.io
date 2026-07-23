@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="stelogy"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-23T10:02:18Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="stelogy"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-23T11:35:52Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -313,6 +313,12 @@ a.cb-pill.cb-open:hover{background:#0f4c2e;border-color:#0f4c2e}
 .cb-whyf textarea{flex:1;font-family:inherit;font-size:13px;padding:7px 10px;border:1px solid #d9e0e8;border-radius:8px;min-height:44px;resize:vertical}
 .cb-whyf button{font-family:inherit;font-size:12px;font-weight:700;background:#0f1f33;color:#fff;border:none;border-radius:8px;padding:9px 12px;cursor:pointer}
 .cb-whyf button:hover{background:#243755}
+/* v116 (retour CEO 23/07) — le mini-champ « pourquoi ? » (.cb-whyf) est inséré DANS la
+   rangée de pouces (.cb-act-mini) ; la règle `.cb-act-mini button` (fond gris clair, MÊME
+   spécificité mais plus bas dans le fichier) écrasait le fond navy du bouton « Envoyer » →
+   texte blanc sur gris = illisible. On rétablit avec une spécificité supérieure (.cb-act …). */
+.cb-act .cb-whyf button{background:#0f1f33;color:#fff;border:none}
+.cb-act .cb-whyf button:hover{background:#243755}
 /* Hypothèse de stratégie EN TÊTE : le point de départ de la sélection, corrigeable
    par le dirigeant AVANT de regarder les cibles (il s'investit → il veut la suite). */
 .cb-hyp{border:1px solid #b0d4c0;background:#f7fcf9;border-radius:10px;padding:15px 17px;margin:0 0 18px}
@@ -3517,15 +3523,14 @@ gap:8px;flex:0 0 auto;width:auto;min-width:0}
    (.cb-uh-links .cb-uh-ln) + l'ordre l'emportent sur le display:none. */
 .cb-density-table .cb-urow:not(.cb-open) .cb-uh-links{display:inline-flex;gap:4px;flex:0 0 auto}
 .cb-density-table .cb-urow:not(.cb-open) .cb-uh-links .cb-uh-ln{display:inline-flex;width:19px;height:19px;font-size:9.5px;border-radius:5px}
-/* ═══ (retour CEO 23/07) — MODE LIGNE : les POUCES 👍/👎 de l'en-tête RESTENT visibles ═══
-   La liste de masquage ci-dessus cachait .cb-act-mini pour gagner de la place ; le CEO veut
-   pouvoir juger (et, au clic sur 📝, noter) SANS déplier la ligne — un gain de temps réel.
+/* ═══ (retour CEO 23/07) — MODE LIGNE : les POUCES 👍/👎 visibles À DROITE, après les notes ═══
+   La liste de masquage ci-dessus cachait .cb-act-mini ; le CEO veut pouvoir juger (et, au clic
+   sur 📝, noter) SANS déplier la ligne. Ils vivent désormais en FIN de colonne droite
+   (.cb-uh-r>.cb-act-mini, cf le rendu) → en mode ligne ils s'affichent à droite, après le 📝.
    Ré-exposés APRÈS la liste de masquage (spécificité 5 classes > 4 → l'ordre + la spécificité
-   tranchent) et UNIQUEMENT ceux de l'en-tête (.cb-uh-top>.cb-act-mini) : les pouces du corps
-   (.cb-verdictvote) restent dans .cb-ubody masqué. Boutons compacts, dans le cluster identité
-   (rang · pouces · nom). La note 📝 (.cb-notes) est déjà exposée juste au-dessus (v92.4). */
-.cb-density-table .cb-urow:not(.cb-open) .cb-uh-top>.cb-act-mini{display:inline-flex;gap:2px;flex:0 0 auto;margin:0;border:none;padding:0}
-.cb-density-table .cb-urow:not(.cb-open) .cb-uh-top>.cb-act-mini button{font-size:12px;padding:2px 5px;border-radius:6px;line-height:1}
+   tranchent) ; les pouces du corps (.cb-verdictvote) restent dans .cb-ubody masqué. */
+.cb-density-table .cb-urow:not(.cb-open) .cb-uh-r>.cb-act-mini{display:inline-flex;gap:2px;flex:0 0 auto;margin:0;border:none;padding:0}
+.cb-density-table .cb-urow:not(.cb-open) .cb-uh-r>.cb-act-mini button{font-size:12px;padding:2px 5px;border-radius:6px;line-height:1}
 /* ═══ (retour CEO 19/07) — MODE LIGNE : FORCER UNE SEULE LIGNE ═══
    Le débordement venait d'une REDONDANCE + de tailles trop généreuses. On coupe :
    (a) le badge de statut PRIMAIRE (« Analysé ») répète EXACTEMENT le bouton .on du
@@ -4407,4 +4412,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:96279d15a8 --></body></html>
+})();</script><!-- v:71a16e57b1 --></body></html>
