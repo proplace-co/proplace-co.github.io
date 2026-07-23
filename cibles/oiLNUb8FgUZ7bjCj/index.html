@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-23T19:05:09Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-23T19:45:43Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -2539,16 +2539,17 @@ box-shadow:0 8px 24px rgba(15,31,51,.3);pointer-events:none}
 /* ═══ v71 (F3) — « ✉ Préparer l'approche » sur les VALIDÉES : bouton navy fantôme dans la
    colonne droite, AFFICHÉ par CSS seulement quand le statut effectif est Validé (le pattern
    cb-callmini v69 : .cb-eff-valide stampée par __cbFunnelCount suit les changements live). */
-/* v117 (décision CEO 23/07, révise v112) — LE BOUTON ✉ REDEVIENT RÉSERVÉ AUX VALIDÉES :
-   « Préparer l'approche » n'a de sens qu'après le OUI (onglet Validées). Sous lui, 2
-   actions d'industrialisation (mêmes cartes) : « 📣 Créer une campagne outbound » et
-   « + Ajouter au CRM » — chacune ouvre la modal 🔌 Connecter sur SON cas d'usage
-   (cb-conn-b1 / cb-conn-b2), section surlignée. Pages OUTBOUND (prospect) : le wrap
-   reste visible sur tous les prospects (le sales pilote son pipeline depuis la carte). */
+/* v117.1 (retour CEO 23/07 soir, révise v112 ET v117) — LE BLOC ✉ + campagne + CRM +
+   stepper = UNIQUEMENT les cartes VALIDÉES, UNIQUEMENT dépliées. Plus AUCUNE exception
+   prospect (le « sur tous les prospects » de v112 noyait chaque ligne du mode ligne
+   sous 3 boutons + le stepper, y compris en Retenues — capture CEO corpdev).
+   « 📣 Créer une campagne outbound » / « + Ajouter au CRM » ouvrent la modal 🔌
+   Connecter sur LEUR cas d'usage (cb-conn-b1 / cb-conn-b2), section surlignée. */
 .cb-apprwrap{display:none;margin-top:7px}
 .cb-urow.cb-eff-valide .cb-apprwrap{display:block}
-#cb-rows-kept.cb-prospect .cb-apprwrap{display:block}
 .cb-urow.cb-eff-ecarte .cb-apprwrap{display:none}
+/* MODE LIGNE (rangée non dépliée) : jamais de bloc d'actions — la ligne reste UNE ligne. */
+.cb-density-table .cb-urow:not(.cb-open) .cb-apprwrap{display:none}
 .cb-connjump-btn{width:100%;box-sizing:border-box;font-family:inherit;font-size:12px;font-weight:700;
 padding:7px 10px;border-radius:9px;border:1px solid #c9d6e4;background:none;color:#1d3557;
 cursor:pointer;text-align:center;margin-top:5px}
@@ -2587,10 +2588,8 @@ padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;line-heig
    « A répondu / RDV / LOI / Signée ». */
 .cb-stg{display:none;flex-wrap:wrap;align-items:center;gap:4px;margin-top:6px}
 .cb-urow.cb-eff-valide .cb-stg{display:flex}
-/* v112 — sur les 2 pages OUTBOUND (prospect), le stepper est visible sur TOUS les
-   prospects en cours (pas seulement les Validées) : le sales pilote son pipeline
-   depuis la carte. Scopé #cb-rows-kept.cb-prospect → JAMAIS sur une page client. */
-#cb-rows-kept.cb-prospect .cb-stg{display:flex}
+/* v117.1 (retour CEO 23/07 soir) — l'exception v112 « stepper sur TOUS les prospects »
+   est SUPPRIMÉE : « VOTRE AVANCEMENT » n'a de sens qu'en Validées, partout. */
 /* v112.2 — RENDU PARESSEUX natif : plus de cap sur les cartes → le navigateur ne rend
    que les cartes visibles à l'écran (le reste au scroll), la page reste rapide même à
    600+ cartes. contain-intrinsic-size = hauteur placeholder (scrollbar stable). Les
@@ -2608,6 +2607,12 @@ padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;line-heig
 .cb-missive-btn:hover{background:#124a2d}
 .cb-missive-btn.alt{background:#fff;color:#185c38;border:1px solid #cfe0d5}
 .cb-missive-btn.alt:hover{background:#f1f7f3}
+/* v117.1 — croix de fermeture (persistée localStorage) + alignement vertical CENTRÉ
+   des contrôles de droite (le ▾/✕ collaient en bas de la boîte sur 2 lignes de texte). */
+.cb-missive-x{margin-left:2px;background:none;border:none;cursor:pointer;font-size:13px;
+  color:#5c7a68;flex:0 0 auto;line-height:1;padding:4px;align-self:center}
+.cb-missive-x:hover{color:#12331f}
+.cb-missive-tog{align-self:center}
 .cb-missive-tog{margin-left:2px;background:none;border:none;cursor:pointer;font-size:15px;
   color:#5c7a68;flex:0 0 auto;line-height:1;padding:4px}
 .cb-missive-mini{display:none;flex:1 1 auto;font-weight:700;color:#243b30;font-size:12.5px}
@@ -4422,4 +4427,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:8f037f02af --></body></html>
+})();</script><!-- v:84c25cf4e4 --></body></html>
