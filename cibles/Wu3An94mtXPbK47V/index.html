@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="jeece"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-23T19:05:34Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="jeece"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-23T19:46:02Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -2539,16 +2539,17 @@ box-shadow:0 8px 24px rgba(15,31,51,.3);pointer-events:none}
 /* ═══ v71 (F3) — « ✉ Préparer l'approche » sur les VALIDÉES : bouton navy fantôme dans la
    colonne droite, AFFICHÉ par CSS seulement quand le statut effectif est Validé (le pattern
    cb-callmini v69 : .cb-eff-valide stampée par __cbFunnelCount suit les changements live). */
-/* v117 (décision CEO 23/07, révise v112) — LE BOUTON ✉ REDEVIENT RÉSERVÉ AUX VALIDÉES :
-   « Préparer l'approche » n'a de sens qu'après le OUI (onglet Validées). Sous lui, 2
-   actions d'industrialisation (mêmes cartes) : « 📣 Créer une campagne outbound » et
-   « + Ajouter au CRM » — chacune ouvre la modal 🔌 Connecter sur SON cas d'usage
-   (cb-conn-b1 / cb-conn-b2), section surlignée. Pages OUTBOUND (prospect) : le wrap
-   reste visible sur tous les prospects (le sales pilote son pipeline depuis la carte). */
+/* v117.1 (retour CEO 23/07 soir, révise v112 ET v117) — LE BLOC ✉ + campagne + CRM +
+   stepper = UNIQUEMENT les cartes VALIDÉES, UNIQUEMENT dépliées. Plus AUCUNE exception
+   prospect (le « sur tous les prospects » de v112 noyait chaque ligne du mode ligne
+   sous 3 boutons + le stepper, y compris en Retenues — capture CEO corpdev).
+   « 📣 Créer une campagne outbound » / « + Ajouter au CRM » ouvrent la modal 🔌
+   Connecter sur LEUR cas d'usage (cb-conn-b1 / cb-conn-b2), section surlignée. */
 .cb-apprwrap{display:none;margin-top:7px}
 .cb-urow.cb-eff-valide .cb-apprwrap{display:block}
-#cb-rows-kept.cb-prospect .cb-apprwrap{display:block}
 .cb-urow.cb-eff-ecarte .cb-apprwrap{display:none}
+/* MODE LIGNE (rangée non dépliée) : jamais de bloc d'actions — la ligne reste UNE ligne. */
+.cb-density-table .cb-urow:not(.cb-open) .cb-apprwrap{display:none}
 .cb-connjump-btn{width:100%;box-sizing:border-box;font-family:inherit;font-size:12px;font-weight:700;
 padding:7px 10px;border-radius:9px;border:1px solid #c9d6e4;background:none;color:#1d3557;
 cursor:pointer;text-align:center;margin-top:5px}
@@ -2587,10 +2588,8 @@ padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;line-heig
    « A répondu / RDV / LOI / Signée ». */
 .cb-stg{display:none;flex-wrap:wrap;align-items:center;gap:4px;margin-top:6px}
 .cb-urow.cb-eff-valide .cb-stg{display:flex}
-/* v112 — sur les 2 pages OUTBOUND (prospect), le stepper est visible sur TOUS les
-   prospects en cours (pas seulement les Validées) : le sales pilote son pipeline
-   depuis la carte. Scopé #cb-rows-kept.cb-prospect → JAMAIS sur une page client. */
-#cb-rows-kept.cb-prospect .cb-stg{display:flex}
+/* v117.1 (retour CEO 23/07 soir) — l'exception v112 « stepper sur TOUS les prospects »
+   est SUPPRIMÉE : « VOTRE AVANCEMENT » n'a de sens qu'en Validées, partout. */
 /* v112.2 — RENDU PARESSEUX natif : plus de cap sur les cartes → le navigateur ne rend
    que les cartes visibles à l'écran (le reste au scroll), la page reste rapide même à
    600+ cartes. contain-intrinsic-size = hauteur placeholder (scrollbar stable). Les
@@ -2608,6 +2607,12 @@ padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;line-heig
 .cb-missive-btn:hover{background:#124a2d}
 .cb-missive-btn.alt{background:#fff;color:#185c38;border:1px solid #cfe0d5}
 .cb-missive-btn.alt:hover{background:#f1f7f3}
+/* v117.1 — croix de fermeture (persistée localStorage) + alignement vertical CENTRÉ
+   des contrôles de droite (le ▾/✕ collaient en bas de la boîte sur 2 lignes de texte). */
+.cb-missive-x{margin-left:2px;background:none;border:none;cursor:pointer;font-size:13px;
+  color:#5c7a68;flex:0 0 auto;line-height:1;padding:4px;align-self:center}
+.cb-missive-x:hover{color:#12331f}
+.cb-missive-tog{align-self:center}
 .cb-missive-tog{margin-left:2px;background:none;border:none;cursor:pointer;font-size:15px;
   color:#5c7a68;flex:0 0 auto;line-height:1;padding:4px}
 .cb-missive-mini{display:none;flex:1 1 auto;font-weight:700;color:#243b30;font-size:12.5px}
@@ -3762,7 +3767,7 @@ window.addEventListener("resize",closeAcct);
 window.addEventListener("scroll",onScrollAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><main class="cb-wrap cb-flow"><p class="cb-kicker" data-i18n="kicker">Prospection commerciale · un mémo d&#x27;analyse généré par prospect</p><div class="cb-h1row"><h1 class="cb-h1"><span data-i18n="h1" data-i18n-co="jeece">Prospects pour jeece</span></h1></div><div class="cb-swap"><a class="cb-swap-oth" href="https://proplace.co/cibles/Zhx4hptfCDqA58CC/">🔎 Prospects détectés</a><span class="cb-swap-cur">📚 Dossiers analysés</span></div><div class="cb-machine"><p class="cb-mach-kicker"><span data-i18n="mach_kicker">Le paramétrage de Stan, votre assistant de prospection (SDR) — réglé pour vous</span><span class="cb-mach-upd"> · <span data-i18n="updated_lbl">actualisée le</span> <span class="cb-upd-ts">23/07 à 21:05</span></span></p><div class="cb-step" id="cb-mach-hyp"><div class="cb-step-head"><span class="cb-step-n">1</span><h2 class="cb-step-h" data-i18n="hyp_title">Notre hypothèse sur votre client idéal</h2></div><p class="cb-step-sub" data-i18n="hyp_sub">Toute la prospection découle de cette hypothèse et des profils ci-dessous. Corrigez ce qui est à côté (hypothèse comme ICP) — je réaligne la machine et vous renvoie une sélection corrigée.</p><div class="cb-step-body"><div class="cb-hyp cb-hyp-flat"><p class="cb-intro">Je suis parti de l&#x27;hypothèse que vous cherchiez à convaincre des entreprises françaises — industriels, startups deeptech et PME — qui ont un besoin urgent de développement technique sur mesure (firmware, électronique embarquée, logiciel, IoT) mais dont les équipes internes ne peuvent pas l&#x27;absorber seules :</p><ul class="cb-points"><li>en ciblant des structures de 1 à 500 personnes, en France, dont la croissance ou la survie dépend d&#x27;une livraison technique qu&#x27;elles ne peuvent pas internaliser à temps</li><li>en combinant des signaux concrets — levées de fonds récentes, pressions réglementaires, cycles de prototypage ralentis — pour ne retenir que les organisations avec un besoin actif et un budget externalisable identifiable</li><li>en excluant d&#x27;emblée les ESN concurrentes, agences web et toute structure qui revend de la prestation plutôt qu&#x27;elle n&#x27;en achète</li></ul><div class="cb-hyp-act"><button type="button" id="cb-hyp-edit" data-i18n="hyp_edit_btn">✎ Corriger cette thèse</button></div><div id="cb-hyp-form" style="display:none"><p class="cb-hyp-hint" data-i18n="hyp_guide">Dites-le avec vos mots — la machine comprend les consignes libres : « visez plutôt les structures de 20 à 200 personnes », « retirez tel type d&#x27;acteur », « ajoutez tel profil »… Elle vous répond, et se recalibre dès que c&#x27;est clair.</p><div class="cb-corr-targets" id="cb-corr-targets"><span class="cb-corr-lbl" data-i18n="corr_what">Que corriger ?</span><button type="button" class="cb-corr-chip on" data-sec="hyp" data-i18n="corr_t_hyp">L&#x27;hypothèse</button><button type="button" class="cb-corr-chip" data-sec="profils" data-i18n="corr_t_profils">Les profils visés</button><button type="button" class="cb-corr-chip" data-sec="gate" data-i18n="corr_t_gate">Le crible Retenu / Écarté</button><button type="button" class="cb-corr-chip" data-sec="rubric" data-i18n="corr_t_rubric">La décision d&#x27;analyse</button></div><textarea id="cb-hyp-txt" maxlength="1200">Je suis parti de l&#x27;hypothèse que vous cherchiez à convaincre des entreprises françaises — industriels, startups deeptech et PME — qui ont un besoin urgent de développement technique sur mesure (firmware, électronique embarquée, logiciel, IoT) mais dont les équipes internes ne peuvent pas l&#x27;absorber seules :
+})();</script><main class="cb-wrap cb-flow"><p class="cb-kicker" data-i18n="kicker">Prospection commerciale · un mémo d&#x27;analyse généré par prospect</p><div class="cb-h1row"><h1 class="cb-h1"><span data-i18n="h1" data-i18n-co="jeece">Prospects pour jeece</span></h1></div><div class="cb-swap"><a class="cb-swap-oth" href="https://proplace.co/cibles/Zhx4hptfCDqA58CC/">🔎 Prospects détectés</a><span class="cb-swap-cur">📚 Dossiers analysés</span></div><div class="cb-machine"><p class="cb-mach-kicker"><span data-i18n="mach_kicker">Le paramétrage de Stan, votre assistant de prospection (SDR) — réglé pour vous</span><span class="cb-mach-upd"> · <span data-i18n="updated_lbl">actualisée le</span> <span class="cb-upd-ts">23/07 à 21:46</span></span></p><div class="cb-step" id="cb-mach-hyp"><div class="cb-step-head"><span class="cb-step-n">1</span><h2 class="cb-step-h" data-i18n="hyp_title">Notre hypothèse sur votre client idéal</h2></div><p class="cb-step-sub" data-i18n="hyp_sub">Toute la prospection découle de cette hypothèse et des profils ci-dessous. Corrigez ce qui est à côté (hypothèse comme ICP) — je réaligne la machine et vous renvoie une sélection corrigée.</p><div class="cb-step-body"><div class="cb-hyp cb-hyp-flat"><p class="cb-intro">Je suis parti de l&#x27;hypothèse que vous cherchiez à convaincre des entreprises françaises — industriels, startups deeptech et PME — qui ont un besoin urgent de développement technique sur mesure (firmware, électronique embarquée, logiciel, IoT) mais dont les équipes internes ne peuvent pas l&#x27;absorber seules :</p><ul class="cb-points"><li>en ciblant des structures de 1 à 500 personnes, en France, dont la croissance ou la survie dépend d&#x27;une livraison technique qu&#x27;elles ne peuvent pas internaliser à temps</li><li>en combinant des signaux concrets — levées de fonds récentes, pressions réglementaires, cycles de prototypage ralentis — pour ne retenir que les organisations avec un besoin actif et un budget externalisable identifiable</li><li>en excluant d&#x27;emblée les ESN concurrentes, agences web et toute structure qui revend de la prestation plutôt qu&#x27;elle n&#x27;en achète</li></ul><div class="cb-hyp-act"><button type="button" id="cb-hyp-edit" data-i18n="hyp_edit_btn">✎ Corriger cette thèse</button></div><div id="cb-hyp-form" style="display:none"><p class="cb-hyp-hint" data-i18n="hyp_guide">Dites-le avec vos mots — la machine comprend les consignes libres : « visez plutôt les structures de 20 à 200 personnes », « retirez tel type d&#x27;acteur », « ajoutez tel profil »… Elle vous répond, et se recalibre dès que c&#x27;est clair.</p><div class="cb-corr-targets" id="cb-corr-targets"><span class="cb-corr-lbl" data-i18n="corr_what">Que corriger ?</span><button type="button" class="cb-corr-chip on" data-sec="hyp" data-i18n="corr_t_hyp">L&#x27;hypothèse</button><button type="button" class="cb-corr-chip" data-sec="profils" data-i18n="corr_t_profils">Les profils visés</button><button type="button" class="cb-corr-chip" data-sec="gate" data-i18n="corr_t_gate">Le crible Retenu / Écarté</button><button type="button" class="cb-corr-chip" data-sec="rubric" data-i18n="corr_t_rubric">La décision d&#x27;analyse</button></div><textarea id="cb-hyp-txt" maxlength="1200">Je suis parti de l&#x27;hypothèse que vous cherchiez à convaincre des entreprises françaises — industriels, startups deeptech et PME — qui ont un besoin urgent de développement technique sur mesure (firmware, électronique embarquée, logiciel, IoT) mais dont les équipes internes ne peuvent pas l&#x27;absorber seules :
 - en ciblant des structures de 1 à 500 personnes, en France, dont la croissance ou la survie dépend d&#x27;une livraison technique qu&#x27;elles ne peuvent pas internaliser à temps
 - en combinant des signaux concrets — levées de fonds récentes, pressions réglementaires, cycles de prototypage ralentis — pour ne retenir que les organisations avec un besoin actif et un budget externalisable identifiable
 - en excluant d&#x27;emblée les ESN concurrentes, agences web et toute structure qui revend de la prestation plutôt qu&#x27;elle n&#x27;en achète
@@ -5010,4 +5015,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:9db97d2a15 --></body></html>
+})();</script><!-- v:b64e17a3c8 --></body></html>
