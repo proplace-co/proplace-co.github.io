@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-23T15:05:09Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-23T19:05:09Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -2539,15 +2539,22 @@ box-shadow:0 8px 24px rgba(15,31,51,.3);pointer-events:none}
 /* ═══ v71 (F3) — « ✉ Préparer l'approche » sur les VALIDÉES : bouton navy fantôme dans la
    colonne droite, AFFICHÉ par CSS seulement quand le statut effectif est Validé (le pattern
    cb-callmini v69 : .cb-eff-valide stampée par __cbFunnelCount suit les changements live). */
-/* v112 — LE BOUTON ✉ N'EST PLUS RÉSERVÉ AUX VALIDÉES. Il était masqué jusqu'au OUI :
-   sur les pages live du 20/07/2026, 85 boutons rendus (jeece) / 139 (Cerfrance) pour ~0
-   ligne validée — donc les séquences 4 touches n'étaient atteignables NULLE PART, d'où le
-   « j'ai cliqué, il ne se passe rien ». Préparer une approche est justement le geste qui
-   PRÉCÈDE la décision. Seules les ÉCARTÉES le perdent (on n'approche pas ce qu'on a rejeté).
-   Le STEPPER post-OUI, lui, reste gaté Validées : proposer « A répondu / RDV / Signée » sur
-   une carte non tranchée n'aurait aucun sens. */
-.cb-apprwrap{display:block;margin-top:7px}
+/* v117 (décision CEO 23/07, révise v112) — LE BOUTON ✉ REDEVIENT RÉSERVÉ AUX VALIDÉES :
+   « Préparer l'approche » n'a de sens qu'après le OUI (onglet Validées). Sous lui, 2
+   actions d'industrialisation (mêmes cartes) : « 📣 Créer une campagne outbound » et
+   « + Ajouter au CRM » — chacune ouvre la modal 🔌 Connecter sur SON cas d'usage
+   (cb-conn-b1 / cb-conn-b2), section surlignée. Pages OUTBOUND (prospect) : le wrap
+   reste visible sur tous les prospects (le sales pilote son pipeline depuis la carte). */
+.cb-apprwrap{display:none;margin-top:7px}
+.cb-urow.cb-eff-valide .cb-apprwrap{display:block}
+#cb-rows-kept.cb-prospect .cb-apprwrap{display:block}
 .cb-urow.cb-eff-ecarte .cb-apprwrap{display:none}
+.cb-connjump-btn{width:100%;box-sizing:border-box;font-family:inherit;font-size:12px;font-weight:700;
+padding:7px 10px;border-radius:9px;border:1px solid #c9d6e4;background:none;color:#1d3557;
+cursor:pointer;text-align:center;margin-top:5px}
+.cb-connjump-btn:hover{background:#f1f5f9;border-color:#9fb3c8}
+/* Surlignage de la carte visée dans la modal 🔌 (retiré après ~2,8 s). */
+.cb-conn-hl{outline:3px solid #15884a;outline-offset:3px;border-radius:12px}
 .cb-appr-btn{width:100%;box-sizing:border-box;font-family:inherit;font-size:12px;font-weight:700;
 padding:7px 10px;border-radius:9px;border:1px solid #c9d6e4;background:none;color:#1d3557;
 cursor:pointer;text-align:center}
@@ -4415,4 +4422,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:461a0ca61e --></body></html>
+})();</script><!-- v:8f037f02af --></body></html>
