@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="stelogy"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-24T17:43:04Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="stelogy"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-24T18:04:24Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -245,7 +245,9 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 header.pph{display:none}
 html.cb-hdrshow header.pph{display:block}
 /* Ligne kicker : texte à gauche, mini-outils à droite (EN|FR + ☰). */
-.cb-kickrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 10px}
+/* v119.2 (retour CEO) — les outils EN|FR + ☰ se posent JUSTE À DROITE du kicker
+   (flex-start), plus jamais poussés à l'autre bout de la ligne. */
+.cb-kickrow{display:flex;align-items:center;justify-content:flex-start;gap:12px;margin:0 0 10px}
 .cb-kickrow .cb-kicker{margin:0}
 .cb-kick-tools{display:inline-flex;align-items:center;gap:4px;flex:0 0 auto}
 .cb-kt-btn{font-family:inherit;font-size:9.5px;font-weight:800;letter-spacing:.04em;color:#8a99aa;
@@ -1902,9 +1904,9 @@ padding:6px 11px;border:1px solid #d5dde6;border-radius:10px;background:#fff;col
    recherche reste ALIGNÉE sur la ligne des icônes, le logo se pose clairement au-dessus. */
 .cb-h1-searchcol{position:relative;display:inline-flex;align-items:center;flex:0 1 148px;min-width:118px}
 .cb-h1-searchcol .cb-h1-search{flex:1 1 auto;width:100%}
-/* v119.1 (retour CEO) — le logo vit À GAUCHE au-dessus du kicker, sur sa propre ligne. */
-.cb-h1-logo-top{display:block;max-height:36px;max-width:160px;object-fit:contain;margin:0 0 10px}
-@media(max-width:620px){.cb-h1-logo-top{max-height:28px}.cb-kickrow{flex-wrap:wrap}}
+/* v119.2 (retour CEO) — RETOUR v118.2 : logo centré au-dessus de la barre de recherche. */
+.cb-h1-logo{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);max-height:38px;max-width:160px;object-fit:contain;display:block}
+@media(max-width:620px){.cb-kickrow{flex-wrap:wrap}}
 @media(max-width:620px){.cb-h1-search{flex:1 1 100%;order:5}.cb-h1-searchcol{flex:1 1 100%;order:5}}
 /* v86 (R3) — « Actualiser » devient ICÔNE SEULE (🔄, libellé en title/aria — accessibilité
    conservée, _refresh_js pilote le title par état) : fait la place à la manette « ⚡ [−] N
@@ -4459,4 +4461,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:e2361bd7ce --></body></html>
+})();</script><!-- v:423f21911d --></body></html>
