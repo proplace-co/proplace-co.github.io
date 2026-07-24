@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="profund"><meta name="cb-source" content="sourced"><meta name="cb-built" content="2026-07-24T14:45:15Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="profund"><meta name="cb-source" content="sourced"><meta name="cb-built" content="2026-07-24T17:45:33Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -1732,7 +1732,10 @@ text-decoration:underline;text-underline-offset:2px}
    .cb-ulist=display:contents, main/body/html sans overflow scrollable ; overflow-x:clip mobile
    ne crée pas de conteneur de défilement — vérifié en vrai Chrome.) */
 .cb-tabbar{display:flex;align-items:center;gap:6px 8px;flex-wrap:wrap;margin:2px 0 0;
-padding:9px 2px 9px;border-bottom:1px solid #e6eaef;position:-webkit-sticky;position:sticky;top:60px;z-index:30;background:#fff;scroll-margin-top:60px}
+padding:9px 2px 9px;border-bottom:1px solid #e6eaef;position:-webkit-sticky;position:sticky;top:0;z-index:30;background:#fff;scroll-margin-top:0}
+/* v119.1 — le décalage 60px ne vaut QUE si le header Proplace est révélé (☰) :
+   masqué par défaut, la barre colle en HAUT (fini la bande vide au scroll). */
+html.cb-hdrshow .cb-tabbar{top:60px;scroll-margin-top:60px}
 .cb-tabbar .cb-fchips{flex-wrap:nowrap}
 /* v38.3 — bouton « ⚙ Vos critères » à gauche de la ligne d'onglets (noir, comme avant) */
 /* v38.5 (point 5) — « Vos critères » PLUS GROS et plus large */
@@ -1899,9 +1902,9 @@ padding:6px 11px;border:1px solid #d5dde6;border-radius:10px;background:#fff;col
    recherche reste ALIGNÉE sur la ligne des icônes, le logo se pose clairement au-dessus. */
 .cb-h1-searchcol{position:relative;display:inline-flex;align-items:center;flex:0 1 148px;min-width:118px}
 .cb-h1-searchcol .cb-h1-search{flex:1 1 auto;width:100%}
-/* v118.2 (retour CEO) — logo REMONTÉ (12px au lieu de 5) et CENTRÉ sur la barre de
-   recherche (left:50% + translateX) : plus d'effet tassé contre l'input. */
-.cb-h1-logo{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);max-height:30px;max-width:132px;object-fit:contain;display:block}
+/* v119.1 (retour CEO) — le logo vit À GAUCHE au-dessus du kicker, sur sa propre ligne. */
+.cb-h1-logo-top{display:block;max-height:36px;max-width:160px;object-fit:contain;margin:0 0 10px}
+@media(max-width:620px){.cb-h1-logo-top{max-height:28px}.cb-kickrow{flex-wrap:wrap}}
 @media(max-width:620px){.cb-h1-search{flex:1 1 100%;order:5}.cb-h1-searchcol{flex:1 1 100%;order:5}}
 /* v86 (R3) — « Actualiser » devient ICÔNE SEULE (🔄, libellé en title/aria — accessibilité
    conservée, _refresh_js pilote le title par état) : fait la place à la manette « ⚡ [−] N
@@ -4456,4 +4459,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:40f9b8c6b6 --></body></html>
+})();</script><!-- v:3a42e82c3b --></body></html>
