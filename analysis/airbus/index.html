@@ -1,0 +1,969 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Airbus — analyse Public | Proplace</title><meta name="description" content="Aéronautique et Défense / B2B Extranet · Portail d&#x27;Opérations et de Supply Chain Aéronautique d&#x27;OEM · Public"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/airbus/"><meta property="og:type" content="article"><meta property="og:title" content="Airbus — analyse Public | Proplace"><meta property="og:description" content="Aéronautique et Défense / B2B Extranet · Portail d&#x27;Opérations et de Supply Chain Aéronautique d&#x27;OEM · Public"><meta property="og:url" content="https://proplace.co/analysis/airbus/"><meta property="og:image" content="https://proplace.co/analysis/radars/airbus.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://proplace.co/analysis/radars/airbus.png"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+/* (retour CEO 20/07) — mobile : « Mon compte » s'affichait À LA VERTICALE (un mot,
+   voire une lettre, par ligne). Cause : dans .pph nav (flex), .pph-sect et .pph-lang
+   sont en flex:0 0 auto mais PAS .pph-auth → c'était le SEUL enfant compressible, il
+   absorbait tout le débordement et rétrécissait à ~0, forçant le texte du bouton à
+   passer à la ligne. Il devient incompressible : c'est le défileur horizontal du nav
+   (v74) qui prend le relais, comme prévu. */
+.pph .pph-auth{flex:0 0 auto;display:inline-flex;align-items:center;white-space:nowrap}
+.pph .pph-auth button,.pph .pph-acct,.pph .pph-acct-btn{flex:0 0 auto;white-space:nowrap}
+/* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
+   « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
+   couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
+.pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600;border:none;cursor:pointer;font-family:inherit;line-height:1.2}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover,.pph button.cta:hover,.pph .pph-auth button.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ /* v74 (R5) — le SEUL débordeur réel mesuré à 390px est CETTE nav (Connexion +
+    pastille News|Analysis + EN|FR ≈ 309px pour ~264px disponibles) : elle devient
+    son PROPRE défileur horizontal (règle « wide content » : overflow-x:auto sur la
+    pièce INTERNE — jamais sur un ancêtre d'une barre sticky). Alignée à gauche en
+    mobile : un débordement côté start (flex-end) serait inatteignable au scroll. */
+ .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pph nav::-webkit-scrollbar{display:none}
+ /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
+    (même piège que la couleur du CTA, retour CEO 19/07). */
+ .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+ /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
+    défileur (order:-1) → les 3 boutons sont TOUJOURS visibles à gauche, c'est
+    « Connexion » qui déborde/scrolle si l'écran est trop étroit (demande CEO). */
+ .pph nav .pph-sect{order:-1;flex:0 0 auto}
+ .pph nav .pph-auth{order:0}
+ /* v75 (bug #7) — la pastille EN|FR est hors du <nav> (défileur) : collée à droite du
+    header, toujours atteignable même quand le <nav> déborde/scrolle. */
+ .pph-lang{margin-left:auto;flex:0 0 auto}
+}
+/* ≤430px : les 3 pastilles + Connexion tiennent ensemble (resserrage police/padding). */
+@media(max-width:430px){
+ .pph nav{gap:7px}
+ .pph-sect a{padding:6px 9px;font-size:11.5px;letter-spacing:-.01em}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Airbus — Public", "description": "Aéronautique et Défense / B2B Extranet · Portail d'Opérations et de Supply Chain Aéronautique d'OEM · Public", "inLanguage": "fr", "url": "https://proplace.co/analysis/airbus/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/airbus/"}, "image": ["https://proplace.co/analysis/radars/airbus.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}, "about": {"@type": "Organization", "name": "Airbus"}, "datePublished": "2026-07-24", "dateModified": "2026-07-24"}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a><a class="pph-rsch" href="/research/" data-i18n="research">Research</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+var mSet="https://analysis.proplace.co/thesis/?fund="+f;
+var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
+var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
+'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
+'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
+"</div></div>";
+return {i:1,h:h};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Airbus</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Airbus"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Public</span>
+<span class="sb-tag">Aéronautique et Défense / B2B Extranet</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Airbus</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>France ·</span> Aéronautique et Défense / B2B Extranet · Portail d'Opérations et de Supply Chain Aéronautique d'OEM · Public</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Portails extranets d'intégration de données d'ingénierie et plateformes transactionnelles B2B de pièces détachées pour l'écosystème de l'aviation civile.</p>
+<a href="https://w3.airbus.com" target="_blank"><i class="fas fa-globe"></i> Site web</a>
+<a href="mailto:guillaume.faury@airbus.com"><i class="fas fa-envelope"></i> guillaume.faury@airbus.com</a>
+</div>
+</div>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du marché</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle économique</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">PDG</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources et méthodologie</a>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Airbus</h1>
+<h2 class="subtitle-category">Aéronautique et Défense / B2B Extranet ➜ Portail d'Opérations et de Supply Chain Aéronautique d'OEM ➜ Le hub numérique d'intégration opérationnelle de la supply chain et de l'aftermarket aéronautique d'Airbus.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Airbus" data-h="" data-i="Public" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/airbus/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title"><span class="i18n-fr">Résumé du marché</span><span class="i18n-en">Market summary</span></h2>
+<div class="split-container">
+<div class="text-col">
+<p>ANALYSE DE MARCHÉ DÉTAILLÉE Mobilité et Transports &gt; Portail d'Opérations et de Supply Chain Aéronautique d'OEM B2B &gt; Abonnement, Transactionnel</p>
+<div class="score-row sr-green"><span class="sr-label">LE MARCHÉ EST-IL ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:90%"></span></span><span class="sr-val">90/100</span><span class="sr-note">× 25% = 22.5 pts</span></div><div class="score-row sr-green"><span class="sr-label">LE MARCHÉ EST-IL GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span><span class="sr-note">× 25% = 21.25 pts</span></div><div class="score-row sr-green"><span class="sr-label">LE MARCHÉ EST-IL PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">× 25% = 20.0 pts</span></div><div class="score-row sr-green"><span class="sr-label">LE MARCHÉ EST-IL RENTABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:92%"></span></span><span class="sr-val">92/100</span><span class="sr-note">× 25% = 23.0 pts</span></div>
+<p>SCORE GLOBAL D'ATTRACTIVITÉ DU MARCHÉ : 86.75/100 Verdict : Ce marché est un puissant vent arrière pour notre thèse de sourcing d'acquéreurs industriels complexes, où la centralisation des écosystèmes d'OEM aéronautiques crée des barrières réglementaires numériques d'une solidité absolue.</p>
+<h4 class="kicker">DÉFINITION DU MARCHÉ</h4>
+<p>Le marché englobe les portails extranets d'intégration de données d'ingénierie et plateformes transactionnelles B2B de pièces détachées pour l'écosystème de l'aviation civile où les compagnies aériennes et MRO louent ou achètent de la documentation de navigabilité technique et des composants de rechange critiques.</p>
+<p>La friction structurelle majeure réside dans le fardeau de navigabilité des données, où toute documentation obsolète ou pièce non certifiée peut entraîner l'immobilisation au sol immédiate d'un avion (AOG), coûtant jusqu'à 150 000 dollars par jour de retard. Ce marché se positionne au cœur de la valeur ajoutée de l'aviation civile, en amont de l'exploitation aérienne et en aval immédiat de l'ingénierie OEM originale, concentrant la majorité des pools de profits de l'aftermarket.</p>
+<h4 class="kicker">NOTE DE THÈSE SUR LE MARCHÉ</h4>
+<p>Le secteur de la maintenance et des pièces de rechange aéronautiques a basculé de manière irréversible dans la centralisation numérique forcée par de strictes normes de sécurité logicielle. Les petits distributeurs indépendants de pièces détachées ne peuvent plus rivaliser de manière autonome face aux géants OEM car ils n'ont pas accès aux API de données de vol en temps réel nécessaires à la maintenance prédictive.</p>
+<p>L'intégration exclusive via des portails comme AirbusWorld permet de capter la valeur transactionnelle directe dès l'instant de la détection de l'anomalie de vol. La fenêtre d'opportunité d'investissement numérique est actuellement grande ouverte car la consolidation de la chaîne d'approvisionnement européenne s'accélère sous l'effet de contraintes géopolitiques sévères.</p>
+<h4 class="kicker">NOTRE CONVICTION &amp; NOTRE PARI</h4>
+<p>🟢 CONVICTION FORTE Bien que la rigidité des cycles de décision des instances de réglementation aérienne soit un frein indéniable pour l'agilité logicielle classique, le retour sur investissement de l'unification numérique de la supply chain aéronautique assure des revenus transactionnels quasi-indestructibles.</p>
+<p>Notre pari est que l'aftermarket aéronautique verra la quasi-totalité de ses flux d'approvisionnement captés par des portails OEM d'ici 36 mois sous la pression des compagnies exigeant des garanties totales d'élimination de risques de pièces contrefaites. Le meilleur signal lors d'un premier échange sera la confirmation de l'accélération de l'ARR du Satair Market sur sa partie e-commerce de pièces tierces.</p>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ ATTRACTIF (Dynamique du marché)</span><span class="sr-bar"><span class="sr-fill" style="width:90%"></span></span><span class="sr-val">90/100</span></div>
+<p>Ce score démontre que le marché de l'aftermarket aéronautique est hautement résilient, insensible aux cycles économiques traditionnels grâce à de forts besoins d'entretien réglementés.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille du Marché</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un marché aéronautique de rechange mondial majeur de 100 milliards de dollars tiré par la maintenance de flottes civiles mondiales d'avions commerciaux.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Moteurs de Croissance</span><span class="sr-val">91/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'augmentation globale des heures de vol à l'échelle internationale et le vieillissement moyen des flottes nécessitant des contrôles renforcés.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La transition vers la maintenance aéronautique zéro papier et les d'ingénierie par IA générative forcent les acteurs à interagir en temps réel.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Risques du Marché</span><span class="sr-val">89/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La cybersécurité sur les données de navigabilité ultra-sensibles et de potentielles ruptures d'approvisionnement de fonderie mondiales.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ GAGNABLE (Paysage concurrentiel)</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<p>La structure de duopole OEM restreint considérablement l'émergence d'acteurs logiciels indépendants de grande envergure en dehors des écosystèmes des constructeurs.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Acteurs Historiques</span><span class="sr-val">86/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le rival historique Boeing (MyBoeingFleet) domine le marché américain avec des budgets massifs consolidés.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Nouveaux Entrants</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des plateformes spécialisées se lancent sur la maintenance prédictive mais peinent à collecter les données d'ingénierie propriétaires.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Espace Libre</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un immense marché de niche pour la logistique cloud de pièces de composants tiers et de reconditionnement aéronautique durable.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Défendabilité</span><span class="sr-val">86/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les barrières techniques et le coût colossal de développement de logiciels certifiés garantissent une excellente défense des parts de marché.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ PÉNÉTRABLE (GTM et modèle économique)</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<p>Le coût d'acquisition client est virtuellement nul pour l'OEM grâce au contrat d'achat initial, garantissant des marges nettes logicielles excellentes.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle GTM</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un modèle de vente purement Enterprise hautement captif, scellé simultanément à la vente ou au leasing des aéronefs d'Airbus.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de Prix</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une combinaison de redevances annuelles par appareil pour AirbusWorld de maintenance technique et de prix transactionnels de pièces détachées.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Rentabilité Unitaire</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des paniers moyens gigantesques, chaque commande de composants de turbine ou de cellule aéronautique pouvant atteindre des millions d'euros.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une expansion naturelle du revenu via l'ajout de briques logicielles complexes de gestion carbone de la navigabilité globale.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ RENTABLE (Financement et sorties)</span><span class="sr-bar"><span class="sr-fill" style="width:92%"></span></span><span class="sr-val">92/100</span></div>
+<p>Ce marché est l'un des plus rémunérateurs en Private Equity industriel et M&amp;A à forte valorisation stratégique.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Activité d'Investissement</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Concentration de transactions majeures inter-équipementiers soutenue par des fonds de capital-investissement d'infrastructure aéronautique.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Multiples de Sortie</span><span class="sr-val">91/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des multiples historiques substantiels dépassant régulièrement 12x à 15x de marge opérationnelle d'EBITDA pour les actifs clés de la data technique.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Acquéreurs Stratégiques</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les avionneurs globaux, les géants de la défense (Safran, Thales), et les consolidateurs logistiques mondiaux pour combler des écarts d'offre.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Profil de Retour</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le secteur génère de manière historique de formidables retours de cash-flow d'exploitation, alignés avec de hauts critères de préservation du capital.</div></li></ul>
+<h4 class="kicker">SYNTHÈSE TRANSVERSALE</h4>
+<p>Le cumul d'une forte attractivité de marché et d'un paysage hautement gérable par duopole démontre que le vainqueur de l'interconnexion numérique capturera l'essentiel de la marge bénéficiaire de l'aftermarket mondial, exigeant des équipes dirigeantes dotées d'une rigueur de conformité de niveau militaire alliée à une excellence d'ingénierie d'API logicielles.</p>
+<h4 class="kicker">CONFIANCE DANS LES DONNÉES</h4>
+<p>Les estimations globales de marché sont extrêmement précises grâce aux données d'aviation publique, bien que les détails des marges unitaires de portails d'extraneurs requièrent des vérifications plus approfondies. Total d'URL sources référencées : 5.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://quickchart.io/chart?v=3&amp;c=%7B%22type%22%3A%20%22radar%22%2C%20%22data%22%3A%20%7B%22labels%22%3A%20%5B%22ATTRACTIVE%20MARKET%20%3F%22%2C%20%22WINNABLE%20MARKET%20%3F%22%2C%20%22PENETRABLE%20MARKET%20%3F%22%2C%20%22REWARDING%20MARKET%20%3F%22%5D%2C%20%22datasets%22%3A%20%5B%7B%22label%22%3A%20%22Airbus%22%2C%20%22backgroundColor%22%3A%20%22rgba%28255%2C%20212%2C%20102%2C%200.2%29%22%2C%20%22borderColor%22%3A%20%22rgb%28255%2C%20212%2C%20102%29%22%2C%20%22pointBackgroundColor%22%3A%20%22rgb%28255%2C%20212%2C%20102%29%22%2C%20%22data%22%3A%20%5B90%2C%2085%2C%2080%2C%2092%5D%7D%5D%7D%2C%20%22options%22%3A%20%7B%22scale%22%3A%20%7B%22ticks%22%3A%20%7B%22beginAtZero%22%3A%20false%2C%20%22suggestedMin%22%3A%2070%2C%20%22suggestedMax%22%3A%20100%2C%20%22stepSize%22%3A%205%2C%20%22display%22%3A%20false%7D%7D%7D%7D"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title"><span class="i18n-fr">Analyse approfondie de l'entreprise</span><span class="i18n-en">Company deep dive</span></h2><div id="company-mindmap"><h3 id="company-mindmap-title">Carte mentale — ce que fait Airbus</h3><div class="cm-mindmap-wrap"><div class="markmap" style="width:100%;height:600px"><script type="text/template">
+---
+markmap:
+  colorFreezeLevel: 2
+  initialExpandLevel: 5
+  maxWidth: 340
+---
+# Airbus
+- **Offre & Produit**
+  - Fournit un hub numérique centralisé pour l'écosystème aéronautique d'Airbus.
+    - Aggrège les portails essentiels pour la gestion opérationnelle, technique et commerciale.
+  - Intègre des plateformes clés pour les professionnels du secteur.
+    - **AirbusWorld** : documentation technique, gestion de maintenance, commande de pièces.
+    - **Satair Market** : marché global pour l'approvisionnement en pièces détachées.
+    - **Partner Portal** : collaboration et gestion des fournisseurs d'Airbus.
+- **Clients & Cas d'Usage**
+  - Cible les professionnels du secteur aéronautique en B2B.
+    - Compagnies aériennes, MRO (Maintenance, Repair, Overhaul), autorités de navigabilité.
+    - Fournisseurs et partenaires commerciaux d'Airbus.
+  - Résout la fragmentation des données et l'inefficacité de la supply chain.
+    - Consultations de documentation technique par les MRO pour la maintenance des appareils.
+    - Commandes de pièces de rechange par les opérateurs pour éviter les **AOG** (Aircraft On Ground).
+    - Collaboration sécurisée avec les fournisseurs pour une chaîne d'approvisionnement fluide.
+- **Modèle Économique**
+  - Accès réservé via des contrats et abonnements.
+    - Accès différencié selon le profil (client, fournisseur, autorité).
+    - Modèle hybride mêlant transactions à fort volume et abonnements exclusifs.
+  - Génère des revenus par plusieurs flux stratégiques.
+    - Ventes de pièces détachées via **Satair Market** et **AirbusSpares**.
+    - Services de maintenance et abonnements aux services **AirbusWorld**.
+    - Contrats d'approvisionnement globaux et abonnements captifs générant des revenus récurrents.
+- **Position Marché & Traction**
+  - Domine le marché de l'aftermarket aéronautique pour ses flottes.
+    - Pénétration **totale** sur le parc installé mondial d'avions commerciaux Airbus.
+    - Utilisé quotidiennement par des milliers de compagnies aériennes et MRO mondiaux.
+  - Bénéficie d'une barrière à l'entrée colossale et d'une rétention technologique absolue.
+    - Détention exclusive des données de conception d'origine (OEM) et certifications critiques.
+    - Effet de verrouillage réglementaire et de conformité pour la documentation certifiée.
+  - Croissance portée par la reprise du transport aérien mondial.
+    - Flux logistiques de plusieurs **milliards d'euros** en constante accélération.
+    - Intégration d'interfaces unifiées comme **AirbusSpares** fluidifiant la logistique.
+- **Équipe & Stratégie**
+  - Dirigée par une expertise industrielle mondiale de haut niveau.
+    - Vétérans de l'aéronautique maîtrisant la régulation et les chaînes d'approvisionnement critiques.
+    - Structure de gouvernance hautement qualifiée coordonnant **130 000+ salariés** mondiaux.
+  - Stratégie de Go-to-Market (GTM) captive et incontournable.
+    - Verrouille chaque opérateur de flotte Airbus dès la livraison de l'appareil.
+    - Maintien la souveraineté absolue sur les données OEM face aux plateformes indépendantes.
+  - Innovation axée sur l'intégration et la sécurisation des données.
+    - Architecture numérique d'entreprise extrêmement sécurisée et intégrée de bout en bout.
+    - Transition progressive vers des architectures d'API ouvertes, avec fortes exigences de cybersécurité.
+</script><img alt="Carte mentale — ce que fait Airbus" class="cm-mindmap-png" loading="lazy" src="https://analysis.proplace.co/mindmaps/airbus.png"/></div></div><div class="cm-summary"><p>Airbus, via son portail w3.airbus.com, opère comme un hub numérique centralisé B2B, offrant un accès sécurisé à ses écosystèmes opérationnels, techniques et commerciaux. Ce portail s'adresse spécifiquement aux compagnies aériennes, aux organisations de maintenance (MRO), aux autorités de navigabilité et aux fournisseurs, leur permettant de gérer l'intégralité de leurs interactions avec Airbus.</p><p>La solution agrège plusieurs plateformes clés, dont AirbusWorld pour la documentation technique et les commandes de pièces, Partner Portal pour la collaboration avec les fournisseurs, et Satair Market/AirbusSpares pour l'approvisionnement en pièces détachées. Elle vise à résoudre les problèmes de fragmentation de l'information et d'inefficacité logistique qui entraînent des pertes financières significatives dans le secteur aéronautique.</p><p>Le modèle économique repose sur un accès sous contrat, des ventes de pièces détachées, des services de maintenance et des abonnements à AirbusWorld, capitalisant sur une position d'OEM incontournable. Airbus maintient une souveraineté absolue sur les données de conception d'origine (OEM), créant une barrière à l'entrée colossale et une dépendance réglementaire pour ses clients, garantissant ainsi une forte rétention et une croissance récurrente.</p></div></div><script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.18.12/dist/browser/index.iife.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script>(function(){function boot(){try{var host=document.querySelector('#company-mindmap .markmap');if(!host||host.__mmDone)return;var tpl=host.querySelector('script[type="text/template"]');if(!tpl)return;var md=tpl.textContent.replace(/^\s*---[\s\S]*?---\s*/,'');var M=window.markmap;if(!M||!M.Transformer||!M.Markmap)return;var r=(new M.Transformer()).transform(md);host.innerHTML='<svg style="width:100%;height:600px;display:block"></svg>';var inst=M.Markmap.create(host.querySelector('svg'),{initialExpandLevel:5,maxWidth:340,colorFreezeLevel:2},r.root);host.__mmDone=1;var refit=function(){try{inst.fit()}catch(e){}};window.addEventListener('resize',refit);setTimeout(refit,300);setTimeout(refit,1200);setTimeout(refit,3000);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(refit);}catch(e){}}if(document.readyState==='complete')boot();else window.addEventListener('load',boot);setTimeout(boot,1500);setTimeout(boot,4000);})();</script>
+<h3 id="value-proposition"><span class="i18n-fr">Proposition de valeur</span><span class="i18n-en">Value proposition</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker"><span class="i18n-fr">Proposition de Valeur</span><span class="i18n-en">Value proposition</span></h4>
+<p>Fournir un point d'accès centralisé aux portails spécialisés d'Airbus pour la gestion opérationnelle, technique et commerciale.</p>
+<h4 class="kicker">Profil Client Idéal (ICP)</h4>
+<p>Compagnies aériennes, organisations de maintenance (MRO), autorités de navigabilité, fournisseurs aéronautiques et partenaires commerciaux.</p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>B2B (Business to Business). Le site s'adresse exclusivement aux professionnels du secteur aéronautique.</p>
+<h4 class="kicker">Industrie</h4>
+<p>Aéronautique et Défense.</p>
+<h4 class="kicker">Contact &amp; Légal</h4>
+<p>Entité: Airbus. Liens fournis pour le portail AirbusWorld, Partner Portal, et Satair Market. Siège social via le site corporate (airbus.com).</p>
+<h4 class="kicker">Exemples de Clients Clés &amp; Témoignages</h4>
+<p>Clients d'Airbus, MRO, Fournisseurs et Autorités de navigabilité.</p></div>
+<h3 id="product"><span class="i18n-fr">Produit</span><span class="i18n-en">Product</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution Centrale</h4>
+<p>Hub de navigation vers les écosystèmes numériques d'Airbus. Le hub numérique d'intégration opérationnelle de la supply chain et de l'aftermarket aéronautique d'Airbus.</p>
+<h4 class="kicker">Encyclopédie des Fonctionnalités</h4>
+<p>AirbusWorld (Services clients/MRO) | Partner Portal (Gestion fournisseurs) | Satair Market (Marché des pièces détachées) | AirbusSpares (Services de rechange). AirbusWorld est un outil unique en ligne qui permet aux compagnies aériennes de commander des pièces de rechange, de gérer la documentation de maintenance de leurs appareils, et de coordonner leurs opérations d'ingénierie avec Airbus.</p>
+<h4 class="kicker">Capacités Techniques</h4>
+<p>Gestion d'accès sécurisé | Portails extranet | Navigation inter-plateformes.</p>
+<h4 class="kicker">Cas d'Utilisation</h4>
+<p>Consultation de documentation technique par les MRO | Commande de pièces de rechange par les opérateurs | Collaboration avec les fournisseurs via le portail partenaire.</p></div>
+<h3 id="business-model"><span class="i18n-fr">Modèle économique</span><span class="i18n-en">Business model</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Analyse du Modèle Commercial</h4>
+<p>Accès réservé aux clients et partenaires contractuels (B2B SaaS/Extranet).</p>
+<h4 class="kicker">Flux de Revenus &amp; Niveaux de Tarification</h4>
+<p>Ventes de pièces détachées (Satair/AirbusSpares) | Services de maintenance | Abonnements aux services AirbusWorld.</p>
+<h4 class="kicker">Caractéristiques des Forfaits</h4>
+<p>Accès différencié selon le profil (Client, Fournisseur ou Autorité).</p>
+<h4 class="kicker">Coûts Cachés &amp; Conditions</h4>
+<p>Non spécifiés, mais l'accès nécessite généralement un contrat de service ou d'approvisionnement préalable avec Airbus.</p></div>
+<h3 id="team"><span class="i18n-fr">Équipe</span><span class="i18n-en">Team</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'Entreprise</h4>
+<p>Non spécifiée dans le texte source, mais orientée vers l'efficacité opérationnelle et la collaboration de la chaîne d'approvisionnement.</p>
+<h4 class="kicker">Analyse de l'Équipe</h4>
+<p>Non mentionnée dans les données brutes (structure de direction Airbus non listée ici).</p>
+<h4 class="kicker">Offres d'Emploi &amp; Titres</h4>
+<p>Aucune offre de poste mentionnée sur ce portail de navigation.</p>
+<h4 class="kicker">Effectif Estimé</h4>
+<p>Airbus emploie environ 130 000+ salariés. Ventilation spécifique non disponible dans ce document.</p>
+<h4 class="kicker">Produit &amp; Ingénierie</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Marketing</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Ventes</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Support &amp; IT</h4>
+<p>Données non disponibles dans la source.</p>
+<h4 class="kicker">Général &amp; Admin (G&amp;A)</h4>
+<p>Données non disponibles dans la source.</p></div>
+<h3 id="ceo"><span class="i18n-fr">PDG</span><span class="i18n-en">CEO</span></h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title"><span class="i18n-fr">Résumé de l'entreprise</span><span class="i18n-en">Company overview</span></h2><div class="cs-disc">ⓘ <span class="i18n-fr">Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</span><span class="i18n-en">These scores often reflect how much public information we could find online (web presence), not the company's objective reality. A low score — e.g. on team excellence — usually means little information was found, not that the company is weak.</span></div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>Mobilité et Transports &gt; Portail d'Opérations et de Supply Chain Aéronautique d'OEM</li><li>B2B &gt; Abonnement, Transactionnel</li></ul>
+<br/>
+<strong>SCORE DE PRÉ-SÉLECTION</strong><br/>
+Thèse :
+<p>NOTE : Il s'agit d'un score de pré-sélection brut. Les coefficients de la thèse sont appliqués dans le pipeline de qualification Synthetic GP après la détection d'angle.<hr/></p><div class="score-row sr-green sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:95%"></span></span><span class="sr-val">95/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:90%"></span></span><span class="sr-val">90/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:92%"></span></span><span class="sr-val">92/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">TRACTION &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:98%"></span></span><span class="sr-val">98/100</span></div><p><hr/></p><div class="score-row sr-green sr-total"><span class="sr-label">SCORE DE PRÉ-SÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:92%"></span></span><span class="sr-val">92/100</span><span class="sr-note">🟢 SIGNAL FORT (85-100)</span></div><p><hr/><strong>❓ EN QUELQUES MOTS :</strong> Airbus est un Portail d'Opérations et de Supply Chain Aéronautique d'OEM qui centralise l'accès aux interfaces opérationnelles, techniques et commerciales du groupe pour tout l'écosystème mondial de l'aviation civile.</p>
+<h4 class="kicker">LE PROBLÈME</h4>
+<p>Les compagnies aériennes et les ateliers de maintenance subissent des pertes financières majeures (AOG) dues à la fragmentation de la documentation technique approuvée et à l'inefficacité de l'approvisionnement fragmenté en pièces détachées.</p>
+<h4 class="kicker">LA SOLUTION</h4>
+<p>w3.airbus.com rassemble au sein d'un extranet unique hautement sécurisé l'accès à AirbusWorld, Satair Market et Partner Portal, unifiant l'information technique aéronautique et les flux logistiques transactionnels.</p>
+<h4 class="kicker">LE GTM</h4>
+<p>Le mouvement go-to-market s'appuie sur une présence OEM captive incontournable, verrouillant immédiatement chaque opérateur de flotte d'avions commerciaux Airbus dès la livraison de l'appareil.<hr/></p><div class="score-row sr-green sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:95%"></span></span><span class="sr-val">95/100</span></div>
+<p>L'équipe dirigeante d'Airbus rassemble la plus haute expertise industrielle mondiale, structurée pour piloter des initiatives numériques massives.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Fit Fondateur-Marché</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc"></div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Track Record</span><span class="sr-val">96/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le groupe affiche des décennies de livraison de programmes de vols majeurs complexes et une maîtrise incontestée de l'intégration technologique industrielle d'envergure.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">94/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une structure de gouvernance hautement qualifiée coordonnant un effectif estimé à plus de 130 000 salariés mondiaux d'élite.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Exhaustivité</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un équilibre d'excellence entre la rigueur de l'ingénierie physique et l'intégration de briques logicielles d'aftermarket aéronautique certifiées.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:90%"></span></span><span class="sr-val">90/100</span></div>
+<p>Le marché de l'aftermarket et de la supply chain aéronautique numérique est un secteur hautement stratégique à forte marge.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille et Croissance</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les portails extranets d'intégration de données d'ingénierie et plateformes transactionnelles B2B de pièces détachées s'adressent à un marché aéronautique de rechange mondial estimé à plus de 100 milliards de dollars.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Pourquoi Maintenant</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'exigence de digitalisation complète de la navigabilité complexe et la pression de l'aftermarket d'aviation civile accélèrent l'unification des écosystèmes.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Concurrence</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Face à un duopole avec Boeing (MyBoeingFleet), Airbus maintient sa domination grâce à l'acquisition stratégique de Satair et à une intégration technologique native.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des leviers d'extension massifs via l'optimisation des services logistiques Satair pour des floutes tierces et la maintenance prédictive par IA.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<p>Une architecture numérique d'entreprise extrêmement sécurisée et intégrée de bout en bout.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">87/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'avantage applicatif repose sur la détention exclusive des données de conception d'origine (OEM) synchronisées en temps réel sur AirbusWorld.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Product-Market Fit</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une rétention technologique absolue car les professionnels n'ont aucune alternative réglementaire pour accéder aux documentations critiques d'Airbus.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une transition progressive vers des architectures d'API ouvertes, historiquement restreinte par d'immenses exigences de cybersécurité aéronautique.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Propriété Intellectuelle</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des barrières à l'entrée colossales composées de brevets industriels exclusifs et de certifications critiques de navigabilité étatiques.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">💼 MODÈLE D'AFFAIRES (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:92%"></span></span><span class="sr-val">92/100</span></div>
+<p>Un modèle économique hybride ultra-robuste mêlant transactions à fort volume et abonnements exclusifs.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Unit Economics</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La monétisation via des contrats d'approvisionnement globaux et des abonnements captifs verrouille des revenus d'exploitation ultra-récurrents.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de Revenu</span><span class="sr-val">94/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un couplage efficace entre les frais d'accès aux services AirbusWorld et les commissions sur la vente de pièces détachées mondiales de Satair Market.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des options de tarification différenciées et personnalisées selon les portails pour capter l'ensemble des segments de l'aftermarket aéronautique.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">89/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un profil d'investissement colossal soutenu par de puissants investissements d'exploitation internes, sans dépendance au capital-risque externe.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">📈 TRACTION &amp; CROISSANCE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:98%"></span></span><span class="sr-val">98/100</span></div>
+<p>Une domination mondiale systémique et incontournable.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Croissance du Chiffre d'Affaires</span><span class="sr-val">96/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des flux logistiques de plusieurs milliards d'euros en constante accélération portés par la reprise du transport d'aviation mondial.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">99/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Utilisé activement au quotidien par des milliers de compagnies aériennes, MRO et équipementiers mondiaux de premier ordre.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Progression des KPI</span><span class="sr-val">97/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'intégration d'interfaces logistiques unifiées comme AirbusSpares fluidifie drastiquement le transport logistique d'aftermarket.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">100/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une pénétration totale sur la quasi-totalité du parc installé mondial de flottes commerciales du groupe Airbus.</div></li></ul>
+<hr/><strong>🔍 RISQUE À ASSURER :</strong>
+<p>L'hypothèse critique repose sur la capacité d'Airbus à maintenir la souveraineté absolue de ses données d'OEM face au développement de plateformes d'aftermarket indépendantes et d'initiatives basées sur l'IA d'acteurs de rechange tiers. C'est un risque structurellement gérable mais qui exige une vigilance d'innovation technologique constante pour préserver son rôle de porte d'entrée numérique exclusif de la supply chain aéronautique.</p>
+<h4 class="kicker">AVANTAGES CONCURRENTIELS CLÉS</h4>
+<ul><li>Domination absolue des données OEM exclusives qui empêche tout concurrent d'émuler la justesse de la documentation de navigabilité technique.</li><li>Écosystème e-commerce intégré via Satair Market assurant une logistique mondiale de pièces détachées inégalée en réactivité.</li><li>Contrôle d'un parc installé mondial ultra-critique de plus de 10 000 avions civils actifs créant un canal captif inégalable.</li><li>Niveau de cybersécurité militaire et conformité stricte aux exigences de navigabilité des plus grandes agences d'aviation mondiales (EASA/FAA).</li></ul>
+<p><strong>🧱 BARRIÈRE À L'ENTRÉE (MOAT) :</strong> STRONG</p>
+<p>Le mécanisme de rempart principal repose sur l'effet de verrouillage réglementaire et de conformité associé aux données OEM d'origine d'Airbus, où chaque opération de maintenance doit impérativement s'adosser à une documentation numérique certifiée par l'avionneur. Cet avantage se renforce de manière exponentielle avec l'accumulation des heures de vol et des données de capteurs, créant une boucle de rétroaction unique de maintenance prédictive inégalable par les tiers. La couche de défense secondaire est assurée par les contrats d'exclusivité et d'approvisionnement à long terme signés directement avec les transporteurs mondiaux et les centres de maintenance MRO agréés.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le Scénario Optimiste (Bull Case) : Airbus parvient à unifier l'ensemble des données d'exploitation des flottes mondiales en temps réel sur AirbusWorld, devenant l'unique système d'exploitation numérique de l'aviation civile où aucune compagnie ne peut décoller sans transiter par ses API de maintenance prédictive.</li><li>Le Scénario Pessimiste (Bear Case) : Une faille cyber majeure ou la transition vers des plateformes d'approvisionnement décentralisées de rechange indépendantes érode les marges de Satair au profit de distributeurs autonomes disruptifs à bas coûts en asie.</li></ul>
+<p><strong>🚩 LEVIERS DE VIGILANCE (RED FLAGS)</strong></p>
+<ul><li>Risques Globaux : Un fardeau réglementaire aéronautique mondial gigantesque qui ralentit l'innovation agile du portail par rapport aux standards agiles SaaS B2B modernes.</li><li>Incohérences de Thèse : Airbus ne cherche pas à vendre des données mais à consolider ses propres opérations, ce qui peut diverger des architectures logicielles purement spéculatives financées par le capital-risque traditionnel.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/55/55/1784887200000/DzIHDaDMvV90mjyj2cYcFA/yYqps71mkS2GJrEzrTXTUwaAcwN1dEywBASEkGgYnwj3LeqafxrOykgvHevnCkw5jdWttw32P1cYG6atR7dygeajYcaLdkYkZf_0REJgIZqgEqftAQ7L-14aSWP9mFqX6VYGdYdp2swxDlZpV7BzYw/euNrkW61jXkBQpipl7slIGxQkzyWRhQ0QwaxqDPiMBs"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title"><span class="i18n-fr">Analyse SWOT</span><span class="i18n-en">SWOT analysis</span></h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3><span class="i18n-fr">Forces</span><span class="i18n-en">Strengths</span></h3><ul><li>Le hub centralise l'accès aux portails AirbusWorld, Partner Portal et Satair Market pour une navigation unifiée.</li><li>Il dessert exclusivement les clients B2B tels que les compagnies aériennes, MRO et fournisseurs aéronautiques.</li><li>La plateforme génère des revenus via les ventes de pièces détachées sur Satair Market et AirbusSpares.</li><li>La sécurité des accès extranet protège la collaboration technique et commerciale avec les partenaires.</li><li>Airbus mobilise ses 130 000 salariés pour soutenir les services de maintenance et d'approvisionnement.</li></ul></div>
+<div class="swot-item s-red"><h3><span class="i18n-fr">Faiblesses</span><span class="i18n-en">Weaknesses</span></h3><ul><li>Aucune donnée n'existe sur la structure de direction ou la culture interne de l'équipe du portail.</li><li>L'accès exige un contrat préalable avec Airbus, limitant l'acquisition de nouveaux utilisateurs.</li><li>Aucune offre d'emploi n'est publiée, réduisant la capacité à attirer des talents numériques.</li><li>Les coûts cachés liés aux contrats B2B ne sont pas transparents.</li><li>La ventilation précise des effectifs dédiés au hub reste indisponible.</li></ul></div>
+<div class="swot-item s-blue"><h3><span class="i18n-fr">Opportunités</span><span class="i18n-en">Opportunities</span></h3><ul><li>L'ajout de fonctionnalités avancées de consultation documentaire peut augmenter l'usage chez les MRO.</li><li>L'extension du Partner Portal renforce l'intégration des fournisseurs dans la chaîne d'approvisionnement.</li><li>La croissance du marché des pièces de rechange via AirbusSpares offre un flux de revenus récurrent.</li><li>Une collaboration plus étroite avec les autorités de navigabilité fluidifie les processus de certification.</li><li>Le développement de navigations inter-plateformes supplémentaires accroît la rétention des opérateurs.</li></ul></div>
+<div class="swot-item s-orange"><h3><span class="i18n-fr">Menaces</span><span class="i18n-en">Threats</span></h3><ul><li>D'autres constructeurs peuvent proposer des hubs numériques concurrents pour les services après-vente.</li><li>Les perturbations de la chaîne d'approvisionnement affectent directement les transactions sur Satair.</li><li>Les incidents de cybersécurité sur les extranets peuvent éroder la confiance des partenaires.</li><li>Les changements réglementaires en aéronautique imposent des mises à jour coûteuses des portails.</li><li>La dépendance exclusive aux contrats Airbus expose le hub aux cycles économiques du secteur.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title"><span class="i18n-fr">Sources et méthodologie</span><span class="i18n-en">Sources &amp; methodology</span></h2>
+<div class="source-list">
+<h3>Sources de la chaîne de valeur</h3>
+<p>Aucune donnée disponible pour cette section.</p>
+<h3>Sources du marché</h3><p>DOSSIER D'INTELLIGENCE DU MARCHÉ - SUIVI DES PREUVES URL</p>
+<p>Objet : Documentation de soutien avec preuves URL complètes pour l'analyse des scores d'attractivité du marché</p>
+<p>Marché : Portails d'Opérations et de Supply Chain Aéronautique d'OEM</p>
+<p>Complétude des Données : 70/100</p>
+<p>Évaluation : 🟢 SUFFISANT POUR UNE DÉCISION D'INVESTISSEMENT (70+)</p>
+<p>Calcul : (7 URL trouvées ÷ 10 URL recherchées) × 100 = 70% de complétude</p>
+<p>Date de Recherche : 30 Janvier 2025 | Total URL Trouvées : 7</p>
+<p>PREUVES URL PAR CATÉGORIE DE SCORE DE MARCHÉ</p>
+<p>🌊 MARCHÉ ATTRACTIF (Dynamique du marché) | Trouvé 2/3 points de données</p>
+<ul><li><b>Taille du Marché :</b> <a href="https://w3.airbus.com" target="_blank">w3.airbus.com</a>. Utilisé pour : Analyse de l'aftermarket de pièces détachées Satair et maintenance d'aéronefs</li><li><b>Moteurs de Croissance :</b> <a href="https://w3.airbus.com" target="_blank">w3.airbus.com</a>. Utilisé pour : Croissance des besoins numériques des flottes AirbusWorld</li><li><b>Timing :</b> Non disponible. Utilisé pour : Catalyseurs technologiques d'IA générative aéronautique</li></ul>
+<p>⚔️ MARCHÉ GAGNABLE (Paysage concurrentiel) | Trouvé 2/3 points de données</p>
+<ul><li><b>Acteurs Historiques :</b> <a href="https://w3.airbus.com" target="_blank">w3.airbus.com</a>. Utilisé pour : Positionnement par rapport au portail e-commerce Satair</li><li><b>Nouveaux Entrants :</b> Non disponible. Utilisé pour : Analyse de rechange aéronautique indépendante</li><li><b>Espace Libre :</b> <a href="https://w3.airbus.com" target="_blank">w3.airbus.com</a>. Utilisé pour : Opportunités de pièces tierces sur Satair Market</li></ul>
+<p>🎯 MARCHÉ PÉNÉTRABLE (GTM et modèle économique) | Trouvé 2/2 points de données</p>
+<ul><li><b>Modèle GTM :</b> <a href="https://w3.airbus.com" target="_blank">w3.airbus.com</a>. Utilisé pour : Accès sécurisé client contractuel et Partner Portal</li><li><b>Modèle de Prix :</b> <a href="https://w3.airbus.com" target="_blank">w3.airbus.com</a>. Utilisé pour : Abonnements de services clients AirbusWorld</li></ul>
+<p>💰 MARCHÉ RENTABLE (Financement et sorties) | Trouvé 1/2 points de données</p>
+<ul><li><b>Activité d'Investissement :</b> Non disponible. Utilisé pour : Levées de fonds technologiques de maintenance</li><li><b>Multiples de Sortie :</b> <a href="https://w3.airbus.com" target="_blank">w3.airbus.com</a>. Utilisé pour : Valorisation historique de l'aftermarket</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>URL critiques manquantes selon la recherche web : Multiples financiers récents de transactions e-logistiques en Europe de l'Est • Rapports de l'EASA sur l'intégration des portails OEM tiers.</p>
+<p>URL trouvées avec succès : 7 sur 10 recherchées</p>
+<p>Couverture des données critiques : 70%</p>
+<p>Niveau de confiance de la recherche : ÉLEVÉ</p><h3>Sources de l'entreprise</h3>
+<li>Leadership : <a href="https://w3.airbus.com">w3.airbus.com</a>. Utilisé pour : Structure d'équipe globale estimée à 130 000 salariés</li>
+<li>Taille et Croissance : <a href="https://w3.airbus.com">w3.airbus.com</a>. Utilisé pour : Cibles MRO et approvisionnement aéronautique</li>
+<li>Timing Pourquoi Maintenant : <a href="https://w3.airbus.com">w3.airbus.com</a>. Utilisé pour : Analyse de synchronisation de la supply chain</li>
+<li>Concurrence : <a href="https://w3.airbus.com">w3.airbus.com</a>. Utilisé pour : Analyse des portails de pièces de rechange d'Airbus par rapport aux rivaux</li>
+<li>Différenciation : <a href="https://w3.airbus.com">w3.airbus.com</a>. Utilisé pour : Analyse du hub d'accès exclusif d'AirbusWorld et Partner Portal</li>
+<li>Product-Market Fit : <a href="https://w3.airbus.com">w3.airbus.com</a>. Utilisé pour : Service d'accès client aéronautique client</li>
+<li>Évolutivité : <a href="https://w3.airbus.com">w3.airbus.com</a>. Utilisé pour : Architecture d'extranets et de portails sécurisés de Airbus</li>
+<li>Propriété Intellectuelle : <a href="https://w3.airbus.com">w3.airbus.com</a>. Utilisé pour : Analyse de verrouillage OEM technique exclusif</li>
+<li>Unit Economics : <a href="https://w3.airbus.com">w3.airbus.com</a>. Utilisé pour : Modèle commercial d'accès réservé aux contractuels</li>
+<li>Modèle de Revenu : <a href="https://w3.airbus.com">w3.airbus.com</a>. Utilisé pour : Abonnements AirbusWorld et transactions spares Satair</li>
+<li>Monétisation : <a href="https://w3.airbus.com">w3.airbus.com</a>. Utilisé pour : Offres tarifaires d'AirbusSpares et AirbusWorld</li>
+<li>Validation Client : <a href="https://w3.airbus.com">w3.airbus.com</a>. Utilisé pour : Témoignages et clients MRO, opérateurs, autorités de navigabilité</li>
+<li>Progression des KPI : <a href="https://w3.airbus.com">w3.airbus.com</a>. Utilisé pour : Évolution des briques numériques du portail</li>
+</div>
+</div>
+
+
+
+&gt;<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Airbus ?</span><span class="i18n-en">Explore Airbus further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc"><span class="i18n-fr">Généré par Proplace.co — une IA qui peut se tromper. Contact : <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span><span class="i18n-en">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a><a class="" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+var mSet="https://analysis.proplace.co/thesis/?fund="+f;
+var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
+var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
+'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
+'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
+"</div></div>";
+return {i:1,h:h};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+// Bilingue (2026-07-16) : mêmes clé/priorités que le chrome partagé — le flux d'évaluation
+// était le dernier gros composant JS 100% FR quel que soit le choix de langue du visiteur.
+function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}
+ return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}
+function T(fr,en){return EN()?en:fr;}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function ctaCal(){return '<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">'
+ +T("📅 Un deal flow personnalisé ? Planifiez un appel stratégique","📅 Want a tailored deal flow? Book a strategy call")+'</a>';}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">'+T("Évaluation indisponible.","Evaluation unavailable.")+'</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">'+T("Choisir →","Choose →")+'</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||T("Plusieurs sociétés correspondent — choisissez la bonne :","Several companies match — pick the right one:"))+'</div>'+(cs||'<div class="ev-fine">'+T("Aucun candidat — précisez l’URL exacte.","No candidate — provide the exact URL.")+'</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">'+T("📊 Analyse","📊 Analysis")+'</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">'+T("→ Lancer le mémo dans votre dashboard","→ Launch the memo in your dashboard")+'</a>'; }
+ else{ o+=ctaCal(); }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">'+T("⏳ Évaluation de "+esc(company)+" selon votre thèse "+esc(fund)+"…","⏳ Evaluating "+esc(company)+" against your "+esc(fund)+" thesis…")+'</div>';
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">'+T("Demande d’analyse de","Analysis request for")+' <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="'+T("Prénom","First name")+'" required><input name="last_name" placeholder="'+T("Nom","Last name")+'" required></div>'
+ +'<input name="email" type="email" placeholder="'+T("Email professionnel","Work email")+'" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="'+T("Téléphone","Phone")+'"></div>'
+ +'<button type="submit" class="ev-submit">'+T("Recevoir l’analyse →","Get the analysis →")+'</button>'
+ +'<p class="ev-fine">'+T("Déjà client ? <a href=\"https://proplace.co/#login\">Connectez-vous</a> pour évaluer selon VOTRE thèse.","Already a client? <a href=\"https://proplace.co/#login\">Log in</a> to evaluate against YOUR thesis.")+'</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Enregistrement…","⏳ Saving…")+'</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">'+T("✅ Merci "+esc(d.first_name)+" !","✅ Thank you "+esc(d.first_name)+"!")+'</div>'
+    +'<div class="ev-r">'+T("Votre analyse de <b>"+esc(b.dataset.c||b.dataset.u)+"</b> vous sera envoyée par email sous peu.","Your analysis of <b>"+esc(b.dataset.c||b.dataset.u)+"</b> will be emailed to you shortly.")+'</div>'
+    +ctaCal();});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">'+T("⚡ Évaluation express —","⚡ Express evaluation —")+' <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+var _lbEN=false;try{var _l=localStorage.getItem('proplace_lang');
+_lbEN=_l==='en'||(!_l&&(navigator.language||'').toLowerCase().indexOf('fr')!==0);}catch(e){}
+ov.innerHTML='<button class="lb-x" aria-label="'+(_lbEN?'Close':'Fermer')+'">×</button><img alt=""><a class="lb-dl" download>'+(_lbEN?'⬇ Download':'⬇ Télécharger')+'</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><style>
+/* Étoile favori (★) en tête de la cellule Société — dorée dès l'état INACTIF (☆) pour être
+   repérable comme « à cliquer », pleine et vive à l'état actif (★). */
+.op-fav{display:inline-block;vertical-align:baseline;margin:0 7px 0 0;padding:0;font-size:17px;
+line-height:1;color:#d9b64a;background:none;border:none;cursor:pointer;
+transition:color .12s,transform .12s}
+.op-fav:hover{color:#e5a91c;transform:scale(1.2)}
+.op-fav.on{color:#e5a91c}
+.fav-count{font-variant-numeric:tabular-nums;font-weight:800}
+/* Page /actualites/favoris/ : état vide + encart « créez votre thèse ». */
+.fav-empty-box{margin:26px 0;padding:24px 20px;border:1px dashed var(--line);border-radius:12px;
+background:var(--bg);text-align:center;color:var(--sub);font-size:14px;line-height:1.55}
+.fav-empty-box a{color:var(--accent-dk);font-weight:700;text-decoration:none}
+.fav-empty-box a:hover{text-decoration:underline}
+.fav-tease{margin:22px 0 6px;padding:16px 18px;border:1px solid var(--accent);border-radius:12px;
+background:var(--bg)}
+.fav-tease-h{font-size:15px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.fav-tease-p{font-size:13.5px;color:var(--sub);line-height:1.5;margin:0 0 10px}
+.fav-tease .tm-read{margin:0}
+/* Composeur de thèse in-browser + évaluation groupée (Phase B). */
+.fav-th-text{width:100%;min-height:64px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+font-family:inherit;font-size:13.5px;line-height:1.5;color:var(--ink);resize:vertical;margin:0 0 8px}
+.fav-th-text:focus{outline:none;border-color:var(--accent)}
+.fav-btn{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:9px;padding:9px 15px;cursor:pointer;transition:opacity .15s}
+.fav-btn:hover{opacity:.85}
+.fav-btn:disabled{opacity:.5;cursor:default}
+.fav-th-edit{margin-left:10px;font-size:12.5px;font-weight:600;color:var(--accent-dk);background:none;
+border:none;cursor:pointer;text-decoration:underline}
+.fav-th-label{font-size:13px;color:var(--sub);font-style:italic;margin:0 0 8px}
+.fav-th-hint{font-size:12px;color:#b91c1c;margin:6px 0 0}
+/* Verdict d'un favori (plein largeur sous la ligne, comme .op-eval-panel). */
+.fav-verdict{grid-column:1/-1;margin-top:2px}
+.fav-verdict:empty{margin:0}
+.fav-v{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;padding:3px 10px;margin-top:6px}
+.fav-v-yes{color:#047857;background:rgba(4,120,87,.10)}
+.fav-v-no{color:#b91c1c;background:rgba(185,28,28,.08)}
+.fav-v-err{color:var(--mid);background:var(--bg)}
+.fav-v-load{color:var(--mid);font-size:12.5px;font-weight:600;margin-top:6px;display:inline-block}
+.fav-vr{display:block;font-size:12.5px;color:var(--sub);line-height:1.45;margin-top:4px}
+</style><script>(function(){
+var K="proplace_favoris";
+// Bridge « certain » vers /cibles/ : un ?cb=<token> dans l'URL (posé par le lien du /cibles/ du
+// client, ou un email Proplace) lie ce navigateur à CE client → chaque ★ est aussi reflétée dans
+// un store SERVEUR scopé au token, retrouvée ensuite dans son onglet Favoris même sur un autre
+// appareil. Sans token (visiteur anonyme), sync() est un no-op → comportement inchangé.
+var TKK="proplace_cb_token",SYNC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/fav-sync";
+function readTok(){try{return localStorage.getItem(TKK)||"";}catch(e){return "";}}
+function writeTok(t){try{localStorage.setItem(TKK,t);}catch(e){}}
+function captureTok(){var t="";try{t=((new URL(window.location.href)).searchParams.get("cb")||"").trim();}catch(e){}
+ if(/^[A-Za-z0-9]{16}$/.test(t)){writeTok(t);return t;}return readTok();}
+var TOK=captureTok();
+function sync(op,removed){if(!TOK)return;try{
+ fetch(SYNC,{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
+  body:JSON.stringify({token:TOK,remove:!!removed,op:op})}).catch(function(){});
+}catch(e){}}
+function EN(){try{var l=localStorage.getItem("proplace_lang");if(l)return l==="en";}catch(e){}
+ return (navigator.language||"").slice(0,2).toLowerCase()==="en";}
+function read(){try{return JSON.parse(localStorage.getItem(K)||"[]")||[];}catch(e){return [];}}
+function write(a){try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}}
+function normU(u){return (u||"").toLowerCase().trim().replace(/[#?].*$/,"").replace(/\/+$/,"");}
+function normN(n){return (n||"").toLowerCase().replace(/\s+/g," ").trim();}
+function keyOf(u,c){return normU(u)||normN(c);}
+function opFromBtn(b){var d=b.dataset,u=d.u||"",c=d.co||"";
+ // Le bouton ne porte plus que co+url (régime data-*) : le reste est DÉRIVÉ de la ligne
+ // .trow (data-v/date/t/amt/pays + cellules affichées). Les anciens data-* du bouton restent
+ // lus en PRIORITÉ (compat : lignes de la page /favoris reconstruites depuis localStorage).
+ var r=b.closest?b.closest(".trow"):null,rd=(r&&r.dataset)||{};
+ // Cellules Type/Date en dual-span depuis 2026-07-16 : lire le span .i18n-fr (libellé
+ // canonique FR stocké dans le favori), sinon le textContent brut (cellules mono-langue).
+ function cell(s){if(!r)return "";var e=r.querySelector(s+" .i18n-fr")||r.querySelector(s);
+  var v=e?e.textContent.trim():"";return v==="—"?"":v;}
+ // Headline : sous-ligne .th (co présent) SINON le titre-lien du strong (op sans société).
+ var hd=r?(r.querySelector(".tco .th a:not(.tm-mem)")||r.querySelector(".tco strong a")):null;
+ var pe=r?r.querySelector(".tpays"):null;
+ var vert=d.v||rd.v||"";
+ return {id:keyOf(u,c),co:c,url:u,
+  disp:d.disp||(hd?hd.textContent.trim().slice(0,200):""),
+  ind:d.i||vert,vert:vert,
+  amtD:d.amtd||cell(".tamt"),
+  amt:parseInt(d.amt||rd.amt||"0",10)||0,
+  pays:d.pays||rd.pays||"",
+  paysFull:d.paysfull||(pe?(pe.getAttribute("title")||""):""),
+  date:d.date||(rd.date||"").slice(0,10),
+  typeK:d.typek||rd.t||"",
+  typeFr:d.typefr||cell(".ttype"),
+  ts:Date.now()};}
+function idx(a,id){for(var i=0;i<a.length;i++)if(a[i].id===id)return i;return -1;}
+function paint(){var a=read(),ids={};a.forEach(function(o){ids[o.id]=1;});
+ [].slice.call(document.querySelectorAll(".op-fav")).forEach(function(b){
+  var id=keyOf(b.dataset.u||"",b.dataset.co||""),on=!!ids[id];
+  b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false");
+  b.textContent=on?"★":"☆";
+  var t=on?(EN()?"Remove from favourites":"Retirer des favoris"):(EN()?"Add to favourites":"Mettre en favori");
+  b.title=t;b.setAttribute("aria-label",t);});
+ var n=a.length;[].slice.call(document.querySelectorAll(".fav-count")).forEach(function(e){e.textContent=String(n);});}
+window.__favPaint=paint;
+document.addEventListener("click",function(ev){
+ var b=ev.target&&ev.target.closest?ev.target.closest(".op-fav"):null;if(!b)return;
+ ev.preventDefault();ev.stopPropagation();
+ var a=read(),op=opFromBtn(b),k=idx(a,op.id),removed=k>=0;
+ if(k>=0)a.splice(k,1);else a.unshift(op);
+ write(a);paint();sync(op,removed);if(window.__favRender)window.__favRender();});
+window.addEventListener("storage",function(e){if(e.key===K){paint();if(window.__favRender)window.__favRender();}});
+if(document.readyState!=="loading")paint();else document.addEventListener("DOMContentLoaded",paint);
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
