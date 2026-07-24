@@ -1,0 +1,960 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Embex — analyse Industrial Tech &amp; Manufacturing | Proplace</title><meta name="description" content="Industrial Tech &amp; Manufacturing · Ingénierie système embarqué et sécurité fonctionnelle · Series E+"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/embex/"><meta property="og:type" content="article"><meta property="og:title" content="Embex — analyse Industrial Tech &amp; Manufacturing | Proplace"><meta property="og:description" content="Industrial Tech &amp; Manufacturing · Ingénierie système embarqué et sécurité fonctionnelle · Series E+"><meta property="og:url" content="https://proplace.co/analysis/embex/"><meta property="og:image" content="https://proplace.co/analysis/radars/embex.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://proplace.co/analysis/radars/embex.png"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+/* (retour CEO 20/07) — mobile : « Mon compte » s'affichait À LA VERTICALE (un mot,
+   voire une lettre, par ligne). Cause : dans .pph nav (flex), .pph-sect et .pph-lang
+   sont en flex:0 0 auto mais PAS .pph-auth → c'était le SEUL enfant compressible, il
+   absorbait tout le débordement et rétrécissait à ~0, forçant le texte du bouton à
+   passer à la ligne. Il devient incompressible : c'est le défileur horizontal du nav
+   (v74) qui prend le relais, comme prévu. */
+.pph .pph-auth{flex:0 0 auto;display:inline-flex;align-items:center;white-space:nowrap}
+.pph .pph-auth button,.pph .pph-acct,.pph .pph-acct-btn{flex:0 0 auto;white-space:nowrap}
+/* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
+   « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
+   couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
+.pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+border-radius:9px;font-weight:600;border:none;cursor:pointer;font-family:inherit;line-height:1.2}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover,.pph button.cta:hover,.pph .pph-auth button.cta:hover{background:#36a866}
+/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
+.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
+border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
+.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
+.pph-sect a+a{border-left:1px solid #cfe8da}
+.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ /* v74 (R5) — le SEUL débordeur réel mesuré à 390px est CETTE nav (Connexion +
+    pastille News|Analysis + EN|FR ≈ 309px pour ~264px disponibles) : elle devient
+    son PROPRE défileur horizontal (règle « wide content » : overflow-x:auto sur la
+    pièce INTERNE — jamais sur un ancêtre d'une barre sticky). Alignée à gauche en
+    mobile : un débordement côté start (flex-end) serait inatteignable au scroll. */
+ .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pph nav::-webkit-scrollbar{display:none}
+ /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
+    (même piège que la couleur du CTA, retour CEO 19/07). */
+ .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
+ .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+ /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
+    défileur (order:-1) → les 3 boutons sont TOUJOURS visibles à gauche, c'est
+    « Connexion » qui déborde/scrolle si l'écran est trop étroit (demande CEO). */
+ .pph nav .pph-sect{order:-1;flex:0 0 auto}
+ .pph nav .pph-auth{order:0}
+ /* v75 (bug #7) — la pastille EN|FR est hors du <nav> (défileur) : collée à droite du
+    header, toujours atteignable même quand le <nav> déborde/scrolle. */
+ .pph-lang{margin-left:auto;flex:0 0 auto}
+}
+/* ≤430px : les 3 pastilles + Connexion tiennent ensemble (resserrage police/padding). */
+@media(max-width:430px){
+ .pph nav{gap:7px}
+ .pph-sect a{padding:6px 9px;font-size:11.5px;letter-spacing:-.01em}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ppf .pph-sect{display:inline-flex;border:1px solid rgba(255,255,255,.18);
+background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
+.ppf .pph-sect a{padding:7px 15px;color:#a8e6c4;font-weight:600;font-size:13px;text-decoration:none}
+.ppf .pph-sect a+a{border-left:1px solid rgba(255,255,255,.18)}
+.ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Embex — Industrial Tech & Manufacturing", "description": "Industrial Tech & Manufacturing · Ingénierie système embarqué et sécurité fonctionnelle · Series E+", "inLanguage": "fr", "url": "https://proplace.co/analysis/embex/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/embex/"}, "image": ["https://proplace.co/analysis/radars/embex.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}, "about": {"@type": "Organization", "name": "Embex"}, "datePublished": "2026-07-24", "dateModified": "2026-07-24"}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="news">News</a><a class="pph-ana on" href="/analysis/" data-i18n="analysis">Analysis</a><a class="pph-rsch" href="/research/" data-i18n="research">Research</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+var mSet="https://analysis.proplace.co/thesis/?fund="+f;
+var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
+var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
+'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
+'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
+"</div></div>";
+return {i:1,h:h};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Embex</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Embex"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">Allemagne</span>
+<span class="sb-tag">Series E+</span>
+<span class="sb-tag">Industrial Tech &amp; Manufacturing</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Embex</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/de.png" srcset="https://flagcdn.com/32x24/de.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>Allemagne ·</span> Industrial Tech &amp; Manufacturing · Ingénierie système embarqué et sécurité fonctionnelle · Series E+</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Services d'ingénierie et de certification en sécurité fonctionnelle pour les systèmes embarqués industriels et de robotique critique en région DACH.</p>
+<a href="https://embex.de" target="_blank"><i class="fas fa-globe"></i> Site Web</a>
+</div>
+</div>
+<span class="sb-nav-heading">Contact</span>
+<a class="nav-item bg-yellow" href="#fiche-contact">🤝 Comment contacter Embex</a>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du marché</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle économique</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">PDG</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources et méthodologie</a>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Embex</h1>
+<h2 class="subtitle-category">Industrial Tech &amp; Manufacturing ➜ Ingénierie système embarqué et sécurité fonctionnelle ➜ L'excellence en ingénierie et sécurité fonctionnelle pour les systèmes embarqués critiques</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div><div data-ct-card="" style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin:0 0 40px;box-shadow:0 2px 6px rgba(15,23,42,.08)"><div style="background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><div style="font-size:15px;font-weight:700"><h2 id="fiche-contact" style="font-size:15px;font-weight:700;margin:0;padding:0;color:#fff;display:inline">🤝 Comment contacter Embex</h2></div><div style="display:flex;align-items:center;gap:9px"><span style="background:#d97706;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.04em"></span><button onclick="var c=this.closest('div[data-ct-card]'),b=c.querySelector('div[data-ct-body]'),h=b.style.display==='none';b.style.display=h?'block':'none';this.innerHTML=h?'▾ Replier':'▸ Déplier'" style="font-family:Georgia,'Times New Roman',serif;font-size:12px;color:#e2e8f0;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:2px 9px;cursor:pointer;line-height:1.5;white-space:nowrap" type="button">▾ Replier</button></div></div><div data-ct-body="" style="padding:15px 18px;background:#fefce8"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:0 0 7px">Coordonnées du décideur</div><div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:6px">Alex Schoonkind</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px"><a href="https://embex.de" rel="noopener nofollow" style="display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:#1d4ed8;text-decoration:none;background:#fff;border:1px solid #dbe7f3;border-radius:7px;padding:4px 10px;font-weight:600" target="_blank">🌐 Site web</a></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #fde68a">Logique du deal</div><div style="font-size:13px;color:#0f172a;line-height:1.5"></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #fde68a">Séquence d'approche CEO</div><div data-ch="email" id="ap1"><div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:9px"><button data-ap-ch="email" style="border:1px solid #185c38;background:#185c38;color:#fff;font-size:12.5px;font-weight:700;padding:5px 14px;border-radius:7px;cursor:pointer;margin-right:6px" type="button">Email</button><button data-ap-ch="linkedin" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:12.5px;font-weight:700;padding:5px 14px;border-radius:7px;cursor:pointer;margin-right:6px" type="button">LinkedIn</button><span style="width:9px"></span><button data-ap-day="0" style="border:1px solid #185c38;background:#185c38;color:#fff;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J0</button><button data-ap-day="1" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J2</button><button data-ap-day="2" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J4</button><button data-ap-day="3" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J6</button><span data-ap-note="" style="font-size:11.5px;color:#64748b;margin-left:auto">4 messages espacés — J0, J2, J4, J6</span></div><div data-ap-msg="" data-ap-pane="email:0" style="display:block"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J0</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Objet :</b></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">La complémentarité me semble réelle : votre profondeur en embedded systems, notre maîtrise de l'industrialisation certifiée bout-en-bout. Seriez-vous ouvert à en discuter 20 minutes, de façon confidentielle ?</pre></div><div data-ap-msg="" data-ap-pane="email:1" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J2</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Objet :</b> Ce que je vois concrètement</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Bonjour Alex,
+
+Ce qui m'intéresse chez Embex, c'est précisément la rigueur que demande la sécurité fonctionnelle — c'est exactement le profil de bureau d'études que je cherche pour renforcer notre stack certifié côté hardware-software co-design. Ensemble, nous pourrions répondre à des appels d'offres-cadres pluriannuels qu'aucun de nous deux ne peut adresser seul aujourd'hui. Ça vous parle ?</pre></div><div data-ap-msg="" data-ap-pane="email:2" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J4</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Objet :</b> Un angle que je n'ai pas encore mentionné</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Bonjour Alex,
+
+Nous partageons une infrastructure de certification coûteuse — ISO, conformité réglementaire, qualification produit. Mutualisée entre deux structures, elle devient un avantage concurrentiel plutôt qu'un poste de charge. C'est l'une des raisons concrètes pour lesquelles je pense que l'échange vaut la peine d'avoir lieu, même à titre exploratoire. Un créneau de 20 minutes vous serait-il possible prochainement ?</pre></div><div data-ap-msg="" data-ap-pane="email:3" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J6</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Objet :</b> Je referme ici</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Bonjour Alex,
+
+Je ne veux pas encombrer votre agenda — je comprends que ce n'est peut-être pas le bon moment. Si la réflexion sur l'avenir d'Embex s'ouvre un jour, je serais heureux d'être le premier appel.</pre></div><div data-ap-msg="" data-ap-pane="linkedin:0" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J0</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Embex a construit une vraie crédibilité sur les systèmes embarqués critiques et la sécurité fonctionnelle — un terrain que je connais bien côté français. Seriez-vous ouvert à échanger 20 minutes, de façon confidentielle ?</pre></div><div data-ap-msg="" data-ap-pane="linkedin:1" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J2</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Ce qui m'intéresse chez Embex, c'est précisément la combinaison systèmes embarqués + sécurité fonctionnelle — une double compétence rare que mes clients industriels réclament de plus en plus dans un seul interlocuteur. Les complémentarités me semblent réelles. Ça vous parle ?</pre></div><div data-ap-msg="" data-ap-pane="linkedin:2" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J4</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Les grands donneurs d'ordre européens — utilities, défense, industrie lourde — consolident aujourd'hui leurs chaînes d'ingénierie autour de prestataires capables de tenir toute la séquence : conception, certification, industrialisation. C'est exactement la logique qui guide ma réflexion sur un rapprochement avec une équipe comme la vôtre. Un échange informel, sans engagement, suffirait à voir si la piste vaut la peine d'être creusée — qu'en dites-vous ?</pre></div><div data-ap-msg="" data-ap-pane="linkedin:3" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J6</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Je ne veux pas encombrer votre agenda davantage. Si le moment n'est pas opportun, je le comprends tout à fait. Et si la réflexion évolue de votre côté, je reste disponible.</pre></div></div><script>(function(){var r=document.getElementById("ap1");if(!r)return;var ch=r.getAttribute("data-ch"),dy="0";function paint(){r.setAttribute("data-ch",ch);var i,b,ps=r.querySelectorAll("[data-ap-pane]");for(i=0;i<ps.length;i++){ps[i].style.display=(ps[i].getAttribute("data-ap-pane")===ch+":"+dy)?"block":"none";}var cb=r.querySelectorAll("[data-ap-ch]");for(i=0;i<cb.length;i++){b=cb[i];var onc=b.getAttribute("data-ap-ch")===ch;b.style.background=onc?"#185c38":"#fff";b.style.color=onc?"#fff":"#475569";b.style.borderColor=onc?"#185c38":"#dde3ea";}var db=r.querySelectorAll("[data-ap-day]");for(i=0;i<db.length;i++){b=db[i];var ond=b.getAttribute("data-ap-day")===dy;b.style.background=ond?"#185c38":"#fff";b.style.color=ond?"#fff":"#475569";b.style.borderColor=ond?"#185c38":"#dde3ea";}var n=r.querySelector("[data-ap-note]");if(n)n.textContent=(ch==="linkedin")?"Demande de connexion : sans note":"4 messages espac\u00e9s \u2014 J0, J2, J4, J6";}r.addEventListener("click",function(e){var t=e.target&&e.target.closest?e.target.closest("[data-ap-ch],[data-ap-day]"):null;if(!t)return;e.preventDefault();if(t.hasAttribute("data-ap-ch"))ch=t.getAttribute("data-ap-ch");else dy=t.getAttribute("data-ap-day");paint();});paint();})();</script></div></div><div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Embex" data-h="" data-i="Industrial Tech &amp; Manufacturing" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/embex/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title"><span class="i18n-fr">Résumé du marché</span><span class="i18n-en">Market summary</span></h2>
+<div class="split-container">
+<div class="text-col">
+<p>SCORE DE L\'OPPORTUNITÉ DE MARCHÉ Industrial Tech &amp; Manufacturing &gt; Ingénierie système embarqué et sécurité fonctionnelle B2B &gt; Professional Services</p>
+<div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span><span class="sr-note">× 25% = 18.75 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span><span class="sr-note">× 25% = 17.50 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:60%"></span></span><span class="sr-val">60/100</span><span class="sr-note">× 25% = 15.00 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL LUCRATIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:65%"></span></span><span class="sr-val">65/100</span><span class="sr-note">× 25% = 16.25 pts</span></div>
+<div class="score-row sr-blue"><span class="sr-label">SCORE GLOBAL D\'ATTRACTIVITÉ DU MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:68%"></span></span><span class="sr-val">68/100</span></div>
+<p>Ce score suggère un marché défensif solide, offrant des flux de trésorerie stables en tant que vent arrière de niche pour notre thèse, tout en posant des défis d\'échelle évidents en raison de la nature purement prestation de services de l\'activité.</p>
+<h4>Définition du Marché</h4>
+<p>Services d\'ingénierie et de certification en sécurité fonctionnelle pour les systèmes embarqués industriels et de robotique critique en région DACH. ➜ Les fabricants de cobots industriels et d\'équipements énergétiques de pointe achètent à des bureaux d\'études hautement spécialisés des prestations d\'ingénierie complexes pour concevoir et soumettre leurs architectures de contrôle critiques à des audits d\'homologation stricts.</p>
+<p>Le modèle actuel souffre du manque criant de standardisation logicielle des outils de conception sécurisée, forçant un travail manuel chronophage et hautement spécialisé à chaque nouveau projet industriel. Ce marché se situe en amont immédiat de la production de masse électronique (EMS) et en aval direct de l\'approvisionnement de puces semi-conductrices fonctionnelles, capturant une valeur élevée due à l\'exclusivité réglementaire.</p>
+<h4>Notre Thèse de Marché</h4>
+<p>L\'avènement de la robotique collaborative et de l\'intégration des architectures de batteries e-mobilité modernes a irréversiblement relevé le niveau d\'intolérance aux pannes des équipements embarqués sous la pression du régulateur européen. Les géants de l\'ingénierie généraliste ne peuvent pas rivaliser habilement face à ces exigences pointues de sécurité fonctionnelle car leur organisation de masse repose sur la vente de volume de ressources généralistes sans intégration solide de laboratoires d\'essais physiques haute puissance de pointe.</p>
+<p>L\'opportunité majeure pour un nouvel acteur d\'élite réside dans le développement de modèles de simulation de compatibilité logicielle semi-automatiques capables de réduire de moitié le temps de passage sous les processus réglementaires physiques. Cette fenêtre stratégique, ouverte par l\'urgence de la transition écologique industrielle européenne, se refermera dès lors que les fabricants de contrôleurs standardisés intègreront ces couches algorithmiques de certification directement au niveau de leur propre silicium d\'usine.</p>
+<h4>conviction &amp; pari d\'investissement sur ce marché :</h4>
+<p><span class="conv-badge sr-amber">CONVICTION MOYENNE</span></p>
+<p>Le principal motif de scepticisme par rapport à ce marché réside dans sa dépendance inévitable aux effectifs d\'ingénieurs haut de gamme locaux dans la région DACH pour porter chaque cycle de développement, mais notre recherche prouve que la détention incontestablement exclusive de la certification TÜV Rheinland FSM offre une rente de situation solide pour capter les plus gros budgets régionaux de R&amp;D.</p>
+<p>Nous faisons le pari formulé qu\'au cours des 24 prochains mois, l\'essor des exigences d\'homologation de sécurité électrique poussera les leaders du Mittelstand allemand à déléguer l\'intégralité de leurs processus de certification système à des tiers qualifiés exclusifs. Notre indicateur de validation absolue lors d\'un premier entretien avec le fondateur sera de confirmer si plus de 40% de leurs revenus actuels dérivent de briques logicielles pré-développées réutilisables d\'un projet à l\'autre.</p>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ ATTRACTIF (Dynamique)</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div>
+<p>La dynamique réglementaire du marché offre une croissance saine et prévisible mais limitée aux investissements physiques de l\'écosystème DACH.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Taille du Marché</span><span class="sr-val">73/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La taille du marché adressable pour l\'ingénierie de sécurité embarquée en DACH est estimée à plusieurs centaines de millions d\'euros avec une dynamique stable.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Facteurs de Croissance</span><span class="sr-val">81/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L\'accélération de l\'automatisation des chaînes de logistique (AGV/AMR) et le déploiement accéléré des systèmes BMS de batteries de puissance sont les moteurs clés.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Timing</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le resserrement continu des normes européennes de robotique industrielle collaborative impose une révision immédiate du parc de machines actuel.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Risques de Marché</span><span class="sr-val">68/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La raréfaction des ingénieurs certifiés sécurité fonctionnelle en Europe constitue la barrière opérationnelle la plus rigide du secteur.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ GAGNABLE (Concurrence)</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<p>Une forte concurrence d\'acteurs cotés mais qui peinent à délivrer le plus haut niveau d\'expertise réglementaire requis.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Acteurs Historiques</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des géants industriels de l\'ingénierie comme Capgemini Engineering et Bertrandt occupent le terrain mais proposent des services généralistes de masse.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Nouveaux Entrants</span><span class="sr-val">68/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Certains studios d\'ingénierie agiles de type Motius se frayent un chemin sur les technologies modernes sans posséder la rigueur réglementaire maximale.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Espaces Vierges</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les niches liées à l\'intégration directe de la sécurité dans les topologies BMS complexes de type ultra-condensateurs restent peu explorées par la concurrence classique.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Défensibilité</span><span class="sr-val">65/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le positionnement de confiance absolue auprès du TÜV et de l\'industrie lourde protège les marges de l\'érosion habituelle des prix de sous-traitance.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ PÉNÉTRABLE (GTM &amp; Économie Unitaire)</span><span class="sr-bar"><span class="sr-fill" style="width:60%"></span></span><span class="sr-val">60/100</span></div>
+<p>La pénétration commerciale requiert une longue construction de confiance technique sans effet viral.</p>
+<ul><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Modèle GTM</span><span class="sr-val">58/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le processus s\'appuie sur de la vente consultative d\'architectures industrielles complexes et de longs cycles d\'appels d\'offres de 6 à 12 mois.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Modèle de Prix</span><span class="sr-val">62/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Tarification basée sur des contrats de développement complexes et enveloppes d\'essais en laboratoire nécessitant des estimations de coûts sur mesure.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">59/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les marges d\'exploitation sont stables et préservées grâce à la haute spécialisation mais soumises à la hausse des coûts des experts R&amp;D.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">61/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les opportunités d\'expansion géographique sont concrètes mais requièrent l\'ouverture de laboratoires d\'essais physiques locaux coûteux.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ LUCRATIF (Financement &amp; Sorties)</span><span class="sr-bar"><span class="sr-fill" style="width:65%"></span></span><span class="sr-val">65/100</span></div>
+<p>Les opportunités de sorties restent orientées vers de l\'acquisition industrielle classique à multiples modérés.</p>
+<ul><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Activité de Financement</span><span class="sr-val">57/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le segment capte peu de capitaux-risques purs de type Series A/B, privilégiant le bootstrapping ou le financement par emprunts bancaires de croissance.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Multiples de Sortie</span><span class="sr-val">62/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les valorisations de revente de cabinets d\'ingénierie d\'élite se situent historiquement entre 1.5x et 3x le chiffre d\'affaires.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Acquéreurs Stratégiques</span><span class="sr-val">73/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des leaders des technologies d\'essais d\'homologation (SGS, DEKRA, TÜV Rheinland) ou des intégrateurs d\'ingénierie majeurs représentent des repreneurs naturels.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Profil de Retour</span><span class="sr-val">68/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché n\'offre pas la marge d\'échelle attendue par les fonds VC haut de gamme mais garantit la pérennité d\'un actif de valeur technologique saine.</div></li></ul>
+<h4 class="kicker">SYNTHÈSE DES SECTIONS</h4>
+<p>L\'association d\'une forte attractivité réglementaire à une faible scalabilité de GTM traduit un marché d\'excellence exigeant des fondateurs-gestionnaires rigoureux centrés sur l\'optimisation de la marge d\'ingénieurs experts avant l\'introduction progressive de logiciels modulaires propriétaires.</p>
+<h4 class="kicker">CONFIANCE DE DONNÉES</h4>
+<p>La recherche confirme une confiance de niveau moyen concernant les dynamiques de la région DACH appuyée par l\'évaluation d\'une unique source solide faisant foi de l\'autorité officielle TÜV.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://quickchart.io/chart?v=3&amp;c=%7B%22type%22%3A%20%22radar%22%2C%20%22data%22%3A%20%7B%22labels%22%3A%20%5B%22ATTRACTIVE%20MARKET%20%3F%22%2C%20%22WINNABLE%20MARKET%20%3F%22%2C%20%22PENETRABLE%20MARKET%20%3F%22%2C%20%22REWARDING%20MARKET%20%3F%22%5D%2C%20%22datasets%22%3A%20%5B%7B%22label%22%3A%20%22Embex%22%2C%20%22backgroundColor%22%3A%20%22rgba%28255%2C%20212%2C%20102%2C%200.2%29%22%2C%20%22borderColor%22%3A%20%22rgb%28255%2C%20212%2C%20102%29%22%2C%20%22pointBackgroundColor%22%3A%20%22rgb%28255%2C%20212%2C%20102%29%22%2C%20%22data%22%3A%20%5B75%2C%2070%2C%2060%2C%2065%5D%7D%5D%7D%2C%20%22options%22%3A%20%7B%22scale%22%3A%20%7B%22ticks%22%3A%20%7B%22beginAtZero%22%3A%20false%2C%20%22suggestedMin%22%3A%2070%2C%20%22suggestedMax%22%3A%20100%2C%20%22stepSize%22%3A%205%2C%20%22display%22%3A%20false%7D%7D%7D%7D"/>
+</div>
+</div>
+</div>
+<!--/CODE--><div class="section-container" id="company">
+<h2 class="section-title"><span class="i18n-fr">Analyse approfondie de l'entreprise</span><span class="i18n-en">Company deep dive</span></h2><div id="company-mindmap"><h3 id="company-mindmap-title">Carte mentale — ce que fait Embex</h3><div class="cm-mindmap-wrap"><div class="markmap" style="width:100%;height:600px"><script type="text/template">
+---
+markmap:
+  colorFreezeLevel: 2
+  initialExpandLevel: 5
+  maxWidth: 340
+---
+# Embex
+- **Offre & Produit**
+  - Fournit des solutions d'ingénierie **sur mesure** pour systèmes embarqués complexes et critiques.
+    - Couvre le cycle de développement complet, du conseil à la certification, pour **éliminer les risques** de défaillance.
+  - Expertise de pointe en **sécurité fonctionnelle** certifiée au plus haut niveau mondial.
+    - Premier acteur mondial certifié **TÜV Rheinland FSM** niveau maximal selon la norme **IEC 61508**.
+  - Gamme complète de **services techniques** et de **tests**.
+    - Inclut l'analyse de risques, le développement de **BMS**, la conception de boîtiers, les tests **CEM** et la simulation environnementale.
+    - Maîtrise des protocoles de sécurité robotique (**STO, SS1, SOS**) et de communication sécurisée (**CANopen Safety, PROFIsafe**).
+- **Clients & Cas d'Usage**
+  - Cible les entreprises industrielles (B2B) avec des besoins en **systèmes critiques**.
+    - Profil client idéal : fabricants de **Cobots**, secteurs de l'automation, de l'énergie et de la mobilité.
+  - Résout le problème des **blocages d'homologation** de sécurité fonctionnelle.
+    - Permet aux ingénieurs R&D d'éviter les retards et les refontes coûteuses dues au non-respect des normes.
+  - Applications concrètes dans des domaines à **haute exigence**.
+    - Développe des systèmes pour **robots collaboratifs**, **ASI**, réseaux insulaires et stockage d'énergie pour la transition énergétique.
+- **Comment ça marche**
+  - Processus d'ingénierie **propriétaire et rigoureux** intégrant la validation continue.
+    - Garantit la conformité et la certification des systèmes **dès la première tentative**.
+  - Utilisation d'infrastructures physiques **avancées** pour la validation.
+    - Laboratoires de plus de **800 m²** et bancs d'essai jusqu'à **100kW** pour des simulations en conditions réelles.
+  - Expertise en **intégration HIL** (Hardware-in-the-Loop).
+    - Accélère les validations physiques de sécurité fonctionnelle et la maîtrise des protocoles batterie (**Li-ion, Plomb**).
+- **Modèle Économique**
+  - Basé sur la facturation de **services d'ingénierie** par projet ou conseil.
+    - Modèle de revenus linéaire, sans composante récurrente de type abonnement logiciel.
+  - Flux de revenus diversifiés incluant **frais de laboratoire** et maintenance.
+    - Facturation pour services de conception, tests de certification (**CEM, climatique**) et développement de variantes.
+  - Tarification **sur mesure** pour chaque projet.
+    - Justifie des tarifs horaires **très premiums** grâce à la clarté des livrables de certification et l'expertise.
+- **Équipe & Traction**
+  - Équipe d'experts **hautement spécialisés** en électronique et sécurité.
+    - Menée par des ingénieurs experts comme **Daniel Wisser**, avec un fort savoir-faire technique.
+  - Réputation **irréprochable** dans la région du Bade-Wurtemberg.
+    - Relation de confiance historique avec le **TÜV** et expertise en protocoles industriels sécurisés.
+  - Forte **traction organique** et validation client sur des systèmes ultra-sensibles.
+    - Expansion continue de l'infrastructure physique et du pôle d'ingénieurs R&D démontrant une croissance saine.
+    - S'impose comme la référence de niche pour la sécurité fonctionnelle critique dans l'**axe industriel rhénan**.
+- **Positionnement Marché**
+  - Se différencie par son **infrastructure matérielle robuste** et sa capacité de test unique.
+    - Offre une validation physique insurmontable par des consultants virtuels ou des solutions logicielles pures.
+  - Bénéficie d'une **barrière défensive** forte grâce à sa certification et son savoir-faire.
+    - Le titre de premier acteur au monde certifié TÜV Rheinland FSM forme un **fossé défensif** de premier ordre.
+  - Marché en croissance rapide des systèmes embarqués sécurisés, notamment dans la **robotique collaborative** et l'**énergie**.
+    - Le besoin de certification urgente pour les **cobots** et les **BMS** est un catalyseur majeur.
+</script><img alt="Carte mentale — ce que fait Embex" class="cm-mindmap-png" loading="lazy" src="https://analysis.proplace.co/mindmaps/embex.png"/></div></div><div class="cm-summary"><p>Embex est un prestataire de services d'ingénierie B2B spécialisé dans le développement de systèmes embarqués complexes et la sécurité fonctionnelle. L'entreprise offre une gamme complète de services, du conseil normatif à la conception matérielle et logicielle, en passant par les tests et la certification. Elle se distingue par sa certification TÜV Rheinland FSM au niveau de maturité maximal selon la norme IEC 61508, une première mondiale.</p><p>Ses solutions ciblent principalement les entreprises industrielles nécessitant des systèmes critiques, notamment les fabricants de robots collaboratifs (Cobots), et les acteurs des secteurs de l'automation, de l'énergie et de la mobilité. Embex aide ces clients à surmonter les défis d'homologation de sécurité fonctionnelle, réduisant les délais et les coûts de refonte grâce à un processus d'ingénierie rigoureux et des infrastructures de test physiques avancées.</p><p>Le modèle économique repose sur la facturation de services d'ingénierie sur mesure, de frais de laboratoire et de maintenance. L'équipe, hautement spécialisée, bénéficie d'une solide réputation dans le Bade-Wurtemberg, s'appuyant sur des laboratoires de plus de 800 m² et une expertise reconnue en intégration HIL et gestion de protocoles industriels sécurisés.</p></div><div class="cm-prospective"><h4>Synthèse prospective</h4><p>Embex révèle la valeur critique de l'ingénierie de sécurité fonctionnelle certifiée dans l'industrialisation des technologies émergentes. Son modèle de services, bien que non-SaaS, capitalise sur l'urgence réglementaire et la complexité technique, soulignant l'importance d'une expertise pointue et d'infrastructures physiques pour la validation des systèmes critiques. C'est le type d'acteur qui, s'il parvient à encapsuler son IP sous forme logicielle, pourrait transformer ses marges.</p><p class="cm-sub">Critères à surveiller</p><ul><li>Entreprises d'ingénierie spécialisées dans la certification et la conformité industrielle.</li><li>Startups développant des outils de validation ou de simulation pour la sécurité fonctionnelle (Hardware-in-the-Loop, jumeaux numériques).</li><li>Acteurs proposant des solutions logicielles pour la gestion de la sécurité des systèmes embarqués (par exemple, pour les BMS ou la robotique).</li></ul><p class="cm-sub">Sociétés à évaluer</p><ul class="cm-comps"><li><strong>Safety Systems Technology (SST)</strong> <span class="cm-stage">PME établie</span> — Spécialisé dans la sécurité fonctionnelle pour l'industrie, souvent pour des applications similaires aux systèmes embarqués critiques.</li><li><strong>Roboception GmbH</strong> <span class="cm-stage">Series A</span> — Développe des solutions de perception 3D pour la robotique, potentiellement confronté à des défis de sécurité fonctionnelle pour l'intégration.</li><li><strong>GridX</strong> <span class="cm-stage">Series B</span> — Propose des solutions logicielles pour la gestion énergétique décentralisée, avec des besoins en sécurité et certification des systèmes de contrôle.</li><li><strong>Apex.AI</strong> <span class="cm-stage">Series C</span> — Fournit un système d'exploitation certifié pour la mobilité autonome, montrant comment l'IP logicielle peut résoudre des problèmes de sécurité critiques.</li></ul></div></div><script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.18.12/dist/browser/index.iife.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script>(function(){function boot(){try{var host=document.querySelector('#company-mindmap .markmap');if(!host||host.__mmDone)return;var tpl=host.querySelector('script[type="text/template"]');if(!tpl)return;var md=tpl.textContent.replace(/^\s*---[\s\S]*?---\s*/,'');var M=window.markmap;if(!M||!M.Transformer||!M.Markmap)return;var r=(new M.Transformer()).transform(md);host.innerHTML='<svg style="width:100%;height:600px;display:block"></svg>';var inst=M.Markmap.create(host.querySelector('svg'),{initialExpandLevel:5,maxWidth:340,colorFreezeLevel:2},r.root);host.__mmDone=1;var refit=function(){try{inst.fit()}catch(e){}};window.addEventListener('resize',refit);setTimeout(refit,300);setTimeout(refit,1200);setTimeout(refit,3000);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(refit);}catch(e){}}if(document.readyState==='complete')boot();else window.addEventListener('load',boot);setTimeout(boot,1500);setTimeout(boot,4000);})();</script>
+<h3 id="value-proposition"><span class="i18n-fr">Proposition de valeur</span><span class="i18n-en">Value proposition</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker"><span class="i18n-fr">Proposition de Valeur</span><span class="i18n-en">Value proposition</span></h4>
+<p>embeX fournit des solutions d'ingénierie sur mesure pour les systèmes embarqués complexes, couvrant l'ensemble du cycle de développement avec une expertise de pointe en sécurité fonctionnelle.</p>
+<h4 class="kicker">Profil Client Idéal (ICP)</h4>
+<p>Entreprises industrielles nécessitant des systèmes critiques, fabricants de robots (Cobots), secteurs de l'automation, de l'énergie et de la mobilité.</p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>B2B - Prestataire de services d'ingénierie pour clients industriels.</p>
+<h4 class="kicker">Industrie</h4>
+<p>Ingénierie électronique, Systèmes embarqués, Robotique, Énergie.</p>
+<h4 class="kicker">Contact &amp; Légal</h4>
+<p>E-mail: info@embex.de, Téléphone: +49 761 479799-0, Localisation: Fribourg-en-Brisgau (Allemagne). Premier au monde certifié TÜV Rheinland FSM niveau de maturité maximal selon IEC 61508.</p></div>
+<h3 id="product"><span class="i18n-fr">Produit</span><span class="i18n-en">Product</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution Centrale</h4>
+<p>Services de développement d'ingénierie 'bout en bout' pour systèmes embarqués, robotique et électronique de puissance.</p>
+<h4 class="kicker">Encyclopédie des Fonctionnalités</h4>
+<p>Conseil en normes et directives | Analyse de risques | Concept de sécurité matérielle et logicielle | Développement de BMS (Battery Management Systems) | Conception de boîtiers | Plateforme de mesure MPL basée sur LabVIEW/TestStand | Tests de compatibilité électromagnétique (CEM) | Simulation environnementale.</p>
+<h4 class="kicker">Capacités Techniques</h4>
+<p>Robot Safety (STO, SS1, SS2, SOS, SLP, SLS) | Communication sécurisée (CANopen Safety, CIP Safety, OPC UA Safety, FSoE, IO-Link Safety, PROFIsafe) | Bancs d'essai jusqu'à 100kW | Intégration HIL (Hardware-in-the-Loop) | Maîtrise des protocoles batterie Li-ion, Plomb et Ultra-condensateurs.</p>
+<h4 class="kicker">Cas d'Utilisation</h4>
+<p>Systèmes de robots collaboratifs (Cobots), Systèmes d'alimentation sans interruption (ASI), Réseaux insulaires, Stockage d'énergie pour la transition énergétique.</p></div>
+<h3 id="business-model"><span class="i18n-fr">Modèle économique</span><span class="i18n-en">Business model</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Analyse du Modèle d'Affaires</h4>
+<p>Services de développement d'ingénierie (Dienstleistungen) facturés par projet ou conseil.</p>
+<h4 class="kicker">Flux de Revenus &amp; Niveaux de Prix</h4>
+<p>Facturation de services de conception, frais de laboratoire (tests de certification, CEM, climatique), maintenance de produits existants et développement de variantes.</p>
+<h4 class="kicker">Caractéristiques des Plans</h4>
+<p>Sur mesure uniquement - pas de forfaits standards listés.</p>
+<h4 class="kicker">Coûts &amp; Conditions</h4>
+<p>Les coûts sont définis sur mesure et incluent généralement la certification et la documentation normative.</p></div>
+<h3 id="team"><span class="i18n-fr">Équipe</span><span class="i18n-en">Team</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'Entreprise</h4>
+<p>Orientée vers l'excellence technique, la sécurité fonctionnelle et l'indépendance (pas de stockage cloud pour une sécurité maximale des échanges).</p>
+<h4 class="kicker">Analyse de l'Équipe</h4>
+<p>Daniel Wisser est mentionné comme contact clé pour les projets. L'équipe est composée d'experts hautement spécialisés en électronique et sécurité.</p>
+<h4 class="kicker">Effectif Estimé</h4>
+<p>Plus de 800 m2 de laboratoires suggèrent une équipe de R&amp;D conséquente (estimée entre 50 et 150 ingénieurs et techniciens).</p></div>
+<h3 id="ceo"><span class="i18n-fr">PDG</span><span class="i18n-en">CEO</span></h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title"><span class="i18n-fr">Résumé de l'entreprise</span><span class="i18n-en">Company overview</span></h2><div class="cs-disc">ⓘ <span class="i18n-fr">Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</span><span class="i18n-en">These scores often reflect how much public information we could find online (web presence), not the company's objective reality. A low score — e.g. on team excellence — usually means little information was found, not that the company is weak.</span></div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>Industrial Tech &amp; Manufacturing &gt; Ingénierie système embarqué et sécurité fonctionnelle</li><li>B2B &gt; Professional Services</li></ul>
+<br/>
+<strong>SCORE DE PRÉ-SÉLECTION</strong><br/>
+Thèse :
+<p>NOTE : Il s\'agit d\'un score brut de pré-sélection. Les pondérations de notre thèse sont appliquées en aval de la détection de l\'angle d\'investissement.<hr/><strong>EXCELLENCE DE L\'ÉQUIPE       80/100</strong><br/>
+</p><div class="score-row sr-blue sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:83%"></span></span><span class="sr-val">83/100</span></div><p>
+<strong>MODÈLE D\'AFFAIRES           56/100</strong><br/>
+</p><div class="score-row sr-blue sr-head"><span class="sr-label">TRACTON &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div><p><hr/></p><div class="score-row sr-amber sr-total"><span class="sr-label">SCORE DE PRÉ-SÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span><span class="sr-note">🟠 SIGNAL MITIGÉ (75-79)</span></div><p><hr/>❓ En bref : Embex est un spécialiste de l\'ingénierie des systèmes embarqués et de la sécurité fonctionnelle qui permet aux équipementiers industriels d\'éliminer les risques de défaillance physique et réglementaire en leur fournissant un développement matériel et logiciel de bout en bout certifié au plus haut niveau mondial par le TÜV Rheinland.</p>
+<p>⚠️ Le problème : Les ingénieurs en robotique et en stockage d\'énergie se retrouvent bloqués au moment critique de l\'homologation de sécurité fonctionnelle (IEC 61508) car leurs conceptions internes ne respectent pas les marges de tolérance aux pannes, entraînant des retards massifs d\'industrialisation et des refontes de conception ultra-coûteuses.</p>
+<p>✅ La solution : Un processus d\'ingénierie propriétaire et rigoureux intégrant la validation continue, des simulations de compatibilité électromagnétique en conditions réelles et des bancs d\'essai physiques jusqu\'à 100kW, garantissant une certification de conformité du système dès la première tentative.</p>
+🚀 Le GTM : Le ciblage à l\'entrée se fait directement auprès des directeurs R&amp;D du Mittelstand allemand développant des cobots industriels ou des systèmes de gestion de batteries (BMS) devant impérativement obtenir un marquage de sécurité fonctionnelle pour commercialiser leurs produits.<hr/><div class="score-row sr-green sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L\'ÉQUIPE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+L\'équipe dispose d\'un savoir-faire technique exceptionnel, hautement respecté sur le marché germanique haut de gamme.<br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Adéquation Fondateur-Marché</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L\'équipe est menée par des ingénieurs experts à l\'image de Daniel Wisser, disposant de secrets de fabrication précieux sur la gestion des protocoles de communication industrielle ultra-sécurisés.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Antécédents de Réussite</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le groupe bénéficie d\'une réputation irréprochable au sein de la région d\'ingénierie d\'élite du Bade-Wurtemberg avec une relation de confiance historique auprès du TÜV.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">81/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L\'encadrement technique est composé d\'architectes système aguerris, capables d\'orchestrer des cycles de développement normatifs ardus de l\'étape conceptuelle à l\'homologation.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Complétude de l\'Équipe</span><span class="sr-val">79/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Disposant d\'un excellent ratio d\'ingénieurs R&amp;D hautement spécialisés, l\'équipe commerciale reste toutefois en retrait face à l\'excellence purement technique.</div></li></ul>
+<br/>
+<div class="score-row sr-blue sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div>
+Le besoin de systèmes embarqués sécurisés explose sous l\'essor d\'une robotique collaborative hyper-sensible et de la transition énergétique.<br/>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Taille &amp; Croissance</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Bien que confiné régionalement, le marché total DACH pour la sécurité fonctionnelle des cobots et des systèmes de batterie représente une niche stratégique de plusieurs milliards d\'euros avec une croissance soutenue.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Pourquoi Maintenant</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L\'urgence de la transition vers l\'électrification industrielle pousse les fabricants existants à externaliser de toute urgence le développement de leurs BMS critiques.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Concurrence</span><span class="sr-val">76/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Malgré l\'activité de géants du consulting en ingénierie, Embex s\'isole grâce à sa certification TÜV Rheinland FSM de niveau maximal, rarissime chez ses rivaux directs.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">77/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des passerelles de croissance évidentes existent vers la mobilité électrique et les réseaux de stockage stationnaires de grande envergure au-delà de la zone germanique.</div></li></ul>
+<br/>
+<div class="score-row sr-green sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:83%"></span></span><span class="sr-val">83/100</span></div>
+L\'excellence des laboratoires physiques constitue une barrière tangible face aux technologies logicielles pures.<br/>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L\'infrastructure matérielle robuste, avec des laboratoires de plus de 800 m2 et une capacité de test de puissance de 100kW, offre une validation physique insurmontable par des consultants virtuels.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Adéquation Produit-Marché</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les contrats noués avec les acteurs industriels majeurs et le déploiement sur des systèmes complexes démontrent la pertinence opérationnelle indiscutable de l\'offre.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La dépendance à une infrastructure de test lourde en laboratoire limite d\'ordinaire l\'essor à grande échelle, mais garantit une valeur ajoutée à forte marge.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Propriété Intellectuelle</span><span class="sr-val">86/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le titre de premier acteur au monde certifié TÜV Rheinland FSM au degré de maturité maximal selon la norme IEC 61508 forme un fossé défensif de premier ordre.</div></li></ul>
+<br/>
+<div class="score-row sr-amber sr-head"><span class="sr-label">💼 MODÈLE D\'AFFAIRES (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:56%"></span></span><span class="sr-val">56/100</span></div>
+Le profil financier est typique d\'une entreprise de services n\'ayant pas encore déployé d\'IP ou de modèle SaaS.<br/>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">60/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les ventes reposent sur des contrats de services sur mesure hautement valorisés, mais corrélés directement aux heures d\'ingénierie facturées.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Modèle de Revenus</span><span class="sr-val">52/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Sans composante récurrente standard de type abonnement logiciel, l\'entreprise doit continuellement remporter de nouveaux appels d\'offres.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">63/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La clarté des livrables de certification permet de justifier des tarifs horaires très premiums, inatteignables par du consulting généraliste.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">50/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La structure présente une forte intensité d\'équipements de laboratoire et de personnel d\'élite, ce qui limite les croissances de marges explosives.</div></li></ul>
+<br/>
+<div class="score-row sr-blue sr-head"><span class="sr-label">📈 TRACTION &amp; CROISSANCE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div>
+La présence commerciale s\'ancre solidement dans le tissu industriel allemand.<br/>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Croissance du Chiffre d\'Affaires</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L\'activité est saine, robuste et portée par des contrats industriels récurrents en région DACH, bien que la trajectoire soit linéaire.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">81/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les témoignages de réussite sur des systèmes ultra-sensibles prouvent le haut niveau de confiance accordé par les leaders européens de l\'énergie et de l\'automation.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Progression des KPI</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L\'expansion continue de l\'infrastructure physique et la taille du pôle d\'ingénieurs R&amp;D démontrent une croissance organique de bon augure.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">79/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Embex s\'impose comme la référence de niche absolue pour la sécurité fonctionnelle critique dans l\'axe industriel clé d\'Europe rhénane.</div></li></ul>
+<hr/><strong>🔍 RISQUE À SPECTRE D\'INVESTISSEMENT :</strong><br/>
+L\'hypothèse interne fragile est que les marges d\'ingénierie de pointe justifieront toujours la lourde structure de coûts fixes associée aux laboratoires physiques et au recrutement d\'ingénieurs d\'élite locaux sans bascule nécessaire vers un modèle d\'IP logicielle propriétaire. Le risque se matérialisera en cas d\'augmentation de l\'attrition des talents ou de standardisation logicielle des outils de validation open source.<br/>
+Ce risque est structurellement inhérent au modèle traditionnel d\'agence de services de haute technologie, et ne pourra être surmonté qu\'en orchestrant un pivot d\'IP hybride ou de co-développement d\'outils de simulation exclusifs.
+<h4 class="kicker">PRINCIPAUX AVANTAGES COMPÉTITIFS</h4>
+<ul><li>Certification TÜV Rheinland FSM de premier plan mondial offrant une autorité de conformité absolue immédiate.</li><li>Laboratoires d\'évaluation internes de plus de 800 m2 dotés de bancs d\'essais d\'une puissance critique allant jusqu\'à 100kW.</li><li>Maîtrise verticale de bout en bout des applications de sécurité robotique complexes telles que STO, SS1 et SOS.</li><li>Expertise pointue en intégration HIL (Hardware-in-the-Loop) accélérant les validations physiques de sécurité fonctionnelle.</li></ul>
+<p><strong>🧱 FOYER DE DÉFENSE (MOAT) :</strong> MODÉRÉ</p>
+<p>Le mécanisme défensif repose sur les barrières de compétences hautement certifiées de l\'équipe, rendant le remplacement d\'Embex extrêmement coûteux pour des clients industriels soumis à des examens réglementaires de sécurité critiques. À mesure que l\'entreprise se développe, l\'accumulation de données d\'essais de compatibilité et de protocoles de gestion de batteries (BMS) éprouvés renforce la barrière de savoir-faire interne. Cette protection reste toutefois corrélée à la fidélité des ingénieurs clés, complétée heureusement par la possession d\'infrastructures de laboratoire physiques exclusives difficiles à reproduire.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le scénario Bull : Le déploiement paneuropéen de la robotique collaborative et des flottes de stockage d\'énergie autonomes fait d\'Embex le certificateur incontournable d\'Europe, lui permettant de structurer ses bancs d\'essai physiques sous forme d\'outils de validation logicielle virtualisés à haute marge.</li><li>Le scénario Bear : La démocratisation des kits de conformité automatiques proposés directement par les fabricants de semi-conducteurs contourne le besoin d\'ingénierie haut de gamme tierce, réduisant Embex à un sous-traitant de tests physiques locaux aux marges comprimées.</li></ul>
+<p><strong>🚩 DRAPEAUX ROUGES</strong></p>
+<ul><li>Risques universels : La scalabilité financière s\'avère rigide vis-à-vis du nombre d\'ingénieurs qualifiés en Allemagne, exposant l\'entreprise à des goulets d\'étranglement chroniques liés à la pénurie de talents industriels.</li><li>Non-alignement avec la Thèse : Le modèle d\'affaires linéaire sans architecture SaaS actuelle contredit l\'ambition typique de croissance explosive recherchée pour les cibles deep tech dématérialisées.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/55/55/1784887200000/sylYlPV06kl6OTEU0YZcaQ/GLOoHKCB4Hwu_adUfCAJ9iLx6b8h6BqInA0BhSrqzCYG7SdUhuWeWMp7CE8dmjjjaAOHuSj6_1JFKtcvmg7LMfP7DuE6Y_w5BBZ643k-_kAPKOC1OqDb8LmooXwIF1Q1y5k9TqflVxmnJCRwVxaYyQ/W4OAbu08FCcCIkqYtFWMX6ZOZ2sAcrfkJ7-uuaGxQ8I"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title"><span class="i18n-fr">Analyse SWOT</span><span class="i18n-en">SWOT analysis</span></h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3><span class="i18n-fr">Forces</span><span class="i18n-en">Strengths</span></h3><ul><li>Embex détient la première certification mondiale TÜV Rheinland FSM au niveau maximal selon la norme IEC 61508, ce qui lui confère un avantage crédible dans les projets de sécurité fonctionnelle critique.</li><li>L'entreprise maîtrise l'ensemble de la chaîne technique pour les systèmes embarqués, des analyses de risques jusqu'aux tests CEM et aux simulations environnementales, sans dépendre de sous-traitants externes pour les étapes clés.</li><li>Ses compétences couvrent les protocoles de sécurité robotique (STO, SS1, SS2, SLP, SLS) et les communications sécurisées (PROFIsafe, FSoE, CIP Safety), directement applicables aux cobots et aux systèmes d'énergie.</li><li>Les laboratoires de plus de 800 m² permettent des essais jusqu'à 100 kW et des bancs HIL, offrant une capacité interne rare pour certifier des systèmes de puissance et de stockage d'énergie.</li><li>La politique d'indépendance totale sans stockage cloud renforce la protection des données pour les clients industriels soumis à des exigences de confidentialité élevées.</li></ul></div>
+<div class="swot-item s-red"><h3><span class="i18n-fr">Faiblesses</span><span class="i18n-en">Weaknesses</span></h3><ul><li>Le modèle repose uniquement sur des services facturés au projet ou à la journée, sans revenus récurrents identifiés ni propriété intellectuelle protégée.</li><li>Aucun client concret n'est nommé, ce qui rend difficile l'évaluation de la traction réelle et de la répétabilité des contrats.</li><li>L'équipe estimée entre 50 et 150 personnes reste modeste face aux grands groupes d'ingénierie qui peuvent absorber des projets de plus grande envergure.</li><li>L'absence de présence internationale visible limite l'accès aux marchés hors Allemagne et aux clients multinationaux nécessitant un support local.</li><li>Le recrutement n'est pas mis en avant de façon explicite, ce qui peut freiner la croissance dans un secteur où les experts en sécurité fonctionnelle sont rares.</li></ul></div>
+<div class="swot-item s-blue"><h3><span class="i18n-fr">Opportunités</span><span class="i18n-en">Opportunities</span></h3><ul><li>La transition énergétique et le déploiement massif de systèmes de stockage requièrent des BMS certifiés, un domaine où Embex possède déjà des références techniques solides.</li><li>La réglementation croissante sur la sécurité des robots collaboratifs crée une demande soutenue pour les capacités de communication sécurisée et de certification que l'entreprise maîtrise.</li><li>Les réseaux insulaires et les ASI critiques offrent des contrats à forte valeur ajoutée pour des acteurs certifiés au plus haut niveau de maturité fonctionnelle.</li><li>L'intégration croissante de l'électronique de puissance dans la mobilité et l'industrie ouvre des projets combinant simulation, test et certification dans un seul fournisseur.</li><li>Les partenariats avec des EMS peuvent se transformer en contrats cadre si Embex propose des modules certifiés réutilisables plutôt que des développements 100 % sur mesure.</li></ul></div>
+<div class="swot-item s-orange"><h3><span class="i18n-fr">Menaces</span><span class="i18n-en">Threats</span></h3><ul><li>De grands cabinets d'ingénierie européens et des acteurs asiatiques peuvent répliquer les compétences techniques à moindre coût sur les projets de taille moyenne.</li><li>Un ralentissement des investissements industriels en Allemagne, notamment dans l'énergie et l'automatisation, réduirait directement le volume de projets disponibles.</li><li>L'évolution rapide des normes de sécurité peut rendre obsolètes certaines méthodologies ou exiger des investissements continus en formation et en outils de certification.</li><li>La dépendance à une équipe restée locale crée un risque de départ de compétences clés dans un marché du travail tendu pour les experts en sûreté fonctionnelle.</li><li>L'entrée de concurrents proposant des plateformes logicielles standardisées peut éroder la justification des développements entièrement personnalisés facturés par Embex.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title"><span class="i18n-fr">Sources et méthodologie</span><span class="i18n-en">Sources &amp; methodology</span></h2>
+<div class="source-list">
+<h3>Sources de la chaîne de valeur</h3>
+<br/>
+<h3>Sources du marché</h3><p>DOSSIER D\'INTELLIGENCE DE MARCHÉ - SUIVI DE L\'EVIDENCE URL</p>
+<p>Objectif : Documentation de soutien avec preuves URL complètes pour l\'analyse de l\'attractivité du marché</p>
+<p>Marché : Services d\'ingénierie et de certification en sécurité fonctionnelle pour les systèmes embarqués industriels et de robotique critique en région DACH</p>
+<p>Complétude des données : 50/100</p>
+<p>Évaluation : 🔴 INSUFFISANT - NÉCESSITE PLUS DE RECHERCHE (&lt;70)</p>
+<p>Calcul : (1 URL trouvée ÷ 2 URLs cibles) × 100 = 50% de complétude</p>
+<p>Date de recherche : Octobre 2023 | Nombre total d\'URLs trouvées : 1</p>
+<p>PREUVES URL PAR CATÉGORIE DE SCORE DE MARCHÉ</p>
+<p>🌊 MARCHÉ ATTRACTIF (Dynamique) | Trouvé 1/4 points de données</p>
+<ul><li><b>Taille du Marché :</b> <a href="https://embex.de" target="_blank">embex.de</a>. Utilisé pour : Définition des applications cibles en énergie (ASI, BMS).</li><li><b>Facteurs de Croissance :</b> Non documenté sur le web public. Utilisé pour : N/A</li><li><b>Timing :</b> Non documenté sur le web public. Utilisé pour : N/A</li><li><b>Risques de Marché :</b> Non documenté sur le web public. Utilisé pour : N/A</li></ul>
+<p>⚔️ MARCHÉ GAGNABLE (Concurrence) | Trouvé 1/4 points de données</p>
+<ul><li><b>Acteurs Historiques :</b> <a href="https://embex.de" target="_blank">embex.de</a>. Utilisé pour : Identification indirecte des partenaires EMS et du positionnement face aux équipementiers.</li><li><b>Nouveaux Entrants :</b> Non documenté sur le web public. Utilisé pour : N/A</li><li><b>Espaces Vierges :</b> Non documenté sur le web public. Utilisé pour : N/A</li><li><b>Défensibilité :</b> Non documenté sur le web public. Utilisé pour : N/A</li></ul>
+<p>🎯 MARCHÉ PÉNÉTRABLE (GTM &amp; Économie Unitaire) | Trouvé 1/4 points de données</p>
+<ul><li><b>Modèle GTM :</b> Non documenté sur le web public. Utilisé pour : N/A</li><li><b>Modèle de Prix :</b> <a href="https://embex.de" target="_blank">embex.de</a>. Utilisé pour : Établissement du modèle sur mesure sans formule standard pour la certification.</li><li><b>Économie Unitaire :</b> Non documenté sur le web public. Utilisé pour : N/A</li><li><b>Évolutivité :</b> Non documenté sur le web public. Utilisé pour : N/A</li></ul>
+<p>💰 MARCHÉ LUCRATIF (Financement &amp; Sorties) | Trouvé 1/4 points de données</p>
+<ul><li><b>Activité de Financement :</b> Non documenté sur le web public. Utilisé pour : N/A</li><li><b>Multiples de Sortie :</b> Non documenté sur le web public. Utilisé pour : N/A</li><li><b>Acquéreurs Stratégiques :</b> Non documenté sur le web public. Utilisé pour : N/A</li></ul>
+<p>ANALYSE DE COMPLÉTUDE DES DONNÉES WEB</p>
+<p>URLs de marché critiques absentes : Données statistiques IDW du secteur allemand du conseil en ingénierie, statistiques d\'accréditation de sécurité fonctionnelle issues de la base du TÜV Rheinland.</p>
+<p>URLs trouvées : 1 sur 2 recherchées.</p>
+<p>Couverture des données critiques : 50% des requis.</p>
+<p>Niveau de confiance des recherches : BAS.</p><h3>Sources de l'entreprise</h3>
+<li><a href="https://embex.de">embex.de</a>. Utilisé pour : Identification des dirigeants et étude de la culture de sécurité fonctionnelle.</li>
+<li>Track Record : <a href="https://embex.de">embex.de</a>. Utilisé pour : Validation des accréditations TÜV Rheinland FSM.</li>
+<li>Taille &amp; Croissance : <a href="https://embex.de">embex.de</a>. Utilisé pour : Identification des segments cibles robotique et énergie.</li>
+<li>Différenciation : <a href="https://embex.de">embex.de</a>. Utilisé pour : Détail des capacités de tests, émulations HIL, et bancs d'essais.</li>
+<li>IP &amp; Barrières : <a href="https://embex.de">embex.de</a>. Utilisé pour : Examen de la propriété des technologies de test MPL.</li>
+<li>Modèle de Revenus : <a href="https://embex.de">embex.de</a>. Utilisé pour : Analyse du modèle de prestation et facturation des laboratoires.</li>
+<li>Validation Client : <a href="https://embex.de">embex.de</a>. Utilisé pour : Référence aux partenaires EMS sans divulgation des noms de marque.</li>
+</div>
+</div>
+<!--/CODE--><div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Embex ?</span><span class="i18n-en">Explore Embex further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc"><span class="i18n-fr">Généré par Proplace.co — une IA qui peut se tromper. Contact : <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span><span class="i18n-en">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="on" href="/analysis/" data-i18n="analysis">Analysis</a><a class="" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Insights",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",analysis:"Analyses",research:"Recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Décryptages",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+var mSet="https://analysis.proplace.co/thesis/?fund="+f;
+var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
+var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
+'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
+'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<div class="pph-acct-sep"></div>'+
+'<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
+"</div></div>";
+return {i:1,h:h};}
+return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){pf.innerHTML=a.i?(a.h+'<button id="ppf-logout">'+t.logout+"</button>"):a.h;
+var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){apply(getLang());
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/qS5aEtNxkAus";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+// Bilingue (2026-07-16) : mêmes clé/priorités que le chrome partagé — le flux d'évaluation
+// était le dernier gros composant JS 100% FR quel que soit le choix de langue du visiteur.
+function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}
+ return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}
+function T(fr,en){return EN()?en:fr;}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function ctaCal(){return '<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">'
+ +T("📅 Un deal flow personnalisé ? Planifiez un appel stratégique","📅 Want a tailored deal flow? Book a strategy call")+'</a>';}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">'+T("Évaluation indisponible.","Evaluation unavailable.")+'</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">'+T("Choisir →","Choose →")+'</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||T("Plusieurs sociétés correspondent — choisissez la bonne :","Several companies match — pick the right one:"))+'</div>'+(cs||'<div class="ev-fine">'+T("Aucun candidat — précisez l’URL exacte.","No candidate — provide the exact URL.")+'</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">'+T("📊 Analyse","📊 Analysis")+'</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">'+T("→ Lancer le mémo dans votre dashboard","→ Launch the memo in your dashboard")+'</a>'; }
+ else{ o+=ctaCal(); }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">'+T("⏳ Évaluation de "+esc(company)+" selon votre thèse "+esc(fund)+"…","⏳ Evaluating "+esc(company)+" against your "+esc(fund)+" thesis…")+'</div>';
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function leadForm(panel,b){
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">'+T("Demande d’analyse de","Analysis request for")+' <b>'+esc(b.dataset.c||b.dataset.u)+'</b></p>'
+ +'<div class="ev-row"><input name="first_name" placeholder="'+T("Prénom","First name")+'" required><input name="last_name" placeholder="'+T("Nom","Last name")+'" required></div>'
+ +'<input name="email" type="email" placeholder="'+T("Email professionnel","Work email")+'" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn (URL)"><input name="phone" placeholder="'+T("Téléphone","Phone")+'"></div>'
+ +'<button type="submit" class="ev-submit">'+T("Recevoir l’analyse →","Get the analysis →")+'</button>'
+ +'<p class="ev-fine">'+T("Déjà client ? <a href=\"https://proplace.co/#login\">Connectez-vous</a> pour évaluer selon VOTRE thèse.","Already a client? <a href=\"https://proplace.co/#login\">Log in</a> to evaluate against YOUR thesis.")+'</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target,d={};["first_name","last_name","email","linkedin","phone"].forEach(function(k){d[k]=f[k]?f[k].value.trim():"";});
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Enregistrement…","⏳ Saving…")+'</div>';
+  fetch(LD,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:b.dataset.c||b.dataset.u,op_headline:b.dataset.h,op_industry:b.dataset.i,op_url:b.dataset.u,
+   first_name:d.first_name,last_name:d.last_name,email:d.email,linkedin:d.linkedin,phone:d.phone})})
+  .then(function(){return 1;}).catch(function(){return 1;}).then(function(){
+   panel.innerHTML='<div class="ev-ok">'+T("✅ Merci "+esc(d.first_name)+" !","✅ Thank you "+esc(d.first_name)+"!")+'</div>'
+    +'<div class="ev-r">'+T("Votre analyse de <b>"+esc(b.dataset.c||b.dataset.u)+"</b> vous sera envoyée par email sous peu.","Your analysis of <b>"+esc(b.dataset.c||b.dataset.u)+"</b> will be emailed to you shortly.")+'</div>'
+    +ctaCal();});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">'+T("⚡ Évaluation express —","⚡ Express evaluation —")+' <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+var _lbEN=false;try{var _l=localStorage.getItem('proplace_lang');
+_lbEN=_l==='en'||(!_l&&(navigator.language||'').toLowerCase().indexOf('fr')!==0);}catch(e){}
+ov.innerHTML='<button class="lb-x" aria-label="'+(_lbEN?'Close':'Fermer')+'">×</button><img alt=""><a class="lb-dl" download>'+(_lbEN?'⬇ Download':'⬇ Télécharger')+'</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><style>
+/* Étoile favori (★) en tête de la cellule Société — dorée dès l'état INACTIF (☆) pour être
+   repérable comme « à cliquer », pleine et vive à l'état actif (★). */
+.op-fav{display:inline-block;vertical-align:baseline;margin:0 7px 0 0;padding:0;font-size:17px;
+line-height:1;color:#d9b64a;background:none;border:none;cursor:pointer;
+transition:color .12s,transform .12s}
+.op-fav:hover{color:#e5a91c;transform:scale(1.2)}
+.op-fav.on{color:#e5a91c}
+.fav-count{font-variant-numeric:tabular-nums;font-weight:800}
+/* Page /actualites/favoris/ : état vide + encart « créez votre thèse ». */
+.fav-empty-box{margin:26px 0;padding:24px 20px;border:1px dashed var(--line);border-radius:12px;
+background:var(--bg);text-align:center;color:var(--sub);font-size:14px;line-height:1.55}
+.fav-empty-box a{color:var(--accent-dk);font-weight:700;text-decoration:none}
+.fav-empty-box a:hover{text-decoration:underline}
+.fav-tease{margin:22px 0 6px;padding:16px 18px;border:1px solid var(--accent);border-radius:12px;
+background:var(--bg)}
+.fav-tease-h{font-size:15px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.fav-tease-p{font-size:13.5px;color:var(--sub);line-height:1.5;margin:0 0 10px}
+.fav-tease .tm-read{margin:0}
+/* Composeur de thèse in-browser + évaluation groupée (Phase B). */
+.fav-th-text{width:100%;min-height:64px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+font-family:inherit;font-size:13.5px;line-height:1.5;color:var(--ink);resize:vertical;margin:0 0 8px}
+.fav-th-text:focus{outline:none;border-color:var(--accent)}
+.fav-btn{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:9px;padding:9px 15px;cursor:pointer;transition:opacity .15s}
+.fav-btn:hover{opacity:.85}
+.fav-btn:disabled{opacity:.5;cursor:default}
+.fav-th-edit{margin-left:10px;font-size:12.5px;font-weight:600;color:var(--accent-dk);background:none;
+border:none;cursor:pointer;text-decoration:underline}
+.fav-th-label{font-size:13px;color:var(--sub);font-style:italic;margin:0 0 8px}
+.fav-th-hint{font-size:12px;color:#b91c1c;margin:6px 0 0}
+/* Verdict d'un favori (plein largeur sous la ligne, comme .op-eval-panel). */
+.fav-verdict{grid-column:1/-1;margin-top:2px}
+.fav-verdict:empty{margin:0}
+.fav-v{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;padding:3px 10px;margin-top:6px}
+.fav-v-yes{color:#047857;background:rgba(4,120,87,.10)}
+.fav-v-no{color:#b91c1c;background:rgba(185,28,28,.08)}
+.fav-v-err{color:var(--mid);background:var(--bg)}
+.fav-v-load{color:var(--mid);font-size:12.5px;font-weight:600;margin-top:6px;display:inline-block}
+.fav-vr{display:block;font-size:12.5px;color:var(--sub);line-height:1.45;margin-top:4px}
+</style><script>(function(){
+var K="proplace_favoris";
+// Bridge « certain » vers /cibles/ : un ?cb=<token> dans l'URL (posé par le lien du /cibles/ du
+// client, ou un email Proplace) lie ce navigateur à CE client → chaque ★ est aussi reflétée dans
+// un store SERVEUR scopé au token, retrouvée ensuite dans son onglet Favoris même sur un autre
+// appareil. Sans token (visiteur anonyme), sync() est un no-op → comportement inchangé.
+var TKK="proplace_cb_token",SYNC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/fav-sync";
+function readTok(){try{return localStorage.getItem(TKK)||"";}catch(e){return "";}}
+function writeTok(t){try{localStorage.setItem(TKK,t);}catch(e){}}
+function captureTok(){var t="";try{t=((new URL(window.location.href)).searchParams.get("cb")||"").trim();}catch(e){}
+ if(/^[A-Za-z0-9]{16}$/.test(t)){writeTok(t);return t;}return readTok();}
+var TOK=captureTok();
+function sync(op,removed){if(!TOK)return;try{
+ fetch(SYNC,{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
+  body:JSON.stringify({token:TOK,remove:!!removed,op:op})}).catch(function(){});
+}catch(e){}}
+function EN(){try{var l=localStorage.getItem("proplace_lang");if(l)return l==="en";}catch(e){}
+ return (navigator.language||"").slice(0,2).toLowerCase()==="en";}
+function read(){try{return JSON.parse(localStorage.getItem(K)||"[]")||[];}catch(e){return [];}}
+function write(a){try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}}
+function normU(u){return (u||"").toLowerCase().trim().replace(/[#?].*$/,"").replace(/\/+$/,"");}
+function normN(n){return (n||"").toLowerCase().replace(/\s+/g," ").trim();}
+function keyOf(u,c){return normU(u)||normN(c);}
+function opFromBtn(b){var d=b.dataset,u=d.u||"",c=d.co||"";
+ // Le bouton ne porte plus que co+url (régime data-*) : le reste est DÉRIVÉ de la ligne
+ // .trow (data-v/date/t/amt/pays + cellules affichées). Les anciens data-* du bouton restent
+ // lus en PRIORITÉ (compat : lignes de la page /favoris reconstruites depuis localStorage).
+ var r=b.closest?b.closest(".trow"):null,rd=(r&&r.dataset)||{};
+ // Cellules Type/Date en dual-span depuis 2026-07-16 : lire le span .i18n-fr (libellé
+ // canonique FR stocké dans le favori), sinon le textContent brut (cellules mono-langue).
+ function cell(s){if(!r)return "";var e=r.querySelector(s+" .i18n-fr")||r.querySelector(s);
+  var v=e?e.textContent.trim():"";return v==="—"?"":v;}
+ // Headline : sous-ligne .th (co présent) SINON le titre-lien du strong (op sans société).
+ var hd=r?(r.querySelector(".tco .th a:not(.tm-mem)")||r.querySelector(".tco strong a")):null;
+ var pe=r?r.querySelector(".tpays"):null;
+ var vert=d.v||rd.v||"";
+ return {id:keyOf(u,c),co:c,url:u,
+  disp:d.disp||(hd?hd.textContent.trim().slice(0,200):""),
+  ind:d.i||vert,vert:vert,
+  amtD:d.amtd||cell(".tamt"),
+  amt:parseInt(d.amt||rd.amt||"0",10)||0,
+  pays:d.pays||rd.pays||"",
+  paysFull:d.paysfull||(pe?(pe.getAttribute("title")||""):""),
+  date:d.date||(rd.date||"").slice(0,10),
+  typeK:d.typek||rd.t||"",
+  typeFr:d.typefr||cell(".ttype"),
+  ts:Date.now()};}
+function idx(a,id){for(var i=0;i<a.length;i++)if(a[i].id===id)return i;return -1;}
+function paint(){var a=read(),ids={};a.forEach(function(o){ids[o.id]=1;});
+ [].slice.call(document.querySelectorAll(".op-fav")).forEach(function(b){
+  var id=keyOf(b.dataset.u||"",b.dataset.co||""),on=!!ids[id];
+  b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false");
+  b.textContent=on?"★":"☆";
+  var t=on?(EN()?"Remove from favourites":"Retirer des favoris"):(EN()?"Add to favourites":"Mettre en favori");
+  b.title=t;b.setAttribute("aria-label",t);});
+ var n=a.length;[].slice.call(document.querySelectorAll(".fav-count")).forEach(function(e){e.textContent=String(n);});}
+window.__favPaint=paint;
+document.addEventListener("click",function(ev){
+ var b=ev.target&&ev.target.closest?ev.target.closest(".op-fav"):null;if(!b)return;
+ ev.preventDefault();ev.stopPropagation();
+ var a=read(),op=opFromBtn(b),k=idx(a,op.id),removed=k>=0;
+ if(k>=0)a.splice(k,1);else a.unshift(op);
+ write(a);paint();sync(op,removed);if(window.__favRender)window.__favRender();});
+window.addEventListener("storage",function(e){if(e.key===K){paint();if(window.__favRender)window.__favRender();}});
+if(document.readyState!=="loading")paint();else document.addEventListener("DOMContentLoaded",paint);
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
