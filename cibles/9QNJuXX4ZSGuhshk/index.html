@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="sforbt"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-25T11:23:56Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="sforbt"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-25T13:04:49Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -240,21 +240,47 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .cb-kicker{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#4AC67F;margin:0 0 10px}
 /* v119.8 (demande CEO 25/07) — bloc « Sourcing du jour » (mode opérateur, en tête du
    panneau Sourcing) : état auto + bouton lancer + barre de progression + actualiser. */
-.cb-srcrun{margin:0 0 12px;padding:11px 13px;background:#f1f6fb;border:1px solid #d6e3f0;border-radius:11px}
-.cb-srcrun-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.cb-srcrun-auto{font-size:12px;font-weight:700;color:#0f6e3f}
-.cb-srcrun-auto.off{color:#b45309}
+/* v120 — bloc « Sourcing du jour » : UNE LIGNE [case auto · dernier run] …→… [barre][bouton]. */
+.cb-srcrun{margin:0 0 12px;padding:10px 13px;background:#f1f6fb;border:1px solid #d6e3f0;border-radius:11px}
+.cb-srcrun-line{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap}
+.cb-srcrun-autolbl{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:#0f1f33;cursor:pointer;white-space:nowrap}
+.cb-srcrun-cb{width:16px;height:16px;accent-color:#15884a;cursor:pointer;flex:0 0 auto}
+.cb-srcrun-when{font-size:11.5px;color:#5b6b7c;font-weight:600;white-space:nowrap}
+.cb-srcrun-right{display:inline-flex;align-items:center;gap:10px;margin-left:auto;flex:1 1 240px;justify-content:flex-end;min-width:180px}
 .cb-srcrun-btn{font-family:inherit;font-size:12px;font-weight:800;color:#fff;background:#2563eb;
-border:1px solid #2563eb;border-radius:9px;padding:6px 12px;cursor:pointer;white-space:nowrap}
+border:1px solid #2563eb;border-radius:9px;padding:6px 13px;cursor:pointer;white-space:nowrap;flex:0 0 auto}
 .cb-srcrun-btn:hover{background:#1d4ed8}
-.cb-srcrun-btn:disabled{opacity:.7;cursor:default}
-.cb-srcrun-bar{position:relative;height:8px;background:#dce7f2;border-radius:999px;overflow:hidden;margin:9px 0 6px}
+.cb-srcrun-btn:disabled{opacity:.5;cursor:not-allowed;background:#93a7c4;border-color:#93a7c4}
+.cb-srcrun-bar{position:relative;height:8px;width:130px;flex:1 1 90px;max-width:220px;background:#dce7f2;border-radius:999px;overflow:hidden}
 .cb-srcrun-fill{position:absolute;left:0;top:0;bottom:0;width:2%;border-radius:999px;
 background:linear-gradient(90deg,#2563eb,#4ac67f);transition:width .6s ease}
-.cb-srcrun-msg{font-size:12px;font-weight:700;color:#1d4ed8;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cb-srcrun-msg{font-size:12px;font-weight:700;color:#1d4ed8;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:7px}
+.cb-srcrun-msg:empty{display:none}
 .cb-srcrun-refresh{font-family:inherit;font-size:11px;font-weight:800;color:#185c38;background:#e8f4ee;
 border:1px solid #b0d4c0;border-radius:8px;padding:4px 10px;cursor:pointer}
-.cb-srcrun-hint{margin:6px 0 0;font-size:11px;color:#64748b;line-height:1.5}
+@media(max-width:620px){.cb-srcrun-right{margin-left:0;justify-content:flex-start}}
+/* v120 — 3 ONGLETS d'alimentation (moteurs / opérations / actualité) dans le panneau. */
+.cb-srcgtabs{margin-top:14px}
+.cb-srcgtab-bar{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid #e4e8ee;margin-bottom:12px}
+.cb-srcgtab-btn{font-family:inherit;font-size:12.5px;font-weight:700;color:#5b6b7c;background:none;
+border:none;border-bottom:2px solid transparent;padding:7px 10px 8px;cursor:pointer;white-space:nowrap;margin-bottom:-1px}
+.cb-srcgtab-btn:hover{color:#0f1f33}
+.cb-srcgtab-btn.on{color:#15884a;border-bottom-color:#15884a}
+.cb-srcgtab-pane{display:none}
+.cb-srcgtab-pane.on{display:block}
+.cb-srcgtab-h{font-size:14px;font-weight:800;color:#0f1f33;margin:0 0 10px}
+/* v120 — LES 2 BORNES DU TUNNEL mises en valeur : « Évalués » = ENTRÉE (on alimente le
+   moteur), « Validées » = SORTIE (deals en contact & DD). Bordure pleine + micro-label
+   flottant au-dessus pour que le CEO lise le rôle d'un coup d'œil. */
+.cb-io{position:relative;border-width:1.5px!important;overflow:visible}
+.cb-io::before{content:attr(data-io);position:absolute;top:-8px;left:50%;transform:translateX(-50%);
+font-size:7.5px;font-weight:900;letter-spacing:.12em;line-height:1;padding:2px 5px;border-radius:999px;
+white-space:nowrap;pointer-events:none}
+.cb-io-in{border-color:#15884a!important;box-shadow:0 0 0 2px rgba(21,136,74,.12)}
+.cb-io-in::before{content:attr(data-io);background:#15884a;color:#fff}
+.cb-io-out{border-color:#6d28d9!important;box-shadow:0 0 0 2px rgba(109,40,217,.12)}
+.cb-io-out::before{background:#6d28d9;color:#fff}
+@media(max-width:620px){.cb-io::before{display:none}}
 /* ═══ v119 (demande CEO 24/07) — HEADER PROPLACE MASQUÉ PAR DÉFAUT sur /cibles ═══
    La page est un actif CLIENT : le chrome Proplace ne s'affiche que si on le demande.
    Défaut = caché en PUR CSS (zéro flash) ; html.cb-hdrshow le révèle (toggle ☰ de la
@@ -4480,4 +4506,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:b759f01f40 --></body></html>
+})();</script><!-- v:45277f5bad --></body></html>
