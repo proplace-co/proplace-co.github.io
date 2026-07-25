@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="profund vc"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-25T13:43:39Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="profund vc"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-25T15:42:17Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -462,8 +462,25 @@ border:1px solid #d4dce6;border-radius:7px;padding:4px 10px;cursor:pointer;line-
 white-space:nowrap;transition:border-color .12s ease,color .12s ease}
 .cb-srcg-fold:hover{border-color:#0f1f33;color:#0f1f33}
 .cb-srcg-fold-i{font-size:10px;line-height:1}
-.cb-srcg.cb-srcg-folded .cb-srcg-steps,.cb-srcg.cb-srcg-folded .cb-srcg-tuto{display:none}
+/* v120.3 — le repli ne masque QUE les onglets (cb-srcg-foldzone) : le bloc auto +
+   l'évaluateur (cb-srcg-top) restent TOUJOURS visibles. */
+.cb-srcg.cb-srcg-folded .cb-srcg-foldzone{display:none}
 .cb-srcg.cb-srcg-folded .cb-srcg-hd{margin:0}
+/* Rubrique unifiée « paramétrage » : auto + évaluateur dans un seul encadré. */
+.cb-srcg-top{margin:12px 0 4px;padding:12px 13px;background:#f8fafc;border:1px solid #e6eaef;border-radius:12px}
+.cb-srcg-top .cb-srcrun{margin:0;background:none;border:none;padding:0}
+.cb-srcg-eval{margin-top:12px;padding-top:12px;border-top:1px dashed #e1e7ee}
+.cb-srcg-top .cb-srcrun[hidden]+.cb-srcg-eval{margin-top:0;padding-top:0;border-top:none}
+.cb-srcg-eval-h{margin:0 0 9px;font-size:13.5px;font-weight:800;color:#0f1f33}
+/* v120.3 — onglet actualité : titre + explication du collage manuel (sous la veille). */
+.cb-rsrch-paste-h{margin:18px 0 3px;font-size:13px;font-weight:800;color:#0f1f33}
+.cb-rsrch-paste-sub{margin:0 0 9px;font-size:12px;line-height:1.55;color:#56697e}
+/* v120.4 — miroir des dates cliquables dans le compteur « X évalués → Y retenues ». */
+.cb-eng-dateseg{display:inline-flex;gap:2px;vertical-align:middle;background:#eef2f6;border-radius:999px;padding:2px}
+.cb-eng-dbtn{font-family:inherit;font-size:10.5px;font-weight:700;border:none;background:none;color:#5b6b7c;
+border-radius:999px;padding:2px 7px;cursor:pointer;line-height:1.4}
+.cb-eng-dbtn:hover{color:#0f1f33}
+.cb-eng-dbtn.on{background:#3c4c60;color:#fff;font-weight:800}
 .cb-accord.cb-srcg.cb-srcg-folded{padding-top:14px;padding-bottom:14px}
 /* rail : la ligne verte qui relie les numéros — le fil paramétrage → résultat */
 .cb-step-sub,.cb-step-body{margin-left:13px;border-left:2px solid #d8ebe0;padding-left:24px}
@@ -4530,4 +4547,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:481d946292 --></body></html>
+})();</script><!-- v:6ced4829cf --></body></html>
