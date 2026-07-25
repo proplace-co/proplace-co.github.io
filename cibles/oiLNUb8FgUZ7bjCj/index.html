@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-25T13:05:14Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-25T13:47:08Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -259,16 +259,27 @@ background:linear-gradient(90deg,#2563eb,#4ac67f);transition:width .6s ease}
 .cb-srcrun-refresh{font-family:inherit;font-size:11px;font-weight:800;color:#185c38;background:#e8f4ee;
 border:1px solid #b0d4c0;border-radius:8px;padding:4px 10px;cursor:pointer}
 @media(max-width:620px){.cb-srcrun-right{margin-left:0;justify-content:flex-start}}
-/* v120 — 3 ONGLETS d'alimentation (moteurs / opérations / actualité) dans le panneau. */
-.cb-srcgtabs{margin-top:14px}
-.cb-srcgtab-bar{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid #e4e8ee;margin-bottom:12px}
-.cb-srcgtab-btn{font-family:inherit;font-size:12.5px;font-weight:700;color:#5b6b7c;background:none;
-border:none;border-bottom:2px solid transparent;padding:7px 10px 8px;cursor:pointer;white-space:nowrap;margin-bottom:-1px}
-.cb-srcgtab-btn:hover{color:#0f1f33}
-.cb-srcgtab-btn.on{color:#15884a;border-bottom-color:#15884a}
+/* v120→v120.1 — 3 ONGLETS d'alimentation NUMÉROTÉS, aérés (pastilles pill au lieu de
+   simples soulignés) : plus clairs, plus espacés, façon segmented control. */
+.cb-srcgtabs{margin-top:18px}
+.cb-srcgtab-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.cb-srcgtab-btn{display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:12.5px;
+font-weight:700;color:#526070;background:#f1f4f8;border:1px solid #e0e6ee;border-radius:999px;
+padding:7px 14px 7px 8px;cursor:pointer;white-space:nowrap;transition:background .12s,color .12s,border-color .12s}
+.cb-srcgtab-btn:hover{background:#e7ecf3;color:#0f1f33}
+.cb-srcgtab-n{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;
+border-radius:50%;background:#cdd6e3;color:#0f1f33;font-size:11px;font-weight:900;flex:0 0 auto}
+.cb-srcgtab-btn.on{background:#0f1f33;border-color:#0f1f33;color:#fff}
+.cb-srcgtab-btn.on .cb-srcgtab-n{background:#4ac67f;color:#06281a}
 .cb-srcgtab-pane{display:none}
 .cb-srcgtab-pane.on{display:block}
-.cb-srcgtab-h{font-size:14px;font-weight:800;color:#0f1f33;margin:0 0 10px}
+.cb-srcgtab-h{font-size:14px;font-weight:800;color:#0f1f33;margin:0 0 12px;padding-left:2px;border-left:3px solid #4ac67f;padding:0 0 0 9px}
+/* v120.1 — vidéo d'intro (au-dessus de « ① Notre hypothèse ») : cadre 16:9 responsive. */
+.cb-tutovid{margin:0 0 22px}
+.cb-tutovid-lbl{font-size:13px;font-weight:800;color:#15884a;margin:0 0 8px;letter-spacing:.01em}
+.cb-tutovid-frame{position:relative;width:100%;max-width:680px;aspect-ratio:16/9;border-radius:12px;
+overflow:hidden;box-shadow:0 2px 14px rgba(15,31,51,.12);background:#0f1f33}
+.cb-tutovid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 /* v120 — LES 2 BORNES DU TUNNEL mises en valeur : « Évalués » = ENTRÉE (on alimente le
    moteur), « Validées » = SORTIE (deals en contact & DD). Bordure pleine + micro-label
    flottant au-dessus pour que le CEO lise le rôle d'un coup d'œil. */
@@ -276,8 +287,11 @@ border:none;border-bottom:2px solid transparent;padding:7px 10px 8px;cursor:poin
 .cb-io::before{content:attr(data-io);position:absolute;top:-8px;left:50%;transform:translateX(-50%);
 font-size:7.5px;font-weight:900;letter-spacing:.12em;line-height:1;padding:2px 5px;border-radius:999px;
 white-space:nowrap;pointer-events:none}
-.cb-io-in{border-color:#15884a!important;box-shadow:0 0 0 2px rgba(21,136,74,.12)}
-.cb-io-in::before{content:attr(data-io);background:#15884a;color:#fff}
+/* v120.1 (retour CEO) — « Évalués » : liseré + label ENTRÉE dans le GRIS FONCÉ du chip
+   (#0f1f33) → le label se FOND quand le chip est sélectionné (comme SORTIE dans le
+   violet appuyé de Validées). Pas de vert. */
+.cb-io-in{border-color:#0f1f33!important;box-shadow:0 0 0 2px rgba(15,31,51,.12)}
+.cb-io-in::before{content:attr(data-io);background:#0f1f33;color:#fff}
 .cb-io-out{border-color:#6d28d9!important;box-shadow:0 0 0 2px rgba(109,40,217,.12)}
 .cb-io-out::before{background:#6d28d9;color:#fff}
 @media(max-width:620px){.cb-io::before{display:none}}
@@ -4506,4 +4520,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:106023f8af --></body></html>
+})();</script><!-- v:e8dbd773ff --></body></html>
