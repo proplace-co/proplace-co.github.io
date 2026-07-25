@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="cerfrance"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-25T20:03:17Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="cerfrance"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-25T21:24:17Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -302,6 +302,12 @@ padding:7px 14px 7px 8px;cursor:pointer;white-space:nowrap;transition:background
 border-radius:50%;background:#cdd6e3;color:#0f1f33;font-size:11px;font-weight:900;flex:0 0 auto}
 .cb-srcgtab-btn.on{background:#0f1f33;border-color:#0f1f33;color:#fff}
 .cb-srcgtab-btn.on .cb-srcgtab-n{background:#4ac67f;color:#06281a}
+/* v121.6 — badge « boîte de réception » : nombre de nouveautés à passer en revue
+   (Deals M&A · Actualité). Point rouge-action pour donner envie d'aller voir. */
+.cb-srcgtab-fresh{display:inline-flex;align-items:center;justify-content:center;min-width:19px;height:19px;
+padding:0 5px;border-radius:999px;background:#dc2626;color:#fff;font-size:10.5px;font-weight:900;
+flex:0 0 auto;box-shadow:0 0 0 3px rgba(220,38,38,.14)}
+.cb-srcgtab-btn.on .cb-srcgtab-fresh{background:#fff;color:#b3261e}
 .cb-srcgtab-pane{display:none}
 .cb-srcgtab-pane.on{display:block}
 .cb-srcgtab-h{font-size:14px;font-weight:800;color:#0f1f33;margin:0 0 12px;padding-left:2px;border-left:3px solid #4ac67f;padding:0 0 0 9px}
@@ -323,6 +329,13 @@ white-space:nowrap;pointer-events:none}
    violet appuyé de Validées). Pas de vert. */
 .cb-io-in{border-color:#0f1f33!important;box-shadow:0 0 0 2px rgba(15,31,51,.12)}
 .cb-io-in::before{content:attr(data-io);background:#0f1f33;color:#fff}
+/* v121.6 — le chip ENTRÉE « évalués » est LE point d'entrée du sourcing : 3 pulsations
+   douces au chargement attirent l'œil (« venez alimenter votre entonnoir ») puis ça se
+   calme (jamais de mouvement permanent). Respecte prefers-reduced-motion. */
+@keyframes cb-io-attn{0%,100%{box-shadow:0 0 0 2px rgba(15,31,51,.12)}
+50%{box-shadow:0 0 0 5px rgba(15,31,51,.22)}}
+.cb-io-in{animation:cb-io-attn 1.7s ease-in-out 3}
+@media(prefers-reduced-motion:reduce){.cb-io-in{animation:none}}
 .cb-io-out{border-color:#6d28d9!important;box-shadow:0 0 0 2px rgba(109,40,217,.12)}
 .cb-io-out::before{background:#6d28d9;color:#fff}
 @media(max-width:620px){.cb-io::before{display:none}}
@@ -4685,4 +4698,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:0ac6a330e7 --></body></html>
+})();</script><!-- v:0b071a0dc3 --></body></html>
