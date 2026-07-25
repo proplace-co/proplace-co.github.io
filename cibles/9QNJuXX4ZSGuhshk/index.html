@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="sforbt"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-25T16:03:35Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="sforbt"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-25T16:23:04Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -247,9 +247,10 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .cb-srcrun-cb{width:16px;height:16px;accent-color:#15884a;cursor:pointer;flex:0 0 auto}
 .cb-srcrun-when{font-size:11.5px;color:#5b6b7c;font-weight:600;white-space:nowrap}
 .cb-srcrun-right{display:inline-flex;align-items:center;gap:10px;margin-left:auto;flex:1 1 240px;justify-content:flex-end;min-width:180px}
-.cb-srcrun-btn{font-family:inherit;font-size:12px;font-weight:800;color:#fff;background:#2563eb;
-border:1px solid #2563eb;border-radius:9px;padding:6px 13px;cursor:pointer;white-space:nowrap;flex:0 0 auto}
-.cb-srcrun-btn:hover{background:#1d4ed8}
+/* v120.6 — bouton « Lancer le sourcing » en NOIR/navy, comme le bouton « Évaluer ». */
+.cb-srcrun-btn{font-family:inherit;font-size:12px;font-weight:800;color:#fff;background:#0f1f33;
+border:1px solid #0f1f33;border-radius:9px;padding:6px 13px;cursor:pointer;white-space:nowrap;flex:0 0 auto}
+.cb-srcrun-btn:hover{background:#243040}
 .cb-srcrun-btn:disabled{opacity:.5;cursor:not-allowed;background:#93a7c4;border-color:#93a7c4}
 .cb-srcrun-bar{position:relative;height:8px;width:130px;flex:1 1 90px;max-width:220px;background:#dce7f2;border-radius:999px;overflow:hidden}
 .cb-srcrun-fill{position:absolute;left:0;top:0;bottom:0;width:2%;border-radius:999px;
@@ -462,16 +463,16 @@ border:1px solid #d4dce6;border-radius:7px;padding:4px 10px;cursor:pointer;line-
 white-space:nowrap;transition:border-color .12s ease,color .12s ease}
 .cb-srcg-fold:hover{border-color:#0f1f33;color:#0f1f33}
 .cb-srcg-fold-i{font-size:10px;line-height:1}
-/* v120.3 — le repli ne masque QUE les onglets (cb-srcg-foldzone) : le bloc auto +
-   l'évaluateur (cb-srcg-top) restent TOUJOURS visibles. */
-.cb-srcg.cb-srcg-folded .cb-srcg-foldzone{display:none}
+/* v120.6 (retour CEO 25/07) — Replier/Déplier masque TOUTE la rubrique sous le titre :
+   le bloc auto + l'évaluateur (cb-srcg-top) ET les onglets (cb-srcg-foldzone). */
+.cb-srcg.cb-srcg-folded .cb-srcg-top,.cb-srcg.cb-srcg-folded .cb-srcg-foldzone{display:none}
 .cb-srcg.cb-srcg-folded .cb-srcg-hd{margin:0}
-/* Rubrique unifiée « paramétrage » : auto + évaluateur dans un seul encadré. */
+/* v120.6 — « menu 1 » : l'évaluateur société/liste dans son encadré (le bloc auto+lancer
+   a déménagé dans l'onglet moteurs). */
 .cb-srcg-top{margin:12px 0 4px;padding:12px 13px;background:#f8fafc;border:1px solid #e6eaef;border-radius:12px}
-.cb-srcg-top .cb-srcrun{margin:0;background:none;border:none;padding:0}
-.cb-srcg-eval{margin-top:12px;padding-top:12px;border-top:1px dashed #e1e7ee}
-.cb-srcg-top .cb-srcrun[hidden]+.cb-srcg-eval{margin-top:0;padding-top:0;border-top:none}
 .cb-srcg-eval-h{margin:0 0 9px;font-size:13.5px;font-weight:800;color:#0f1f33}
+/* Le bloc auto vit maintenant EN TÊTE de l'onglet moteurs : un peu d'air sous lui. */
+#cb-sourcing-engines{margin-top:2px}
 /* v120.3 — onglet actualité : titre + explication du collage manuel (sous la veille). */
 .cb-rsrch-paste-h{margin:18px 0 3px;font-size:13px;font-weight:800;color:#0f1f33}
 .cb-rsrch-paste-sub{margin:0 0 9px;font-size:12px;line-height:1.55;color:#56697e}
@@ -4628,4 +4629,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:32d4311c93 --></body></html>
+})();</script><!-- v:ed93e1b3f4 --></body></html>
