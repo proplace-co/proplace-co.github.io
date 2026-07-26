@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="stelogy"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T18:57:38Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="stelogy"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T19:27:01Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -325,9 +325,9 @@ overflow:hidden;box-shadow:0 2px 14px rgba(15,31,51,.12);background:#0f1f33}
    moteur), « Validées » = SORTIE (deals en contact & DD). Bordure pleine + micro-label
    flottant au-dessus pour que le CEO lise le rôle d'un coup d'œil. */
 .cb-io{position:relative;border-width:1.5px!important;overflow:visible}
-.cb-io::before{content:attr(data-io);position:absolute;top:-8px;left:50%;transform:translateX(-50%);
-font-size:7.5px;font-weight:900;letter-spacing:.12em;line-height:1;padding:2px 5px;border-radius:999px;
-white-space:nowrap;pointer-events:none}
+.cb-io::before{content:attr(data-io);position:absolute;top:-9px;left:50%;transform:translateX(-50%);
+font-size:7px;font-weight:900;letter-spacing:.1em;line-height:1;padding:2px 5px;border-radius:999px;
+white-space:nowrap;pointer-events:none;z-index:2}
 /* v120.1 (retour CEO) — « Évalués » : liseré + label ENTRÉE dans le GRIS FONCÉ du chip
    (#0f1f33) → le label se FOND quand le chip est sélectionné (comme SORTIE dans le
    violet appuyé de Validées). Pas de vert. */
@@ -1894,19 +1894,17 @@ text-decoration:underline;text-underline-offset:2px}
    restent VISIBLES à toute profondeur, mobile et desktop. (Aucun ancêtre ne casse le sticky :
    .cb-ulist=display:contents, main/body/html sans overflow scrollable ; overflow-x:clip mobile
    ne crée pas de conteneur de défilement — vérifié en vrai Chrome.) */
+/* v123.3 — padding-top pour les micro-labels flottants SOURCER ICI / CONTACTER ICI
+   (sinon rognés en haut). overflow:visible pour ne plus les couper. */
 .cb-tabbar{display:flex;align-items:center;gap:5px 5px;flex-wrap:wrap;margin:2px 0 0;
-padding:9px 2px 9px;border-bottom:1px solid #e6eaef;position:-webkit-sticky;position:sticky;top:0;z-index:30;background:#fff;scroll-margin-top:0}
+padding:14px 2px 9px;border-bottom:1px solid #e6eaef;position:-webkit-sticky;position:sticky;top:0;z-index:30;background:#fff;scroll-margin-top:0;overflow:visible}
 /* v119.1 — le décalage 60px ne vaut QUE si le header Proplace est révélé (☰) :
    masqué par défaut, la barre colle en HAUT (fini la bande vide au scroll). */
 html.cb-hdrshow .cb-tabbar{top:60px;scroll-margin-top:60px}
-/* v123.1 — tunnel TOUJOURS sur UNE ligne (y compris « Tout » avec de gros compteurs) :
-   nowrap + scroll horizontal discret dans la rangée des chips, jamais de wrap
-   « retenues » sur une 2e ligne. */
-.cb-tabbar .cb-fchips{display:flex;flex-wrap:nowrap;align-items:center;margin:0;gap:3px;
-max-width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
-scrollbar-width:thin;scrollbar-color:#d4dce6 transparent}
-.cb-tabbar .cb-fchips::-webkit-scrollbar{height:4px}
-.cb-tabbar .cb-fchips::-webkit-scrollbar-thumb{background:#d4dce6;border-radius:4px}
+/* v123.3 — tunnel sur UNE ligne SANS scroll horizontal visible : nowrap + pastilles
+   compactes + overflow visible (les labels ::before ne sont plus clipés). */
+.cb-tabbar .cb-fchips{display:flex;flex-wrap:nowrap;align-items:center;margin:0;gap:2px;
+max-width:100%;overflow:visible;padding-top:2px}
 /* v38.3 — bouton « ⚙ Vos critères » à gauche de la ligne d'onglets (noir, comme avant) */
 /* v38.5 (point 5) — « Vos critères » PLUS GROS et plus large */
 .cb-tabbar .cb-tb-btn{display:inline-flex;align-items:center;gap:6px;flex:0 0 auto;background:#0f1f33;
@@ -1916,11 +1914,11 @@ font-weight:800;cursor:pointer;white-space:nowrap}
 /* v38.5 (point 5) — machine en accordéon SANS encadré gris superflu (la machine a déjà le sien) */
 .cb-machinline.cb-accord.cb-open{display:block;background:none;border:none;padding:0;margin:0 0 18px}
 .cb-tabbar .cb-f-eval{margin-right:4px;color:#8a99aa;font-weight:600;font-size:12.5px}
-/* v123.1 — pastilles un cran plus compactes pour tenir « Tout » + 4 chiffres sur une ligne. */
+/* v123.3 — pastilles compactes pour tenir « Tout » + gros compteurs sur UNE ligne. */
 .cb-tabbar .cb-fchips button{background:none;border:1px solid transparent;border-radius:999px;
-padding:4px 7px;font-size:11.5px;font-weight:700;color:#56697e;cursor:pointer;font-family:inherit;
+padding:4px 6px;font-size:11px;font-weight:700;color:#56697e;cursor:pointer;font-family:inherit;
 line-height:1;white-space:nowrap;flex:0 0 auto;transition:background .12s,color .12s,border-color .12s}
-.cb-tabbar .cb-fchips button i{font-style:normal;font-weight:800;margin-right:3px;font-size:11.5px;opacity:.95}
+.cb-tabbar .cb-fchips button i{font-style:normal;font-weight:800;margin-right:2px;font-size:11px;opacity:.95}
 /* Retenues — vert clair (repos) / vert foncé (sélectionné) */
 .cb-tabbar .cb-fchips .cb-f-kept{background:#e7f7ee;border-color:#c4ecd6;color:#0f6e3f}
 .cb-tabbar .cb-fchips .cb-f-kept i{color:#3e9c6e}
@@ -1943,8 +1941,8 @@ line-height:1;white-space:nowrap;flex:0 0 auto;transition:background .12s,color 
 .cb-tabbar .cb-fchips .cb-f-fav.on i{color:#fff4cf}
 .cb-tabbar .cb-callpending{margin:0}
 /* v38 — « dont N analysées » COMPACT (sous-ensemble des retenues) : police réduite */
-.cb-tabbar .cb-fchips .cb-f-sub{font-size:11.5px;padding:4px 7px;font-weight:600}
-.cb-tabbar .cb-fchips .cb-f-sub i{font-size:11.5px}
+.cb-tabbar .cb-fchips .cb-f-sub{font-size:11px;padding:4px 6px;font-weight:600}
+.cb-tabbar .cb-fchips .cb-f-sub i{font-size:11px}
 /* dates JUSTE à droite de Favoris (point 7) ; déplier/replier poussés tout à droite (point 3) */
 .cb-tabbar .cb-dateseg{margin-left:0}
 .cb-tabbar .cb-xall{display:inline-flex;align-items:center;gap:12px;flex:0 0 auto;margin-left:auto}
@@ -2413,25 +2411,24 @@ width:26px;height:26px;border-radius:50%;background:#0f1f33;color:#fff;font-size
 .cb-coach-title{flex:1 1 auto;font-size:14px;font-weight:800;color:#0f1f33;line-height:1.45}
 .cb-coach-tx{display:flex;flex-direction:column;gap:11px}
 .cb-coach-tx>span{font-size:13px;line-height:1.5;color:#3c4c60}
-/* PUCES d'action HORIZONTALES (les choix côte à côte), miroir des vrais boutons. */
-.cb-coach-items{display:flex;flex-direction:row;flex-wrap:wrap;gap:9px}
-.cb-coach-item{display:inline-flex}
-.cb-coach-chip{font-family:inherit;font-size:12.5px;font-weight:700;color:#fff;border:none;
-border-radius:8px;padding:8px 16px;cursor:pointer;line-height:1.3;box-shadow:0 1px 3px rgba(15,31,51,.18)}
+/* PUCES d'action HORIZONTALES + « ▶ Parcourir » sur LA MÊME ligne (v123.3). */
+.cb-coach-items{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:7px;overflow-x:auto}
+.cb-coach-item{display:inline-flex;flex:0 0 auto}
+.cb-coach-chip{font-family:inherit;font-size:12px;font-weight:700;color:#fff;border:none;
+border-radius:8px;padding:7px 12px;cursor:pointer;line-height:1.3;box-shadow:0 1px 3px rgba(15,31,51,.18)}
 .cb-coach-chip:hover{filter:brightness(1.08);transform:translateY(-1px)}
-/* bouton « ▶ Parcourir les N une par une » : lance le tutoriel guidé. */
-.cb-coach-walk{align-self:flex-start;font-family:inherit;font-size:12.5px;font-weight:800;color:#0f1f33;
-background:#eef2f6;border:1px solid #d7dfe8;border-radius:9px;padding:7px 14px;cursor:pointer}
+/* v123.3 — « ▶ Parcourir » dans la rangée des chips (libellé court pour tenir). */
+.cb-coach-walk{flex:0 0 auto;font-family:inherit;font-size:12px;font-weight:800;color:#0f1f33;
+background:#eef2f6;border:1px solid #d7dfe8;border-radius:8px;padding:7px 12px;cursor:pointer;white-space:nowrap}
 .cb-coach-walk:hover{background:#e2e8f0}
 .cb-coach-tip{font-size:11.5px!important;color:#8090a2!important;font-style:italic}
 /* flash de la carte visée (guide l'œil). */
 @keyframes cb-coach-flash{0%,100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}30%{box-shadow:0 0 0 4px rgba(22,163,74,.35)}}
 .cb-coach-flash{animation:cb-coach-flash 1.3s ease-out;border-radius:12px}
-/* v122.11 (#2 CEO) — RELIEF TRÈS VISIBLE du vrai bouton visé par le parcours guidé : gros
-   halo + agrandissement + contour clignotant → impossible à rater. */
-@keyframes cb-coach-hl{0%,100%{box-shadow:0 0 0 3px #fff,0 0 0 6px rgba(37,99,235,.55),0 0 18px 5px rgba(37,99,235,.55);transform:scale(1.06)}
-50%{box-shadow:0 0 0 3px #fff,0 0 0 9px rgba(37,99,235,.9),0 0 26px 8px rgba(37,99,235,.75);transform:scale(1.12)}}
-.cb-coach-hl{animation:cb-coach-hl .85s ease-in-out infinite;position:relative;z-index:5;outline:2px solid #2563eb;outline-offset:1px;border-radius:8px}
+/* v123.3 — RELIEF du bouton visé : couleur = celle du statut (var --cb-hl), plus le bleu unique. */
+@keyframes cb-coach-hl{0%,100%{box-shadow:0 0 0 3px #fff,0 0 0 6px color-mix(in srgb,var(--cb-hl,#2563eb) 55%,transparent),0 0 18px 5px color-mix(in srgb,var(--cb-hl,#2563eb) 55%,transparent);transform:scale(1.06)}
+50%{box-shadow:0 0 0 3px #fff,0 0 0 9px color-mix(in srgb,var(--cb-hl,#2563eb) 90%,transparent),0 0 26px 8px color-mix(in srgb,var(--cb-hl,#2563eb) 75%,transparent);transform:scale(1.12)}}
+.cb-coach-hl{animation:cb-coach-hl .85s ease-in-out infinite;position:relative;z-index:5;outline:2px solid var(--cb-hl,#2563eb);outline-offset:1px;border-radius:8px}
 /* nav flottante du parcours guidé (bas-centre) : ◀ X/N ▶ ✕. */
 .cb-walk-nav{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:9975;display:flex;
 align-items:center;gap:6px;background:#0f1f33;color:#fff;border-radius:999px;padding:7px 10px;box-shadow:0 6px 20px rgba(15,31,51,.3)}
@@ -2908,8 +2905,11 @@ padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;line-heig
 .cb-conv-btn,.cb-fav-icon{font-family:inherit;font-size:14px;line-height:1;padding:4px 7px;border-radius:7px;
   border:1px solid #cfe0d5;background:#fff;cursor:pointer;color:#56697e}
 .cb-conv-btn:hover,.cb-fav-icon:hover{background:#f1f7f3;border-color:#9fc4ac}
-.cb-fav-icon.on{color:#e5a91c;border-color:#e8d9a8;background:#fdf8e8}
-.cb-fav-icon.on:hover{background:#fdf4d7;border-color:#eab308}
+/* v123.3 — favori plus visible au repos (or doux) pour ne plus le confondre avec un décor. */
+.cb-fav-icon{color:#c9a227;border-color:#e8d9a8;background:#fffdf5;font-size:15px;min-width:28px}
+.cb-fav-icon:hover{background:#fdf4d7;border-color:#eab308;color:#a67c00}
+.cb-fav-icon.on{color:#e5a91c;border-color:#eab308;background:#fdf4d7;box-shadow:0 0 0 1px rgba(234,179,8,.25)}
+.cb-fav-icon.on:hover{background:#fcefc0;border-color:#ca8a04}
 .cb-conv-ov{position:fixed;inset:0;z-index:9000;background:rgba(20,32,46,.55);
   display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;overflow:auto}
 .cb-conv-ov.on{display:flex}
@@ -4808,4 +4808,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:7dc34ef37e --></body></html>
+})();</script><!-- v:014307a296 --></body></html>
