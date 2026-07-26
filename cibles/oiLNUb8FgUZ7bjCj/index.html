@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T11:45:12Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T13:05:20Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -2390,24 +2390,58 @@ font-size:13px;line-height:1}
 .cb-funnel-hint b{color:#0f1f33}
 /* v121.14 — légende des puces (3 couleurs, 3 rôles) sous le tunnel. */
 .cb-badge-legend{margin:0 0 12px;font-size:11.5px;font-weight:600;color:#6b7a8d;line-height:1.5}
-/* v122 — COACH PAR ONGLET (gamification) : bandeau « ta mission ici » au-dessus de la liste,
-   couleur = étape du tunnel. Progression visible : le compteur qui bouge pulse. */
-.cb-coach{display:flex;align-items:flex-start;gap:12px;margin:0 0 16px;padding:13px 16px;
-background:#f8fafc;border:1px solid #e6eaef;border-left:4px solid #0f1f33;border-radius:12px}
+/* v122.2 — COACH PAR ONGLET = LANGUETTE intégrée (comme « Paramétrer ici votre sourcing ») :
+   en-tête (n° d'étape + titre) + corps (consigne + puces = vrais boutons + parcours guidé).
+   Couleur du filet = étape du tunnel. */
+.cb-coach{display:flex;flex-direction:column;gap:9px;margin:0 0 16px;padding:15px 17px;
+background:#fff;border:1px solid #e2e8f0;border-left:4px solid #0f1f33;border-radius:14px;
+box-shadow:0 1px 4px rgba(15,31,51,.05)}
+.cb-coach-hd{display:flex;align-items:center;gap:10px}
 .cb-coach-n{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
 width:26px;height:26px;border-radius:50%;background:#0f1f33;color:#fff;font-size:13px;font-weight:900}
-.cb-coach-tx{display:flex;flex-direction:column;gap:4px;min-width:0}
-.cb-coach-tx b{font-size:13.5px;font-weight:800;color:#0f1f33}
+.cb-coach-title{font-size:14.5px;font-weight:800;color:#0f1f33}
+.cb-coach-tx{display:flex;flex-direction:column;gap:9px;padding-left:36px}
 .cb-coach-tx>span{font-size:12.5px;line-height:1.5;color:#54627a}
-/* puces d'action = miroir des vrais boutons (emoji + vraie couleur). Cliquables. */
-.cb-coach-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+/* puces d'action = MIROIR des vrais boutons (libellé + vraie couleur). Cliquables. */
+.cb-coach-chips{display:flex;gap:8px;flex-wrap:wrap}
 .cb-coach-chip{font-family:inherit;font-size:12px;font-weight:700;color:#fff;border:none;
-border-radius:999px;padding:5px 12px;cursor:pointer;line-height:1.3;box-shadow:0 1px 3px rgba(15,31,51,.18)}
+border-radius:999px;padding:6px 13px;cursor:pointer;line-height:1.3;box-shadow:0 1px 3px rgba(15,31,51,.18)}
 .cb-coach-chip:hover{filter:brightness(1.08);transform:translateY(-1px)}
-.cb-coach-tip{font-size:11.5px!important;color:#8090a2!important;font-style:italic;margin-top:2px}
-/* flash de la carte visée par une puce coach (guide l'œil vers les vrais boutons). */
+/* bouton « ▶ Parcourir les N une par une » : lance le tutoriel guidé. */
+.cb-coach-walk{align-self:flex-start;font-family:inherit;font-size:12.5px;font-weight:800;color:#0f1f33;
+background:#eef2f6;border:1px solid #d7dfe8;border-radius:9px;padding:7px 14px;cursor:pointer}
+.cb-coach-walk:hover{background:#e2e8f0}
+.cb-coach-tip{font-size:11.5px!important;color:#8090a2!important;font-style:italic}
+/* flash de la carte visée (guide l'œil). */
 @keyframes cb-coach-flash{0%,100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}30%{box-shadow:0 0 0 4px rgba(22,163,74,.35)}}
 .cb-coach-flash{animation:cb-coach-flash 1.3s ease-out;border-radius:12px}
+/* mise en RELIEF du vrai bouton visé par le parcours guidé (pulse bleu). */
+@keyframes cb-coach-hl{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}50%{box-shadow:0 0 0 4px rgba(37,99,235,.55)}}
+.cb-coach-hl{animation:cb-coach-hl 1s ease-in-out infinite;position:relative;z-index:1}
+/* nav flottante du parcours guidé (bas-centre) : ◀ X/N ▶ ✕. */
+.cb-walk-nav{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:9975;display:flex;
+align-items:center;gap:6px;background:#0f1f33;color:#fff;border-radius:999px;padding:7px 10px;box-shadow:0 6px 20px rgba(15,31,51,.3)}
+.cb-walk-btn{font-family:inherit;font-size:14px;color:#fff;background:rgba(255,255,255,.14);border:none;
+border-radius:50%;width:30px;height:30px;cursor:pointer;line-height:1}
+.cb-walk-btn:hover{background:rgba(255,255,255,.28)}
+.cb-walk-pos{font-size:12.5px;font-weight:800;min-width:54px;text-align:center}
+.cb-walk-end{background:rgba(255,255,255,.05)!important}
+/* v122.4 — FIL DU JOUR (checkpoints) : parcours horizontal qui se coche de gauche à droite. */
+.cb-journey{display:flex;align-items:center;gap:3px;flex-wrap:wrap;margin:0 0 14px;padding:9px 13px;
+background:#f8fafc;border:1px solid #e6eaef;border-radius:12px}
+.cb-jrn-lead{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#8a99aa;margin-right:6px}
+.cb-jrn-step{display:inline-flex;align-items:center;gap:7px;font-family:inherit;background:none;border:none;
+cursor:pointer;padding:4px 7px;border-radius:8px}
+.cb-jrn-step:hover{background:#eef2f6}
+.cb-jrn-dot{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;
+background:#cdd6e3;color:#0f1f33;font-size:11px;font-weight:900;flex:0 0 auto;transition:background .15s}
+.cb-jrn-step.done .cb-jrn-dot{background:#16a34a;color:#fff}
+.cb-jrn-step.cur .cb-jrn-dot{box-shadow:0 0 0 3px rgba(15,31,51,.18)}
+.cb-jrn-lab{font-size:12.5px;font-weight:700;color:#54627a;white-space:nowrap}
+.cb-jrn-step.cur .cb-jrn-lab{color:#0f1f33}
+.cb-jrn-step.done .cb-jrn-lab{color:#15803d}
+.cb-jrn-arr{color:#b7c2d0;font-size:15px;font-weight:700}
+@media(max-width:620px){.cb-jrn-lead{flex-basis:100%;margin-bottom:2px}.cb-jrn-lab{font-size:11.5px}}
 @keyframes cb-count-bump{0%{transform:scale(1)}30%{transform:scale(1.5);color:#16a34a}100%{transform:scale(1)}}
 .cb-count-bump{display:inline-block;animation:cb-count-bump .6s ease-out}
 @media(prefers-reduced-motion:reduce){.cb-count-bump{animation:none}}
@@ -4730,4 +4764,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:81364306ef --></body></html>
+})();</script><!-- v:1fb0596880 --></body></html>
