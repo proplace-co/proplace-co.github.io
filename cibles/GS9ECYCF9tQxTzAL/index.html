@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="cerfrance"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T15:03:39Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="cerfrance"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T15:23:24Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -2399,10 +2399,10 @@ background:#f8fafc;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 14
 .cb-coach-fold{margin-left:auto;flex:0 0 auto;font-family:inherit;font-size:11.5px;font-weight:800;
 color:#5f7288;background:#fff;border:1px solid #d7dfe8;border-radius:8px;padding:5px 11px;cursor:pointer;white-space:nowrap}
 .cb-coach-fold:hover{background:#eef2f6;color:#0f1f33}
-.cb-coach-hd{display:flex;align-items:center;gap:10px}
+.cb-coach-hd{display:flex;align-items:flex-start;gap:10px}
 .cb-coach-n{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
-width:26px;height:26px;border-radius:50%;background:#0f1f33;color:#fff;font-size:13px;font-weight:900}
-.cb-coach-title{font-size:14.5px;font-weight:800;color:#0f1f33}
+width:26px;height:26px;border-radius:50%;background:#0f1f33;color:#fff;font-size:13px;font-weight:900;margin-top:1px}
+.cb-coach-title{flex:1 1 auto;font-size:14px;font-weight:800;color:#0f1f33;line-height:1.45}
 .cb-coach-tx{display:flex;flex-direction:column;gap:11px}
 .cb-coach-tx>span{font-size:13px;line-height:1.5;color:#3c4c60}
 /* PUCES d'action HORIZONTALES (les choix côte à côte), miroir des vrais boutons. */
@@ -2419,9 +2419,11 @@ background:#eef2f6;border:1px solid #d7dfe8;border-radius:9px;padding:7px 14px;c
 /* flash de la carte visée (guide l'œil). */
 @keyframes cb-coach-flash{0%,100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}30%{box-shadow:0 0 0 4px rgba(22,163,74,.35)}}
 .cb-coach-flash{animation:cb-coach-flash 1.3s ease-out;border-radius:12px}
-/* mise en RELIEF du vrai bouton visé par le parcours guidé (pulse bleu). */
-@keyframes cb-coach-hl{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}50%{box-shadow:0 0 0 4px rgba(37,99,235,.55)}}
-.cb-coach-hl{animation:cb-coach-hl 1s ease-in-out infinite;position:relative;z-index:1}
+/* v122.11 (#2 CEO) — RELIEF TRÈS VISIBLE du vrai bouton visé par le parcours guidé : gros
+   halo + agrandissement + contour clignotant → impossible à rater. */
+@keyframes cb-coach-hl{0%,100%{box-shadow:0 0 0 3px #fff,0 0 0 6px rgba(37,99,235,.55),0 0 18px 5px rgba(37,99,235,.55);transform:scale(1.06)}
+50%{box-shadow:0 0 0 3px #fff,0 0 0 9px rgba(37,99,235,.9),0 0 26px 8px rgba(37,99,235,.75);transform:scale(1.12)}}
+.cb-coach-hl{animation:cb-coach-hl .85s ease-in-out infinite;position:relative;z-index:5;outline:2px solid #2563eb;outline-offset:1px;border-radius:8px}
 /* nav flottante du parcours guidé (bas-centre) : ◀ X/N ▶ ✕. */
 .cb-walk-nav{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:9975;display:flex;
 align-items:center;gap:6px;background:#0f1f33;color:#fff;border-radius:999px;padding:7px 10px;box-shadow:0 6px 20px rgba(15,31,51,.3)}
@@ -4793,4 +4795,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:5c01f5022a --></body></html>
+})();</script><!-- v:6580053838 --></body></html>
