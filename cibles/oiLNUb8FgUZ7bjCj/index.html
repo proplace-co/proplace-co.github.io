@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T18:43:31Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T19:05:04Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -1899,7 +1899,14 @@ padding:9px 2px 9px;border-bottom:1px solid #e6eaef;position:-webkit-sticky;posi
 /* v119.1 — le décalage 60px ne vaut QUE si le header Proplace est révélé (☰) :
    masqué par défaut, la barre colle en HAUT (fini la bande vide au scroll). */
 html.cb-hdrshow .cb-tabbar{top:60px;scroll-margin-top:60px}
-.cb-tabbar .cb-fchips{flex-wrap:nowrap}
+/* v123.1 — tunnel TOUJOURS sur UNE ligne (y compris « Tout » avec de gros compteurs) :
+   nowrap + scroll horizontal discret dans la rangée des chips, jamais de wrap
+   « retenues » sur une 2e ligne. */
+.cb-tabbar .cb-fchips{display:flex;flex-wrap:nowrap;align-items:center;margin:0;gap:3px;
+max-width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+scrollbar-width:thin;scrollbar-color:#d4dce6 transparent}
+.cb-tabbar .cb-fchips::-webkit-scrollbar{height:4px}
+.cb-tabbar .cb-fchips::-webkit-scrollbar-thumb{background:#d4dce6;border-radius:4px}
 /* v38.3 — bouton « ⚙ Vos critères » à gauche de la ligne d'onglets (noir, comme avant) */
 /* v38.5 (point 5) — « Vos critères » PLUS GROS et plus large */
 .cb-tabbar .cb-tb-btn{display:inline-flex;align-items:center;gap:6px;flex:0 0 auto;background:#0f1f33;
@@ -1909,14 +1916,11 @@ font-weight:800;cursor:pointer;white-space:nowrap}
 /* v38.5 (point 5) — machine en accordéon SANS encadré gris superflu (la machine a déjà le sien) */
 .cb-machinline.cb-accord.cb-open{display:block;background:none;border:none;padding:0;margin:0 0 18px}
 .cb-tabbar .cb-f-eval{margin-right:4px;color:#8a99aa;font-weight:600;font-size:12.5px}
-.cb-tabbar .cb-fchips{margin:0;gap:4px;flex-wrap:nowrap}  /* v48 (point 1) — chips du tunnel sur UNE ligne (plus de retour ligne) ; v55 — gap resserré (compaction) ; v59 — gap 5→4 pour absorber la police plus grosse */
-/* v58.1 — sur petit écran, les chips du tunnel passent à la ligne (JAMAIS de scroll horizontal de page).
-   PAS d'overflow:hidden sur .cb-wrap : ça casserait la barre sticky (deviendrait conteneur de défilement). */
-@media(max-width:760px){.cb-tabbar .cb-fchips{flex-wrap:wrap}}
+/* v123.1 — pastilles un cran plus compactes pour tenir « Tout » + 4 chiffres sur une ligne. */
 .cb-tabbar .cb-fchips button{background:none;border:1px solid transparent;border-radius:999px;
-padding:4px 9px;font-size:12.5px;font-weight:700;color:#56697e;cursor:pointer;font-family:inherit;
-line-height:1;white-space:nowrap;transition:background .12s,color .12s,border-color .12s}  /* v48 (point 3) — chaque pastille tient sur UNE ligne (nowrap) + libellé compact ; v55 — padding/police resserrés (compaction, zéro scroll) ; v59 — GROSSIES 10.5→12.5px (lisibilité CEO), padding 3/8→4/9, tiennent encore sur UNE ligne à ~1180px */
-.cb-tabbar .cb-fchips button i{font-style:normal;font-weight:800;margin-right:3px;font-size:12.5px;opacity:.95}  /* v48 (point 2) — nombre AVANT le mot : marge à DROITE du chiffre ; v59 — 10.5→12.5px (suit la pastille) */
+padding:4px 7px;font-size:11.5px;font-weight:700;color:#56697e;cursor:pointer;font-family:inherit;
+line-height:1;white-space:nowrap;flex:0 0 auto;transition:background .12s,color .12s,border-color .12s}
+.cb-tabbar .cb-fchips button i{font-style:normal;font-weight:800;margin-right:3px;font-size:11.5px;opacity:.95}
 /* Retenues — vert clair (repos) / vert foncé (sélectionné) */
 .cb-tabbar .cb-fchips .cb-f-kept{background:#e7f7ee;border-color:#c4ecd6;color:#0f6e3f}
 .cb-tabbar .cb-fchips .cb-f-kept i{color:#3e9c6e}
@@ -1939,8 +1943,8 @@ line-height:1;white-space:nowrap;transition:background .12s,color .12s,border-co
 .cb-tabbar .cb-fchips .cb-f-fav.on i{color:#fff4cf}
 .cb-tabbar .cb-callpending{margin:0}
 /* v38 — « dont N analysées » COMPACT (sous-ensemble des retenues) : police réduite */
-.cb-tabbar .cb-fchips .cb-f-sub{font-size:12.5px;padding:4px 9px;font-weight:600}  /* v55 — resserré, aligné sur les chips du tunnel ; v59 — MÊME taille que les pastilles (12.5px / 4-9) : tout le tunnel garde une taille identique */
-.cb-tabbar .cb-fchips .cb-f-sub i{font-size:12.5px}
+.cb-tabbar .cb-fchips .cb-f-sub{font-size:11.5px;padding:4px 7px;font-weight:600}
+.cb-tabbar .cb-fchips .cb-f-sub i{font-size:11.5px}
 /* dates JUSTE à droite de Favoris (point 7) ; déplier/replier poussés tout à droite (point 3) */
 .cb-tabbar .cb-dateseg{margin-left:0}
 .cb-tabbar .cb-xall{display:inline-flex;align-items:center;gap:12px;flex:0 0 auto;margin-left:auto}
@@ -2252,10 +2256,8 @@ border:1px solid #fde3c4;border-radius:9px;padding:9px 11px}
 .cb-uh-r .cb-uh-act{margin:4px 0 0;width:100%}
 .cb-uh-r .cb-uh-btn,.cb-uh-r .cb-memo-quick{width:100%;box-sizing:border-box;text-align:center;white-space:normal}
 .cb-uh-r .cb-prov-how{width:100%;box-sizing:border-box}
-.cb-fav-phrase{width:100%;box-sizing:border-box;background:none;border:1px dashed #dcc98a;border-radius:8px;
-padding:6px 10px;font-family:inherit;font-size:11.5px;font-weight:600;color:#96700c;cursor:pointer;text-align:center;margin-top:2px}
-.cb-fav-phrase:hover{background:#fdf7e3;border-color:#eab308}
-.cb-fav-phrase.on{background:#fdf4d7;border:1px solid #eab308;color:#8a5a00}
+/* v123.2 — phrase favori remplacée par l'icône ★ (même look que 💬) ; on la masque. */
+.cb-fav-phrase{display:none!important}
 /* ── CARNET DE SUIVI par deal (sous le favori) : bouton léger + panneau dépliable ── */
 .cb-notes{width:100%;margin-top:4px}
 .cb-notes-toggle{width:100%;box-sizing:border-box;background:none;border:1px dashed #cfd9e4;border-radius:8px;
@@ -2890,19 +2892,24 @@ padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;line-heig
 .cb-missive.collapsed .cb-missive-mini{display:inline}
 @media(max-width:520px){.cb-missive{flex-wrap:wrap}}
 /* v112 — bouton + overlay « Conversation » (poste sales, pages outbound). */
-.cb-convwrap{margin-top:4px}
+/* v123.2 — favoris ★ au même look & feel que 💬, à sa droite (ou à sa place hors outbound). */
+.cb-convwrap,.cb-favwrap{margin-top:4px;display:inline-flex;align-items:center}
 /* v112.1 — en MODE LIGNE (density-table, rangée non ouverte) les actions sont en flex-row
-   CENTRÉ : pas de margin-top (sinon le bouton 💬 est décalé vers le bas + rallonge la ligne). */
-.cb-density-table .cb-urow:not(.cb-open) .cb-convwrap{margin:0;display:inline-flex;align-items:center;align-self:center}
-.cb-density-table .cb-urow:not(.cb-open) .cb-conv-btn{padding:1px 6px;font-size:13px;line-height:1.1}
+   CENTRÉ : pas de margin-top (sinon le bouton 💬/★ est décalé vers le bas + rallonge la ligne). */
+.cb-density-table .cb-urow:not(.cb-open) .cb-convwrap,
+.cb-density-table .cb-urow:not(.cb-open) .cb-favwrap{margin:0;display:inline-flex;align-items:center;align-self:center}
+.cb-density-table .cb-urow:not(.cb-open) .cb-conv-btn,
+.cb-density-table .cb-urow:not(.cb-open) .cb-fav-icon{padding:1px 6px;font-size:13px;line-height:1.1}
 /* v112.2 — les 3 wraps d'action (approche / conversation / dossier) alignés au centre
    vertical en mode ligne, sans margin, pour que la hauteur de ligne reste minimale. */
 .cb-density-table .cb-urow:not(.cb-open) .cb-uh-act{align-items:center}
 .cb-density-table .cb-urow:not(.cb-open) .cb-apprwrap,
 .cb-density-table .cb-urow:not(.cb-open) .cb-doswrap{margin:0;align-self:center}
-.cb-conv-btn{font-family:inherit;font-size:14px;line-height:1;padding:4px 7px;border-radius:7px;
-  border:1px solid #cfe0d5;background:#fff;cursor:pointer}
-.cb-conv-btn:hover{background:#f1f7f3;border-color:#9fc4ac}
+.cb-conv-btn,.cb-fav-icon{font-family:inherit;font-size:14px;line-height:1;padding:4px 7px;border-radius:7px;
+  border:1px solid #cfe0d5;background:#fff;cursor:pointer;color:#56697e}
+.cb-conv-btn:hover,.cb-fav-icon:hover{background:#f1f7f3;border-color:#9fc4ac}
+.cb-fav-icon.on{color:#e5a91c;border-color:#e8d9a8;background:#fdf8e8}
+.cb-fav-icon.on:hover{background:#fdf4d7;border-color:#eab308}
 .cb-conv-ov{position:fixed;inset:0;z-index:9000;background:rgba(20,32,46,.55);
   display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;overflow:auto}
 .cb-conv-ov.on{display:flex}
@@ -3784,6 +3791,7 @@ gap:8px;flex:0 0 auto;width:auto;min-width:0}
 .cb-density-table .cb-urow:not(.cb-open) .cb-apprwrap,
 .cb-density-table .cb-urow:not(.cb-open) .cb-doswrap,
 .cb-density-table .cb-urow:not(.cb-open) .cb-fav-phrase,
+/* v123.2 — .cb-favwrap / .cb-fav-icon restent VISIBLES en mode ligne (comme 💬). */
 .cb-density-table .cb-urow:not(.cb-open) .cb-uh-ln,
 .cb-density-table .cb-urow:not(.cb-open) .cb-extfav-disp,
 .cb-density-table .cb-urow:not(.cb-open) .cb-whybox,
@@ -4800,4 +4808,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:6db6846704 --></body></html>
+})();</script><!-- v:ca7a9c8c84 --></body></html>
