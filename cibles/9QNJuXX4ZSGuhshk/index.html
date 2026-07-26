@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="sforbt"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T13:04:37Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="sforbt"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T13:24:29Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -2426,22 +2426,15 @@ border-radius:50%;width:30px;height:30px;cursor:pointer;line-height:1}
 .cb-walk-btn:hover{background:rgba(255,255,255,.28)}
 .cb-walk-pos{font-size:12.5px;font-weight:800;min-width:54px;text-align:center}
 .cb-walk-end{background:rgba(255,255,255,.05)!important}
-/* v122.4 — FIL DU JOUR (checkpoints) : parcours horizontal qui se coche de gauche à droite. */
-.cb-journey{display:flex;align-items:center;gap:3px;flex-wrap:wrap;margin:0 0 14px;padding:9px 13px;
-background:#f8fafc;border:1px solid #e6eaef;border-radius:12px}
-.cb-jrn-lead{font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#8a99aa;margin-right:6px}
-.cb-jrn-step{display:inline-flex;align-items:center;gap:7px;font-family:inherit;background:none;border:none;
-cursor:pointer;padding:4px 7px;border-radius:8px}
-.cb-jrn-step:hover{background:#eef2f6}
-.cb-jrn-dot{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;
-background:#cdd6e3;color:#0f1f33;font-size:11px;font-weight:900;flex:0 0 auto;transition:background .15s}
-.cb-jrn-step.done .cb-jrn-dot{background:#16a34a;color:#fff}
-.cb-jrn-step.cur .cb-jrn-dot{box-shadow:0 0 0 3px rgba(15,31,51,.18)}
-.cb-jrn-lab{font-size:12.5px;font-weight:700;color:#54627a;white-space:nowrap}
-.cb-jrn-step.cur .cb-jrn-lab{color:#0f1f33}
-.cb-jrn-step.done .cb-jrn-lab{color:#15803d}
-.cb-jrn-arr{color:#b7c2d0;font-size:15px;font-weight:700}
-@media(max-width:620px){.cb-jrn-lead{flex-basis:100%;margin-bottom:2px}.cb-jrn-lab{font-size:11.5px}}
+/* v122.5 — CHECKBOX DU JOUR au-dessus de chaque onglet du tunnel (overlay absolu, ne touche
+   pas au flex). Cochable/décochable, réinitialisée chaque jour → « où j'en suis aujourd'hui ».
+   La barre reçoit un peu d'espace en haut pour accueillir les cases. */
+.cb-tabbar{padding-top:15px}
+.cb-jrn-check{position:absolute;top:-13px;left:50%;transform:translateX(-50%);width:16px;height:16px;
+border-radius:50%;background:#fff;border:1.5px solid #c3ccd8;cursor:pointer;display:inline-flex;
+align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#fff;line-height:1;z-index:4}
+.cb-jrn-check:hover{border-color:#16a34a}
+.cb-jrn-check.on{background:#16a34a;border-color:#16a34a}
 @keyframes cb-count-bump{0%{transform:scale(1)}30%{transform:scale(1.5);color:#16a34a}100%{transform:scale(1)}}
 .cb-count-bump{display:inline-block;animation:cb-count-bump .6s ease-out}
 @media(prefers-reduced-motion:reduce){.cb-count-bump{animation:none}}
@@ -4764,4 +4757,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:31bb101d67 --></body></html>
+})();</script><!-- v:e041adcc81 --></body></html>
