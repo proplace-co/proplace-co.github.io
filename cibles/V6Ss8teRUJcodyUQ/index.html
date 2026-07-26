@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="profund vc"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T15:42:31Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="profund vc"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T18:41:51Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -2449,7 +2449,16 @@ color:#fff;line-height:1;margin-right:4px;vertical-align:middle;flex:0 0 auto}
 /* icône « à cocher » dans la légende (explique le rituel du matin). */
 .cb-legend-check{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;
 border-radius:3px;border:1.5px solid #16a34a;color:#16a34a;font-size:9px;font-weight:900;vertical-align:middle;margin:0 3px}
-@keyframes cb-count-bump{0%{transform:scale(1)}30%{transform:scale(1.5);color:#16a34a}100%{transform:scale(1)}}
+/* v123 — bump du compteur = couleur de l'ONGLET (plus le vert hardcodé #16a34a
+   qui peignait en vert tous les chiffres au clic / au changement de compteur).
+   --cb-bump-c hérite du bouton parent (.cb-f-kept / ana / pending / …). */
+.cb-fchips .cb-f-kept{--cb-bump-c:#16a34a}
+.cb-fchips .cb-f-ana{--cb-bump-c:#2563eb}
+.cb-fchips .cb-f-pending{--cb-bump-c:#e67e22}
+.cb-fchips .cb-f-callyes{--cb-bump-c:#6d28d9}
+.cb-fchips .cb-f-rej{--cb-bump-c:#dc2626}
+.cb-fchips .cb-f-fav{--cb-bump-c:#eab308}
+@keyframes cb-count-bump{0%{transform:scale(1)}30%{transform:scale(1.5);color:var(--cb-bump-c,currentColor)}100%{transform:scale(1)}}
 .cb-count-bump{display:inline-block;animation:cb-count-bump .6s ease-out}
 @media(prefers-reduced-motion:reduce){.cb-count-bump{animation:none}}
 /* v122.9 (#3/#4) — ✨/🎯 relocalisés DANS la languette Évalués (foldzone du panneau sourcing) :
@@ -4801,4 +4810,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:48c3e96798 --></body></html>
+})();</script><!-- v:ca55d2e849 --></body></html>
