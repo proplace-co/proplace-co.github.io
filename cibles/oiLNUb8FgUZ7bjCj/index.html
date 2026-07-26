@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T14:04:47Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T14:24:06Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -2432,18 +2432,24 @@ border-radius:50%;width:30px;height:30px;cursor:pointer;line-height:1}
 .cb-walk-btn:hover{background:rgba(255,255,255,.28)}
 .cb-walk-pos{font-size:12.5px;font-weight:800;min-width:54px;text-align:center}
 .cb-walk-end{background:rgba(255,255,255,.05)!important}
-/* v122.5 — CHECKBOX DU JOUR au-dessus de chaque onglet du tunnel (overlay absolu, ne touche
-   pas au flex). Cochable/décochable, réinitialisée chaque jour → « où j'en suis aujourd'hui ».
-   La barre reçoit un peu d'espace en haut pour accueillir les cases. */
-.cb-tabbar{padding-top:15px}
-.cb-jrn-check{position:absolute;top:-13px;left:50%;transform:translateX(-50%);width:16px;height:16px;
-border-radius:50%;background:#fff;border:1.5px solid #c3ccd8;cursor:pointer;display:inline-flex;
-align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#fff;line-height:1;z-index:4}
+/* v122.8 — CHECKBOX DU JOUR À GAUCHE du libellé de chaque onglet (inline, dans le chip).
+   Cochable/décochable ; auto-cochée quand l'étape est vidée (cnt 0) ; reset chaque jour →
+   « coche chaque matin = pipeline à jour ». */
+.cb-jrn-check{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;
+border-radius:4px;background:#fff;border:1.5px solid #b9c3d0;cursor:pointer;font-size:10px;font-weight:900;
+color:#fff;line-height:1;margin-right:6px;vertical-align:middle;flex:0 0 auto}
 .cb-jrn-check:hover{border-color:#16a34a}
 .cb-jrn-check.on{background:#16a34a;border-color:#16a34a}
+/* icône « à cocher » dans la légende (explique le rituel du matin). */
+.cb-legend-check{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;
+border-radius:3px;border:1.5px solid #16a34a;color:#16a34a;font-size:9px;font-weight:900;vertical-align:middle;margin:0 3px}
 @keyframes cb-count-bump{0%{transform:scale(1)}30%{transform:scale(1.5);color:#16a34a}100%{transform:scale(1)}}
 .cb-count-bump{display:inline-block;animation:cb-count-bump .6s ease-out}
 @media(prefers-reduced-motion:reduce){.cb-count-bump{animation:none}}
+/* v122.9 (#3/#4) — ✨/🎯 relocalisés DANS la languette Évalués (foldzone du panneau sourcing) :
+   séparateur discret pour qu'ils se lisent comme une section du même panneau. */
+.cb-in-srcg{margin-top:16px}
+.cb-srcg-foldzone>.cb-in-srcg:first-of-type{border-top:1px dashed #dbe3ec;padding-top:16px}
 /* #4 — les bandeaux 🎯 / ✨ ne s'affichent QUE dans la vue « évalués » (data-cbtab=all) :
    ailleurs le CEO se concentre sur l'étape en cours (retenues/analysées/à trancher/validées). */
 :root:not([data-cbtab="all"]) #cb-hotbanner,
@@ -4016,7 +4022,15 @@ var here=(location.origin+location.pathname).replace(/\/+$/,"");
 var alt=altUrl(l);
 if(alt&&alt!==here){location.href=alt;return;}
 apply(l);}
-function init(){apply(getLang());
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
 if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
 document.addEventListener("click",closeAcct);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
@@ -4147,7 +4161,15 @@ var here=(location.origin+location.pathname).replace(/\/+$/,"");
 var alt=altUrl(l);
 if(alt&&alt!==here){location.href=alt;return;}
 apply(l);}
-function init(){apply(getLang());
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
 if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
 document.addEventListener("click",closeAcct);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
@@ -4763,4 +4785,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:d8d59636a6 --></body></html>
+})();</script><!-- v:10d4c52832 --></body></html>
