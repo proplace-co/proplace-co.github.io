@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="cerfrance"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T15:23:24Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="cerfrance"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T15:43:56Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -501,8 +501,8 @@ font-weight:800;font-size:13.5px;display:flex;align-items:center;justify-content
    (re-déplier). Remplace le repli v85 P3 limité à l'étape ① (.cb-step-fold retiré). */
 /* v97 — l'en-tête entier est un VRAI TOGGLE (clic = replier/déplier, dans les deux
    sens — plus seulement re-déplier) : curseur pointeur en permanence. */
-.cb-srcg-hd{display:flex;align-items:center;gap:10px;margin:0 0 16px;cursor:pointer}
-.cb-srcg-hd-t{margin:0;font-size:15px;font-weight:800;color:#0f1f33;line-height:1.35}
+.cb-srcg-hd{display:flex;align-items:flex-start;gap:10px;margin:0 0 16px;cursor:pointer}
+.cb-srcg-hd-t{flex:1 1 auto;margin:0;font-size:14px;font-weight:800;color:#0f1f33;line-height:1.45}
 /* v88 (#8) — le chevron nu devient un bouton fantôme LIBELLÉ « Replier ▴ » (déplié) /
    « Déplier ▾ » (replié) : même famille que les « ▲ Replier » des cartes
    (.cb-collapse-row — fond blanc, bordure #d4dce6, 11px/700 #56697e, radius 7px, hover
@@ -1813,9 +1813,15 @@ border-radius:8px;padding:8px 10px;resize:vertical;min-height:96px}
 .cb-eval-ta::placeholder{color:#a3b0bf}
 /* v121.2 — les DEUX champs empilés : en-tête « Ou plusieurs à la fois » + compteur, et
    le bouton « Évaluer la liste » sous la textarea (jamais un toggle qui cache l'autre). */
-.cb-eval-listhdr{display:flex;align-items:baseline;justify-content:space-between;gap:10px;
-margin:16px 0 0;padding-top:13px;border-top:1px dashed #dbe3ec}
-.cb-eval-listlbl{font-size:12px;font-weight:700;color:#5f7288}
+/* v122.12 — « Ou plusieurs à la fois… » = bouton cliquable qui ouvre la liste (textarea + Évaluer la liste). */
+.cb-eval-listhdr{display:flex;align-items:center;gap:10px;width:100%;font-family:inherit;text-align:left;
+margin:16px 0 0;padding:11px 0 0;border-top:1px dashed #dbe3ec;background:none;border-left:none;border-right:none;border-bottom:none;cursor:pointer}
+.cb-eval-listlbl{flex:1 1 auto;font-size:12.5px;font-weight:700;color:#3c4c60;text-decoration:underline dotted;text-underline-offset:3px}
+.cb-eval-listhdr:hover .cb-eval-listlbl{color:#0f1f33}
+.cb-eval-listchev{font-size:11px;color:#8a99aa;transition:transform .15s}
+.cb-eval-listhdr.on .cb-eval-listchev{transform:rotate(180deg)}
+.cb-eval-list-body{display:none;margin-top:10px}
+.cb-eval-listhdr.on + .cb-eval-list-body{display:block}
 .cb-eval-listgo-row{display:flex;justify-content:flex-end;margin:8px 0 0}
 .cb-eval-listgo{font-family:inherit;font-size:12.5px;font-weight:700;color:#fff;background:#0f1f33;
 border:1px solid #0f1f33;border-radius:9px;padding:8px 16px;cursor:pointer;white-space:nowrap}
@@ -4795,4 +4801,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:6580053838 --></body></html>
+})();</script><!-- v:f2aa4ed53f --></body></html>
