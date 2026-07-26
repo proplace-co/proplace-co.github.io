@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="profund vc"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T10:03:14Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="profund vc"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-26T11:02:26Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -2390,6 +2390,22 @@ font-size:13px;line-height:1}
 .cb-funnel-hint b{color:#0f1f33}
 /* v121.14 — légende des puces (3 couleurs, 3 rôles) sous le tunnel. */
 .cb-badge-legend{margin:0 0 12px;font-size:11.5px;font-weight:600;color:#6b7a8d;line-height:1.5}
+/* v122 — COACH PAR ONGLET (gamification) : bandeau « ta mission ici » au-dessus de la liste,
+   couleur = étape du tunnel. Progression visible : le compteur qui bouge pulse. */
+.cb-coach{display:flex;align-items:flex-start;gap:12px;margin:0 0 16px;padding:13px 16px;
+background:#f8fafc;border:1px solid #e6eaef;border-left:4px solid #0f1f33;border-radius:12px}
+.cb-coach-n{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+width:26px;height:26px;border-radius:50%;background:#0f1f33;color:#fff;font-size:13px;font-weight:900}
+.cb-coach-tx{display:flex;flex-direction:column;gap:3px;min-width:0}
+.cb-coach-tx b{font-size:13.5px;font-weight:800;color:#0f1f33}
+.cb-coach-tx span{font-size:12.5px;line-height:1.5;color:#54627a}
+@keyframes cb-count-bump{0%{transform:scale(1)}30%{transform:scale(1.5);color:#16a34a}100%{transform:scale(1)}}
+.cb-count-bump{display:inline-block;animation:cb-count-bump .6s ease-out}
+@media(prefers-reduced-motion:reduce){.cb-count-bump{animation:none}}
+/* #4 — les bandeaux 🎯 / ✨ ne s'affichent QUE dans la vue « évalués » (data-cbtab=all) :
+   ailleurs le CEO se concentre sur l'étape en cours (retenues/analysées/à trancher/validées). */
+:root:not([data-cbtab="all"]) #cb-hotbanner,
+:root:not([data-cbtab="all"]) #cb-since{display:none!important}
 /* v72 (funnel visual) — mini glyphe entonnoir (3 barres décroissantes, gris-vert calme)
    à gauche de la légende ; hors du span data-i18n → survit à la bascule FR|EN. */
 .cb-funnel-glyph{width:18px;height:13px;fill:#7fa392;vertical-align:-2px;margin-right:6px;flex:0 0 auto}
@@ -4715,4 +4731,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:5c74be913b --></body></html>
+})();</script><!-- v:dc90b0d713 --></body></html>
