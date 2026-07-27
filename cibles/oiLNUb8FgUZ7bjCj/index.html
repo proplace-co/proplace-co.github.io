@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-27T06:04:55Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-27T08:45:33Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -2085,9 +2085,11 @@ padding:6px 11px;border:1px solid #d5dde6;border-radius:10px;background:#fff;col
 .cb-h1-logo{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);max-height:38px;max-width:160px;object-fit:contain;display:block}
 /* v120.9 — logo mobile dédié (sa propre ligne en haut) : caché sur desktop. */
 .cb-h1-logo-mob{display:none}
+/* v123.7 — mobile : logo plus petit, poussé à DROITE (ne mange plus la largeur utile). */
 @media(max-width:620px){
   .cb-h1-logo{display:none}
-  .cb-h1-logo-mob{display:block;order:-1;flex-basis:100%;max-height:30px;max-width:150px;object-fit:contain;margin:0 0 6px}
+  .cb-h1-logo-mob{display:block;order:-1;flex-basis:100%;max-height:22px;max-width:88px;
+    object-fit:contain;margin:0 0 8px auto;align-self:flex-end}
 }
 @media(max-width:620px){.cb-kickrow{flex-wrap:wrap}}
 @media(max-width:620px){.cb-h1-search{flex:1 1 100%;order:5}.cb-h1-searchcol{flex:1 1 100%;order:5}}
@@ -2485,6 +2487,10 @@ border-radius:3px;border:1.5px solid #16a34a;color:#16a34a;font-size:9px;font-we
 /* v72 (funnel visual) — mini glyphe entonnoir (3 barres décroissantes, gris-vert calme)
    à gauche de la légende ; hors du span data-i18n → survit à la bascule FR|EN. */
 .cb-funnel-glyph{width:18px;height:13px;fill:#7fa392;vertical-align:-2px;margin-right:6px;flex:0 0 auto}
+/* v123.7 — pastilles « évalués » / « validés » dans la légende du tunnel. */
+.cb-funnel-hint b{display:inline;font-weight:800;padding:1px 7px;border-radius:999px;line-height:1.45}
+.cb-funnel-hint b:first-of-type{background:#0f1f33;color:#fff}          /* évalués = entrée navy */
+.cb-funnel-hint b:last-of-type{background:#6d28d9;color:#fff}           /* validés = sortie violet */
 /* v70 (retour CEO n°3) — la légende passe au gabarit **gras** (data-i18n-md, bascule FR|EN) :
    les flèches › sont du texte simple — plus de span .cb-fh-ar. */
 /* v66.1 (revue #7) — RETIRÉ : le filet rouge du 👎-sur-CALL (v49) sur-spécifiait toutes les
@@ -2759,11 +2765,19 @@ text-underline-offset:3px}
 .cb-eng-custom{color:#185c38;font-weight:800;text-decoration:none;white-space:nowrap}
 .cb-eng-custom:hover{text-decoration:underline}
 .cb-eng-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(214px,1fr));gap:12px}
-.cb-eng-card{background:#fff;border:1px solid #e6eaef;border-radius:12px;padding:13px 15px;display:flex;flex-direction:column;gap:8px}
-.cb-eng-top{display:flex;align-items:center;gap:8px}
+.cb-eng-card{background:#fff;border:1px solid #e6eaef;border-radius:12px;padding:13px 15px;display:flex;flex-direction:column;gap:8px;min-width:0;max-width:100%;box-sizing:border-box;overflow:hidden}
+.cb-eng-top{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:wrap}
 .cb-eng-dot{flex:0 0 9px;width:9px;height:9px;border-radius:50%;background:#98a6b6}
 .cb-eng-name{flex:1 1 auto;min-width:0;font-size:13.5px;font-weight:800;color:#0f1f33;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cb-eng-badge{flex:0 0 auto;font-size:10.5px;font-weight:600;color:#8090a2}
+/* v123.7 — mobile : 1 carte/ligne, rien ne déborde (chips + badges wrap). */
+@media(max-width:640px){
+  .cb-eng-grid{grid-template-columns:1fr;width:100%;max-width:100%}
+  .cb-eng-card{padding:12px 12px}
+  .cb-eng-chips{max-width:100%}
+  .cb-eng-fundsw{max-width:100%;white-space:normal}
+  #cb-eng-cards,.cb-srcg-engines{max-width:100%;overflow-x:hidden}
+}
 /* v59 — le SOURCÉ (sociétés trouvées) est le HÉROS : grand chiffre + mot qualifiant.
    Le MATCH devient secondaire (petit, gris) : 0% = « trouvé plein, rien retenu encore »,
    une opportunité de calibrage, PAS une panne. */
@@ -4822,4 +4836,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:0bdc9ca6e6 --></body></html>
+})();</script><!-- v:d999e259bf --></body></html>
