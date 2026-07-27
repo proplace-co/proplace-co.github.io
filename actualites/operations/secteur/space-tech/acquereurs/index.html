@@ -627,7 +627,15 @@ var here=(location.origin+location.pathname).replace(/\/+$/,"");
 var alt=altUrl(l);
 if(alt&&alt!==here){location.href=alt;return;}
 apply(l);}
-function init(){apply(getLang());
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
 if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
 document.addEventListener("click",closeAcct);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
@@ -758,7 +766,15 @@ var here=(location.origin+location.pathname).replace(/\/+$/,"");
 var alt=altUrl(l);
 if(alt&&alt!==here){location.href=alt;return;}
 apply(l);}
-function init(){apply(getLang());
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
 if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
 document.addEventListener("click",closeAcct);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
