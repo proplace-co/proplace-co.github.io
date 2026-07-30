@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="sforbt"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-29T22:04:11Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="sforbt"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-30T00:04:34Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -1090,12 +1090,20 @@ white-space:nowrap;box-shadow:0 2px 10px rgba(0,0,0,.18)}
   .cb-teaser-mode .cb-sticky-unlock a{width:100%;box-sizing:border-box;padding:11px 14px;border-radius:12px}
 }
 body.cb-teaser-mode{padding-bottom:84px}
-/* Teaser : on cache les actions « client » dangereuses, MAIS on GARDE 📥 export · 🔌 connecter · 🔔 alerte
-   (visibles pour le tutoriel + promesse produit). */
-.cb-teaser-mode .cb-apprwrap,.cb-teaser-mode .cb-det-launch,.cb-teaser-mode .cb-det-regen,
-.cb-teaser-mode .cb-btn-analyse,.cb-teaser-mode .cb-btn-similar3,.cb-teaser-mode .cb-callmini,
-.cb-teaser-mode .cb-cs,.cb-teaser-mode .cb-tp-btns,.cb-teaser-mode .cb-repeche,
+/* Teaser v125 — MÊME layout qu'hors teaser (mode ligne inclus : une seule ligne,
+   pas de boutons en trop). On ne masque plus les actions (pour le tuto), on les
+   verrouille seulement (cursor + lock JS → RDV hors tuto). */
+/* ⚡ fire file : reste masqué (tir réel coûteux) */
 .cb-teaser-mode .cb-pipe-fire,.cb-teaser-mode button.cb-pipe-fire{display:none!important}
+/* Actions : non cliquables, même apparence produit */
+body.cb-teaser-mode .cb-callmini button,body.cb-teaser-mode .cb-tp-btns button,
+body.cb-teaser-mode .cb-stg-btn,body.cb-teaser-mode .cb-appr-btn,body.cb-teaser-mode .cb-connjump-btn,
+body.cb-teaser-mode .cb-det-launch,body.cb-teaser-mode .cb-det-regen,body.cb-teaser-mode .cb-btn-analyse,
+body.cb-teaser-mode .cb-btn-similar3,body.cb-teaser-mode .cb-repeche,body.cb-teaser-mode .cb-dossier-btn,
+body.cb-teaser-mode .cb-cs-btn,body.cb-teaser-mode .cb-cs-note-ok,body.cb-teaser-mode .cb-yes,
+body.cb-teaser-mode .cb-no,body.cb-teaser-mode .cb-cm-yes,body.cb-teaser-mode .cb-cm-no,
+body.cb-teaser-mode .cb-tp-yes,body.cb-teaser-mode .cb-tp-no,body.cb-teaser-mode .cb-act-mini button{
+  cursor:not-allowed!important;pointer-events:auto!important}
 /* + / − file mémo : verrouillés (visibles mais inertes → clic = RDV via JS) */
 .cb-teaser-mode .cb-pipe-plus,.cb-teaser-mode .cb-pipe-minus{
   opacity:.4!important;cursor:not-allowed!important;pointer-events:auto!important;
@@ -1341,9 +1349,12 @@ background:#0f172a;border:1px solid #0f172a;border-radius:10px;padding:10px 14px
 .cb-toppick{background:#fffbeb;border-radius:8px;padding:12px 15px}  /* v67.1 — barre interne retirée */
 .cb-tp-h{margin:0 0 4px;font-size:12px;font-weight:800;color:#ca8a04;text-transform:uppercase;letter-spacing:.06em}
 .cb-tp-sub{margin:0 0 12px;font-size:13.5px;color:#475569;line-height:1.5}
-.cb-tp-btns{display:flex;gap:10px;margin:0;border:none;padding:0}
-.cb-tp-yes,.cb-tp-no{flex:1;padding:12px 0;border-radius:10px;font-family:inherit;font-size:14px;
-font-weight:800;text-transform:uppercase;letter-spacing:.06em;cursor:pointer}
+/* OUI / NON centrés, 2 colonnes égales (pas collés à gauche) */
+.cb-tp-btns{display:flex;justify-content:center;align-items:stretch;gap:12px;margin:0 auto;
+border:none;padding:0;width:100%;max-width:520px;box-sizing:border-box}
+.cb-tp-yes,.cb-tp-no{flex:1 1 0;min-width:0;padding:12px 16px;border-radius:10px;font-family:inherit;
+font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;
+text-align:center;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
 .cb-tp-yes{background:#4ac67f;color:#fff;border:none}
 .cb-tp-yes:hover{background:#3db571}
 .cb-tp-no{background:#fff;color:#dc2626;border:2px solid #dc2626}
@@ -1351,7 +1362,7 @@ font-weight:800;text-transform:uppercase;letter-spacing:.06em;cursor:pointer}
 .cb-tp-yes.done,.cb-tp-no.done{background:#e2e8f0;color:#475569;border:1px solid #cbd5e1;
 box-shadow:inset 0 2px 4px rgba(15,31,51,.14);cursor:default}
 .cb-tp-yes.dim,.cb-tp-no.dim{opacity:.4;cursor:default}
-.cb-tp-help{display:flex;gap:10px;margin:8px 0 0}
+.cb-tp-help{display:flex;gap:10px;margin:8px auto 0;max-width:520px}
 .cb-tp-help span{flex:1;text-align:center;font-size:10px;color:#64748b;line-height:1.35}
 .cb-tp-help span:last-child{color:#94a3b8}
 /* v69 (V1) — microcopie post-décision du bandeau CALL (Validé ✓ / Écarté ✓) */
@@ -3947,10 +3958,35 @@ justify-content:center;padding:0;opacity:.94}
 .cb-backtop:hover{color:#0f1f33;border-color:#aebbcb;background:#f7f9fc}
 .cb-backtop[hidden]{display:none}
 /* ═══ v84 (R4) — BOUTON DENSITÉ (cluster droit, à gauche du ↺) + MODE « TABLEAU » ═══ */
-/* Icône lignes horizontales (SVG inline, remplacée par _density_js selon l'état). */
-.cb-tabbar .cb-xall #cb-density{display:inline-flex;align-items:center}
-.cb-tabbar .cb-xall #cb-density svg{width:13px;height:13px;display:block}
-.cb-tabbar .cb-xall #cb-density rect{fill:currentColor}
+/* Densité d'affichage : bouton + menu 4 pictos (1 ligne · 2 · 3 · chat). */
+.cb-denswrap{position:relative;display:inline-flex;flex:0 0 auto;vertical-align:middle}
+.cb-tabbar .cb-xall #cb-density,.cb-denswrap #cb-density{display:inline-flex;align-items:center;
+justify-content:center;min-width:32px}
+.cb-tabbar .cb-xall #cb-density svg,.cb-denswrap #cb-density svg{width:15px;height:15px;display:block}
+.cb-tabbar .cb-xall #cb-density rect,.cb-denswrap #cb-density rect,
+.cb-tabbar .cb-xall #cb-density path,.cb-denswrap #cb-density path{fill:currentColor}
+.cb-denswrap #cb-density[aria-expanded="true"]{background:#eef4f0;color:#0f1f33;border-color:#b7c9bc}
+.cb-densmenu{position:absolute;top:calc(100% + 7px);right:0;z-index:70;display:flex;flex-direction:row;
+align-items:stretch;gap:6px;padding:8px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;
+box-shadow:0 14px 36px rgba(15,31,51,.16);min-width:0}
+.cb-densmenu[hidden]{display:none!important}
+.cb-dens-opt{position:relative;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
+gap:5px;min-width:52px;padding:9px 8px 7px;border:1px solid #e6eaef;border-radius:11px;background:#fafbfc;
+color:#334155;font-family:inherit;font-size:9.5px;font-weight:700;line-height:1.15;cursor:pointer;
+transition:background .12s,border-color .12s,color .12s,transform .12s,box-shadow .12s}
+.cb-dens-opt:hover{background:#f1f5f9;border-color:#c5d0db;color:#0f1f33;transform:translateY(-1px);
+box-shadow:0 3px 8px rgba(15,31,51,.08)}
+.cb-dens-opt.on{background:#eaf6ef;border-color:#8fc9a8;color:#0f6e3f;box-shadow:inset 0 0 0 1px rgba(74,198,127,.25)}
+.cb-dens-opt.on:hover{background:#e2f4ea;border-color:#6bb892}
+.cb-dens-opt svg{width:18px;height:18px;display:block;flex:0 0 auto}
+.cb-dens-opt svg rect,.cb-dens-opt svg path{fill:currentColor}
+.cb-dens-opt .cb-dens-lab{display:block;max-width:56px;text-align:center;white-space:normal}
+.cb-dens-opt.cb-dens-chat{color:#1d4ed8;border-style:dashed}
+.cb-dens-opt.cb-dens-chat:hover{background:#eff6ff;border-color:#93c5fd;color:#1e40af}
+.cb-dens-opt.cb-dens-locked{opacity:.62;cursor:not-allowed!important;filter:grayscale(.15)}
+.cb-dens-opt.cb-dens-locked:hover{transform:none;box-shadow:none;background:#fafbfc;border-color:#e6eaef}
+.cb-dens-opt .cb-dens-lock{position:absolute;top:3px;right:4px;font-size:10px;line-height:1;opacity:.9}
+body.cb-teaser-mode .cb-dens-opt.cb-dens-chat{cursor:not-allowed!important}
 /* MODE « TABLEAU » : 1 ligne par dossier, CSS SEUL (display-only — aucun re-render, les
    compteurs du tunnel et les filtres ignorent la densité). Portée : .cb-ulist.cb-density-table,
    cartes NON ouvertes seulement (:not(.cb-open)) — cliquer une ligne l'ouvre normalement et
@@ -5026,4 +5062,4 @@ apply(BAKED==="en"?"en":"fr");
 window.__cbI18nApply=function(root){
   if(CUR==null||CUR===BAKED)return;
   applyNodes(CBI18N[CUR]||{},root||document);};
-})();</script><!-- v:674b658b85 --></body></html>
+})();</script><!-- v:4c9d07681c --></body></html>
