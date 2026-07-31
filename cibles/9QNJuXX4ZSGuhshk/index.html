@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="sforbt"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-31T05:43:50Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="sforbt"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-07-31T06:04:36Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -1033,15 +1033,26 @@ padding:22px 24px;margin:6px 0 26px}
 .cb-upsell p{margin:0 0 14px;font-size:14.5px;line-height:1.6;color:#c9d4e2}
 /* ═══ MODE TEASER (prospect / ?teaser=1) ═══ aperçu sexy → RDV #rdv */
 /* v128 — GARDE-FOU. Tout le style teaser ci-dessous est scopé `.cb-teaser-mode` ;
-   or `apply(false)` (?teaser=0) retire cette classe du <body> mais ne masque QUE la
-   barre collante. Sur une page BAKÉE en teaser (customer_active=False), afficher la
-   version complète laissait donc le bandeau et le bloc co-build dans le DOM, sans
-   aucun style : « Aperçu privé / Juger / Tutoriel / Démarrer » en vrac au-dessus de
-   la page. Ces trois blocs n'existent QUE pour le teaser → hors teaser, on les cache.
-   Sans ça, cuire une page verrouillée par défaut casse la démo en ?teaser=0. */
+   or `apply(false)` (?teaser=0 / ?preview=1) retire cette classe du <body> mais ne
+   masque QUE la barre collante. Sur une page BAKÉE en teaser, les éléments injectés
+   au bake restaient donc dans le DOM, SANS AUCUN STYLE :
+     · le bandeau d'aperçu, le bloc co-build, la barre collante ;
+     · une pastille « 🔒 Débloquer » sur CHAQUE ligne (.cb-lock-pill) ;
+     · les boutons mémo transformés en « 🔒 Lire » vers #rdv (.cb-memo-locked) ;
+     · les CTA « → débloquer en démo » (.cb-lock-cta) ;
+     · le bloc « Déblocage 1/2/3/4 » sous le titre RDV (.cb-rdv-unlocks), qui sans
+       sa grille se lisait « Déblocage 1Mémos complets & contactsEmails, … ».
+   Tous n'existent QUE pour l'aperçu prospect → hors teaser, on les masque.
+   v128.1 — les 4 derniers ajoutés après remontée CEO sur ?preview=1 (31/07). */
 body:not(.cb-teaser-mode) #cb-tease-banner,
 body:not(.cb-teaser-mode) #cb-cobuild,
-body:not(.cb-teaser-mode) #cb-sticky-unlock{display:none!important}
+body:not(.cb-teaser-mode) #cb-sticky-unlock,
+body:not(.cb-teaser-mode) .cb-lock-pill,
+body:not(.cb-teaser-mode) .cb-lock-cta,
+body:not(.cb-teaser-mode) .cb-rdv-unlocks,
+body:not(.cb-teaser-mode) a.cb-memo-locked{display:none!important}
+/* … et le conteneur qui ne portait QUE ce CTA, sinon il reste 12px de vide. */
+body:not(.cb-teaser-mode) .cb-usec:has(> .cb-lock-cta:only-child){display:none!important}
 .cb-teaser-mode .cb-tease-banner{position:relative;overflow:hidden;border-radius:18px;margin:0 0 20px;
 padding:20px 24px;background:linear-gradient(135deg,#0b1220 0%,#14233a 50%,#0f1f33 100%);color:#eef2f7;
 box-shadow:0 16px 44px rgba(15,31,51,.28)}
@@ -5121,4 +5132,4 @@ window.__cbI18nApply=function(root){
   applyNodes(CBI18N[CUR]||{},root||document);};
 // Expose un re-apply complet (utile si un module a écrasé des data-i18n après le boot).
 window.__cbI18nReapply=function(){if(CUR)apply(CUR);};
-})();</script><!-- v:2434dc1342 --></body></html>
+})();</script><!-- v:bf66c5fc69 --></body></html>
