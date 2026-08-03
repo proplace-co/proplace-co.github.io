@@ -226,7 +226,15 @@ var here=(location.origin+location.pathname).replace(/\/+$/,"");
 var alt=altUrl(l);
 if(alt&&alt!==here){location.href=alt;return;}
 apply(l);}
-function init(){apply(getLang());
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
 if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
 document.addEventListener("click",closeAcct);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
@@ -234,47 +242,41 @@ window.addEventListener("resize",closeAcct);
 window.addEventListener("scroll",onScrollAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><main class="rp-wrap"><div class="rp-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/research/" data-i18n="research">Research</a><span class="sep">›</span><span class="cur">Optimiser l&#x27;interaction LLM via le &quot;rambling&quot; vocal</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Research", "item": "https://proplace.co/research/"}, {"@type": "ListItem", "position": 3, "name": "Optimiser l'interaction LLM via le \"rambling\" vocal"}]}</script></div><div class="rp-head"><h1>Optimiser l&#x27;interaction LLM via le &quot;rambling&quot; vocal</h1></div><div class="rp-meta"><a class="rp-src" href="https://x.com/karpathy/status/2079610838143623371" target="_blank" rel="noopener"><span class="i18n-fr">🔗 Lire l'article source</span><span class="i18n-en">🔗 Read the source article</span></a><span>✍ @karpathy</span><span>États-Unis</span><span><span class="i18n-fr">Publié le 22 juillet 2026</span><span class="i18n-en">Published 2026-07-22</span></span></div><div class="rp-fields"><div class="rp-field"><div class="l"><span class="i18n-fr">Industrie</span><span class="i18n-en">Industry</span></div><div class="v">Horizontal &amp; Productivity SaaS</div></div><div class="rp-field"><div class="l"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></div><div class="v">Outils d&#x27;amélioration de la productivité et de l&#x27;interaction utilisateur avec les grands modèles de langage (LLM)</div></div></div><div class="rp-tags"><span>AI / ML</span><span>B2B Software &amp; Cloud</span><span>Developer Tools</span></div><div class="rp-mind"><div class="markmap"><script type="text/template">
+})();</script><main class="rp-wrap"><div class="rp-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/research/" data-i18n="research">Research</a><span class="sep">›</span><span class="cur">Optimiser l&#x27;interaction LLM via le &quot;rambling&quot; vocal</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Research", "item": "https://proplace.co/research/"}, {"@type": "ListItem", "position": 3, "name": "Optimiser l'interaction LLM via le \"rambling\" vocal"}]}</script></div><div class="rp-head"><h1>Optimiser l&#x27;interaction LLM via le &quot;rambling&quot; vocal</h1></div><div class="rp-meta"><a class="rp-src" href="https://x.com/karpathy/status/2079610838143623371" target="_blank" rel="noopener"><span class="i18n-fr">🔗 Lire l'article source</span><span class="i18n-en">🔗 Read the source article</span></a><span>✍ @karpathy</span><span>États-Unis</span><span><span class="i18n-fr">Publié le 22 juillet 2026</span><span class="i18n-en">Published 2026-07-22</span></span></div><div class="rp-fields"><div class="rp-field"><div class="l"><span class="i18n-fr">Industrie</span><span class="i18n-en">Industry</span></div><div class="v">Horizontal &amp; Productivity SaaS</div></div><div class="rp-field"><div class="l"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></div><div class="v">Outils d&#x27;amélioration de la productivité et de l&#x27;interaction utilisateur avec les grands modèles de langage (LLM)</div></div></div><div class="rp-tags"><span>AI / ML</span><span>B2B Software &amp; Cloud</span><span>Developer</span></div><div class="rp-mind"><div class="markmap"><script type="text/template">
 ---
 markmap:
   colorFreezeLevel: 2
   initialExpandLevel: 5
   maxWidth: 340
 ---
-# Optimiser l'interaction LLM par le "rambling" vocal
-
-- **Concept du "Rambling" Vocal**
-  - Andrej Karpathy propose cette méthode pour améliorer la communication avec les LLM.
-  - Il s'agit de divaguer oralement de manière prolongée et spontanée.
-  - Le processus vise à fournir un contexte riche et non structuré au modèle.
-    - Cette approche contraste avec la saisie textuelle, souvent perçue comme fastidieuse pour des contextes longs.
-
-- **Méthodologie d'Interaction**
-  - L'utilisateur passe en mode vocal et parle librement, sans contrainte de cohérence.
-  - La session peut durer plusieurs minutes, adoptant un "flux de conscience" total.
-  - Il est parfois utile de prévenir le LLM du changement de mode d'interaction.
-    - Une introduction comme "passage à la reconnaissance vocale, désolé pour les fautes" peut être annoncée.
-
-- **Efficacité des LLM à Traiter le "Rambling"**
-  - Les LLM excellent étonnamment à reconstruire des monologues décousus.
-  - Ils parviennent à extraire le sens et l'intention des divagations incohérentes.
-  - Le modèle génère souvent une version plus claire et structurée des pensées initiales.
-    - Cette capacité de synthèse est cruciale pour transformer le chaos en information utile et exploitable.
-
-- **Bénéfices de l'Approche**
-  - Amélioration de la "fusion mentale" entre l'utilisateur et le LLM.
-  - Réduction significative du besoin de corrections et d'ajustements ultérieurs.
-    - L'efficacité de l'interaction est accrue, car le LLM comprend mieux dès le début.
-  - Permet de surmonter la difficulté de taper des contextes longs et complexes.
-    - Le mode vocal est moins exigeant cognitivement pour l'utilisateur que la saisie textuelle détaillée.
-
-- **Implications et Applications**
-  - Cette technique suggère une nouvelle manière d'exploiter les capacités de compréhension contextuelle des LLM.
-  - Elle ouvre la voie à des interactions plus naturelles et moins contraintes avec l'IA.
-  - Utile pour les sessions de brainstorming ou l'exploration d'idées complexes.
-    - L'utilisateur peut se concentrer sur la génération d'idées plutôt que sur leur formulation précise.
-</script><noscript><div class="rp-mind-fallback"><img src="https://proplace.co/research/mindmaps/optimiser-linteraction-llm-via-le-rambling-vocal.png" alt="Carte mentale — Optimiser l&#x27;interaction LLM via le &quot;rambling&quot; vocal"></div></noscript></div></div><script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@0.18"></script><div class="rp-summary"><p>Andrej Karpathy propose une méthode innovante pour améliorer l&#x27;interaction avec les Grands Modèles de Langage (LLM) : le &quot;rambling&quot; vocal prolongé. Il observe que les LLM ont parfois besoin de plus de contexte pour comprendre pleinement l&#x27;intention de l&#x27;utilisateur, mais que la saisie textuelle de ce contexte peut être fastidieuse.</p>
-<p>La technique consiste à passer en mode vocal et à divaguer librement pendant plusieurs minutes, en mode &quot;flux de conscience&quot;, même de manière incohérente. Étonnamment, les LLM excellent à reconstruire ces longs monologues décousus, en produisant souvent une version plus claire et structurée des pensées initiales de l&#x27;utilisateur. Ce processus permet d&#x27;établir une meilleure &quot;fusion mentale&quot; avec le LLM, réduisant ainsi le besoin de corrections ultérieures et améliorant l&#x27;efficacité de l&#x27;interaction.</p></div><section class="rp-pros"><h2>🔮 <span class="i18n-fr">Synthèse prospective</span><span class="i18n-en">Prospective synthesis</span></h2><p class="rp-pros-concl">Cet article souligne l&#x27;importance des interfaces utilisateur naturelles et tolérantes à l&#x27;ambiguïté pour les LLM. Les investisseurs devraient rechercher des solutions qui transforment les interactions complexes en expériences fluides et intuitives, en exploitant la capacité des IA à interpréter des données riches et désordonnées.</p><h3><span class="i18n-fr">Critères de sourcing</span><span class="i18n-en">Sourcing criteria</span></h3><ul class="rp-crit"><li>Solutions d&#x27;interface utilisateur pour LLM axées sur la voix et le traitement du langage naturel (NLP) avancé.</li><li>Outils améliorant la &quot;mind-meld&quot; (fusion mentale) entre l&#x27;utilisateur et l&#x27;IA, réduisant la friction d&#x27;interaction.</li><li>Plateformes intégrant des capacités de transcription et de structuration de contenu à partir d&#x27;entrées vocales informelles.</li><li>Applications de productivité tirant parti de la capacité des LLM à synthétiser des informations complexes et désordonnées.</li></ul><h3><span class="i18n-fr">Sociétés à évaluer</span><span class="i18n-en">Companies to evaluate</span></h3><p class="rp-eval-hint"><span class="i18n-fr">Évaluez-les contre votre thèse (corpdev ou prospection).</span><span class="i18n-en">Evaluate them against your thesis (corpdev or prospecting).</span></p><div class="rp-comps"><div class="rp-comp"><div class="rp-comp-t"><div class="rp-comp-h"><span class="rp-comp-n">AssemblyAI</span><span class="rp-comp-c">US</span><span class="rp-comp-stage">Series C</span></div><p class="rp-comp-w">Fournit des API de transcription et de compréhension vocale avancées, permettant aux développeurs d&#x27;intégrer des fonctionnalités de &quot;rambling&quot; et de structuration de contenu.</p></div><div class="rp-comp-a"><button type="button" class="op-eval" data-c="AssemblyAI" data-h="Fournit des API de transcription et de compréhension vocale avancées, permettant aux développeurs d&amp;#x27;intégrer des fonctionnalités de &amp;quot;rambling&amp;quot; et de structuration de contenu." data-i="" data-u="https://x.com/karpathy/status/2079610838143623371"><span class="i18n-fr">Évaluer →</span><span class="i18n-en">Evaluate →</span></button><div class="op-eval-panel" hidden></div></div></div><div class="rp-comp"><div class="rp-comp-t"><div class="rp-comp-h"><span class="rp-comp-n">Deepgram</span><span class="rp-comp-c">US</span><span class="rp-comp-stage">Series B</span></div><p class="rp-comp-w">Spécialisé dans la reconnaissance vocale en temps réel et la compréhension contextuelle, idéal pour transformer des monologues vocaux en données exploitables par les LLM.</p></div><div class="rp-comp-a"><button type="button" class="op-eval" data-c="Deepgram" data-h="Spécialisé dans la reconnaissance vocale en temps réel et la compréhension contextuelle, idéal pour transformer des monologues vocaux en données exploitables par les LLM." data-i="" data-u="https://x.com/karpathy/status/2079610838143623371"><span class="i18n-fr">Évaluer →</span><span class="i18n-en">Evaluate →</span></button><div class="op-eval-panel" hidden></div></div></div><div class="rp-comp"><div class="rp-comp-t"><div class="rp-comp-h"><span class="rp-comp-n">Supernormal</span><span class="rp-comp-c">US</span><span class="rp-comp-stage">Seed</span></div><p class="rp-comp-w">Automatise la prise de notes et les résumés de réunions, montrant un potentiel pour étendre cette capacité à des sessions de &quot;rambling&quot; pour structurer les pensées.</p></div><div class="rp-comp-a"><button type="button" class="op-eval" data-c="Supernormal" data-h="Automatise la prise de notes et les résumés de réunions, montrant un potentiel pour étendre cette capacité à des sessions de &amp;quot;rambling&amp;quot; pour structurer les pensées." data-i="" data-u="https://x.com/karpathy/status/2079610838143623371"><span class="i18n-fr">Évaluer →</span><span class="i18n-en">Evaluate →</span></button><div class="op-eval-panel" hidden></div></div></div><div class="rp-comp"><div class="rp-comp-t"><div class="rp-comp-h"><span class="rp-comp-n">Speak AI</span><span class="rp-comp-c">CA</span><span class="rp-comp-stage">Seed</span></div><p class="rp-comp-w">Offre des outils d&#x27;analyse de la parole pour extraire des insights, des thèmes et des entités, ce qui est directement applicable à la structuration de &quot;rambles&quot; vocaux.</p></div><div class="rp-comp-a"><button type="button" class="op-eval" data-c="Speak AI" data-h="Offre des outils d&amp;#x27;analyse de la parole pour extraire des insights, des thèmes et des entités, ce qui est directement applicable à la structuration de &amp;quot;rambles&amp;quot; vocaux." data-i="" data-u="https://x.com/karpathy/status/2079610838143623371"><span class="i18n-fr">Évaluer →</span><span class="i18n-en">Evaluate →</span></button><div class="op-eval-panel" hidden></div></div></div></div></section><section class="rp-sources"><h2>🔗 Pour creuser</h2><div class="rp-src-links"><a href="https://x.com/karpathy/status/2079610838143623371" target="_blank" rel="noopener">📄 Article source</a></div><div class="rp-src-sub">Trouver le site des sociétés à évaluer :</div><div class="rp-src-links"><a href="https://www.google.com/search?q=AssemblyAI" target="_blank" rel="noopener">🔎 AssemblyAI</a><a href="https://www.google.com/search?q=Deepgram" target="_blank" rel="noopener">🔎 Deepgram</a><a href="https://www.google.com/search?q=Supernormal" target="_blank" rel="noopener">🔎 Supernormal</a><a href="https://www.google.com/search?q=Speak%20AI" target="_blank" rel="noopener">🔎 Speak AI</a></div></section><div class="rp-cta"><h3><span class="i18n-fr">Un projet de croissance ou d'acquisition ?</span><span class="i18n-en">A growth or acquisition project?</span></h3><p><span class="i18n-fr">Prenez un appel stratégique, ou suivez notre recherche.</span><span class="i18n-en">Book a strategy call, or follow our research.</span></p><a href="https://forms.proplace.co/meet"><span class="i18n-fr">Prendre un RDV stratégique</span><span class="i18n-en">Book a strategy call</span></a><a class="g" href="https://proplace.co/newsletter"><span class="i18n-fr">S'abonner à la newsletter</span><span class="i18n-en">Subscribe to the newsletter</span></a></div></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a><a class="on" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
+# Rambling Vocal pour LLM
+- **Problématique**
+  - Difficulté des LLM à comprendre les intentions complexes de l'utilisateur avec peu de contexte.
+    - Les requêtes courtes manquent souvent de la profondeur nécessaire pour une compréhension nuancée.
+  - La formulation précise des prompts est chronophage et exigeante pour l'utilisateur.
+    - Nécessite une clarté mentale et une structure que l'on n'a pas toujours au début d'une tâche.
+- **La Solution : Le "Rambling" Vocal**
+  - Consiste à parler librement et longuement au LLM via la reconnaissance vocale.
+    - Permet de déverser un "flux de conscience" complet, sans filtre ni structure.
+  - Fournit au LLM un volume de "bits" d'information contextuelle beaucoup plus important.
+    - Même les pensées désordonnées ou les digressions contribuent à enrichir le contexte global.
+- **Mécanisme sous-jacent**
+  - Les LLM sont étonnamment performants pour reconstruire des discours incohérents.
+    - Leur capacité à identifier des motifs et des relations dans de grandes quantités de texte est exploitée.
+  - Le modèle "écho" les pensées de l'utilisateur, mais de manière plus structurée.
+    - Transforme le désordre initial en une version plus propre et plus compréhensible de l'intention.
+- **Bénéfices pour l'utilisateur**
+  - Améliore la "fusion des esprits" (mind meld) entre l'humain et l'IA.
+    - Le LLM comprend mieux les nuances et les objectifs implicites de l'utilisateur.
+  - Réduit considérablement le besoin de corrections et d'itérations ultérieures.
+    - Moins de temps passé à reformuler ou à guider le modèle après la première interaction.
+- **Implications pratiques**
+  - Changement de paradigme dans l'interaction homme-machine pour les tâches complexes.
+    - Encourage une approche plus naturelle et moins contrainte de la communication avec l'IA.
+  - Potentiel d'intégration dans les outils de productivité et de développement.
+    - Les interfaces vocales deviennent un moyen privilégié pour initier des tâches complexes avec les LLM.
+</script><noscript><div class="rp-mind-fallback"><img src="https://proplace.co/research/mindmaps/optimiser-linteraction-llm-via-le-rambling-vocal.png" alt="Carte mentale — Optimiser l&#x27;interaction LLM via le &quot;rambling&quot; vocal"></div></noscript></div></div><script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@0.18"></script><div class="rp-summary"><p>Andrej Karpathy propose une méthode contre-intuitive mais efficace pour améliorer l&#x27;interaction avec les grands modèles de langage (LLM) : le &quot;rambling&quot; vocal prolongé. Plutôt que de formuler des requêtes concises, il suggère de s&#x27;exprimer librement et longuement, même de manière décousue, via la reconnaissance vocale.</p>
+<p>Cette approche fournit aux LLM un volume de données contextuelles plus important, leur permettant de mieux saisir l&#x27;intention de l&#x27;utilisateur. Étonnamment, les LLM excellent à restructurer ces flux de pensées désordonnés en des réponses plus claires et cohérentes. Le résultat est une meilleure &quot;fusion des esprits&quot; entre l&#x27;utilisateur et le modèle, réduisant ainsi le besoin de corrections ultérieures et améliorant la qualité des interactions.</p></div><section class="rp-pros"><h2>🔮 <span class="i18n-fr">Synthèse prospective</span><span class="i18n-en">Prospective synthesis</span></h2><p class="rp-pros-concl">Cette thèse suggère un besoin croissant d&#x27;outils et de plateformes facilitant des interactions plus naturelles et moins structurées avec les LLM. Les investisseurs devraient rechercher des solutions qui transforment la voix ou le texte libre en prompts efficaces, améliorant ainsi la productivité et l&#x27;expérience utilisateur.</p><h3><span class="i18n-fr">Critères de sourcing</span><span class="i18n-en">Sourcing criteria</span></h3><ul class="rp-crit"><li>Plateformes ou API intégrant des capacités avancées de transcription et de compréhension contextuelle pour les LLM.</li><li>Outils de productivité qui permettent une interaction vocale fluide et prolongée avec l&#x27;IA pour la génération de contenu, la recherche ou l&#x27;analyse.</li><li>Solutions qui se concentrent sur la réduction de la friction dans l&#x27;ingénierie de prompt en exploitant des entrées utilisateur riches et non structurées.</li><li>Startups développant des interfaces utilisateur innovantes pour les LLM, priorisant la facilité d&#x27;expression sur la précision initiale du prompt.</li></ul><h3><span class="i18n-fr">Sociétés à évaluer</span><span class="i18n-en">Companies to evaluate</span></h3><p class="rp-eval-hint"><span class="i18n-fr">Évaluez-les contre votre thèse (corpdev ou prospection).</span><span class="i18n-en">Evaluate them against your thesis (corpdev or prospecting).</span></p><div class="rp-comps"><div class="rp-comp"><div class="rp-comp-t"><div class="rp-comp-h"><span class="rp-comp-n">AssemblyAI</span><span class="rp-comp-c">US</span><span class="rp-comp-stage">Series C</span></div><p class="rp-comp-w">Fournit des API de transcription vocale avancées avec des fonctionnalités de compréhension du langage naturel, parfait pour transformer le &#x27;rambling&#x27; en données exploitables par les LLM.</p></div><div class="rp-comp-a"><button type="button" class="op-eval" data-c="AssemblyAI" data-h="Fournit des API de transcription vocale avancées avec des fonctionnalités de compréhension du langage naturel, parfait pour transformer le &amp;#x27;rambling&amp;#x27; en données exploitables par les LLM." data-i="" data-u="https://x.com/karpathy/status/2079610838143623371"><span class="i18n-fr">Évaluer →</span><span class="i18n-en">Evaluate →</span></button><div class="op-eval-panel" hidden></div></div></div><div class="rp-comp"><div class="rp-comp-t"><div class="rp-comp-h"><span class="rp-comp-n">Deepgram</span><span class="rp-comp-c">US</span><span class="rp-comp-stage">Series B</span></div><p class="rp-comp-w">Spécialisé dans la reconnaissance vocale ultra-précise et la compréhension contextuelle, idéal pour capter et interpréter les nuances d&#x27;un discours libre.</p></div><div class="rp-comp-a"><button type="button" class="op-eval" data-c="Deepgram" data-h="Spécialisé dans la reconnaissance vocale ultra-précise et la compréhension contextuelle, idéal pour capter et interpréter les nuances d&amp;#x27;un discours libre." data-i="" data-u="https://x.com/karpathy/status/2079610838143623371"><span class="i18n-fr">Évaluer →</span><span class="i18n-en">Evaluate →</span></button><div class="op-eval-panel" hidden></div></div></div><div class="rp-comp"><div class="rp-comp-t"><div class="rp-comp-h"><span class="rp-comp-n">Vapi.ai</span><span class="rp-comp-c">US</span><span class="rp-comp-stage">Seed</span></div><p class="rp-comp-w">Permet de créer des assistants vocaux IA en temps réel, pouvant être adaptés pour des sessions de &#x27;rambling&#x27; prolongées et interactives avec un LLM sous-jacent.</p></div><div class="rp-comp-a"><button type="button" class="op-eval" data-c="Vapi.ai" data-h="Permet de créer des assistants vocaux IA en temps réel, pouvant être adaptés pour des sessions de &amp;#x27;rambling&amp;#x27; prolongées et interactives avec un LLM sous-jacent." data-i="" data-u="https://x.com/karpathy/status/2079610838143623371"><span class="i18n-fr">Évaluer →</span><span class="i18n-en">Evaluate →</span></button><div class="op-eval-panel" hidden></div></div></div><div class="rp-comp"><div class="rp-comp-t"><div class="rp-comp-h"><span class="rp-comp-n">Typewise</span><span class="rp-comp-c">CH</span><span class="rp-comp-stage">Seed</span></div><p class="rp-comp-w">Bien que plus axé sur la saisie textuelle, leur technologie de prédiction et de correction intelligente pourrait être adaptée pour structurer des pensées initialement désordonnées avant l&#x27;envoi au LLM.</p></div><div class="rp-comp-a"><button type="button" class="op-eval" data-c="Typewise" data-h="Bien que plus axé sur la saisie textuelle, leur technologie de prédiction et de correction intelligente pourrait être adaptée pour structurer des pensées initialement désordonnées avant l&amp;#x27;envoi a" data-i="" data-u="https://x.com/karpathy/status/2079610838143623371"><span class="i18n-fr">Évaluer →</span><span class="i18n-en">Evaluate →</span></button><div class="op-eval-panel" hidden></div></div></div></div></section><section class="rp-sources"><h2>🔗 Pour creuser</h2><div class="rp-src-links"><a href="https://x.com/karpathy/status/2079610838143623371" target="_blank" rel="noopener">📄 Article source</a></div><div class="rp-src-sub">Trouver le site des sociétés à évaluer :</div><div class="rp-src-links"><a href="https://www.google.com/search?q=AssemblyAI" target="_blank" rel="noopener">🔎 AssemblyAI</a><a href="https://www.google.com/search?q=Deepgram" target="_blank" rel="noopener">🔎 Deepgram</a><a href="https://www.google.com/search?q=Vapi.ai" target="_blank" rel="noopener">🔎 Vapi.ai</a><a href="https://www.google.com/search?q=Typewise" target="_blank" rel="noopener">🔎 Typewise</a></div></section><div class="rp-cta"><h3><span class="i18n-fr">Un projet de croissance ou d'acquisition ?</span><span class="i18n-en">A growth or acquisition project?</span></h3><p><span class="i18n-fr">Prenez un appel stratégique, ou suivez notre recherche.</span><span class="i18n-en">Book a strategy call, or follow our research.</span></p><a href="https://forms.proplace.co/meet"><span class="i18n-fr">Prendre un RDV stratégique</span><span class="i18n-en">Book a strategy call</span></a><a class="g" href="https://proplace.co/newsletter"><span class="i18n-fr">S'abonner à la newsletter</span><span class="i18n-en">Subscribe to the newsletter</span></a></div></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="pph-sect" aria-label="Sections Proplace"><a class="" href="/actualites/" data-i18n="news">News</a><a class="" href="/analysis/" data-i18n="analysis">Analysis</a><a class="on" href="/research/" data-i18n="research">Research</a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a class="ppf-gated" data-href="https://proplace.co/documentation" href="https://proplace.co/#login">Documentation →</a><a class="ppf-gated" data-href="https://proplace.co/setup" href="https://proplace.co/#login">Setup →</a><a class="ppf-gated" data-href="https://proplace.co/api/" href="https://proplace.co/#login">API →</a><a href="/newsletter/">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Insights</h4><a href="/actualites/" data-i18n="news">News</a><a href="/analysis/" data-i18n="analysis">Analysis</a><a href="/research/" data-i18n="research">Research</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span><span data-i18n="bottom">Meet Stan, your AI Corporate Developer.</span></div></footer><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -397,7 +399,15 @@ var here=(location.origin+location.pathname).replace(/\/+$/,"");
 var alt=altUrl(l);
 if(alt&&alt!==here){location.href=alt;return;}
 apply(l);}
-function init(){apply(getLang());
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
 if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
 document.addEventListener("click",closeAcct);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
@@ -462,6 +472,18 @@ border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
 .ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
 background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
 .ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+/* #5 — bouton (pas lien) : lancer le mémo instant + ouvrir /cibles. */
+button.ev-cta{border:1px solid var(--ink);cursor:pointer;font-family:inherit}
+.ev-cta2{background:transparent;color:var(--accent-dk);border:1px solid var(--accent)}
+.ev-cta2:hover{background:var(--bg);color:var(--ink);opacity:1}
+/* #4 — domaine d'un candidat rendu cliquable (vérifier le site avant de choisir). */
+.ev-cand-lnk{color:var(--accent-dk);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--accent)}
+.ev-cand-lnk:hover{color:var(--ink);border-bottom-color:var(--ink)}
+/* #3 — override d'un verdict NO MATCH → MATCH. */
+.ev-force-wrap{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ev-force{font-size:12px;font-weight:700;color:var(--ink);background:transparent;border:1px solid var(--line);
+border-radius:8px;padding:6px 12px;cursor:pointer;transition:all .15s;font-family:inherit}
+.ev-force:hover{border-color:var(--ink);background:var(--bg)}
 .ev-err{color:#b91c1c}
 .ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
 .ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
@@ -485,19 +507,47 @@ function T(fr,en){return EN()?en:fr;}
 function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
 function ctaCal(){return '<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">'
  +T("📅 Un deal flow personnalisé ? Planifiez un appel stratégique","📅 Want a tailored deal flow? Book a strategy call")+'</a>';}
+// Extraction souple (le résultat porte tantôt company/company_name/name, tantôt un
+// sous-objet lead) — partagé par le rendu MATCH, l'override (#3) et le lancement (#5).
+function coOf(res){return (res&&(res.company_name||res.company||res.name||(res.lead&&res.lead.company_name)))||"";}
+function webOf(res){return (res&&((res.lead&&(res.lead.website||res.lead.url))||res.url||res.website))||"";}
+function recOf(res){return (res&&((res.lead&&res.lead.airtable_id)||res.lead_record_id))||"";}
+// #5 — bouton (pas lien) : lance le mémo INSTANT (code, pas Make) puis ouvre la page
+// /cibles « À analyser ». Rendu sur un MATCH (verdict ou override).
+function matchCta(res,fund){
+ var co=coOf(res),web=webOf(res),rec=recOf(res);
+ return '<button type="button" class="ev-cta ev-launch" data-fund="'+esc(fund)+'" data-co="'+esc(co)
+  +'" data-web="'+esc(web)+'" data-rec="'+esc(rec)+'">'
+  +T("⚡ Lancer le mémo + voir mes cibles","⚡ Launch the memo + see my targets")+'</button>';
+}
 function verdict(res,fund){
  if(!res)return '<div class="ev-err">'+T("Évaluation indisponible.","Evaluation unavailable.")+'</div>';
  if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
  if(res.needs_disambiguation){
-  var cs=(res.candidates||[]).map(function(c){var dom=(c.url||c.website||"").replace(/^https?:\/\//,"").replace(/\/$/,"");
-   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+(dom?' · '+esc(dom.slice(0,42)):'')+'</span>'
+  var cs=(res.candidates||[]).map(function(c){var raw=(c.url||c.website||"");
+   var dom=raw.replace(/^https?:\/\//,"").replace(/\/$/,"");
+   var href=raw?(raw.indexOf("http")===0?raw:"https://"+raw):"";
+   // #4 — domaine CLIQUABLE (nouvel onglet) pour vérifier le site AVANT de choisir.
+   var domHtml=dom?(' · '+(href?'<a class="ev-cand-lnk" href="'+esc(href)+'" target="_blank" rel="noopener">'+esc(dom.slice(0,42))+' ↗</a>':esc(dom.slice(0,42)))):'';
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+domHtml+'</span>'
     +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">'+T("Choisir →","Choose →")+'</button></div>';}).join("");
   return '<div class="ev-r">🔀 '+esc(res.reasoning||T("Plusieurs sociétés correspondent — choisissez la bonne :","Several companies match — pick the right one:"))+'</div>'+(cs||'<div class="ev-fine">'+T("Aucun candidat — précisez l’URL exacte.","No candidate — provide the exact URL.")+'</div>');
  }
  var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
  var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">'+T("📊 Analyse","📊 Analysis")+'</div>');
  if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
- if(fund){ if(m)o+='<a class="ev-cta" target="_blank" rel="noopener" href="https://analysis.proplace.co/chat/?fund='+encodeURIComponent(fund)+'">'+T("→ Lancer le mémo dans votre dashboard","→ Launch the memo in your dashboard")+'</a>'; }
+ if(fund){
+  if(m){o+=matchCta(res,fund);}
+  else if(res.check_id){
+   // #3 — override : le dirigeant est sûr du contraire → force le check en MATCH,
+   // la justification est tracée dans le champ reasoning (endpoint force-match dédié).
+   o+='<div class="ev-force-wrap"><button type="button" class="ev-force" data-check="'+esc(res.check_id)
+     +'" data-fund="'+esc(fund)+'" data-co="'+esc(coOf(res))+'" data-web="'+esc(webOf(res))
+     +'" data-rec="'+esc(recOf(res))+'" data-orig="'+esc((res.reasoning||"").slice(0,600))+'">'
+     +T("↺ Je ne suis pas d’accord — forcer en MATCH","↺ I disagree — force to MATCH")+'</button>'
+     +'<span class="ev-fine">'+T("La décision est enregistrée (justification tracée).","The decision is saved (justification recorded).")+'</span></div>';
+  }
+ }
  else{ o+=ctaCal(); }
  return o;
 }
@@ -554,6 +604,52 @@ if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("
 document.addEventListener("click",function(ev){
  var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
  if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ // #5 — MATCH → lancer le mémo INSTANT (code) puis ouvrir /cibles « À analyser ».
+ var lb=(ev.target&&ev.target.closest)?ev.target.closest(".ev-launch"):null;
+ if(lb){
+  var lp=lb.closest(".op-eval-panel");if(!lp)return;
+  var lfund=lb.dataset.fund||"",lco=lb.dataset.co||"",lweb=lb.dataset.web||"";
+  // Onglet ouvert SYNCHRONE (dans le geste de clic) pour ne pas être bloqué ; on le
+  // redirige ensuite vers la page /cibles résolue (repli : le dashboard chat).
+  var win=null;try{win=window.open("","_blank");}catch(e){}
+  lp.innerHTML='<div class="ev-load">'+T("⚡ Lancement du mémo instant…","⚡ Launching instant memo…")+'</div>';
+  var memoUrl="";
+  fetch("https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v3/instant-memo",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({company_name:lco,website:lweb,fund_type:lfund,memo:"instant"})})
+   .then(function(r){return r.json();}).catch(function(){return {};})
+   .then(function(j){memoUrl=(j&&j.url)||"";
+    return fetch("https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/last",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({fund_slug:lfund,source:"sourced"})}).then(function(r){return r.json();}).catch(function(){return {};});})
+   .then(function(d){
+    // Page publique /cibles (liste vivante = les retenues) si publiée, sinon le cockpit.
+    var cibles=(d&&d.found&&d.url)?d.url:("https://analysis.proplace.co/chat/?fund="+encodeURIComponent(lfund));
+    if(win){try{win.location=cibles;}catch(e){}}
+    lp.innerHTML='<div class="ev-v ev-yes">✅ '+T("Mémo instant lancé","Instant memo launched")+'</div>'
+      +'<div class="ev-r">'+T("Le mémo (code, ~15 min) se prépare. Votre page cibles s’ouvre sur « À analyser ».","The memo (code, ~15 min) is preparing. Your targets page opens on the To-analyse tab.")+'</div>'
+      +'<a class="ev-cta" target="_blank" rel="noopener" href="'+esc(cibles)+'">'+T("→ Voir mes cibles (À analyser)","→ See my targets (To analyse)")+'</a>'
+      +(memoUrl?'<a class="ev-cta ev-cta2" target="_blank" rel="noopener" href="'+esc(memoUrl)+'">'+T("→ Ouvrir le mémo","→ Open the memo")+'</a>':'');
+   }).catch(function(e){lp.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+  return;
+ }
+ // #3 — override d'un NO MATCH (justification tracée, décision enregistrée).
+ var fb=(ev.target&&ev.target.closest)?ev.target.closest(".ev-force"):null;
+ if(fb){
+  var fp=fb.closest(".op-eval-panel");if(!fp)return;
+  var reason=window.prompt(T("Pourquoi cette société est-elle un MATCH selon vous ? (enregistré)","Why is this company a MATCH in your view? (recorded)"),T("Override manuel — connaissance directe de la société.","Manual override — direct knowledge of the company."));
+  if(reason===null)return;
+  reason=(reason||"").trim();if(!reason)reason=T("Override manuel.","Manual override.");
+  var fcheck=fb.dataset.check||"",ffund=fb.dataset.fund||"",fco=fb.dataset.co||"",fweb=fb.dataset.web||"",frec=fb.dataset.rec||"",forig=fb.dataset.orig||"";
+  fp.innerHTML='<div class="ev-load">'+T("⏳ Enregistrement de l’override…","⏳ Saving the override…")+'</div>';
+  fetch("https://alexandre-79537--airtable-bridge-fastapi-app.modal.run/sourcing-check/force-match",{method:"PATCH",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({check_id:fcheck,justification:reason,original_reasoning:forig})})
+   .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
+   .then(function(){
+    fp.innerHTML='<div class="ev-v ev-yes">✅ '+T("Forcé en MATCH","Forced to MATCH")+'</div>'
+      +'<div class="ev-r">'+T("Décision enregistrée.","Decision saved.")+'</div>'
+      +matchCta({company_name:fco,url:fweb,lead:{airtable_id:frec,company_name:fco,website:fweb},check_id:fcheck},ffund);
+   }).catch(function(e){fp.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+  return;
+ }
  var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
  if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
  var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
