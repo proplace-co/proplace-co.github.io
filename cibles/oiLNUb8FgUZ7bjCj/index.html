@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-08-05T16:45:58Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-08-05T17:04:43Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -4327,15 +4327,13 @@ function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||
 return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
-if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
-var mSet="https://analysis.proplace.co/thesis/?fund="+f;
-var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
-var mDash="https://analysis.proplace.co/chat/?fund="+f;
+if(s&&s.fund_type){
+// Menu minimal unifié (home React + pages statiques) : Mon compte + Déconnexion.
+// Pipeline / paramètres / dashboard vivent dans /compte (onglets), pas ici.
+var compte=(lang==="fr"?"/fr/compte":"/compte");
 var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
 '<div class="pph-acct-menu" role="menu" hidden>'+
-'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
-'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
-'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<a role="menuitem" href="'+compte+'">'+(lang==="fr"?"Ouvrir mon compte":"Open my account")+"</a>"+
 '<div class="pph-acct-sep"></div>'+
 '<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
 "</div></div>";
@@ -4344,9 +4342,10 @@ return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 /* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
    aligné à droite du bouton, borné au viewport. */
 function positionAcct(b,menu){var r=b.getBoundingClientRect();
-var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var mw=menu.offsetWidth||200;
+// Toujours SOUS le bouton (menu court = Mon compte + Déco) — plus de flip au-dessus.
 var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
-var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
 menu.style.left=left+"px";menu.style.top=top+"px";}
 /* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
    cookie de session puis recharge (la page se re-rend en état déconnecté). */
@@ -4466,15 +4465,13 @@ function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||
 return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
-if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
-var mSet="https://analysis.proplace.co/thesis/?fund="+f;
-var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
-var mDash="https://analysis.proplace.co/chat/?fund="+f;
+if(s&&s.fund_type){
+// Menu minimal unifié (home React + pages statiques) : Mon compte + Déconnexion.
+// Pipeline / paramètres / dashboard vivent dans /compte (onglets), pas ici.
+var compte=(lang==="fr"?"/fr/compte":"/compte");
 var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
 '<div class="pph-acct-menu" role="menu" hidden>'+
-'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
-'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
-'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<a role="menuitem" href="'+compte+'">'+(lang==="fr"?"Ouvrir mon compte":"Open my account")+"</a>"+
 '<div class="pph-acct-sep"></div>'+
 '<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
 "</div></div>";
@@ -4483,9 +4480,10 @@ return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 /* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
    aligné à droite du bouton, borné au viewport. */
 function positionAcct(b,menu){var r=b.getBoundingClientRect();
-var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var mw=menu.offsetWidth||200;
+// Toujours SOUS le bouton (menu court = Mon compte + Déco) — plus de flip au-dessus.
 var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
-var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
 menu.style.left=left+"px";menu.style.top=top+"px";}
 /* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
    cookie de session puis recharge (la page se re-rend en état déconnecté). */
@@ -5256,4 +5254,4 @@ window.__cbI18nApply=function(root){
   applyNodes(CBI18N[CUR]||{},root||document);};
 // Expose un re-apply complet (utile si un module a écrasé des data-i18n après le boot).
 window.__cbI18nReapply=function(){if(CUR)apply(CUR);};
-})();</script><!-- v:e7443dcc88 --></body></html>
+})();</script><!-- v:5c9334b807 --></body></html>
