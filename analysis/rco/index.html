@@ -173,14 +173,10 @@ return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
 if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
-var mSet="https://analysis.proplace.co/thesis/?fund="+f;
-var mPipe="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+f;
-var mDash="https://analysis.proplace.co/chat/?fund="+f;
+var compte=(lang==="fr"?"/fr/compte":"/compte");
 var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
 '<div class="pph-acct-menu" role="menu" hidden>'+
-'<a role="menuitem" href="'+mSet+'">'+t.mSettings+"</a>"+
-'<a role="menuitem" href="'+mPipe+'">'+t.mPipeline+"</a>"+
-'<a role="menuitem" href="'+mDash+'">'+t.mDashboard+"</a>"+
+'<a role="menuitem" href="'+compte+'">'+(lang==="fr"?"Ouvrir mon compte":"Open my account")+"</a>"+
 '<div class="pph-acct-sep"></div>'+
 '<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
 "</div></div>";
@@ -191,7 +187,7 @@ return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function positionAcct(b,menu){var r=b.getBoundingClientRect();
 var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
 var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
-var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
 menu.style.left=left+"px";menu.style.top=top+"px";}
 /* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
    cookie de session puis recharge (la page se re-rend en état déconnecté). */
@@ -536,7 +532,7 @@ return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 function positionAcct(b,menu){var r=b.getBoundingClientRect();
 var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
 var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
-var top=r.bottom+8;if(top+mh>window.innerHeight-8&&r.top-mh-8>0)top=r.top-mh-8;
+var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
 menu.style.left=left+"px";menu.style.top=top+"px";}
 /* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
    cookie de session puis recharge (la page se re-rend en état déconnecté). */
