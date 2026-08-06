@@ -2,6 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Absorbe les partages vers /fr/actualites/… — AVANT React, sinon la route `*` de
+         App.tsx rend l'accueil (en HTTP 404 : ce shell sert aussi de 404.html). `/fr/` est
+         le préfixe de la SPA ; les pages éditoriales vivent SANS préfixe (/actualites/…).
+         Le post LinkedIn du 05/08/2026 est parti avec un lien /fr/ figé dans un lnkd.in,
+         impossible à corriger côté LinkedIn — c'est le site qui doit rattraper.
+         replace() : pas d'entrée d'historique, le bouton Retour reste utilisable. -->
+    <script>
+      (function () {
+        var p = location.pathname;
+        if (p !== '/fr/actualites' && p.indexOf('/fr/actualites/') !== 0) return;
+        location.replace(p.slice(3) + location.search + location.hash);
+      })();
+    </script>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Proplace.co - Your AI Corporate Developer</title>
