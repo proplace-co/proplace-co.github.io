@@ -543,7 +543,9 @@ function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||
 return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
-if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+if(s&&s.fund_type){
+// Menu minimal unifié (home React + pages statiques) : Mon compte + Déconnexion.
+// Pipeline / paramètres / dashboard vivent dans /compte (onglets), pas ici.
 var compte=(lang==="fr"?"/fr/compte":"/compte");
 var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
 '<div class="pph-acct-menu" role="menu" hidden>'+
@@ -556,7 +558,8 @@ return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 /* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
    aligné à droite du bouton, borné au viewport. */
 function positionAcct(b,menu){var r=b.getBoundingClientRect();
-var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var mw=menu.offsetWidth||200;
+// Toujours SOUS le bouton (menu court = Mon compte + Déco) — plus de flip au-dessus.
 var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
 var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
 menu.style.left=left+"px";menu.style.top=top+"px";}
@@ -564,6 +567,28 @@ menu.style.left=left+"px";menu.style.top=top+"px";}
    cookie de session puis recharge (la page se re-rend en état déconnecté). */
 function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
 location.reload();}
+/* Historique Research → Mon compte (onglet Recherches). Enregistre chaque fiche consultée
+   dans localStorage (même clé que ComptePage). No-op hors /research/<slug>/. */
+(function recordResearchVisit(){
+try{
+ var p=(location.pathname||"").replace(/\/+$/,"")+"/";
+ if(!/\/(en\/)?research\/[^/]+\//.test(p))return;
+ if(/\/(en\/)?research\/?$/.test((location.pathname||"").replace(/\/+$/,"")))return;
+ var title="";
+ var h1=document.querySelector("main h1, .rp-head h1, h1");
+ if(h1&&h1.textContent)title=h1.textContent.trim();
+ if(!title)title=(document.title||"").split("|")[0].trim();
+ var url=location.pathname;
+ var key="proplace_research_history";
+ var arr=[];
+ try{arr=JSON.parse(localStorage.getItem(key)||"[]")||[];}catch(e){arr=[];}
+ if(!Array.isArray(arr))arr=[];
+ arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});
+ arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});
+ if(arr.length>40)arr=arr.slice(0,40);
+ localStorage.setItem(key,JSON.stringify(arr));
+}catch(e){}
+})();
 /* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
    apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
 function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
@@ -678,7 +703,9 @@ function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||
 return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
-if(s&&s.fund_type){var f=encodeURIComponent(s.fund_type);
+if(s&&s.fund_type){
+// Menu minimal unifié (home React + pages statiques) : Mon compte + Déconnexion.
+// Pipeline / paramètres / dashboard vivent dans /compte (onglets), pas ici.
 var compte=(lang==="fr"?"/fr/compte":"/compte");
 var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
 '<div class="pph-acct-menu" role="menu" hidden>'+
@@ -691,7 +718,8 @@ return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
 /* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
    aligné à droite du bouton, borné au viewport. */
 function positionAcct(b,menu){var r=b.getBoundingClientRect();
-var mw=menu.offsetWidth||200,mh=menu.offsetHeight||160;
+var mw=menu.offsetWidth||200;
+// Toujours SOUS le bouton (menu court = Mon compte + Déco) — plus de flip au-dessus.
 var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
 var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
 menu.style.left=left+"px";menu.style.top=top+"px";}
@@ -699,6 +727,28 @@ menu.style.left=left+"px";menu.style.top=top+"px";}
    cookie de session puis recharge (la page se re-rend en état déconnecté). */
 function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
 location.reload();}
+/* Historique Research → Mon compte (onglet Recherches). Enregistre chaque fiche consultée
+   dans localStorage (même clé que ComptePage). No-op hors /research/<slug>/. */
+(function recordResearchVisit(){
+try{
+ var p=(location.pathname||"").replace(/\/+$/,"")+"/";
+ if(!/\/(en\/)?research\/[^/]+\//.test(p))return;
+ if(/\/(en\/)?research\/?$/.test((location.pathname||"").replace(/\/+$/,"")))return;
+ var title="";
+ var h1=document.querySelector("main h1, .rp-head h1, h1");
+ if(h1&&h1.textContent)title=h1.textContent.trim();
+ if(!title)title=(document.title||"").split("|")[0].trim();
+ var url=location.pathname;
+ var key="proplace_research_history";
+ var arr=[];
+ try{arr=JSON.parse(localStorage.getItem(key)||"[]")||[];}catch(e){arr=[];}
+ if(!Array.isArray(arr))arr=[];
+ arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});
+ arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});
+ if(arr.length>40)arr=arr.slice(0,40);
+ localStorage.setItem(key,JSON.stringify(arr));
+}catch(e){}
+})();
 /* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
    apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
 function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
@@ -1071,7 +1121,7 @@ document.addEventListener("click",function(ev){
  var a=auth();
  if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
 });
-})();</script><style>
+})();</script><script>(function(){try{var p=(location.pathname||'').replace(/\/+$/,'')+'/';if(!/\/(en\/)?research\/[^/]+\//.test(p))return;if(/\/(en\/)?research\/?$/.test((location.pathname||'').replace(/\/+$/,'')))return;var title='';var h1=document.querySelector('main h1,.rp-head h1,h1');if(h1&&h1.textContent)title=h1.textContent.trim();if(!title)title=(document.title||'').split('|')[0].trim();var url=location.pathname,key='proplace_research_history',arr=[];try{arr=JSON.parse(localStorage.getItem(key)||'[]')||[];}catch(e){arr=[];}if(!Array.isArray(arr))arr=[];arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});if(arr.length>40)arr=arr.slice(0,40);localStorage.setItem(key,JSON.stringify(arr));}catch(e){}})();</script><style>
 .lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
 align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
 .lb-ov.on{display:flex}
