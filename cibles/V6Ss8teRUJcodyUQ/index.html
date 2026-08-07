@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="profund vc"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-08-07T14:23:45Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="profund vc"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-08-07T14:41:34Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -2251,6 +2251,8 @@ cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:4p
 .cb-tabbar .cb-xall button:hover{color:#0f1f33}
 .cb-tabbar .cb-xall button.on{color:#0f1f33;font-weight:800}
 .cb-tabbar .cb-xall-i{font-size:12px}
+.cb-tabbar .cb-xall .cb-tb-map{opacity:.45}
+.cb-tabbar .cb-xall .cb-tb-map.on{opacity:1}
 /* la LISTE se colle DIRECTEMENT sous les onglets (effet « collé ») */
 .cb-tabbar + #cb-rows-kept{margin-top:0}
 .cb-tabbar + #cb-rows-kept > .cb-urow:first-child{border-top:none}
@@ -2635,7 +2637,8 @@ box-shadow:0 1px 4px rgba(15,31,51,.045);overflow:hidden}
 .cb-uhead{column-gap:42px}
 /* (0) légende « N évalués » posée au-dessus des dates, en absolu → les boutons de dates restent
    sur la même ligne que les pastilles (aucun décalage). Padding-haut de la barre = place pour la légende. */
-.cb-tabbar{padding-top:20px;padding-bottom:8px}
+.cb-tabbar{padding-top:12px;padding-bottom:8px}
+.cb-datebar{display:flex;align-items:center;margin:8px 0 2px}
 .cb-datewrap{position:relative;display:inline-flex;flex-direction:row;align-items:center;gap:0}
 .cb-datewrap .cb-eval-mini{position:absolute;bottom:100%;left:1px;margin-bottom:2px;white-space:nowrap;
 line-height:1;pointer-events:none}
@@ -2709,6 +2712,15 @@ font-size:13px;line-height:1}
 background:#f8fafc;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 14px 14px;box-shadow:0 1px 3px rgba(15,31,51,.04)}
 .cb-coach.folded{gap:0}
 .cb-coach.folded .cb-coach-tx{display:none}
+/* round 34 — la languette PREND la couleur de l'onglet actif : onglet + coach = un TOUT */
+.cb-coach{margin-top:-1px}
+html[data-cbtab="kept"] .cb-coach{background:#e7f7ee;border-color:#15884a;border-top:2px solid #15884a}
+html[data-cbtab="ana"] .cb-coach{background:#e9f0ff;border-color:#1e40af;border-top:2px solid #1e40af}
+html[data-cbtab="pending"] .cb-coach{background:#fdeede;border-color:#e67e22;border-top:2px solid #e67e22}
+html[data-cbtab="callyes"] .cb-coach{background:#f4f0fe;border-color:#6d28d9;border-top:2px solid #6d28d9}
+html[data-cbtab="rej"] .cb-coach{background:#fdecec;border-color:#dc2626;border-top:2px solid #dc2626}
+html[data-cbtab="fav"] .cb-coach{background:#fdf4d7;border-color:#eab308;border-top:2px solid #eab308}
+.cb-coach-goal{margin-left:10px;font-size:11px;font-weight:800;color:#0f1f33;background:rgba(255,255,255,.72);padding:3px 10px;border-radius:999px;white-space:nowrap;flex:0 0 auto}
 .cb-coach-fold{margin-left:auto;flex:0 0 auto;font-family:inherit;font-size:11.5px;font-weight:800;
 color:#5f7288;background:#fff;border:1px solid #d7dfe8;border-radius:8px;padding:5px 11px;cursor:pointer;white-space:nowrap}
 .cb-coach-fold:hover{background:#eef2f6;color:#0f1f33}
@@ -5327,4 +5339,4 @@ window.__cbI18nApply=function(root){
   applyNodes(CBI18N[CUR]||{},root||document);};
 // Expose un re-apply complet (utile si un module a écrasé des data-i18n après le boot).
 window.__cbI18nReapply=function(){if(CUR)apply(CUR);};
-})();</script><!-- v:ba696184bf --></body></html>
+})();</script><!-- v:ecd5f14d2a --></body></html>
