@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="profund vc"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-08-07T13:03:31Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="profund vc"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-08-07T13:12:57Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -2198,7 +2198,7 @@ padding:14px 2px 9px;border-bottom:1px solid #e6eaef;position:-webkit-sticky;pos
 html.cb-hdrshow .cb-tabbar{top:60px;scroll-margin-top:60px}
 /* v123.3 — tunnel sur UNE ligne SANS scroll horizontal visible : nowrap + pastilles
    compactes + overflow visible (les labels ::before ne sont plus clipés). */
-.cb-tabbar .cb-fchips{display:flex;flex-wrap:nowrap;align-items:center;margin:0;gap:2px;
+.cb-tabbar .cb-fchips{display:flex;flex-wrap:nowrap;align-items:flex-end;margin:0 0 -9px;gap:4px;
 max-width:100%;overflow:visible;padding-top:2px}
 /* v38.3 — bouton « ⚙ Vos critères » à gauche de la ligne d'onglets (noir, comme avant) */
 /* v38.5 (point 5) — « Vos critères » PLUS GROS et plus large */
@@ -2209,11 +2209,16 @@ font-weight:800;cursor:pointer;white-space:nowrap}
 /* v38.5 (point 5) — machine en accordéon SANS encadré gris superflu (la machine a déjà le sien) */
 .cb-machinline.cb-accord.cb-open{display:block;background:none;border:none;padding:0;margin:0 0 18px}
 .cb-tabbar .cb-f-eval{margin-right:4px;color:#8a99aa;font-weight:600;font-size:12.5px}
-/* v123.3 — pastilles compactes pour tenir « Tout » + gros compteurs sur UNE ligne. */
-.cb-tabbar .cb-fchips button{background:none;border:1px solid transparent;border-radius:999px;
-padding:4px 6px;font-size:11px;font-weight:700;color:#56697e;cursor:pointer;font-family:inherit;
+/* round 33 — ONGLETS DE CLASSEUR : gros volets colorés à fond plein, coins hauts
+   arrondis, posés sur la bordure basse de la tabbar. L'onglet actif (.on) est
+   rempli de SA couleur pleine + texte blanc (règles d'identité ci-dessous) —
+   on sait toujours OÙ on est. */
+.cb-tabbar .cb-fchips button{background:#f1f4f8;border:1px solid #e0e6ee;border-bottom:none;
+border-radius:10px 10px 0 0;padding:9px 13px 8px;font-size:12px;font-weight:800;color:#56697e;
+cursor:pointer;font-family:inherit;
 line-height:1;white-space:nowrap;flex:0 0 auto;transition:background .12s,color .12s,border-color .12s}
-.cb-tabbar .cb-fchips button i{font-style:normal;font-weight:800;margin-right:2px;font-size:11px;opacity:.95}
+.cb-tabbar .cb-fchips button i{font-style:normal;font-weight:900;margin-right:3px;font-size:12px;opacity:.95}
+.cb-tabbar .cb-fchips button.on{box-shadow:0 -3px 12px rgba(10,10,10,.12)}
 /* Retenues — vert clair (repos) / vert foncé (sélectionné) */
 .cb-tabbar .cb-fchips .cb-f-kept{background:#e7f7ee;border-color:#c4ecd6;color:#0f6e3f}
 .cb-tabbar .cb-fchips .cb-f-kept i{color:#3e9c6e}
@@ -2236,8 +2241,8 @@ line-height:1;white-space:nowrap;flex:0 0 auto;transition:background .12s,color 
 .cb-tabbar .cb-fchips .cb-f-fav.on i{color:#fff4cf}
 .cb-tabbar .cb-callpending{margin:0}
 /* v38 — « dont N analysées » COMPACT (sous-ensemble des retenues) : police réduite */
-.cb-tabbar .cb-fchips .cb-f-sub{font-size:11px;padding:4px 6px;font-weight:600}
-.cb-tabbar .cb-fchips .cb-f-sub i{font-size:11px}
+.cb-tabbar .cb-fchips .cb-f-sub{font-size:12px;padding:9px 13px 8px;font-weight:800}
+.cb-tabbar .cb-fchips .cb-f-sub i{font-size:12px}
 /* dates JUSTE à droite de Favoris (point 7) ; déplier/replier poussés tout à droite (point 3) */
 .cb-tabbar .cb-dateseg{margin-left:0}
 .cb-tabbar .cb-xall{display:inline-flex;align-items:center;gap:12px;flex:0 0 auto;margin-left:auto}
@@ -2907,10 +2912,11 @@ border:1px solid #cfd8e2;border-radius:7px;padding:5px 11px;cursor:pointer;line-
 /* v55 (point 2) — le chip « X sourcés » lit comme un PAIR des pastilles du tunnel : MÊMES
    police / padding / hauteur / rayon que .cb-tabbar .cb-fchips button (padding:3px 8px;font-size:10.5px;
    border-radius:999px). On garde SES couleurs navy : repos = navy clair, ouvert (.on) = navy plein. */
-.cb-tabbar .cb-tb-srcg{display:inline-flex;align-items:center;flex:0 0 auto;margin:0 1px 0 4px;
-background:#e7ecf3;border:1px solid #cfd9e6;border-radius:999px;padding:4px 9px;font-size:12.5px;
-font-weight:700;color:#0f1f33;line-height:1;white-space:nowrap;
-transition:background .12s,color .12s,border-color .12s}  /* v59 — chip navy « X sourcés » AGRANDI 10.5→12.5px / padding 3-8→4-9 : reste STRICTEMENT à la taille des pastilles du tunnel */
+.cb-tabbar .cb-tb-srcg{display:inline-flex;align-items:center;flex:0 0 auto;margin:0 1px -9px 4px;
+background:#e7ecf3;border:1px solid #cfd9e6;border-bottom:none;border-radius:10px 10px 0 0;
+padding:9px 13px 8px;font-size:12px;
+font-weight:800;color:#0f1f33;line-height:1;white-space:nowrap;
+transition:background .12s,color .12s,border-color .12s}  /* round 33 — volet de classeur, aligné sur les onglets du tunnel */
 .cb-tabbar .cb-tb-srcg i{font-style:normal;font-weight:800;font-size:12.5px;margin-right:3px;color:#334155}
 .cb-tabbar .cb-tb-srcg:hover{background:#dbe3ee;border-color:#b9c6d4;color:#0f1f33}
 .cb-tabbar .cb-tb-srcg.on{background:#0f1f33;border-color:#0f1f33;color:#fff}
@@ -3732,7 +3738,7 @@ padding:12px 14px}
 /* ≤760px — les chips du funnel DÉFILENT horizontalement (règle v58 : overflow sur .cb-fchips
    seul, jamais un ancêtre du sticky) au lieu de se replier ; la pilule pipeline (v86 : dans
    la ligne de titre) se replie librement avec le cluster .cb-h1-actions. */
-@media(max-width:760px){
+@media(max-width:900px){
 .cb-tabbar .cb-fchips{flex-wrap:nowrap;overflow-x:auto;overflow-y:visible;
 -webkit-overflow-scrolling:touch;scrollbar-width:none;max-width:100%;padding-bottom:2px}
 .cb-tabbar .cb-fchips::-webkit-scrollbar{height:0;display:none}
@@ -5321,4 +5327,4 @@ window.__cbI18nApply=function(root){
   applyNodes(CBI18N[CUR]||{},root||document);};
 // Expose un re-apply complet (utile si un module a écrasé des data-i18n après le boot).
 window.__cbI18nReapply=function(){if(CUR)apply(CUR);};
-})();</script><!-- v:7a5a0339ee --></body></html>
+})();</script><!-- v:ba696184bf --></body></html>
