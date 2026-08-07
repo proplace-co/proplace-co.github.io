@@ -232,7 +232,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="cerfrance"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-08-07T15:03:39Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="cerfrance"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-08-07T15:20:26Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -329,6 +329,10 @@ box-shadow:0 0 0 2px rgba(22,163,74,.14)}
 .cb-srcgtab-pane{display:none}
 .cb-srcgtab-pane.on{display:block}
 .cb-srcgtab-h{font-size:14px;font-weight:800;color:#0f1f33;margin:0 0 12px;padding-left:2px;border-left:3px solid #4ac67f;padding:0 0 0 9px}
+/* round 35 — onglet carte : tout fond au NOIR (titre compris), iframe sans bord */
+.cb-srcgtab-pane[data-srcgpane="map"]{background:#0A0A0A;border-radius:14px;padding:14px 14px 10px}
+.cb-srcgtab-pane[data-srcgpane="map"] .cb-srcgtab-h{color:#F6F6F3;border-left-color:#4AC67F}
+.cb-srcgtab-pane[data-srcgpane="map"] #cb-carte-frame{border:none;border-radius:10px}
 /* v120.1 — vidéo d'intro (au-dessus de « ① Notre hypothèse ») : cadre 16:9 responsive. */
 .cb-tutovid{margin:0 0 22px}
 .cb-tutovid-lbl{font-size:13px;font-weight:800;color:#15884a;margin:0 0 8px;letter-spacing:.01em}
@@ -2638,7 +2642,8 @@ box-shadow:0 1px 4px rgba(15,31,51,.045);overflow:hidden}
 /* (0) légende « N évalués » posée au-dessus des dates, en absolu → les boutons de dates restent
    sur la même ligne que les pastilles (aucun décalage). Padding-haut de la barre = place pour la légende. */
 .cb-tabbar{padding-top:12px;padding-bottom:8px}
-.cb-datebar{display:flex;align-items:center;margin:8px 0 2px}
+.cb-datebar{display:flex;align-items:center;gap:14px;margin:8px 0 2px;flex-wrap:wrap}
+.cb-datebar .cb-funnel-hint{margin:0}
 .cb-datewrap{position:relative;display:inline-flex;flex-direction:row;align-items:center;gap:0}
 .cb-datewrap .cb-eval-mini{position:absolute;bottom:100%;left:1px;margin-bottom:2px;white-space:nowrap;
 line-height:1;pointer-events:none}
@@ -2714,12 +2719,12 @@ background:#f8fafc;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 14
 .cb-coach.folded .cb-coach-tx{display:none}
 /* round 34 — la languette PREND la couleur de l'onglet actif : onglet + coach = un TOUT */
 .cb-coach{margin-top:-1px}
-html[data-cbtab="kept"] .cb-coach{background:#e7f7ee;border-color:#15884a;border-top:2px solid #15884a}
-html[data-cbtab="ana"] .cb-coach{background:#e9f0ff;border-color:#1e40af;border-top:2px solid #1e40af}
-html[data-cbtab="pending"] .cb-coach{background:#fdeede;border-color:#e67e22;border-top:2px solid #e67e22}
-html[data-cbtab="callyes"] .cb-coach{background:#f4f0fe;border-color:#6d28d9;border-top:2px solid #6d28d9}
-html[data-cbtab="rej"] .cb-coach{background:#fdecec;border-color:#dc2626;border-top:2px solid #dc2626}
-html[data-cbtab="fav"] .cb-coach{background:#fdf4d7;border-color:#eab308;border-top:2px solid #eab308}
+html[data-cbtab="kept"] .cb-coach{background:#e7f7ee;border-color:#c4ecd6;border-top:2px solid #c4ecd6}
+html[data-cbtab="ana"] .cb-coach{background:#e9f0ff;border-color:#cddef7;border-top:2px solid #cddef7}
+html[data-cbtab="pending"] .cb-coach{background:#fdeede;border-color:#f6d6ad;border-top:2px solid #f6d6ad}
+html[data-cbtab="callyes"] .cb-coach{background:#f4f0fe;border-color:#dccdf9;border-top:2px solid #dccdf9}
+html[data-cbtab="rej"] .cb-coach{background:#fdecec;border-color:#f5cfcd;border-top:2px solid #f5cfcd}
+html[data-cbtab="fav"] .cb-coach{background:#fdf4d7;border-color:#f0e2a8;border-top:2px solid #f0e2a8}
 .cb-coach-goal{margin-left:10px;font-size:11px;font-weight:800;color:#0f1f33;background:rgba(255,255,255,.72);padding:3px 10px;border-radius:999px;white-space:nowrap;flex:0 0 auto}
 .cb-coach-fold{margin-left:auto;flex:0 0 auto;font-family:inherit;font-size:11.5px;font-weight:800;
 color:#5f7288;background:#fff;border:1px solid #d7dfe8;border-radius:8px;padding:5px 11px;cursor:pointer;white-space:nowrap}
@@ -3750,6 +3755,9 @@ padding:12px 14px}
 /* ≤760px — les chips du funnel DÉFILENT horizontalement (règle v58 : overflow sur .cb-fchips
    seul, jamais un ancêtre du sticky) au lieu de se replier ; la pilule pipeline (v86 : dans
    la ligne de titre) se replie librement avec le cluster .cb-h1-actions. */
+@media(max-width:1080px){
+.cb-tabbar .cb-xall{width:100%;justify-content:flex-end;margin-left:0;padding-top:4px}
+}
 @media(max-width:900px){
 .cb-tabbar .cb-fchips{flex-wrap:nowrap;overflow-x:auto;overflow-y:visible;
 -webkit-overflow-scrolling:touch;scrollbar-width:none;max-width:100%;padding-bottom:2px}
@@ -5339,4 +5347,4 @@ window.__cbI18nApply=function(root){
   applyNodes(CBI18N[CUR]||{},root||document);};
 // Expose un re-apply complet (utile si un module a écrasé des data-i18n après le boot).
 window.__cbI18nReapply=function(){if(CUR)apply(CUR);};
-})();</script><!-- v:7848689ae3 --></body></html>
+})();</script><!-- v:151640674f --></body></html>
