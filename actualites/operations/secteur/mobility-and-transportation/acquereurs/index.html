@@ -195,8 +195,7 @@ html[data-pplang=en] .i18n-fr{display:none}
  /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
     défileur (order:-1) → les 3 boutons sont TOUJOURS visibles à gauche, c'est
     « Connexion » qui déborde/scrolle si l'écran est trop étroit (demande CEO). */
- .pph nav .pph-sect{order:-1;flex:0 0 auto}
- .pph nav .pph-auth{order:0}
+ .pph nav .pph-sect{flex:0 0 auto}
  /* v75 (bug #7) — la pastille EN|FR est hors du <nav> (défileur) : collée à droite du
     header, toujours atteignable même quand le <nav> déborde/scrolle. */
  .pph-lang{margin-left:auto;flex:0 0 auto}
@@ -504,7 +503,7 @@ border-radius:999px;padding:6px 14px;text-decoration:none;transition:border-colo
    colonne Évaluer du tableau. Le panneau s'ouvre pleine largeur sous la ligne. Le nom n'est plus cliquable. */
 .acq-head .op-eval{margin-left:auto;align-self:center}
 .acq-head .op-eval-panel{flex:1 1 100%;order:9;margin-top:8px}
-</style><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-auth" id="pph-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news on" href="/actualites/" data-i18n="news">News</a><a class="pph-ana" href="/analysis/" data-i18n="analysis">Analysis</a><a class="pph-rsch" href="/research/" data-i18n="research">Research</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><script>(function(){
+</style><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news on" href="/actualites/" data-i18n="news">News</a><a class="pph-ana" href="/analysis/" data-i18n="analysis">Analysis</a><a class="pph-rsch" href="/research/" data-i18n="research">Research</a></span><span class="pph-auth" id="pph-auth"><a class="cta" href="https://proplace.co/#login" data-i18n="login">Log in</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -554,7 +553,7 @@ var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria
 '<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
 "</div></div>";
 return {i:1,h:h};}
-return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+return {i:0,h:'<a class="cta" href="/#login">'+t.login+"</a>"};}
 /* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
    aligné à droite du bouton, borné au viewport. */
 function positionAcct(b,menu){var r=b.getBoundingClientRect();
@@ -714,7 +713,7 @@ var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria
 '<button type="button" role="menuitem" class="pph-acct-logout">'+t.logout+"</button>"+
 "</div></div>";
 return {i:1,h:h};}
-return {i:0,h:'<a href="/#login">'+t.login+"</a>"};}
+return {i:0,h:'<a class="cta" href="/#login">'+t.login+"</a>"};}
 /* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
    aligné à droite du bouton, borné au viewport. */
 function positionAcct(b,menu){var r=b.getBoundingClientRect();
