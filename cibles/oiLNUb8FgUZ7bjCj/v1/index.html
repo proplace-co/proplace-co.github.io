@@ -154,15 +154,27 @@ gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
 /* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
    « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
    couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
-.pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{color:#fff;background:#4AC67F;padding:8px 14px;
+.pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{color:#fff;background:#0E8A4F;padding:8px 14px;
 border-radius:9px;font-weight:600;border:none;cursor:pointer;font-family:inherit;line-height:1.2}
-.pph a.cta:hover,.pph .pph-auth a.cta:hover,.pph button.cta:hover,.pph .pph-auth button.cta:hover{background:#36a866}
-/* News + Analysis = bloc SECTION distinct (segmented pill vert) — autre partie du site */
-.pph-sect{display:inline-flex;align-items:center;border:1px solid #cfe8da;background:#eef9f2;
-border-radius:22px;overflow:hidden;white-space:nowrap;flex:0 0 auto}
-.pph-sect a{padding:7px 15px;color:#2b7a52;font-weight:600;font-size:13px;text-decoration:none}
-.pph-sect a+a{border-left:1px solid #cfe8da}
-.pph-sect a.on,.pph-sect a:hover{background:#4AC67F;color:#fff}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover,.pph button.cta:hover,.pph .pph-auth button.cta:hover{background:#0A6B3D}
+/* Les trois surfaces editoriales — MEME rendu que la nav React (Nav.tsx, 10/08) :
+   liens sobres colles a la marque (order:-1 + margin-right:auto), filet de separation,
+   souligne vert au survol. L'ancienne pastille verte segmentee est retiree. */
+.pph .pph-sect{display:inline-flex;align-items:center;gap:22px;white-space:nowrap;flex:0 0 auto;
+order:-1;margin-right:auto;padding-left:20px;position:relative;
+border:0;background:none;border-radius:0;overflow:visible}
+.pph .pph-sect::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+width:1px;height:16px;background:rgba(15,23,42,.12)}
+.pph .pph-sect a{position:relative;padding:6px 0;color:#5B6B7F;font-weight:500;font-size:13.5px;
+letter-spacing:.005em;text-decoration:none;transition:color .2s ease}
+.pph .pph-sect a::after{content:"";position:absolute;left:0;right:0;bottom:1px;height:1.5px;
+border-radius:2px;background:#0E8A4F;transform:scaleX(0);transform-origin:left center;
+transition:transform .22s ease}
+.pph .pph-sect a:hover{color:#0F172A;background:none}
+.pph .pph-sect a.on{color:#0F172A;font-weight:600;background:none}
+.pph .pph-sect a:hover::after,.pph .pph-sect a.on::after{transform:scaleX(1)}
+/* « Accueil » fait doublon avec le logo, qui pointe deja la home (parite React). */
+.pph .pph-home{display:none}
 /* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
 .pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
 overflow:hidden;flex:0 0 auto}
@@ -190,7 +202,8 @@ html[data-pplang=en] .i18n-fr{display:none}
  /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
     (même piège que la couleur du CTA, retour CEO 19/07). */
  .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
- .pph-sect a{padding:6px 10px;font-size:12px}
+ .pph .pph-sect{gap:14px;padding-left:12px}
+ .pph .pph-sect a{padding:6px 0;font-size:12px}
  .pph-lang button{padding:5px 7px;font-size:11px}
  /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
     défileur (order:-1) → les 3 boutons sont TOUJOURS visibles à gauche, c'est
@@ -203,7 +216,8 @@ html[data-pplang=en] .i18n-fr{display:none}
 /* ≤430px : les 3 pastilles + Connexion tiennent ensemble (resserrage police/padding). */
 @media(max-width:430px){
  .pph nav{gap:7px}
- .pph-sect a{padding:6px 9px;font-size:11.5px;letter-spacing:-.01em}
+ .pph .pph-sect{gap:11px;padding-left:10px}
+ .pph .pph-sect a{padding:6px 0;font-size:11.5px;letter-spacing:-.01em}
 }
 
 .ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
@@ -231,7 +245,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-08-10T00:05:40Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-08-10T12:04:10Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -4349,7 +4363,7 @@ try{var st=document.createElement("style");st.textContent=
 document.head.appendChild(st);}catch(e){}
 var D={
  en:{home:"Home",login:"Log in",news:"News",direct:"Live",marches:"Markets",dealflow:"My deal flow",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Explore",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
- fr:{home:"Accueil",login:"Connexion",news:"Actualités",direct:"Le direct",marches:"Les marchés",dealflow:"Mon deal flow",analysis:"Analyses",research:"La recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Explorer",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",direct:"En direct",marches:"Les marchés",dealflow:"Mon deal flow",analysis:"Analyses",research:"La recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Explorer",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
 };
 function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
 return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
@@ -4509,7 +4523,7 @@ try{var st=document.createElement("style");st.textContent=
 document.head.appendChild(st);}catch(e){}
 var D={
  en:{home:"Home",login:"Log in",news:"News",direct:"Live",marches:"Markets",dealflow:"My deal flow",analysis:"Analysis",research:"Research",dashboard:"Open dashboard",acct:"My account",mSettings:"Settings",mPipeline:"Pipeline",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Explore",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"Meet Stan, your AI Corporate Developer.",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
- fr:{home:"Accueil",login:"Connexion",news:"Actualités",direct:"Le direct",marches:"Les marchés",dealflow:"Mon deal flow",analysis:"Analyses",research:"La recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Explorer",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+ fr:{home:"Accueil",login:"Connexion",news:"Actualités",direct:"En direct",marches:"Les marchés",dealflow:"Mon deal flow",analysis:"Analyses",research:"La recherche",dashboard:"Ouvrir le dashboard",acct:"Mon compte",mSettings:"Paramètres",mPipeline:"Pipeline",mDashboard:"Tableau de bord",logout:"Déconnexion",tagline:"Votre Corporate Developer augmenté par l’IA",insights:"Explorer",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"Découvrez Stan, votre Corporate Developer augmenté par l’IA.",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
 };
 function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
 return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
@@ -5339,4 +5353,4 @@ window.__cbI18nApply=function(root){
   applyNodes(CBI18N[CUR]||{},root||document);};
 // Expose un re-apply complet (utile si un module a écrasé des data-i18n après le boot).
 window.__cbI18nReapply=function(){if(CUR)apply(CUR);};
-})();</script><!-- v:9944cc6769 --></body></html>
+})();</script><!-- v:4c56c7dbe4 --></body></html>
