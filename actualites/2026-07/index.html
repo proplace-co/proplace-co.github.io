@@ -148,7 +148,10 @@ align-items:center;gap:18px;flex-wrap:nowrap}
    etre dans le <head> : sans elle la barre s'afficherait pleine largeur puis
    sauterait au chargement du bundle. */
 .pp-livewrap{max-width:1200px;margin:0 auto;padding:0 32px}
-.pp-livewrap .pp-live{border-radius:11px}
+/* UNE SEULE SURFACE : la barre LIVE et la bande des dates dans le meme cadre
+   d'encre, angles droits (miroir de src/live/core.ts). */
+.pp-band{background:#0B1220;border:1px solid #1E2C41}
+.pp-band .pp-live{border-bottom:1px solid #1E2C41}
 /* Le bandeau, la bande des jours et le contenu partagent la MEME gouttiere a
    toutes les largeurs — sinon les trois blocs demarrent a trois x differents. */
 @media(max-width:760px){.pp-livewrap{padding:0 18px}.wrap.tm-wrap{padding:0 18px}}
@@ -328,7 +331,7 @@ border-radius:999px;padding:6px 14px;text-decoration:none;transition:border-colo
    colonne Évaluer du tableau. Le panneau s'ouvre pleine largeur sous la ligne. Le nom n'est plus cliquable. */
 .acq-head .op-eval{margin-left:auto;align-self:center}
 .acq-head .op-eval-panel{flex:1 1 100%;order:9;margin-top:8px}
-</style><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news on" href="/actualites/" data-i18n="direct">Live</a><a class="pph-mkt" href="/actualites/operations/secteurs/" data-i18n="marches">Markets</a><a class="pph-rsch" href="/research/" data-i18n="research">Research</a></span><a class="pph-flow" href="https://proplace.co/carte" data-i18n="dealflow">My deal flow</a><span class="pph-auth" id="pph-auth"><a class="cta" href="https://proplace.co/#login" data-i18n="login">Log in</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><div class="pp-livewrap"><div id="pp-live"></div></div><script defer src="/live-banner.js"></script><script>(function(){
+</style><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news on" href="/actualites/" data-i18n="direct">Live</a><a class="pph-mkt" href="/actualites/operations/secteurs/" data-i18n="marches">Markets</a><a class="pph-rsch" href="/research/" data-i18n="research">Research</a></span><a class="pph-flow" href="https://proplace.co/carte" data-i18n="dealflow">My deal flow</a><span class="pph-auth" id="pph-auth"><a class="cta" href="https://proplace.co/#login" data-i18n="login">Log in</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><div class="pp-livewrap"><div class="pp-band"><div id="pp-live"></div></div></div><script defer src="/live-banner.js"></script><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
