@@ -1,0 +1,169 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   L'ARTICLE DU JOUR — LA SEULE FEUILLE DE STYLE.
+
+   Comme social-card.css, ce fichier est lu par LES DEUX chaînes :
+     · Python  — execution/site_publish.py l'inline dans la page bakée ;
+     · le site — pages/DirectPage.tsx le récupère sur /article.css.
+   Le corps de l'article vient du même générateur des deux côtés : il n'a donc
+   aucune raison de ne pas avoir le même look. Toute retouche se fait ICI.
+
+   LA MISE EN PAGE, ET POURQUOI.
+   Le défaut corrigé (retour Antoine 10/08 : « ça coupe sans utiliser toute la
+   largeur ») n'était pas la largeur du texte — 72 caractères par ligne est la
+   mesure de lecture, au-delà l'œil perd sa ligne — mais son ALIGNEMENT : la
+   colonne était calée à gauche d'un conteneur de 1200 px, donc tout le vide
+   tombait à droite et ça ressemblait à une page tronquée.
+   Ici la colonne est CENTRÉE (le blanc devient symétrique, donc voulu) et les
+   blocs qui n'ont pas de raison d'être étroits SORTENT à pleine largeur :
+   les titres de section, les cartes du marché, le sommaire, et surtout les
+   listes par secteur — deux colonnes, là où le vide était le plus criant.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ppart {
+  /* MESURE EN PIXELS, PAS EN `ch`. Mesuré : avec `72ch`, un titre à 26 px a une
+     colonne bien plus large qu'un paragraphe à 17 px (l'unité `ch` suit la
+     taille de police) — titres et texte ne tombaient donc pas sur le même axe,
+     et la page paraissait bancale. Une valeur fixe aligne tout. */
+  --measure: 780px;
+  font-family: 'IBM Plex Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  color: #0F172A;
+}
+
+/* ── la colonne de lecture, CENTRÉE ──────────────────────────────────────── */
+.ppart p,
+.ppart > h3, .ppart section > h3,
+.ppart > h4, .ppart section > h4,
+.ppart .art-srcline,
+.ppart .pros-inline,
+.ppart .lead {
+  max-width: var(--measure);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ppart p { font-size: 17px; line-height: 1.78; color: #3F4E61; margin-top: 0; margin-bottom: 18px; }
+/* Le bloc cockpit vit DANS <article> (il est posé là par render_article_page) :
+   sans cette exception, son chapeau et son sous-titre se retrouvaient centrés
+   au milieu d'une colonne de lecture à laquelle ils n'appartiennent pas. */
+.ppart .pp-ck p, .ppart .pp-ck h2 { max-width: none; margin-left: 0; margin-right: 0; }
+.ppart .pp-ck h2 { border: 0; padding: 0; }
+.ppart p strong, .ppart strong, .ppart b { color: #0F172A; font-weight: 600; }
+.ppart em { color: #5B6B7F; }
+.ppart a { color: #0A6B3D; text-decoration: none; border-bottom: 1px solid rgba(14,138,79,.28); }
+.ppart a:hover { border-bottom-color: #0E8A4F; }
+
+/* le chapô — plus large que le corps, c'est ce qui lui donne son rang */
+.ppart .lead { max-width: 980px; font-size: clamp(17px, 1.35vw, 20px); line-height: 1.6;
+  color: #5B6B7F; font-weight: 400; margin-bottom: 20px; }
+
+/* L'ATTAQUE — le premier paragraphe de l'analyse (retour Antoine 10/08 : « ça
+   aussi ça devrait être sur toute la largeur »). Il ouvre la journée : il est
+   plus large et plus grand que le corps, ce qui lui donne le rang d'un chapô
+   sans lui donner la longueur de ligne d'un texte de 1 100 px, illisible. */
+.ppart > p:first-child,
+.ppart > section:first-child > p:first-child {
+  max-width: 980px; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.62;
+  color: #0F172A; font-weight: 400; margin-bottom: 30px;
+}
+
+/* ── les blocs qui SORTENT à pleine largeur ──────────────────────────────── */
+.ppart h2,
+.ppart .art-secviz,
+.ppart .art-allops,
+.ppart .toc,
+.ppart .cta-box { max-width: none; margin-left: 0; margin-right: 0; }
+
+/* les deux grandes sections : « 🤝 Fusions-acquisitions du jour · 16 » */
+.ppart h2 { margin: 72px 0 0; padding: 0 0 20px; font-size: clamp(26px, 2.8vw, 38px);
+  line-height: 1.12; letter-spacing: -.036em; font-weight: 700; color: #0F172A;
+  border-top: 0; border-bottom: 1px solid #E7EBF0; }
+.ppart > h2:first-child, .ppart section:first-child h2 { margin-top: 0; }
+
+/* les intertitres de rubrique — chapeau monospace à filet vert, comme la home */
+.ppart h3, .ppart h3.art-sub { margin: 52px auto 22px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500;
+  letter-spacing: .24em; text-transform: uppercase; color: #94A3B8; border: 0; padding: 0;
+  display: flex; align-items: center; gap: 12px; }
+.ppart h3::before, .ppart h3.art-sub::before { content: ""; display: block; width: 22px;
+  height: 2px; background: #0E8A4F; border-radius: 2px; flex: none; }
+
+/* le titre d'une opération décryptée */
+.ppart h4 { margin: 46px auto 14px; font-size: clamp(20px, 2vw, 26px); line-height: 1.24;
+  letter-spacing: -.03em; font-weight: 700; color: #0F172A; }
+.ppart h4 a { color: inherit; border: 0; }
+
+/* la ligne de source, discrète, collée à son titre */
+.ppart .art-srcline { margin-top: -8px; margin-bottom: 22px; font-size: 13px; color: #94A3B8; }
+.ppart .art-srcline a { color: #94A3B8; border-bottom-color: #E7EBF0; }
+.ppart .art-srcline a:hover { color: #0F172A; }
+
+/* ── LES CARTES DU MARCHÉ — pleine largeur, centrées, une surface bordée ─── */
+.ppart .art-secviz { display: block; margin: 32px 0 40px; border: 1px solid #E7EBF0;
+  overflow: hidden; line-height: 0; background: #F8FAFC;
+  transition: border-color .18s ease, transform .18s ease; }
+.ppart .art-secviz:hover { border-color: #0F172A; transform: translateY(-2px); }
+.ppart img { display: block; width: 100%; height: auto; }
+
+/* ── « le coup d'après » ─────────────────────────────────────────────────── */
+.ppart .pros-inline { margin: 24px auto 32px; padding: 22px 26px; background: #F4FAF6;
+  border: 1px solid #C8E6D5; border-left: 3px solid #0E8A4F; border-radius: 0; }
+.ppart .pros-il { margin: 0 0 12px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #0A6B3D; font-weight: 600; }
+.ppart .pros-il span { letter-spacing: .06em; text-transform: none; color: #7B8CA0; font-weight: 500; }
+.ppart .pros-inline ul { list-style: none; margin: 0; padding: 0; }
+.ppart .pros-inline li { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline;
+  font-size: 15px; line-height: 1.6; color: #3F4E61; padding: 10px 0; border-top: 1px solid #DCEDE3; }
+.ppart .pros-inline li:first-child { border-top: 0; padding-top: 0; }
+.ppart .pros-t { flex: 1 1 auto; min-width: 0; }
+.ppart .pros-w { color: #94A3B8; }
+
+/* ── LA LISTE PAR SECTEUR — deux colonnes, c'est là que le vide se voyait ── */
+.ppart .art-allops { margin-top: 10px; }
+.ppart .art-allops .aa-sub { margin: 0 0 18px; font-size: 14.5px; color: #94A3B8; max-width: var(--measure); }
+.ppart .art-allops h4 { margin: 34px 0 4px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase;
+  color: #0A6B3D; border-bottom: 1px solid #E7EBF0; padding-bottom: 10px; max-width: none; }
+.ppart .art-allops h4 a { color: inherit; border: 0; }
+.ppart .art-allops ul { list-style: none; margin: 0; padding: 0; max-width: none;
+  columns: 2; column-gap: 44px; }
+.ppart .art-allops li { padding: 15px 0; border-bottom: 1px solid #E7EBF0;
+  break-inside: avoid; -webkit-column-break-inside: avoid; }
+.ppart .aa-n { font-weight: 700; color: #0F172A; }
+.ppart .aa-d { color: #0F172A; font-size: 16px; line-height: 1.5; }
+.ppart .aa-meta { margin-top: 5px; font-size: 13px; color: #94A3B8; }
+.ppart .aa-meta a { color: #94A3B8; border-bottom-color: #E7EBF0; }
+.ppart .aa-seen { font-style: italic; opacity: .8; }
+
+/* le bouton ⚡ Évaluer des cibles prospectives */
+.ppart .op-eval { background: #0E8A4F; color: #fff; border: 0; font-size: 12.5px; font-weight: 600;
+  padding: 7px 13px; border-radius: 9px; cursor: pointer; white-space: nowrap;
+  font-family: inherit; }
+.ppart .op-eval:hover { background: #0A6B3D; }
+
+/* ── le sommaire ─────────────────────────────────────────────────────────── */
+.ppart .toc, .pptoc { border-top: 1px solid #E7EBF0; border-bottom: 1px solid #E7EBF0;
+  background: none; border-radius: 0; padding: 30px 0; margin: 0 0 8px; }
+.ppart .toc .toc-h, .pptoc .toc-h { margin: 0 0 20px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500;
+  letter-spacing: .24em; text-transform: uppercase; color: #94A3B8; }
+.ppart .toc .toc-grp, .pptoc .toc-grp { margin: 0 0 22px; }
+.ppart .toc .toc-grp:last-child, .pptoc .toc-grp:last-child { margin-bottom: 0; }
+.ppart .toc .toc-g, .pptoc .toc-g { display: block; font-size: 17px; font-weight: 700;
+  letter-spacing: -.026em; color: #0F172A; margin: 0 0 12px; }
+.ppart .toc .toc-g a, .pptoc .toc-g a { color: inherit; border: 0; }
+.ppart .toc ul, .pptoc ul { list-style: none; margin: 0; padding: 0; display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2px 36px; }
+.ppart .toc li, .pptoc li { margin: 0; min-width: 0; }
+.ppart .toc li a, .pptoc li a { display: flex; align-items: baseline; gap: 9px; font-size: 14px;
+  line-height: 1.5; color: #5B6B7F; text-decoration: none; border: 0; padding: 6px 8px;
+  margin: 0 -8px; transition: background .14s; }
+.ppart .toc li a::before, .pptoc li a::before { content: "→"; flex: none; color: #0E8A4F;
+  font-weight: 700; font-size: 12px; }
+.ppart .toc li a:hover, .pptoc li a:hover { background: #F4FAF6; color: #0F172A; }
+.ppart .toc li a span, .pptoc li a span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ppart .toc li.toc-all a, .pptoc li.toc-all a { font-weight: 700; color: #0A6B3D; }
+
+@media (max-width: 900px) {
+  .ppart .art-allops ul { columns: 1; }
+  .ppart h2 { margin-top: 48px; }
+}
