@@ -9,7 +9,9 @@ background:var(--white);margin:0;line-height:1.65;font-size:18px;
 a{color:var(--accent-dk);text-decoration:none}
 a:hover{text-decoration:underline}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
-.wrap.tm-wrap{max-width:1180px;padding:0 24px}
+/* Gabarit aligne sur le header et le bandeau LIVE (1200/32) — le contenu part
+   exactement sous le logo, comme sur la page d'accueil (refonte 10/08). */
+.wrap.tm-wrap{max-width:1200px;padding:0 32px}
 .bcrumb{font-size:12.5px;color:var(--mid);margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .bcrumb a{color:var(--mid);text-decoration:none}
 .bcrumb a:hover{color:var(--accent-dk);text-decoration:underline}
@@ -136,8 +138,20 @@ font-size:13px;color:var(--mid)}
 .pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
 backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
 font-family:'Inter',system-ui,sans-serif}
-.pph .in{max-width:1180px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;
+/* Gabarit IDENTIQUE a la nav de la page d'accueil (.pp-nav-inner : 1200 / 32) —
+   le bandeau LIVE et la bande des jours se calent dessus, donc tout demarre
+   exactement sous le logo. Miroir React : components/SiteHeader.tsx. */
+.pph .in{max-width:1200px;margin:0 auto;padding:0 32px;min-height:60px;display:flex;
 align-items:center;gap:18px;flex-wrap:nowrap}
+/* Le bandeau LIVE tient la largeur DE LA PAGE, pas celle de l'ecran (retour
+   Antoine 10/08). Regle MIROIR de src/live/core.ts — elle est repetee ici pour
+   etre dans le <head> : sans elle la barre s'afficherait pleine largeur puis
+   sauterait au chargement du bundle. */
+.pp-livewrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.pp-livewrap .pp-live{border-radius:11px}
+/* Le bandeau, la bande des jours et le contenu partagent la MEME gouttiere a
+   toutes les largeurs — sinon les trois blocs demarrent a trois x differents. */
+@media(max-width:760px){.pp-livewrap{padding:0 18px}.wrap.tm-wrap{padding:0 18px}}
 .pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
 .pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
 gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
@@ -245,7 +259,7 @@ background:rgba(255,255,255,.06);border-radius:22px;overflow:hidden}
 .ppf .pph-sect a.on,.ppf .pph-sect a:hover{background:#4AC67F;color:#06281a}
 @media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
 .ppf-cols{grid-template-columns:repeat(2,1fr)}}
-</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-08-10T12:04:10Z"><style>
+</style><script type="application/ld+json">{"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}</script><meta name="cb-fund" content="investment criteria"><meta name="cb-source" content="qualifies"><meta name="cb-built" content="2026-08-10T17:05:56Z"><style>
 .cb-wrap{max-width:1180px;margin:0 auto;padding:42px 26px 24px;font-family:'Inter',system-ui,sans-serif;color:#14202e}
 /* Hero 2 colonnes : narratif à gauche (collant) · classement des cibles à droite. */
 .cb-grid{display:grid;grid-template-columns:0.84fr 1.16fr;gap:48px;align-items:start}
@@ -4330,7 +4344,7 @@ white-space:nowrap;overflow:visible;text-overflow:clip}
 .cb-aha-t{margin:0 0 10px;font-size:17px;font-weight:800;color:#0f1f33;line-height:1.35;overflow-wrap:anywhere}
 .cb-aha-stat{margin:2px 0 10px;font-size:12px;font-weight:700;color:#0f6e3f}
 .cb-aha-sub{margin:0 0 10px;font-size:12.5px;line-height:1.55;color:#56697e;overflow-wrap:anywhere}
-</style></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="direct">Live</a><a class="pph-mkt" href="/actualites/operations/secteurs/" data-i18n="marches">Markets</a><a class="pph-rsch" href="/research/" data-i18n="research">Research</a></span><a class="pph-flow" href="https://proplace.co/carte" data-i18n="dealflow">My deal flow</a><span class="pph-auth" id="pph-auth"><a class="cta" href="https://proplace.co/#login" data-i18n="login">Log in</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><div id="pp-live"></div><script defer src="/live-banner.js"></script><script>(function(){
+</style></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><a class="pph-home" href="https://proplace.co/" data-i18n="home">Home</a><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="direct">Live</a><a class="pph-mkt" href="/actualites/operations/secteurs/" data-i18n="marches">Markets</a><a class="pph-rsch" href="/research/" data-i18n="research">Research</a></span><a class="pph-flow" href="https://proplace.co/carte" data-i18n="dealflow">My deal flow</a><span class="pph-auth" id="pph-auth"><a class="cta" href="https://proplace.co/#login" data-i18n="login">Log in</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><div class="pp-livewrap"><div id="pp-live"></div></div><script defer src="/live-banner.js"></script><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
@@ -5353,4 +5367,4 @@ window.__cbI18nApply=function(root){
   applyNodes(CBI18N[CUR]||{},root||document);};
 // Expose un re-apply complet (utile si un module a écrasé des data-i18n après le boot).
 window.__cbI18nReapply=function(){if(CUR)apply(CUR);};
-})();</script><!-- v:4c56c7dbe4 --></body></html>
+})();</script><!-- v:03ae0203be --></body></html>
