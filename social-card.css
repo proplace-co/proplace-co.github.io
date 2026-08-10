@@ -1,0 +1,188 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARTES SOCIALES PROPLACE — LA SEULE FEUILLE DE STYLE.
+
+   Portage du prototype d'Antoine (proplace/docs/proto-cartes-sociales.html).
+   Ce fichier est lu par LES DEUX chaînes, aux mêmes octets :
+     · Python  — execution/social_cards.py l'inline dans le gabarit envoyé au
+       rasteriseur Chromium (rendu hors ligne : un <link> ne chargerait pas) ;
+     · le site — src/live/card.ts le récupère sur /social-card.css et l'injecte
+       pour afficher la MÊME carte au clic sur une vignette du LIVE.
+   Une carte vue sur le site est donc, à l'octet de style près, celle qui part
+   sur LinkedIn et sur X. C'est tout l'intérêt : un seul univers.
+
+   Trois choses ne se touchent pas, elles viennent du proto :
+     · le contour de 2,5 px sur la police d'affichage — la carte reste très
+       grasse MÊME si Archivo Black ne charge pas (c'était l'effet « mou ») ;
+     · l'interligne à 0,98 sur le gros mot : aucun chevauchement ;
+     · la pastille LIVE rouge, identique sur les trois teintes — c'est elle qui
+       fait la famille.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ppcard, .ppcard * { box-sizing: border-box; margin: 0; padding: 0; }
+
+.ppcard {
+  position: relative; overflow: hidden; display: flex; flex-direction: column;
+  justify-content: flex-end; transform-origin: top left;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* formats */
+.ppcard.f-li { width: 1080px; height: 1350px; }
+.ppcard.f-x  { width: 1200px; height: 675px; }
+
+/* teintes */
+.ppcard.t-g { background: #0E8A4F; color: #fff; }
+.ppcard.t-k { background: #0B1220; color: #fff; }
+.ppcard.t-w { background: #fff;    color: #0B1220; }
+
+/* ── en-tête ─────────────────────────────────────────────────────────────── */
+.ppcard .hd { position: absolute; top: 0; left: 0; right: 0; z-index: 4;
+  display: flex; align-items: center; gap: 18px; padding: 34px 44px 0; flex-wrap: wrap; }
+.ppcard.f-x .hd { padding: 24px 34px 0; gap: 14px; }
+.ppcard .lv { display: flex; align-items: center; gap: 13px; background: #DC2626; color: #fff;
+  border-radius: 6px; padding: 15px 24px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 30px; letter-spacing: .2em; font-weight: 700; }
+.ppcard .lv i { width: 15px; height: 15px; border-radius: 50%; background: #fff; display: block; }
+.ppcard.f-x .lv { font-size: 22px; padding: 11px 18px; gap: 10px; }
+.ppcard.f-x .lv i { width: 11px; height: 11px; }
+.ppcard .kk { font-family: 'Archivo Black', 'Arial Black', 'Helvetica Neue', Impact, sans-serif;
+  font-size: 62px; text-transform: uppercase; line-height: 1; letter-spacing: -.01em; }
+.ppcard.f-x .kk { font-size: 45px; }
+.ppcard .hd .sp { flex: 1; }
+.ppcard .dt { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 23px;
+  letter-spacing: .09em; font-weight: 700; opacity: .66; }
+.ppcard.f-x .dt { font-size: 17px; }
+
+/* ── le corps ────────────────────────────────────────────────────────────── */
+.ppcard .main { flex: none; display: flex; flex-direction: column; gap: 26px; padding-bottom: 4px; }
+.ppcard.f-x .main { flex-direction: row-reverse; align-items: center; gap: 26px; padding: 0 34px; }
+.ppcard.f-x .main .txt { flex: 1; min-width: 0; }
+.ppcard.f-x .main .txt .word,
+.ppcard.f-x .main .txt .who,
+.ppcard.f-x .main .txt .said { padding-left: 0; padding-right: 0; }
+
+.ppcard .word { flex: none; padding: 0 44px;
+  font-family: 'Archivo Black', 'Arial Black', 'Helvetica Neue', Impact, sans-serif;
+  font-size: 168px; line-height: .98; text-transform: uppercase; letter-spacing: -.015em;
+  -webkit-text-stroke: 2.5px currentColor; }
+.ppcard.f-li .word.sm { font-size: 132px; }
+.ppcard.f-li .word.xs { font-size: 104px; }
+.ppcard.f-x .word { font-size: 112px; padding: 0 34px; -webkit-text-stroke: 2px currentColor; }
+.ppcard.f-x .word.sm { font-size: 88px; }
+.ppcard.f-x .word.xs { font-size: 68px; }
+
+.ppcard .who { flex: none; padding: 20px 44px 0;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 24px; letter-spacing: .09em;
+  text-transform: uppercase; font-weight: 700; opacity: .8; }
+.ppcard.f-x .who { font-size: 17px; padding: 13px 34px 0; }
+.ppcard .said { flex: none; padding: 16px 44px 0; font-size: 28px; line-height: 1.34;
+  font-weight: 500; opacity: .9; max-width: 38ch; }
+.ppcard.f-x .said { font-size: 20px; padding: 11px 34px 0; }
+.ppcard .said b { font-weight: 800; opacity: 1; }
+
+/* ── la bande, quatre variantes ──────────────────────────────────────────── */
+.ppcard .band { flex: none; margin: 30px 0 0; background: #fff; color: #0B1220; }
+.ppcard.f-x .band { margin: 18px 0 0; }
+.ppcard.t-w .band { background: #F2F6F9; box-shadow: inset 0 1px 0 #E1E8EF, inset 0 -1px 0 #E1E8EF; }
+
+/* ① l'opération : acquéreur → cible → montant */
+.ppcard .band .deal { display: flex; align-items: center; gap: 20px; padding: 30px 44px; }
+.ppcard.f-x .band .deal { padding: 18px 34px; gap: 14px; }
+.ppcard .band .lg { font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: 50px;
+  text-transform: uppercase; letter-spacing: -.01em; }
+.ppcard.f-x .band .lg { font-size: 34px; }
+.ppcard .band .ar { color: #0E8A4F; font-size: 38px; font-weight: 900; }
+.ppcard .band .amt { margin-left: auto; font-family: 'Archivo Black', 'Arial Black', sans-serif;
+  font-size: 52px; color: #0B1220; }
+.ppcard.f-x .band .amt { font-size: 35px; }
+
+/* ② les chiffres */
+.ppcard .band .rows { display: flex; }
+.ppcard .band .r1 { flex: 1; padding: 28px 24px; border-right: 1px solid #E1E8EF; text-align: center; }
+.ppcard .band .r1:last-child { border-right: 0; }
+.ppcard .band .r1 b { display: block; font-family: 'Archivo Black', 'Arial Black', sans-serif;
+  font-size: 74px; line-height: 1; letter-spacing: -.02em; }
+.ppcard .band .r1 span { display: block; font-size: 20px; color: #42505E; font-weight: 700; margin-top: 7px; }
+.ppcard.f-x .band .r1 { padding: 17px 15px; }
+.ppcard.f-x .band .r1 b { font-size: 50px; }
+.ppcard.f-x .band .r1 span { font-size: 14px; }
+
+/* ③ la citation */
+.ppcard .band .quote { padding: 30px 44px; font-family: 'Archivo Black', 'Arial Black', sans-serif;
+  font-size: 54px; line-height: 1.05; text-transform: uppercase; }
+.ppcard.f-x .band .quote { padding: 18px 34px; font-size: 37px; }
+
+/* ④ le classement (top 3) — propre au « marché du jour » */
+.ppcard .band .top { padding: 10px 0; }
+.ppcard .band .tr { display: flex; align-items: baseline; gap: 18px; padding: 15px 44px;
+  border-top: 1px solid #E1E8EF; }
+.ppcard .band .tr:first-child { border-top: 0; }
+.ppcard.f-x .band .tr { padding: 10px 34px; gap: 13px; }
+.ppcard .band .tn { font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: 34px;
+  color: #0E8A4F; line-height: 1; flex: none; width: 34px; }
+.ppcard.f-x .band .tn { font-size: 24px; width: 24px; }
+.ppcard .band .tl { flex: 1; min-width: 0; font-size: 25px; font-weight: 600; line-height: 1.28;
+  color: #0B1220; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; }
+.ppcard.f-x .band .tl { font-size: 17px; }
+.ppcard .band .ta { font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: 34px;
+  flex: none; color: #0B1220; letter-spacing: -.02em; }
+.ppcard.f-x .band .ta { font-size: 24px; }
+
+/* ── le verdict : deux thèses, deux réponses ─────────────────────────────── */
+.ppcard .vs { display: flex; gap: 0; margin: 30px 0 0; background: #fff; }
+.ppcard.f-x .vs { margin: 18px 0 0; }
+.ppcard .vc { flex: 1; color: #0B1220; border-right: 2px solid #E1E8EF; }
+.ppcard .vc:last-child { border-right: 0; }
+.ppcard .vh { padding: 15px 24px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 17px; letter-spacing: .1em; font-weight: 700; color: #fff; }
+.ppcard .vh.ok { background: #0A6B3D; }
+.ppcard .vh.no { background: #DC2626; }
+.ppcard.f-x .vh { font-size: 12px; padding: 10px 17px; }
+.ppcard .vb { padding: 22px 24px 26px; font-size: 21px; line-height: 1.32; color: #42505E; font-weight: 500; }
+.ppcard .vb b { display: block; font-family: 'Archivo Black', 'Arial Black', sans-serif;
+  font-size: 92px; color: #0B1220; line-height: 1; margin-top: 14px; letter-spacing: -.03em; }
+.ppcard.f-x .vb { font-size: 15px; padding: 14px 17px 17px; }
+.ppcard.f-x .vb b { font-size: 62px; }
+
+/* ── les emplacements d'images ───────────────────────────────────────────── */
+.ppcard .media { display: flex; gap: 18px; padding: 0 44px; }
+.ppcard.f-x .media { padding: 0; flex: none; height: 352px; }
+.ppcard .im { flex: 1; min-width: 0; border-radius: 12px; overflow: hidden; background: #DCE5EE;
+  position: relative; }
+.ppcard .im img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ppcard .im .cap { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(11,18,32,.72);
+  color: #fff; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 15px;
+  letter-spacing: .12em; font-weight: 700; padding: 9px 12px; text-transform: uppercase;
+  text-align: center; }
+.ppcard.f-x .im .cap { font-size: 11px; padding: 6px 8px; }
+.ppcard .media.duo .im { aspect-ratio: 1/1; }
+.ppcard.f-x .media.duo { flex-direction: column; width: 272px; gap: 16px; }
+.ppcard.f-x .media.duo .im { flex: 1; aspect-ratio: auto; min-height: 0; }
+.ppcard .media.solo .im { aspect-ratio: 16/9; }
+.ppcard.f-x .media.solo { width: 428px; align-items: center; }
+.ppcard.f-x .media.solo .im { width: 100%; height: auto; aspect-ratio: 16/10; max-width: none; flex: none; }
+
+/* ── le pied ─────────────────────────────────────────────────────────────── */
+.ppcard .ft { flex: none; display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 18px; padding: 26px 44px 32px; position: relative; z-index: 3; }
+.ppcard.f-x .ft { padding: 17px 34px 22px; }
+.ppcard .ft .u { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 20px;
+  letter-spacing: .06em; opacity: .7; font-weight: 600; }
+.ppcard.f-x .ft .u { font-size: 15px; }
+.ppcard .ft img { height: 54px; display: block; }
+.ppcard.f-x .ft img { height: 42px; }
+.ppcard .ft img.inv { filter: brightness(0) invert(1); opacity: .92; }
+
+/* Le bloc reste calé EN BAS, comme le proto — c'est ce qui fait tomber l'œil
+   sur le chiffre. `center` a été essayé et rejeté : il laissait du vide
+   AU-DESSOUS du pied de page, ce qui ne ressemble plus à une carte. */
+.ppcard.f-li.nomedia .band,
+.ppcard.f-li.nomedia .vs { margin-top: 40px; }
+
+/* ── la scène : afficher une carte 1200 px dans une boîte plus petite ─────
+   Le site montre la carte à l'échelle (transform), jamais redimensionnée en
+   CSS : c'est la SEULE façon d'être sûr que ce qu'on voit est exactement ce
+   qui sera rasterisé. */
+.ppstage { position: relative; overflow: hidden; }
+.ppstage > .ppcard { position: absolute; top: 0; left: 0; }
