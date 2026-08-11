@@ -20,44 +20,35 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .ppart {
-  /* MESURE EN PIXELS, PAS EN `ch`. Mesuré : avec `72ch`, un titre à 26 px a une
-     colonne bien plus large qu'un paragraphe à 17 px (l'unité `ch` suit la
-     taille de police) — titres et texte ne tombaient donc pas sur le même axe,
-     et la page paraissait bancale. Une valeur fixe aligne tout. */
-  --measure: 780px;
+  /* PLEINE LARGEUR (retour Antoine, répété) : le texte occupe TOUTE la
+     largeur du conteneur (1200/32). Plus de colonne 780px / 72ch qui coupe
+     les chapôs et les paragraphes au milieu de la page. */
+  --measure: 100%;
   font-family: 'IBM Plex Sans', 'Inter', system-ui, -apple-system, sans-serif;
   color: #0F172A;
 }
 
-/* ── la colonne de lecture ───────────────────────────────────────────────
-   UN SEUL AXE. Elle a d'abord été centrée : le titre de la page, lui, part du
-   bord gauche du conteneur — titre et texte ne tombaient donc pas au même
-   endroit et la page paraissait bancale (mesuré le 11/08 : 152 px contre
-   230 px). Tout part maintenant du même bord, et ce sont les blocs LARGES
-   ci-dessous — titres de section, cartes, sommaire, listes — qui occupent la
-   largeur. C'est la mise en page d'un journal : une colonne de lecture, du
-   mobilier pleine page. */
+/* Tout le texte part du bord gauche et va jusqu'au bord droit du wrap. */
 .ppart p,
 .ppart > h3, .ppart section > h3,
 .ppart > h4, .ppart section > h4,
 .ppart .art-srcline,
-.ppart .pros-inline {
-  max-width: var(--measure);
+.ppart .pros-inline,
+.ppart .lead,
+.ppart h1 {
+  max-width: none;
   margin-left: 0;
   margin-right: 0;
 }
 
-/* l'en-tête de l'article : titre, chapô, signature — le même bord que le reste */
-.ppart h1 { max-width: 22ch; margin: 0 0 20px; font-size: clamp(32px, 4.2vw, 52px);
+/* l'en-tête de l'article : titre, chapô, signature */
+.ppart h1 { margin: 0 0 20px; font-size: clamp(32px, 4.2vw, 52px);
   line-height: 1.04; letter-spacing: -.042em; font-weight: 700; }
 .ppart .pubdate { max-width: none; margin: 0 0 34px;
   font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px;
   letter-spacing: .2em; text-transform: uppercase; color: #94A3B8; }
 
-.ppart p { font-size: 17px; line-height: 1.78; color: #3F4E61; margin-top: 0; margin-bottom: 18px; }
-/* Le bloc cockpit vit DANS <article> (il est posé là par render_article_page) :
-   sans cette exception, son chapeau et son sous-titre se retrouvaient centrés
-   au milieu d'une colonne de lecture à laquelle ils n'appartiennent pas. */
+.ppart p { font-size: 17px; line-height: 1.72; color: #3F4E61; margin-top: 0; margin-bottom: 18px; }
 .ppart .pp-ck p, .ppart .pp-ck h2 { max-width: none; margin-left: 0; margin-right: 0; }
 .ppart .pp-ck h2 { border: 0; padding: 0; }
 .ppart p strong, .ppart strong, .ppart b { color: #0F172A; font-weight: 600; }
@@ -65,17 +56,14 @@
 .ppart a { color: #0A6B3D; text-decoration: none; border-bottom: 1px solid rgba(14,138,79,.28); }
 .ppart a:hover { border-bottom-color: #0E8A4F; }
 
-/* le chapô — plus large que le corps, c'est ce qui lui donne son rang */
-.ppart .lead { max-width: 980px; margin: 0 0 20px; font-size: clamp(17px, 1.4vw, 21px);
+/* le chapô — même largeur que le corps (toute la page) */
+.ppart .lead { margin: 0 0 20px; font-size: clamp(17px, 1.4vw, 21px);
   line-height: 1.58; color: #5B6B7F; font-weight: 400; }
 
-/* L'ATTAQUE — le premier paragraphe de l'analyse (retour Antoine 10/08 : « ça
-   aussi ça devrait être sur toute la largeur »). Il ouvre la journée : il est
-   plus large et plus grand que le corps, ce qui lui donne le rang d'un chapô
-   sans lui donner la longueur de ligne d'un texte de 1 100 px, illisible. */
+/* L'ATTAQUE — premier paragraphe, pleine largeur */
 .ppart > p:first-child,
 .ppart > section:first-child > p:first-child {
-  max-width: 980px; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.62;
+  max-width: none; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.58;
   color: #0F172A; font-weight: 400; margin: 0 0 30px;
 }
 
@@ -136,7 +124,7 @@
 
 /* ── LA LISTE PAR SECTEUR — deux colonnes, c'est là que le vide se voyait ── */
 .ppart .art-allops { margin-top: 10px; }
-.ppart .art-allops .aa-sub { margin: 0 0 18px; font-size: 14.5px; color: #94A3B8; max-width: var(--measure); }
+.ppart .art-allops .aa-sub { margin: 0 0 18px; font-size: 14.5px; color: #94A3B8; max-width: none; }
 .ppart .art-allops h4 { margin: 34px 0 4px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
   font-size: 10px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase;
   color: #0A6B3D; border-bottom: 1px solid #E7EBF0; padding-bottom: 10px; max-width: none; }
