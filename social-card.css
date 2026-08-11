@@ -202,3 +202,33 @@
    0.65 = 780/1200, la colonne de lecture de l'article — juste avant même que
    le script n'arrive, et le script affine ensuite au pixel. */
 .ppcard-fit > .ppcard { transform-origin: top left; transform: scale(.65); }
+
+/* ── LA CARTE SANS BANDE ──────────────────────────────────────────────────
+   Un rachat étayé mais sans acquéreur extractible ni montant corroboré donne
+   quatre faits vrais — le mot, la société, le secteur, le pays — et rien à
+   mettre dans la bande. On n'invente pas une phrase pour combler : on retire
+   la bande. Reste que `.main` descend alors toucher le pied (il ne garde que
+   son padding, 17 px en f-x) : `noband` lui rend l'air. */
+.ppcard.noband .ft { padding-top: 44px; }
+.ppcard.f-li.noband .ft { padding-top: 64px; }
+/* Le montant ne se laisse jamais comprimer par un nom long. */
+.ppcard .band .amt { flex: none; }
+/* Une cellule de bande porte parfois du TEXTE (« ROYAUME-UNI », « SERIES B »)
+   là où le gabarit prévoyait un nombre : deux crans de repli, sinon ça déborde. */
+.ppcard .band .r1 b.s { font-size: 46px; }
+.ppcard .band .r1 b.s2 { font-size: 32px; }
+.ppcard.f-x .band .r1 b.s { font-size: 31px; }
+.ppcard.f-x .band .r1 b.s2 { font-size: 22px; }
+
+/* ── CE QUE FAIT LA SOCIÉTÉ — lisible d'un coup d'œil ─────────────────────
+   Retour d'Antoine, 11/08 : « la lisibilité est importante, il faut que ce soit
+   facile à lire sans effort de concentration sur l'image ». La ligne héritait
+   de la taille des anciennes phrases de marque, qu'on lisait en s'approchant.
+   Ici elle porte le SENS de la carte — ce que fait la société — et doit se lire
+   à la taille d'une vignette LinkedIn, donc de loin. */
+.ppcard .said { font-size: 34px; font-weight: 600; opacity: 1; margin-top: 4px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ppcard.f-x .said { font-size: 26px; padding-top: 6px; }
+/* Le nom de la société est le SUJET : il ne doit pas être plus discret que le
+   secteur qui le suit. */
+.ppcard .who { opacity: .92; }
