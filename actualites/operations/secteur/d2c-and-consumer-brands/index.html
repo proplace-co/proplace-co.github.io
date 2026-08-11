@@ -546,9 +546,11 @@ font-size:13px;padding:10px 14px;border-radius:10px;text-decoration:none;margin-
   margin-right: 0;
 }
 
-/* l'en-tête de l'article : titre, chapô, signature */
-.ppart h1 { margin: 0 0 20px; font-size: clamp(32px, 4.2vw, 52px);
-  line-height: 1.04; letter-spacing: -.042em; font-weight: 700; }
+/* l'en-tête de l'article : titre pleine largeur, clamp un cran plus bas pour
+   les titres longs (une ligne quand l'écran le permet). */
+.ppart h1 { margin: 0 0 20px; font-size: clamp(24px, 3.1vw, 40px);
+  line-height: 1.12; letter-spacing: -.036em; font-weight: 700;
+  max-width: none; overflow-wrap: anywhere; }
 .ppart .pubdate { max-width: none; margin: 0 0 34px;
   font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px;
   letter-spacing: .2em; text-transform: uppercase; color: #94A3B8; }
