@@ -196,4 +196,9 @@
    La hauteur est posée par le script ; `aspect-ratio` sert de valeur d'attente
    pour que la page ne saute pas avant que le bundle n'arrive. */
 .ppcard-fit { width: 100%; aspect-ratio: 1200 / 675; overflow: hidden; }
-.ppcard-fit > .ppcard { transform-origin: top left; }
+/* L'ÉCHELLE PAR DÉFAUT, EN CSS. Sans elle, une page dont le bundle tarde ou
+   échoue montrait la carte à ses 1200 px réels dans une boîte de 780 : coupée
+   aux deux tiers, pied de page et bande invisibles (constaté à l'écran).
+   0.65 = 780/1200, la colonne de lecture de l'article — juste avant même que
+   le script n'arrive, et le script affine ensuite au pixel. */
+.ppcard-fit > .ppcard { transform-origin: top left; transform: scale(.65); }
