@@ -404,17 +404,23 @@ font-weight:700;color:var(--ink);display:flex;align-items:center;gap:10px}
    il appartient au cockpit, et aucune hauteur d'iframe ne peut l'absorber
    sans mesurer son contenu (impossible d'un document à l'autre). */
 .pp-ck{margin:10px 0 40px}
-.pp-ck-cap{font-size:14.5px;color:var(--mid);margin:0 0 14px;max-width:80ch}
+.pp-ck-scope{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:0 0 14px}
+.pp-ck-pill{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',ui-monospace,monospace;
+font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0A6B3D;
+background:#F0FDF4;border:1px solid #BBF7D0;padding:7px 12px;max-width:100%}
+.pp-ck-pill i{width:7px;height:7px;border-radius:50%;background:#0E8A4F;flex:none}
+.pp-ck-cap{font-size:14.5px;color:var(--mid);margin:0;flex:1 1 240px;min-width:0;max-width:none}
 .pp-ck-none{font-size:15px;color:var(--mid);margin:0;padding:26px 0;
 border-top:1px solid rgba(15,23,42,.10);border-bottom:1px solid rgba(15,23,42,.10)}
+/* Pas d'ascenseur autour de l'iframe : le document embarqué gère sa hauteur,
+   et la liste interne du cockpit défile si besoin (jamais un second scroll). */
 .pp-ck-box{border-top:1px solid rgba(15,23,42,.10);border-bottom:1px solid rgba(15,23,42,.10);
 overflow:hidden;background:#fff}
-.pp-ck-box iframe{display:block;width:100%;height:min(1240px,94vh);border:0;background:#fff}
+.pp-ck-box iframe{display:block;width:100%;height:1100px;border:0;background:#fff;
+overflow:hidden}
 @media(max-width:760px){
  .pp-ck-box{border-radius:0}
- /* Sous 861 px le cockpit sort du modele de boite fixe (il defile en interne) :
-    on lui donne une hauteur genereuse plutot qu'une part du viewport. */
- .pp-ck-box iframe{height:82vh;min-height:600px}
+ .pp-ck-box iframe{height:min(920px,85vh);min-height:640px}
 }
 
 /* LE FIL D'ARIANE DE LA PAGE DU JOUR — une ligne, et rien d'autre (retour
