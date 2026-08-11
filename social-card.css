@@ -145,12 +145,21 @@
 .ppcard.f-x .vb { font-size: 15px; padding: 14px 17px 17px; }
 .ppcard.f-x .vb b { font-size: 62px; }
 
-/* ── les emplacements d'images ───────────────────────────────────────────── */
+/* ── les emplacements d'images ─────────────────────────────────────────────
+   Logo : contain + centré sur aplat (se fond dans la case).
+   Monogramme : cover (SVG plein teinté, initiales déjà centrées dans le SVG). */
 .ppcard .media { display: flex; gap: 18px; padding: 0 44px; }
 .ppcard.f-x .media { padding: 0; flex: none; height: 352px; }
-.ppcard .im { flex: 1; min-width: 0; border-radius: 12px; overflow: hidden; background: #DCE5EE;
-  position: relative; }
+.ppcard .im { flex: 1; min-width: 0; border-radius: 0; overflow: hidden; background: #0B1220;
+  position: relative; display: flex; align-items: center; justify-content: center; }
 .ppcard .im img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* LOGO (favicon / og) : pas de crop agressif — centré, fond sombre qui absorbe. */
+.ppcard .im.logo { background: #0E1A2C; }
+.ppcard .im.logo img { width: 72%; height: 72%; object-fit: contain; object-position: center;
+  display: block; margin: auto; }
+/* MONOGRAMME : le SVG remplit la case (initiales centrées dans le SVG). */
+.ppcard .im.mono { background: transparent; }
+.ppcard .im.mono img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .ppcard .im .cap { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(11,18,32,.72);
   color: #fff; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 15px;
   letter-spacing: .12em; font-weight: 700; padding: 9px 12px; text-transform: uppercase;
