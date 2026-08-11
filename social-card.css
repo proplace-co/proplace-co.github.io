@@ -186,3 +186,14 @@
    qui sera rasterisé. */
 .ppstage { position: relative; overflow: hidden; }
 .ppstage > .ppcard { position: absolute; top: 0; left: 0; }
+
+/* ── LA MÊME CARTE, DANS L'ARTICLE ────────────────────────────────────────
+   La carte garde ses 1200 px RÉELS et c'est src/live/fit.ts qui la réduit par
+   `transform: scale()` — ce qu'on lit est donc au pixel près ce qui sera
+   rasterisé pour LinkedIn. Même gabarit, même fichier, deux sorties.
+   Rendue ici en HTML et non en PNG : coût nul, texte net à tous les zooms, et
+   le titre reste sélectionnable (donc lisible par les moteurs).
+   La hauteur est posée par le script ; `aspect-ratio` sert de valeur d'attente
+   pour que la page ne saute pas avant que le bundle n'arrive. */
+.ppcard-fit { width: 100%; aspect-ratio: 1200 / 675; overflow: hidden; }
+.ppcard-fit > .ppcard { transform-origin: top left; }

@@ -93,7 +93,9 @@
 .ppart > h2:first-child, .ppart section:first-child h2 { margin-top: 0; }
 
 /* les intertitres de rubrique — chapeau monospace à filet vert, comme la home */
-.ppart h3, .ppart h3.art-sub { margin: 52px auto 22px;
+/* `auto` ici écrasait le `margin-left:0` de la colonne : mesuré, les titres
+   d'opération partaient 178 px plus à droite que le texte. Marges explicites. */
+.ppart h3, .ppart h3.art-sub { margin: 52px 0 22px;
   font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500;
   letter-spacing: .24em; text-transform: uppercase; color: #94A3B8; border: 0; padding: 0;
   display: flex; align-items: center; gap: 12px; }
@@ -101,7 +103,7 @@
   height: 2px; background: #0E8A4F; border-radius: 2px; flex: none; }
 
 /* le titre d'une opération décryptée */
-.ppart h4 { margin: 46px auto 14px; font-size: clamp(20px, 2vw, 26px); line-height: 1.24;
+.ppart h4 { margin: 46px 0 14px; font-size: clamp(20px, 2vw, 26px); line-height: 1.24;
   letter-spacing: -.03em; font-weight: 700; color: #0F172A; }
 .ppart h4 a { color: inherit; border: 0; }
 
@@ -112,13 +114,15 @@
 
 /* ── LES CARTES DU MARCHÉ — pleine largeur, centrées, une surface bordée ─── */
 .ppart .art-secviz { display: block; margin: 32px 0 40px; border: 1px solid #E7EBF0;
-  overflow: hidden; line-height: 0; background: #F8FAFC;
+  border-radius: 0; overflow: hidden; line-height: 0; background: #F8FAFC;
   transition: border-color .18s ease, transform .18s ease; }
 .ppart .art-secviz:hover { border-color: #0F172A; transform: translateY(-2px); }
+.ppart .art-viz2 { display: flex; flex-wrap: wrap; gap: 20px; margin: 32px 0 40px; }
+.ppart .art-viz2 .art-secviz { flex: 1 1 340px; margin: 0; }
 .ppart img { display: block; width: 100%; height: auto; }
 
 /* ── « le coup d'après » ─────────────────────────────────────────────────── */
-.ppart .pros-inline { margin: 24px auto 32px; padding: 22px 26px; background: #F4FAF6;
+.ppart .pros-inline { margin: 24px 0 32px; padding: 22px 26px; background: #F4FAF6;
   border: 1px solid #C8E6D5; border-left: 3px solid #0E8A4F; border-radius: 0; }
 .ppart .pros-il { margin: 0 0 12px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
   font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #0A6B3D; font-weight: 600; }
@@ -180,3 +184,46 @@
   .ppart .art-allops ul { columns: 1; }
   .ppart h2 { margin-top: 48px; }
 }
+
+/* ── « LES SECTEURS QUI BOUGENT » — le bandeau repliable et sa heatmap ──────
+   Il restait au look de l'ancienne page : boîte grise arrondie, chevron mou.
+   Même grammaire que le reste : une surface claire, des angles droits, un
+   chapeau monospace, et le vert de marque pour dire que c'est ouvrable. */
+.ppart .ihm-fold, .ihm-fold { margin: 26px 0 34px; background: #F8FAFC;
+  border: 1px solid #E7EBF0; border-radius: 0; }
+.ihm-fold > summary { cursor: pointer; list-style: none; padding: 16px 22px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500;
+  letter-spacing: .24em; text-transform: uppercase; color: #0F172A;
+  display: flex; align-items: center; gap: 12px; }
+.ihm-fold > summary::-webkit-details-marker { display: none; }
+.ihm-fold > summary::before { content: ""; display: block; width: 22px; height: 2px;
+  background: #0E8A4F; border-radius: 2px; flex: none; }
+.ihm-fold > summary::after { content: "▾"; margin-left: auto; color: #0A6B3D;
+  font-size: 12px; letter-spacing: 0; }
+.ihm-fold[open] > summary::after { content: "▴"; }
+.ihm-fold > summary em { font-style: normal; letter-spacing: .06em; text-transform: none;
+  color: #94A3B8; font-weight: 400; }
+.ihm-fold .ihm-wrap { margin: 0; padding: 0 22px 22px; }
+/* les tuiles : angles droits, filet blanc franc, libellés au gabarit du site */
+.ihm { border: 1px solid #E7EBF0; border-radius: 0; background: #fff; }
+.ihm-t { border: 2px solid #fff; border-radius: 0; }
+.ihm-n { font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 12px;
+  font-weight: 700; letter-spacing: -.01em; }
+.ihm-c { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 9.5px;
+  letter-spacing: .08em; font-weight: 500; opacity: .9; }
+.ihm .sp-tip { border-radius: 0; background: #0B1220; }
+
+/* ── LA CARTE D'UNE OPÉRATION, dans le fil de l'article ───────────────────
+   Elle se cale sur la colonne de lecture, sous le titre et sa source : on lit
+   « X rachète Y, pour tant », puis on lit le décryptage. Marges généreuses —
+   c'est une respiration, pas une vignette. */
+.ppart .opcard { margin: 22px 0 34px; max-width: var(--measure); }
+.ppart .opcard .ppcard-fit { border: 1px solid #E7EBF0; }
+/* LA CARTE N'EST PAS DU TEXTE D'ARTICLE. Sans cette exemption, la typographie
+   ci-dessus s'invitait dedans : `.ppart b` repeignait en encre foncée le gras
+   de la phrase — invisible sur un fond d'encre, et vert sur vert sur la carte
+   des levées (constaté à l'écran). Le gabarit reprend la main sur tout ce qui
+   est couleur et dimension. */
+.ppart .opcard b, .ppart .opcard strong, .ppart .opcard em { color: inherit; }
+.ppart .opcard img { width: auto; max-width: none; }
+@media (max-width: 720px) { .ppart .opcard { margin: 18px 0 26px; } }
