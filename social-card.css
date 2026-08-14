@@ -102,6 +102,12 @@
 /* ① l'opération : acquéreur → cible → montant */
 .ppcard .band .deal { display: flex; align-items: center; gap: 20px; padding: 30px 44px; }
 .ppcard.f-x .band .deal { padding: 18px 34px; gap: 14px; }
+/* Chaque côté de la flèche : NOM + activité en italique dessous (14/08). */
+.ppcard .band .side { display: flex; flex-direction: column; min-width: 0; }
+.ppcard .band .lgs { font-style: italic; font-size: 20px; font-weight: 500;
+  color: #42505E; margin-top: 4px; white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis; }
+.ppcard.f-x .band .lgs { font-size: 15px; }
 .ppcard .band .lg { font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: 50px;
   text-transform: uppercase; letter-spacing: -.01em; }
 .ppcard.f-x .band .lg { font-size: 34px; }
@@ -180,13 +186,15 @@
   letter-spacing: -.02em; font-weight: 900; font-size: 52px;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4;
   overflow: hidden; word-break: break-word; max-width: 100%; }
-.ppcard .im.name .nm.sm { font-size: 40px; }
-.ppcard .im.name .nm.xs { font-size: 30px; letter-spacing: -.01em; }
-.ppcard .im.name .nm.xxs { font-size: 22px; letter-spacing: 0; -webkit-line-clamp: 5; }
-.ppcard.f-x .im.name .nm { font-size: 38px; }
-.ppcard.f-x .im.name .nm.sm { font-size: 30px; }
-.ppcard.f-x .im.name .nm.xs { font-size: 22px; }
-.ppcard.f-x .im.name .nm.xxs { font-size: 17px; }
+.ppcard .im.name .nm.sm { font-size: 44px; }
+.ppcard .im.name .nm.xs { font-size: 34px; letter-spacing: -.01em; }
+.ppcard .im.name .nm.xxs { font-size: 24px; letter-spacing: 0; -webkit-line-clamp: 5; }
+/* f-x : tailles remontées le 14/08 (retour Antoine : « MINDGARD écrit beaucoup
+   plus petit » alors que la tuile a la place — le nom EST l'image). */
+.ppcard.f-x .im.name .nm { font-size: 48px; }
+.ppcard.f-x .im.name .nm.sm { font-size: 38px; }
+.ppcard.f-x .im.name .nm.xs { font-size: 28px; }
+.ppcard.f-x .im.name .nm.xxs { font-size: 20px; }
 /* MONOGRAMME legacy */
 .ppcard .im.mono { background: transparent; }
 .ppcard .im.mono img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
@@ -195,6 +203,12 @@
   letter-spacing: .12em; font-weight: 700; padding: 9px 12px; text-transform: uppercase;
   text-align: center; }
 .ppcard.f-x .im .cap { font-size: 11px; padding: 6px 8px; }
+/* L'ACTIVITÉ sous la légende de tuile — en italique, un FAIT (14/08). */
+.ppcard .im .cap2 { position: absolute; left: 0; right: 0; bottom: 34px;
+  background: rgba(11,18,32,.6); color: #E6EDF3; font-style: italic;
+  font-size: 16px; font-weight: 500; padding: 6px 12px; text-align: center;
+  text-transform: none; letter-spacing: 0; }
+.ppcard.f-x .im .cap2 { bottom: 23px; font-size: 12px; padding: 4px 8px; }
 .ppcard .media.duo .im { aspect-ratio: 1/1; }
 .ppcard.f-x .media.duo { flex-direction: column; width: 272px; gap: 16px; }
 .ppcard.f-x .media.duo .im { flex: 1; aspect-ratio: auto; min-height: 0; }
