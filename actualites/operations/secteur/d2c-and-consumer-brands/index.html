@@ -769,6 +769,30 @@ font-size:13px;padding:10px 14px;border-radius:10px;text-decoration:none;margin-
 .ppart .aa-meta a:hover { color: #0A6B3D; }
 /* « le coup d'après » d'une ligne : pleine largeur SOUS la rangée */
 .ppart .art-allops li .pros-inline { flex: 1 1 100%; margin: 6px 0 2px; }
+/* LISTE PLATE ORDRE COCKPIT (15/08) : plus de colonnes par secteur — une
+   rangée par item, A→Z comme la liste groupée par moteur du cockpit. */
+.ppart .art-allops ul.ed-flat { columns: auto; border-top: 1px solid #E2E8F0; }
+/* LE DÉCRYPTAGE SOUS SA LIGNE (15/08 : « tout leur texte de décryptage pour
+   chacun d'eux et leur carte sociale à droite ») : panneau pleine largeur
+   dans la rangée, carte sociale flottée à droite, texte autour. */
+.ppart .art-allops li .ed-decrypt { flex: 1 1 100%; margin: 10px 0 4px;
+  padding: 12px 14px; background: #F8FAFC; border: 1px solid #E2E8F0;
+  border-radius: 8px; overflow: hidden; }
+.ppart .ed-decrypt h4 { margin: 0 0 8px; font-size: 17px; }
+.ppart .ed-decrypt .art-srcline { margin: 0 0 12px; }
+.ppart .ed-decrypt p { font-size: 14.5px; line-height: 1.62; color: #3F4E61;
+  margin-bottom: 12px; }
+.ppart .ed-decrypt .opcard { float: right; width: min(400px, 46%);
+  margin: 0 0 12px 18px; }
+.ppart .ed-decrypt-solo { margin: 14px 0 0; padding: 12px 14px;
+  background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px;
+  overflow: hidden; }
+.ppart .ed-decrypt-solo .opcard { float: right; width: min(400px, 46%);
+  margin: 0 0 12px 18px; }
+@media (max-width: 900px) {
+  .ppart .ed-decrypt .opcard, .ppart .ed-decrypt-solo .opcard { float: none;
+    width: 100%; margin: 12px 0; }
+}
 @media (max-width: 760px) {
   .ppart .aa-n { max-width: 100%; }
   .ppart .aa-d { min-width: 100%; white-space: normal; }
