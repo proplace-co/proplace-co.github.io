@@ -174,8 +174,11 @@
 .ppcard .im { flex: 1; min-width: 0; border-radius: 0; overflow: hidden; background: #0B1220;
   position: relative; display: flex; align-items: center; justify-content: center; }
 .ppcard .im img { width: 100%; height: 100%; object-fit: cover; display: block; }
-/* LOGO (favicon / og) : pas de crop agressif — centré, fond sombre qui absorbe. */
-.ppcard .im.logo { background: #0E1A2C; }
+/* LOGO (favicon / og) : FONDU dans la carte (retour Antoine 15/08 soir :
+   « les logos sont bizarrement encadrés… je voudrais qu'ils se fondent
+   parfaitement ») — plus d'aplat sombre derrière, le logo flotte sur le fond
+   du gabarit ; contain + centré, jamais de crop. */
+.ppcard .im.logo { background: transparent; }
 .ppcard .im.logo img { width: 72%; height: 72%; object-fit: contain; object-position: center;
   display: block; margin: auto; }
 /* NAMEPLATE — le nom en toutes lettres, le plus gros possible. */
@@ -287,11 +290,14 @@
 /* Le montant ne se laisse jamais comprimer par un nom long. */
 .ppcard .band .amt { flex: none; }
 /* Une cellule de bande porte parfois du TEXTE (« ROYAUME-UNI », « SERIES B »)
-   là où le gabarit prévoyait un nombre : deux crans de repli, sinon ça déborde. */
-.ppcard .band .r1 b.s { font-size: 46px; }
-.ppcard .band .r1 b.s2 { font-size: 32px; }
-.ppcard.f-x .band .r1 b.s { font-size: 31px; }
-.ppcard.f-x .band .r1 b.s2 { font-size: 22px; }
+   là où le gabarit prévoyait un nombre : deux crans de repli, sinon ça déborde.
+   ⚠️ Les deux renderers posent s/s2 sur le DIV .r1, pas sur le <b> — les
+   anciens sélecteurs `b.s` ne matchaient JAMAIS (« ÉTATS-UNIS » débordait et
+   semblait « trop à droite », retour Antoine 15/08 soir). */
+.ppcard .band .r1.s b { font-size: 46px; }
+.ppcard .band .r1.s2 b { font-size: 32px; }
+.ppcard.f-x .band .r1.s b { font-size: 31px; }
+.ppcard.f-x .band .r1.s2 b { font-size: 22px; }
 
 /* ── CE QUE FAIT LA SOCIÉTÉ — lisible d'un coup d'œil ─────────────────────
    Retour d'Antoine, 11/08 : « la lisibilité est importante, il faut que ce soit
@@ -299,9 +305,27 @@
    de la taille des anciennes phrases de marque, qu'on lisait en s'approchant.
    Ici elle porte le SENS de la carte — ce que fait la société — et doit se lire
    à la taille d'une vignette LinkedIn, donc de loin. */
+/* …et elle SAUTE DES LIGNES au lieu de se tronquer en « … » (retour Antoine
+   15/08 soir : « il n'y a pas de description sur plusieurs lignes, il y a … »).
+   3 lignes max — l'activité est bornée à 70 caractères côté spec, donc 2
+   lignes en pratique ; le clamp n'est qu'un garde-fou absolu. */
 .ppcard .said { font-size: 34px; font-weight: 600; opacity: 1; margin-top: 4px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;
+  overflow: hidden; }
 .ppcard.f-x .said { font-size: 26px; padding-top: 6px; }
 /* Le nom de la société est le SUJET : il ne doit pas être plus discret que le
    secteur qui le suit. */
 .ppcard .who { opacity: .92; }
+/* La légende d'activité (.cap2) colle au bas de la tuile quand il n'y a PAS
+   de légende ACQUÉREUR/CIBLE sous elle (tuile-nom SOLO, 15/08 soir : « il
+   manque le texte sous KOG ») — le décalage ne sert qu'à laisser la place
+   du .cap quand il existe. */
+.ppcard .im .cap2 { bottom: 0; }
+.ppcard.f-x .im .cap2 { bottom: 0; }
+.ppcard .im:has(.cap) .cap2 { bottom: 34px; }
+.ppcard.f-x .im:has(.cap) .cap2 { bottom: 23px; }
+/* f-x : les frères (.word/.who/.said) ont leur retrait porté par `.txt`
+   (34 px) — .who-meta gardait le SIEN en plus et partait à 68 px (« DATA &
+   ANALYTICS devrait être aligné à gauche », 15/08 soir). f-li n'a pas ce
+   rebasage : chacun garde ses 44 px, on n'y touche pas. */
+.ppcard.f-x .who-meta { padding-left: 0; padding-right: 0; }
