@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Votre deal flow — Proplace</title>
+<!-- RELAIS visible en proplace.co (retour Antoine 16/08 : « c'est normal
+     qu'on ne mette pas une adresse en proplace ? ») : le site est statique,
+     la résolution fonds → jeton /cibles vit sur le backend (sourcing-agent).
+     Cette page porte l'adresse de marque et passe la main en transmettant
+     TOUTE la query (fund, eval, search, rs…). -->
+<style>
+  html,body{height:100%;margin:0}
+  body{display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(175deg,#111E33 0%,#0B1220 100%);color:#fff;
+    font-family:'IBM Plex Sans',system-ui,-apple-system,sans-serif}
+  .w{text-align:center}
+  .dot{width:12px;height:12px;border-radius:50%;background:#0E8A4F;
+    margin:0 auto 18px;animation:p 1.1s ease-in-out infinite}
+  @keyframes p{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.7);opacity:.4}}
+  p{margin:0;font-size:15px;color:#9FB6CA}
+  b{display:block;margin-bottom:6px;font-size:18px;color:#fff;letter-spacing:-.01em}
+</style>
+</head>
+<body>
+<div class="w">
+  <div class="dot"></div>
+  <b>Ouverture de votre deal flow…</b>
+  <p>Vos cibles arrivent.</p>
+</div>
+<script>
+  location.replace('https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go'
+    + location.search);
+</script>
+</body>
+</html>
