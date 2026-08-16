@@ -1303,6 +1303,34 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
    se lit via le lien de la case (URL /secteur/<slug>/<date>/). */
 var iframe=document.getElementById("pp-market-ck");
 if(!iframe)return;
+/* PONT HAUTEUR → CADRE (16/08 au soir, retour Antoine : « le bas du cockpit
+   est coupé, il n'y a pas de bouton afficher plus »). La SPA en mode embed
+   PUBLIE déjà la hauteur réelle de son contenu — `postMessage({type:"pp-ck-h"})`
+   dans CartePage.tsx, réémis par un ResizeObserver — mais aucune page bakée ne
+   l'écoutait : les messages partaient à la poubelle et le cadre restait figé à
+   1100 px de CSS. Mesuré sur Developer & IT Infrastructure : 1949 px de
+   contenu, donc 849 px tranchés, et avec eux le bouton « Afficher plus » de
+   chaque moteur, qui vit sous sa liste. On suit la hauteur publiée : plus de
+   découpe, et déplier un moteur agrandit le cadre au lieu de disparaître.
+   EXCEPTION `.nl-ckwrap` : sur la page d'abonnement le cockpit est un APERÇU
+   volontairement raccourci et fondu au blanc — on n'y touche pas. */
+var apercu=!!(iframe.closest&&iframe.closest(".nl-ckwrap"));
+var hcur=0;
+window.addEventListener("message",function(ev){
+  if(apercu)return;
+  if(ev.source!==iframe.contentWindow)return;
+  var d=ev.data;
+  if(!d||d.type!=="pp-ck-h")return;
+  var h=Math.round(Number(d.h)||0);
+  /* Garde-fou contre une valeur aberrante (NaN, 0, message d'un tiers), PAS
+     contre une liste longue : « Afficher N de plus » ouvre tout d'un coup et
+     un feed de 445 dossiers mesure 26 708 px — un plafond bas rejetait
+     silencieusement la vraie hauteur et le cadre restait figé (mesuré). */
+  if(!(h>240)||h>400000)return;
+  if(Math.abs(h-hcur)<2)return;
+  hcur=h;
+  iframe.style.height=h+"px";
+});
 window.addEventListener("pp-edition-day",function(ev){
   var d=(ev&&ev.detail&&ev.detail.day)||"";
   if(!/^\d{4}-\d{2}-\d{2}$/.test(d))return;
