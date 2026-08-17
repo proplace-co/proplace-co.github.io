@@ -1,0 +1,1180 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S4BT - Solutions for Business Travel — analyse Mobility &amp; Transportation | Proplace</title><meta name="description" content="Mobility &amp; Transportation · Logiciels ERP et de Paiement TravelTech B2B · Series E+"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/s4bt-solutions-for-business-travel/"><meta property="og:type" content="article"><meta property="og:title" content="S4BT - Solutions for Business Travel — analyse Mobility &amp; Transportation | Proplace"><meta property="og:description" content="Mobility &amp; Transportation · Logiciels ERP et de Paiement TravelTech B2B · Series E+"><meta property="og:url" content="https://proplace.co/analysis/s4bt-solutions-for-business-travel/"><meta property="og:image" content="https://proplace.co/analysis/radars/s4bt-solutions-for-business-travel.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://proplace.co/analysis/radars/s4bt-solutions-for-business-travel.png"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+/* Gabarit IDENTIQUE a la nav de la page d'accueil (.pp-nav-inner : 1200 / 32) —
+   le bandeau LIVE et la bande des jours se calent dessus, donc tout demarre
+   exactement sous le logo. Miroir React : components/SiteHeader.tsx. */
+.pph .in{max-width:1200px;margin:0 auto;padding:0 32px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+/* Le bandeau LIVE tient la largeur DE LA PAGE, pas celle de l'ecran (retour
+   Antoine 10/08). Regle MIROIR de src/live/core.ts — elle est repetee ici pour
+   etre dans le <head> : sans elle la barre s'afficherait pleine largeur puis
+   sauterait au chargement du bundle. */
+.pp-livewrap{max-width:1200px;margin:0 auto;padding:0 32px}
+/* UNE SEULE SURFACE : la barre LIVE et la bande des dates dans le meme cadre
+   d'encre, angles droits (miroir de src/live/core.ts). */
+.pp-band{background:#0B1220;border:1px solid #1E2C41}
+.pp-band .pp-live{border-bottom:1px solid #1E2C41}
+/* Le bandeau, la bande des jours et le contenu partagent la MEME gouttiere a
+   toutes les largeurs — sinon les trois blocs demarrent a trois x differents. */
+@media(max-width:760px){.pp-livewrap{padding:0 18px}.wrap.tm-wrap{padding:0 18px}}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+/* (retour CEO 20/07) — mobile : « Mon compte » s'affichait À LA VERTICALE (un mot,
+   voire une lettre, par ligne). Cause : dans .pph nav (flex), .pph-sect et .pph-lang
+   sont en flex:0 0 auto mais PAS .pph-auth → c'était le SEUL enfant compressible, il
+   absorbait tout le débordement et rétrécissait à ~0, forçant le texte du bouton à
+   passer à la ligne. Il devient incompressible : c'est le défileur horizontal du nav
+   (v74) qui prend le relais, comme prévu. */
+.pph .pph-auth{flex:0 0 auto;display:inline-flex;align-items:center;white-space:nowrap}
+.pph .pph-auth button,.pph .pph-acct,.pph .pph-acct-btn{flex:0 0 auto;white-space:nowrap}
+/* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
+   « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
+   couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
+.pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{color:#fff;background:#0E8A4F;padding:8px 14px;
+border-radius:9px;font-weight:600;border:none;cursor:pointer;font-family:inherit;line-height:1.2}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover,.pph button.cta:hover,.pph .pph-auth button.cta:hover{background:#0A6B3D}
+/* Les trois surfaces editoriales — MEME rendu que la nav React (Nav.tsx, 10/08) :
+   liens sobres colles a la marque (order:-1 + margin-right:auto), filet de separation,
+   souligne vert au survol. L'ancienne pastille verte segmentee est retiree. */
+.pph .pph-sect{display:inline-flex;align-items:center;gap:22px;white-space:nowrap;flex:0 0 auto;
+order:-1;margin-right:auto;padding-left:20px;position:relative;
+border:0;background:none;border-radius:0;overflow:visible}
+.pph .pph-sect::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+width:1px;height:16px;background:rgba(15,23,42,.12)}
+.pph .pph-sect a{position:relative;padding:6px 0;color:#5B6B7F;font-weight:500;font-size:13.5px;
+letter-spacing:.005em;text-decoration:none;transition:color .2s ease}
+.pph .pph-sect a::after{content:"";position:absolute;left:0;right:0;bottom:1px;height:1.5px;
+border-radius:2px;background:#0E8A4F;transform:scaleX(0);transform-origin:left center;
+transition:transform .22s ease}
+.pph .pph-sect a:hover{color:#0F172A;background:none}
+.pph .pph-sect a.on{color:#0F172A;font-weight:600;background:none}
+.pph .pph-sect a:hover::after,.pph .pph-sect a.on::after{transform:scaleX(1)}
+/* « Accueil » fait doublon avec le logo, qui pointe deja la home (parite React). */
+.pph .pph-home{display:none}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ /* v74 (R5) — le SEUL débordeur réel mesuré à 390px est CETTE nav (Connexion +
+    pastille News|Analysis + EN|FR ≈ 309px pour ~264px disponibles) : elle devient
+    son PROPRE défileur horizontal (règle « wide content » : overflow-x:auto sur la
+    pièce INTERNE — jamais sur un ancêtre d'une barre sticky). Alignée à gauche en
+    mobile : un débordement côté start (flex-end) serait inatteignable au scroll. */
+ .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pph nav::-webkit-scrollbar{display:none}
+ /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
+    (même piège que la couleur du CTA, retour CEO 19/07). */
+ .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
+ .pph .pph-sect{gap:14px;padding-left:12px}
+ .pph .pph-sect a{padding:6px 0;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+ /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
+    défileur (order:-1) → les 3 boutons sont TOUJOURS visibles à gauche, c'est
+    « Connexion » qui déborde/scrolle si l'écran est trop étroit (demande CEO). */
+ .pph nav .pph-sect{flex:0 0 auto}
+ /* v75 (bug #7) — la pastille EN|FR est hors du <nav> (défileur) : collée à droite du
+    header, toujours atteignable même quand le <nav> déborde/scrolle. */
+ .pph-lang{margin-left:auto;flex:0 0 auto}
+}
+/* ≤430px : les 3 pastilles + Connexion tiennent ensemble (resserrage police/padding). */
+@media(max-width:430px){
+ .pph nav{gap:7px}
+ .pph .pph-sect{gap:11px;padding-left:10px}
+ .pph .pph-sect a{padding:6px 0;font-size:11.5px;letter-spacing:-.01em}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+/* Sections brand : même grammaire que le header (liens sobres, pas pastille). */
+.ppf-sect,.ppf .pph-sect{display:inline-flex;align-items:center;gap:18px;flex-wrap:wrap;
+border:0;background:none;border-radius:0;overflow:visible}
+.ppf-sect a,.ppf .pph-sect a{position:relative;padding:4px 0;color:#a8e6c4;font-weight:500;
+font-size:13.5px;text-decoration:none;margin:0;border:0;background:none;transition:color .2s ease}
+.ppf-sect a::after,.ppf .pph-sect a::after{content:"";position:absolute;left:0;right:0;bottom:0;
+height:1.5px;border-radius:2px;background:#4AC67F;transform:scaleX(0);transform-origin:left center;
+transition:transform .22s ease}
+.ppf-sect a:hover,.ppf .pph-sect a:hover,.ppf-sect a.on,.ppf .pph-sect a.on{color:#fff;background:none}
+.ppf-sect a:hover::after,.ppf .pph-sect a:hover::after,.ppf-sect a.on::after,.ppf .pph-sect a.on::after{transform:scaleX(1)}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:center;gap:16px;flex-wrap:wrap;text-align:center}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+/* AskBand bas de page (secteurs / actualites statiques) — miroir React AskBand.tsx */
+.pp-ask{padding:56px 24px;border-top:1px solid #E4EAF0;text-align:center;background:#F7F9FB;
+font-family:'IBM Plex Sans','Inter',system-ui,sans-serif;color:#0B1220}
+.pp-ask h2{margin:0 auto 16px;font-size:clamp(21px,2.4vw,30px);font-weight:600;
+letter-spacing:-.035em;line-height:1.14;max-width:34ch}
+.pp-ask-body{font-size:15px;color:#5A6B7D;margin:0 auto 22px;max-width:62ch;line-height:1.65}
+.pp-ask .ur{display:flex;gap:9px;max-width:600px;margin:0 auto;justify-content:center;flex-wrap:wrap}
+.pp-ask .uf{display:flex;align-items:center;gap:9px;flex:1;min-width:220px;height:50px;padding:0 15px;
+background:#fff;border:1px solid #CBD5E1;border-radius:8px;font-size:15px}
+.pp-ask .uf input{flex:1;border:0;outline:none;font-size:15px;background:none;
+font-family:inherit;min-width:0}
+.pp-ask .ub{flex:none;height:50px;padding:0 24px;border:0;border-radius:8px;background:#0E8A4F;
+color:#fff;font-size:14.5px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit}
+.pp-ask .ub:hover{background:#0A6B3D}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "S4BT - Solutions for Business Travel — Mobility & Transportation", "description": "Mobility & Transportation · Logiciels ERP et de Paiement TravelTech B2B · Series E+", "inLanguage": "fr", "url": "https://proplace.co/analysis/s4bt-solutions-for-business-travel/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/s4bt-solutions-for-business-travel/"}, "image": ["https://proplace.co/analysis/radars/s4bt-solutions-for-business-travel.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}, "about": {"@type": "Organization", "name": "S4BT - Solutions for Business Travel"}, "datePublished": "2026-08-17", "dateModified": "2026-08-17"}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="direct">Live</a><a class="pph-mkt" href="/actualites/operations/secteurs/" data-i18n="marches">Live par secteur</a></span><span class="pph-auth" id="pph-auth"><a class="cta" href="https://proplace.co/#login" data-i18n="login">Log in</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><div class="pp-livewrap"><div class="pp-band"><div id="pp-live"></div></div></div><script defer src="/live-banner.js"></script><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",direct:"Live",marches:"Live by sector",marchesFooter:"Live by sector",dealflow:"My deal flow",analysis:"Analysis",research:"Research",mindmaps:"Mindmaps",dashboard:"Open dashboard",acct:"Connected",mSettings:"Settings",mPipeline:"My deal flow",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Explore",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"© 2026 Proplace",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Se connecter",news:"Actualités",direct:"Live",directFooter:"En direct",marches:"Live par secteur",marchesFooter:"En direct par secteur",dealflow:"Mon deal flow",analysis:"Analyses",research:"La recherche",mindmaps:"Mindmaps",dashboard:"Ouvrir le dashboard",acct:"Connecté",mSettings:"Paramètres",mPipeline:"Mon deal flow",mDashboard:"Tableau de bord",logout:"Se déconnecter",tagline:"Votre AI Corporate Developer",insights:"Explorer",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"© 2026 Proplace",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){
+// Header loggé : Connecté ▾ → Mon deal flow (/cibles) · Paramètres (/compte).
+// La déconnexion vit uniquement dans le footer.
+var compte=(lang==="fr"?"/fr/compte":"/compte");
+var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"");
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+pipeline+'">'+t.dealflow+"</a>"+
+'<a role="menuitem" href="'+compte+'">'+t.mSettings+"</a>"+
+"</div></div>";
+return {i:1,h:h,pipeline:pipeline,compte:compte};}
+return {i:0,h:'<a class="cta" href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200;
+// Toujours SOUS le bouton (menu court = Mon compte + Déco) — plus de flip au-dessus.
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Historique Research → Mon compte (onglet Recherches). Enregistre chaque fiche consultée
+   dans localStorage (même clé que ComptePage). No-op hors /research/<slug>/. */
+(function recordResearchVisit(){
+try{
+ var p=(location.pathname||"").replace(/\/+$/,"")+"/";
+ if(!/\/(en\/)?research\/[^/]+\//.test(p))return;
+ if(/\/(en\/)?research\/?$/.test((location.pathname||"").replace(/\/+$/,"")))return;
+ var title="";
+ var h1=document.querySelector("main h1, .rp-head h1, h1");
+ if(h1&&h1.textContent)title=h1.textContent.trim();
+ if(!title)title=(document.title||"").split("|")[0].trim();
+ var url=location.pathname;
+ var key="proplace_research_history";
+ var arr=[];
+ try{arr=JSON.parse(localStorage.getItem(key)||"[]")||[];}catch(e){arr=[];}
+ if(!Array.isArray(arr))arr=[];
+ arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});
+ arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});
+ if(arr.length>40)arr=arr.slice(0,40);
+ localStorage.setItem(key,JSON.stringify(arr));
+}catch(e){}
+})();
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){
+ if(a.i){pf.innerHTML='<a href="'+(a.pipeline||"/cibles")+'">'+t.dealflow+'</a>'
+  +'<a href="'+(a.compte||"/compte")+'">'+t.mSettings+"</a>"
+  +'<button type="button" id="ppf-logout">'+t.logout+"</button>";
+  var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+ else{pf.innerHTML='<a href="/#login">'+t.login+"</a>";}}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">S4BT - Solutions for Business Travel</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "S4BT - Solutions for Business Travel"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">France</span>
+<span class="sb-tag">Series E+</span>
+<span class="sb-tag">Mobility &amp; Transportation</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px"></h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>France ·</span> Mobility &amp; Transportation · Logiciels ERP et de Paiement TravelTech B2B · Series E+</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Solutions ERP et fintech de gestion des processus de réservation et de paiement de voyages d'affaires pour les TMCs et entreprises en Europe.</p>
+<a href="https://.com" target="_blank"><i class="fas fa-globe"></i> Site Web</a>
+</div>
+</div>
+<span class="sb-nav-heading">Contact</span>
+<a class="nav-item bg-yellow" href="#fiche-contact"></a>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du marché</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle économique</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">PDG</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources et méthodologie</a>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;"></h1>
+<h2 class="subtitle-category">Mobility &amp; Transportation ➜ Logiciels ERP et de Paiement TravelTech B2B ➜ La plateforme d'infrastructure unifiée pour les voyages d'affaires européens</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div data-ct-card="" style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin:0 0 40px;box-shadow:0 2px 6px rgba(15,23,42,.08)"><div style="background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><div style="font-size:15px;font-weight:700"><h2 id="fiche-contact" style="font-size:15px;font-weight:700;margin:0;padding:0;color:#fff;display:inline"></h2></div><div style="display:flex;align-items:center;gap:9px"><span style="background:#059669;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.04em"></span><button onclick="var c=this.closest('div[data-ct-card]'),b=c.querySelector('div[data-ct-body]'),h=b.style.display==='none';b.style.display=h?'block':'none';this.innerHTML=h?'▾ Replier':'▸ Déplier'" style="font-family:Georgia,'Times New Roman',serif;font-size:12px;color:#e2e8f0;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:2px 9px;cursor:pointer;line-height:1.5;white-space:nowrap" type="button">▾ Replier</button></div></div><div data-ct-body="" style="padding:15px 18px;background:#fefce8"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:0 0 7px">Coordonnées du décideur</div><div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:6px">unavailable unavailable</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px"><a href="https://.com" rel="noopener nofollow" style="display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:#1d4ed8;text-decoration:none;background:#fff;border:1px solid #dbe7f3;border-radius:7px;padding:4px 10px;font-weight:600" target="_blank">🌐 Site web</a></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #fde68a">Logique du deal</div><div style="font-size:13px;color:#0f172a;line-height:1.5">L'acquisition crée une plateforme paneuropéenne inégalée capable d'imposer ses conditions de paiement B2B et de bloquer l'expansion des acteurs américains sur le segment de l'hôtellerie d'affaires à marges élevées. La logique industrielle est directe : le volume consolidé de réservations améliore les taux négociés pour les clients finaux, tandis que la capture des flux financiers via Trevium génère une rentabilité de type fintech sur chaque transaction.</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #fde68a">Séquence d'approche CEO</div><div data-ch="email" id="ap1"><div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:9px"><button data-ap-ch="email" style="border:1px solid #185c38;background:#185c38;color:#fff;font-size:12.5px;font-weight:700;padding:5px 14px;border-radius:7px;cursor:pointer;margin-right:6px" type="button">Email</button><button data-ap-ch="linkedin" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:12.5px;font-weight:700;padding:5px 14px;border-radius:7px;cursor:pointer;margin-right:6px" type="button">LinkedIn</button><span style="width:9px"></span><button data-ap-day="0" style="border:1px solid #185c38;background:#185c38;color:#fff;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J0</button><button data-ap-day="1" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J2</button><button data-ap-day="2" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J4</button><button data-ap-day="3" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J6</button><span data-ap-note="" style="font-size:11.5px;color:#64748b;margin-left:auto">4 messages espacés — J0, J2, J4, J6</span></div><div data-ap-msg="" data-ap-pane="email:0" style="display:block"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J0</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Objet :</b> Consolidation travel tech Europe</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Votre positionnement ERP et fintech dans la travel tech européenne retient mon attention. Seriez-vous ouvert à échanger 20 minutes, de façon confidentielle ? Bien à vous,
+ziad tak</pre></div><div data-ap-msg="" data-ap-pane="email:1" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J2</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Objet :</b> La logique derrière mon approche</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Bonjour unavailable,
+
+Notre playbook d'intégration — Goelett, CRC, SIAP, HotelHub — repose sur un principe simple : chaque acquisition accélère immédiatement les revenus grâce à notre réseau Amadeus, AmEx, BNP Paribas et Havas Voyages.
+
+Pour une société positionnée sur l'ERP et les paiements voyage, ce canal de distribution change radicalement l'équation commerciale.
+
+Ça vous parle ?
+
+Cordialement,
+ziad tak</pre></div><div data-ap-msg="" data-ap-pane="email:2" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J4</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Objet :</b> Un angle qui me semble évident</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Bonjour unavailable,
+
+Là où je vois la complémentarité la plus nette : notre base de clients grands comptes cherche précisément une couche ERP et récupération de TVA plus robuste — c'est aujourd'hui notre principal point de friction côté DSI et directeurs financiers.
+
+Votre expertise comblerait ce gap directement, sans délai de construction.
+
+Un échange exploratoire vous semblerait-il utile ?
+
+Bien à vous,
+ziad tak</pre></div><div data-ap-msg="" data-ap-pane="email:3" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J6</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Objet :</b> Je referme ce sujet ici</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Bonjour unavailable,
+
+Je ne veux pas insister davantage — je comprends que le timing ou les priorités ne s'y prêtent peut-être pas.
+
+Si la réflexion évolue de votre côté, je reste disponible pour un échange discret, sans engagement.
+
+Bien à vous,
+ziad tak</pre></div><div data-ap-msg="" data-ap-pane="linkedin:0" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J0</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Le marché européen du voyage d'affaires se fragmente encore — hôtels, paiements, ERP, workflows TMC : chaque brique est chez un acteur différent.
+
+Je construis une plateforme qui consolide cette chaîne, et ce que vous faites en ERP et fintech TravelTech s'inscrit exactement dans les angles que j'explore.
+
+Seriez-vous ouvert à en discuter 20 minutes, de façon confidentielle ?
+
+Bien à vous,
+ziad tak</pre></div><div data-ap-msg="" data-ap-pane="linkedin:1" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J2</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Pour être direct : je pilote une stratégie de consolidation sur le voyage d'affaires en Europe, avec €5Md de volume hôtelier annuel comme socle.
+
+La pièce qui m'intéresse aujourd'hui, c'est l'intégration ERP et la couche paiements — précisément là où vous opérez.
+
+La complémentarité me semble réelle. Ça vous parle ?
+
+Cordialement,
+ziad tak</pre></div><div data-ap-msg="" data-ap-pane="linkedin:2" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J4</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">J'ai déjà intégré plusieurs acteurs spécialisés — Goelett, HotelHub, SIAP — et ce qui crée de la valeur à chaque fois, c'est la vitesse : les clients de la cible accèdent immédiatement à notre réseau Amadeus, AmEx, BNP Paribas.
+
+Je pense que votre base installée gagnerait en levier dès le premier trimestre post-rapprochement.
+
+Un échange de 20 minutes pour tester cette hypothèse ensemble — qu'en dites-vous ?
+
+Bien à vous,
+ziad tak</pre></div><div data-ap-msg="" data-ap-pane="linkedin:3" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J6</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copié'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copier</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Je ne veux pas insister si le timing n'est pas le bon.
+
+Ma conviction reste entière sur la complémentarité, et la porte reste ouverte de mon côté.
+
+Un mot suffit si l'envie d'échanger vient plus tard.
+
+Cordialement,
+ziad tak</pre></div></div><script>(function(){var r=document.getElementById("ap1");if(!r)return;var ch=r.getAttribute("data-ch"),dy="0";function paint(){r.setAttribute("data-ch",ch);var i,b,ps=r.querySelectorAll("[data-ap-pane]");for(i=0;i<ps.length;i++){ps[i].style.display=(ps[i].getAttribute("data-ap-pane")===ch+":"+dy)?"block":"none";}var cb=r.querySelectorAll("[data-ap-ch]");for(i=0;i<cb.length;i++){b=cb[i];var onc=b.getAttribute("data-ap-ch")===ch;b.style.background=onc?"#185c38":"#fff";b.style.color=onc?"#fff":"#475569";b.style.borderColor=onc?"#185c38":"#dde3ea";}var db=r.querySelectorAll("[data-ap-day]");for(i=0;i<db.length;i++){b=db[i];var ond=b.getAttribute("data-ap-day")===dy;b.style.background=ond?"#185c38":"#fff";b.style.color=ond?"#fff":"#475569";b.style.borderColor=ond?"#185c38":"#dde3ea";}var n=r.querySelector("[data-ap-note]");if(n)n.textContent=(ch==="linkedin")?"Demande de connexion : sans note":"4 messages espac\u00e9s \u2014 J0, J2, J4, J6";}r.addEventListener("click",function(e){var t=e.target&&e.target.closest?e.target.closest("[data-ap-ch],[data-ap-day]"):null;if(!t)return;e.preventDefault();if(t.hasAttribute("data-ap-ch"))ch=t.getAttribute("data-ap-ch");else dy=t.getAttribute("data-ap-day");paint();});paint();})();</script></div></div><div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="S4BT - Solutions for Business Travel" data-h="" data-i="Mobility &amp; Transportation" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/s4bt-solutions-for-business-travel/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title"><span class="i18n-fr">Résumé du marché</span><span class="i18n-en">Market summary</span></h2>
+<div class="split-container">
+<div class="text-col">
+<h4 class="kicker">SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>Mobility &amp; Transportation &gt; Logiciels ERP et de Paiement TravelTech B2B<br/>B2B &gt; SaaS</p>
+<div class="score-row sr-green"><span class="sr-label">MARCHÉ ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">× 25% = 20.0 pts</span></div><div class="score-row sr-blue"><span class="sr-label">MARCHÉ GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span><span class="sr-note">× 25% = 19.5 pts</span></div><div class="score-row sr-green"><span class="sr-label">MARCHÉ PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span><span class="sr-note">× 25% = 20.5 pts</span></div><div class="score-row sr-green"><span class="sr-label">MARCHÉ RÉCOMPENSANT ?</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span><span class="sr-note">× 25% = 21.25 pts</span></div>
+<div class="score-row sr-green sr-total"><span class="sr-label">SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:81%"></span></span><span class="sr-val">81.25/100</span></div><p>Ce score global indique que le marché de l'infrastructure ERP et de paiement de voyage en Europe offre un cadre d'investissement robuste et stable, porté par une numérisation réglementaire des factures et une complexité locale agissante qui pénalise les concurrents globaux.</p>
+<h4><span class="i18n-fr">DÉFINITION du Marché</span><span class="i18n-en">Market DEFINITION</span></h4>
+<p>Logiciels d'infrastructure ERP et de gestion des flux transactionnels de voyage d'affaires pour les TMCs et grandes entreprises européennes. ➜ Ce segment comprend la fourniture de progiciels spécialisés et de technologies de paiement conçus pour connecter les distributeurs de voyages, les banques partenaires et les services financiers des entreprises acheteuses afin de fluidifier les processus de réservation professionnelle.</p>
+<p>La principale friction réside dans la fragmentation des structures de données hôtelières européennes et de la facturation hors ligne qui rend la réconciliation budgétaire et la collecte de TVA extrêmement inefficaces au sein des systèmes généraux de comptabilité. Dans la chaîne de valeur, ce marché se situe directement entre le GDS traditionnel, les banques et les systèmes comptables finaux de type SAP ou Oracle, lui permettant de structurer et d'extraire de la valeur sur chaque transaction exécutée.</p>
+<h4>Notre THÈSE de Marché</h4>
+<p>Le marché de la billetterie intégrée et du voyage d'affaires a subi une déformation historique sous l'effet de l'exigence d'une conformité comptable stricte et de la dématérialisation obligatoire de la facturation en Europe. Les anciens leaders technologiques du GDS ou du paiement ne peuvent rationaliser ce marché car leurs systèmes de facturation historiques, extrêmement rigides, ne gèrent pas nativement le niveau de détail de réconciliation requis pour la récupération automatisée de la TVA locale.</p>
+<p>L'angle d'attaque efficace pour un nouvel entrant consiste à implémenter un ERP de gestion de données clients consolidé qui verrouille la TMC, avant de facturer le flux monétaire à la transaction grâce à un service de paiement intégré performant. La fenêtre de tir est grandement ouverte par le besoin de modernisation comptable des grandes agences européennes et se refermera sous 24 mois lorsque les positions de consolidation par pays auront gelé l'accès aux flux transactionnels majeurs.</p>
+<h4>Notre CONVICTION &amp; GAGE sur ce Marché:</h4>
+<p><span class="conv-badge sr-green">HAUTE CONVICTION</span></p>
+<p>Bien que le marché du voyage d'affaires comporte l'inconvénient d'une croissance macroéconomique modérée, il offre pour les acteurs d'infrastructure consolidés un levier de rentabilité et de rétention d'une puissance exceptionnelle.</p>
+<p>Notre thèse affirme que l'intégration indissociable d'un ERP transactionnel avec un module de paiement propriétaire Trevium permettra de doper de 50% la valeur comptable extraite par réservation hôtelière sur les 18 prochains mois. Le signal d'action clé réside dans la capacité manifeste à intégrer sans accroc des nouvelles TMCs non françaises au sein du système central de facturation multi-devises.</p>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ ATTRACTIF (Dynamique de Marché)</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<p>Un segment de marché stable à forte valeur transactionnelle, porté par la nécessité de rationalisation des processus administratifs.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille du Marché</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Reposant sur un volume hôtelier annuel adressable massif de plusieurs milliards d'euros à l'échelle européenne.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Moteurs de Croissance</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Poussée par la conformité fiscale réglementaire européenne et l'essor des cartes bancaires virtuelles intégrées.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Timing - Pourquoi Maintenant</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Transition post-crise vers des plateformes tout-en-un visant à éliminer les tâches de comptabilité manuelle.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Risques de Marché</span><span class="sr-val">76/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Risque de ralentissement économique affectant l'enveloppe globale de frais de déplacements professionnels en Europe.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ GAGNABLE (Paysage Concurrentiel)</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div>
+<p>La concurrence est vive mais la barrière créée par la profondeur de l'intégration ERP locale et les mécanismes de TVA offre un rempart robuste.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Acteurs Historiques</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les leaders historiques des GDS (Amadeus, Sabre) règnent sur l'avion et le train, mais restent sous-développés sur le segment fragmenté de l'hôtellerie B2B.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Nouveaux Entrants</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des scale-ups comme Navan et TravelPerk se concentrent sur le segment corporate direct, laissant la voie libre à un partenaire d'infrastructure pour les TMCs.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Territoire Libre</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Un espace critique pour l'agrégation de services hôteliers indépendants et d'automatisation des factures à destination des distributeurs traditionnels.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Défendabilité</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La complexité réglementaire de la documentation fiscale constitue un bouclier local solide face aux pure-players technologiques américains.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ PÉNÉTRABLE (Go-to-Market &amp; Économies Unitaires)</span><span class="sr-bar"><span class="sr-fill" style="width:82%"></span></span><span class="sr-val">82/100</span></div>
+<p>Les cycles de vente longs sont compensés par une très forte rétention client une fois l'installation ERP complétée.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle GTM</span><span class="sr-val">81/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une approche commerciale hautement qualifiée ciblant les réseaux d'agences et les départements d'achats de grands comptes.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de Tarification</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle idéal couplant frais SaaS fixes pour l'accès aux modules d'ERP et frais de transactions sur les paiements hôteliers.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Économies Unitaires</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des coûts de support limités après l'onboarding et des marges incrémentales élevées sur les commissions de paiement.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">83/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Forte capacité de déploiement à l'international à travers le réseau interconnecté d'agences multinationales existantes.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ RÉCOMPENSANT (Financement &amp; Sortie)</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<p>Un secteur propice à la consolidation industrielle de haut niveau et à des valorisations d'acquisition séduisantes par des fonds de Private Equity ou des leaders sectoriels globaux.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Activité de Financement</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des investissements sélectifs mais massifs de private equity axés sur l'efficience opérationnelle et la consolidation.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Multiples de Sortie</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des valorisations solides pour les actifs démontrant une rentabilité nette et possédant une infrastructure technologique différenciante.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Acheteurs Stratégiques</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des acquéreurs naturels identifiés parmi les géants de la distribution ou du paiement (Amadeus, SAP Concur, banques d'affaires corporate).</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Profil de Retour</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc"></div></li></ul>
+<h4 class="kicker">SYNTHÈSE TRANSVERSALE</h4>
+<h4 class="kicker">DOCUMENTATION DES DONNÉES</h4>
+<p>Données fiables en ce qui concerne l'évaluation globale de l'hôtellerie d'affaires et de la dynamique de distribution par les TMCs, nécessitant un enrichissement sur les marges transactionnelles de paiement locales (1 URL documentée).</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://quickchart.io/chart?v=3&amp;c=%7B%22type%22%3A%20%22radar%22%2C%20%22data%22%3A%20%7B%22labels%22%3A%20%5B%22ATTRACTIVE%20MARKET%20%3F%22%2C%20%22WINNABLE%20MARKET%20%3F%22%2C%20%22PENETRABLE%20MARKET%20%3F%22%2C%20%22REWARDING%20MARKET%20%3F%22%5D%2C%20%22datasets%22%3A%20%5B%7B%22label%22%3A%20%22S4BT%20-%20Solutions%20for%20Business%20Travel%22%2C%20%22backgroundColor%22%3A%20%22rgba%28255%2C%20212%2C%20102%2C%200.2%29%22%2C%20%22borderColor%22%3A%20%22rgb%28255%2C%20212%2C%20102%29%22%2C%20%22pointBackgroundColor%22%3A%20%22rgb%28255%2C%20212%2C%20102%29%22%2C%20%22data%22%3A%20%5B80%2C%2078%2C%2082%2C%2085%5D%7D%5D%7D%2C%20%22options%22%3A%20%7B%22scale%22%3A%20%7B%22ticks%22%3A%20%7B%22beginAtZero%22%3A%20false%2C%20%22suggestedMin%22%3A%2070%2C%20%22suggestedMax%22%3A%20100%2C%20%22stepSize%22%3A%205%2C%20%22display%22%3A%20false%7D%7D%7D%7D"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title"><span class="i18n-fr">Analyse approfondie de l'entreprise</span><span class="i18n-en">Company deep dive</span></h2><div id="company-mindmap"><h3 id="company-mindmap-title"></h3><div class="cm-mindmap-wrap"><div class="markmap" style="width:100%;height:600px"><script type="text/template">- Inclut la réservation, le paiement, le reporting et l'audit financier via une **solution ERP modulaire**. - Propose des **solutions spécifiques** pour chaque partie prenante du voyage d'affaires. - Pour les TMCs : systèmes de réservation intégrés et automatisation opérationnelle. - Pour les entreprises : visibilité complète des dépenses et conformité. - S'appuie sur des **marques reconnues** pour des expertises complémentaires. - **CDS Groupe** et **CRC** pour les solutions de réservation hôtelière. - **Trevium** comme système d'exploitation financier propriétaire pour les paiements. - **Fonctionnement & Technologies**
+  - Automatise la **chaîne complète** du voyage d'affaires de la réservation à la comptabilité. - Réservation en ligne (Air, Train, Hôtel, Location) et gestion des événements **MICE**. - Sourcing hôtelier optimisé et automatisation des flux d'approbation. - Intègre des **capacités techniques** avancées pour l'efficacité et la sécurité. - **Intégration API** et connexion aux GDS (Global Distribution Systems) comme Amadeus. - Utilisation de l'**IA pour la capture de factures** et la récupération de la TVA. - Assure une **infrastructure robuste et sécurisée** avec des certifications. - Certifié **ISO 27001** pour la sécurité des données. - Médaille Bronze **EcoVadis** pour l'engagement RSE, incluant le suivi carbone. - **Clients & Traction**
+  - Cible les **grands acteurs B2B** du secteur du voyage et les entreprises. - **Agences de voyages (TMCs)**, tour-opérateurs, et Travel Managers de grandes entreprises. - Compte des **clients clés et partenaires stratégiques** de renommée mondiale. - **BCD Travel**, **Havas Voyages**, et **Amadeus** valident la pertinence de l'offre. - Démontre une **traction significative** et une forte pénétration du marché. - Plus de **60 000 réservations gérées par jour**. - Leader incontesté du marché français et acteur majeur en Europe. - **Modèle Économique**
+  - Combine un modèle **SaaS** avec des **revenus transactionnels** sur le volume. - Frais logiciels récurrents et commissions sur le sourcing hôtelier. - Gère un **volume d'affaires hôtelier considérable** à travers le groupe. - **5 milliards d'euros** de volume de réservation hôtelière. - Monétise les **flux de paiement** via son système propriétaire Trevium. - Permet l'acceptation de paiement à **100%** et la collecte totale des factures. - **Équipe & Positionnement**
+  - Composée de **plus de 700 experts**, dont la moitié dédiée à la technologie et aux produits. - L'équipe de management inclut des vétérans de l'industrie comme Alessio Mezzenzana (BCD Travel) et Frédéric Saunier (Amadeus). - Se positionne comme un **agrégateur de services verticalement intégré**. - Consolide **8 marques** (CDS Groupe, Goelett, CRC, Siap, Trevium) pour une offre complète. - Bénéficie d'**avantages compétitifs clés** et d'une forte défensibilité. - Coûts de changement élevés grâce à l'intégration profonde de l'**ERP Siap**. - Souveraineté et conformité européenne avec hébergement de données sécurisé. </script></div></div><div class="cm-summary"><p>L'entreprise unifie l'expertise et l'innovation pour optimiser la réservation d'hôtels, les paiements et la gestion ERP, ciblant principalement les agences de voyages (TMCs), les tour-opérateurs et les grandes entreprises.</p><p>Sa plateforme centralise l'organisation des voyages, le paiement automatique des hôtels et la synchronisation comptable, résolvant le problème de la réconciliation manuelle des factures fragmentées.</p><p>Le modèle économique repose sur le SaaS et les solutions transactionnelles, avec un volume d'affaires hôtelier géré de <strong>5 milliards d'euros</strong>. L'équipe de plus de <strong>700 experts</strong>, dont <strong>50% en tech</strong>, assure une forte traction et une position de leader en France, avec plus de <strong>60 000 réservations gérées par jour</strong>.</p></div><div class="cm-prospective"><h4>Synthèse prospective</h4><p>Le marché recherche des solutions end-to-end qui simplifient l'expérience utilisateur tout en garantissant conformité et efficacité opérationnelle à grande échelle.</p><p class="cm-sub">Critères à surveiller</p><ul><li>Solutions d'infrastructure B2B avec des coûts de changement élevés (ERP, paiement)</li><li>Capacité à agréger et consolider des marques pour un effet de réseau</li><li>Expertise locale et conformité réglementaire (ex: récupération TVA, ISO 27001)</li><li>Modèles de revenus hybrides (SaaS + transactionnel) avec des volumes importants</li></ul><p class="cm-sub">Sociétés à évaluer</p><ul class="cm-comps"><li><strong>Expensya</strong> <span class="cm-stage">Series B</span> — éditeur de logiciels de gestion des dépenses professionnelles, ciblant la simplification des processus financiers pour les entreprises.</li><li><strong>TravelPerk</strong> <span class="cm-stage">Series D</span> — plateforme de gestion de voyages d'affaires tout-en-un, axée sur l'expérience utilisateur et l'intégration des services.</li><li><strong>Kliper</strong> <span class="cm-stage">Seed</span> — solution d'automatisation des notes de frais et de gestion des dépenses pour les PME.</li><li><strong>Payhawk</strong> <span class="cm-stage">Series B</span> — plateforme de gestion des dépenses et des paiements d'entreprise, combinant cartes d'entreprise, logiciels et paiements.</li></ul></div></div><script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.18.12/dist/browser/index.iife.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script>(function(){function boot(){try{var host=document.querySelector('#company-mindmap .markmap');if(!host||host.__mmDone)return;var tpl=host.querySelector('script[type="text/template"]');if(!tpl)return;var md=tpl.textContent.replace(/^\s*---[\s\S]*?---\s*/,'');var M=window.markmap;if(!M||!M.Transformer||!M.Markmap)return;var r=(new M.Transformer()).transform(md);host.innerHTML='<svg style="width:100%;height:600px;display:block"></svg>';var inst=M.Markmap.create(host.querySelector('svg'),{initialExpandLevel:5,maxWidth:340,colorFreezeLevel:2},r.root);host.__mmDone=1;var refit=function(){try{inst.fit()}catch(e){}};window.addEventListener('resize',refit);setTimeout(refit,300);setTimeout(refit,1200);setTimeout(refit,3000);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(refit);}catch(e){}}if(document.readyState==='complete')boot();else window.addEventListener('load',boot);setTimeout(boot,1500);setTimeout(boot,4000);})();</script>
+<h3 id="value-proposition"><span class="i18n-fr">Proposition de valeur</span><span class="i18n-en">Value proposition</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker"><span class="i18n-fr">Proposition de Valeur</span><span class="i18n-en">Value proposition</span></h4>
+<p>La plateforme d'infrastructure unifiée simplifie la gestion des déplacements en regroupant l'organisation des voyages, le paiement automatique des hôtels et la synchronisation comptable au sein d'un logiciel unique.</p>
+<h4 class="kicker">Profil Client Idéal (ICP)</h4>
+<p>Agences de voyages (TMCs), tour-opérateurs, gestionnaires de voyages d'affaires, directions financières et services RH de grandes entreprises.</p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>B2B - Fournit des solutions logicielles et des services de gestion aux entreprises et aux professionnels du voyage.</p>
+<h4 class="kicker">Industrie</h4>
+<p>Technologie du voyage (TravelTech), Logiciels ERP, Paiement.</p>
+<h4 class="kicker">Contact et Légal</h4>
+<p>Marques: CDS Groupe, Goelett, CRC, Siap, Trevium. Siège social en France. Site web: <a href="https://.com" target="_blank"></a>.</p>
+<h4 class="kicker">Exemples de Clients Clés</h4>
+<p>BCD Travel, Havas Voyages, Amadeus. Plus de 60 000 réservations gérées quotidiennement.</p></div>
+<h3 id="product"><span class="i18n-fr">Produit</span><span class="i18n-en">Product</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution Centrale</h4>
+<p>Plateforme intégrée de gestion des voyages d'affaires couvrant la réservation, le paiement, le reporting et l'audit financier.</p>
+<h4 class="kicker">Fonctionnalités Clés</h4>
+<p>ERP modulaire, réservation en ligne (Air, Train, Hôtel), gestion MICE, Business Intelligence, reporting comptable, sourcing hôtelier et récupération de la TVA.</p>
+<h4 class="kicker">Capacités Techniques</h4>
+<p>Intégration API, connexion GDS, système d'exploitation financier Trevium, IA pour la capture de factures, certification ISO 27001 et médaille de bronze EcoVadis.</p>
+<h4 class="kicker">Cas d'Utilisation</h4>
+<p>Automatisation du workflow de facturation pour les TMCs, optimisation des tarifs hôteliers négociés et suivi des émissions de CO2 pour les rapports RSE.</p></div>
+<h3 id="business-model"><span class="i18n-fr">Modèle économique</span><span class="i18n-en">Business model</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Modèle d'Affaires</h4>
+<p>SaaS (Software as a Service) et solutions transactionnelles pour le voyage d'affaires.</p>
+<h4 class="kicker">Flux de Revenus</h4>
+<p>Le volume de transaction hôtelière traitée atteint 5 milliards d'euros pour le groupe. Les revenus proviennent des services de sourcing, des frais de plateforme de réservation et de la gestion des flux de paiement via Trevium.</p>
+<h4 class="kicker">Structure des Plans</h4>
+<p>Solutions sur mesure adaptées aux besoins des TMCs et des Grandes Entreprises, incluant l'acceptation de paiement à 100% et la collecte automatisée des factures via les outils propriétaires.</p></div>
+<h3 id="team"><span class="i18n-fr">Équipe</span><span class="i18n-en">Team</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'Entreprise</h4>
+<p>Axée sur l'innovation durable, la sécurité des données et l'excellence opérationnelle, avec un engagement fort envers la RSE et le suivi carbone.</p>
+<h4 class="kicker">Direction</h4>
+<p>L'équipe comprend Anabelle Lascar (Global Customer Service Officer) et Christopher Hecht (Global Payment Solutions Officer).</p>
+<h4 class="kicker">Effectif et Organisation</h4>
+<p>Plus de 700 experts au sein du groupe. Environ 350 collaborateurs sont dédiés au pôle Produit et Ingénierie, démontrant une priorité donnée au développement technologique.</p></div>
+<h3 id="ceo"><span class="i18n-fr">PDG</span><span class="i18n-en">CEO</span></h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title"><span class="i18n-fr">Résumé de l'entreprise</span><span class="i18n-en">Company overview</span></h2><div class="cs-disc">ⓘ <span class="i18n-fr">Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</span><span class="i18n-en">These scores often reflect how much public information we could find online (web presence), not the company's objective reality. A low score — e.g. on team excellence — usually means little information was found, not that the company is weak.</span></div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>B2B Logiciels &amp; Cloud &gt; ERP et Fintech de TravelTech</li><li>B2B &gt; SaaS</li></ul>
+<br/>
+<strong>SCORE DE PRÉ-SÉLECTION</strong><br/>
+Thèse : <hr/><div class="score-row sr-green sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:90%"></span></span><span class="sr-val">90/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:86%"></span></span><span class="sr-val">86/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">TRACTION &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:92%"></span></span><span class="sr-val">92/100</span></div><hr/><div class="score-row sr-green sr-total"><span class="sr-label">SCORE DE PRÉ-SÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span><span class="sr-note">🟢 BIEN POSITIONNÉ (85-100)</span></div><hr/><strong>❓ EN QUELQUES MOTS :</strong>  () est un écosystème ERP et Fintech de TravelTech qui permet aux agences de voyages (TMCs) et aux directions financières de maximiser l'efficience opérationnelle et l'automatisation financière à l'aide d'une suite logicielle intégrée de bout en bout.
+<h4 class="kicker">LE PROBLÈME</h4>
+<p>Les agences de voyages et services financiers des entreprises perdent d'immenses ressources opérationnelles lors de la réconciliation manuelle des factures d'hôtels, de l'avance des frais et de la gestion de la TVA multi-pays.</p>
+<h4 class="kicker">LA SOLUTION</h4>
+<p>La plateforme Trevium de  élimine l'intégralité des acomptes hôteliers et automatise à 100% la réconciliation financière et la récupération de TVA via des flux de paiement centralisés par IA.</p>
+<h4 class="kicker">LE GTM</h4>
+<p>opère via un modèle B2B indirect haut de gamme à destination des plus grandes TMCs européennes (ex. BCD Travel, Havas Voyages), verrouillant d'immenses bases de clients corporate captifs dès la première conversion.<hr/></p><div class="score-row sr-green sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span></div>
+<p>L'équipe rassemble des vétérans respectés du secteur avec des connexions profondes chez les géants du voyage comme Amadeus et BCD Travel.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Fit Fondateur-Marché</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'équipe exécutive dispose de plus de 100 ans d'expertise cumulée, intégrant des anciens leaders clés d'Amadeus (Frédéric Saunier) et de BCD Travel (Alessio Mezzenzana) qui maîtrisent parfaitement les secrets de la distribution hôtelière d'affaires.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Historique de Succès</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Bien que les précédents exits du groupe de direction soient privés, la fusion structurée de 8 entités (CDS, Goelett, Trevium, etc.) démontre de solides capacités en M&amp;A et gestion post-fusion.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Présence de profils de premier plan tels que Christopher Hecht aux solutions de paiement global et Anabelle Lascar au service client de premier ordre.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Complétude de l'Équipe</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Plus de 700 experts composent le groupe, garantissant un équilibre parfait avec 50% de l'effectif dédié exclusivement à la tech et au produit.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<p>La refonte des infrastructures ERP et de paiement post-pandémie est devenue une priorité cruciale pour tous les acteurs du voyage d'affaires.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille &amp; Croissance</span><span class="sr-val">87/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">adresse un immense segment hôtelier professionnel via un volume consolidé annuel au sein du groupe s'élevant à 5 milliards d'euros.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Pourquoi Maintenant</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La complexité croissante des politiques de voyages durables (RSE/EcoVadis) et l'exigence d'une marge optimisée forcent les TMCs à intégrer des systèmes ERP intégrés.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Concurrence</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Face aux disrupteurs SaaS monolithiques américains (SaaS unifiés),  réplique par une offre hautement modulaire, adaptable aux processus spécifiques de chaque région.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'étendue géographique est déjà bien amorcée en France et en Europe de l'Ouest, avec des couloirs stratégiques via HotelHub et Trevium vers le paiement multi-devises.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:90%"></span></span><span class="sr-val">90/100</span></div>
+<p>La force de la suite réside dans sa modularité financière unique intégrant nativement la réservation et le paiement.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La plateforme Trevium de  propose l'acceptation de paiement à 100% sans versement initial, un modèle totalement unique face aux néo-acteurs du voyage d'affaires.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Product-Market Fit</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le volume quotidien considérable de 60 000 réservations gérées démontre une dépendance opérationnelle absolue des clients finaux envers les outils du groupe.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Grâce aux API stables et intégrations ERP prêtes à l'emploi, la plateforme est en mesure de connecter d'importantes infrastructures sans alourdir sa structure technologique.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">IP &amp; Barrières</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">sécurise sa suite par le biais de la certification ISO 27001 et d'une intégration profonde des mécanismes de facturation de la TVA.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">💼 MODÈLE D'AFFAIRES (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:86%"></span></span><span class="sr-val">86/100</span></div>
+<p>Un modèle commercial robuste mixant de multiples moteurs de revenus logiciels et fintech.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le panier hôtelier élevé associé à la brique fintech Trevium permet de prélever des micro-frais à fort effet d'échelle sur les volumes transactionnels.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de Revenus</span><span class="sr-val">87/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle récurrent d'abonnements modulaires complété par des marges par transactions sur les réservations hôtelières et les opérations comptables.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des gammes de services adaptées à chaque persona (TMCs, directeurs financiers, IT) avec une proposition de valeur basée sur le gain de temps et l'optimisation financière.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">87/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La solide assise du groupe à travers ses 8 marques autofinance une grande partie de la R&amp;D, éliminant les risques de dilution rapide constatés chez les startups concurrentes.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">📈 TRACTION &amp; CROISSANCE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:92%"></span></span><span class="sr-val">92/100</span></div>
+<p>L'envergure établie du groupe rassure sur la viabilité à long terme de sa plateforme.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Croissance des Revenus</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Excellente croissance organique tirée par la brique fintech de paiement automatisé Trevium auprès des 60 000 réservations hôtelières quotidiennes.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">96/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Soutien de titans du voyage mondial comme Amadeus, BCD Travel et Havas Voyages, synonyme de barrières de confiance solides.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Progression des KPIs</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Forte croissance des volumes hôteliers combinée à un effectif massif et structuré de plus de 700 experts.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Leadership incontestable sur le segment hôtelier professionnel en Europe et expansion rapide dans l'écosystème Traveltech via ses différentes marques spécialisées.</div></li></ul>
+<hr/><strong>🔍 RISQUE À ATTÉNUER :</strong>
+<p>La thèse d'investissement dépend fortement de l'intégration technologique réelle et de la synergie logicielle entre les 8 marques du groupe  pour éviter les silos de gestion traditionnels. Si les équipes produit n'arrivent pas à uniformiser l'architecture applicative globale pour l'utilisateur final, des disrupteurs cloud natifs plus agiles pourraient siphonner l'avance technologique de . Cette tension est résoluble à la fois par une due diligence technique approfondie en phase de pré-investissement et par une exécution rigoureuse de la convergence technologique.</p>
+<h4 class="kicker">AVANTAGES COMPÉTITIFS CLÉS</h4>
+<ul><li>Technologie Fintech Trevium unique permettant l'élimination totale des acomptes hôteliers pour les agences et entreprises clientes.</li><li>Un puissant effet d'échelle reposant sur le réseau consolidé de 8 marques leaders en Europe (CDS Groupe, Goelett, HotelHub, Siap, etc.).</li><li>Intégration profonde des logiques locales de facturation et de récupération de TVA, assurant une conformité complète face aux géants américains.</li><li>Un pont d'acquisition géant sécurisé directement via les systèmes d'Amadeus et BCD Travel.</li></ul>
+<p><strong>🧱 REMPART (MOAT) :</strong> FORT</p>
+<p>Le rempart de  réside dans les coûts de changement élevés (switching costs) liés à l'intégration de leur suite d'outils au sein du back-office comptable et opérationnel des agences de voyage (TMCs). Cette barrière se renforce à mesure que les données de réservation et les cartes de crédit virtuelles s'accumulent via Trevium, créant une infrastructure de paiement incontournable pour les directions financières. En complément, la certification de sécurité ISO 27001 et les intégrations directes d'API limitent considérablement les risques de churn des très grands comptes.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le Scénario Haussier (Bull Case) :  parvient à déployer sa solution financière Trevium sur plus de 50% de son volume d'affaires de 5 milliards d'euros, s'imposant ainsi comme la passerelle de paiement incontournable et le système d'exploitation par défaut de la TravelTech d'affaires européenne.</li><li>Le Scénario Baissier (Bear Case) : La dispersion des efforts de développement entre 8 marques logicielles différentes empêche l'unification réelle du produit, transformant l'ensemble en un holding de distribution complexe aux prises avec de lourds coûts de maintenance technologiques.</li></ul>
+<p><strong>🚩 DRAPEAUX ROUGES</strong></p>
+<ul><li>Risques Universels : Une structure de plus de 700 salariés répartie sur de multiples marques héritées peut réduire la vitesse de décision par rapport aux petites startups financées par capital-risque.</li><li>Incompatibilité avec la Thèse : Grosse dépendance commerciale liée à la santé et au positionnement d'intermédiaires historiques comme les agences physiques (TMCs), face à l'essor des solutions automatisées de gestion en direct par les entreprises.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/56/56/1786960800000/7S_BWpU97MewIL3csLJKOQ/_Z3H74n9bl0zXILUtw_8chqUnl6A0G4W9a6kwnUl8OPmG3XkC4e940R9mxEqP9miGEjRdADvri50-QBtx5AwvjzbWqbdc0ifbQeTzFlhghxroOK4rIemDRuLOOEJzjuGpS5-tdrcj0kr-UKGgF5w4w/6cIoueNRyC4bajNXrjakXA_zW4jlcQpAjXFL8yMH9Ec"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title"><span class="i18n-fr">Analyse SWOT</span><span class="i18n-en">SWOT analysis</span></h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3><span class="i18n-fr">Forces</span><span class="i18n-en">Strengths</span></h3><ul><li>La plateforme gère 60 000 réservations quotidiennes avec intégration complète aux GDS et au système Trevium.</li><li>Le groupe génère 5 milliards d'euros de volume hôtelier à travers ses huit marques et ses partenariats avec BCD Travel, Havas Voyages et Amadeus.</li><li>700 experts dont la moitié dédiés à la technologie assurent une maintenance et une évolution rapides des modules ERP et de paiement.</li><li>La certification ISO 27001 combinée au suivi carbone EcoVadis Bronze répond directement aux exigences de conformité des grands comptes.</li><li>L'acceptation de paiement à 100 % et la collecte totale des factures via Trevium réduisent les frictions comptables pour les TMCs.</li></ul></div>
+<div class="swot-item s-red"><h3><span class="i18n-fr">Faiblesses</span><span class="i18n-en">Weaknesses</span></h3><ul><li>L'absence d'information publique sur le CEO limite la visibilité stratégique et la crédibilité auprès des investisseurs institutionnels.</li><li>La forte dépendance aux volumes transactionnels expose les revenus à une chute brutale en cas de réduction des voyages d'affaires.</li><li>Huit marques distinctes créent une complexité opérationnelle et marketing qui freine l'unification du message produit.</li><li>Les solutions sont majoritairement sur mesure, ce qui rend l'acquisition de nouveaux clients longue et coûteuse.</li><li>Le positionnement reste très centré sur le marché français sans preuve d'expansion significative hors de l'Hexagone.</li></ul></div>
+<div class="swot-item s-blue"><h3><span class="i18n-fr">Opportunités</span><span class="i18n-en">Opportunities</span></h3><ul><li>La demande croissante de reporting RSE et de suivi CO2 peut être monétisée auprès des directions financières et des services RH.</li><li>L'intégration de l'IA pour la capture de factures offre un avantage compétitif sur les plateformes ERP traditionnelles.</li><li>L'expansion vers d'autres pays européens permettrait d'augmenter le volume traité sans modification majeure de l'infrastructure existante.</li><li>Le développement de modules MICE et événements répond à un segment à forte marge encore peu adressé par les concurrents.</li><li>Les TMCs cherchent des alternatives aux géants américains pour des raisons de souveraineté des données et de coût.</li></ul></div>
+<div class="swot-item s-orange"><h3><span class="i18n-fr">Menaces</span><span class="i18n-en">Threats</span></h3><ul><li>Les grands concurrents comme SAP Concur et American Express GBT disposent de ressources supérieures pour verrouiller les grands comptes.</li><li>Une nouvelle régulation européenne sur les paiements voyageurs pourrait imposer des adaptations coûteuses et rapides.</li><li>Une récession prolongée réduirait durablement les volumes de réservation et donc les revenus transactionnels.</li><li>Une faille de sécurité sur l'infrastructure cloud exposerait immédiatement la certification ISO et la confiance des clients.</li><li>Les changements de politique de partenariat chez Amadeus ou les GDS pourraient fragiliser les connexions techniques critiques.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title"><span class="i18n-fr">Sources et méthodologie</span><span class="i18n-en">Sources &amp; methodology</span></h2>
+<div class="source-list"><p style="font-style:italic;color:#556;margin:0 0 0.8em;">11 liens profonds trouvés pour construire ce mémo — site officiel, recherches web Tavily &amp; Exa.</p>
+<h4 class="kicker" style="margin:0.9em 0 0.3em;">Site officiel</h4>
+<ul style="margin:0.2em 0 0.9em 1.1em;padding:0;"><li style="margin:0.15em 0;"><a href="https://.com" rel="noopener nofollow" target="_blank"></a> <span style="color:#8a94a6;font-size:0.85em;"></span></li></ul>
+<h4 class="kicker" style="margin:0.9em 0 0.3em;">Site &amp; entreprise (Exa)</h4>
+<ul style="margin:0.2em 0 0.9em 1.1em;padding:0;"><li style="margin:0.15em 0;"><a href="https://.com/customer-care-solutions/" rel="noopener nofollow" target="_blank"></a> <span style="color:#8a94a6;font-size:0.85em;"></span></li><li style="margin:0.15em 0;"><a href="https://.com/erp-solutions-for-travel-agencies-corporates-tmcs-/" rel="noopener nofollow" target="_blank"></a> <span style="color:#8a94a6;font-size:0.85em;"></span></li><li style="margin:0.15em 0;"><a href="https://.com/hotel-booking-solutions/" rel="noopener nofollow" target="_blank"></a> <span style="color:#8a94a6;font-size:0.85em;"></span></li><li style="margin:0.15em 0;"><a href="https://.com/legal-notices/" rel="noopener nofollow" target="_blank"></a> <span style="color:#8a94a6;font-size:0.85em;"></span></li><li style="margin:0.15em 0;"><a href="https://dev..com/media-solutions/" rel="noopener nofollow" target="_blank"></a> <span style="color:#8a94a6;font-size:0.85em;"></span></li><li style="margin:0.15em 0;"><a href="https://www..com/payment-solutions/" rel="noopener nofollow" target="_blank"></a> <span style="color:#8a94a6;font-size:0.85em;"></span></li><li style="margin:0.15em 0;"><a href="https://fr.linkedin.com/posts/-solutions-for-business-travel_cp-nouveaux-membres9022026-activity-7426592687916556288-Rtnu" rel="noopener nofollow" target="_blank"></a> <span style="color:#8a94a6;font-size:0.85em;">— fr.linkedin.com</span></li><li style="margin:0.15em 0;"><a href="https://dev..com/-responds-to-client-demand-for-financial-operating-system-for-modern-corporate-travel-with-launch-of-trevium/" rel="noopener nofollow" target="_blank"></a> <span style="color:#8a94a6;font-size:0.85em;"></span></li><li style="margin:0.15em 0;"><a href="https://.com/sustainable-travel-solutions/" rel="noopener nofollow" target="_blank"></a> <span style="color:#8a94a6;font-size:0.85em;"></span></li><li style="margin:0.15em 0;"><a href="https://www..com/" rel="noopener nofollow" target="_blank"></a> <span style="color:#8a94a6;font-size:0.85em;"></span></li></ul></div>
+</div>
+
+
+
+
+&gt;<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur S4BT - Solutions for Business Travel ?</span><span class="i18n-en">Explore S4BT - Solutions for Business Travel further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc"><span class="i18n-fr">Généré par Proplace.co — une IA qui peut se tromper. Contact : <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span><span class="i18n-en">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="ppf-sect" aria-label="Sections Proplace"><a class="" href="/actualites/"><span class="i18n-fr">En direct</span><span class="i18n-en">Live</span></a><a class="" href="/actualites/operations/secteurs/"><span class="i18n-fr">En direct par secteur</span><span class="i18n-en">Live by sector</span></a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a href="https://proplace.co/api/" target="_blank" rel="noopener">API →</a><a href="https://proplace.co/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Explore</h4><a href="/actualites/"><span class="i18n-fr">En direct</span><span class="i18n-en">Live</span></a><a href="/actualites/operations/secteurs/"><span class="i18n-fr">En direct par secteur</span><span class="i18n-en">Live by sector</span></a><a href="https://proplace.co/carte" data-i18n="mindmaps">Mindmaps</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",direct:"Live",marches:"Live by sector",marchesFooter:"Live by sector",dealflow:"My deal flow",analysis:"Analysis",research:"Research",mindmaps:"Mindmaps",dashboard:"Open dashboard",acct:"Connected",mSettings:"Settings",mPipeline:"My deal flow",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Explore",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"© 2026 Proplace",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Se connecter",news:"Actualités",direct:"Live",directFooter:"En direct",marches:"Live par secteur",marchesFooter:"En direct par secteur",dealflow:"Mon deal flow",analysis:"Analyses",research:"La recherche",mindmaps:"Mindmaps",dashboard:"Ouvrir le dashboard",acct:"Connecté",mSettings:"Paramètres",mPipeline:"Mon deal flow",mDashboard:"Tableau de bord",logout:"Se déconnecter",tagline:"Votre AI Corporate Developer",insights:"Explorer",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"© 2026 Proplace",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){
+// Header loggé : Connecté ▾ → Mon deal flow (/cibles) · Paramètres (/compte).
+// La déconnexion vit uniquement dans le footer.
+var compte=(lang==="fr"?"/fr/compte":"/compte");
+var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"");
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+pipeline+'">'+t.dealflow+"</a>"+
+'<a role="menuitem" href="'+compte+'">'+t.mSettings+"</a>"+
+"</div></div>";
+return {i:1,h:h,pipeline:pipeline,compte:compte};}
+return {i:0,h:'<a class="cta" href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200;
+// Toujours SOUS le bouton (menu court = Mon compte + Déco) — plus de flip au-dessus.
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Historique Research → Mon compte (onglet Recherches). Enregistre chaque fiche consultée
+   dans localStorage (même clé que ComptePage). No-op hors /research/<slug>/. */
+(function recordResearchVisit(){
+try{
+ var p=(location.pathname||"").replace(/\/+$/,"")+"/";
+ if(!/\/(en\/)?research\/[^/]+\//.test(p))return;
+ if(/\/(en\/)?research\/?$/.test((location.pathname||"").replace(/\/+$/,"")))return;
+ var title="";
+ var h1=document.querySelector("main h1, .rp-head h1, h1");
+ if(h1&&h1.textContent)title=h1.textContent.trim();
+ if(!title)title=(document.title||"").split("|")[0].trim();
+ var url=location.pathname;
+ var key="proplace_research_history";
+ var arr=[];
+ try{arr=JSON.parse(localStorage.getItem(key)||"[]")||[];}catch(e){arr=[];}
+ if(!Array.isArray(arr))arr=[];
+ arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});
+ arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});
+ if(arr.length>40)arr=arr.slice(0,40);
+ localStorage.setItem(key,JSON.stringify(arr));
+}catch(e){}
+})();
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){
+ if(a.i){pf.innerHTML='<a href="'+(a.pipeline||"/cibles")+'">'+t.dealflow+'</a>'
+  +'<a href="'+(a.compte||"/compte")+'">'+t.mSettings+"</a>"
+  +'<button type="button" id="ppf-logout">'+t.logout+"</button>";
+  var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+ else{pf.innerHTML='<a href="/#login">'+t.login+"</a>";}}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+/* #5 — bouton (pas lien) : lancer le mémo instant + ouvrir /cibles. */
+button.ev-cta{border:1px solid var(--ink);cursor:pointer;font-family:inherit}
+.ev-cta2{background:transparent;color:var(--accent-dk);border:1px solid var(--accent)}
+.ev-cta2:hover{background:var(--bg);color:var(--ink);opacity:1}
+/* #4 — domaine d'un candidat rendu cliquable (vérifier le site avant de choisir). */
+.ev-cand-lnk{color:var(--accent-dk);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--accent)}
+.ev-cand-lnk:hover{color:var(--ink);border-bottom-color:var(--ink)}
+/* #3 — override d'un verdict NO MATCH → MATCH. */
+.ev-force-wrap{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ev-force{font-size:12px;font-weight:700;color:var(--ink);background:transparent;border:1px solid var(--line);
+border-radius:8px;padding:6px 12px;cursor:pointer;transition:all .15s;font-family:inherit}
+.ev-force:hover{border-color:var(--ink);background:var(--bg)}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/aDx8z7Hzksus",ES="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound/evaluate-and-signup",MST="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v3/instant-memo/status/";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+// Bilingue (2026-07-16) : mêmes clé/priorités que le chrome partagé — le flux d'évaluation
+// était le dernier gros composant JS 100% FR quel que soit le choix de langue du visiteur.
+function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}
+ return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}
+function T(fr,en){return EN()?en:fr;}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function ctaCal(){return '<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">'
+ +T("📅 Un deal flow personnalisé ? Planifiez un appel stratégique","📅 Want a tailored deal flow? Book a strategy call")+'</a>';}
+// Extraction souple (le résultat porte tantôt company/company_name/name, tantôt un
+// sous-objet lead) — partagé par le rendu MATCH, l'override (#3) et le lancement (#5).
+function coOf(res){return (res&&(res.company_name||res.company||res.name||(res.lead&&res.lead.company_name)))||"";}
+function webOf(res){return (res&&((res.lead&&(res.lead.website||res.lead.url))||res.url||res.website))||"";}
+function recOf(res){return (res&&((res.lead&&res.lead.airtable_id)||res.lead_record_id))||"";}
+// #5 — bouton (pas lien) : lance le mémo INSTANT (code, pas Make) puis ouvre la page
+// /cibles « À analyser ». Rendu sur un MATCH (verdict ou override).
+function matchCta(res,fund){
+ var co=coOf(res),web=webOf(res),rec=recOf(res);
+ return '<button type="button" class="ev-cta ev-launch" data-fund="'+esc(fund)+'" data-co="'+esc(co)
+  +'" data-web="'+esc(web)+'" data-rec="'+esc(rec)+'">'
+  +T("⚡ Lancer le mémo + voir mes cibles","⚡ Launch the memo + see my targets")+'</button>';
+}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">'+T("Évaluation indisponible.","Evaluation unavailable.")+'</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var raw=(c.url||c.website||"");
+   var dom=raw.replace(/^https?:\/\//,"").replace(/\/$/,"");
+   var href=raw?(raw.indexOf("http")===0?raw:"https://"+raw):"";
+   // #4 — domaine CLIQUABLE (nouvel onglet) pour vérifier le site AVANT de choisir.
+   var domHtml=dom?(' · '+(href?'<a class="ev-cand-lnk" href="'+esc(href)+'" target="_blank" rel="noopener">'+esc(dom.slice(0,42))+' ↗</a>':esc(dom.slice(0,42)))):'';
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+domHtml+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">'+T("Choisir →","Choose →")+'</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||T("Plusieurs sociétés correspondent — choisissez la bonne :","Several companies match — pick the right one:"))+'</div>'+(cs||'<div class="ev-fine">'+T("Aucun candidat — précisez l’URL exacte.","No candidate — provide the exact URL.")+'</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">'+T("📊 Analyse","📊 Analysis")+'</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){
+  if(m){o+=matchCta(res,fund);}
+  else if(res.check_id){
+   // #3 — override : le dirigeant est sûr du contraire → force le check en MATCH,
+   // la justification est tracée dans le champ reasoning (endpoint force-match dédié).
+   o+='<div class="ev-force-wrap"><button type="button" class="ev-force" data-check="'+esc(res.check_id)
+     +'" data-fund="'+esc(fund)+'" data-co="'+esc(coOf(res))+'" data-web="'+esc(webOf(res))
+     +'" data-rec="'+esc(recOf(res))+'" data-orig="'+esc((res.reasoning||"").slice(0,600))+'">'
+     +T("↺ Je ne suis pas d’accord — forcer en MATCH","↺ I disagree — force to MATCH")+'</button>'
+     +'<span class="ev-fine">'+T("La décision est enregistrée (justification tracée).","The decision is saved (justification recorded).")+'</span></div>';
+  }
+ }
+ else{ o+=ctaCal(); }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">'+T("⏳ Évaluation de "+esc(company)+" selon votre thèse "+esc(fund)+"…","⏳ Evaluating "+esc(company)+" against your "+esc(fund)+" thesis…")+'</div>';
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function setAuth(email,fund){
+ try{
+  var s={email:(email||"").toLowerCase(),fund_type:fund||"",ts:Date.now()};
+  var v=encodeURIComponent(btoa(JSON.stringify(s)));
+  document.cookie="proplace_auth="+v+"; domain=.proplace.co; path=/; max-age="+(60*60*24*365)+"; secure; samesite=lax";
+ }catch(e){}
+}
+function pollMemo(panel,jobId,memoUrl,email){
+ var started=Date.now(),n=0;
+ function tick(){
+  n++;
+  var elapsed=Math.round((Date.now()-started)/1000);
+  var pct=Math.min(92,8+Math.round(elapsed/720*84));
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Mémo fast en cours…","⏳ Fast memo running…")
+   +' · '+pct+'% · '+elapsed+'s</div>'
+   +'<div class="ev-r">'+T("Vous recevrez le mémo par email même si vous fermez cette page.","You will get the memo by email even if you close this page.")+'</div>';
+  fetch(MST+encodeURIComponent(jobId)).then(function(r){return r.json();}).then(function(st){
+   if(st&&st.done){
+    var ok=st.result&&(st.result.status==="ok"||st.result.url);
+    var url=(st.result&&st.result.url)||memoUrl||"";
+    if(ok){
+     panel.innerHTML='<div class="ev-ok">✅ '+T("Mémo prêt","Memo ready")+'</div>'
+      +(url?'<a class="ev-cta" target="_blank" rel="noopener" href="'+esc(url)+'">'+T("→ Ouvrir le mémo","→ Open the memo")+'</a>':'')
+      +'<a class="ev-cta ev-cta2" href="https://proplace.co/'+(EN()?'':'fr/')+'compte">'+T("→ Mon compte","→ My account")+'</a>'
+      +ctaCal();
+    }else{
+     panel.innerHTML='<div class="ev-err">⚠ '+esc((st.result&&st.result.error)||T("Échec de l’analyse","Analysis failed"))+'</div>';
+    }
+    return;
+   }
+   if(n<90)setTimeout(tick,8000);
+   else panel.innerHTML='<div class="ev-r">'+T("L’analyse continue en arrière-plan — regardez votre boîte mail.","Analysis continues in the background — check your inbox.")+'</div>'
+    +(memoUrl?'<a class="ev-cta ev-cta2" target="_blank" rel="noopener" href="'+esc(memoUrl)+'">'+T("→ Lien mémo (dispo sous peu)","→ Memo link (soon)")+'</a>':'')
+    +ctaCal();
+  }).catch(function(){if(n<90)setTimeout(tick,10000);});
+ }
+ setTimeout(tick,6000);
+}
+function leadForm(panel,b){
+ // Formulaire natif evaluate-and-signup (remplace Fillout first-look + simple capture).
+ var co=b.dataset.c||b.dataset.u||"";
+ var web=b.dataset.u||"";
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">'+T("Mémo fast de","Fast memo for")+' <b>'+esc(co)+'</b></p>'
+ +'<input name="email" type="email" placeholder="'+T("Email professionnel (first look ici)","Work email (first look here)")+'" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn CEO (URL)"><input name="phone" placeholder="'+T("Téléphone (optionnel)","Phone (optional)")+'"></div>'
+ +'<input name="website" placeholder="'+T("Site web (si connu)","Website (if known)")+'" value="'+esc(web)+'">'
+ +'<p class="ev-fine">'+T("Analyse selon des critères investisseur standards · mémo Fast.","Analyzed against standard investor criteria · Fast memo.")+'</p>'
+ +'<button type="submit" class="ev-submit">'+T("Lancer l’analyse →","Start analysis →")+'</button>'
+ +'<p class="ev-fine">'+T("Déjà client ? <a href=\"https://proplace.co/#login\">Connectez-vous</a> pour évaluer selon VOTRE thèse.","Already a client? <a href=\"https://proplace.co/#login\">Log in</a> to evaluate against YOUR thesis.")+'</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target;
+  var d={email:(f.email&&f.email.value||"").trim(),linkedin:(f.linkedin&&f.linkedin.value||"").trim(),
+   phone:(f.phone&&f.phone.value||"").trim(),website:(f.website&&f.website.value||"").trim()||web};
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Création du compte + lancement du mémo…","⏳ Creating account + launching memo…")+'</div>';
+  fetch(ES,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:co,website:d.website,email:d.email,linkedin:d.linkedin,phone:d.phone,
+   lang:EN()?"en":"fr"})})
+  .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+  .then(function(x){
+   if(!x.ok||!x.j||!x.j.job_id)throw new Error((x.j&&(x.j.detail||x.j.error))||"launch failed");
+   if(x.j.email&&x.j.fund_type)setAuth(x.j.email,x.j.fund_type);
+   pollMemo(panel,x.j.job_id,x.j.memo_url||"",d.email);
+  }).catch(function(err){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(err.message||err))+'</div>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">'+T("⚡ Évaluation express —","⚡ Express evaluation —")+' <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ // #5 — MATCH → lancer le mémo INSTANT (code) puis ouvrir /cibles « À analyser ».
+ var lb=(ev.target&&ev.target.closest)?ev.target.closest(".ev-launch"):null;
+ if(lb){
+  var lp=lb.closest(".op-eval-panel");if(!lp)return;
+  var lfund=lb.dataset.fund||"",lco=lb.dataset.co||"",lweb=lb.dataset.web||"";
+  // Onglet ouvert SYNCHRONE (dans le geste de clic) pour ne pas être bloqué ; on le
+  // redirige ensuite vers la page /cibles résolue (repli : le dashboard chat).
+  var win=null;try{win=window.open("","_blank");}catch(e){}
+  lp.innerHTML='<div class="ev-load">'+T("⚡ Lancement du mémo instant…","⚡ Launching instant memo…")+'</div>';
+  var memoUrl="";
+  fetch("https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v3/instant-memo",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({company_name:lco,website:lweb,fund_type:lfund,memo:"instant"})})
+   .then(function(r){return r.json();}).catch(function(){return {};})
+   .then(function(j){memoUrl=(j&&j.url)||"";
+    return fetch("https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/last",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({fund_slug:lfund,source:"sourced"})}).then(function(r){return r.json();}).catch(function(){return {};});})
+   .then(function(d){
+    // Page publique /cibles (liste vivante = les retenues) si publiée, sinon le cockpit.
+    var cibles=(d&&d.found&&d.url)?d.url:("https://analysis.proplace.co/chat/?fund="+encodeURIComponent(lfund));
+    if(win){try{win.location=cibles;}catch(e){}}
+    lp.innerHTML='<div class="ev-v ev-yes">✅ '+T("Mémo instant lancé","Instant memo launched")+'</div>'
+      +'<div class="ev-r">'+T("Le mémo (code, ~15 min) se prépare. Votre page cibles s’ouvre sur « À analyser ».","The memo (code, ~15 min) is preparing. Your targets page opens on the To-analyse tab.")+'</div>'
+      +'<a class="ev-cta" target="_blank" rel="noopener" href="'+esc(cibles)+'">'+T("→ Voir mes cibles (À analyser)","→ See my targets (To analyse)")+'</a>'
+      +(memoUrl?'<a class="ev-cta ev-cta2" target="_blank" rel="noopener" href="'+esc(memoUrl)+'">'+T("→ Ouvrir le mémo","→ Open the memo")+'</a>':'');
+   }).catch(function(e){lp.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+  return;
+ }
+ // #3 — override d'un NO MATCH (justification tracée, décision enregistrée).
+ var fb=(ev.target&&ev.target.closest)?ev.target.closest(".ev-force"):null;
+ if(fb){
+  var fp=fb.closest(".op-eval-panel");if(!fp)return;
+  var reason=window.prompt(T("Pourquoi cette société est-elle un MATCH selon vous ? (enregistré)","Why is this company a MATCH in your view? (recorded)"),T("Override manuel — connaissance directe de la société.","Manual override — direct knowledge of the company."));
+  if(reason===null)return;
+  reason=(reason||"").trim();if(!reason)reason=T("Override manuel.","Manual override.");
+  var fcheck=fb.dataset.check||"",ffund=fb.dataset.fund||"",fco=fb.dataset.co||"",fweb=fb.dataset.web||"",frec=fb.dataset.rec||"",forig=fb.dataset.orig||"";
+  fp.innerHTML='<div class="ev-load">'+T("⏳ Enregistrement de l’override…","⏳ Saving the override…")+'</div>';
+  fetch("https://alexandre-79537--airtable-bridge-fastapi-app.modal.run/sourcing-check/force-match",{method:"PATCH",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({check_id:fcheck,justification:reason,original_reasoning:forig})})
+   .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
+   .then(function(){
+    fp.innerHTML='<div class="ev-v ev-yes">✅ '+T("Forcé en MATCH","Forced to MATCH")+'</div>'
+      +'<div class="ev-r">'+T("Décision enregistrée.","Decision saved.")+'</div>'
+      +matchCta({company_name:fco,url:fweb,lead:{airtable_id:frec,company_name:fco,website:fweb},check_id:fcheck},ffund);
+   }).catch(function(e){fp.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+  return;
+ }
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><script>(function(){try{var p=(location.pathname||'').replace(/\/+$/,'')+'/';if(!/\/(en\/)?research\/[^/]+\//.test(p))return;if(/\/(en\/)?research\/?$/.test((location.pathname||'').replace(/\/+$/,'')))return;var title='';var h1=document.querySelector('main h1,.rp-head h1,h1');if(h1&&h1.textContent)title=h1.textContent.trim();if(!title)title=(document.title||'').split('|')[0].trim();var url=location.pathname,key='proplace_research_history',arr=[];try{arr=JSON.parse(localStorage.getItem(key)||'[]')||[];}catch(e){arr=[];}if(!Array.isArray(arr))arr=[];arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});if(arr.length>40)arr=arr.slice(0,40);localStorage.setItem(key,JSON.stringify(arr));}catch(e){}})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+var _lbEN=false;try{var _l=localStorage.getItem('proplace_lang');
+_lbEN=_l==='en'||(!_l&&(navigator.language||'').toLowerCase().indexOf('fr')!==0);}catch(e){}
+ov.innerHTML='<button class="lb-x" aria-label="'+(_lbEN?'Close':'Fermer')+'">×</button><img alt=""><a class="lb-dl" download>'+(_lbEN?'⬇ Download':'⬇ Télécharger')+'</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><style>
+/* Étoile favori (★) en tête de la cellule Société — dorée dès l'état INACTIF (☆) pour être
+   repérable comme « à cliquer », pleine et vive à l'état actif (★). */
+.op-fav{display:inline-block;vertical-align:baseline;margin:0 7px 0 0;padding:0;font-size:17px;
+line-height:1;color:#d9b64a;background:none;border:none;cursor:pointer;
+transition:color .12s,transform .12s}
+.op-fav:hover{color:#e5a91c;transform:scale(1.2)}
+.op-fav.on{color:#e5a91c}
+.fav-count{font-variant-numeric:tabular-nums;font-weight:800}
+/* Page /actualites/favoris/ : état vide + encart « créez votre thèse ». */
+.fav-empty-box{margin:26px 0;padding:24px 20px;border:1px dashed var(--line);border-radius:12px;
+background:var(--bg);text-align:center;color:var(--sub);font-size:14px;line-height:1.55}
+.fav-empty-box a{color:var(--accent-dk);font-weight:700;text-decoration:none}
+.fav-empty-box a:hover{text-decoration:underline}
+.fav-tease{margin:22px 0 6px;padding:16px 18px;border:1px solid var(--accent);border-radius:12px;
+background:var(--bg)}
+.fav-tease-h{font-size:15px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.fav-tease-p{font-size:13.5px;color:var(--sub);line-height:1.5;margin:0 0 10px}
+.fav-tease .tm-read{margin:0}
+/* Composeur de thèse in-browser + évaluation groupée (Phase B). */
+.fav-th-text{width:100%;min-height:64px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+font-family:inherit;font-size:13.5px;line-height:1.5;color:var(--ink);resize:vertical;margin:0 0 8px}
+.fav-th-text:focus{outline:none;border-color:var(--accent)}
+.fav-btn{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:9px;padding:9px 15px;cursor:pointer;transition:opacity .15s}
+.fav-btn:hover{opacity:.85}
+.fav-btn:disabled{opacity:.5;cursor:default}
+.fav-th-edit{margin-left:10px;font-size:12.5px;font-weight:600;color:var(--accent-dk);background:none;
+border:none;cursor:pointer;text-decoration:underline}
+.fav-th-label{font-size:13px;color:var(--sub);font-style:italic;margin:0 0 8px}
+.fav-th-hint{font-size:12px;color:#b91c1c;margin:6px 0 0}
+/* Verdict d'un favori (plein largeur sous la ligne, comme .op-eval-panel). */
+.fav-verdict{grid-column:1/-1;margin-top:2px}
+.fav-verdict:empty{margin:0}
+.fav-v{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;padding:3px 10px;margin-top:6px}
+.fav-v-yes{color:#047857;background:rgba(4,120,87,.10)}
+.fav-v-no{color:#b91c1c;background:rgba(185,28,28,.08)}
+.fav-v-err{color:var(--mid);background:var(--bg)}
+.fav-v-load{color:var(--mid);font-size:12.5px;font-weight:600;margin-top:6px;display:inline-block}
+.fav-vr{display:block;font-size:12.5px;color:var(--sub);line-height:1.45;margin-top:4px}
+</style><script>(function(){
+var K="proplace_favoris";
+// Bridge « certain » vers /cibles/ : un ?cb=<token> dans l'URL (posé par le lien du /cibles/ du
+// client, ou un email Proplace) lie ce navigateur à CE client → chaque ★ est aussi reflétée dans
+// un store SERVEUR scopé au token, retrouvée ensuite dans son onglet Favoris même sur un autre
+// appareil. Sans token (visiteur anonyme), sync() est un no-op → comportement inchangé.
+var TKK="proplace_cb_token",SYNC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/fav-sync";
+function readTok(){try{return localStorage.getItem(TKK)||"";}catch(e){return "";}}
+function writeTok(t){try{localStorage.setItem(TKK,t);}catch(e){}}
+function captureTok(){var t="";try{t=((new URL(window.location.href)).searchParams.get("cb")||"").trim();}catch(e){}
+ if(/^[A-Za-z0-9]{16}$/.test(t)){writeTok(t);return t;}return readTok();}
+var TOK=captureTok();
+function sync(op,removed){if(!TOK)return;try{
+ fetch(SYNC,{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
+  body:JSON.stringify({token:TOK,remove:!!removed,op:op})}).catch(function(){});
+}catch(e){}}
+function EN(){try{var l=localStorage.getItem("proplace_lang");if(l)return l==="en";}catch(e){}
+ return (navigator.language||"").slice(0,2).toLowerCase()==="en";}
+function read(){try{return JSON.parse(localStorage.getItem(K)||"[]")||[];}catch(e){return [];}}
+function write(a){try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}}
+function normU(u){return (u||"").toLowerCase().trim().replace(/[#?].*$/,"").replace(/\/+$/,"");}
+function normN(n){return (n||"").toLowerCase().replace(/\s+/g," ").trim();}
+function keyOf(u,c){return normU(u)||normN(c);}
+function opFromBtn(b){var d=b.dataset,u=d.u||"",c=d.co||"";
+ // Le bouton ne porte plus que co+url (régime data-*) : le reste est DÉRIVÉ de la ligne
+ // .trow (data-v/date/t/amt/pays + cellules affichées). Les anciens data-* du bouton restent
+ // lus en PRIORITÉ (compat : lignes de la page /favoris reconstruites depuis localStorage).
+ var r=b.closest?b.closest(".trow"):null,rd=(r&&r.dataset)||{};
+ // Cellules Type/Date en dual-span depuis 2026-07-16 : lire le span .i18n-fr (libellé
+ // canonique FR stocké dans le favori), sinon le textContent brut (cellules mono-langue).
+ function cell(s){if(!r)return "";var e=r.querySelector(s+" .i18n-fr")||r.querySelector(s);
+  var v=e?e.textContent.trim():"";return v==="—"?"":v;}
+ // Headline : sous-ligne .th (co présent) SINON le titre-lien du strong (op sans société).
+ var hd=r?(r.querySelector(".tco .th a:not(.tm-mem)")||r.querySelector(".tco strong a")):null;
+ var pe=r?r.querySelector(".tpays"):null;
+ var vert=d.v||rd.v||"";
+ return {id:keyOf(u,c),co:c,url:u,
+  disp:d.disp||(hd?hd.textContent.trim().slice(0,200):""),
+  ind:d.i||vert,vert:vert,
+  amtD:d.amtd||cell(".tamt"),
+  amt:parseInt(d.amt||rd.amt||"0",10)||0,
+  pays:d.pays||rd.pays||"",
+  paysFull:d.paysfull||(pe?(pe.getAttribute("title")||""):""),
+  date:d.date||(rd.date||"").slice(0,10),
+  typeK:d.typek||rd.t||"",
+  typeFr:d.typefr||cell(".ttype"),
+  ts:Date.now()};}
+function idx(a,id){for(var i=0;i<a.length;i++)if(a[i].id===id)return i;return -1;}
+function paint(){var a=read(),ids={};a.forEach(function(o){ids[o.id]=1;});
+ [].slice.call(document.querySelectorAll(".op-fav")).forEach(function(b){
+  var id=keyOf(b.dataset.u||"",b.dataset.co||""),on=!!ids[id];
+  b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false");
+  b.textContent=on?"★":"☆";
+  var t=on?(EN()?"Remove from favourites":"Retirer des favoris"):(EN()?"Add to favourites":"Mettre en favori");
+  b.title=t;b.setAttribute("aria-label",t);});
+ var n=a.length;[].slice.call(document.querySelectorAll(".fav-count")).forEach(function(e){e.textContent=String(n);});}
+window.__favPaint=paint;
+document.addEventListener("click",function(ev){
+ var b=ev.target&&ev.target.closest?ev.target.closest(".op-fav"):null;if(!b)return;
+ ev.preventDefault();ev.stopPropagation();
+ var a=read(),op=opFromBtn(b),k=idx(a,op.id),removed=k>=0;
+ if(k>=0)a.splice(k,1);else a.unshift(op);
+ write(a);paint();sync(op,removed);if(window.__favRender)window.__favRender();});
+window.addEventListener("storage",function(e){if(e.key===K){paint();if(window.__favRender)window.__favRender();}});
+if(document.readyState!=="loading")paint();else document.addEventListener("DOMContentLoaded",paint);
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
