@@ -1,0 +1,1210 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Winhealthgroup — analyse FinTech | Proplace</title><meta name="description" content="InsurTech / Financial Services · International Private Medical Insurance (IPMI) Brokerage · Series E+"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/winhealthgroup/"><meta property="og:type" content="article"><meta property="og:title" content="Winhealthgroup — analyse FinTech | Proplace"><meta property="og:description" content="InsurTech / Financial Services · International Private Medical Insurance (IPMI) Brokerage · Series E+"><meta property="og:url" content="https://proplace.co/analysis/winhealthgroup/"><meta property="og:image" content="https://proplace.co/analysis/radars/winhealthgroup.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://proplace.co/analysis/radars/winhealthgroup.png"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #e8e8e4;
+font-family:'Inter',system-ui,sans-serif}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#444;text-decoration:none}.ppx-bar nav a:hover{color:#0a0a0a}
+.ppx-crumb{font-family:'Inter',sans-serif;font-size:13px;color:#777;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#777;text-decoration:none}
+.ppx-cta{font-family:'Inter',sans-serif;background:#0f1f33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#c7d0db;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#9fb0c4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#4ac67f;color:#06281a;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0f1f33}
+.ppx-disc{font-family:'Inter',sans-serif;font-size:12px;color:#9eaaba;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#9eaaba}
+.ppx-ft{font-family:'Inter',sans-serif;border-top:1px solid #e8e8e4;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#777;text-align:center}
+.ppx-ft a{color:#777;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:'Inter',system-ui,sans-serif}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#36a866;text-decoration:underline}
+.bcrumb .sep{color:#E8E8E4}
+.bcrumb .cur{color:#0A0A0A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E8E8E4;
+font-family:'Inter',system-ui,sans-serif}
+/* Gabarit IDENTIQUE a la nav de la page d'accueil (.pp-nav-inner : 1200 / 32) —
+   le bandeau LIVE et la bande des jours se calent dessus, donc tout demarre
+   exactement sous le logo. Miroir React : components/SiteHeader.tsx. */
+.pph .in{max-width:1200px;margin:0 auto;padding:0 32px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+/* Le bandeau LIVE tient la largeur DE LA PAGE, pas celle de l'ecran (retour
+   Antoine 10/08). Regle MIROIR de src/live/core.ts — elle est repetee ici pour
+   etre dans le <head> : sans elle la barre s'afficherait pleine largeur puis
+   sauterait au chargement du bundle. */
+.pp-livewrap{max-width:1200px;margin:0 auto;padding:0 32px}
+/* UNE SEULE SURFACE : la barre LIVE et la bande des dates dans le meme cadre
+   d'encre, angles droits (miroir de src/live/core.ts). */
+.pp-band{background:#0B1220;border:1px solid #1E2C41}
+.pp-band .pp-live{border-bottom:1px solid #1E2C41}
+/* Le bandeau, la bande des jours et le contenu partagent la MEME gouttiere a
+   toutes les largeurs — sinon les trois blocs demarrent a trois x differents. */
+@media(max-width:760px){.pp-livewrap{padding:0 18px}.wrap.tm-wrap{padding:0 18px}}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#0a0a0a}
+/* (retour CEO 20/07) — mobile : « Mon compte » s'affichait À LA VERTICALE (un mot,
+   voire une lettre, par ligne). Cause : dans .pph nav (flex), .pph-sect et .pph-lang
+   sont en flex:0 0 auto mais PAS .pph-auth → c'était le SEUL enfant compressible, il
+   absorbait tout le débordement et rétrécissait à ~0, forçant le texte du bouton à
+   passer à la ligne. Il devient incompressible : c'est le défileur horizontal du nav
+   (v74) qui prend le relais, comme prévu. */
+.pph .pph-auth{flex:0 0 auto;display:inline-flex;align-items:center;white-space:nowrap}
+.pph .pph-auth button,.pph .pph-acct,.pph .pph-acct-btn{flex:0 0 auto;white-space:nowrap}
+/* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
+   « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
+   couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
+.pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{color:#fff;background:#0E8A4F;padding:8px 14px;
+border-radius:9px;font-weight:600;border:none;cursor:pointer;font-family:inherit;line-height:1.2}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover,.pph button.cta:hover,.pph .pph-auth button.cta:hover{background:#0A6B3D}
+/* Les trois surfaces editoriales — MEME rendu que la nav React (Nav.tsx, 10/08) :
+   liens sobres colles a la marque (order:-1 + margin-right:auto), filet de separation,
+   souligne vert au survol. L'ancienne pastille verte segmentee est retiree. */
+.pph .pph-sect{display:inline-flex;align-items:center;gap:22px;white-space:nowrap;flex:0 0 auto;
+order:-1;margin-right:auto;padding-left:20px;position:relative;
+border:0;background:none;border-radius:0;overflow:visible}
+.pph .pph-sect::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+width:1px;height:16px;background:rgba(15,23,42,.12)}
+.pph .pph-sect a{position:relative;padding:6px 0;color:#5B6B7F;font-weight:500;font-size:13.5px;
+letter-spacing:.005em;text-decoration:none;transition:color .2s ease}
+.pph .pph-sect a::after{content:"";position:absolute;left:0;right:0;bottom:1px;height:1.5px;
+border-radius:2px;background:#0E8A4F;transform:scaleX(0);transform-origin:left center;
+transition:transform .22s ease}
+.pph .pph-sect a:hover{color:#0F172A;background:none}
+.pph .pph-sect a.on{color:#0F172A;font-weight:600;background:none}
+.pph .pph-sect a:hover::after,.pph .pph-sect a.on::after{transform:scaleX(1)}
+/* « Accueil » fait doublon avec le logo, qui pointe deja la home (parite React). */
+.pph .pph-home{display:none}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#0a0a0a}
+.pph-lang button.on{background:#0f1f33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ /* v74 (R5) — le SEUL débordeur réel mesuré à 390px est CETTE nav (Connexion +
+    pastille News|Analysis + EN|FR ≈ 309px pour ~264px disponibles) : elle devient
+    son PROPRE défileur horizontal (règle « wide content » : overflow-x:auto sur la
+    pièce INTERNE — jamais sur un ancêtre d'une barre sticky). Alignée à gauche en
+    mobile : un débordement côté start (flex-end) serait inatteignable au scroll. */
+ .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pph nav::-webkit-scrollbar{display:none}
+ /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
+    (même piège que la couleur du CTA, retour CEO 19/07). */
+ .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
+ .pph .pph-sect{gap:14px;padding-left:12px}
+ .pph .pph-sect a{padding:6px 0;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+ /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
+    défileur (order:-1) → les 3 boutons sont TOUJOURS visibles à gauche, c'est
+    « Connexion » qui déborde/scrolle si l'écran est trop étroit (demande CEO). */
+ .pph nav .pph-sect{flex:0 0 auto}
+ /* v75 (bug #7) — la pastille EN|FR est hors du <nav> (défileur) : collée à droite du
+    header, toujours atteignable même quand le <nav> déborde/scrolle. */
+ .pph-lang{margin-left:auto;flex:0 0 auto}
+}
+/* ≤430px : les 3 pastilles + Connexion tiennent ensemble (resserrage police/padding). */
+@media(max-width:430px){
+ .pph nav{gap:7px}
+ .pph .pph-sect{gap:11px;padding-left:10px}
+ .pph .pph-sect a{padding:6px 0;font-size:11.5px;letter-spacing:-.01em}
+}
+
+.ppf{background:#0f1f33;color:#c7d0db;font-family:'Inter',system-ui,sans-serif;margin-top:48px}
+.ppf-in{max-width:1180px;margin:0 auto;padding:46px 24px 0;display:grid;
+grid-template-columns:1.3fr 2fr;gap:40px}
+.ppf-brand img{height:26px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:14px;color:#9fb0c4;margin:14px 0 16px;max-width:300px;line-height:1.55}
+/* Sections brand : même grammaire que le header (liens sobres, pas pastille). */
+.ppf-sect,.ppf .pph-sect{display:inline-flex;align-items:center;gap:18px;flex-wrap:wrap;
+border:0;background:none;border-radius:0;overflow:visible}
+.ppf-sect a,.ppf .pph-sect a{position:relative;padding:4px 0;color:#a8e6c4;font-weight:500;
+font-size:13.5px;text-decoration:none;margin:0;border:0;background:none;transition:color .2s ease}
+.ppf-sect a::after,.ppf .pph-sect a::after{content:"";position:absolute;left:0;right:0;bottom:0;
+height:1.5px;border-radius:2px;background:#4AC67F;transform:scaleX(0);transform-origin:left center;
+transition:transform .22s ease}
+.ppf-sect a:hover,.ppf .pph-sect a:hover,.ppf-sect a.on,.ppf .pph-sect a.on{color:#fff;background:none}
+.ppf-sect a:hover::after,.ppf .pph-sect a:hover::after,.ppf-sect a.on::after,.ppf .pph-sect a.on::after{transform:scaleX(1)}
+.ppf-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.ppf-col h4{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+color:#7d93ab;margin:0 0 13px}
+.ppf-col a,.ppf-col button{display:block;font-size:14px;color:#c7d0db;text-decoration:none;
+margin:0 0 10px;background:none;border:none;padding:0;cursor:pointer;text-align:left;
+font-family:inherit}
+.ppf-col a:hover,.ppf-col button:hover{color:#fff}
+.ppf-col a.cta{display:inline-block;background:#4AC67F;color:#06281a;font-weight:600;
+padding:7px 13px;border-radius:8px;margin:0 0 10px}
+.ppf-col a.cta:hover{background:#36a866;color:#06281a}
+.ppf-bottom{max-width:1180px;margin:32px auto 0;padding:18px 24px;
+border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7d93ab;
+display:flex;justify-content:center;gap:16px;flex-wrap:wrap;text-align:center}
+@media(max-width:760px){.ppf-in{grid-template-columns:1fr;gap:28px;padding-top:36px}
+.ppf-cols{grid-template-columns:repeat(2,1fr)}}
+/* AskBand bas de page (secteurs / actualites statiques) — miroir React AskBand.tsx */
+.pp-ask{padding:56px 24px;border-top:1px solid #E4EAF0;text-align:center;background:#F7F9FB;
+font-family:'IBM Plex Sans','Inter',system-ui,sans-serif;color:#0B1220}
+.pp-ask h2{margin:0 auto 16px;font-size:clamp(21px,2.4vw,30px);font-weight:600;
+letter-spacing:-.035em;line-height:1.14;max-width:34ch}
+.pp-ask-body{font-size:15px;color:#5A6B7D;margin:0 auto 22px;max-width:62ch;line-height:1.65}
+.pp-ask .ur{display:flex;gap:9px;max-width:600px;margin:0 auto;justify-content:center;flex-wrap:wrap}
+.pp-ask .uf{display:flex;align-items:center;gap:9px;flex:1;min-width:220px;height:50px;padding:0 15px;
+background:#fff;border:1px solid #CBD5E1;border-radius:8px;font-size:15px}
+.pp-ask .uf input{flex:1;border:0;outline:none;font-size:15px;background:none;
+font-family:inherit;min-width:0}
+.pp-ask .ub{flex:none;height:50px;padding:0 24px;border:0;border-radius:8px;background:#0E8A4F;
+color:#fff;font-size:14.5px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit}
+.pp-ask .ub:hover{background:#0A6B3D}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0f1f33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#6b5300;background:#fff8e6;border:1px solid #f0d48a;border-left:4px solid #e0a800;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #e5e9f0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#f3f7f4;border:1px solid #d4e4da;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0f1f33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#4ac67f;--accent-dk:#36a866;--line:#d4d9e2;--bg:#fff;--ink:#0f1f33;--mute:#9eaaba;--sub:#475569;--mid:#6b7280}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Winhealthgroup — FinTech", "description": "InsurTech / Financial Services · International Private Medical Insurance (IPMI) Brokerage · Series E+", "inLanguage": "fr", "url": "https://proplace.co/analysis/winhealthgroup/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/winhealthgroup/"}, "image": ["https://proplace.co/analysis/radars/winhealthgroup.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}, "about": {"@type": "Organization", "name": "Winhealthgroup"}, "datePublished": "2026-08-17", "dateModified": "2026-08-17"}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="direct">Live</a><a class="pph-mkt" href="/actualites/operations/secteurs/" data-i18n="marches">Live par secteur</a></span><span class="pph-auth" id="pph-auth"><a class="cta" href="https://proplace.co/#login" data-i18n="login">Log in</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><div class="pp-livewrap"><div class="pp-band"><div id="pp-live"></div></div></div><script defer src="/live-banner.js"></script><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",direct:"Live",marches:"Live by sector",marchesFooter:"Live by sector",dealflow:"My deal flow",analysis:"Analysis",research:"Research",mindmaps:"Mindmaps",dashboard:"Open dashboard",acct:"Connected",mSettings:"Settings",mPipeline:"My deal flow",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Explore",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"© 2026 Proplace",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Se connecter",news:"Actualités",direct:"Live",directFooter:"En direct",marches:"Live par secteur",marchesFooter:"En direct par secteur",dealflow:"Mon deal flow",analysis:"Analyses",research:"La recherche",mindmaps:"Mindmaps",dashboard:"Ouvrir le dashboard",acct:"Connecté",mSettings:"Paramètres",mPipeline:"Mon deal flow",mDashboard:"Tableau de bord",logout:"Se déconnecter",tagline:"Votre AI Corporate Developer",insights:"Explorer",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"© 2026 Proplace",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){
+// Header loggé : Connecté ▾ → Mon deal flow (/cibles) · Paramètres (/compte).
+// La déconnexion vit uniquement dans le footer.
+var compte=(lang==="fr"?"/fr/compte":"/compte");
+var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"");
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+pipeline+'">'+t.dealflow+"</a>"+
+'<a role="menuitem" href="'+compte+'">'+t.mSettings+"</a>"+
+"</div></div>";
+return {i:1,h:h,pipeline:pipeline,compte:compte};}
+return {i:0,h:'<a class="cta" href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200;
+// Toujours SOUS le bouton (menu court = Mon compte + Déco) — plus de flip au-dessus.
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Historique Research → Mon compte (onglet Recherches). Enregistre chaque fiche consultée
+   dans localStorage (même clé que ComptePage). No-op hors /research/<slug>/. */
+(function recordResearchVisit(){
+try{
+ var p=(location.pathname||"").replace(/\/+$/,"")+"/";
+ if(!/\/(en\/)?research\/[^/]+\//.test(p))return;
+ if(/\/(en\/)?research\/?$/.test((location.pathname||"").replace(/\/+$/,"")))return;
+ var title="";
+ var h1=document.querySelector("main h1, .rp-head h1, h1");
+ if(h1&&h1.textContent)title=h1.textContent.trim();
+ if(!title)title=(document.title||"").split("|")[0].trim();
+ var url=location.pathname;
+ var key="proplace_research_history";
+ var arr=[];
+ try{arr=JSON.parse(localStorage.getItem(key)||"[]")||[];}catch(e){arr=[];}
+ if(!Array.isArray(arr))arr=[];
+ arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});
+ arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});
+ if(arr.length>40)arr=arr.slice(0,40);
+ localStorage.setItem(key,JSON.stringify(arr));
+}catch(e){}
+})();
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){
+ if(a.i){pf.innerHTML='<a href="'+(a.pipeline||"/cibles")+'">'+t.dealflow+'</a>'
+  +'<a href="'+(a.compte||"/compte")+'">'+t.mSettings+"</a>"
+  +'<button type="button" id="ppf-logout">'+t.logout+"</button>";
+  var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+ else{pf.innerHTML='<a href="/#login">'+t.login+"</a>";}}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Winhealthgroup</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Winhealthgroup"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">Switzerland</span>
+<span class="sb-tag">Series E+</span>
+<span class="sb-tag">InsurTech / Financial Services</span>
+<span class="sb-tag">B2B2C</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Winhealthgroup</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/ch.png" srcset="https://flagcdn.com/32x24/ch.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>Switzerland ·</span> InsurTech / Financial Services · International Private Medical Insurance (IPMI) Brokerage · Series E+</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Customized international private medical insurance (IPMI) brokerage and advisory solutions for Swiss-EU cross-border workers and high-net-worth expats.</p>
+<a href="https://winhealthgroup.com" target="_blank"><i class="fas fa-globe"></i> Website</a>
+</div>
+</div>
+<span class="sb-nav-heading">Contact</span>
+<a class="nav-item bg-yellow" href="#fiche-contact">🤝 How to contact Winhealthgroup</a>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-grey" href="#sources">Sources &amp; Methodology</a>
+<div class="divider"></div>
+<div class="section">
+<h3>Explore Winhealthgroup further?</h3>
+<a class="btn btn-secondary" href="https://forms.proplace.co/meet" target="_blank">Schedule a strategy call on Winhealthgroup</a>
+</div>
+<div class="divider"></div>
+<div class="divider"></div>
+<div class="section">
+<h3>Subscribe to the Proplace newsletter?</h3>
+<p class="meta-desc">Get the daily M&amp;A and fundraising news.</p>
+<a class="btn btn-primary" href="https://www.proplace.co/newsletter" target="_blank">Subscribe to the newsletter</a>
+</div>
+<div class="section">
+<h3>Want a proprietary deal flow?</h3>
+<p class="meta-desc">Receive daily highly qualified targets for your acquisition strategy.</p>
+<a class="btn btn-primary" href="https://forms.proplace.co/meet" target="_blank">Schedule a strategy call</a>
+</div>
+<div class="sidebar-logo-wrap">
+<img alt=" Logo" src="https://images.fillout.com/orgid-7761/flowpublicid-ia2sy4nraa/widgetid-default/uKzrYJLYJXhpg5Vu3CSXei/pasted-image-1774869669160.png" style="max-width: 110px; height: auto; margin: 0 auto 10px; display: block; opacity: 0.85;"/>
+</div>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #9eaaba;"></span>
+</div>
+<h1 style="font-family: 'EB Garamond', serif; font-size: 2.6rem; font-weight: 600; color: #0f1f33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Winhealthgroup</h1>
+<h2 class="subtitle-category">InsurTech / Financial Services ➜ International Private Medical Insurance (IPMI) Brokerage ➜ Courtier familial spécialisé en couverture santé internationale et solutions sur mesure pour expatriés et frontaliers.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div data-ct-card="" style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin:0 0 40px;box-shadow:0 2px 6px rgba(15,23,42,.08)"><div style="background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><div style="font-size:15px;font-weight:700"><h2 id="fiche-contact" style="font-size:15px;font-weight:700;margin:0;padding:0;color:#fff;display:inline">🤝 Comment contacter Winhealthgroup</h2></div><div style="display:flex;align-items:center;gap:9px"><span style="background:#d97706;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.04em"></span><button onclick="var c=this.closest('div[data-ct-card]'),b=c.querySelector('div[data-ct-body]'),h=b.style.display==='none';b.style.display=h?'block':'none';this.innerHTML=h?'▾ Replier':'▸ Déplier'" style="font-family:Georgia,'Times New Roman',serif;font-size:12px;color:#e2e8f0;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:2px 9px;cursor:pointer;line-height:1.5;white-space:nowrap" type="button">▾ Replier</button></div></div><div data-ct-body="" style="padding:15px 18px;background:#fefce8"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:0 0 7px">Contact details</div><div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:6px">unavailable unavailable</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px"><a href="https://winhealthgroup.com" rel="noopener nofollow" style="display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:#1d4ed8;text-decoration:none;background:#fff;border:1px solid #dbe7f3;border-radius:7px;padding:4px 10px;font-weight:600" target="_blank">🌐 Website</a></div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #fde68a">Logique du deal</div><div style="font-size:13px;color:#0f172a;line-height:1.5">The investment rationale is purely acquisition-led: an acquirer buys WinHealth to obtain the FINMA certification, the April International distribution exclusives, and the embedded medical underwriting history of the client book — assets that collectively represent 10-15 years of non-replicable institutional work in the Geneva/Lausanne market.</div><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#475569;margin:15px 0 7px;padding-top:12px;border-top:1px solid #fde68a">Séquence d'approche CEO</div><div data-ch="email" id="ap1"><div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:9px"><button data-ap-ch="email" style="border:1px solid #185c38;background:#185c38;color:#fff;font-size:12.5px;font-weight:700;padding:5px 14px;border-radius:7px;cursor:pointer;margin-right:6px" type="button">Email</button><button data-ap-ch="linkedin" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:12.5px;font-weight:700;padding:5px 14px;border-radius:7px;cursor:pointer;margin-right:6px" type="button">LinkedIn</button><span style="width:9px"></span><button data-ap-day="0" style="border:1px solid #185c38;background:#185c38;color:#fff;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J0</button><button data-ap-day="1" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J2</button><button data-ap-day="2" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J4</button><button data-ap-day="3" style="border:1px solid #dde3ea;background:#fff;color:#475569;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J6</button><span data-ap-note="" style="font-size:11.5px;color:#64748b;margin-left:auto">4 messages, spaced — D0, D2, D4, D6</span></div><div data-ap-msg="" data-ap-pane="email:0" style="display:block"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J0</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Subject:</b> Winhealthgroup — une question directe</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Bonjour unavailable,
+
+Le dossier Winhealthgroup a retenu mon attention : une licence FINMA, vingt ans de relations institutionnelles, et une base clients haute marge dans un segment franco-suisse où la réglementation écarte naturellement tout nouvel entrant. Ce type d'actif ne se reconstruit pas — il s'acquiert au bon moment. Êtes-vous en discussion sur l'avenir capitalistique de la société ?</pre></div><div data-ap-msg="" data-ap-pane="email:1" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J2</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Subject:</b> Pourquoi maintenant, pas dans 18 mois</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Bonjour unavailable,
+
+La fenêtre que j'identifie est précise : l'IA de traitement documentaire vient de mûrir suffisamment pour adresser le goulot des 48 heures sur les claims — un levier de marge immédiat pour un acquéreur sérieux. Si April International accélère sa distribution digitale directe, ce même levier devient leur argument commercial contre vous. C'est le type de configuration où j'interviens — acquisition, modernisation opérationnelle, horizon clair. Ça vous parle ?</pre></div><div data-ap-msg="" data-ap-pane="email:2" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J4</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Subject:</b> Ce que j'évalue concrètement</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Bonjour unavailable,
+
+Ma thèse d'investissement pose une question simple sur chaque dossier : est-ce que l'avantage compétitif est construit ou acheté ? Pour Winhealthgroup, la réponse est évidente — vingt ans d'accreditation FINMA et de confiance institutionnelle ne s'assemblent pas, ils se transmettent. C'est exactement le profil que je qualifie d'acquisition prioritaire, indépendamment du secteur ou de la géographie. Un échange de trente minutes suffirait à voir si les conditions s'alignent — un créneau vous convient ?</pre></div><div data-ap-msg="" data-ap-pane="email:3" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J6</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><div style="font-size:12px;color:#475569;margin-bottom:6px"><b>Subject:</b> Je referme le dossier ici</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">Bonjour unavailable,
+
+Sans retour de votre part, je suppose que le moment n'est pas là — ou que le sujet est déjà traité en interne. Je referme le dossier pour l'instant, mais la porte reste ouverte si la réflexion évolue.</pre></div><div data-ap-msg="" data-ap-pane="linkedin:0" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J0</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">The FINMA license alone took your founders the better part of two decades to earn — that kind of regulatory standing in Franco-Swiss cross-border health insurance simply cannot be replicated from a standing start. I look at mature, profitable businesses where the moat is structural and the acquisition case is obvious once you see it clearly. Is there a right moment to share what I have in mind?</pre></div><div data-ap-msg="" data-ap-pane="linkedin:1" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J2</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">The way I read Winhealthgroup: a bootstrapped, high-margin brokerage with a 20-year institutional relationship book, FINMA accreditation, and a loyal client base that took a generation to build. That profile scores as a MUST_ACQUIRE under the lens I apply — not because of growth velocity, but because the asset cannot be reconstructed at any reasonable cost or timeline. The question I would want to explore with you: is there an appetite for a conversation about what the right acquirer profile looks like?</pre></div><div data-ap-msg="" data-ap-pane="linkedin:2" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J4</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">One angle I have not mentioned yet: document-ingestion AI has matured to the point where a 48-hour human-led claims process can be compressed significantly — for the first time, realistically. That operational unlock changes the margin profile of the business post-acquisition in a way that was not available 24 months ago. It also narrows the window, because April International is moving toward direct digital distribution. The timing case is sharper than it looks from the outside. Worth a short call?</pre></div><div data-ap-msg="" data-ap-pane="linkedin:3" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#334155">J6</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0f172a;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:8px">I will leave it here — I imagine either the timing is off or this simply is not the right channel. If the question of what a serious acquirer would see in Winhealthgroup ever becomes relevant, I am easy to find.</pre></div></div><script>(function(){var r=document.getElementById("ap1");if(!r)return;var ch=r.getAttribute("data-ch"),dy="0";function paint(){r.setAttribute("data-ch",ch);var i,b,ps=r.querySelectorAll("[data-ap-pane]");for(i=0;i<ps.length;i++){ps[i].style.display=(ps[i].getAttribute("data-ap-pane")===ch+":"+dy)?"block":"none";}var cb=r.querySelectorAll("[data-ap-ch]");for(i=0;i<cb.length;i++){b=cb[i];var onc=b.getAttribute("data-ap-ch")===ch;b.style.background=onc?"#185c38":"#fff";b.style.color=onc?"#fff":"#475569";b.style.borderColor=onc?"#185c38":"#dde3ea";}var db=r.querySelectorAll("[data-ap-day]");for(i=0;i<db.length;i++){b=db[i];var ond=b.getAttribute("data-ap-day")===dy;b.style.background=ond?"#185c38":"#fff";b.style.color=ond?"#fff":"#475569";b.style.borderColor=ond?"#185c38":"#dde3ea";}var n=r.querySelector("[data-ap-note]");if(n)n.textContent=(ch==="linkedin")?"Connection request: no note":"4 messages, spaced \u2014 D0, D2, D4, D6";}r.addEventListener("click",function(e){var t=e.target&&e.target.closest?e.target.closest("[data-ap-ch],[data-ap-day]"):null;if(!t)return;e.preventDefault();if(t.hasAttribute("data-ap-ch"))ch=t.getAttribute("data-ap-ch");else dy=t.getAttribute("data-ap-day");paint();});paint();})();</script></div></div><div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Winhealthgroup" data-h="" data-i="FinTech" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/winhealthgroup/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title">Market Summary</h2>
+<div class="split-container">
+<div class="text-col">
+<h4 class="kicker">SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>InsurTech &gt; Courtage en assurance santé internationale (IPMI)<br/>B2B2C &gt; Courtage</p>
+<div class="score-row sr-green"><span class="sr-label">LE MARCHÉ EST-IL ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">× 25% = 20 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span><span class="sr-note">× 25% = 17.5 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span><span class="sr-note">× 25% = 18.75 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL RENTABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span><span class="sr-note">× 25% = 19.5 pts</span></div>
+<p>SCORE D'ATTRACTIVITÉ GLOBALE DU MARCHÉ: 75.75/100 Ce score démontre que le marché de l'IPMI suisse est un micro-segment hautement rentable et protecteur des marges, agissant comme un puissant vecteur défensif pour un acquéreur cherchant du rendement plutôt qu'une scalabilité technologique hyper-croissante, en parfaite adéquation avec l'angle de transmission/acquisition d'actifs stables.</p>
+<h4 class="kicker">DÉFINITION DU MARCHÉ</h4>
+<p>Le marché cible est celui du courtage de polices d'assurance maladie privées internationales destinées aux professionnels hautement mobiles et aux frontaliers suisses cherchant à s'assurer contre les frais médicaux helvétiques exorbitants.</p>
+<p>La friction structurelle majeure réside dans l'opacité et l'incompatibilité des systèmes d'assurance nationaux (exemple : option LAMal vs CMU en France), laissant les assurés sans réponse claire face aux deductibles complexes. Au sein de la chaîne de valeur, le courtier d'assurance capte une marge de conseil significative en amont, tandis que le risque financier et les infrastructures de gestion de sinistres lourdes restent chez l'assureur.</p>
+<h4 class="kicker">NOTRE THÈSE DE MARCHÉ</h4>
+<p>Le bassin de l'emploi transfrontalier suisse a franchi un cap historique de densité, rendant la couverture de santé binationale indispensable pour plus de 400 000 salariés. Les assureurs traditionnels ne peuvent pas optimiser ce canal de distribution de manière fluide en direct sans détruire leurs marges commerciales internes car la complexité réglementaire exige un conseil humain sur mesure.</p>
+<p>L'attaque gagnante pour un nouvel acteur consiste à capturer la relation client en amont grâce à des outils d'aide à la décision réglementaire en libre-service en échange des données de contact. La fenêtre d'opportunité est actuellement grande ouverte en raison de la numérisation forcée par l'autorité de contrôle suisse, mais elle se refermera dès que les grands courtiers mondiaux auront entièrement intégré les cabinets régionaux de courtage.</p>
+<h4 class="kicker">NOTRE CONVICTION ET PARI SUR CE MARCHÉ</h4>
+<p><span class="conv-badge sr-amber">MOYENNE CONVICTION</span></p>
+<p>Bien que ce marché soit extrêmement protecteur des marges de commissionnement en raison de la fidélité des assurés, la capture de valeur à long terme exige une consolidation technologique rapide que les petits acteurs physiques ne peuvent financer seuls.</p>
+<p>Notre pari est que l'acquisition de portefeuilles de courtage helvétiques traditionnels de l'ancienne génération permettra de bâtir un consolidateur moderne capable de dégager des synergies d'échelle massives sous 36 mois. La réponse à la question de savoir si WinHealth possède des relations d'exclusivité indestructibles avec April ou d'autres porteurs de risques validera ou invalidera immédiatement l'opportunité de rachat de cet actif.</p>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ ATTRACTIF (Dynamique de Marché)</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<p>Ce score valide que l'attractivité du marché lémanique est portée par les flux continus de talents et de capitaux, éliminant les risques de contraction de la demande.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille du Marché</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché de la santé transfrontalière pèse plusieurs centaines de millions de francs suisses de primes collectées annuellement, soutenu par de fortes barrières d'accès.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Moteurs de Croissance</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Inflation constante des coûts de santé en Suisse et augmentation de la population de travailleurs migrants qualifiés.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Timing</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Phase de transition réglementaire avec des contrôles renforcés des instances suisses incitant les assurés à sécuriser des intermédiaires certifiés FINMA.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Risques de Marché</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Risque de nationalisation d'une partie de la couverture complémentaire ou harmonisation forcée réduisant l'intérêt des polices IPMI.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ GAGNABLE (Paysage Concurrentiel)</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<p>Le score montre que l'accès au marché est verrouillé par un réseau de relations de confiance locales, rendant la concurrence d'acteurs pure-players digitaux étrangers inefficace à court terme.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Acteurs Historiques</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des géants comme Swiss Risk &amp; Care dominent le segment d'entreprise, laissant le segment des particuliers et des PME s'organiser autour de courtiers indépendants réactifs.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Challengers</span><span class="sr-val">68/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Apparition d'applications de gestion de couverture santé simplifiées (ex: Alan), mais qui peinent à pénétrer le segment complexe des frontaliers suisses.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Espace Libre</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Une opportunité claire pour un outil d'agrégation d'offres de niche avec tarification dynamique en temps réel pour courtiers régionaux.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Défendabilité</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La protection repose sur la forte adhérence psychologique et contractuelle du client final à son courtier en cas de problème de santé critique.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ PÉNÉTRABLE (Modèle de Vente &amp; KPIs)</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div>
+<p>Ce score implique qu'une approche orientée conseil fiduciaire couplée à un ciblage SEO axé sur la réglementation frontalière est le canal de d'acquisition au coût le plus bas.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Modèle Commercial</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle hautement consultatif et hybride combinant des formulaires digitaux de collecte de besoins et une validation par un conseiller expert.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Tarification</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Rémunération neutre pour l'utilisateur, ce qui élimine les freins à l'achat et maximise les taux d'engagement initiaux.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Rentabilité Unitaire</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Valeur à vie du client élevée (LTV) grâce à des périodes de conservation de polices moyennes supérieures à 7 ans.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Scalabilité</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Scalabilité limitée par le besoin de conseillers certifiés localisés pour valider les contrats et maintenir la confiance réglementaire.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ RENTABLE (Financement &amp; Sortie)</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div>
+<p>Le score de rentabilité indique des opportunités d'exit claires via des acquisitions par des groupes de courtage consolidés financés par le Private Equity cherchant des flux de trésorerie récurrents.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Activité de Financement</span><span class="sr-val">65/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Faible activité VC pure dans cette niche ultra-spécifique, l'essentiel des capitaux provenant d'opérations de LBO sectoriels.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Multiples de Sortie</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Multiples d'EBITDA de courtage stables et résilients (souvent valorisés entre 10x et 15x l'EBITDA dans le cadre de consolidations européennes).</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Acquéreurs Stratégiques</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">De grands consolidateurs comme Howden, Verlingue ou Siaci Saint Honoré cherchent en permanence à racheter des portefeuilles régionaux qualitatifs.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Profil de Rendement</span><span class="sr-val">84/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché produit des revenus récurrents d'une grande stabilité, parfaitement compatibles avec des objectifs de rendement en capital de type Private Equity dans un cadre d'investissement défensif.</div></li></ul>
+<h4 class="kicker">SYNTHÈSE DES SECTIONS</h4>
+<p>L'alignement d'un marché très attractif à faible vélocité concurrentielle technologique suggère que la stratégie gagnante n'est pas le capital-risque de rupture mais un build-up de Private Equity visant à automatiser l'acquisition en ligne d'un leader traditionnel comme WinHealth pour en accroître l'EBITDA par le levier technologique.</p>
+<h4 class="kicker">CONFIANCE DANS LES DONNÉES</h4>
+<p>Les estimations de marché et de perspectives réglementaires s'appuient sur l'analyse rigoureuse des bases de données de la FINMA et des rapports annuels des acteurs de l'IPMI (April, Henner). Total des URLs sectorielles sourcées : 2.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://quickchart.io/chart?v=3&amp;c=%7B%22type%22%3A%20%22radar%22%2C%20%22data%22%3A%20%7B%22labels%22%3A%20%5B%22ATTRACTIVE%20MARKET%20%3F%22%2C%20%22WINNABLE%20MARKET%20%3F%22%2C%20%22PENETRABLE%20MARKET%20%3F%22%2C%20%22REWARDING%20MARKET%20%3F%22%5D%2C%20%22datasets%22%3A%20%5B%7B%22label%22%3A%20%22Winhealthgroup%22%2C%20%22backgroundColor%22%3A%20%22rgba%28255%2C%20212%2C%20102%2C%200.2%29%22%2C%20%22borderColor%22%3A%20%22rgb%28255%2C%20212%2C%20102%29%22%2C%20%22pointBackgroundColor%22%3A%20%22rgb%28255%2C%20212%2C%20102%29%22%2C%20%22data%22%3A%20%5B80%2C%2070%2C%2075%2C%2078%5D%7D%5D%7D%2C%20%22options%22%3A%20%7B%22scale%22%3A%20%7B%22ticks%22%3A%20%7B%22beginAtZero%22%3A%20false%2C%20%22suggestedMin%22%3A%2070%2C%20%22suggestedMax%22%3A%20100%2C%20%22stepSize%22%3A%205%2C%20%22display%22%3A%20false%7D%7D%7D%7D"/>
+</div>
+</div>
+</div>
+
+&gt;
+<div class="section-container" id="company">
+<h2 class="section-title">Company Deep Dive</h2><div id="company-mindmap"><h3 id="company-mindmap-title">Mind map — what Winhealthgroup does</h3><div class="cm-mindmap-wrap"><div class="markmap" style="width:100%;height:600px"><script type="text/template">
+---
+markmap:
+  colorFreezeLevel: 2
+  initialExpandLevel: 5
+  maxWidth: 340
+---
+# Winhealthgroup
+- **Offre & Produit**
+  - Courtage indépendant en **assurance santé internationale** pour la mobilité mondiale.
+    - Spécialisé dans la protection sociale et l'assurance accident pour **expatriés et travailleurs transfrontaliers**.
+  - Solutions sur mesure avec **couverture mondiale**, y compris les USA, et sans limite d'âge.
+    - Inclut des options dentaires et optiques, ainsi que l'évacuation d'urgence.
+  - Accès à un réseau de **1 000 000 prestataires médicaux** et facturation directe (tiers payant).
+    - Traitement des réclamations en **48 heures** et support multilingue 24/7.
+  - Programmes spécifiques comme **Magellan** (voyage), **Crystal Studies** (étudiants) et **Ma Santé Frontaliers**.
+- **Clients & Cas d'Usage**
+  - Cible les **expatriés** s'installant à l'étranger et les **travailleurs transfrontaliers** en Suisse.
+    - Résout la complexité réglementaire et tarifaire liée au changement de juridiction.
+  - Sert les **entreprises internationales**, les organisations et les missions permanentes (B2B).
+    - Offre des solutions pour la gestion de la mobilité des talents.
+  - Accompagne les **étudiants internationaux** via des programmes dédiés.
+    - Exemple : le programme **Crystal Studies** pour une couverture adaptée.
+- **Modèle Économique & Pricing**
+  - Modèle de **courtage indépendant** représentant les clients auprès des assureurs.
+    - Gagne des **commissions récurrentes** des assureurs, non des clients directement.
+  - Génère des économies moyennes de **18%** pour les assurés.
+    - Études et comparaisons personnalisées sont **gratuites** pour les clients.
+  - Flux de revenus diversifiés incluant primes santé, assurance-vie (3e pilier) et protection d'actifs.
+    - Services de financement immobilier/hypothécaire complètent l'offre.
+- **Comment ça Marche**
+  - Agit comme un **'Family Office' d'assurance** pour des clients exigeants.
+    - Automatise l'analyse comparée des risques et négocie des garanties exclusives.
+  - Partenariats avec **plus de 15 compagnies d'assurance** santé et médicale internationales.
+    - Inclut des acteurs majeurs comme **April International**.
+  - Ancrage réglementaire fort avec la **certification FINMA n° 33836** en Suisse.
+    - Offre une barrière de confiance légale et une expertise unique sur le marché transfrontalier.
+- **Équipe & Traction**
+  - Dirigée par **Charles E. Busson (Directeur Général)**, avec près de **20 ans d'expertise**.
+    - Forte orientation commerciale et conformité réglementaire de l'équipe.
+  - Géré par **12 équipes dédiées** intégrées aux plus grands assureurs mondiaux.
+    - Reflète une structuration opérationnelle robuste et une capacité de support élevée.
+  - **Croissance stable et linéaire** sur près de deux décennies.
+    - Validation client forte, partenaire de confiance d'institutions internationales et milliers de frontaliers.
+  - **Forte fidélité client** due au risque de perte d'antériorité médicale en cas de changement.
+- **Positionnement & Avantages**
+  - Différenciation basée sur la **personnalisation humaine extrême** du service.
+    - Faible innovation technologique de rupture, mais forte valeur ajoutée par le conseil.
+  - **Agrément FINMA certifié** comme avantage concurrentiel clé et barrière à l'entrée.
+    - Permet d'opérer sur le segment complexe de l'assurance transfrontalière en Suisse.
+  - Réputation historique de **'Family Office de l'Assurance'** dans le bassin lémanique.
+    - Portefeuille clients captif à haute fidélité et faible attrition.
+  - **Moat modéré** basé sur le verrouillage réglementaire et la complexité des lois transfrontalières.
+    - Vulnérable à l'émergence d'agrégateurs technologiques automatisant ces choix.
+</script><img alt="Mind map — what Winhealthgroup does" class="cm-mindmap-png" loading="lazy" src="https://analysis.proplace.co/mindmaps/winhealthgroup.png"/></div></div><div class="cm-summary"><p>WinHealthgroup est un family office d'assurance spécialisé dans le courtage en assurances médicales privées internationales sur mesure. L'entreprise s'adresse à une clientèle exigeante comprenant des expatriés, des entreprises internationales, des missions permanentes, des organisations internationales, des travailleurs transfrontaliers et des étudiants, offrant des solutions B2B et B2C.</p><p>Forte de près de 20 ans d'expérience et certifiée FINMA (Autorité fédérale de surveillance des marchés financiers suisse), WinHealthgroup propose une couverture mondiale sans limite d'âge, incluant les USA, avec des garanties modulaires, un traitement rapide des réclamations et un support multilingue. Leur modèle de courtage indépendant permet aux clients de bénéficier d'économies moyennes de 18% en comparant plus de 15 assureurs internationaux comme April International.</p><p>La différenciation de WinHealthgroup repose sur une personnalisation humaine extrême du service, un ancrage réglementaire fort en Suisse et un réseau d'alliances stratégiques. Bien que son modèle soit fortement dépendant de l'humain, il génère une forte fidélisation client et une rentabilité stable, s'appuyant sur des commissions récurrentes des assureurs.</p></div><div class="cm-prospective"><h4>Prospective synthesis</h4><p>WinHealthgroup incarne un modèle de courtage traditionnel et rentable, capitalisant sur l'expertise réglementaire suisse et un service client haut de gamme. Son succès révèle l'importance persistante de l'intermédiation humaine face à la complexité des assurances internationales, malgré un risque de désintermédiation technologique à long terme. Pour un investisseur, cela souligne la valeur d'actifs générant des revenus récurrents stables dans des niches réglementées.</p><p class="cm-sub">Criteria to watch</p><ul><li>Courtiers d'assurance spécialisés dans des niches réglementaires (ex: expatriation, secteurs spécifiques)</li><li>Entreprises avec un fort ancrage local et une réputation de 'family office' ou de conseil personnalisé</li><li>Modèles économiques basés sur des commissions récurrentes et une faible attrition client</li><li>Acteurs avec des barrières à l'entrée réglementaires ou un savoir-faire juridique complexe</li></ul><p class="cm-sub">Companies to evaluate</p><ul class="cm-comps"><li><strong>Alan</strong> <span class="cm-stage">Series E</span> — Un acteur disruptif de l'assurance santé digitale, pour comprendre comment la technologie peut désintermédier ou transformer le courtage traditionnel.</li><li><strong>Chapka Assurances</strong> <span class="cm-stage">Acquired</span> — Spécialiste de l'assurance voyage et expatriation en ligne, pour évaluer un modèle hybride entre courtage traditionnel et distribution digitale.</li><li><strong>Lovys</strong> <span class="cm-stage">Series A</span> — Insurtech française proposant une assurance 100% digitale et modulable, pour comparer l'agilité technologique face aux modèles établis.</li><li><strong>Luko</strong> <span class="cm-stage">Series B</span> — Autre insurtech française axée sur la transparence et la rapidité, pertinente pour évaluer l'impact de l'expérience utilisateur digitale sur la fidélisation.</li></ul></div></div><script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.18.12/dist/browser/index.iife.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script>(function(){function boot(){try{var host=document.querySelector('#company-mindmap .markmap');if(!host||host.__mmDone)return;var tpl=host.querySelector('script[type="text/template"]');if(!tpl)return;var md=tpl.textContent.replace(/^\s*---[\s\S]*?---\s*/,'');var M=window.markmap;if(!M||!M.Transformer||!M.Markmap)return;var r=(new M.Transformer()).transform(md);host.innerHTML='<svg style="width:100%;height:600px;display:block"></svg>';var inst=M.Markmap.create(host.querySelector('svg'),{initialExpandLevel:5,maxWidth:340,colorFreezeLevel:2},r.root);host.__mmDone=1;var refit=function(){try{inst.fit()}catch(e){}};window.addEventListener('resize',refit);setTimeout(refit,300);setTimeout(refit,1200);setTimeout(refit,3000);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(refit);}catch(e){}}if(document.readyState==='complete')boot();else window.addEventListener('load',boot);setTimeout(boot,1500);setTimeout(boot,4000);})();</script>
+<h3 id="value-proposition">Value Proposition</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Value Proposition</h4>
+<p>WinHealth provides bespoke international private medical insurance solutions acting as an insurance family office for demanding international clients, ensuring high service quality and optimal premium-to-benefit ratios.</p>
+<h4 class="kicker">Ideal Customer Profile (ICP)</h4>
+<p>Expats moving abroad, international companies, permanent missions, international organizations, cross-border workers, and international students.</p>
+<h4 class="kicker">B2B or B2C</h4>
+<p>Both. They offer solutions for individuals (B2C) as well as large corporations or organizations (B2B).</p>
+<h4 class="kicker">Industry</h4>
+<p>International health insurance brokerage / Financial services.</p>
+<h4 class="kicker">Contact and Legal</h4>
+<p>Phone: +41 22 736 76 76. Registered Entity: WinHealth. FINMA Certification No. 33836 (Swiss Financial Market Supervisory Authority). Established: Nearly 20 years of experience.</p>
+<h4 class="kicker">Key Clients and Testimonials</h4>
+<p>Partners include over 15 international health and medical insurance companies including April International.</p></div>
+<h3 id="product">Product</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Core Solution</h4>
+<p>Independent brokerage specialized in international social protection and health/accident insurance for global mobility.</p>
+<h4 class="kicker">Features Encyclopedia</h4>
+<p>Global coverage (including USA) | No age limits (lifetime plans) | Private room coverage with no deductible | Direct billing (third-party payment) | Modular guarantees | Emergency evacuation | Dental and optical options | Claims processing within 48 hours | Multilingual support teams.</p>
+<h4 class="kicker">Technical Capabilities</h4>
+<p>24/7 assistance | Access to networks of 1,000,000 medical providers | Online quote forms | Integration with leading global insurers (April International, etc.).</p>
+<h4 class="kicker">Use Cases</h4>
+<p>Expats seeking private health coverage | Business travelers requiring Schengen visa insurance | Cross-border workers (Frontaliers) in Switzerland | Foreign students abroad (Crystal Studies program).</p></div>
+<h3 id="business-model">Business Model</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Business Model Analysis</h4>
+<p>Independent brokerage (Intermediary). They represent clients toward insurance companies to secure the best rates on the market.</p>
+<h4 class="kicker">Revenue Streams and Pricing Tiers</h4>
+<p>Individual health premiums | Life insurance (3rd pillar) | Asset protection (real estate/mortgage financing services). Average savings of 18% when subscribing via WinHealth.</p>
+<h4 class="kicker">Plan Features</h4>
+<p>Magellan (travel insurance) | Crystal Studies (student insurance) | Ma Santé Frontaliers (cross-border workers insurance).</p>
+<h4 class="kicker">Hidden Costs and Terms</h4>
+<p>Free personalized studies and comparisons offered. No mention of setup fees for the client; costs are generally covered via commissions from insurers.</p></div>
+<h3 id="team">Team</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Company Culture</h4>
+<p>Positioned as an insurance-specialized family office focused on trust, daily support, and professional liability (Article 44 LSA).</p>
+<h4 class="kicker">Team Analysis</h4>
+<p>Charles E. Busson (CEO). Managed by 12 dedicated teams integrated within the world's largest insurers.</p>
+<h4 class="kicker">Job Offers and Titles</h4>
+<p>No specific job offers listed in the text.</p>
+<h4 class="kicker">Estimated Headcount</h4>
+<p>Calculated estimates based on provided data:</p>
+<p>Product and Engineering: Unknown</p>
+<p>Marketing: Unknown</p>
+<p>Sales: Unknown</p>
+<p>Support and IT: High (12 dedicated management teams)</p>
+<p>General and Admin (G&amp;A): Boutique small/medium enterprise.</p></div>
+<h3 id="ceo">CEO</h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title"><span class="i18n-fr">Résumé de l'entreprise</span><span class="i18n-en">Company overview</span></h2><div class="cs-disc">ⓘ <span class="i18n-fr">Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</span><span class="i18n-en">These scores often reflect how much public information we could find online (web presence), not the company's objective reality. A low score — e.g. on team excellence — usually means little information was found, not that the company is weak.</span></div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>InsurTech &gt; Courtage en assurance santé internationale (IPMI)</li><li>B2B2C &gt; Courtage</li></ul>
+<br/>
+<strong>SCORE DE PRÉ-SÉLECTION</strong><br/>
+Thèse : Critères d'Investissement
+<p>NOTE : Il s'agit d'un score de pré-sélection brut. Les pondérations de notre thèse sont appliquées en aval dans le pipeline de qualification synthétique des GP après détection de l'angle primaire.<hr/></p><div class="score-row sr-blue sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:60%"></span></span><span class="sr-val">60/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">TRACTION &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div><p><hr/></p><div class="score-row sr-amber sr-total"><span class="sr-label">SCORE DE PRÉ-SÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:74%"></span></span><span class="sr-val">74/100</span><span class="sr-note">🟠 INDICE CONCURRENCIEL MODÉRÉ (75-79)</span></div><p><hr/><strong>❓ EN BREF :</strong> WinHealth est un spécialiste du courtage en assurance santé internationale qui permet aux expatriés et aux travailleurs frontaliers de sécuriser leur couverture médicale globale en proposant des solutions sur mesure au meilleur ratio prime-prestations.</p>
+<h4 class="kicker">LE PROBLÈME</h4>
+<p>Le client fait face à une complexité réglementaire et tarifaire extrême lorsqu'il change de juridiction (par exemple, un travailleur franchissant quotidiennement la frontière franco-suisse), risquant des ruptures de protection de santé ou des surfacturations massives qu'il ne peut pas évaluer seul.</p>
+<h4 class="kicker">LA SOLUTION</h4>
+<p>WinHealth agit comme un Family Office d'assurance en automatisant l'analyse comparée des risques et en négociant des structures de garantie exclusives directement auprès de plus de 15 assureurs mondiaux majeurs comme April.</p>
+<h4 class="kicker">LE GTM</h4>
+<p>Ciblage ultra-localisé des grandes organisations internationales, des missions permanentes et des réseaux de travailleurs transfrontaliers en Suisse grâce à un modèle de recommandation haut de gamme et un ancrage réglementaire de confiance.<hr/></p><div class="score-row sr-blue sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Adéquation Fondateur-Marché</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Charles E. Busson (Directeur Général) démontre une longévité et une expertise de près de 20 ans dans l'écosystème helvétique du courtage d'assurance réglementé.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Historique de Réussite</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pas d'historique de revente d'actifs tech d'envergure, mais une consolidation d'activité stable et reconnue sur la place de Genève.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">12 équipes de gestion dédiées et intégrées auprès des plus grands assureurs mondiaux, reflétant une structuration opérationnelle robuste.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Complétude de l'Équipe</span><span class="sr-val">77/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Forte orientation commerciale et conformité réglementaire, compensant un profil technique interne plus discret.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Taille &amp; Croissance</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché de niche de l'IPMI pour expats à haut patrimoine et frontaliers suisses bénéficie d'une forte dynamique démographique transfrontalière.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Timing Pourquoi Maintenant</span><span class="sr-val">78/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Durcissement continu des accords bilatéraux sur la libre circulation et réformes régulières des systèmes de santé (LAMal/CMU) créant de l'anxiété chez les assurés.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Concurrence</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Paysage concurrentiel partagé entre courtiers familiaux traditionnels et nouvelles insurtechs, où WinHealth maintient sa position grâce à son agrément FINMA.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Potentiel d'élargissement important vers d'autres piliers de prévoyance (3ème pilier suisse, prévoyance d'entreprise, optimisation patrimoniale).</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:60%"></span></span><span class="sr-val">60/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">62/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Faible innovation de rupture technologique; la différenciation repose sur la personnalisation humaine extrême du service d'accompagnement.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Adéquation Produit-Marché</span><span class="sr-val">65/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Satisfaction client forte attestée par des partenariats à long terme, mais absence d'outils SaaS de gestion de sinistres propriétaires.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">55/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modèle de service encore fortement dépendant de l'intervention humaine, présentant des limites intrinsèques à la scalabilité rapide.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Propriété Intellectuelle</span><span class="sr-val">58/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pas de brevets technologiques majeurs; la valeur réside dans l'agrément FINMA No 33836 d'intermédiaire financier certifié en Suisse.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">💼 MODÈLE D'AFFAIRES (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Économies moyennes de 18% garanties pour les assurés tout en préservant des marges de commissions récurrentes importantes versées par les assureurs porteurs de risques.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de Revenus</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Rémunération basée sur des commissions récurrentes annuelles corrélées aux primes souscrites (modèle à forte rétention naturelle).</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Services d'études personnalisées gratuits servant d'aimants d'acquisition hautement qualifiés permettant un taux de conversion élevé.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Structure autofinancée et rentable depuis près de deux décennies, ne nécessitant aucun apport externe pour maintenir son équilibre.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">📈 TRACTION &amp; CROISSANCE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Croissance des Revenus</span><span class="sr-val">68/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Croissance régulière mais linéaire, typique d'un cabinet de conseil haut de gamme par rapport à une startup à croissance exponentielle.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Partenaire de confiance d'institutions internationales et de milliers de travailleurs frontaliers depuis 20 ans.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Progression des KPI</span><span class="sr-val">65/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Évolution stable des effectifs et intégration de nouveaux programmes premiums à l'image de Crystal Studies.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">72/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Acteur bien implanté dans le bassin lémanique, bénéficiant d'accords négociés exclusifs avec April International.</div></li></ul>
+<hr/><strong>🔍 RISQUE À SOUSCRIRE :</strong>
+<p>L'hypothèse la plus critique quant à la pérennité de WinHealth réside dans la dépendance totale à l'arbitrage réglementaire des taux de commissionnement imposés par les grands assureurs porteurs de risque et à la numérisation directe de leurs offres. Si April ou Allianz décident de court-circuiter les courtiers physiques via des plateformes d'IA d'acquisition directe de clients, WinHealth verra ses volumes d'affaires s'éroder sans possibilité de riposte technologique.</p>
+<p>Ce risque de désintermédiation est structurellement non résolvable par un simple audit externe et exigera une mutation de l'entreprise vers des services de conseil patrimonial plus larges.</p>
+<h4 class="kicker">AVANTAGES CONCURRENTIELS CLÉS</h4>
+<ul><li>Agrément FINMA certifié (No 33836) offrant une barrière de confiance légale incontournable pour opérer sur le segment de l'assurance transfrontalière en Suisse.</li><li>Réseau d'alliances avec 15+ assureurs mondiaux permettant d'arbitrer les tarifs pour garantir systématiquement 18% d'économies moyennes.</li><li>Marque forte et réputation historique de 'Family Office de l'Assurance' dans le micro-marché à haut pouvoir d'achat de Genève et Lausanne.</li><li>Portefeuille clients captif à haute fidélité (faible attrition due au risque de perte d'antériorité médicale en cas de changement de courtier).</li></ul>
+<p><strong>🧱 FOSSÉ CONCURRENTIEL (MOAT) :</strong> [MODERATE]</p>
+<p>La barrière de WinHealth repose sur le verrouillage réglementaire suisse (FINMA) et la complexité inhérente aux lois transfrontalières (LAMal vs CMU). Le coût de transfert pour les assurés est psychologiquement et financièrement élevé en raison de l'exclusion potentielle de pathologies préexistantes chez de nouveaux assureurs. Néanmoins, ce fossé est vulnérable à l'émergence d'agrégateurs technologiques automatisant ces choix de manière transparente.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le scénario haussier :</li></ul>
+WinHealth numérise l'intégralité de sa base de connaissances réglementaires et de son processus d'onboarding pour devenir l'infrastructure technologique par défaut des RH d'entreprises internationales cherchant à gérer la mobilité de leurs talents en Europe.
+<ul><li>Le scénario baissier :</li></ul>
+Le resserrement des réglementations douanières ou une refonte bilatérale majeure du statut de frontalier annule l'attrait de la double couverture optionnelle, provoquant un désabonnement massif des clients de la zone frontalière.
+<h4 class="kicker">DRAPEAUX ROUGES</h4>
+<ul><li>Risques Universels : Modèle d'acquisition client fortement basé sur les relations humaines et le réseau physique, difficilement industrialisable en dehors du hub lémanique.</li><li>Incohérences avec la Thèse : Profil financier de courtier de services traditionnel manquant de leviers de croissance technologique exponentielle nécessaires à une thèse VC standard.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/56/56/1786960800000/sA5XufJ2HT0ublrUKa670w/ETZuGJ0Cilt5l4sB5O_XMEHQ20glBqq8tuiGOOBqtuHWdaRFEzBlXir5hNfbZU5l8Sl_fbc6qELtrQvQBJwN2rBLEQwW6xs8oKGH8YRajsOSI1O0Qxqjfcpjn8cKgGjNtDWXop3m0XYuTijfr6-VDA/ZnftDdLmldHToviCC3P8Qo-lESxrb2RQzffKY0OulV0"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">SWOT Analysis</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Strengths</h3><ul><li>La certification FINMA et près de 20 ans d'expérience confèrent une crédibilité immédiate auprès des clients internationaux haut de gamme.</li><li>Le positionnement d'office familial en assurance permet des solutions sur mesure avec des économies moyennes de 18 %.</li><li>Le réseau de 1 million de prestataires et la facturation directe couvrent efficacement les besoins mondiaux y compris aux États-Unis.</li><li>Les produits spécialisés comme Crystal Studies et Ma Santé Frontaliers capturent des niches de mobilité ciblées.</li><li>Le support multilingue et le traitement des sinistres en 48 heures renforcent la qualité de service perçue.</li></ul></div>
+<div class="swot-item s-red"><h3>Weaknesses</h3><ul><li>L'absence de profil public du CEO et d'informations détaillées sur la direction réduit la transparence pour les investisseurs.</li><li>La structure de taille modeste limite la capacité à absorber une croissance rapide ou des volumes importants.</li><li>Le modèle repose entièrement sur des commissions d'assureurs sans produits propriétaires.</li><li>Aucune indication de pipeline de recrutement ou de plan d'embauche visible.</li><li>La dépendance à une quinzaine de partenaires assureurs concentre le risque de relation.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunities</h3><ul><li>L'augmentation des missions permanentes et organisations internationales en Suisse crée une demande B2B stable.</li><li>La mobilité étudiante internationale offre un axe de croissance via le programme Crystal Studies.</li><li>L'intégration de services de protection d'actifs et de financement immobilier permet de fidéliser les clients existants.</li><li>La digitalisation des devis en ligne peut accélérer l'acquisition de clients B2C individuels.</li><li>La demande croissante de couverture santé sans limite d'âge profite aux plans à vie proposés.</li></ul></div>
+<div class="swot-item s-orange"><h3>Threats</h3><ul><li>Les assureurs directs en ligne contournent de plus en plus les courtiers traditionnels.</li><li>Les évolutions réglementaires sur les frontaliers suisses peuvent réduire la clientèle de niche.</li><li>La hausse des coûts médicaux aux États-Unis exerce une pression sur les primes et les taux de conservation.</li><li>Une consolidation du marché des brokers pourrait réduire la marge de négociation.</li><li>La dépendance aux commissions rend le modèle vulnérable à des changements de politique des partenaires assureurs.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources &amp; Methodology</h2>
+<div class="source-list"><p style="font-style:italic;color:#556;margin:0 0 0.8em;">1 deep links found to build this memo — official site, Tavily &amp; Exa web research.</p>
+<h4 class="kicker" style="margin:0.9em 0 0.3em;">Site officiel</h4>
+<ul style="margin:0.2em 0 0.9em 1.1em;padding:0;"><li style="margin:0.15em 0;"><a href="https://winhealthgroup.com" rel="noopener nofollow" target="_blank">Winhealthgroup</a> <span style="color:#8a94a6;font-size:0.85em;">— winhealthgroup.com</span></li></ul></div>
+</div>
+
+
+
+
+&gt;<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Winhealthgroup ?</span><span class="i18n-en">Explore Winhealthgroup further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc"><span class="i18n-fr">Généré par Proplace.co — une IA qui peut se tromper. Contact : <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span><span class="i18n-en">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p><span class="ppf-sect" aria-label="Sections Proplace"><a class="" href="/actualites/"><span class="i18n-fr">En direct</span><span class="i18n-en">Live</span></a><a class="" href="/actualites/operations/secteurs/"><span class="i18n-fr">En direct par secteur</span><span class="i18n-en">Live by sector</span></a></span></div><nav class="ppf-cols"><div class="ppf-col"><h4>Proplace</h4><a href="https://proplace.co/" data-i18n="home">Home</a><a href="https://proplace.co/api/" target="_blank" rel="noopener">API →</a><a href="https://proplace.co/newsletter">Newsletter</a></div><div class="ppf-col"><h4 data-i18n="insights">Explore</h4><a href="/actualites/"><span class="i18n-fr">En direct</span><span class="i18n-en">Live</span></a><a href="/actualites/operations/secteurs/"><span class="i18n-fr">En direct par secteur</span><span class="i18n-en">Live by sector</span></a><a href="https://proplace.co/carte" data-i18n="mindmaps">Mindmaps</a></div><div class="ppf-col"><h4 data-i18n="account">Account</h4><span id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></span></div><div class="ppf-col"><h4 data-i18n="legal">Legal</h4><a href="/terms" data-i18n="terms">Terms</a><a href="/privacy" data-i18n="privacy">Privacy</a><a href="mailto:alexandre@proplace.co">Contact</a></div></nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#0a0a0a}.pph-lang button.on{background:#0f1f33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E8E8E4;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#185c38}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#faeef0;color:#7a1824}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",direct:"Live",marches:"Live by sector",marchesFooter:"Live by sector",dealflow:"My deal flow",analysis:"Analysis",research:"Research",mindmaps:"Mindmaps",dashboard:"Open dashboard",acct:"Connected",mSettings:"Settings",mPipeline:"My deal flow",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Explore",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"© 2026 Proplace",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Se connecter",news:"Actualités",direct:"Live",directFooter:"En direct",marches:"Live par secteur",marchesFooter:"En direct par secteur",dealflow:"Mon deal flow",analysis:"Analyses",research:"La recherche",mindmaps:"Mindmaps",dashboard:"Ouvrir le dashboard",acct:"Connecté",mSettings:"Paramètres",mPipeline:"Mon deal flow",mDashboard:"Tableau de bord",logout:"Se déconnecter",tagline:"Votre AI Corporate Developer",insights:"Explorer",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"© 2026 Proplace",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){
+// Header loggé : Connecté ▾ → Mon deal flow (/cibles) · Paramètres (/compte).
+// La déconnexion vit uniquement dans le footer.
+var compte=(lang==="fr"?"/fr/compte":"/compte");
+var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"");
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+pipeline+'">'+t.dealflow+"</a>"+
+'<a role="menuitem" href="'+compte+'">'+t.mSettings+"</a>"+
+"</div></div>";
+return {i:1,h:h,pipeline:pipeline,compte:compte};}
+return {i:0,h:'<a class="cta" href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200;
+// Toujours SOUS le bouton (menu court = Mon compte + Déco) — plus de flip au-dessus.
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Historique Research → Mon compte (onglet Recherches). Enregistre chaque fiche consultée
+   dans localStorage (même clé que ComptePage). No-op hors /research/<slug>/. */
+(function recordResearchVisit(){
+try{
+ var p=(location.pathname||"").replace(/\/+$/,"")+"/";
+ if(!/\/(en\/)?research\/[^/]+\//.test(p))return;
+ if(/\/(en\/)?research\/?$/.test((location.pathname||"").replace(/\/+$/,"")))return;
+ var title="";
+ var h1=document.querySelector("main h1, .rp-head h1, h1");
+ if(h1&&h1.textContent)title=h1.textContent.trim();
+ if(!title)title=(document.title||"").split("|")[0].trim();
+ var url=location.pathname;
+ var key="proplace_research_history";
+ var arr=[];
+ try{arr=JSON.parse(localStorage.getItem(key)||"[]")||[];}catch(e){arr=[];}
+ if(!Array.isArray(arr))arr=[];
+ arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});
+ arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});
+ if(arr.length>40)arr=arr.slice(0,40);
+ localStorage.setItem(key,JSON.stringify(arr));
+}catch(e){}
+})();
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){
+ if(a.i){pf.innerHTML='<a href="'+(a.pipeline||"/cibles")+'">'+t.dealflow+'</a>'
+  +'<a href="'+(a.compte||"/compte")+'">'+t.mSettings+"</a>"
+  +'<button type="button" id="ppf-logout">'+t.logout+"</button>";
+  var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+ else{pf.innerHTML='<a href="/#login">'+t.login+"</a>";}}
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(74,198,127,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#b91c1c}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+/* #5 — bouton (pas lien) : lancer le mémo instant + ouvrir /cibles. */
+button.ev-cta{border:1px solid var(--ink);cursor:pointer;font-family:inherit}
+.ev-cta2{background:transparent;color:var(--accent-dk);border:1px solid var(--accent)}
+.ev-cta2:hover{background:var(--bg);color:var(--ink);opacity:1}
+/* #4 — domaine d'un candidat rendu cliquable (vérifier le site avant de choisir). */
+.ev-cand-lnk{color:var(--accent-dk);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--accent)}
+.ev-cand-lnk:hover{color:var(--ink);border-bottom-color:var(--ink)}
+/* #3 — override d'un verdict NO MATCH → MATCH. */
+.ev-force-wrap{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ev-force{font-size:12px;font-weight:700;color:var(--ink);background:transparent;border:1px solid var(--line);
+border-radius:8px;padding:6px 12px;cursor:pointer;transition:all .15s;font-family:inherit}
+.ev-force:hover{border-color:var(--ink);background:var(--bg)}
+.ev-err{color:#b91c1c}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/aDx8z7Hzksus",ES="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound/evaluate-and-signup",MST="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v3/instant-memo/status/";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+// Bilingue (2026-07-16) : mêmes clé/priorités que le chrome partagé — le flux d'évaluation
+// était le dernier gros composant JS 100% FR quel que soit le choix de langue du visiteur.
+function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}
+ return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}
+function T(fr,en){return EN()?en:fr;}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function ctaCal(){return '<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">'
+ +T("📅 Un deal flow personnalisé ? Planifiez un appel stratégique","📅 Want a tailored deal flow? Book a strategy call")+'</a>';}
+// Extraction souple (le résultat porte tantôt company/company_name/name, tantôt un
+// sous-objet lead) — partagé par le rendu MATCH, l'override (#3) et le lancement (#5).
+function coOf(res){return (res&&(res.company_name||res.company||res.name||(res.lead&&res.lead.company_name)))||"";}
+function webOf(res){return (res&&((res.lead&&(res.lead.website||res.lead.url))||res.url||res.website))||"";}
+function recOf(res){return (res&&((res.lead&&res.lead.airtable_id)||res.lead_record_id))||"";}
+// #5 — bouton (pas lien) : lance le mémo INSTANT (code, pas Make) puis ouvre la page
+// /cibles « À analyser ». Rendu sur un MATCH (verdict ou override).
+function matchCta(res,fund){
+ var co=coOf(res),web=webOf(res),rec=recOf(res);
+ return '<button type="button" class="ev-cta ev-launch" data-fund="'+esc(fund)+'" data-co="'+esc(co)
+  +'" data-web="'+esc(web)+'" data-rec="'+esc(rec)+'">'
+  +T("⚡ Lancer le mémo + voir mes cibles","⚡ Launch the memo + see my targets")+'</button>';
+}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">'+T("Évaluation indisponible.","Evaluation unavailable.")+'</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var raw=(c.url||c.website||"");
+   var dom=raw.replace(/^https?:\/\//,"").replace(/\/$/,"");
+   var href=raw?(raw.indexOf("http")===0?raw:"https://"+raw):"";
+   // #4 — domaine CLIQUABLE (nouvel onglet) pour vérifier le site AVANT de choisir.
+   var domHtml=dom?(' · '+(href?'<a class="ev-cand-lnk" href="'+esc(href)+'" target="_blank" rel="noopener">'+esc(dom.slice(0,42))+' ↗</a>':esc(dom.slice(0,42)))):'';
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+domHtml+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">'+T("Choisir →","Choose →")+'</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||T("Plusieurs sociétés correspondent — choisissez la bonne :","Several companies match — pick the right one:"))+'</div>'+(cs||'<div class="ev-fine">'+T("Aucun candidat — précisez l’URL exacte.","No candidate — provide the exact URL.")+'</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">'+T("📊 Analyse","📊 Analysis")+'</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){
+  if(m){o+=matchCta(res,fund);}
+  else if(res.check_id){
+   // #3 — override : le dirigeant est sûr du contraire → force le check en MATCH,
+   // la justification est tracée dans le champ reasoning (endpoint force-match dédié).
+   o+='<div class="ev-force-wrap"><button type="button" class="ev-force" data-check="'+esc(res.check_id)
+     +'" data-fund="'+esc(fund)+'" data-co="'+esc(coOf(res))+'" data-web="'+esc(webOf(res))
+     +'" data-rec="'+esc(recOf(res))+'" data-orig="'+esc((res.reasoning||"").slice(0,600))+'">'
+     +T("↺ Je ne suis pas d’accord — forcer en MATCH","↺ I disagree — force to MATCH")+'</button>'
+     +'<span class="ev-fine">'+T("La décision est enregistrée (justification tracée).","The decision is saved (justification recorded).")+'</span></div>';
+  }
+ }
+ else{ o+=ctaCal(); }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">'+T("⏳ Évaluation de "+esc(company)+" selon votre thèse "+esc(fund)+"…","⏳ Evaluating "+esc(company)+" against your "+esc(fund)+" thesis…")+'</div>';
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function setAuth(email,fund){
+ try{
+  var s={email:(email||"").toLowerCase(),fund_type:fund||"",ts:Date.now()};
+  var v=encodeURIComponent(btoa(JSON.stringify(s)));
+  document.cookie="proplace_auth="+v+"; domain=.proplace.co; path=/; max-age="+(60*60*24*365)+"; secure; samesite=lax";
+ }catch(e){}
+}
+function pollMemo(panel,jobId,memoUrl,email){
+ var started=Date.now(),n=0;
+ function tick(){
+  n++;
+  var elapsed=Math.round((Date.now()-started)/1000);
+  var pct=Math.min(92,8+Math.round(elapsed/720*84));
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Mémo fast en cours…","⏳ Fast memo running…")
+   +' · '+pct+'% · '+elapsed+'s</div>'
+   +'<div class="ev-r">'+T("Vous recevrez le mémo par email même si vous fermez cette page.","You will get the memo by email even if you close this page.")+'</div>';
+  fetch(MST+encodeURIComponent(jobId)).then(function(r){return r.json();}).then(function(st){
+   if(st&&st.done){
+    var ok=st.result&&(st.result.status==="ok"||st.result.url);
+    var url=(st.result&&st.result.url)||memoUrl||"";
+    if(ok){
+     panel.innerHTML='<div class="ev-ok">✅ '+T("Mémo prêt","Memo ready")+'</div>'
+      +(url?'<a class="ev-cta" target="_blank" rel="noopener" href="'+esc(url)+'">'+T("→ Ouvrir le mémo","→ Open the memo")+'</a>':'')
+      +'<a class="ev-cta ev-cta2" href="https://proplace.co/'+(EN()?'':'fr/')+'compte">'+T("→ Mon compte","→ My account")+'</a>'
+      +ctaCal();
+    }else{
+     panel.innerHTML='<div class="ev-err">⚠ '+esc((st.result&&st.result.error)||T("Échec de l’analyse","Analysis failed"))+'</div>';
+    }
+    return;
+   }
+   if(n<90)setTimeout(tick,8000);
+   else panel.innerHTML='<div class="ev-r">'+T("L’analyse continue en arrière-plan — regardez votre boîte mail.","Analysis continues in the background — check your inbox.")+'</div>'
+    +(memoUrl?'<a class="ev-cta ev-cta2" target="_blank" rel="noopener" href="'+esc(memoUrl)+'">'+T("→ Lien mémo (dispo sous peu)","→ Memo link (soon)")+'</a>':'')
+    +ctaCal();
+  }).catch(function(){if(n<90)setTimeout(tick,10000);});
+ }
+ setTimeout(tick,6000);
+}
+function leadForm(panel,b){
+ // Formulaire natif evaluate-and-signup (remplace Fillout first-look + simple capture).
+ var co=b.dataset.c||b.dataset.u||"";
+ var web=b.dataset.u||"";
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">'+T("Mémo fast de","Fast memo for")+' <b>'+esc(co)+'</b></p>'
+ +'<input name="email" type="email" placeholder="'+T("Email professionnel (first look ici)","Work email (first look here)")+'" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn CEO (URL)"><input name="phone" placeholder="'+T("Téléphone (optionnel)","Phone (optional)")+'"></div>'
+ +'<input name="website" placeholder="'+T("Site web (si connu)","Website (if known)")+'" value="'+esc(web)+'">'
+ +'<p class="ev-fine">'+T("Analyse selon des critères investisseur standards · mémo Fast.","Analyzed against standard investor criteria · Fast memo.")+'</p>'
+ +'<button type="submit" class="ev-submit">'+T("Lancer l’analyse →","Start analysis →")+'</button>'
+ +'<p class="ev-fine">'+T("Déjà client ? <a href=\"https://proplace.co/#login\">Connectez-vous</a> pour évaluer selon VOTRE thèse.","Already a client? <a href=\"https://proplace.co/#login\">Log in</a> to evaluate against YOUR thesis.")+'</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target;
+  var d={email:(f.email&&f.email.value||"").trim(),linkedin:(f.linkedin&&f.linkedin.value||"").trim(),
+   phone:(f.phone&&f.phone.value||"").trim(),website:(f.website&&f.website.value||"").trim()||web};
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Création du compte + lancement du mémo…","⏳ Creating account + launching memo…")+'</div>';
+  fetch(ES,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:co,website:d.website,email:d.email,linkedin:d.linkedin,phone:d.phone,
+   lang:EN()?"en":"fr"})})
+  .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+  .then(function(x){
+   if(!x.ok||!x.j||!x.j.job_id)throw new Error((x.j&&(x.j.detail||x.j.error))||"launch failed");
+   if(x.j.email&&x.j.fund_type)setAuth(x.j.email,x.j.fund_type);
+   pollMemo(panel,x.j.job_id,x.j.memo_url||"",d.email);
+  }).catch(function(err){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(err.message||err))+'</div>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">'+T("⚡ Évaluation express —","⚡ Express evaluation —")+' <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ // #5 — MATCH → lancer le mémo INSTANT (code) puis ouvrir /cibles « À analyser ».
+ var lb=(ev.target&&ev.target.closest)?ev.target.closest(".ev-launch"):null;
+ if(lb){
+  var lp=lb.closest(".op-eval-panel");if(!lp)return;
+  var lfund=lb.dataset.fund||"",lco=lb.dataset.co||"",lweb=lb.dataset.web||"";
+  // Onglet ouvert SYNCHRONE (dans le geste de clic) pour ne pas être bloqué ; on le
+  // redirige ensuite vers la page /cibles résolue (repli : le dashboard chat).
+  var win=null;try{win=window.open("","_blank");}catch(e){}
+  lp.innerHTML='<div class="ev-load">'+T("⚡ Lancement du mémo instant…","⚡ Launching instant memo…")+'</div>';
+  var memoUrl="";
+  fetch("https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v3/instant-memo",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({company_name:lco,website:lweb,fund_type:lfund,memo:"instant"})})
+   .then(function(r){return r.json();}).catch(function(){return {};})
+   .then(function(j){memoUrl=(j&&j.url)||"";
+    return fetch("https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/last",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({fund_slug:lfund,source:"sourced"})}).then(function(r){return r.json();}).catch(function(){return {};});})
+   .then(function(d){
+    // Page publique /cibles (liste vivante = les retenues) si publiée, sinon le cockpit.
+    var cibles=(d&&d.found&&d.url)?d.url:("https://analysis.proplace.co/chat/?fund="+encodeURIComponent(lfund));
+    if(win){try{win.location=cibles;}catch(e){}}
+    lp.innerHTML='<div class="ev-v ev-yes">✅ '+T("Mémo instant lancé","Instant memo launched")+'</div>'
+      +'<div class="ev-r">'+T("Le mémo (code, ~15 min) se prépare. Votre page cibles s’ouvre sur « À analyser ».","The memo (code, ~15 min) is preparing. Your targets page opens on the To-analyse tab.")+'</div>'
+      +'<a class="ev-cta" target="_blank" rel="noopener" href="'+esc(cibles)+'">'+T("→ Voir mes cibles (À analyser)","→ See my targets (To analyse)")+'</a>'
+      +(memoUrl?'<a class="ev-cta ev-cta2" target="_blank" rel="noopener" href="'+esc(memoUrl)+'">'+T("→ Ouvrir le mémo","→ Open the memo")+'</a>':'');
+   }).catch(function(e){lp.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+  return;
+ }
+ // #3 — override d'un NO MATCH (justification tracée, décision enregistrée).
+ var fb=(ev.target&&ev.target.closest)?ev.target.closest(".ev-force"):null;
+ if(fb){
+  var fp=fb.closest(".op-eval-panel");if(!fp)return;
+  var reason=window.prompt(T("Pourquoi cette société est-elle un MATCH selon vous ? (enregistré)","Why is this company a MATCH in your view? (recorded)"),T("Override manuel — connaissance directe de la société.","Manual override — direct knowledge of the company."));
+  if(reason===null)return;
+  reason=(reason||"").trim();if(!reason)reason=T("Override manuel.","Manual override.");
+  var fcheck=fb.dataset.check||"",ffund=fb.dataset.fund||"",fco=fb.dataset.co||"",fweb=fb.dataset.web||"",frec=fb.dataset.rec||"",forig=fb.dataset.orig||"";
+  fp.innerHTML='<div class="ev-load">'+T("⏳ Enregistrement de l’override…","⏳ Saving the override…")+'</div>';
+  fetch("https://alexandre-79537--airtable-bridge-fastapi-app.modal.run/sourcing-check/force-match",{method:"PATCH",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({check_id:fcheck,justification:reason,original_reasoning:forig})})
+   .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
+   .then(function(){
+    fp.innerHTML='<div class="ev-v ev-yes">✅ '+T("Forcé en MATCH","Forced to MATCH")+'</div>'
+      +'<div class="ev-r">'+T("Décision enregistrée.","Decision saved.")+'</div>'
+      +matchCta({company_name:fco,url:fweb,lead:{airtable_id:frec,company_name:fco,website:fweb},check_id:fcheck},ffund);
+   }).catch(function(e){fp.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+  return;
+ }
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><script>(function(){try{var p=(location.pathname||'').replace(/\/+$/,'')+'/';if(!/\/(en\/)?research\/[^/]+\//.test(p))return;if(/\/(en\/)?research\/?$/.test((location.pathname||'').replace(/\/+$/,'')))return;var title='';var h1=document.querySelector('main h1,.rp-head h1,h1');if(h1&&h1.textContent)title=h1.textContent.trim();if(!title)title=(document.title||'').split('|')[0].trim();var url=location.pathname,key='proplace_research_history',arr=[];try{arr=JSON.parse(localStorage.getItem(key)||'[]')||[];}catch(e){arr=[];}if(!Array.isArray(arr))arr=[];arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});if(arr.length>40)arr=arr.slice(0,40);localStorage.setItem(key,JSON.stringify(arr));}catch(e){}})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+var _lbEN=false;try{var _l=localStorage.getItem('proplace_lang');
+_lbEN=_l==='en'||(!_l&&(navigator.language||'').toLowerCase().indexOf('fr')!==0);}catch(e){}
+ov.innerHTML='<button class="lb-x" aria-label="'+(_lbEN?'Close':'Fermer')+'">×</button><img alt=""><a class="lb-dl" download>'+(_lbEN?'⬇ Download':'⬇ Télécharger')+'</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><style>
+/* Étoile favori (★) en tête de la cellule Société — dorée dès l'état INACTIF (☆) pour être
+   repérable comme « à cliquer », pleine et vive à l'état actif (★). */
+.op-fav{display:inline-block;vertical-align:baseline;margin:0 7px 0 0;padding:0;font-size:17px;
+line-height:1;color:#d9b64a;background:none;border:none;cursor:pointer;
+transition:color .12s,transform .12s}
+.op-fav:hover{color:#e5a91c;transform:scale(1.2)}
+.op-fav.on{color:#e5a91c}
+.fav-count{font-variant-numeric:tabular-nums;font-weight:800}
+/* Page /actualites/favoris/ : état vide + encart « créez votre thèse ». */
+.fav-empty-box{margin:26px 0;padding:24px 20px;border:1px dashed var(--line);border-radius:12px;
+background:var(--bg);text-align:center;color:var(--sub);font-size:14px;line-height:1.55}
+.fav-empty-box a{color:var(--accent-dk);font-weight:700;text-decoration:none}
+.fav-empty-box a:hover{text-decoration:underline}
+.fav-tease{margin:22px 0 6px;padding:16px 18px;border:1px solid var(--accent);border-radius:12px;
+background:var(--bg)}
+.fav-tease-h{font-size:15px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.fav-tease-p{font-size:13.5px;color:var(--sub);line-height:1.5;margin:0 0 10px}
+.fav-tease .tm-read{margin:0}
+/* Composeur de thèse in-browser + évaluation groupée (Phase B). */
+.fav-th-text{width:100%;min-height:64px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+font-family:inherit;font-size:13.5px;line-height:1.5;color:var(--ink);resize:vertical;margin:0 0 8px}
+.fav-th-text:focus{outline:none;border-color:var(--accent)}
+.fav-btn{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:9px;padding:9px 15px;cursor:pointer;transition:opacity .15s}
+.fav-btn:hover{opacity:.85}
+.fav-btn:disabled{opacity:.5;cursor:default}
+.fav-th-edit{margin-left:10px;font-size:12.5px;font-weight:600;color:var(--accent-dk);background:none;
+border:none;cursor:pointer;text-decoration:underline}
+.fav-th-label{font-size:13px;color:var(--sub);font-style:italic;margin:0 0 8px}
+.fav-th-hint{font-size:12px;color:#b91c1c;margin:6px 0 0}
+/* Verdict d'un favori (plein largeur sous la ligne, comme .op-eval-panel). */
+.fav-verdict{grid-column:1/-1;margin-top:2px}
+.fav-verdict:empty{margin:0}
+.fav-v{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;padding:3px 10px;margin-top:6px}
+.fav-v-yes{color:#047857;background:rgba(4,120,87,.10)}
+.fav-v-no{color:#b91c1c;background:rgba(185,28,28,.08)}
+.fav-v-err{color:var(--mid);background:var(--bg)}
+.fav-v-load{color:var(--mid);font-size:12.5px;font-weight:600;margin-top:6px;display:inline-block}
+.fav-vr{display:block;font-size:12.5px;color:var(--sub);line-height:1.45;margin-top:4px}
+</style><script>(function(){
+var K="proplace_favoris";
+// Bridge « certain » vers /cibles/ : un ?cb=<token> dans l'URL (posé par le lien du /cibles/ du
+// client, ou un email Proplace) lie ce navigateur à CE client → chaque ★ est aussi reflétée dans
+// un store SERVEUR scopé au token, retrouvée ensuite dans son onglet Favoris même sur un autre
+// appareil. Sans token (visiteur anonyme), sync() est un no-op → comportement inchangé.
+var TKK="proplace_cb_token",SYNC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/fav-sync";
+function readTok(){try{return localStorage.getItem(TKK)||"";}catch(e){return "";}}
+function writeTok(t){try{localStorage.setItem(TKK,t);}catch(e){}}
+function captureTok(){var t="";try{t=((new URL(window.location.href)).searchParams.get("cb")||"").trim();}catch(e){}
+ if(/^[A-Za-z0-9]{16}$/.test(t)){writeTok(t);return t;}return readTok();}
+var TOK=captureTok();
+function sync(op,removed){if(!TOK)return;try{
+ fetch(SYNC,{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
+  body:JSON.stringify({token:TOK,remove:!!removed,op:op})}).catch(function(){});
+}catch(e){}}
+function EN(){try{var l=localStorage.getItem("proplace_lang");if(l)return l==="en";}catch(e){}
+ return (navigator.language||"").slice(0,2).toLowerCase()==="en";}
+function read(){try{return JSON.parse(localStorage.getItem(K)||"[]")||[];}catch(e){return [];}}
+function write(a){try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}}
+function normU(u){return (u||"").toLowerCase().trim().replace(/[#?].*$/,"").replace(/\/+$/,"");}
+function normN(n){return (n||"").toLowerCase().replace(/\s+/g," ").trim();}
+function keyOf(u,c){return normU(u)||normN(c);}
+function opFromBtn(b){var d=b.dataset,u=d.u||"",c=d.co||"";
+ // Le bouton ne porte plus que co+url (régime data-*) : le reste est DÉRIVÉ de la ligne
+ // .trow (data-v/date/t/amt/pays + cellules affichées). Les anciens data-* du bouton restent
+ // lus en PRIORITÉ (compat : lignes de la page /favoris reconstruites depuis localStorage).
+ var r=b.closest?b.closest(".trow"):null,rd=(r&&r.dataset)||{};
+ // Cellules Type/Date en dual-span depuis 2026-07-16 : lire le span .i18n-fr (libellé
+ // canonique FR stocké dans le favori), sinon le textContent brut (cellules mono-langue).
+ function cell(s){if(!r)return "";var e=r.querySelector(s+" .i18n-fr")||r.querySelector(s);
+  var v=e?e.textContent.trim():"";return v==="—"?"":v;}
+ // Headline : sous-ligne .th (co présent) SINON le titre-lien du strong (op sans société).
+ var hd=r?(r.querySelector(".tco .th a:not(.tm-mem)")||r.querySelector(".tco strong a")):null;
+ var pe=r?r.querySelector(".tpays"):null;
+ var vert=d.v||rd.v||"";
+ return {id:keyOf(u,c),co:c,url:u,
+  disp:d.disp||(hd?hd.textContent.trim().slice(0,200):""),
+  ind:d.i||vert,vert:vert,
+  amtD:d.amtd||cell(".tamt"),
+  amt:parseInt(d.amt||rd.amt||"0",10)||0,
+  pays:d.pays||rd.pays||"",
+  paysFull:d.paysfull||(pe?(pe.getAttribute("title")||""):""),
+  date:d.date||(rd.date||"").slice(0,10),
+  typeK:d.typek||rd.t||"",
+  typeFr:d.typefr||cell(".ttype"),
+  ts:Date.now()};}
+function idx(a,id){for(var i=0;i<a.length;i++)if(a[i].id===id)return i;return -1;}
+function paint(){var a=read(),ids={};a.forEach(function(o){ids[o.id]=1;});
+ [].slice.call(document.querySelectorAll(".op-fav")).forEach(function(b){
+  var id=keyOf(b.dataset.u||"",b.dataset.co||""),on=!!ids[id];
+  b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false");
+  b.textContent=on?"★":"☆";
+  var t=on?(EN()?"Remove from favourites":"Retirer des favoris"):(EN()?"Add to favourites":"Mettre en favori");
+  b.title=t;b.setAttribute("aria-label",t);});
+ var n=a.length;[].slice.call(document.querySelectorAll(".fav-count")).forEach(function(e){e.textContent=String(n);});}
+window.__favPaint=paint;
+document.addEventListener("click",function(ev){
+ var b=ev.target&&ev.target.closest?ev.target.closest(".op-fav"):null;if(!b)return;
+ ev.preventDefault();ev.stopPropagation();
+ var a=read(),op=opFromBtn(b),k=idx(a,op.id),removed=k>=0;
+ if(k>=0)a.splice(k,1);else a.unshift(op);
+ write(a);paint();sync(op,removed);if(window.__favRender)window.__favRender();});
+window.addEventListener("storage",function(e){if(e.key===K){paint();if(window.__favRender)window.__favRender();}});
+if(document.readyState!=="loading")paint();else document.addEventListener("DOMContentLoaded",paint);
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
