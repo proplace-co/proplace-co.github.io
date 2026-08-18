@@ -364,7 +364,11 @@ border-radius:999px;padding:6px 14px;text-decoration:none;transition:border-colo
 .acq-row{padding:11px 0;border-top:1px solid var(--line)}
 .acq-row:first-of-type{border-top:none}
 .acq-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.acq-n{font-size:15px;font-weight:800;color:var(--ink);text-decoration:none}
+/* Le nom est un BOUTON depuis le 17/08 (il entre dans le cockpit) : il doit
+   perdre l'apparence de bouton natif et garder celle du titre qu'il était. */
+.acq-n{font-size:15px;font-weight:800;color:var(--ink);font-family:inherit;
+border:0;background:none;padding:0;cursor:pointer;text-align:left;
+text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
 .acq-n:hover{color:var(--accent-dk)}
 .acq-c{font-size:12.5px;color:var(--mid);font-weight:600}
 .acq-b{display:inline-block;font-size:10.5px;font-weight:700;border-radius:5px;padding:1px 7px}
@@ -442,6 +446,7 @@ font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#94A3B8}
 /* Page marché = le direct borné à une verticale (passation 11/08). */
 .mk-edito{margin:8px 0 28px}
 .mk-edito .mk-lead{font-size:16px;color:var(--sub);margin:0 0 22px;max-width:none}
+
 .mk-sec{margin:28px 0 0}
 .mk-sec h2{font-size:18px;font-weight:700;letter-spacing:-.02em;margin:0 0 12px;
 padding-bottom:8px;border-bottom:1px solid var(--line)}
@@ -495,6 +500,12 @@ background:var(--accent,#16a34a);color:#06281a}
 .mk-secnl .nlp-msg{font-size:13.5px;margin:8px 0 0;min-height:18px}
 .mk-secnl .nlp-msg.ok{color:var(--accent-dk,#0a6b3d)}
 .mk-secnl .nlp-msg.err{color:#c0392b}
+/* Le nom d'acquéreur est un BOUTON depuis le 17/08 : il perd l'apparence de
+   bouton natif et garde celle du titre qu'il était. */
+button.acq-n{font-family:inherit;border:0;background:none;padding:0;cursor:pointer;
+text-align:left;text-decoration:underline;text-decoration-style:dotted;
+text-underline-offset:3px}
+button.acq-n:hover{color:var(--accent-dk,#0a6b3d)}
 /* Éditorial marché : pleine largeur (même règle que article.css). */
 .mk-edito,.mk-edito p,.mk-edito h1,.mk-edito h2,.mk-edito .mk-lead,.mk-edito .mk-op-t{max-width:none}
 
@@ -1322,6 +1333,23 @@ window.addEventListener("message",function(ev){
    reborne de son côté (live/embed.ts, même événement). AUCUN CHIFFRE n'est
    réécrit ici : c'est le cockpit qui compte, et lui seul. */
 var iframe=document.getElementById("pp-market-ck");
+/* CLIC SUR UN ACQUÉREUR → le cockpit se réduit à ses cibles (17/08). Le bloc
+   vit sur la page, le cockpit dans une iframe : le seul pont est l'URL. */
+document.addEventListener("click",function(ev){
+  var b=ev.target&&ev.target.closest?ev.target.closest("[data-acq]"):null;
+  if(!b||!iframe)return;
+  ev.preventDefault();
+  var nom=b.getAttribute("data-acq")||"";
+  if(!nom)return;
+  try{
+    var u=new URL(iframe.getAttribute("src"),location.origin);
+    u.searchParams.set("acq",nom);
+    u.searchParams.delete("day"); u.searchParams.delete("win");
+    iframe.setAttribute("src",u.pathname+u.search);
+    var box=document.querySelector(".pp-ck-box")||iframe;
+    if(box&&box.scrollIntoView)box.scrollIntoView({behavior:"smooth",block:"start"});
+  }catch(e){}
+});
 var MOIS=["janvier","février","mars","avril","mai","juin","juillet","août",
           "septembre","octobre","novembre","décembre"];
 var EN=["January","February","March","April","May","June","July","August",
