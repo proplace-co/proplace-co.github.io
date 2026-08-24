@@ -375,5 +375,8 @@
    des levées (constaté à l'écran). Le gabarit reprend la main sur tout ce qui
    est couleur et dimension. */
 .ppart .opcard b, .ppart .opcard strong, .ppart .opcard em { color: inherit; }
-.ppart .opcard img { width: auto; max-width: none; }
+/* Le logo pied de carte fait 42 px. `max-width: none` le laissait exploser
+   à la taille native de /logo.png dès que social-card.css manquait (24/08). */
+.ppart .opcard img { max-width: 100%; height: auto; }
+.ppart .opcard .ft img { height: 42px; width: auto; max-width: 160px; }
 @media (max-width: 720px) { .ppart .opcard { margin: 18px 0 26px; } }
