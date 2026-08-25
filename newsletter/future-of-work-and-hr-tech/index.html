@@ -426,6 +426,11 @@ overflow:hidden}
  .pp-ck-box{border-radius:0}
  .pp-ck-box iframe{height:min(920px,85vh);min-height:640px}
 }
+/* CTA vers le cockpit (page article SEO) : un lien, pas un second cockpit. */
+.pp-ck-cta{margin:18px 0 36px;padding:18px 20px;border:1px solid #E2E8F0;background:#F8FAFC}
+.pp-ck-cta a{font-weight:700;color:#0A6B3D;text-decoration:none;border-bottom:1px solid rgba(10,107,61,.35)}
+.pp-ck-cta a:hover{border-bottom-color:#0A6B3D}
+.pp-ck-cta span{display:block;margin-top:6px;font-size:13.5px;color:#5B6B7F}
 
 /* LE FIL D'ARIANE DE LA PAGE DU JOUR — une ligne, et rien d'autre (retour
    Antoine 11/08). Ce qui l'encombrait — « Toutes les opérations / M&A / Levées
@@ -953,7 +958,10 @@ pointer-events:none}
    des levées (constaté à l'écran). Le gabarit reprend la main sur tout ce qui
    est couleur et dimension. */
 .ppart .opcard b, .ppart .opcard strong, .ppart .opcard em { color: inherit; }
-.ppart .opcard img { width: auto; max-width: none; }
+/* Le logo pied de carte fait 42 px. `max-width: none` le laissait exploser
+   à la taille native de /logo.png dès que social-card.css manquait (24/08). */
+.ppart .opcard img { max-width: 100%; height: auto; }
+.ppart .opcard .ft img { height: 42px; width: auto; max-width: 160px; }
 @media (max-width: 720px) { .ppart .opcard { margin: 18px 0 26px; } }
 </style><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="direct">Live</a><a class="pph-mkt on" href="/actualites/operations/secteurs/" data-i18n="marches">Live par secteur</a></span><span class="pph-auth" id="pph-auth"><a class="cta" href="https://proplace.co/#login" data-i18n="login">Log in</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><div class="pp-livewrap"><div class="pp-band"><div id="pp-live" data-scope-sector="Future of Work &amp; HR Tech" data-scope-label="en Future of Work &amp; HR Tech"></div><div id="pp-days" data-url-prefix="/actualites/operations/secteur/future-of-work-and-hr-tech/" data-edition-days="2026-08-24,2026-08-23,2026-08-22,2026-08-20,2026-08-19,2026-08-18,2026-08-13,2026-08-07,2026-08-01,2026-07-31,2026-07-27,2026-07-26,2026-07-25,2026-07-23,2026-07-22,2026-07-21,2026-07-18,2026-07-17,2026-07-15,2026-07-13,2026-07-12,2026-07-11,2026-07-10,2026-07-09,2026-07-04,2026-07-02,2026-07-01,2026-06-30,2026-06-29,2026-06-27,2026-06-14,2026-06-13,2026-06-12,2026-06-11" data-month="2026-08" data-current="2026-08-24" data-window-days="7"></div></div></div><script defer src="/live-banner.js"></script><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
