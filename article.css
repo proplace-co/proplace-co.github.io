@@ -215,23 +215,18 @@
    plus haut — une seule feuille, la surcharge se lit ici en entier.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* Les H2 de rubrique = l'ÉCHO EXACT du séparateur de groupe du cockpit
-   (.atl2 .grp-h, retour Antoine 15/08) : icône sur pastille sombre arrondie
-   + titre gras + sous-titre monospace, sur fond gris. */
-.ppart h2 { margin: 40px 0 0; padding: 10px 14px; font-size: 16px;
-  line-height: 1.3; letter-spacing: -.015em; font-weight: 700; color: #0F172A;
-  background: #F1F5F9; border: 1px solid #E2E8F0; border-radius: 8px 8px 0 0;
-  border-bottom: 1px solid #E2E8F0;
-  display: flex; align-items: center; gap: 11px; }
-.ppart h2 .ic { flex: none; width: 28px; height: 28px; border-radius: 7px;
-  background: #0F172A; color: #fff; display: inline-grid; place-items: center;
-  font-size: 14px; line-height: 1; }
-.ppart h2 .tw { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.ppart h2 .tt { font-size: 16.5px; font-weight: 700; letter-spacing: -.015em; }
-.ppart h2 .ct { font-family: 'IBM Plex Mono', ui-monospace, monospace;
-  font-size: 9px; font-weight: 500; letter-spacing: .1em;
-  text-transform: uppercase; color: #64748B; }
-.ppart > h2:first-child, .ppart section:first-child h2 { margin-top: 0; }
+/* Titres de rubrique : une ligne simple, pas un bandeau cockpit. */
+.ppart h2 { margin: 36px 0 14px; padding: 0 0 10px; font-size: 15px;
+  line-height: 1.35; letter-spacing: -.02em; font-weight: 650; color: #0F172A;
+  background: none; border: 0; border-bottom: 1px solid #E8EEF4;
+  display: flex; align-items: baseline; gap: 8px; }
+.ppart h2 .ic { flex: none; width: auto; height: auto; border-radius: 0;
+  background: none; color: inherit; display: inline; font-size: 14px; line-height: 1; }
+.ppart h2 .tw { display: flex; flex-direction: column; gap: 0; min-width: 0; }
+.ppart h2 .tt { font-size: 15px; font-weight: 650; letter-spacing: -.02em; }
+.ppart h2 .ct { display: none; }
+.ppart > h2:first-child, .ppart section:first-child h2,
+.ppart .ed-chapeau + .ed-box > h2, .ppart .ed-plus + .ed-box > h2 { margin-top: 8px; }
 
 /* Les chapeaux de sous-section (À la une / liste complète) se collent au
    bandeau : même boîte, fond panel2, mono — cf .atl2 .cols. */
@@ -246,47 +241,45 @@
    colonnes de journal. h4 secteur = strip de groupe (cf .grp-h), rangées
    denses à la .row : tout tient sur une ligne, la méta file à droite. */
 .ppart .art-allops { margin-top: 0; }
-.ppart .art-allops h4 { margin: 0; padding: 8px 16px; background: #F8FAFC;
-  border: 1px solid #E2E8F0; border-top: 0; border-bottom: 0;
-  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px;
-  font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-  color: #0A6B3D; }
+.ppart .art-allops h4 { margin: 0 0 8px; padding: 0; background: none;
+  border: 0; font-size: 12px; font-weight: 600; letter-spacing: 0;
+  text-transform: none; color: #64748B; font-family: inherit; }
 .ppart .art-allops ul { columns: auto; column-gap: normal; margin: 0;
-  padding: 0; border: 1px solid #E2E8F0; border-top: 1px solid #E2E8F0;
-  background: #fff; }
+  padding: 0; border: 0; background: none; }
 .ppart .art-allops section > ul:last-child,
-.ppart .art-allops > ul:last-child { border-radius: 0 0 8px 8px; }
-.ppart .art-allops li { display: flex; flex-wrap: wrap; align-items: baseline;
-  column-gap: 8px; row-gap: 2px; padding: 8px 16px; margin: 0;
-  border-bottom: 1px solid #EDF2F7; transition: background .12s; }
-.ppart .art-allops li:last-child { border-bottom: 0; }
-.ppart .art-allops li:hover { background: #F8FAFC; }
-.ppart .aa-n { flex: none; max-width: 46%; overflow: hidden;
-  text-overflow: ellipsis; white-space: nowrap; font-weight: 700;
-  font-size: 13.5px; color: #0F172A; }
-.ppart .aa-d { flex: 1 1 0; min-width: 200px; overflow: hidden;
-  text-overflow: ellipsis; white-space: nowrap; font-size: 12.5px;
-  color: #64748B; }
-.ppart .aa-meta { flex: none; margin-left: auto; margin-top: 0;
-  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 9.5px;
-  letter-spacing: .06em; color: #94A3B8; white-space: nowrap; }
-.ppart .aa-meta a { color: #94A3B8; border-bottom-color: transparent; }
-.ppart .aa-meta a:hover { color: #0A6B3D; }
-/* « le coup d'après » d'une ligne : pleine largeur SOUS la rangée */
-.ppart .art-allops li .pros-inline { flex: 1 1 100%; margin: 6px 0 2px; }
-/* LISTE PLATE ORDRE COCKPIT (15/08) : plus de colonnes par secteur — une
-   rangée par item, A→Z comme la liste groupée par moteur du cockpit. */
-.ppart .art-allops ul.ed-flat { columns: auto; border-top: 1px solid #E2E8F0; }
-/* LE DÉCRYPTAGE SOUS SA LIGNE (15/08 : « tout leur texte de décryptage pour
-   chacun d'eux et leur carte sociale à droite ») : panneau pleine largeur
-   dans la rangée, carte sociale flottée à droite, texte autour. */
-.ppart .art-allops li .ed-decrypt { flex: 1 1 100%; margin: 10px 0 4px;
-  padding: 12px 14px; background: #F8FAFC; border: 1px solid #E2E8F0;
-  border-radius: 8px; overflow: hidden; }
-.ppart .ed-decrypt h4 { margin: 0 0 8px; font-size: 17px; }
-.ppart .ed-decrypt .art-srcline { margin: 0 0 12px; }
-.ppart .ed-decrypt p { font-size: 14.5px; line-height: 1.62; color: #3F4E61;
-  margin-bottom: 12px; }
+.ppart .art-allops > ul:last-child { border-radius: 0; }
+.ppart .art-allops li, .ppart .art-allops li.ed-op {
+  display: block; padding: 18px 0 20px; margin: 0;
+  border-bottom: 1px solid #EEF2F6; }
+.ppart .art-allops li:first-child { padding-top: 4px; }
+.ppart .art-allops li:last-child { border-bottom: 0; padding-bottom: 8px; }
+.ppart .art-allops li:hover { background: none; }
+.ppart .aa-head { margin: 0 0 8px; }
+.ppart .aa-n { display: block; max-width: none; overflow: visible;
+  white-space: normal; font-weight: 700; font-size: 15.5px;
+  letter-spacing: -.02em; color: #0F172A; line-height: 1.3; }
+.ppart .aa-d { display: block; margin: 4px 0 0; min-width: 0;
+  white-space: normal; overflow: visible; font-size: 14.5px;
+  line-height: 1.5; color: #5B6B7F; }
+.ppart .aa-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
+.ppart .aa-tag { display: inline-block; padding: 3px 9px; border-radius: 999px;
+  background: #F1F5F9; color: #475569; font-size: 12px; font-weight: 500;
+  line-height: 1.4; letter-spacing: 0; font-family: inherit; }
+.ppart .aa-src { display: inline-block; margin: 8px 0 0; font-size: 13px;
+  color: #0A6B3D; text-decoration: none; font-family: inherit; }
+.ppart .aa-src:hover { text-decoration: underline; }
+.ppart .aa-meta { display: none; }
+.ppart .aa-seen { display: inline-block; margin: 8px 0 0; font-size: 12px; color: #94A3B8; }
+.ppart .art-allops li .pros-inline { margin: 10px 0 0; }
+.ppart .art-allops ul.ed-flat { columns: auto; border: 0; }
+.ppart .art-allops li .ed-decrypt { display: block; margin: 16px 0 0;
+  padding: 16px 18px 18px; background: #F8FAFC; border: 1px solid #E8EEF4;
+  border-radius: 12px; overflow: hidden; }
+.ppart .ed-decrypt h4 { margin: 0 0 6px; font-size: 16px; font-weight: 650;
+  letter-spacing: -.02em; line-height: 1.35; }
+.ppart .ed-decrypt .art-srcline { margin: 0 0 14px; font-size: 13px; color: #94A3B8; }
+.ppart .ed-decrypt p { font-size: 15px; line-height: 1.7; color: #3F4E61;
+  margin-bottom: 14px; }
 .ppart .ed-decrypt .opcard { float: right; width: min(400px, 46%);
   margin: 0 0 12px 18px; }
 .ppart .ed-decrypt-solo { margin: 14px 0 0; padding: 12px 14px;
@@ -299,31 +292,23 @@
     width: 100%; margin: 12px 0; }
 }
 @media (max-width: 760px) {
-  .ppart .aa-n { max-width: 100%; }
-  .ppart .aa-d { min-width: 100%; white-space: normal; }
-  .ppart .aa-meta { margin-left: 0; }
+  .ppart .aa-n, .ppart .aa-d { max-width: 100%; }
 }
 
 /* (Le masthead d'article a été retiré le 15/08 — les boîtes moteur portent
    leurs comptes ; les anciennes éditions bakées gardent un rendu par défaut.) */
 
-/* LE PLI « EN PLUS » (chapô + décryptages) — l'option discrète en pied
-   (14/08 soir : « tu peux le mettre tout en bas pour pouvoir l'ouvrir ou le
-   refermer, que cela reste en option mais pas trop visible »). */
-.ppart .ed-plus { margin: 26px 0 0; background: #F8FAFC;
-  border: 1px solid #E2E8F0; border-radius: 8px; }
-.ppart .ed-plus > summary { cursor: pointer; list-style: none;
-  padding: 11px 16px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
-  font-size: 10px; font-weight: 600; letter-spacing: .18em;
-  text-transform: uppercase; color: #0F172A; }
-.ppart .ed-plus > summary::-webkit-details-marker { display: none; }
-.ppart .ed-plus > summary::after { content: " ▾"; color: #0A6B3D; }
-.ppart .ed-plus[open] > summary::after { content: " ▴"; }
-.ppart .ed-plus .ed-plus-b { padding: 4px 16px 18px; background: #fff;
-  border-top: 1px solid #E2E8F0; border-radius: 0 0 8px 8px; }
-.ppart .ed-plus .ed-plus-b > h3.art-sub { border: 0; background: none;
-  padding: 8px 0; margin: 18px 0 8px; }
-.ppart .ed-plus .ed-plus-b > p:first-child { padding-top: 14px; }
+/* Chapô : en tête, plus petit, aéré — plus de menu repliable. */
+.ppart .ed-chapeau, .ppart .ed-plus { margin: 0 0 28px; background: none; border: 0; }
+.ppart .ed-plus > summary { display: none; }
+.ppart .ed-plus .ed-plus-b { padding: 0; background: none; border: 0; }
+.ppart .ed-chapeau p, .ppart .ed-plus .ed-plus-b p {
+  margin: 0 0 12px; font-size: 15px; line-height: 1.75; color: #5B6B7F;
+  font-weight: 400; max-width: 62ch; }
+.ppart .ed-chapeau p:last-child, .ppart .ed-plus .ed-plus-b p:last-child { margin-bottom: 0; }
+.ppart .ed-plus .ed-plus-b > h3.art-sub { display: none; }
+.ppart .ed-box { margin: 0 0 40px; }
+.ppart .ed-rest { margin: 44px 0 8px; }
 
 /* LES ÉCARTÉS — le même pli que les replis du cockpit. */
 .ppart .ed-ecartes { margin: 26px 0 0; background: #F8FAFC;
