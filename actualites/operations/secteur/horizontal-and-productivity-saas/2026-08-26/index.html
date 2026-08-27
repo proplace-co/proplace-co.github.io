@@ -599,6 +599,379 @@ pointer-events:none}
 .nlbox .nl-ckmore a:hover{text-decoration:underline}
 @media(max-width:760px){.nl-ckwrap .pp-ck-box iframe{height:320px;min-height:0}}
 /* ═══════════════════════════════════════════════════════════════════════════
+   CARTES SOCIALES PROPLACE — LA SEULE FEUILLE DE STYLE.
+
+   Portage du prototype d'Antoine (proplace/docs/proto-cartes-sociales.html).
+   Ce fichier est lu par LES DEUX chaînes, aux mêmes octets :
+     · Python  — execution/social_cards.py l'inline dans le gabarit envoyé au
+       rasteriseur Chromium (rendu hors ligne : un <link> ne chargerait pas) ;
+     · le site — src/live/card.ts le récupère sur /social-card.css et l'injecte
+       pour afficher la MÊME carte au clic sur une vignette du LIVE.
+   Une carte vue sur le site est donc, à l'octet de style près, celle qui part
+   sur LinkedIn et sur X. C'est tout l'intérêt : un seul univers.
+
+   Trois choses ne se touchent pas, elles viennent du proto :
+     · le contour de 2,5 px sur la police d'affichage — la carte reste très
+       grasse MÊME si Archivo Black ne charge pas (c'était l'effet « mou ») ;
+     · l'interligne à 0,98 sur le gros mot : aucun chevauchement ;
+     · la pastille LIVE rouge, identique sur les trois teintes — c'est elle qui
+       fait la famille.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ppcard, .ppcard * { box-sizing: border-box; margin: 0; padding: 0; }
+
+.ppcard {
+  position: relative; overflow: hidden; display: flex; flex-direction: column;
+  justify-content: flex-end; transform-origin: top left;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* formats */
+.ppcard.f-li { width: 1080px; height: 1350px; }
+.ppcard.f-x  { width: 1200px; height: 675px; }
+
+/* teintes */
+.ppcard.t-g { background: #0E8A4F; color: #fff; }
+.ppcard.t-k { background: #0B1220; color: #fff; }
+.ppcard.t-w { background: #fff;    color: #0B1220; }
+
+/* ── en-tête ─────────────────────────────────────────────────────────────── */
+.ppcard .hd { position: absolute; top: 0; left: 0; right: 0; z-index: 4;
+  display: flex; align-items: center; gap: 18px; padding: 34px 44px 0; flex-wrap: wrap; }
+.ppcard.f-x .hd { padding: 24px 34px 0; gap: 14px; }
+.ppcard .lv { display: flex; align-items: center; gap: 13px; background: #DC2626; color: #fff;
+  border-radius: 6px; padding: 15px 24px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 30px; letter-spacing: .2em; font-weight: 700; }
+.ppcard .lv i { width: 15px; height: 15px; border-radius: 50%; background: #fff; display: block; }
+.ppcard.f-x .lv { font-size: 22px; padding: 11px 18px; gap: 10px; }
+.ppcard.f-x .lv i { width: 11px; height: 11px; }
+.ppcard .kk { font-family: 'Archivo Black', 'Arial Black', 'Helvetica Neue', Impact, sans-serif;
+  font-size: 62px; text-transform: uppercase; line-height: 1; letter-spacing: -.01em;
+  max-width: 52%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Kicker long (secteur) : un cran plus bas — le montant court reste plein pot. */
+.ppcard .kk.sm { font-size: 44px; }
+.ppcard .kk.xs { font-size: 34px; letter-spacing: 0; }
+.ppcard.f-x .kk { font-size: 45px; }
+.ppcard.f-x .kk.sm { font-size: 32px; }
+.ppcard.f-x .kk.xs { font-size: 26px; letter-spacing: 0; }
+.ppcard .hd .sp { flex: 1; }
+.ppcard .dt { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 23px;
+  letter-spacing: .09em; font-weight: 700; opacity: .66; }
+.ppcard.f-x .dt { font-size: 17px; }
+
+/* ── le corps ────────────────────────────────────────────────────────────── */
+.ppcard .main { flex: none; display: flex; flex-direction: column; gap: 26px; padding-bottom: 4px; }
+.ppcard.f-x .main { flex-direction: row-reverse; align-items: center; gap: 26px; padding: 0 34px; }
+.ppcard.f-x .main .txt { flex: 1; min-width: 0; }
+.ppcard.f-x .main .txt .word,
+.ppcard.f-x .main .txt .who,
+.ppcard.f-x .main .txt .said { padding-left: 0; padding-right: 0; }
+
+.ppcard .word { flex: none; padding: 0 44px;
+  font-family: 'Archivo Black', 'Arial Black', 'Helvetica Neue', Impact, sans-serif;
+  font-size: 168px; line-height: .98; text-transform: uppercase; letter-spacing: -.015em;
+  -webkit-text-stroke: 2.5px currentColor; }
+.ppcard.f-li .word.sm { font-size: 132px; }
+.ppcard.f-li .word.xs { font-size: 104px; }
+.ppcard.f-x .word { font-size: 112px; padding: 0 34px; -webkit-text-stroke: 2px currentColor; }
+.ppcard.f-x .word.sm { font-size: 88px; }
+.ppcard.f-x .word.xs { font-size: 68px; }
+
+/* Carte marché : le chiffre cède la place à la LISTE (Antoine 24/08 —
+   « les lignes sont ridicules, illisibles »). `crowded` dès 4 deals. */
+.ppcard.crowded { justify-content: flex-start; }
+.ppcard.crowded.f-x .main { padding-top: 88px; }
+.ppcard.crowded.f-li .main { padding-top: 110px; }
+.ppcard.crowded.f-x .word { font-size: 56px; }
+.ppcard.crowded.f-x .word.sm,
+.ppcard.crowded.f-x .word.xs { font-size: 48px; }
+.ppcard.crowded.f-x .who { font-size: 22px; padding-top: 4px; }
+.ppcard.crowded.f-li .word { font-size: 84px; }
+.ppcard.crowded.f-li .word.xs { font-size: 64px; }
+.ppcard.crowded .band { flex: 1; display: flex; flex-direction: column;
+  justify-content: center; margin-top: 8px; }
+
+/* NOM de l'entreprise — le plus lisible possible (retour Antoine 12/08). */
+.ppcard .who { flex: none; padding: 18px 44px 0;
+  font-family: 'Archivo Black', 'Arial Black', 'Helvetica Neue', Impact, sans-serif;
+  font-size: 42px; letter-spacing: -.02em; line-height: 1.05;
+  text-transform: uppercase; font-weight: 900; opacity: 1; }
+.ppcard.f-x .who { font-size: 30px; padding: 12px 34px 0; }
+/* Activité entre parenthèses, style LinkedIn — juste sous le nom. */
+.ppcard .said { flex: none; padding: 8px 44px 0; font-size: 26px; line-height: 1.35;
+  font-weight: 500; opacity: .88; max-width: 40ch; font-style: italic; }
+.ppcard.f-x .said { font-size: 18px; padding: 6px 34px 0; }
+.ppcard .said b { font-weight: 800; opacity: 1; font-style: normal; }
+/* Secteur · pays — secondaire, sous l'activité. */
+.ppcard .who-meta { flex: none; padding: 10px 44px 0;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 18px; letter-spacing: .08em;
+  text-transform: uppercase; font-weight: 700; opacity: .62; }
+.ppcard.f-x .who-meta { font-size: 13px; padding: 7px 34px 0; }
+
+/* ── la bande, quatre variantes ──────────────────────────────────────────── */
+.ppcard .band { flex: none; margin: 30px 0 0; background: #fff; color: #0B1220; }
+.ppcard.f-x .band { margin: 18px 0 0; }
+.ppcard.t-w .band { background: #F2F6F9; box-shadow: inset 0 1px 0 #E1E8EF, inset 0 -1px 0 #E1E8EF; }
+
+/* ① l'opération : acquéreur → cible → montant */
+.ppcard .band .deal { display: flex; align-items: center; gap: 20px; padding: 30px 44px; }
+.ppcard.f-x .band .deal { padding: 18px 34px; gap: 14px; }
+/* Chaque côté de la flèche : NOM + activité en italique dessous (14/08). */
+.ppcard .band .side { display: flex; flex-direction: column; min-width: 0; }
+.ppcard .band .lgs { font-style: italic; font-size: 20px; font-weight: 500;
+  color: #42505E; margin-top: 4px; white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis; }
+.ppcard.f-x .band .lgs { font-size: 15px; }
+.ppcard .band .lg { font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: 50px;
+  text-transform: uppercase; letter-spacing: -.01em; }
+.ppcard.f-x .band .lg { font-size: 34px; }
+.ppcard .band .ar { color: #0E8A4F; font-size: 38px; font-weight: 900; }
+.ppcard .band .amt { margin-left: auto; font-family: 'Archivo Black', 'Arial Black', sans-serif;
+  font-size: 52px; color: #0B1220; }
+.ppcard.f-x .band .amt { font-size: 35px; }
+
+/* ② les chiffres */
+.ppcard .band .rows { display: flex; }
+.ppcard .band .r1 { flex: 1; padding: 28px 24px; border-right: 1px solid #E1E8EF; text-align: center; }
+.ppcard .band .r1:last-child { border-right: 0; }
+.ppcard .band .r1 b { display: block; font-family: 'Archivo Black', 'Arial Black', sans-serif;
+  font-size: 74px; line-height: 1; letter-spacing: -.02em; }
+.ppcard .band .r1 span { display: block; font-size: 20px; color: #42505E; font-weight: 700; margin-top: 7px; }
+.ppcard.f-x .band .r1 { padding: 17px 15px; }
+.ppcard.f-x .band .r1 b { font-size: 50px; }
+.ppcard.f-x .band .r1 span { font-size: 14px; }
+
+/* ③ la citation */
+.ppcard .band .quote { padding: 30px 44px; font-family: 'Archivo Black', 'Arial Black', sans-serif;
+  font-size: 54px; line-height: 1.05; text-transform: uppercase; }
+.ppcard.f-x .band .quote { padding: 18px 34px; font-size: 37px; }
+
+/* ④ le classement — 1 à 10 opérations, UNE colonne, lignes hautes */
+.ppcard .band .top { padding: 8px 0; flex: 1; display: flex; flex-direction: column;
+  justify-content: space-evenly; }
+.ppcard .band .tr { display: flex; align-items: baseline; gap: 18px; padding: 16px 44px;
+  border-top: 1px solid #E1E8EF; }
+.ppcard .band .tr:first-child { border-top: 0; }
+.ppcard.f-x .band .tr { padding: 14px 34px; gap: 16px; }
+.ppcard .band .tn { font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: 34px;
+  color: #0E8A4F; line-height: 1; flex: none; width: 36px; }
+.ppcard.f-x .band .tn { font-size: 28px; width: 32px; }
+.ppcard .band .tl { flex: 1; min-width: 0; font-size: 26px; font-weight: 600; line-height: 1.28;
+  color: #0B1220; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; }
+.ppcard.f-x .band .tl { font-size: 22px; }
+.ppcard .band .ta { font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: 34px;
+  flex: none; color: #0B1220; letter-spacing: -.02em; }
+.ppcard.f-x .band .ta { font-size: 26px; }
+
+/* ⑤ liste — 11 à 65 opérations. Toujours lisible, jamais 13 px. */
+.ppcard .band .list { padding: 16px 34px 20px; column-gap: 40px; }
+.ppcard .band .list.c2 { column-count: 2; }
+.ppcard .band .list.c3 { column-count: 3; column-gap: 22px; }
+.ppcard .band .li { break-inside: avoid; display: flex; align-items: baseline;
+  gap: 12px; padding: 10px 0; font-size: 22px; line-height: 1.3; color: #0B1220; }
+.ppcard.f-x .band .li { font-size: 20px; padding: 9px 0; }
+.ppcard .band .li .ln { flex: 1; min-width: 0; overflow: hidden; font-weight: 600;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.ppcard .band .li .la { flex: none; font-family: 'Archivo Black', 'Arial Black', sans-serif;
+  font-size: 20px; letter-spacing: -.02em; }
+.ppcard.f-x .band .li .la { font-size: 18px; }
+.ppcard.f-li .band .li { font-size: 26px; padding: 12px 0; }
+.ppcard.f-li .band .li .la { font-size: 24px; }
+
+/* ── le verdict : deux thèses, deux réponses ─────────────────────────────── */
+.ppcard .vs { display: flex; gap: 0; margin: 30px 0 0; background: #fff; }
+.ppcard.f-x .vs { margin: 18px 0 0; }
+.ppcard .vc { flex: 1; color: #0B1220; border-right: 2px solid #E1E8EF; }
+.ppcard .vc:last-child { border-right: 0; }
+.ppcard .vh { padding: 15px 24px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 17px; letter-spacing: .1em; font-weight: 700; color: #fff; }
+.ppcard .vh.ok { background: #0A6B3D; }
+.ppcard .vh.no { background: #DC2626; }
+.ppcard.f-x .vh { font-size: 12px; padding: 10px 17px; }
+.ppcard .vb { padding: 22px 24px 26px; font-size: 21px; line-height: 1.32; color: #42505E; font-weight: 500; }
+.ppcard .vb b { display: block; font-family: 'Archivo Black', 'Arial Black', sans-serif;
+  font-size: 92px; color: #0B1220; line-height: 1; margin-top: 14px; letter-spacing: -.03em; }
+.ppcard.f-x .vb { font-size: 15px; padding: 14px 17px 17px; }
+.ppcard.f-x .vb b { font-size: 62px; }
+
+/* ── les emplacements d'images ─────────────────────────────────────────────
+   Logo : contain + centré sur aplat.
+   Nameplate : NOM COMPLET le plus gros possible (plus d'initiales CN/BE).
+   Monogramme (legacy) : encore supporté si un vieux feed en envoie. */
+.ppcard .media { display: flex; gap: 18px; padding: 0 44px; }
+.ppcard.f-x .media { padding: 0; flex: none; height: 352px; }
+.ppcard .im { flex: 1; min-width: 0; border-radius: 0; overflow: hidden; background: #0B1220;
+  position: relative; display: flex; align-items: center; justify-content: center; }
+.ppcard .im img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* LOGO (favicon / og) : FONDU dans la carte (retour Antoine 15/08 soir :
+   « les logos sont bizarrement encadrés… je voudrais qu'ils se fondent
+   parfaitement ») — plus d'aplat sombre derrière, le logo flotte sur le fond
+   du gabarit ; contain + centré, jamais de crop. */
+.ppcard .im.logo { background: transparent; }
+.ppcard .im.logo img { width: 72%; height: 72%; object-fit: contain; object-position: center;
+  display: block; margin: auto; }
+/* NAMEPLATE — le nom en toutes lettres, le plus gros possible. */
+.ppcard .im.name { background: #0B1220; padding: 18px 16px; box-sizing: border-box; }
+.ppcard .im.name .nm {
+  font-family: 'Archivo Black', 'Arial Black', 'Helvetica Neue', Impact, sans-serif;
+  color: #fff; text-transform: uppercase; text-align: center; line-height: .98;
+  letter-spacing: -.02em; font-weight: 900; font-size: 52px;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4;
+  overflow: hidden; word-break: break-word; max-width: 100%; }
+.ppcard .im.name .nm.sm { font-size: 44px; }
+.ppcard .im.name .nm.xs { font-size: 34px; letter-spacing: -.01em; }
+.ppcard .im.name .nm.xxs { font-size: 24px; letter-spacing: 0; -webkit-line-clamp: 5; }
+/* f-x : tailles remontées le 14/08 (retour Antoine : « MINDGARD écrit beaucoup
+   plus petit » alors que la tuile a la place — le nom EST l'image). */
+.ppcard.f-x .im.name .nm { font-size: 48px; }
+.ppcard.f-x .im.name .nm.sm { font-size: 38px; }
+.ppcard.f-x .im.name .nm.xs { font-size: 28px; }
+.ppcard.f-x .im.name .nm.xxs { font-size: 20px; }
+/* PANNEAUX DUO (acquéreur/cible) — UNE SEULE LIGNE, toujours (retour Antoine
+   14/08 soir : « DUOLIN / GO » cassé). Paliers d1…d6 posés par
+   card_spec.nameplate_cls_duo selon la longueur du nom ; tailles = la plus
+   grosse qui tient dans le panneau (f-li ~515 px utiles, f-x ~240 px),
+   nowrap + ellipsis en garde-fou absolu. */
+.ppcard .media.duo .im.name .nm { display: block; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; word-break: normal;
+  -webkit-line-clamp: unset; }
+.ppcard .media.duo .nm.d1 { font-size: 52px; }
+.ppcard .media.duo .nm.d2 { font-size: 52px; }
+.ppcard .media.duo .nm.d3 { font-size: 46px; }
+.ppcard .media.duo .nm.d4 { font-size: 36px; }
+.ppcard .media.duo .nm.d5 { font-size: 28px; letter-spacing: -.01em; }
+.ppcard .media.duo .nm.d6 { font-size: 22px; letter-spacing: 0; }
+.ppcard.f-x .media.duo .nm.d1 { font-size: 44px; }
+.ppcard.f-x .media.duo .nm.d2 { font-size: 34px; }
+.ppcard.f-x .media.duo .nm.d3 { font-size: 25px; }
+.ppcard.f-x .media.duo .nm.d4 { font-size: 19px; }
+.ppcard.f-x .media.duo .nm.d5 { font-size: 14px; letter-spacing: 0; }
+.ppcard.f-x .media.duo .nm.d6 { font-size: 12px; letter-spacing: 0; }
+/* MONOGRAMME legacy */
+.ppcard .im.mono { background: transparent; }
+.ppcard .im.mono img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.ppcard .im .cap { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(11,18,32,.72);
+  color: #fff; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 15px;
+  letter-spacing: .12em; font-weight: 700; padding: 9px 12px; text-transform: uppercase;
+  text-align: center; }
+.ppcard.f-x .im .cap { font-size: 11px; padding: 6px 8px; }
+/* L'ACTIVITÉ sous la légende de tuile — en italique, un FAIT (14/08). */
+.ppcard .im .cap2 { position: absolute; left: 0; right: 0; bottom: 34px;
+  background: rgba(11,18,32,.6); color: #E6EDF3; font-style: italic;
+  font-size: 16px; font-weight: 500; padding: 6px 12px; text-align: center;
+  text-transform: none; letter-spacing: 0; }
+.ppcard.f-x .im .cap2 { bottom: 23px; font-size: 12px; padding: 4px 8px; }
+.ppcard .media.duo .im { aspect-ratio: 1/1; }
+.ppcard.f-x .media.duo { flex-direction: column; width: 272px; gap: 16px; }
+.ppcard.f-x .media.duo .im { flex: 1; aspect-ratio: auto; min-height: 0; }
+.ppcard .media.solo .im { aspect-ratio: 16/9; }
+.ppcard.f-x .media.solo { width: 428px; align-items: center; }
+.ppcard.f-x .media.solo .im { width: 100%; height: auto; aspect-ratio: 16/10; max-width: none; flex: none; }
+
+/* ── le pied ─────────────────────────────────────────────────────────────── */
+.ppcard .ft { flex: none; display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 18px; padding: 26px 44px 32px; position: relative; z-index: 3; }
+.ppcard.f-x .ft { padding: 17px 34px 22px; }
+.ppcard .ft .u { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 20px;
+  letter-spacing: .06em; opacity: .7; font-weight: 600; }
+.ppcard.f-x .ft .u { font-size: 15px; }
+.ppcard .ft img { height: 54px; display: block; }
+.ppcard.f-x .ft img { height: 42px; }
+.ppcard .ft img.inv { filter: brightness(0) invert(1); opacity: .92; }
+
+/* Le bloc reste calé EN BAS, comme le proto — c'est ce qui fait tomber l'œil
+   sur le chiffre. `center` a été essayé et rejeté : il laissait du vide
+   AU-DESSOUS du pied de page, ce qui ne ressemble plus à une carte. */
+.ppcard.f-li.nomedia .band,
+.ppcard.f-li.nomedia .vs { margin-top: 40px; }
+
+/* ── la scène : afficher une carte 1200 px dans une boîte plus petite ─────
+   Le site montre la carte à l'échelle (transform), jamais redimensionnée en
+   CSS : c'est la SEULE façon d'être sûr que ce qu'on voit est exactement ce
+   qui sera rasterisé. */
+.ppstage { position: relative; overflow: hidden; }
+.ppstage > .ppcard { position: absolute; top: 0; left: 0; }
+
+/* ── LA MÊME CARTE, DANS L'ARTICLE ────────────────────────────────────────
+   La carte garde ses 1200 px RÉELS et c'est src/live/fit.ts qui la réduit par
+   `transform: scale()` — ce qu'on lit est donc au pixel près ce qui sera
+   rasterisé pour LinkedIn. Même gabarit, même fichier, deux sorties.
+   Rendue ici en HTML et non en PNG : coût nul, texte net à tous les zooms, et
+   le titre reste sélectionnable (donc lisible par les moteurs).
+   La hauteur est posée par le script ; `aspect-ratio` sert de valeur d'attente
+   pour que la page ne saute pas avant que le bundle n'arrive. */
+.ppcard-fit { width: 100%; aspect-ratio: 1200 / 675; overflow: hidden; }
+/* L'ÉCHELLE PAR DÉFAUT, EN CSS. Sans elle, une page dont le bundle tarde ou
+   échoue montrait la carte à ses 1200 px réels dans une boîte de 780 : coupée
+   aux deux tiers, pied de page et bande invisibles (constaté à l'écran).
+   0.65 = 780/1200, la colonne de lecture de l'article — juste avant même que
+   le script n'arrive, et le script affine ensuite au pixel. */
+.ppcard-fit > .ppcard { transform-origin: top left; transform: scale(.65); }
+
+/* ── LA CARTE SANS BANDE ──────────────────────────────────────────────────
+   Un rachat étayé mais sans acquéreur extractible ni montant corroboré donne
+   quatre faits vrais — le mot, la société, le secteur, le pays — et rien à
+   mettre dans la bande. On n'invente pas une phrase pour combler : on retire
+   la bande. Reste que `.main` descend alors toucher le pied (il ne garde que
+   son padding, 17 px en f-x) : `noband` lui rend l'air. */
+.ppcard.noband .ft { padding-top: 44px; }
+.ppcard.f-li.noband .ft { padding-top: 64px; }
+/* Le montant ne se laisse jamais comprimer par un nom long. */
+.ppcard .band .amt { flex: none; }
+/* Une cellule de bande porte parfois du TEXTE (« ROYAUME-UNI », « SERIES B »)
+   là où le gabarit prévoyait un nombre : deux crans de repli, sinon ça déborde.
+   ⚠️ Les deux renderers posent s/s2 sur le DIV .r1, pas sur le <b> — les
+   anciens sélecteurs `b.s` ne matchaient JAMAIS (« ÉTATS-UNIS » débordait et
+   semblait « trop à droite », retour Antoine 15/08 soir). */
+.ppcard .band .r1.s b { font-size: 46px; }
+.ppcard .band .r1.s2 b { font-size: 32px; }
+.ppcard.f-x .band .r1.s b { font-size: 31px; }
+.ppcard.f-x .band .r1.s2 b { font-size: 22px; }
+
+/* ── CE QUE FAIT LA SOCIÉTÉ — lisible d'un coup d'œil ─────────────────────
+   Retour d'Antoine, 11/08 : « la lisibilité est importante, il faut que ce soit
+   facile à lire sans effort de concentration sur l'image ». La ligne héritait
+   de la taille des anciennes phrases de marque, qu'on lisait en s'approchant.
+   Ici elle porte le SENS de la carte — ce que fait la société — et doit se lire
+   à la taille d'une vignette LinkedIn, donc de loin. */
+/* …et elle SAUTE DES LIGNES au lieu de se tronquer en « … » (retour Antoine
+   15/08 soir : « il n'y a pas de description sur plusieurs lignes, il y a … »).
+   3 lignes max — l'activité est bornée à 70 caractères côté spec, donc 2
+   lignes en pratique ; le clamp n'est qu'un garde-fou absolu. */
+.ppcard .said { font-size: 34px; font-weight: 600; opacity: 1; margin-top: 4px;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;
+  overflow: hidden; }
+.ppcard.f-x .said { font-size: 26px; padding-top: 6px; }
+/* Le nom de la société est le SUJET : il ne doit pas être plus discret que le
+   secteur qui le suit. */
+.ppcard .who { opacity: .92; }
+/* La légende d'activité (.cap2) colle au bas de la tuile quand il n'y a PAS
+   de légende ACQUÉREUR/CIBLE sous elle (tuile-nom SOLO, 15/08 soir : « il
+   manque le texte sous KOG ») — le décalage ne sert qu'à laisser la place
+   du .cap quand il existe. */
+.ppcard .im .cap2 { bottom: 0; }
+.ppcard.f-x .im .cap2 { bottom: 0; }
+.ppcard .im:has(.cap) .cap2 { bottom: 34px; }
+.ppcard.f-x .im:has(.cap) .cap2 { bottom: 23px; }
+/* …et sur une tuile-NOM elle vit DANS le panneau, sous le nom — plus jamais
+   une barre absolue qui chevauche ou se coupe (16/08 : SpaceX écrasée, EA et
+   MarginEdge illisibles). Centrée, italique, 2 lignes max. Les tuiles LOGO
+   gardent la barre en surimpression (une image a besoin d'un fond). */
+.ppcard .im.name { flex-direction: column; gap: 10px; }
+.ppcard .im.name .cap2 { position: static; background: transparent;
+  color: rgba(255,255,255,.85); padding: 0 12px; text-align: center;
+  font-size: 17px; line-height: 1.35; display: -webkit-box;
+  -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ppcard.f-x .im.name .cap2 { font-size: 13px; padding: 0 10px; }
+.ppcard .im.name:has(.cap) { padding-bottom: 46px; }
+.ppcard.f-x .im.name:has(.cap) { padding-bottom: 34px; }
+/* f-x : les frères (.word/.who/.said) ont leur retrait porté par `.txt`
+   (34 px) — .who-meta gardait le SIEN en plus et partait à 68 px (« DATA &
+   ANALYTICS devrait être aligné à gauche », 15/08 soir). f-li n'a pas ce
+   rebasage : chacun garde ses 44 px, on n'y touche pas. */
+.ppcard.f-x .who-meta { padding-left: 0; padding-right: 0; }
+/* ═══════════════════════════════════════════════════════════════════════════
    L'ARTICLE DU JOUR — LA SEULE FEUILLE DE STYLE.
 
    Comme social-card.css, ce fichier est lu par LES DEUX chaînes :
@@ -815,23 +1188,18 @@ pointer-events:none}
    plus haut — une seule feuille, la surcharge se lit ici en entier.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* Les H2 de rubrique = l'ÉCHO EXACT du séparateur de groupe du cockpit
-   (.atl2 .grp-h, retour Antoine 15/08) : icône sur pastille sombre arrondie
-   + titre gras + sous-titre monospace, sur fond gris. */
-.ppart h2 { margin: 40px 0 0; padding: 10px 14px; font-size: 16px;
-  line-height: 1.3; letter-spacing: -.015em; font-weight: 700; color: #0F172A;
-  background: #F1F5F9; border: 1px solid #E2E8F0; border-radius: 8px 8px 0 0;
-  border-bottom: 1px solid #E2E8F0;
-  display: flex; align-items: center; gap: 11px; }
-.ppart h2 .ic { flex: none; width: 28px; height: 28px; border-radius: 7px;
-  background: #0F172A; color: #fff; display: inline-grid; place-items: center;
-  font-size: 14px; line-height: 1; }
-.ppart h2 .tw { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.ppart h2 .tt { font-size: 16.5px; font-weight: 700; letter-spacing: -.015em; }
-.ppart h2 .ct { font-family: 'IBM Plex Mono', ui-monospace, monospace;
-  font-size: 9px; font-weight: 500; letter-spacing: .1em;
-  text-transform: uppercase; color: #64748B; }
-.ppart > h2:first-child, .ppart section:first-child h2 { margin-top: 0; }
+/* Titres de rubrique : une ligne simple, pas un bandeau cockpit. */
+.ppart h2 { margin: 36px 0 14px; padding: 0 0 10px; font-size: 15px;
+  line-height: 1.35; letter-spacing: -.02em; font-weight: 650; color: #0F172A;
+  background: none; border: 0; border-bottom: 1px solid #E8EEF4;
+  display: flex; align-items: baseline; gap: 8px; }
+.ppart h2 .ic { flex: none; width: auto; height: auto; border-radius: 0;
+  background: none; color: inherit; display: inline; font-size: 14px; line-height: 1; }
+.ppart h2 .tw { display: flex; flex-direction: column; gap: 0; min-width: 0; }
+.ppart h2 .tt { font-size: 15px; font-weight: 650; letter-spacing: -.02em; }
+.ppart h2 .ct { display: none; }
+.ppart > h2:first-child, .ppart section:first-child h2,
+.ppart .ed-chapeau + .ed-box > h2, .ppart .ed-plus + .ed-box > h2 { margin-top: 8px; }
 
 /* Les chapeaux de sous-section (À la une / liste complète) se collent au
    bandeau : même boîte, fond panel2, mono — cf .atl2 .cols. */
@@ -846,47 +1214,45 @@ pointer-events:none}
    colonnes de journal. h4 secteur = strip de groupe (cf .grp-h), rangées
    denses à la .row : tout tient sur une ligne, la méta file à droite. */
 .ppart .art-allops { margin-top: 0; }
-.ppart .art-allops h4 { margin: 0; padding: 8px 16px; background: #F8FAFC;
-  border: 1px solid #E2E8F0; border-top: 0; border-bottom: 0;
-  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px;
-  font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-  color: #0A6B3D; }
+.ppart .art-allops h4 { margin: 0 0 8px; padding: 0; background: none;
+  border: 0; font-size: 12px; font-weight: 600; letter-spacing: 0;
+  text-transform: none; color: #64748B; font-family: inherit; }
 .ppart .art-allops ul { columns: auto; column-gap: normal; margin: 0;
-  padding: 0; border: 1px solid #E2E8F0; border-top: 1px solid #E2E8F0;
-  background: #fff; }
+  padding: 0; border: 0; background: none; }
 .ppart .art-allops section > ul:last-child,
-.ppart .art-allops > ul:last-child { border-radius: 0 0 8px 8px; }
-.ppart .art-allops li { display: flex; flex-wrap: wrap; align-items: baseline;
-  column-gap: 8px; row-gap: 2px; padding: 8px 16px; margin: 0;
-  border-bottom: 1px solid #EDF2F7; transition: background .12s; }
-.ppart .art-allops li:last-child { border-bottom: 0; }
-.ppart .art-allops li:hover { background: #F8FAFC; }
-.ppart .aa-n { flex: none; max-width: 46%; overflow: hidden;
-  text-overflow: ellipsis; white-space: nowrap; font-weight: 700;
-  font-size: 13.5px; color: #0F172A; }
-.ppart .aa-d { flex: 1 1 0; min-width: 200px; overflow: hidden;
-  text-overflow: ellipsis; white-space: nowrap; font-size: 12.5px;
-  color: #64748B; }
-.ppart .aa-meta { flex: none; margin-left: auto; margin-top: 0;
-  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 9.5px;
-  letter-spacing: .06em; color: #94A3B8; white-space: nowrap; }
-.ppart .aa-meta a { color: #94A3B8; border-bottom-color: transparent; }
-.ppart .aa-meta a:hover { color: #0A6B3D; }
-/* « le coup d'après » d'une ligne : pleine largeur SOUS la rangée */
-.ppart .art-allops li .pros-inline { flex: 1 1 100%; margin: 6px 0 2px; }
-/* LISTE PLATE ORDRE COCKPIT (15/08) : plus de colonnes par secteur — une
-   rangée par item, A→Z comme la liste groupée par moteur du cockpit. */
-.ppart .art-allops ul.ed-flat { columns: auto; border-top: 1px solid #E2E8F0; }
-/* LE DÉCRYPTAGE SOUS SA LIGNE (15/08 : « tout leur texte de décryptage pour
-   chacun d'eux et leur carte sociale à droite ») : panneau pleine largeur
-   dans la rangée, carte sociale flottée à droite, texte autour. */
-.ppart .art-allops li .ed-decrypt { flex: 1 1 100%; margin: 10px 0 4px;
-  padding: 12px 14px; background: #F8FAFC; border: 1px solid #E2E8F0;
-  border-radius: 8px; overflow: hidden; }
-.ppart .ed-decrypt h4 { margin: 0 0 8px; font-size: 17px; }
-.ppart .ed-decrypt .art-srcline { margin: 0 0 12px; }
-.ppart .ed-decrypt p { font-size: 14.5px; line-height: 1.62; color: #3F4E61;
-  margin-bottom: 12px; }
+.ppart .art-allops > ul:last-child { border-radius: 0; }
+.ppart .art-allops li, .ppart .art-allops li.ed-op {
+  display: block; padding: 18px 0 20px; margin: 0;
+  border-bottom: 1px solid #EEF2F6; }
+.ppart .art-allops li:first-child { padding-top: 4px; }
+.ppart .art-allops li:last-child { border-bottom: 0; padding-bottom: 8px; }
+.ppart .art-allops li:hover { background: none; }
+.ppart .aa-head { margin: 0 0 8px; }
+.ppart .aa-n { display: block; max-width: none; overflow: visible;
+  white-space: normal; font-weight: 700; font-size: 15.5px;
+  letter-spacing: -.02em; color: #0F172A; line-height: 1.3; }
+.ppart .aa-d { display: block; margin: 4px 0 0; min-width: 0;
+  white-space: normal; overflow: visible; font-size: 14.5px;
+  line-height: 1.5; color: #5B6B7F; }
+.ppart .aa-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
+.ppart .aa-tag { display: inline-block; padding: 3px 9px; border-radius: 999px;
+  background: #F1F5F9; color: #475569; font-size: 12px; font-weight: 500;
+  line-height: 1.4; letter-spacing: 0; font-family: inherit; }
+.ppart .aa-src { display: inline-block; margin: 8px 0 0; font-size: 13px;
+  color: #0A6B3D; text-decoration: none; font-family: inherit; }
+.ppart .aa-src:hover { text-decoration: underline; }
+.ppart .aa-meta { display: none; }
+.ppart .aa-seen { display: inline-block; margin: 8px 0 0; font-size: 12px; color: #94A3B8; }
+.ppart .art-allops li .pros-inline { margin: 10px 0 0; }
+.ppart .art-allops ul.ed-flat { columns: auto; border: 0; }
+.ppart .art-allops li .ed-decrypt { display: block; margin: 16px 0 0;
+  padding: 16px 18px 18px; background: #F8FAFC; border: 1px solid #E8EEF4;
+  border-radius: 12px; overflow: hidden; }
+.ppart .ed-decrypt h4 { margin: 0 0 6px; font-size: 16px; font-weight: 650;
+  letter-spacing: -.02em; line-height: 1.35; }
+.ppart .ed-decrypt .art-srcline { margin: 0 0 14px; font-size: 13px; color: #94A3B8; }
+.ppart .ed-decrypt p { font-size: 15px; line-height: 1.7; color: #3F4E61;
+  margin-bottom: 14px; }
 .ppart .ed-decrypt .opcard { float: right; width: min(400px, 46%);
   margin: 0 0 12px 18px; }
 .ppart .ed-decrypt-solo { margin: 14px 0 0; padding: 12px 14px;
@@ -899,31 +1265,23 @@ pointer-events:none}
     width: 100%; margin: 12px 0; }
 }
 @media (max-width: 760px) {
-  .ppart .aa-n { max-width: 100%; }
-  .ppart .aa-d { min-width: 100%; white-space: normal; }
-  .ppart .aa-meta { margin-left: 0; }
+  .ppart .aa-n, .ppart .aa-d { max-width: 100%; }
 }
 
 /* (Le masthead d'article a été retiré le 15/08 — les boîtes moteur portent
    leurs comptes ; les anciennes éditions bakées gardent un rendu par défaut.) */
 
-/* LE PLI « EN PLUS » (chapô + décryptages) — l'option discrète en pied
-   (14/08 soir : « tu peux le mettre tout en bas pour pouvoir l'ouvrir ou le
-   refermer, que cela reste en option mais pas trop visible »). */
-.ppart .ed-plus { margin: 26px 0 0; background: #F8FAFC;
-  border: 1px solid #E2E8F0; border-radius: 8px; }
-.ppart .ed-plus > summary { cursor: pointer; list-style: none;
-  padding: 11px 16px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
-  font-size: 10px; font-weight: 600; letter-spacing: .18em;
-  text-transform: uppercase; color: #0F172A; }
-.ppart .ed-plus > summary::-webkit-details-marker { display: none; }
-.ppart .ed-plus > summary::after { content: " ▾"; color: #0A6B3D; }
-.ppart .ed-plus[open] > summary::after { content: " ▴"; }
-.ppart .ed-plus .ed-plus-b { padding: 4px 16px 18px; background: #fff;
-  border-top: 1px solid #E2E8F0; border-radius: 0 0 8px 8px; }
-.ppart .ed-plus .ed-plus-b > h3.art-sub { border: 0; background: none;
-  padding: 8px 0; margin: 18px 0 8px; }
-.ppart .ed-plus .ed-plus-b > p:first-child { padding-top: 14px; }
+/* Chapô : en tête, plus petit, aéré — plus de menu repliable. */
+.ppart .ed-chapeau, .ppart .ed-plus { margin: 0 0 28px; background: none; border: 0; }
+.ppart .ed-plus > summary { display: none; }
+.ppart .ed-plus .ed-plus-b { padding: 0; background: none; border: 0; }
+.ppart .ed-chapeau p, .ppart .ed-plus .ed-plus-b p {
+  margin: 0 0 12px; font-size: 15px; line-height: 1.75; color: #5B6B7F;
+  font-weight: 400; max-width: 62ch; }
+.ppart .ed-chapeau p:last-child, .ppart .ed-plus .ed-plus-b p:last-child { margin-bottom: 0; }
+.ppart .ed-plus .ed-plus-b > h3.art-sub { display: none; }
+.ppart .ed-box { margin: 0 0 40px; }
+.ppart .ed-rest { margin: 44px 0 8px; }
 
 /* LES ÉCARTÉS — le même pli que les replis du cockpit. */
 .ppart .ed-ecartes { margin: 26px 0 0; background: #F8FAFC;
@@ -940,28 +1298,29 @@ pointer-events:none}
   border-top: 1px solid #EDF2F7; }
 .ppart .ed-ecartes li em { color: #94A3B8; }
 
-/* L'ÉDITORIAL DES PAGES MARCHÉ (mk-edito) ET DES ÉDITOS DÉTERMINISTES
-   (.ed-day — /cibles, replis) : mêmes rangées cockpit — les lignes portent
-   déjà les deux jeux de classes (mk-op ed-op). */
-.mk-edito .mk-sec, .ed-day .mk-sec { margin: 26px 0 0; }
-.mk-edito .mk-sec h2, .ed-day .mk-sec h2 { margin: 0; padding: 11px 16px;
-  font-size: 15px; font-weight: 700; color: #0F172A; background: #F1F5F9;
-  border: 1px solid #E2E8F0; border-radius: 8px 8px 0 0; }
-.mk-edito .mk-ops, .ed-day .mk-ops { border: 1px solid #E2E8F0; border-top: 0;
-  border-radius: 0 0 8px 8px; background: #fff; list-style: none;
+/* Pages marché : même édito que /actualites (ed-box, tags, chapô). */
+.mk-edito .mk-lead, .ppart .mk-lead { margin: 0; font-size: 15px; line-height: 1.75; color: #5B6B7F;
+  max-width: 62ch; }
+.mk-edito .mk-sec:has(.mk-empty):not(:has(.mk-op, .ed-op, .acq-land, .art-allops li)),
+.ppart .mk-sec:has(.mk-empty):not(:has(.mk-op, .ed-op, .acq-land, .art-allops li)) { display: none; }
+.mk-edito .mk-empty, .ppart .mk-empty { display: none; }
+.mk-edito .acq-land { margin: 28px 0 8px; }
+.mk-edito .mk-sec, .ed-day .mk-sec { margin: 0 0 40px; }
+.mk-edito .mk-sec h2, .ed-day .mk-sec h2 { margin: 0 0 14px; padding: 0 0 10px;
+  font-size: 15px; font-weight: 650; color: #0F172A; background: none;
+  border: 0; border-bottom: 1px solid #E8EEF4; }
+.mk-edito .mk-ops, .ed-day .mk-ops { border: 0; background: none; list-style: none;
   margin: 0; padding: 0; }
-.mk-edito .mk-op, .ed-day .mk-op { padding: 8px 16px;
-  border-bottom: 1px solid #EDF2F7; }
+.mk-edito .mk-op, .ed-day .mk-op { padding: 18px 0 20px;
+  border-bottom: 1px solid #EEF2F6; }
 .mk-edito .mk-op:last-child, .ed-day .mk-op:last-child { border-bottom: 0; }
-.mk-edito .mk-op:hover, .ed-day .mk-op:hover { background: #F8FAFC; }
-.mk-edito .mk-op-t, .ed-day .mk-op-t { font-size: 13.5px; line-height: 1.45; }
-.mk-edito .mk-op-t strong, .ed-day .mk-op-t strong { font-size: 13.5px; }
-.mk-edito .mk-op-m, .ed-day .mk-op-m { margin-top: 2px;
-  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 9.5px;
-  letter-spacing: .06em; color: #94A3B8; }
-.mk-edito .mk-empty, .ed-day .mk-empty { padding: 10px 16px; margin: 0;
-  font-size: 13px; color: #94A3B8; border: 1px solid #E2E8F0; border-top: 0;
-  border-radius: 0 0 8px 8px; background: #fff; }
+.mk-edito .mk-op:hover, .ed-day .mk-op:hover { background: none; }
+.mk-edito .mk-op-t, .ed-day .mk-op-t { font-size: 15.5px; font-weight: 700;
+  letter-spacing: -.02em; line-height: 1.3; color: #0F172A; }
+.mk-edito .mk-op-t strong, .ed-day .mk-op-t strong { font-size: inherit; }
+.mk-edito .mk-op-m, .ed-day .mk-op-m { margin-top: 8px; font-family: inherit;
+  font-size: 13px; letter-spacing: 0; color: #64748B; }
+.mk-edito .mk-op-m a { color: #0A6B3D; }
 
 /* ── LA CARTE D'UNE OPÉRATION, dans le fil de l'article ───────────────────
    Elle se cale sur la colonne de lecture, sous le titre et sa source : on lit
@@ -1146,7 +1505,7 @@ window.addEventListener("resize",closeAcct);
 window.addEventListener("scroll",onScrollAcct,true);}
 Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();</script><main class="wrap tm-wrap"><nav class="ppcrumb" aria-label="Fil d&#39;Ariane"><a href="https://proplace.co/" data-i18n="home">Accueil</a><span class="sep">›</span><a href="/actualites/operations/secteurs/">Les 36 marchés</a><span class="sep">›</span><a href="/actualites/operations/secteur/horizontal-and-productivity-saas/">Horizontal &amp; Productivity SaaS</a><span class="sep">›</span><span class="cur" data-mk-date>26 août 2026</span><span class="sp"></span><a class="pv" href="/actualites/operations/secteur/horizontal-and-productivity-saas/2026-08-25/">← 25 août 2026</a></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Les 36 marchés", "item": "https://proplace.co/actualites/operations/secteurs/"}, {"@type": "ListItem", "position": 3, "name": "Horizontal & Productivity SaaS", "item": "https://proplace.co/actualites/operations/secteur/horizontal-and-productivity-saas/"}, {"@type": "ListItem", "position": 4, "name": "26 août 2026"}]}</script><article class="ppart mk-edito" data-mk-sector="Horizontal &amp; Productivity SaaS"><h1><span class="i18n-fr">Édition du 26 août 2026 — Horizontal &amp; Productivity SaaS</span><span class="i18n-en">Edition of August 26, 2026 — Horizontal &amp; Productivity SaaS</span></h1><p class="pubdate"><time datetime="2026-08-26" data-mk-date>26 août 2026</time> · Proplace</p><p class="mk-lead"><span class="i18n-fr">2 opérations Horizontal &amp; Productivity SaaS repérées le 26 août 2026 (M&A, levées, recrutements, nominations, actualités).</span><span class="i18n-en">2 Horizontal &amp; Productivity SaaS deals spotted on August 26, 2026 (M&A, fundraising, hiring, appointments, news).</span></p><section class="mk-sec"><h2><span class="i18n-fr">📝 Analyses & tribunes — Horizontal &amp; Productivity SaaS · 1</span><span class="i18n-en">📝 Analysis & op-eds — Horizontal &amp; Productivity SaaS · 1</span></h2><ul class="mk-ops"><li class="mk-op ed-op" data-kind="presse"><div class="mk-op-t ed-op-t"><strong>Saturation du marketing digital : pourquoi l’objet publicitaire est de retour dans le growth marketing</strong></div><div class="mk-op-m ed-op-m">Actualité · <a href="https://www.frenchweb.fr/saturation-du-marketing-digital-pourquoi-lobjet-publicitaire-est-de-retour-dans-le-growth-marketing/463026" rel="nofollow noopener" target="_blank">source</a></div></li></ul></section><section class="mk-sec"><h2><span class="i18n-fr">📰 Actualités du jour — Horizontal &amp; Productivity SaaS · 1</span><span class="i18n-en">📰 Today's news — Horizontal &amp; Productivity SaaS · 1</span></h2><ul class="mk-ops"><li class="mk-op ed-op" data-kind="presse"><div class="mk-op-t ed-op-t"><strong>Alarme maison connectée : quels critères examiner avant de s’équiper ?</strong></div><div class="mk-op-m ed-op-m">Actualité · <a href="https://www.frenchweb.fr/alarme-maison-connectee-quels-criteres-examiner-avant-de-sequiper/462769" rel="nofollow noopener" target="_blank">source</a></div></li></ul></section></article><p class="pp-ck-cta"><a href="/actualites/operations/secteur/horizontal-and-productivity-saas/?jour=2026-08-26">Ouvrir ce marché dans le cockpit →</a><span>Les opérations de ce jour, dépliées, évaluables en un clic.</span></p><p class="mk-empty" style="margin:18px 0 0"><a href="https://proplace.co/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-08-26/"><span class="i18n-fr">📰 Lire l'analyse de toutes les opérations du jour →</span><span class="i18n-en">📰 Read the full-market analysis of the day →</span></a></p><div class="mk-editions"><h2><span class="i18n-fr">Analyses approfondies — Horizontal &amp; Productivity SaaS</span><span class="i18n-en">In-depth analyses — Horizontal &amp; Productivity SaaS</span></h2><div class="mxc-grid"><div class="mxc"><div class="mxc-top"><span class="mxc-score">79.4</span><a class="mxc-name" href="https://proplace.co/analysis/aumatech/">Aumatech</a></div><div class="mxc-geo">📍 France / Italie · Series E+ · <span class="i18n-fr">publié le 19 juillet 2026</span><span class="i18n-en">published July 19, 2026</span></div><div class="mxc-l"><span class="i18n-fr">Industrie</span><span class="i18n-en">Industry</span></div><div class="mxc-v">Horizontal &amp; Productivity SaaS</div><div class="mxc-l"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></div><div class="mxc-v">Machines d&#x27;Automatisation Industrielle Sur Mesure</div><p class="mxc-pos">Équipements d&#x27;automatisation industrielle sur mesure (CAPEX) pour les usines agroalimentaires et manufacturières de taille moyenne en France et en Italie.</p><a href="https://proplace.co/analysis/aumatech/"><img class="mxc-radar" loading="lazy" src="https://proplace.co/analysis/radars/aumatech.png" alt="Radar d'évaluation Aumatech — équipe, marché, produit, modèle, traction"></a><div class="mxc-tags"><span>France / Italie</span><span>Series E+</span><span>B2B</span></div><a class="mxc-btn" href="https://proplace.co/analysis/aumatech/"><span class="i18n-fr">📄 Voir le mémo public →</span><span class="i18n-en">📄 View the public memo →</span></a></div><div class="mxc"><div class="mxc-top"><span class="mxc-score">80.6</span><a class="mxc-name" href="https://proplace.co/analysis/cerfrance/">Cerfrance</a></div><div class="mxc-geo"><img src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" width="16" height="12" alt="" loading="lazy" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px">France · Exited (Acquired / Buyout) · <span class="i18n-fr">publié le 8 juillet 2026</span><span class="i18n-en">published July 8, 2026</span></div><div class="mxc-l"><span class="i18n-fr">Industrie</span><span class="i18n-en">Industry</span></div><div class="mxc-v">Horizontal &amp; Productivity SaaS</div><div class="mxc-l"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></div><div class="mxc-v">Agricultural and SME Professional Advisory Services</div><p class="mxc-pos">Regulatory compliance, accounting, and business advisory services for French SMEs and agricultural operators.</p><a href="https://proplace.co/analysis/cerfrance/"><img class="mxc-radar" loading="lazy" src="https://proplace.co/analysis/radars/cerfrance.png" alt="Radar d'évaluation Cerfrance — équipe, marché, produit, modèle, traction"></a><div class="mxc-tags"><span>France</span><span>Exited (Acquired / Buyout)</span><span>Professional Services &amp; Advisory</span><span>B2B</span></div><a class="mxc-btn" href="https://proplace.co/analysis/cerfrance/"><span class="i18n-fr">📄 Voir le mémo public →</span><span class="i18n-en">📄 View the public memo →</span></a></div><div class="mxc"><div class="mxc-top"><span class="mxc-score">92.2</span><a class="mxc-name" href="https://proplace.co/analysis/miro/">Miro</a></div><div class="mxc-geo">📍 Pays-Bas (Amsterdam) / États-Unis (San Francisco) · Series E+ · <span class="i18n-fr">publié le 22 juillet 2026</span><span class="i18n-en">published July 22, 2026</span></div><div class="mxc-l"><span class="i18n-fr">Industrie</span><span class="i18n-en">Industry</span></div><div class="mxc-v">Horizontal &amp; Productivity SaaS</div><div class="mxc-l"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></div><div class="mxc-v">Plateforme de Collaboration Visuelle d&#x27;Entreprise (Visual Workspace)</div><p class="mxc-pos">SaaS d&#x27;espace de travail collaboratif visuel et de modélisation de systèmes pour équipes produit et R&amp;D distribuées.</p><a href="https://proplace.co/analysis/miro/"><img class="mxc-radar" loading="lazy" src="https://proplace.co/analysis/radars/miro.png" alt="Radar d'évaluation Miro — équipe, marché, produit, modèle, traction"></a><div class="mxc-tags"><span>Series E+</span><span>Horizontal &amp; Productivity SaaS</span><span>B2B</span></div><a class="mxc-btn" href="https://proplace.co/analysis/miro/"><span class="i18n-fr">📄 Voir le mémo public →</span><span class="i18n-en">📄 View the public memo →</span></a></div><div class="mxc"><div class="mxc-top"><span class="mxc-score">82</span><a class="mxc-name" href="https://proplace.co/analysis/swiftask/">Swiftask</a></div><div class="mxc-geo"><img src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" width="16" height="12" alt="" loading="lazy" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px">France · Seed · <span class="i18n-fr">publié le 12 juin 2026</span><span class="i18n-en">published June 12, 2026</span></div><div class="mxc-l"><span class="i18n-fr">Industrie</span><span class="i18n-en">Industry</span></div><div class="mxc-v">Horizontal &amp; Productivity SaaS</div><div class="mxc-l"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></div><div class="mxc-v">AI Workflow Automation</div><p class="mxc-pos">Integrated community management and monetization platform for the professional creator economy.</p><a href="https://proplace.co/analysis/swiftask/"><img class="mxc-radar" loading="lazy" src="https://proplace.co/analysis/radars/swiftask.png" alt="Radar d'évaluation Swiftask — équipe, marché, produit, modèle, traction"></a><div class="mxc-tags"><span>France</span><span>Seed</span><span>FinTech &gt; Creator Monetization Platform</span><span>B2B</span></div><a class="mxc-btn" href="https://proplace.co/analysis/swiftask/"><span class="i18n-fr">📄 Voir le mémo public →</span><span class="i18n-en">📄 View the public memo →</span></a></div></div></div><section class="nlbox" aria-label="Newsletter"><h2><span class='i18n-fr'>Newsletter sectorielle</span><span class='i18n-en'>Sector newsletter</span></h2><p class='nlbox-sub'><span class='i18n-fr'>Les opérations Horizontal &amp; Productivity SaaS par email, les jours où ce marché bouge — ce n'est pas la veille, c'est la lettre. Gratuit, désinscription en un clic.</span><span class='i18n-en'>Horizontal &amp; Productivity SaaS deals by email, on the days this market moves — this is the newsletter, not the watchlist. Free, one-click unsubscribe.</span></p><form class="nlp-form" novalidate data-nl-sector="horizontal-and-productivity-saas" data-ok-fr="C&#x27;est noté ! Vous recevrez la newsletter Horizontal &amp;amp; Productivity SaaS dès la prochaine édition." data-ok-en="Done! You&#x27;ll receive the Horizontal &amp;amp; Productivity SaaS newsletter from the next edition."><input type="email" required placeholder="votre@email.com" aria-label="Votre adresse email"><input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0;width:0;border:0;padding:0" aria-hidden="true"><button class="btn" type="submit"><span class="i18n-fr">S'abonner →</span><span class="i18n-en">Subscribe →</span></button></form><p class="nlp-msg"></p><ul class="nlp-points"><li><span class="i18n-fr">📊 Le pouls du marché Horizontal &amp; Productivity SaaS : volume, montants, tendance.</span><span class="i18n-en">📊 The Horizontal &amp; Productivity SaaS market pulse: volume, amounts, trend.</span></li><li><span class="i18n-fr">🤝 Chaque opération, avec sa source presse.</span><span class="i18n-en">🤝 Every deal, with its press source.</span></li><li><span class="i18n-fr">🏢 Les acquéreurs actifs du moment sur ce marché.</span><span class="i18n-en">🏢 The buyers currently active in this market.</span></li><li><span class="i18n-fr">📩 Un email les jours où ce marché bouge — jamais les autres.</span><span class="i18n-en">📩 One email on the days this market moves — never the others.</span></li></ul></section><script>(function(){if(window.__ppNlBound)return;window.__ppNlBound=1;function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}function ph(){var l=document.querySelectorAll("form.nlp-form input[type=email]"),i;for(i=0;i<l.length;i++){l[i].setAttribute("placeholder",EN()?"your@email.com":"votre@email.com");l[i].setAttribute("aria-label",EN()?"Your email address":"Votre adresse email");}}ph();document.addEventListener("pplang",ph);document.addEventListener("submit",function(ev){var f=ev.target;if(!f||!f.className||(" "+f.className+" ").indexOf(" nlp-form ")<0)return;ev.preventDefault();var e0=f.querySelector("input[type=email]"),h0=f.querySelector("input[name=website]");var em=((e0&&e0.value)||"").trim(),hp=((h0&&h0.value)||"").trim();if(!em)return;var m=f.parentNode&&f.parentNode.querySelector(".nlp-msg");if(!m&&f.parentNode){m=document.createElement("p");m.className="nlp-msg";f.parentNode.appendChild(m);}if(!m)return;var sec=f.getAttribute("data-nl-sector")||"general";var okFr=f.getAttribute("data-ok-fr")||"C'est noté !";var okEn=f.getAttribute("data-ok-en")||"Done!";m.className="nlp-msg";m.textContent=EN()?"Subscribing…":"Inscription en cours…";fetch("https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/newsletter/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:em,sector:sec,website:hp})}).then(function(r){return r.json();}).then(function(j){if(j&&j.ok){m.className="nlp-msg ok";m.textContent=EN()?okEn:okFr;try{f.reset();}catch(e){}}else{m.className="nlp-msg err";m.textContent=(j&&j.error)||(EN()?"Something went wrong — retry.":"Une erreur est survenue — réessayez.");}}).catch(function(){m.className="nlp-msg err";m.textContent=EN()?"Something went wrong — retry in a few seconds.":"Une erreur est survenue — réessayez dans quelques secondes.";});});})();</script><a class="back" href="/actualites/operations/secteur/horizontal-and-productivity-saas/"><span class="i18n-fr">← Le direct Horizontal &amp; Productivity SaaS</span><span class="i18n-en">← Horizontal &amp; Productivity SaaS live</span></a></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p></div><nav class="ppf-nav"><a href="/actualites/" data-i18n="direct">Live</a><a href="/actualites/operations/secteurs/" data-i18n="marches">Veille sectorielle</a><a href="/newsletter">Newsletter</a><a class="ppf-api" href="https://proplace.co/api/" target="_blank" rel="noopener">API</a></nav><div class="ppf-acct" id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></div><span class="ppf-copy">© 2026 Proplace</span></div></footer><script>(function(){
+})();</script><main class="wrap tm-wrap"><nav class="ppcrumb" aria-label="Fil d&#39;Ariane"><a href="https://proplace.co/" data-i18n="home">Accueil</a><span class="sep">›</span><a href="/actualites/operations/secteurs/">Les 36 marchés</a><span class="sep">›</span><a href="/actualites/operations/secteur/horizontal-and-productivity-saas/">Horizontal &amp; Productivity SaaS</a><span class="sep">›</span><span class="cur" data-mk-date>26 août 2026</span><span class="sp"></span><a class="pv" href="/actualites/operations/secteur/horizontal-and-productivity-saas/2026-08-25/">← 25 août 2026</a><a class="pv" href="/actualites/operations/secteur/horizontal-and-productivity-saas/2026-08-27/">27 août 2026 →</a></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Les 36 marchés", "item": "https://proplace.co/actualites/operations/secteurs/"}, {"@type": "ListItem", "position": 3, "name": "Horizontal & Productivity SaaS", "item": "https://proplace.co/actualites/operations/secteur/horizontal-and-productivity-saas/"}, {"@type": "ListItem", "position": 4, "name": "26 août 2026"}]}</script><article class="ppart mk-edito" data-mk-sector="Horizontal &amp; Productivity SaaS"><h1><span class="i18n-fr">Édition du 26 août 2026 — Horizontal &amp; Productivity SaaS</span><span class="i18n-en">Edition of August 26, 2026 — Horizontal &amp; Productivity SaaS</span></h1><p class="pubdate"><time datetime="2026-08-26" data-mk-date>26 août 2026</time> · Proplace</p><div class="ed-chapeau"><p class="mk-lead"><span class="i18n-fr">2 actualités en Horizontal &amp; Productivity SaaS le 26 août 2026.</span><span class="i18n-en">2 news items in Horizontal &amp; Productivity SaaS on August 26, 2026.</span></p></div><section class="ed-box" data-engine="tribunes"><h2 id="tribunes"><span class="ic">📝</span><span class="tw"><span class="tt"><span class="i18n-fr">Analyses & tribunes · 1</span><span class="i18n-en">Analysis & op-eds · 1</span></span></span></h2><section class="art-allops"><ul class="ed-flat"><li class="ed-op"><div class="aa-head"><b class="aa-n">Saturation du marketing digital</b><p class="aa-d">Saturation du marketing digital : pourquoi l’objet publicitaire est de retour dans le growth marketing</p></div><a class="aa-src" href="https://www.frenchweb.fr/saturation-du-marketing-digital-pourquoi-lobjet-publicitaire-est-de-retour-dans-le-growth-marketing/463026" rel="nofollow noopener" target="_blank">frenchweb.fr</a></li></ul></section></section><section class="ed-box" data-engine="media"><h2 id="actualites"><span class="ic">📰</span><span class="tw"><span class="tt"><span class="i18n-fr">Actualités du jour · 1</span><span class="i18n-en">Today's news · 1</span></span></span></h2><section class="art-allops"><ul class="ed-flat"><li class="ed-op"><div class="aa-head"><b class="aa-n">Alarme maison connectée</b><p class="aa-d">Alarme maison connectée : quels critères examiner avant de s’équiper ?</p></div><a class="aa-src" href="https://www.frenchweb.fr/alarme-maison-connectee-quels-criteres-examiner-avant-de-sequiper/462769" rel="nofollow noopener" target="_blank">frenchweb.fr</a></li></ul></section></section></article><p class="pp-ck-cta"><a href="/actualites/operations/secteur/horizontal-and-productivity-saas/?jour=2026-08-26">Ouvrir ce marché dans le cockpit →</a><span>Les opérations de ce jour, dépliées, évaluables en un clic.</span></p><p class="mk-v1" style="margin:18px 0 0"><a href="https://proplace.co/actualites/fusions-acquisitions-et-levees-de-fonds-france-2026-08-26/"><span class="i18n-fr">📰 Lire l'analyse de toutes les opérations du jour →</span><span class="i18n-en">📰 Read the full-market analysis of the day →</span></a></p><div class="mk-editions"><h2><span class="i18n-fr">Analyses approfondies — Horizontal &amp; Productivity SaaS</span><span class="i18n-en">In-depth analyses — Horizontal &amp; Productivity SaaS</span></h2><div class="mxc-grid"><div class="mxc"><div class="mxc-top"><span class="mxc-score">79.4</span><a class="mxc-name" href="https://proplace.co/analysis/aumatech/">Aumatech</a></div><div class="mxc-geo">📍 France / Italie · Series E+ · <span class="i18n-fr">publié le 19 juillet 2026</span><span class="i18n-en">published July 19, 2026</span></div><div class="mxc-l"><span class="i18n-fr">Industrie</span><span class="i18n-en">Industry</span></div><div class="mxc-v">Horizontal &amp; Productivity SaaS</div><div class="mxc-l"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></div><div class="mxc-v">Machines d&#x27;Automatisation Industrielle Sur Mesure</div><p class="mxc-pos">Équipements d&#x27;automatisation industrielle sur mesure (CAPEX) pour les usines agroalimentaires et manufacturières de taille moyenne en France et en Italie.</p><a href="https://proplace.co/analysis/aumatech/"><img class="mxc-radar" loading="lazy" src="https://proplace.co/analysis/radars/aumatech.png" alt="Radar d'évaluation Aumatech — équipe, marché, produit, modèle, traction"></a><div class="mxc-tags"><span>France / Italie</span><span>Series E+</span><span>B2B</span></div><a class="mxc-btn" href="https://proplace.co/analysis/aumatech/"><span class="i18n-fr">📄 Voir le mémo public →</span><span class="i18n-en">📄 View the public memo →</span></a></div><div class="mxc"><div class="mxc-top"><span class="mxc-score">80.6</span><a class="mxc-name" href="https://proplace.co/analysis/cerfrance/">Cerfrance</a></div><div class="mxc-geo"><img src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" width="16" height="12" alt="" loading="lazy" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px">France · Exited (Acquired / Buyout) · <span class="i18n-fr">publié le 8 juillet 2026</span><span class="i18n-en">published July 8, 2026</span></div><div class="mxc-l"><span class="i18n-fr">Industrie</span><span class="i18n-en">Industry</span></div><div class="mxc-v">Horizontal &amp; Productivity SaaS</div><div class="mxc-l"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></div><div class="mxc-v">Agricultural and SME Professional Advisory Services</div><p class="mxc-pos">Regulatory compliance, accounting, and business advisory services for French SMEs and agricultural operators.</p><a href="https://proplace.co/analysis/cerfrance/"><img class="mxc-radar" loading="lazy" src="https://proplace.co/analysis/radars/cerfrance.png" alt="Radar d'évaluation Cerfrance — équipe, marché, produit, modèle, traction"></a><div class="mxc-tags"><span>France</span><span>Exited (Acquired / Buyout)</span><span>Professional Services &amp; Advisory</span><span>B2B</span></div><a class="mxc-btn" href="https://proplace.co/analysis/cerfrance/"><span class="i18n-fr">📄 Voir le mémo public →</span><span class="i18n-en">📄 View the public memo →</span></a></div><div class="mxc"><div class="mxc-top"><span class="mxc-score">92.2</span><a class="mxc-name" href="https://proplace.co/analysis/miro/">Miro</a></div><div class="mxc-geo">📍 Pays-Bas (Amsterdam) / États-Unis (San Francisco) · Series E+ · <span class="i18n-fr">publié le 22 juillet 2026</span><span class="i18n-en">published July 22, 2026</span></div><div class="mxc-l"><span class="i18n-fr">Industrie</span><span class="i18n-en">Industry</span></div><div class="mxc-v">Horizontal &amp; Productivity SaaS</div><div class="mxc-l"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></div><div class="mxc-v">Plateforme de Collaboration Visuelle d&#x27;Entreprise (Visual Workspace)</div><p class="mxc-pos">SaaS d&#x27;espace de travail collaboratif visuel et de modélisation de systèmes pour équipes produit et R&amp;D distribuées.</p><a href="https://proplace.co/analysis/miro/"><img class="mxc-radar" loading="lazy" src="https://proplace.co/analysis/radars/miro.png" alt="Radar d'évaluation Miro — équipe, marché, produit, modèle, traction"></a><div class="mxc-tags"><span>Series E+</span><span>Horizontal &amp; Productivity SaaS</span><span>B2B</span></div><a class="mxc-btn" href="https://proplace.co/analysis/miro/"><span class="i18n-fr">📄 Voir le mémo public →</span><span class="i18n-en">📄 View the public memo →</span></a></div><div class="mxc"><div class="mxc-top"><span class="mxc-score">82</span><a class="mxc-name" href="https://proplace.co/analysis/swiftask/">Swiftask</a></div><div class="mxc-geo"><img src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x" width="16" height="12" alt="" loading="lazy" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px">France · Seed · <span class="i18n-fr">publié le 12 juin 2026</span><span class="i18n-en">published June 12, 2026</span></div><div class="mxc-l"><span class="i18n-fr">Industrie</span><span class="i18n-en">Industry</span></div><div class="mxc-v">Horizontal &amp; Productivity SaaS</div><div class="mxc-l"><span class="i18n-fr">Marché</span><span class="i18n-en">Market</span></div><div class="mxc-v">AI Workflow Automation</div><p class="mxc-pos">Integrated community management and monetization platform for the professional creator economy.</p><a href="https://proplace.co/analysis/swiftask/"><img class="mxc-radar" loading="lazy" src="https://proplace.co/analysis/radars/swiftask.png" alt="Radar d'évaluation Swiftask — équipe, marché, produit, modèle, traction"></a><div class="mxc-tags"><span>France</span><span>Seed</span><span>FinTech &gt; Creator Monetization Platform</span><span>B2B</span></div><a class="mxc-btn" href="https://proplace.co/analysis/swiftask/"><span class="i18n-fr">📄 Voir le mémo public →</span><span class="i18n-en">📄 View the public memo →</span></a></div></div></div><section class="nlbox" aria-label="Newsletter"><h2><span class='i18n-fr'>Newsletter sectorielle</span><span class='i18n-en'>Sector newsletter</span></h2><p class='nlbox-sub'><span class='i18n-fr'>Les opérations Horizontal &amp; Productivity SaaS par email, les jours où ce marché bouge — ce n'est pas la veille, c'est la lettre. Gratuit, désinscription en un clic.</span><span class='i18n-en'>Horizontal &amp; Productivity SaaS deals by email, on the days this market moves — this is the newsletter, not the watchlist. Free, one-click unsubscribe.</span></p><form class="nlp-form" novalidate data-nl-sector="horizontal-and-productivity-saas" data-ok-fr="C&#x27;est noté ! Vous recevrez la newsletter Horizontal &amp;amp; Productivity SaaS dès la prochaine édition." data-ok-en="Done! You&#x27;ll receive the Horizontal &amp;amp; Productivity SaaS newsletter from the next edition."><input type="email" required placeholder="votre@email.com" aria-label="Votre adresse email"><input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0;width:0;border:0;padding:0" aria-hidden="true"><button class="btn" type="submit"><span class="i18n-fr">S'abonner →</span><span class="i18n-en">Subscribe →</span></button></form><p class="nlp-msg"></p><ul class="nlp-points"><li><span class="i18n-fr">📊 Le pouls du marché Horizontal &amp; Productivity SaaS : volume, montants, tendance.</span><span class="i18n-en">📊 The Horizontal &amp; Productivity SaaS market pulse: volume, amounts, trend.</span></li><li><span class="i18n-fr">🤝 Chaque opération, avec sa source presse.</span><span class="i18n-en">🤝 Every deal, with its press source.</span></li><li><span class="i18n-fr">🏢 Les acquéreurs actifs du moment sur ce marché.</span><span class="i18n-en">🏢 The buyers currently active in this market.</span></li><li><span class="i18n-fr">📩 Un email les jours où ce marché bouge — jamais les autres.</span><span class="i18n-en">📩 One email on the days this market moves — never the others.</span></li></ul></section><script>(function(){if(window.__ppNlBound)return;window.__ppNlBound=1;function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}function ph(){var l=document.querySelectorAll("form.nlp-form input[type=email]"),i;for(i=0;i<l.length;i++){l[i].setAttribute("placeholder",EN()?"your@email.com":"votre@email.com");l[i].setAttribute("aria-label",EN()?"Your email address":"Votre adresse email");}}ph();document.addEventListener("pplang",ph);document.addEventListener("submit",function(ev){var f=ev.target;if(!f||!f.className||(" "+f.className+" ").indexOf(" nlp-form ")<0)return;ev.preventDefault();var e0=f.querySelector("input[type=email]"),h0=f.querySelector("input[name=website]");var em=((e0&&e0.value)||"").trim(),hp=((h0&&h0.value)||"").trim();if(!em)return;var m=f.parentNode&&f.parentNode.querySelector(".nlp-msg");if(!m&&f.parentNode){m=document.createElement("p");m.className="nlp-msg";f.parentNode.appendChild(m);}if(!m)return;var sec=f.getAttribute("data-nl-sector")||"general";var okFr=f.getAttribute("data-ok-fr")||"C'est noté !";var okEn=f.getAttribute("data-ok-en")||"Done!";m.className="nlp-msg";m.textContent=EN()?"Subscribing…":"Inscription en cours…";fetch("https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/newsletter/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:em,sector:sec,website:hp})}).then(function(r){return r.json();}).then(function(j){if(j&&j.ok){m.className="nlp-msg ok";m.textContent=EN()?okEn:okFr;try{f.reset();}catch(e){}}else{m.className="nlp-msg err";m.textContent=(j&&j.error)||(EN()?"Something went wrong — retry.":"Une erreur est survenue — réessayez.");}}).catch(function(){m.className="nlp-msg err";m.textContent=EN()?"Something went wrong — retry in a few seconds.":"Une erreur est survenue — réessayez dans quelques secondes.";});});})();</script><a class="back" href="/actualites/operations/secteur/horizontal-and-productivity-saas/"><span class="i18n-fr">← Le direct Horizontal &amp; Productivity SaaS</span><span class="i18n-en">← Horizontal &amp; Productivity SaaS live</span></a></main><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p></div><nav class="ppf-nav"><a href="/actualites/" data-i18n="direct">Live</a><a href="/actualites/operations/secteurs/" data-i18n="marches">Veille sectorielle</a><a href="/newsletter">Newsletter</a><a class="ppf-api" href="https://proplace.co/api/" target="_blank" rel="noopener">API</a></nav><div class="ppf-acct" id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></div><span class="ppf-copy">© 2026 Proplace</span></div></footer><script>(function(){
 if(window.__ppChrome)return;window.__ppChrome=1;
 /* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
    PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
