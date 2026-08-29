@@ -91,6 +91,18 @@
 .ppcard.crowded .band { flex: 1; display: flex; flex-direction: column;
   justify-content: center; margin-top: 8px; }
 
+/* Trois opérations : `crowded` a été dessiné pour 4+ lignes. À 3, le mot venait
+   coller le bandeau LIVE (13 px d'écart) pendant que la bande gardait 226 px de
+   vide entre trois lignes de 22 px. On rend l'air au titre et la place au texte
+   — la carte du 29/08 était le cas de test (retour Antoine). */
+.ppcard.crowded.f-x[data-n="3"] .main { padding-top: 116px; }
+.ppcard.crowded.f-x[data-n="3"] .word { font-size: 64px; }
+.ppcard.crowded.f-x[data-n="3"] .band .tl { font-size: 27px; }
+.ppcard.crowded.f-x[data-n="3"] .band .tn,
+.ppcard.crowded.f-x[data-n="3"] .band .ta { font-size: 31px; }
+.ppcard.crowded.f-li[data-n="3"] .main { padding-top: 150px; }
+.ppcard.crowded.f-li[data-n="3"] .word { font-size: 92px; }
+
 /* NOM de l'entreprise — le plus lisible possible (retour Antoine 12/08). */
 .ppcard .who { flex: none; padding: 18px 44px 0;
   font-family: 'Archivo Black', 'Arial Black', 'Helvetica Neue', Impact, sans-serif;
