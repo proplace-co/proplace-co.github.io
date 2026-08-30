@@ -23,7 +23,7 @@
 .ppcard {
   position: relative; overflow: hidden; display: flex; flex-direction: column;
   justify-content: flex-end; transform-origin: top left;
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif);
 }
 
 /* formats */
@@ -31,17 +31,17 @@
 .ppcard.f-x  { width: 1200px; height: 675px; }
 
 /* teintes */
-.ppcard.t-g { background: #0E8A4F; color: #fff; }
-.ppcard.t-k { background: #0B1220; color: #fff; }
-.ppcard.t-w { background: #fff;    color: #0B1220; }
+.ppcard.t-g { background: #12A150; color: #fff; }
+.ppcard.t-k { background: #0F1D33; color: #fff; }
+.ppcard.t-w { background: #fff;    color: #0F1D33; }
 
 /* ── en-tête ─────────────────────────────────────────────────────────────── */
 .ppcard .hd { position: absolute; top: 0; left: 0; right: 0; z-index: 4;
   display: flex; align-items: center; gap: 18px; padding: 34px 44px 0; flex-wrap: wrap; }
 .ppcard.f-x .hd { padding: 24px 34px 0; gap: 14px; }
-.ppcard .lv { display: flex; align-items: center; gap: 13px; background: #DC2626; color: #fff;
-  border-radius: 6px; padding: 15px 24px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
-  font-size: 30px; letter-spacing: .2em; font-weight: 700; }
+.ppcard .lv { display: flex; align-items: center; gap: 13px; background: #E5484D; color: #fff;
+  border-radius: 6px; padding: 15px 24px; font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif);
+  font-size: 30px; letter-spacing: .2em; font-weight: 700;font-variant-numeric:tabular-nums}
 .ppcard .lv i { width: 15px; height: 15px; border-radius: 50%; background: #fff; display: block; }
 .ppcard.f-x .lv { font-size: 22px; padding: 11px 18px; gap: 10px; }
 .ppcard.f-x .lv i { width: 11px; height: 11px; }
@@ -55,8 +55,8 @@
 .ppcard.f-x .kk.sm { font-size: 32px; }
 .ppcard.f-x .kk.xs { font-size: 26px; letter-spacing: 0; }
 .ppcard .hd .sp { flex: 1; }
-.ppcard .dt { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 23px;
-  letter-spacing: .09em; font-weight: 700; opacity: .66; }
+.ppcard .dt { font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif); font-size: 23px;
+  letter-spacing: .09em; font-weight: 700; opacity: .66;font-variant-numeric:tabular-nums}
 .ppcard.f-x .dt { font-size: 17px; }
 
 /* ── le corps ────────────────────────────────────────────────────────────── */
@@ -116,12 +116,12 @@
 .ppcard .said b { font-weight: 800; opacity: 1; font-style: normal; }
 /* Secteur · pays — secondaire, sous l'activité. */
 .ppcard .who-meta { flex: none; padding: 10px 44px 0;
-  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 18px; letter-spacing: .08em;
-  text-transform: uppercase; font-weight: 700; opacity: .62; }
+  font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif); font-size: 18px; letter-spacing: .08em;
+  text-transform: uppercase; font-weight: 700; opacity: .62;font-variant-numeric:tabular-nums}
 .ppcard.f-x .who-meta { font-size: 13px; padding: 7px 34px 0; }
 
 /* ── la bande, quatre variantes ──────────────────────────────────────────── */
-.ppcard .band { flex: none; margin: 30px 0 0; background: #fff; color: #0B1220; }
+.ppcard .band { flex: none; margin: 30px 0 0; background: #fff; color: #0F1D33; }
 .ppcard.f-x .band { margin: 18px 0 0; }
 .ppcard.t-w .band { background: #F2F6F9; box-shadow: inset 0 1px 0 #E1E8EF, inset 0 -1px 0 #E1E8EF; }
 
@@ -137,9 +137,9 @@
 .ppcard .band .lg { font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: 50px;
   text-transform: uppercase; letter-spacing: -.01em; }
 .ppcard.f-x .band .lg { font-size: 34px; }
-.ppcard .band .ar { color: #0E8A4F; font-size: 38px; font-weight: 900; }
+.ppcard .band .ar { color: #12A150; font-size: 38px; font-weight: 900; }
 .ppcard .band .amt { margin-left: auto; font-family: 'Archivo Black', 'Arial Black', sans-serif;
-  font-size: 52px; color: #0B1220; }
+  font-size: 52px; color: #0F1D33; }
 .ppcard.f-x .band .amt { font-size: 35px; }
 
 /* ② les chiffres */
@@ -166,14 +166,14 @@
 .ppcard .band .tr:first-child { border-top: 0; }
 .ppcard.f-x .band .tr { padding: 14px 34px; gap: 16px; }
 .ppcard .band .tn { font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: 34px;
-  color: #0E8A4F; line-height: 1; flex: none; width: 36px; }
+  color: #12A150; line-height: 1; flex: none; width: 36px; }
 .ppcard.f-x .band .tn { font-size: 28px; width: 32px; }
 .ppcard .band .tl { flex: 1; min-width: 0; font-size: 26px; font-weight: 600; line-height: 1.28;
-  color: #0B1220; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2;
+  color: #0F1D33; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2;
   -webkit-box-orient: vertical; }
 .ppcard.f-x .band .tl { font-size: 22px; }
 .ppcard .band .ta { font-family: 'Archivo Black', 'Arial Black', sans-serif; font-size: 34px;
-  flex: none; color: #0B1220; letter-spacing: -.02em; }
+  flex: none; color: #0F1D33; letter-spacing: -.02em; }
 .ppcard.f-x .band .ta { font-size: 26px; }
 
 /* ⑤ liste — 11 à 65 opérations. Toujours lisible, jamais 13 px. */
@@ -181,7 +181,7 @@
 .ppcard .band .list.c2 { column-count: 2; }
 .ppcard .band .list.c3 { column-count: 3; column-gap: 22px; }
 .ppcard .band .li { break-inside: avoid; display: flex; align-items: baseline;
-  gap: 12px; padding: 10px 0; font-size: 22px; line-height: 1.3; color: #0B1220; }
+  gap: 12px; padding: 10px 0; font-size: 22px; line-height: 1.3; color: #0F1D33; }
 .ppcard.f-x .band .li { font-size: 20px; padding: 9px 0; }
 .ppcard .band .li .ln { flex: 1; min-width: 0; overflow: hidden; font-weight: 600;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
@@ -194,16 +194,16 @@
 /* ── le verdict : deux thèses, deux réponses ─────────────────────────────── */
 .ppcard .vs { display: flex; gap: 0; margin: 30px 0 0; background: #fff; }
 .ppcard.f-x .vs { margin: 18px 0 0; }
-.ppcard .vc { flex: 1; color: #0B1220; border-right: 2px solid #E1E8EF; }
+.ppcard .vc { flex: 1; color: #0F1D33; border-right: 2px solid #E1E8EF; }
 .ppcard .vc:last-child { border-right: 0; }
-.ppcard .vh { padding: 15px 24px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
-  font-size: 17px; letter-spacing: .1em; font-weight: 700; color: #fff; }
-.ppcard .vh.ok { background: #0A6B3D; }
-.ppcard .vh.no { background: #DC2626; }
+.ppcard .vh { padding: 15px 24px; font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif);
+  font-size: 17px; letter-spacing: .1em; font-weight: 700; color: #fff;font-variant-numeric:tabular-nums}
+.ppcard .vh.ok { background: #0E8A44; }
+.ppcard .vh.no { background: #E5484D; }
 .ppcard.f-x .vh { font-size: 12px; padding: 10px 17px; }
 .ppcard .vb { padding: 22px 24px 26px; font-size: 21px; line-height: 1.32; color: #42505E; font-weight: 500; }
 .ppcard .vb b { display: block; font-family: 'Archivo Black', 'Arial Black', sans-serif;
-  font-size: 92px; color: #0B1220; line-height: 1; margin-top: 14px; letter-spacing: -.03em; }
+  font-size: 92px; color: #0F1D33; line-height: 1; margin-top: 14px; letter-spacing: -.03em; }
 .ppcard.f-x .vb { font-size: 15px; padding: 14px 17px 17px; }
 .ppcard.f-x .vb b { font-size: 62px; }
 
@@ -213,7 +213,7 @@
    Monogramme (legacy) : encore supporté si un vieux feed en envoie. */
 .ppcard .media { display: flex; gap: 18px; padding: 0 44px; }
 .ppcard.f-x .media { padding: 0; flex: none; height: 352px; }
-.ppcard .im { flex: 1; min-width: 0; border-radius: 0; overflow: hidden; background: #0B1220;
+.ppcard .im { flex: 1; min-width: 0; border-radius: 0; overflow: hidden; background: #0F1D33;
   position: relative; display: flex; align-items: center; justify-content: center; }
 .ppcard .im img { width: 100%; height: 100%; object-fit: cover; display: block; }
 /* LOGO (favicon / og) : FONDU dans la carte (retour Antoine 15/08 soir :
@@ -224,7 +224,7 @@
 .ppcard .im.logo img { width: 72%; height: 72%; object-fit: contain; object-position: center;
   display: block; margin: auto; }
 /* NAMEPLATE — le nom en toutes lettres, le plus gros possible. */
-.ppcard .im.name { background: #0B1220; padding: 18px 16px; box-sizing: border-box; }
+.ppcard .im.name { background: #0F1D33; padding: 18px 16px; box-sizing: border-box; }
 .ppcard .im.name .nm {
   font-family: 'Archivo Black', 'Arial Black', 'Helvetica Neue', Impact, sans-serif;
   color: #fff; text-transform: uppercase; text-align: center; line-height: .98;
@@ -263,14 +263,14 @@
 /* MONOGRAMME legacy */
 .ppcard .im.mono { background: transparent; }
 .ppcard .im.mono img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.ppcard .im .cap { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(11,18,32,.72);
-  color: #fff; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 15px;
+.ppcard .im .cap { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(15,29,51,.72);
+  color: #fff; font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif); font-size: 15px;
   letter-spacing: .12em; font-weight: 700; padding: 9px 12px; text-transform: uppercase;
-  text-align: center; }
+  text-align: center;font-variant-numeric:tabular-nums}
 .ppcard.f-x .im .cap { font-size: 11px; padding: 6px 8px; }
 /* L'ACTIVITÉ sous la légende de tuile — en italique, un FAIT (14/08). */
 .ppcard .im .cap2 { position: absolute; left: 0; right: 0; bottom: 34px;
-  background: rgba(11,18,32,.6); color: #E6EDF3; font-style: italic;
+  background: rgba(15,29,51,.6); color: #E6EDF3; font-style: italic;
   font-size: 16px; font-weight: 500; padding: 6px 12px; text-align: center;
   text-transform: none; letter-spacing: 0; }
 .ppcard.f-x .im .cap2 { bottom: 23px; font-size: 12px; padding: 4px 8px; }
@@ -285,8 +285,8 @@
 .ppcard .ft { flex: none; display: flex; align-items: flex-end; justify-content: space-between;
   gap: 18px; padding: 26px 44px 32px; position: relative; z-index: 3; }
 .ppcard.f-x .ft { padding: 17px 34px 22px; }
-.ppcard .ft .u { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 20px;
-  letter-spacing: .06em; opacity: .7; font-weight: 600; }
+.ppcard .ft .u { font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif); font-size: 20px;
+  letter-spacing: .06em; opacity: .7; font-weight: 600;font-variant-numeric:tabular-nums}
 .ppcard.f-x .ft .u { font-size: 15px; }
 .ppcard .ft img { height: 54px; display: block; }
 .ppcard.f-x .ft img { height: 42px; }

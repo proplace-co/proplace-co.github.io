@@ -24,8 +24,8 @@
      largeur du conteneur (1200/32). Plus de colonne 780px / 72ch qui coupe
      les chapôs et les paragraphes au milieu de la page. */
   --measure: 100%;
-  font-family: 'IBM Plex Sans', 'Inter', system-ui, -apple-system, sans-serif;
-  color: #0F172A;
+  font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif);
+  color: #16233A;
 }
 
 /* Tout le texte part du bord gauche et va jusqu'au bord droit du wrap. */
@@ -47,26 +47,25 @@
   line-height: 1.12; letter-spacing: -.036em; font-weight: 700;
   max-width: none; overflow-wrap: anywhere; }
 .ppart .pubdate { max-width: none; margin: 0 0 34px;
-  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px;
-  letter-spacing: .2em; text-transform: uppercase; color: #94A3B8; }
+  font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif); font-size:12px; color: #8FA0B8;font-weight:600}
 
 .ppart p { font-size: 17px; line-height: 1.72; color: #3F4E61; margin-top: 0; margin-bottom: 18px; }
 .ppart .pp-ck p, .ppart .pp-ck h2 { max-width: none; margin-left: 0; margin-right: 0; }
 .ppart .pp-ck h2 { border: 0; padding: 0; }
-.ppart p strong, .ppart strong, .ppart b { color: #0F172A; font-weight: 600; }
-.ppart em { color: #5B6B7F; }
-.ppart a { color: #0A6B3D; text-decoration: none; border-bottom: 1px solid rgba(14,138,79,.28); }
-.ppart a:hover { border-bottom-color: #0E8A4F; }
+.ppart p strong, .ppart strong, .ppart b { color: #16233A; font-weight: 600; }
+.ppart em { color: #4B5E78; }
+.ppart a { color: #0E8A44; text-decoration: none; border-bottom: 1px solid rgba(18,161,80,.28); }
+.ppart a:hover { border-bottom-color: #12A150; }
 
 /* le chapô — même largeur que le corps (toute la page) */
 .ppart .lead { margin: 0 0 20px; font-size: clamp(17px, 1.4vw, 21px);
-  line-height: 1.58; color: #5B6B7F; font-weight: 400; }
+  line-height: 1.58; color: #4B5E78; font-weight: 400; }
 
 /* L'ATTAQUE — premier paragraphe, pleine largeur */
 .ppart > p:first-child,
 .ppart > section:first-child > p:first-child {
   max-width: none; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.58;
-  color: #0F172A; font-weight: 400; margin: 0 0 30px;
+  color: #16233A; font-weight: 400; margin: 0 0 30px;
 }
 
 /* ── les blocs qui SORTENT à pleine largeur ──────────────────────────────── */
@@ -78,97 +77,95 @@
 
 /* les deux grandes sections : « 🤝 Fusions-acquisitions du jour · 16 » */
 .ppart h2 { margin: 72px 0 0; padding: 0 0 20px; font-size: clamp(26px, 2.8vw, 38px);
-  line-height: 1.12; letter-spacing: -.036em; font-weight: 700; color: #0F172A;
-  border-top: 0; border-bottom: 1px solid #E7EBF0; }
+  line-height: 1.12; letter-spacing: -.036em; font-weight: 700; color: #16233A;
+  border-top: 0; border-bottom: 1px solid #E3E8F0; }
 .ppart > h2:first-child, .ppart section:first-child h2 { margin-top: 0; }
 
 /* les intertitres de rubrique — chapeau monospace à filet vert, comme la home */
 /* `auto` ici écrasait le `margin-left:0` de la colonne : mesuré, les titres
    d'opération partaient 178 px plus à droite que le texte. Marges explicites. */
 .ppart h3, .ppart h3.art-sub { margin: 52px 0 22px;
-  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500;
-  letter-spacing: .24em; text-transform: uppercase; color: #94A3B8; border: 0; padding: 0;
+  font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif); font-size:12px; font-weight: 500; color: #8FA0B8; border: 0; padding: 0;
   display: flex; align-items: center; gap: 12px; }
 .ppart h3::before, .ppart h3.art-sub::before { content: ""; display: block; width: 22px;
-  height: 2px; background: #0E8A4F; border-radius: 2px; flex: none; }
+  height: 2px; background: #12A150; border-radius: 2px; flex: none; }
 
 /* le titre d'une opération décryptée */
 .ppart h4 { margin: 46px 0 14px; font-size: clamp(20px, 2vw, 26px); line-height: 1.24;
-  letter-spacing: -.03em; font-weight: 700; color: #0F172A; }
+  letter-spacing: -.03em; font-weight: 700; color: #16233A; }
 .ppart h4 a { color: inherit; border: 0; }
 
 /* la ligne de source, discrète, collée à son titre */
-.ppart .art-srcline { margin-top: -8px; margin-bottom: 22px; font-size: 13px; color: #94A3B8; }
-.ppart .art-srcline a { color: #94A3B8; border-bottom-color: #E7EBF0; }
-.ppart .art-srcline a:hover { color: #0F172A; }
+.ppart .art-srcline { margin-top: -8px; margin-bottom: 22px; font-size: 13px; color: #8FA0B8; }
+.ppart .art-srcline a { color: #8FA0B8; border-bottom-color: #E3E8F0; }
+.ppart .art-srcline a:hover { color: #16233A; }
 
 /* ── LES CARTES DU MARCHÉ — pleine largeur, centrées, une surface bordée ─── */
-.ppart .art-secviz { display: block; margin: 32px 0 40px; border: 1px solid #E7EBF0;
-  border-radius: 0; overflow: hidden; line-height: 0; background: #F8FAFC;
+.ppart .art-secviz { display: block; margin: 32px 0 40px; border: 1px solid #E3E8F0;
+  border-radius: 0; overflow: hidden; line-height: 0; background: #F9FBFD;
   transition: border-color .18s ease, transform .18s ease; }
-.ppart .art-secviz:hover { border-color: #0F172A; transform: translateY(-2px); }
+.ppart .art-secviz:hover { border-color: #16233A; transform: translateY(-2px); }
 .ppart .art-viz2 { display: flex; flex-wrap: wrap; gap: 20px; margin: 32px 0 40px; }
 .ppart .art-viz2 .art-secviz { flex: 1 1 340px; margin: 0; }
 .ppart img { display: block; width: 100%; height: auto; }
 
 /* ── « le coup d'après » ─────────────────────────────────────────────────── */
 .ppart .pros-inline { margin: 24px 0 32px; padding: 22px 26px; background: #F4FAF6;
-  border: 1px solid #C8E6D5; border-left: 3px solid #0E8A4F; border-radius: 0; }
-.ppart .pros-il { margin: 0 0 12px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
-  font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #0A6B3D; font-weight: 600; }
+  border: 1px solid #C8E6D5; border-left: 3px solid #12A150; border-radius: 0; }
+.ppart .pros-il { margin: 0 0 12px; font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif);
+  font-size:12px; color: #0E8A44; font-weight: 600; }
 .ppart .pros-il span { letter-spacing: .06em; text-transform: none; color: #7B8CA0; font-weight: 500; }
 .ppart .pros-inline ul { list-style: none; margin: 0; padding: 0; }
 .ppart .pros-inline li { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline;
   font-size: 15px; line-height: 1.6; color: #3F4E61; padding: 10px 0; border-top: 1px solid #DCEDE3; }
 .ppart .pros-inline li:first-child { border-top: 0; padding-top: 0; }
 .ppart .pros-t { flex: 1 1 auto; min-width: 0; }
-.ppart .pros-w { color: #94A3B8; }
+.ppart .pros-w { color: #8FA0B8; }
 
 /* ── LA LISTE PAR SECTEUR — deux colonnes, c'est là que le vide se voyait ── */
 .ppart .art-allops { margin-top: 10px; }
-.ppart .art-allops .aa-sub { margin: 0 0 18px; font-size: 14.5px; color: #94A3B8; max-width: none; }
-.ppart .art-allops h4 { margin: 34px 0 4px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
-  font-size: 10px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase;
-  color: #0A6B3D; border-bottom: 1px solid #E7EBF0; padding-bottom: 10px; max-width: none; }
+.ppart .art-allops .aa-sub { margin: 0 0 18px; font-size: 14.5px; color: #8FA0B8; max-width: none; }
+.ppart .art-allops h4 { margin: 34px 0 4px; font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif);
+  font-size:12px; font-weight: 500;
+  color: #0E8A44; border-bottom: 1px solid #E3E8F0; padding-bottom: 10px; max-width: none; }
 .ppart .art-allops h4 a { color: inherit; border: 0; }
 .ppart .art-allops ul { list-style: none; margin: 0; padding: 0; max-width: none;
   columns: 2; column-gap: 44px; }
-.ppart .art-allops li { padding: 15px 0; border-bottom: 1px solid #E7EBF0;
+.ppart .art-allops li { padding: 15px 0; border-bottom: 1px solid #E3E8F0;
   break-inside: avoid; -webkit-column-break-inside: avoid; }
-.ppart .aa-n { font-weight: 700; color: #0F172A; }
-.ppart .aa-d { color: #0F172A; font-size: 16px; line-height: 1.5; }
-.ppart .aa-meta { margin-top: 5px; font-size: 13px; color: #94A3B8; }
-.ppart .aa-meta a { color: #94A3B8; border-bottom-color: #E7EBF0; }
+.ppart .aa-n { font-weight: 700; color: #16233A; }
+.ppart .aa-d { color: #16233A; font-size: 16px; line-height: 1.5; }
+.ppart .aa-meta { margin-top: 5px; font-size: 13px; color: #8FA0B8; }
+.ppart .aa-meta a { color: #8FA0B8; border-bottom-color: #E3E8F0; }
 .ppart .aa-seen { font-style: italic; opacity: .8; }
 
 /* le bouton ⚡ Évaluer des cibles prospectives */
-.ppart .op-eval { background: #0E8A4F; color: #fff; border: 0; font-size: 12.5px; font-weight: 600;
+.ppart .op-eval { background: #12A150; color: #fff; border: 0; font-size: 12.5px; font-weight: 600;
   padding: 7px 13px; border-radius: 9px; cursor: pointer; white-space: nowrap;
   font-family: inherit; }
-.ppart .op-eval:hover { background: #0A6B3D; }
+.ppart .op-eval:hover { background: #0E8A44; }
 
 /* ── le sommaire ─────────────────────────────────────────────────────────── */
-.ppart .toc, .pptoc { border-top: 1px solid #E7EBF0; border-bottom: 1px solid #E7EBF0;
+.ppart .toc, .pptoc { border-top: 1px solid #E3E8F0; border-bottom: 1px solid #E3E8F0;
   background: none; border-radius: 0; padding: 30px 0; margin: 0 0 8px; }
 .ppart .toc .toc-h, .pptoc .toc-h { margin: 0 0 20px;
-  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500;
-  letter-spacing: .24em; text-transform: uppercase; color: #94A3B8; }
+  font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif); font-size:12px; font-weight: 500; color: #8FA0B8; }
 .ppart .toc .toc-grp, .pptoc .toc-grp { margin: 0 0 22px; }
 .ppart .toc .toc-grp:last-child, .pptoc .toc-grp:last-child { margin-bottom: 0; }
 .ppart .toc .toc-g, .pptoc .toc-g { display: block; font-size: 17px; font-weight: 700;
-  letter-spacing: -.026em; color: #0F172A; margin: 0 0 12px; }
+  letter-spacing: -.026em; color: #16233A; margin: 0 0 12px; }
 .ppart .toc .toc-g a, .pptoc .toc-g a { color: inherit; border: 0; }
 .ppart .toc ul, .pptoc ul { list-style: none; margin: 0; padding: 0; display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2px 36px; }
 .ppart .toc li, .pptoc li { margin: 0; min-width: 0; }
 .ppart .toc li a, .pptoc li a { display: flex; align-items: baseline; gap: 9px; font-size: 14px;
-  line-height: 1.5; color: #5B6B7F; text-decoration: none; border: 0; padding: 6px 8px;
+  line-height: 1.5; color: #4B5E78; text-decoration: none; border: 0; padding: 6px 8px;
   margin: 0 -8px; transition: background .14s; }
-.ppart .toc li a::before, .pptoc li a::before { content: "→"; flex: none; color: #0E8A4F;
+.ppart .toc li a::before, .pptoc li a::before { content: "→"; flex: none; color: #12A150;
   font-weight: 700; font-size: 12px; }
-.ppart .toc li a:hover, .pptoc li a:hover { background: #F4FAF6; color: #0F172A; }
+.ppart .toc li a:hover, .pptoc li a:hover { background: #F4FAF6; color: #16233A; }
 .ppart .toc li a span, .pptoc li a span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ppart .toc li.toc-all a, .pptoc li.toc-all a { font-weight: 700; color: #0A6B3D; }
+.ppart .toc li.toc-all a, .pptoc li.toc-all a { font-weight: 700; color: #0E8A44; }
 
 @media (max-width: 900px) {
   .ppart .art-allops ul { columns: 1; }
@@ -179,45 +176,43 @@
    Il restait au look de l'ancienne page : boîte grise arrondie, chevron mou.
    Même grammaire que le reste : une surface claire, des angles droits, un
    chapeau monospace, et le vert de marque pour dire que c'est ouvrable. */
-.ppart .ihm-fold, .ihm-fold { margin: 26px 0 34px; background: #F8FAFC;
-  border: 1px solid #E7EBF0; border-radius: 0; }
+.ppart .ihm-fold, .ihm-fold { margin: 26px 0 34px; background: #F9FBFD;
+  border: 1px solid #E3E8F0; border-radius: 0; }
 .ihm-fold > summary { cursor: pointer; list-style: none; padding: 16px 22px;
-  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; font-weight: 500;
-  letter-spacing: .24em; text-transform: uppercase; color: #0F172A;
+  font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif); font-size:12px; font-weight: 500; color: #16233A;
   display: flex; align-items: center; gap: 12px; }
 .ihm-fold > summary::-webkit-details-marker { display: none; }
 .ihm-fold > summary::before { content: ""; display: block; width: 22px; height: 2px;
-  background: #0E8A4F; border-radius: 2px; flex: none; }
-.ihm-fold > summary::after { content: "▾"; margin-left: auto; color: #0A6B3D;
+  background: #12A150; border-radius: 2px; flex: none; }
+.ihm-fold > summary::after { content: "▾"; margin-left: auto; color: #0E8A44;
   font-size: 12px; letter-spacing: 0; }
 .ihm-fold[open] > summary::after { content: "▴"; }
 .ihm-fold > summary em { font-style: normal; letter-spacing: .06em; text-transform: none;
-  color: #94A3B8; font-weight: 400; }
+  color: #8FA0B8; font-weight: 400; }
 .ihm-fold .ihm-wrap { margin: 0; padding: 0 22px 22px; }
 /* les tuiles : angles droits, filet blanc franc, libellés au gabarit du site */
-.ihm { border: 1px solid #E7EBF0; border-radius: 0; background: #fff; }
+.ihm { border: 1px solid #E3E8F0; border-radius: 0; background: #fff; }
 .ihm-t { border: 2px solid #fff; border-radius: 0; }
-.ihm-n { font-family: 'IBM Plex Sans', system-ui, sans-serif; font-size: 12px;
+.ihm-n { font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif); font-size: 12px;
   font-weight: 700; letter-spacing: -.01em; }
-.ihm-c { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 9.5px;
-  letter-spacing: .08em; font-weight: 500; opacity: .9; }
-.ihm .sp-tip { border-radius: 0; background: #0B1220; }
+.ihm-c { font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif); font-size:12px; font-weight: 500; opacity: .9; }
+.ihm .sp-tip { border-radius: 0; background: #0F1D33; }
 
 /* ═══════════════════════════════════════════════════════════════════════════
    L'ÉDITORIAL AU LOOK COCKPIT (chantier Antoine 14/08 soir : « il faut que
    toutes ces sections reprennent carrément le style du cockpit — je veux
    vraiment que ça ne fasse qu'un »).
    La grammaire vient d'AtelierV2/styles.gen.ts : panneaux blancs bordés
-   #E2E8F0, bandeaux d'en-tête sur fond #F1F5F9, rangées denses (nom gras
+   #E3E8F0, bandeaux d'en-tête sur fond #F5F7FA, rangées denses (nom gras
    13.5px + description grise 12.5px sur UNE ligne, méta monospace à droite),
-   chapeaux monospace, vert de marque #0E8A4F, rayon 8px. Les règles
+   chapeaux monospace, vert de marque #12A150, rayon 8px. Les règles
    ci-dessous ÉCRASENT volontairement la mise en page « journal » définie
    plus haut — une seule feuille, la surcharge se lit ici en entier.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* Titres de rubrique : une ligne simple, pas un bandeau cockpit. */
 .ppart h2 { margin: 36px 0 14px; padding: 0 0 10px; font-size: 15px;
-  line-height: 1.35; letter-spacing: -.02em; font-weight: 650; color: #0F172A;
+  line-height: 1.35; letter-spacing: -.02em; font-weight: 650; color: #16233A;
   background: none; border: 0; border-bottom: 1px solid #E8EEF4;
   display: flex; align-items: baseline; gap: 8px; }
 .ppart h2 .ic { flex: none; width: auto; height: auto; border-radius: 0;
@@ -230,11 +225,11 @@
 
 /* Les chapeaux de sous-section (À la une / liste complète) se collent au
    bandeau : même boîte, fond panel2, mono — cf .atl2 .cols. */
-.ppart h3.art-sub { margin: 0; padding: 8px 16px; background: #F8FAFC;
-  border: 1px solid #E2E8F0; border-top: 0; color: #64748B; }
+.ppart h3.art-sub { margin: 0; padding: 8px 16px; background: #F9FBFD;
+  border: 1px solid #E3E8F0; border-top: 0; color: #4B5E78; }
 .ppart h3.art-sub::before { width: 16px; }
 .ppart .aa-sub { margin: 0; padding: 8px 16px 10px; font-size: 12.5px;
-  color: #94A3B8; background: #F8FAFC; border: 1px solid #E2E8F0;
+  color: #8FA0B8; background: #F9FBFD; border: 1px solid #E3E8F0;
   border-top: 0; }
 
 /* La liste par secteur : une BOÎTE cockpit (cf .atl2 .list), plus deux
@@ -243,7 +238,7 @@
 .ppart .art-allops { margin-top: 0; }
 .ppart .art-allops h4 { margin: 0 0 8px; padding: 0; background: none;
   border: 0; font-size: 12px; font-weight: 600; letter-spacing: 0;
-  text-transform: none; color: #64748B; font-family: inherit; }
+  text-transform: none; color: #4B5E78; font-family: inherit; }
 .ppart .art-allops ul { columns: auto; column-gap: normal; margin: 0;
   padding: 0; border: 0; background: none; }
 .ppart .art-allops section > ul:last-child,
@@ -257,33 +252,33 @@
 .ppart .aa-head { margin: 0 0 8px; }
 .ppart .aa-n { display: block; max-width: none; overflow: visible;
   white-space: normal; font-weight: 700; font-size: 15.5px;
-  letter-spacing: -.02em; color: #0F172A; line-height: 1.3; }
+  letter-spacing: -.02em; color: #16233A; line-height: 1.3; }
 .ppart .aa-d { display: block; margin: 4px 0 0; min-width: 0;
   white-space: normal; overflow: visible; font-size: 14.5px;
-  line-height: 1.5; color: #5B6B7F; }
+  line-height: 1.5; color: #4B5E78; }
 .ppart .aa-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
 .ppart .aa-tag { display: inline-block; padding: 3px 9px; border-radius: 999px;
-  background: #F1F5F9; color: #475569; font-size: 12px; font-weight: 500;
+  background: #F5F7FA; color: #4B5E78; font-size: 12px; font-weight: 500;
   line-height: 1.4; letter-spacing: 0; font-family: inherit; }
 .ppart .aa-src { display: inline-block; margin: 8px 0 0; font-size: 13px;
-  color: #0A6B3D; text-decoration: none; font-family: inherit; }
+  color: #0E8A44; text-decoration: none; font-family: inherit; }
 .ppart .aa-src:hover { text-decoration: underline; }
 .ppart .aa-meta { display: none; }
-.ppart .aa-seen { display: inline-block; margin: 8px 0 0; font-size: 12px; color: #94A3B8; }
+.ppart .aa-seen { display: inline-block; margin: 8px 0 0; font-size: 12px; color: #8FA0B8; }
 .ppart .art-allops li .pros-inline { margin: 10px 0 0; }
 .ppart .art-allops ul.ed-flat { columns: auto; border: 0; }
 .ppart .art-allops li .ed-decrypt { display: block; margin: 16px 0 0;
-  padding: 16px 18px 18px; background: #F8FAFC; border: 1px solid #E8EEF4;
+  padding: 16px 18px 18px; background: #F9FBFD; border: 1px solid #E8EEF4;
   border-radius: 12px; overflow: hidden; }
 .ppart .ed-decrypt h4 { margin: 0 0 6px; font-size: 16px; font-weight: 650;
   letter-spacing: -.02em; line-height: 1.35; }
-.ppart .ed-decrypt .art-srcline { margin: 0 0 14px; font-size: 13px; color: #94A3B8; }
+.ppart .ed-decrypt .art-srcline { margin: 0 0 14px; font-size: 13px; color: #8FA0B8; }
 .ppart .ed-decrypt p { font-size: 15px; line-height: 1.7; color: #3F4E61;
   margin-bottom: 14px; }
 .ppart .ed-decrypt .opcard { float: right; width: min(400px, 46%);
   margin: 0 0 12px 18px; }
 .ppart .ed-decrypt-solo { margin: 14px 0 0; padding: 12px 14px;
-  background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px;
+  background: #F9FBFD; border: 1px solid #E3E8F0; border-radius: 8px;
   overflow: hidden; }
 .ppart .ed-decrypt-solo .opcard { float: right; width: min(400px, 46%);
   margin: 0 0 12px 18px; }
@@ -303,7 +298,7 @@
 .ppart .ed-plus > summary { display: none; }
 .ppart .ed-plus .ed-plus-b { padding: 0; background: none; border: 0; }
 .ppart .ed-chapeau p, .ppart .ed-plus .ed-plus-b p {
-  margin: 0 0 12px; font-size: 15px; line-height: 1.75; color: #5B6B7F;
+  margin: 0 0 12px; font-size: 15px; line-height: 1.75; color: #4B5E78;
   font-weight: 400; max-width: 62ch; }
 .ppart .ed-chapeau p:last-child, .ppart .ed-plus .ed-plus-b p:last-child { margin-bottom: 0; }
 .ppart .ed-plus .ed-plus-b > h3.art-sub { display: none; }
@@ -311,22 +306,21 @@
 .ppart .ed-rest { margin: 44px 0 8px; }
 
 /* LES ÉCARTÉS — le même pli que les replis du cockpit. */
-.ppart .ed-ecartes { margin: 26px 0 0; background: #F8FAFC;
-  border: 1px solid #E2E8F0; border-radius: 8px; color: #64748B; }
+.ppart .ed-ecartes { margin: 26px 0 0; background: #F9FBFD;
+  border: 1px solid #E3E8F0; border-radius: 8px; color: #4B5E78; }
 .ppart .ed-ecartes > summary { cursor: pointer; list-style: none;
-  padding: 11px 16px; font-family: 'IBM Plex Mono', ui-monospace, monospace;
-  font-size: 10px; font-weight: 600; letter-spacing: .18em;
-  text-transform: uppercase; color: #0F172A; }
+  padding: 11px 16px; font-family: var(--pp-body, "Instrument Sans", system-ui, -apple-system, sans-serif);
+  font-size:12px; font-weight: 600; color: #16233A; }
 .ppart .ed-ecartes > summary::-webkit-details-marker { display: none; }
-.ppart .ed-ecartes > summary::after { content: " ▾"; color: #0A6B3D; }
+.ppart .ed-ecartes > summary::after { content: " ▾"; color: #0E8A44; }
 .ppart .ed-ecartes[open] > summary::after { content: " ▴"; }
 .ppart .ed-ecartes ul { list-style: none; margin: 0; padding: 0 16px 12px; }
 .ppart .ed-ecartes li { padding: 6px 0; font-size: 12.5px;
   border-top: 1px solid #EDF2F7; }
-.ppart .ed-ecartes li em { color: #94A3B8; }
+.ppart .ed-ecartes li em { color: #8FA0B8; }
 
 /* Pages marché : même édito que /actualites (ed-box, tags, chapô). */
-.mk-edito .mk-lead, .ppart .mk-lead { margin: 0; font-size: 15px; line-height: 1.75; color: #5B6B7F;
+.mk-edito .mk-lead, .ppart .mk-lead { margin: 0; font-size: 15px; line-height: 1.75; color: #4B5E78;
   max-width: 62ch; }
 .mk-edito .mk-sec:has(.mk-empty):not(:has(.mk-op, .ed-op, .acq-land, .art-allops li)),
 .ppart .mk-sec:has(.mk-empty):not(:has(.mk-op, .ed-op, .acq-land, .art-allops li)) { display: none; }
@@ -334,7 +328,7 @@
 .mk-edito .acq-land { margin: 28px 0 8px; }
 .mk-edito .mk-sec, .ed-day .mk-sec { margin: 0 0 40px; }
 .mk-edito .mk-sec h2, .ed-day .mk-sec h2 { margin: 0 0 14px; padding: 0 0 10px;
-  font-size: 15px; font-weight: 650; color: #0F172A; background: none;
+  font-size: 15px; font-weight: 650; color: #16233A; background: none;
   border: 0; border-bottom: 1px solid #E8EEF4; }
 .mk-edito .mk-ops, .ed-day .mk-ops { border: 0; background: none; list-style: none;
   margin: 0; padding: 0; }
@@ -343,18 +337,18 @@
 .mk-edito .mk-op:last-child, .ed-day .mk-op:last-child { border-bottom: 0; }
 .mk-edito .mk-op:hover, .ed-day .mk-op:hover { background: none; }
 .mk-edito .mk-op-t, .ed-day .mk-op-t { font-size: 15.5px; font-weight: 700;
-  letter-spacing: -.02em; line-height: 1.3; color: #0F172A; }
+  letter-spacing: -.02em; line-height: 1.3; color: #16233A; }
 .mk-edito .mk-op-t strong, .ed-day .mk-op-t strong { font-size: inherit; }
 .mk-edito .mk-op-m, .ed-day .mk-op-m { margin-top: 8px; font-family: inherit;
-  font-size: 13px; letter-spacing: 0; color: #64748B; }
-.mk-edito .mk-op-m a { color: #0A6B3D; }
+  font-size: 13px; letter-spacing: 0; color: #4B5E78; }
+.mk-edito .mk-op-m a { color: #0E8A44; }
 
 /* ── LA CARTE D'UNE OPÉRATION, dans le fil de l'article ───────────────────
    Elle se cale sur la colonne de lecture, sous le titre et sa source : on lit
    « X rachète Y, pour tant », puis on lit le décryptage. Marges généreuses —
    c'est une respiration, pas une vignette. */
 .ppart .opcard { margin: 22px 0 34px; max-width: var(--measure); }
-.ppart .opcard .ppcard-fit { border: 1px solid #E7EBF0; }
+.ppart .opcard .ppcard-fit { border: 1px solid #E3E8F0; }
 /* LA CARTE N'EST PAS DU TEXTE D'ARTICLE. Sans cette exemption, la typographie
    ci-dessus s'invitait dedans : `.ppart b` repeignait en encre foncée le gras
    de la phrase — invisible sur un fond d'encre, et vert sur vert sur la carte
