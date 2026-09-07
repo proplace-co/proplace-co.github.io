@@ -1,0 +1,8169 @@
+var Vi=Object.defineProperty;var Wi=(e,a,r)=>a in e?Vi(e,a,{enumerable:!0,configurable:!0,writable:!0,value:r}):e[a]=r;var dr=(e,a,r)=>Wi(e,typeof a!="symbol"?a+"":a,r);import{r as p,u as Gi,a as Yi,b as Qi,R as ja,L as Ki,j as t,P as rn,f as pr,p as Le,c as Ji,d as Xi,C as cr,e as Zi,g as es,l as on,o as Da,i as an,h as ts,k as as,m as ns,n as ur,q as rs,s as mr,t as fr,v as hr,w as os,x as is,y as ss,z as ls,A as ds,S as ka,B as ps,D as To,E as $e,F as Yn,G as gt,H as Pt,I as Fo,J as cs,K as us,M as Ro,N as Ba,O as ms,_ as Nn,Q as fs,T as hs,U as gs,V as We,W as xs,X as bs,Y as Ft,Z as vs,$ as ta,a0 as ws,a1 as ys,a2 as ks,a3 as Qn,a4 as gr,a5 as xr,a6 as aa,a7 as Sn,a8 as Bt,a9 as rt,aa as br,ab as Es,ac as js,ad as Ns,ae as vr,af as Kn,ag as Oo,ah as Do,ai as qt,aj as Ss,ak as Mo,al as zs,am as Cs,an as Io,ao as As,ap as qs,aq as Ls,ar as Ts,as as Fs,at as Lt,au as Ea,av as $a,aw as Rs,ax as Po,ay as wr,az as Vt,aA as Os,aB as _o,aC as Bo,aD as yr,aE as Ds,aF as Ms,aG as ha,aH as zn,aI as Is,aJ as Ps,aK as _s,aL as kr,aM as Bs,aN as $s,aO as $o,aP as Uo,aQ as Ua,aR as Us,aS as Jn,aT as Hs,aU as Vs,aV as Er,aW as Ws,aX as sn,aY as Ho,aZ as Vo,a_ as jr,a$ as Gs,b0 as Ys,b1 as kt,b2 as Qs,b3 as Nr,b4 as Ks,b5 as Js,b6 as Sr,b7 as Xs,b8 as Zs,b9 as zr,ba as el,bb as tl,bc as al,bd as nl,be as rl,bf as ol,bg as il,bh as sl,bi as Cr,bj as ll,bk as dl,bl as pl,bm as cl,bn as ln,bo as ul,bp as ml,bq as fl}from"./index-Bfhaeg60.js";const hl=({filloutId:e,domain:a,inheritParameters:r,parameters:n,dynamicResize:o,onInit:i,onPageChange:d,onSubmit:l})=>{const[s,h]=p.useState(!0),c=Gi({filloutId:e,domain:a,inheritParameters:r,parameters:n,dynamicResize:o});Yi(c,{onInit:i,onPageChange:d,onSubmit:l});const[g,u]=p.useState();return Qi(c,"form_resized",b=>{const f=b.size;typeof f=="number"&&u(f)},{disabled:!o}),ja.createElement("div",{className:"fillout-standard-embed",style:{height:o?typeof g=="number"?g:256:"100%",transition:o?"height 150ms ease":void 0}},s&&ja.createElement("div",{style:{display:"flex",justifyContent:"center",alignItems:"center",width:"100%",height:"100%",minHeight:256}},ja.createElement(Ki,null)),c&&ja.createElement("iframe",{src:c.iframeUrl,allow:"microphone; camera; geolocation",title:"Embedded Form",onLoad:()=>h(!1),style:{width:s?0:"100%",height:s?0:"100%",opacity:s?0:1,borderRadius:10,border:0,minHeight:256}}))};function Ve(e){return(e||"").trim().toLowerCase()}function gl(e,a){const r=Math.max(60,a*60);return Math.max(2,Math.min(97,Math.round(e/r*100)))}function Ar(e){const a=Math.max(0,Math.floor(e)),r=Math.floor(a/60),n=a%60;return r+":"+String(n).padStart(2,"0")}function xl(e){const a=new Date(e);return String(a.getHours()).padStart(2,"0")+":"+String(a.getMinutes()).padStart(2,"0")}const bl=300;function Ha({item:e,serverOff:a,bootLbl:r,endLabel:n}){const[o,i]=p.useState(()=>Date.now()/1e3);p.useEffect(()=>{const u=window.setInterval(()=>i(Date.now()/1e3),1e3);return()=>window.clearInterval(u)},[]);const d=e.memoType==="detailed"?"mémo détaillé ~"+(e.estMin||40)+" min":"mémo éclair ~"+(e.estMin||15)+" min";if(e.status==="boot"||!(e.started>0)){const u=o-(e.started||o);return u>bl?t.jsx("span",{className:"runerr",children:"⚠ le moteur n'a pas pris le dossier ("+Math.round(u/60)+" min) — relancez l'analyse"}):t.jsxs("span",{className:"runtrack boot",children:[t.jsx("span",{className:"runchrono",children:r+" · "+d+(u>20?" · "+Ar(u):"")}),t.jsx("span",{className:"runbar",children:t.jsx("i",{className:"ind"})})]})}if(e.status==="error")return t.jsx("span",{className:"runerr",children:e.error||"erreur"});if(e.status==="done")return t.jsx("span",{className:"rundone",children:"✓"});const l=o-a-e.started,s=e.estMin||15,h=s*60-l,c=gl(l,s),g=h>0&&n?" · "+n.replace("{t}",xl((e.started+s*60+a)*1e3)):"";return t.jsxs("span",{className:"runtrack",children:[t.jsx("span",{className:"runchrono",children:d+" · ⏱ "+Ar(l)+" · "+c+"%"+(h>0?" · reste ~"+Math.ceil(h/60)+" min":" · …")+g}),!!e.note&&t.jsx("span",{className:"runnote",children:e.note}),t.jsx("span",{className:"runbar",children:t.jsx("i",{style:{width:c+"%"}})})]})}function vl({items:e,serverOff:a,labels:r,onOpen:n}){const o=e.filter(i=>i.status!=="done"||Date.now()/1e3-(i.started||0)<1200);return o.length?t.jsxs("div",{className:"livestrip",role:"button",onClick:n,title:r.open,children:[t.jsx("span",{className:"ls-ico",children:"⚡"}),t.jsx("span",{className:"ls-lab",children:r.strip}),o.slice(0,6).map(i=>t.jsxs("span",{className:"ls-chip"+(i.status==="error"?" err":i.status==="done"?" done":""),children:[t.jsx("b",{children:i.name}),i.status==="done"&&i.url?t.jsx("a",{href:i.url,target:"_blank",rel:"noopener noreferrer",onClick:d=>d.stopPropagation(),children:r.memo}):t.jsx(Ha,{item:i,serverOff:a,bootLbl:r.boot,endLabel:r.end})]},i.name)),o.length>6&&t.jsxs("span",{className:"ls-more",children:["+",o.length-6]}),t.jsxs("span",{className:"ls-go",children:[r.open," →"]})]}):null}const qr={rss:"RSS",google_news:"Google News",google_alerts:"Google Alerts",pappers_fr:"Pappers FR",crt:"CRT",github:"GitHub",hn:"Hacker News",fundraising:"Fundraising",backfill:"Backfill",websets_engine:"Exa Websets",websets:"Exa Websets",linkedin_posts:"LinkedIn Posts",linkedin_jobs:"LinkedIn Jobs",exa_semantic:"Exa Semantic",exa_similar:"Exa Similar",crunchbase_search:"Crunchbase",other_custom:"Autres (Make sur-mesure)",manual_paste:"Saisie manuelle",find_similar_qualified:"Similaires aux qualifiés",editorial:"Éditorial (médias experts)",daily_news:"Daily news thèse",alumni:"Alumni fondateurs",competitor_exodus:"Départs concurrents",hackernews:"Hacker News",crt_sh:"CRT",pappers:"Pappers FR",pappers_intl:"Pappers International",opencorporates:"OpenCorporates",tavily:"Tavily",registre_gouv:"Registre officiel (gouv)",hunter:"Hunter",sales_nav:"Sales Navigator",sourcing:"Sourcing Proplace",local:"Moteur local (Google Maps + BODACC)"},wl={rss:"Lit chaque matin des centaines de médias et de flux spécialisés pour repérer les sociétés qui bougent dans votre secteur.",editorial:"Suit en continu les médias experts et lettres spécialisées de votre secteur pour repérer les sociétés dont on commence à parler.",google_news:"Balaie l'actualité mondiale en continu pour capter les sociétés qui font parler d'elles (levées, lancements, nominations).",google_alerts:"Surveille des mots-clés précis sur tout le web et remonte chaque société correspondante dès qu'elle apparaît.",pappers_fr:"Interroge les registres officiels français (SIRENE, codes d'activité) pour trouver des sociétés par métier, en temps réel.",crt:"Détecte les toutes nouvelles sociétés dès la mise en ligne de leur site web — un signal très précoce, avant tout le monde.",github:"Détecte les sociétés tech par l'activité de leurs développeurs — un signal très en amont, avant qu'elles ne fassent parler d'elles.",hn:"Scrute Hacker News, le forum de référence des fondateurs tech, pour repérer les projets qui émergent en premier.",fundraising:"Repère les sociétés qui viennent de lever des fonds — le moment précis où elles accélèrent et deviennent intéressantes.",backfill:"Repasse sur les périodes passées pour rattraper les sociétés qui auraient pu passer entre les mailles du filet.",websets:"Construit des listes de sociétés sur mesure à partir d'une simple description, en explorant tout le web.",websets_engine:"Construit des listes de sociétés sur mesure à partir d'une simple description, en explorant tout le web.",linkedin_posts:"Analyse les publications LinkedIn pour repérer les sociétés et dirigeants qui annoncent quelque chose d'intéressant.",linkedin_jobs:"Lit les offres d'emploi LinkedIn : une société qui recrute massivement dans un domaine trahit sa stratégie et sa croissance.",exa_semantic:"Recherche sémantique sur tout le web : vous décrivez ce que vous cherchez en langage naturel, et il trouve les sociétés qui y ressemblent.",exa_similar:"Partez d'une société que vous aimez, et il trouve toutes celles qui lui ressemblent sur le web.",crunchbase_search:"Interroge la base mondiale des startups et de leurs financements pour trouver des sociétés par profil.",other_custom:"Moteurs branchés spécialement pour votre thèse — chaque signal utile peut devenir un moteur sur mesure.",manual_paste:"Les sociétés que vous ajoutez vous-même à la main, évaluées selon vos critères exactement comme les autres.",find_similar_qualified:"Part des sociétés que vous avez déjà retenues pour en trouver d'autres, très proches, partout sur le web.",daily_news:"Relit l'actualité du jour à travers le prisme exact de votre thèse pour n'en garder que ce qui vous concerne.",alumni:"Suit les diplômés des meilleures écoles pour repérer ceux qui viennent de fonder une société.",competitor_exodus:"Détecte les départs de talents des sociétés concurrentes — souvent le signe d'une nouvelle société en création.",hackernews:"Scrute Hacker News, le forum de référence des fondateurs tech, pour repérer les projets qui émergent en premier.",crt_sh:"Détecte les toutes nouvelles sociétés dès la mise en ligne de leur site web — un signal très précoce, avant tout le monde.",pappers:"Interroge les registres officiels français (SIRENE, codes d'activité) pour trouver des sociétés par métier, en temps réel.",pappers_intl:"Interroge les registres d'entreprises internationaux pour trouver des sociétés par pays et par activité, en temps réel.",opencorporates:"Explore la plus grande base mondiale de registres d'entreprises pour retrouver des sociétés officielles partout dans le monde.",tavily:"Recherche web en temps réel : interroge tout le web à la volée pour capter les sociétés qui collent à votre thèse.",registre_gouv:"Interroge le registre officiel des entreprises françaises (recherche-entreprises) pour trouver des sociétés par activité.",local:"Trouve les commerces de proximité de votre métier, ville par ville. Sur Google Maps : les magasins physiques avec leur note, leurs avis et leur site (tri « leaders » ou « à reprendre »). Via le BODACC officiel : les affaires acquérables — liquidations, ventes & cessions de fonds, cessations (locaux à récupérer). Tourne à la demande (Google Maps payant) ; option radar quotidien gratuit via BODACC.",hunter:"Retrouve les coordonnées professionnelles des sociétés (emails, domaines) pour identifier les bons interlocuteurs à contacter."},yl={rss:"Reads hundreds of media outlets and specialist feeds every morning to spot the companies moving in your sector.",editorial:"Continuously follows the expert media and specialist newsletters in your sector to catch companies just starting to get noticed.",google_news:"Sweeps world news in real time to catch companies making headlines (raises, launches, appointments).",google_alerts:"Watches precise keywords across the whole web and surfaces every matching company the moment it appears.",pappers_fr:"Queries the official French registries (SIRENE, activity codes) to find companies by line of business, in real time.",crt:"Detects brand-new companies the moment their website goes live — a very early signal, ahead of everyone else.",github:"Detects tech companies from their developers' activity — a very early signal, before they make any noise.",hn:"Scans Hacker News, the go-to forum for tech founders, to catch the projects emerging first.",fundraising:"Spots companies that have just raised funds — the exact moment they accelerate and become interesting.",backfill:"Re-combs past periods to catch companies that might have slipped through the cracks.",websets:"Builds tailored company lists from a simple description, exploring the whole web.",websets_engine:"Builds tailored company lists from a simple description, exploring the whole web.",linkedin_posts:"Reads LinkedIn posts to spot the companies and executives announcing something worth knowing.",linkedin_jobs:"Reads LinkedIn job ads: a company hiring heavily in one area reveals its strategy and its growth.",exa_semantic:"Semantic search across the whole web: describe what you're looking for in plain language, and it finds the companies that match.",exa_similar:"Start from a company you like, and it finds every similar one across the web.",crunchbase_search:"Queries the global database of startups and their funding to find companies by profile.",other_custom:"Engines wired specifically for your thesis — any useful signal can become a custom engine.",manual_paste:"The companies you add yourself by hand, scored against your criteria exactly like the rest.",find_similar_qualified:"Starts from companies you've already kept to find others, very close to them, across the web.",daily_news:"Re-reads today's news through the exact lens of your thesis, keeping only what concerns you.",alumni:"Tracks graduates of top schools to spot those who have just founded a company.",competitor_exodus:"Detects talent leaving competitor companies — often the sign of a new company being born.",hackernews:"Scans Hacker News, the go-to forum for tech founders, to catch the projects emerging first.",crt_sh:"Detects brand-new companies the moment their website goes live — a very early signal, ahead of everyone else.",pappers:"Queries the official French registries (SIRENE, activity codes) to find companies by line of business, in real time.",pappers_intl:"Queries international company registries to find companies by country and activity, in real time.",opencorporates:"Explores the world's largest database of company registries to surface official companies anywhere in the world.",tavily:"Real-time web search: queries the whole web on the fly to catch companies matching your thesis.",registre_gouv:"Queries the official French company register (recherche-entreprises) to find companies by activity.",local:"Finds the main-street businesses in your trade, town by town. On Google Maps: the physical storefronts with their rating, reviews and website (sort 'leaders' or 'turnaround'). Via the official BODACC bulletin: acquirable businesses — insolvencies, sales & transfers of goodwill, closures (premises to take over). Runs on demand (Google Maps is paid); optional free daily BODACC radar.",hunter:"Finds companies' professional contact details (emails, domains) to identify the right people to reach."};function dn(e){const a=(e||"").trim().toLowerCase();if(!a)return"";const r=qr[a]||qr[a+"_engine"];return r||a.replace(/_/g," ").split(" ").filter(Boolean).map(n=>n.charAt(0).toUpperCase()+n.slice(1)).join(" ")}function kl(e,a){const r=(e||"").trim().toLowerCase(),n=a?yl:wl;return n[r]||n[r+"_engine"]||""}const Wo=e=>"cbeng:"+e,El="",jl=()=>{try{return!!new URL(window.location.href).searchParams.get("preview")}catch{return!1}};function Go(e){try{const a=JSON.parse(localStorage.getItem(Wo(e))||"null");return a&&typeof a=="object"&&!Array.isArray(a)?a:{}}catch{return{}}}function Yo(e,a){if(!jl())try{localStorage.setItem(Wo(e),JSON.stringify(a))}catch{}}const Xn=e=>{const a=new Set,r=[];for(const n of e){const o=(n||"").trim();o&&!a.has(o.toLowerCase())&&(a.add(o.toLowerCase()),r.push(o))}return r};function Qo(e,a){const r=Go(e),n={},o={};let i=!1;for(const[d,l]of Object.entries(a)){const s=Xn(l||[]);if(!s.length)continue;const h=Array.isArray(r[d])?r[d]:null;if(!h||!h.length){o[d]=s,i=!0;continue}const c=new Set(h.map(u=>u.toLowerCase())),g=s.filter(u=>!c.has(u.toLowerCase()));if(g.length===s.length&&s.length>=5){o[d]=s,i=!0;continue}g.length?n[d]={noms:g}:(o[d]=s,i=!0)}return i&&Yo(e,{...r,...o}),n}function Ko(e,a){const r=Go(e);for(const[n,o]of Object.entries(a)){const i=Xn(o||[]);i.length&&(r[n]=i)}Yo(e,r)}function Nl(e){return Xn(e).map(a=>a.toLowerCase()).sort().join(El)}const Lr=e=>(Array.isArray(e)?e:[]).map(a=>String(a??"").trim()).filter(Boolean);function Sl(e){if(!e||typeof e!="object"||Array.isArray(e))return null;const a=e,r=Lr(a.chips),n=Lr(a.more);return!r.length&&!n.length?null:{chips:r,more:n,note:typeof a.note=="string"?a.note.trim():"",shared:!!a.shared,example:!!a.example}}function Tr(e,a){const r=(e||{})[a]??(e||{})[`${a}_engine`];return Sl(r)}function zl(e,a=8){return e?[...e.chips,...e.more].slice(0,a).join(" · "):""}const Fr=[["1",1],["7",7],["30",30],["all",90]],Cl={exa_semantic:"exa_semantic",exa_similar:"exa_similar",find_similar:"find_similar_qualified",find_similar_qualified:"find_similar_qualified",github:"github",news:"google_news",google_news:"google_news",jobs:"linkedin_jobs",linkedin_jobs:"linkedin_jobs",hn:"hn",hackernews:"hn",crunchbase:"crunchbase_search",crunchbase_search:"crunchbase_search",pappers:"pappers_fr",pappers_fr:"pappers_fr",registre_gouv:"pappers_fr",webset:"websets",websets:"websets",alumni:"alumni",competitor_exodus:"competitor_exodus",backfill:"backfill",manual:"manual_paste",manual_paste:"manual_paste",editorial:"editorial",daily_news:"daily_news",crt:"crt",crt_sh:"crt",rss:"rss",fundraising:"fundraising",local:"local"},Al=e=>Cl[String(e||"").toLowerCase().replace(/_engine$/,"")]||"";function ql(e){return e?(Array.isArray(e)?e.map(r=>Number(r)||0):Object.keys(e).sort().map(r=>Number(e[r])||0)).slice(-14):[]}function Ll({vals:e}){if(!e.length||!e.some(d=>d>0))return null;const a=Math.max(...e,1),r=56,n=16,o=r/Math.max(e.length-1,1),i=e.map((d,l)=>`${(l*o).toFixed(1)},${(n-d/a*(n-2)).toFixed(1)}`).join(" ");return t.jsx("svg",{className:"se-spark",viewBox:`0 0 ${r} ${n}`,width:r,height:n,"aria-hidden":"true",children:t.jsx("polyline",{points:i,fill:"none",stroke:"currentColor",strokeWidth:"1.5"})})}function Tl(){const{t:e,lang:a,data:r,dossiers:n,canWrite:o,flash:i,flashErr:d}=K(),l=a==="en",s=r.session.token||"",h=r.fund||"",[c,g]=p.useState(!1),[u,b]=p.useState("7"),[f,y]=p.useState({}),[w,m]=p.useState(!1),[v,k]=p.useState(""),[E,S]=p.useState(null),[N,A]=p.useState({}),[T,F]=p.useState(""),[O,D]=p.useState(""),[V,Q]=p.useState(""),[R,x]=p.useState(!1),[q,C]=p.useState(""),[P,H]=p.useState({}),G=p.useRef(null),Z=p.useRef(null),z=f[u],$=p.useCallback(async I=>{var pe;const ae=((pe=Fr.find(([se])=>se===I))==null?void 0:pe[1])||7;m(!0),k("");try{const se=await fetch(`${rn}/engines-drilldown-batch`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({fund_slug:h,days:ae,fund_scoped:!0,token:s,cibles_token:s})}),ne=await se.json();if(!se.ok||ne.error)throw new Error(ne.error||`HTTP ${se.status}`);y(te=>({...te,[I]:ne}))}catch(se){k(String(se.message||se))}finally{m(!1)}},[h,s]);p.useEffect(()=>{c&&!f[u]&&!w&&$(u),c&&!Object.keys(N).length&&o&&pr(s).then(I=>{const ae={};I.forEach(pe=>{pe.engine&&(ae[pe.engine]=pe)}),A(ae)})},[c,u]),p.useEffect(()=>()=>{Z.current&&window.clearInterval(Z.current)},[]);const M=p.useMemo(()=>{const I=(z==null?void 0:z.engines)||{};return Object.entries(I).map(([ae,pe])=>{const se=pe.summary||{};return{key:ae,sourced:se.sourced||0,matched:se.matched||0,noMatch:se.no_match||0,rate:typeof se.match_rate=="number"?Math.round(se.match_rate*(se.match_rate<=1?100:1)):0,spark:ql(se.by_day),leads:pe.leads||[]}}).sort((ae,pe)=>pe.sourced-ae.sourced)},[z]),X=p.useMemo(()=>{const I={};return M.forEach(ae=>{I[ae.key]=ae.leads.map(pe=>{const se=(pe.verdicts||[]).reduce((ne,te)=>!ne||String(te.check_date||"")>String(ne.check_date||"")?te:ne,null);return((se==null?void 0:se.status)||"").trim().toUpperCase()==="MATCH"?(pe.company_name||"").trim():""}).filter(Boolean)}),I},[M]),U=p.useMemo(()=>Object.entries(X).map(([I,ae])=>I+":"+Nl(ae)).sort().join("|"),[X]),ee=p.useMemo(()=>s?Qo(s,X):{},[s,U]),ue=p.useMemo(()=>Object.values(ee).reduce((I,ae)=>I+ae.noms.length,0),[ee]),fe=p.useMemo(()=>{const I=new Date().toISOString().slice(0,10),ae={};return M.forEach(pe=>{ae[pe.key]=pe.leads.map(se=>{const ne=(se.verdicts||[]).reduce((de,je)=>!de||String(je.check_date||"")>String(de.check_date||"")?je:de,null);return String((ne==null?void 0:ne.check_date)||"").slice(0,10)===I?(se.company_name||"").trim():""}).filter(Boolean)}),ae},[M]),ve=p.useRef(c);p.useEffect(()=>{ve.current&&!c&&s&&Ko(s,X),ve.current=c},[c]);const me=p.useMemo(()=>M.reduce((I,ae)=>I+ae.sourced,0),[M]),we=p.useMemo(()=>M.filter(I=>I.sourced>0).length,[M]),ze=p.useMemo(()=>{const I=new Map;return n.forEach(ae=>{const pe=(ae.name||"").trim().toLowerCase();pe&&!I.has(pe)&&I.set(pe,Le(ae))}),I},[n]),he=p.useMemo(()=>{const I=new Map;return n.forEach(ae=>{const pe=(ae.name||"").trim().toLowerCase();pe&&!I.has(pe)&&I.set(pe,ae.id)}),I},[n]),ke=I=>I===void 0?l?"not on this page":"pas sur cette page":e.plabels[I]||"",ge=I=>{const ae=zl(Tr(z==null?void 0:z.params,I)),pe=l?`Adjust the "${dn(I)}" engine`:`Ajuste le moteur « ${dn(I)} »`,se=ae?l?` (current settings: ${ae})`:` (réglages actuels : ${ae})`:"";return`${pe}${se} : `},ie=async()=>{var ae;const I=(((ae=G.current)==null?void 0:ae.value)||"").trim();if(!(I.length<8||R)){x(!0),C("");try{const pe=await fetch(`${rn}/cibles/thesis-chat`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({token:s,message:I,who:"cockpit-v2"})}),se=await pe.json();if(!pe.ok||se.ok===!1)throw new Error(se.error||`HTTP ${pe.status}`);if(se.reply&&!se.async){C(String(se.reply)),x(!1);return}const ne=se.job_id;if(!ne){C(l?"Sent.":"Envoyé."),x(!1);return}Z.current=window.setInterval(async()=>{try{const de=await(await fetch(`${rn}/cibles/thesis-chat-status`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({job_id:ne})})).json();de.done&&(Z.current&&window.clearInterval(Z.current),Z.current=null,C(String(de.reply||de.error||(l?"Done — settings updated.":"Terminé — réglages mis à jour."))),x(!1))}catch{}},3e3)}catch(pe){C((l?"Error: ":"Erreur : ")+String(pe.message||pe)),x(!1)}}};return s?t.jsxs("div",{className:"srceng"+(c?" on":""),children:[t.jsxs("button",{type:"button",className:"se-head","aria-expanded":c,onClick:()=>g(I=>!I),children:[t.jsx("span",{className:"se-ico",children:"🔎"}),t.jsx("b",{children:l?"Your sourcing engines":"Vos moteurs de sourcing"}),z&&t.jsx("span",{className:"se-sum",children:l?`${we} active · ${me.toLocaleString("en-US")} companies found`:`${we} actifs · ${me.toLocaleString("fr-FR")} sociétés trouvées`}),ue>0&&t.jsx("span",{className:"se-newsum",children:e.engFreshAll(ue)}),t.jsx("span",{className:"se-arr",children:c?"▾":"▸"})]}),c&&t.jsxs("div",{className:"se-body",children:[t.jsxs("div",{className:"se-bar",children:[Fr.map(([I])=>t.jsx("button",{type:"button",className:"se-win"+(u===I?" on":""),onClick:()=>b(I),children:I==="1"?l?"Today":"Aujourd'hui":I==="all"?l?"All":"Tout":l?`${I} d`:`${I} j`},I)),t.jsx("span",{className:"se-note",children:l?"Panel totals = the chosen window; the funnel above counts the screened view.":"Les totaux du panneau = la fenêtre choisie ; le tunnel compte les criblées de la vue."})]}),w&&t.jsx("div",{className:"se-load",children:l?"Reading engines…":"Lecture des moteurs…"}),!!v&&t.jsxs("div",{className:"se-err",children:[v," ",t.jsx("button",{type:"button",onClick:()=>void $(u),children:"↻"})]}),!w&&!v&&z&&t.jsx("div",{className:"se-cards",children:M.map(I=>{var ae,pe,se,ne;return t.jsxs("div",{className:"se-card"+(I.sourced===0?" idle":"")+((ae=ee[I.key])!=null&&ae.noms.length||(pe=fe[I.key])!=null&&pe.length?" has-new":""),children:[t.jsxs("div",{className:"se-ct",children:[t.jsx("b",{children:dn(I.key)}),(se=ee[I.key])!=null&&se.noms.length?t.jsx("button",{type:"button",className:"se-new",title:e.engFreshHint,onClick:te=>{te.stopPropagation(),S(E&&E.eng===I.key&&E.kind==="neuf"?null:{eng:I.key,kind:"neuf"})},children:e.engFresh(ee[I.key].noms.length)}):!!((ne=fe[I.key])!=null&&ne.length)&&t.jsx("button",{type:"button",className:"se-new today",title:e.engTodayHint,onClick:te=>{te.stopPropagation(),S(E&&E.eng===I.key&&E.kind==="today"?null:{eng:I.key,kind:"today"})},children:e.engToday(fe[I.key].length)}),(()=>{const te=Al(I.key),de=te?N[te]:void 0;if(!de||!o)return null;const je=!!de.opt_in,re=je?!!de.fund_on:de.fund_on!==!1,Ae=!je&&de.global_enabled===!1,ye=Ae?e.engGlobalOff:re?e.engOn:je?e.engOptOff:e.engOff;return t.jsx("button",{type:"button",className:"se-sw"+(re?" on":"")+(Ae?" dead":""),disabled:Ae||T===te,title:je?e.engHintOpt:e.engHint,onClick:Be=>{Be.stopPropagation(),F(te),Ji(s,te,!re).then(Ie=>{if(F(""),!Ie.ok){d(Ie.error||e.engToggleFail);return}A(Ue=>({...Ue,[te]:{...de,fund_on:!re}})),i(e.engToggleNote)})},children:T===te?"…":ye})})(),t.jsx("span",{className:"se-st"+(I.sourced>0?" ok":""),children:I.sourced>0?l?"⚡ actively sourcing":"⚡ source activement":l?"standby":"en veille"}),t.jsx(Ll,{vals:I.spark})]}),t.jsx("p",{className:"se-desc",children:kl(I.key,l)||(l?"Engine wired for your thesis.":"Moteur branché pour votre thèse.")}),t.jsxs("div",{className:"se-hero",children:[t.jsx("b",{children:I.sourced.toLocaleString(l?"en-US":"fr-FR")}),t.jsx("span",{children:l?"companies found":"sociétés trouvées"})]}),(I.matched>0||I.noMatch>0)&&t.jsxs("div",{className:"se-split",children:[l?"incl.":"dont"," ",t.jsxs("button",{type:"button",onClick:()=>S({eng:I.key,kind:"kept"}),children:[I.matched," MATCH"]})," · ",t.jsxs("button",{type:"button",onClick:()=>S({eng:I.key,kind:"rej"}),children:[I.noMatch," ",l?"ruled out":"écartées"]}),I.rate>0&&t.jsxs("em",{children:[" · ",I.rate,"%"]})]}),(()=>{const te=Tr(z.params,I.key);if(!te)return null;const de=!!P[I.key],je=de?[...te.chips,...te.more]:te.chips,re=te.shared&&e.engParamsShared||te.example&&e.engParamsExample||te.note||"";return t.jsxs("div",{className:"se-params",children:[t.jsx("i",{children:e.engParams}),t.jsxs("div",{className:"se-chips",children:[je.map((Ae,ye)=>t.jsx("span",{className:"se-chip"+(te.shared?" soft":""),children:Ae},Ae+ye)),te.more.length>0&&t.jsx("button",{type:"button",className:"se-chipmore",onClick:Ae=>{Ae.stopPropagation(),H(ye=>({...ye,[I.key]:!de}))},children:de?e.engParamsLess:e.engMore(te.more.length)})]}),re&&t.jsx("span",{className:"se-pnote",children:re})]})})(),t.jsxs("div",{className:"se-acts",children:[I.key==="local"&&o&&t.jsxs(t.Fragment,{children:[t.jsx("button",{type:"button",className:"se-bod",disabled:O==="run",onClick:te=>{te.stopPropagation(),D("run"),Xi(s,h||"").then(de=>{if(D(de.ok?"ok":"ko"),!de.ok){d(de.error||e.engBodaccKo);return}i(e.engBodaccOk),pr(s).then(je=>{const re={};je.forEach(Ae=>{Ae.engine&&(re[Ae.engine]=Ae)}),A(re)})})},children:O==="run"?e.engBodaccRun:e.engBodacc}),t.jsx("p",{className:"se-desc",style:{margin:"4px 0 0"},children:e.engBodaccNote})]}),t.jsxs("button",{type:"button",className:"se-adj",onClick:()=>{Q(ge(I.key)),C(""),window.setTimeout(()=>{G.current&&(G.current.focus(),G.current.setSelectionRange(G.current.value.length,G.current.value.length))},60)},children:["✎ ",l?"Adjust this engine":"Ajuster ce moteur"]})]}),E&&E.eng===I.key&&t.jsxs("div",{className:"se-ovl",children:[t.jsxs("div",{className:"se-ovl-h",children:[t.jsx("b",{children:E.kind==="neuf"?e.engFreshT:E.kind==="today"?e.engTodayT:E.kind==="kept"?l?"MATCH via this engine":"MATCH via ce moteur":l?"Ruled out via this engine":"Écartées via ce moteur"}),t.jsx("button",{type:"button",onClick:()=>S(null),children:"×"})]}),t.jsx("ul",{children:I.leads.map(te=>{const de=(te.verdicts||[]).reduce((je,re)=>!je||String(re.check_date||"")>String(je.check_date||"")?re:je,null);return{l:te,dernier:de}}).filter(({l:te,dernier:de})=>{var re;const je=((de==null?void 0:de.status)||"").trim().toUpperCase();if(E.kind==="neuf"){const Ae=new Set((((re=ee[I.key])==null?void 0:re.noms)||[]).map(ye=>ye.toLowerCase()));return je==="MATCH"&&Ae.has((te.company_name||"").trim().toLowerCase())}return E.kind==="today"?new Set((fe[I.key]||[]).map(ye=>ye.toLowerCase())).has((te.company_name||"").trim().toLowerCase()):je===(E.kind==="kept"?"MATCH":"NO MATCH")}).slice(0,100).map(({l:te,dernier:de},je)=>{const re=(te.company_name||"").trim(),Ae=re&&he.has(re.toLowerCase());return t.jsxs("li",{children:[Ae?t.jsx("button",{type:"button",className:"se-jump",onClick:()=>{const ye=he.get(re.toLowerCase());if(ye)try{window.dispatchEvent(new CustomEvent("ppmap:focus",{detail:{id:ye,name:re}}))}catch{}},children:re}):t.jsx("b",{children:re||"—"}),t.jsxs("span",{children:[ke(ze.get(re.toLowerCase())),typeof(de==null?void 0:de.score)=="number"&&de.score>0?` · ${Math.round(de.score)}`:""]})]},re+je)})}),(()=>{const te=I.leads.filter(de=>{var Ae;const je=(de.verdicts||[]).reduce((ye,Be)=>!ye||String(Be.check_date||"")>String(ye.check_date||"")?Be:ye,null),re=((je==null?void 0:je.status)||"").trim().toUpperCase();if(E.kind==="neuf"){const ye=new Set((((Ae=ee[I.key])==null?void 0:Ae.noms)||[]).map(Be=>Be.toLowerCase()));return re==="MATCH"&&ye.has((de.company_name||"").trim().toLowerCase())}return E.kind==="today"?new Set((fe[I.key]||[]).map(Be=>Be.toLowerCase())).has((de.company_name||"").trim().toLowerCase()):re===(E.kind==="kept"?"MATCH":"NO MATCH")}).length-100;return te>0?t.jsx("p",{className:"se-more",children:e.engMore(te)}):null})()]})]},I.key)})}),!!V&&t.jsxs("div",{className:"se-nl",children:[t.jsxs("div",{className:"se-nl-h",children:["✎ ",l?"Correct this thesis":"Corriger cette thèse"]}),t.jsx("textarea",{ref:G,rows:3,maxLength:12e3,defaultValue:V,placeholder:l?"Say what to change, in plain words…":"Dites ce qu’il faut changer, en langage naturel…"},V),t.jsxs("div",{className:"se-nl-a",children:[t.jsx("button",{type:"button",disabled:R,onClick:()=>void ie(),children:R?l?"⏳ applying…":"⏳ application…":l?"Apply":"Appliquer"}),t.jsx("button",{type:"button",className:"gh",onClick:()=>{Q(""),C("")},children:l?"Close":"Fermer"})]}),!!q&&t.jsx("div",{className:"se-nl-r",children:q})]})]})]}):null}const Fl={plabels:["À évaluer","Retenues","Analysées","À trancher","Validées","Écartées","Favoris","Évaluées"],phelp:["Tout ce que STAN a passé au crible sur la fenêtre : chaque société évaluée selon vos critères, retenue ou écartée automatiquement.","STAN a retenu ces sociétés selon vos critères, décision justifiée. NOUS vérifions ses choix — écartez, validez, ou lancez une analyse sur les incertaines.","Les mémos de STAN, relus par NOUS : synergies chiffrées, verdict argumenté. Validez celles à contacter, mettez « à trancher » celles où vous hésitez.","À VOUS de jouer : les meilleures cibles, présentées le lundi par votre Corporate Developer. Tranchez OUI ou NON — vos oui passent en Validées.","Vos OUI — la short-list à contacter. NOUS préparons l’approche, ou l’engageons en votre nom (offre Entreprise).","Écartées par STAN ou par VOUS. Chaque NON affine les critères de Stan. Repêchez-en une à tout moment.","Vos épingles, tous statuts confondus.","Vue : tout ce que Stan a tranché."],tuto:{0:{p:"Arrivées par les moteurs et pas encore criblées.",a:"⚡ Tout évaluer"},1:{p:"MATCH au crible, sans mémo. Lancez l’analyse : elle les enverra en Analysées ou À trancher.",a:"⚡ Analyser la sélection"},2:{p:"Mémo produit, verdict CONSIDER ou MONITOR. Remontez un dossier pour saisir le dirigeant le jour même.",a:"↑ Remonter en À trancher"},3:{p:"Verdict CALL : votre OUI ou NON est attendu sur chaque dossier.",a:null},4:{p:"Vos OUI. Stan rédige la séquence d’approche, vous validez et vous envoyez.",a:"✉ Préparer l’approche"},5:{p:"Hors crible, ou écartées après mémo. Un dossier reste repêchable à tout moment.",a:"↩ Repêcher la sélection"},6:{p:"Les cibles que vous avez épinglées à la main, tous statuts confondus.",a:null},7:{p:"Tout ce que Stan a tranché, sous-états confondus — le vivier complet des moteurs.",a:null}},tutoPending:(e,a,r)=>`<b>${e} CALL de Stan</b>, <b>${a} remontée${a>1?"s":""} par vous</b>. <b>${r} sans réponse.</b>`,morningThesis:(e,a,r)=>`Ce matin, <b>${e}</b> société${e===1?"":"s"} criblée${e===1?"":"s"} par vos moteurs`+(typeof r=="number"?`, <b>${r}</b> retenue${r===1?"":"s"}.`:".")+(a?` <b>${a}</b> attend${a>1?"ent":""} votre évaluation.`:' <span class="ok">Tout est évalué.</span>'),morningEnginesTitle:"Ces sociétés viennent UNIQUEMENT du sourcing de votre thèse : vos codes d’activité, vos pays, vos angles d’acquisition, vos critères d’exclusion. Aucune société d’un autre fonds n’entre ici. Seule la veille d’actualité part d’un ratissage commun pour des raisons de coût — mais chaque opération qui en sort est ensuite confrontée à vos critères, et n’entre dans votre page que si elle les passe.",morningLast:(e,a,r)=>`Dernier passage des moteurs le <b>${r}</b> : <b>${e}</b> société${e===1?"":"s"} sourcée${e===1?"":"s"}.`+(a?` <b>${a}</b> restante${a>1?"s":""} pas encore évaluée${a>1?"s":""}.`:' <span class="ok">Tout est évalué.</span>'),morningEval:e=>`▶ Les traiter (${e})`,identTitle:e=>`Cibles pour ${e}`,identCoverage:"Couverture du marché",identCoverageOf:(e,a)=>`<b>${e}</b> sur ~${a.toLocaleString("fr-FR")}`,identEngine:"Moteur de mémos",identPerDay:"mémo/jour",identEtaDays:e=>e<=0?"file déjà traitée":`file traitée en ${e} jour${e>1?"s":""}`,analyseLock:"Analyser tous · Entreprise",analyseLockHint:"Analyser toute la sélection d’un coup lance plusieurs mémos en parallèle. L’offre Entreprise (verdict sous 24 h) le permet ; en Standard et en essai, on analyse ligne par ligne.",feedToEval:"→ À évaluer",feedToExtract:"Coller l’URL",identPending:e=>`→ ${e} en attente`,identPendingWait:"→ lecture de la file…",identExport:"Exporter — CSV, tableur, lien vivant",identPlug:"Connecter cette page à vos outils",identBell:"Vos alertes email",identSync:"Relancer le sourcing",identSyncDone:"Sourcing relancé — les moteurs repartent sur votre thèse",identSearch:"Rechercher une cible",identHelp:"Aide",identTuto:"Prise en main",toolUndo:"Annuler la dernière décision",toolReset:"Réinitialiser les filtres",toolSort:"Trier la liste",toolTuto:"Prise en main",toolCrit:"Le paramétrage de Stan",undoDone:e=>`Décision annulée sur ${e}`,undoNone:"Rien à annuler",undoLockedTitle:"Annulation impossible : le statut précédent était vide (aucune opération « effacer » côté serveur)",resetDone:"Filtres réinitialisés",actAnalyse:"📝 Analyser",actAnalyseQueued:"⏳ En file…",actPromote:"↑ À trancher",actYes:"✓ Oui",actNo:"✗ Non",actYesTitle:"Oui : elle passe en Validées, Stan prépare la séquence",actNoTitle:"Non : elle rejoint les Écartées",actApproach:"✉ Préparer l’approche",actApproachSent:"✓ Séquence prête — voir votre email",actMemo:"📄 Voir le mémo",actMemoQueue:"mémo à lancer",actLocked:"🔒 Analyser",actToEval:"à évaluer",promoted:e=>`${e} remontée pour décision`,thumbUp:"Bon choix — Stan en tiendra compte",thumbDn:"Mauvais choix — Stan corrigera",thumbUpDone:"Bon choix enregistré — Stan en tiendra compte",thumbDnDone:"Correction enregistrée — Stan ajustera sa sélection",colThumbs:"STAN",colVerdict:"Crible · mémo",colCrible:"Crible",fVerdict:"Verdict",colMemo:"Mémo",colScore:"Score",orgAuto:"⚡ CALL de Stan",orgAutoTitle:"Verdict CALL PENDING : Stan propose l’appel",orgCd:"👤 remonté par vous",orgCdTitle:"Remonté à la main en À trancher",waitTitle:e=>`Depuis le verdict de Stan : ${e} j`,waitChip:e=>`⏱ ${e} j`,densList:"Liste",densOpen:"Déplié",densLigne:"Ligne",densMaxi:"Maxi",unfoldAll:"Tout déplier",foldAllLbl:"Tout replier",foldArts:"Articles",zoomSrc:"Source",viewLink:"Voir l’article",viewSite:"Site",viewSrc:"Source",viewSiteBusy:"Site…",viewSiteHint:"Site web de la société",viewSiteBusyHint:"Recherche du site web…",viewSrcHint:"Article source",viewLinkClose:"Fermer l’article",viewLinkTab:"Ouvrir dans un onglet",viewLinkHint:"S’ouvre dans une nouvelle fenêtre",zoomSimilar:"Voir les similaires",zoomInCockpit:"Isoler dans la liste",zoomArt:"Edito du jour",zoomEvalHint:"Crible selon vos critères",zoomSimilarHint:"Même secteur dans la liste",zoomIsolateHint:"Ne garder que cette société",zoomNewsMark:"Décryptage de l’édition — le texte s’ouvre à droite",zoomPulseEval:"évaluables",zoomPulseExplore:"à explorer",zoomPulseArts:"actualités",doNews:"📰 Actualités",zoomPulseEd:"dans l’article du jour",zoomPulseBtn:"Édition du jour",zoomPulseWeek:"7 derniers jours",zoomPulseWeekEd:"cette semaine",doAll:"Tout",doEdito:"📖 Edito du jour",doBrief:"📖 Brief du jour",doEval:"⚡ Évaluables",doExplore:"🔎 Extraire les sociétés",doAna:"⚡ À analyser",doBriefHint:"Afficher le brief du jour",doTodo:"⚡ À évaluer",doDone:"✓ Déjà évaluées",cdMemoTab:"📖 Mémo",evalPickSite:"plusieurs sites portent ce nom — ouvrez pour vérifier, puis validez celui qui est le bon.",evalPickGo:"✓ C’est celui-ci",evalPickChip:"Site à confirmer",eqNamePh:"Nom de société ou URL…",eqAdd:"Ajouter une ligne",eqNoSite:"aucun site trouvé — le nom sera évalué tel quel",eqReady:"prête",eqPick:"choisir le site →",eqRunning:"⏳ évaluation…",eqGo:e=>`⚡ Évaluer les ${e} lignes`,eqHint:"Vos lignes restent ici : remplissez en déplacement, lancez plus tard.",eqColName:"Société",eqColSite:"Site",eqColDesc:"Ce qu’elle fait",eqColState:"État",eqLookup:"recherche du site…",eqDescBusy:"lecture du site…",eqDescNone:"le site ne dit rien d’exploitable",eqDescQuota:"plafond de lecture atteint aujourd’hui",eqRunOne:"Évaluer cette ligne",eqRunOneShort:"Évaluer",eqRunOn:e=>`Évaluer ${e}`,sgGo:"💡 Trouver des sociétés proches",sgBusy:e=>`🔎 jumelles de ${e}…`,sgFrom:(e,a)=>`à partir de vos retenues (${e}${a>1?` +${a-1}`:""})`,sgQuota:"plafond du jour atteint (5 recherches) — à demain",sgNone:"rien de neuf : les jumelles trouvées sont déjà dans votre liste",sgVia:e=>`trouvée à partir de ${e}`,pxThesis:"votre thèse",pxGoThesis:"🎯 Chercher sur ma thèse",pxGoFree:"🔎 Chercher",pxPlace:"un mot porteur, ou un code NAF (66.22Z)",eqClearDone:"Retirer les évaluées",chainMemoGo:"⚡ Lancer le mémo (1 crédit)",analyseConfirm:e=>`Lancer ${e} mémo${e>1?"s":""} d’analyse ?
+
+Cela consomme ${e} crédit${e>1?"s":""} mémo. Les sociétés partiront en « Analysées » ou « À trancher » une fois le mémo prêt.`,sortBy:"Trier par",sortSig:"Signal",sortAmount:"Montant",sortAge:"Récence",sortName:"Nom",sortCountry:"Pays",sortStage:"Stade",sortSector:"Secteur",sortCrible:"Crible",sortMemo:"Mémo",sortScore:"Score",fMenu:"Filtres",memoSynth:"Synthèse",memoOpenFull:"📖 Voir le mémo complet →",memoDeep:"📝 Lancer un mémo détaillé",memoDeepHint:"Pour ce dossier à trancher, vous pouvez lancer l’analyse détaillée : étude de marché, quadrant concurrentiel, scénarios.",memoDeepSent:e=>`Mémo détaillé lancé sur ${e} — prêt dans 35 à 40 minutes`,memoInstantSent:e=>`Analyse lancée sur ${e} — mémo prêt dans ~15 minutes`,liveStrip:"Analyses en direct",liveBoot:"lancement…",liveEnd:"fin {t}",liveOpenQueue:"Voir la file",memoNone:"Aucun mémo pour ce dossier — lancez l’analyse.",creditsCap:"Crédits mémo",creditsToday:"aujourd’hui",creditsRecharge:"Recharger →",creditsCost:e=>`−${e} crédit${e>1?"s":""}`,creditsNone:"Crédit épuisé — rechargez ou attendez demain 7 h.",creditsTrialHint:e=>`Offre essai — ${e} crédit${e>1?"s":""} par jour, rechargés chaque matin. Chaque analyse en retire un.`,creditsPacksLbl:"Ajouter des crédits",creditsUnit:"crédits",rechargeTitle:"Crédits mémo",rechargeHint:e=>`Votre offre comprend <b>${e} crédits par jour</b>, rechargés chaque matin. Besoin de plus tout de suite ?`,rechargeNote:"Les crédits achetés n’expirent pas. Ils s’utilisent après vos crédits quotidiens.",rechargeBuy:"Ajouter",rechargeUnit:(e,a)=>`${e} crédits — ${a} €`,onbTag:"Aperçu privé · lecture seule",onbTitle:e=>`Votre deal flow est prêt — <b>${e} cibles retenues</b> par Stan`,onbSub:e=>`${e} sociétés passées au crible sur votre thèse. Les dix premières lignes sont ouvertes ; le reste se débloque en trente minutes.`,onbSteps:[["Stan a étudié votre présence en ligne","Site, offres d’emploi, presse — il en a déduit vos angles d’acquisition."],["Il a criblé le marché","Chaque société confrontée à vos critères."],["Il a rédigé des mémos","Analyses chiffrées, synergies, verdicts."],["À vous de trancher","Trente minutes pour régler votre deal flow et tout débloquer."]],onbCta:"Choisir un créneau →",lockbarText:"Paramétrons votre deal flow rêvé en 30 minutes, avec un Corporate Developer",lockbarContactBefore:"Alexandre — ",lockbarContactMid:" · ",lockbarCta:"Choisir un créneau",rdvHeading:"Paramétrons votre deal flow rêvé en 30 minutes",rdvSubBefore:"Choisissez un créneau ci-dessous, ou contactez votre expert Corporate Development directement au ",rdvSubMid:" ou par email à ",rdvCoFallback:"votre société",rdvUnlockLabel:e=>`Déblocage ${e}`,rdvUnlocks:e=>[["Accédez à toutes vos cibles retenues","Mémos d’investissement complets, synergies, contacts, angle d’approche."],["Stratégie d’acquisition construite avec vous","Hypothèse + stratégie d’acquisition recalibrées en live, avec vous."],["Tranchons ensemble les cibles que vous voulez","OUI / NON, sourcing de sociétés similaires, export et synchronisation CRM."],["Votre AI Corporate Developer est lancé",`Stan travaille pour ${e} chaque matin — vous n’avez plus qu’à décider.`]],identRepub:"Republier la page maintenant — re-rend la page avec ce qui est déjà connu. Gratuit : aucun moteur ne repart, aucun modèle n’est appelé si votre thèse n’a pas changé.",identRepubDone:"Republication lancée — vos chiffres se rafraîchissent en une trentaine de secondes. Actualisez la page pour les voir.",plugHow1:"Dans votre outil (Make, Zapier, n8n, HubSpot, Pipedrive…), créez un déclencheur « webhook » et copiez l’URL qu’il vous donne.",plugHow2:"Collez-la ci-dessous, Enregistrez, puis Testez : un message d’exemple part aussitôt dans votre outil.",plugHow3:"C’est fini. Trois moments déclenchent un envoi : vous validez une cible, vous la faites avancer d’un stade, ou une approche est préparée.",plugExT:"Ce que votre outil reçoit, exactement",plugExResult:"Dans votre CRM, vous obtenez une ligne par société validée : son nom, votre note, le score de Stan, son site et le lien du mémo.",plugApiT:"Une seule société, depuis un script ou Make",plugQuota:"Ce raccourci est plafonné à 10 sociétés par jour et par lien — le chemin normal reste la barre d’évaluation de la page.",plugFeeds:"Les flux JSON, CSV, Google Sheets et Excel vivent dans le bouton 📥 Exporter, juste à côté — ils ne sont pas répétés ici.",plugTokenNote:"⚠️ Ces liens portent la clé d’accès de cette page : partout où vous les collez, ils ouvrent vos cibles. Ne les mettez que dans vos propres outils.",plugDoc:"Documentation complète → proplace.co/api/",plugDestLbl:"Destination",plugDestWh:"Mon webhook",plugDestInst:"Instantly (campagne)",plugDestInstS:"L’ID de campagne est dans l’URL Instantly.",plugDestCrm:"Mon CRM",plugDestCrmS:"HubSpot, Pipedrive, Salesforce — via Make, Zapier ou n8n.",plugDestScript:"Script ou tableur",plugDestScriptS:"Un appel HTTP, ou un export Google Sheets et Excel.",plugLead:"Vos décisions partent automatiquement là où vous travaillez. Trois étapes, une fois.",plugStep1:"Où vos décisions doivent-elles arriver ?",plugStep2Wh:"Collez le lien webhook de votre outil",plugStep2Inst:"Indiquez l’ID de campagne Instantly",plugStep2Script:"Utilisez ce point d’entrée",plugStep3:"Quand faut-il envoyer ?",plugPayloadSub:"une ligne par société, 15 champs",plugAideWh:"Dans Make, Zapier ou n8n : créez un déclencheur « webhook », copiez son lien, collez-le ici. Le test envoie une société d’exemple immédiatement.",plugAideInst:"L’ID est dans l’URL de votre campagne Instantly. L’envoi automatique y pousse chaque cible validée.",plugAideScript:"Un POST par société, plafonné à 10 par jour. Pour un volume régulier, préférez le webhook.",plugEtatOn:"Envoi automatique actif — chaque cible validée part toute seule.",plugEtatOff:"Envoi automatique inactif — valider une cible ne l’envoie nulle part.",plugCampPh:"ID de campagne Instantly",plugCampNeed:"Instantly a besoin de l’ID de la campagne qui recevra ces cibles — il est dans l’URL de votre campagne.",plugDestInstOn:e=>`Instantly · campagne ${e}`,plugAutoT:"⚡ Envoi automatique",plugAutoSub:"Activez-le : chaque cible que vous validez entre toute seule dans votre séquence. Vous ne revenez plus ici.",plugAutoOnLbl:"Envoyer automatiquement chaque cible validée",plugAutoNeed:"Enregistrez d’abord un webhook ci-dessus, ou choisissez Instantly.",plugAutoSavedOn:"Envoi automatique activé — chaque cible validée partira toute seule.",plugAutoSavedOff:"Envoi automatique arrêté.",plugAutoBroken:"⚠ Rien ne part : l’envoi automatique vise votre webhook, mais aucun webhook n’est enregistré. Enregistrez-en un ci-dessus, ou arrêtez l’envoi automatique.",notesT:"📝 Carnet de suivi",notesHint:"Vos notes sur ce dossier, datées. Elles vivent dans la fiche du deal — vous et votre équipe les relisez au même endroit.",notesPh:"Ce que vous voulez retenir : un appel, une objection, un chiffre…",notesAdd:"Ajouter",notesAdded:"Note ajoutée ✓",notesEmpty:"Aucune note pour l’instant.",notesErr:"Échec — réessayez.",notesEdit:"Modifier",notesDel:"Supprimer",notesDelAsk:"Supprimer cette note ?",notesSave:"Enregistrer",notesCancel:"Annuler",notesLoading:"Lecture du carnet…",notesCount:e=>`${e} note${e>1?"s":""}`,apprT:e=>`Brouillon d’approche — ${e}`,apprSeqHint:"4 messages espacés : J0, J2, J4, J6.",apprWait:"Rédaction de la séquence sur mesure…",apprFail:"Génération indisponible — réessayez dans un instant.",apprChEmail:"✉ Email",apprChLi:"in LinkedIn",apprSubj:"Objet",apprCopy:"📋 Copier ce message",apprMailto:"✉ Ouvrir dans votre email",apprLiNote:"Demande de connexion : sans note.",apprEdited:"✎ modifié",apprLocal:"Vos retouches restent dans cette fenêtre — elles ne sont pas enregistrées sur le serveur. Copiez le message avant de fermer.",apprSender:e=>`Signé : ${e}`,avisIntro:(e,a)=>`🎯 Stan a remarqué que vous écartez souvent le secteur « ${e} » (${a} refus).`,avisAsk:"Voulez-vous qu’il en source moins ?",avisYes:"Oui, recalibrer",avisNo:"Ignorer",avisRunning:"Recalibrage de votre thèse…",avisDone:"✓ C’est fait — Stan a recalibré votre thèse. Vous en verrez moins.",avisFail:"Recalibrage impossible pour le moment — réessayez bientôt.",propT:"🧠 Ce que vos avis disent de votre thèse",propSub:"Vos 👍/👎 — et surtout ce que vous écrivez en dessous — racontent comment vous choisissez. Stan les relit ensemble et propose les corrections qui rapprocheraient la prochaine sélection de votre propre jugement. Rien n’est appliqué sans vous.",propBtn:"Relire mes avis et proposer des corrections",propWait:"Relecture de vos avis…",propNone:"Rien d’assez solide pour l’instant. Un avis isolé ne déplace jamais une thèse : continuez à juger les cartes (une ligne de « pourquoi » aide énormément) et revenez.",propFew:e=>`Pas encore assez d’avis — ${e} société${e>1?"s":""} jugée${e>1?"s":""}. Continuez, puis revenez.`,propFrom:"D’après :",propApply:"Appliquer cette correction",propSkip:"Pas celle-ci",propApplying:"Application…",propApplied:"Appliqué ✓ — Stan source désormais sur la version corrigée.",propApplyFail:"Application impossible — réessayez.",propKo:"Relecture impossible pour le moment — ce n’est pas vous, c’est le moteur. Réessayez dans un instant.",propSlow:"Stan travaille encore sur cette correction — elle s’appliquera d’elle-même. Le carnet de bord vous le dira.",engOn:"● actif ici",engOff:"○ coupé ici",engOptOff:"○ à activer",engGlobalOff:"⊘ éteint (global)",engHintOpt:"Moteur optionnel (Maps payant + BODACC gratuit) : activez-le pour CE fonds, puis lancez BODACC à la demande.",engHint:"Active ou coupe ce moteur POUR CE FONDS — le pool partagé n’est pas touché.",engToggleFail:"Réglage impossible — réessayez.",engToggleNote:"Le réglage prend effet au prochain passage du sourcing : rien n’est retiré de ce qui est déjà là.",engBodacc:"Lancer BODACC (gratuit) maintenant",engBodaccRun:"Lancement…",engBodaccNote:"Bulletin officiel FR gratuit (liquidations, cessions, radiations). Google Maps reste optionnel et payant.",engBodaccOk:"Radar BODACC lancé pour ce fonds. Actualisez la page dans quelques minutes.",engBodaccKo:"Lancement impossible — réessayez.",engMore:e=>`+ ${e} autre${e>1?"s":""}`,engParams:"Vos réglages",engParamsShared:"Source partagée · filtrée sur vos secteurs",engParamsExample:"exemple de la rotation du jour",engParamsLess:"réduire",engFresh:e=>`${e} nouvelle${e>1?"s":""}`,engFreshHint:"Retenues par ce moteur depuis votre dernière visite — cliquez pour les voir",engFreshT:"Nouvelles depuis votre dernière visite",engFreshAll:e=>`${e} nouvelle${e>1?"s":""} depuis votre dernière visite`,engToday:e=>`${e} aujourd’hui`,engTodayHint:"Sourcés aujourd’hui par ce moteur",engTodayT:"Sourcés aujourd’hui",propSections:{hypothesis:"L’hypothèse",profils:"Les profils visés",gate:"Le crible Retenu / Écarté",rubric:"La décision d’analyse"},plugCrmRecipeT:"Pipedrive, HubSpot, Salesforce — ils n’acceptent pas un lien vivant : il leur faut un scénario, à brancher UNE fois.",plugCrmRecipeOpen:"Voir la recette, en 4 modules",plugCrmR1:"① Dans Make (ou Zapier), planifiez un scénario toutes les heures qui commence par HTTP → « Make a request » sur le lien JSON de 📥 Exporter.",plugCrmR2:"② Ajoutez un « Iterator » sur le tableau reçu : une itération = une société.",plugCrmR3:"③ Pipedrive → « Search organizations », en cherchant sur le domaine (il doit figurer quelque part sur la fiche — site web ou champ personnalisé ; sinon cherchez sur le nom). HubSpot, lui, rapproche nativement ses entreprises sur le domaine : c’est encore plus direct.",plugCrmR4:"④ Pipedrive → « Update an organization » : nos colonnes atterrissent dans les champs personnalisés que vous aurez créés (verdict, conviction, angle, lien mémo). Branchez « Add an organization » sur la sortie « rien trouvé » : les sociétés que vous n’aviez pas encore sont créées au lieu d’être perdues.",plugCrmRNote:"À la main, sans scénario ? Ouvrez le lien CSV (ou Excel) dans votre navigateur pour récupérer le fichier, puis passez-le à l’import de votre CRM. Réservez ce chemin aux sociétés que vous n’avez PAS encore : un import de fichier ne sait pas rapprocher proprement sur le domaine, il crée des doublons.",plugVarsT:"Voir les 15 variables reçues par cible",plugVars:"first_name, last_name, email, company_name, phone, website, linkedin, sector, country · angle, why, verdict, conviction_score, memo_url, memo_pdf_url.",plugRefT:"Voir les réglages du lien et les 26 colonnes",plugOpt:"Deux réglages à coller à la FIN du lien (il contient déjà « ? », on ajoute avec « & ») : « &tab=valides » ne renvoie que vos cibles validées (aussi call, retenus, ecartes, chauds) ; « &since=AAAA-MM-JJ » ne renvoie que ce qui a bougé depuis cette date — c’est ce qu’il faut pour une synchro qui tourne en boucle.",plugCols:"26 colonnes par société : company, domain, first_name, last_name, email, linkedin, phone, website, linkedin_company, country, sector, stage, ceo_status, verdict, conviction_score, engagement, angle, memo_url, memo_pdf_url, memo_type, status, score, tagline, engine, detected, reasoning.",plugEnrichT:"Ces sociétés sont déjà chez vous ?",plugEnrich:"Ne les recréez pas : ajoutez-leur nos colonnes (verdict, conviction, angle, mémos, contact dirigeant). Le rapprochement se fait sur le DOMAINE — acme.co — jamais sur le nom : « Acme » et « Acme SAS » ne se retrouvent pas.",plugEnrich1:"① Copiez le lien de votre outil dans 📥 Exporter.",plugEnrich2:"② Collez-le en suivant la consigne écrite juste au-dessus du lien. Vous obtenez une table d’une ligne par société, qui se met à jour toute seule.",plugEnrich3:"③ Rapprochez sur la colonne « domain » (RECHERCHEV / VLOOKUP). Vos fiches gagnent nos colonnes, sans un seul doublon.",plugAirtable:"Airtable — Ajouter une table → Synchroniser des données → CSV, puis collez l’URL du flux.",plugExcel:"Excel — Données → Obtenir des données → À partir du Web, puis collez l’URL du flux.",plugScoreT:"Faire noter VOS propres sociétés",plugScore:"Collez les sociétés que vous avez déjà dans la barre « Rechercher des sociétés à évaluer », en haut de la page : chacune est vraiment cherchée sur le web, puis jugée par votre thèse — MATCH ou NO MATCH, avec la raison. C’est le meilleur moyen de juger notre grille sur des dossiers que vous connaissez par cœur.",plugCrmQT:"🔗 Et dans votre CRM ?",plugCrmQ1:"Vos fiches HubSpot, Pipedrive ou Airtable portent nos colonnes, MATCH / NO MATCH compris : c’est la recette ci-dessus, branchée une fois.",plugCrmQ2:"Un bouton posé dans la fiche lance le mémo sans revenir ici : le mémo rapide sur n’importe quelle société de votre liste, le mémo complet sur celles que vous avez passées à « À trancher ».",plugCrmQ3:"Le lien du mémo revient dans la fiche à la synchro suivante (colonne memo_url) : un mémo met quelques minutes à s’écrire, il n’est donc jamais prêt dans la seconde.",plugApiMemoLbl:"Lancer le mémo rapide d’une société (« detailed_request » pour le mémo complet) :",csNone:"Statut",csAnaNeedMemo:"Pour passer en « Analysée », il faut un mémo.",csAnaRun:"⚡ Lancer le mémo (1 crédit)",csAnaAnyway:"Marquer quand même",qOffer:"Votre offre",qDelay:"délai de verdict",qRate:e=>`${e} mémo${e>1?"s":""} par jour`,qManual:e=>`${e} mémo par jour, à votre demande`,qPaused:"aucun mémo automatique",qManualSet:"rythme réglé à la main",qEta:(e,a,r)=>`À ce rythme (${a}/jour), il reste ${e} mémo${e>1?"s":""} à écrire — toute la file est traitée en ${r} jour${r>1?"s":""}.`,qEtaPaused:"Rythme à zéro : rien ne part. Activez une offre pour projeter une date.",qEtaDone:"Toute la file est déjà analysée.",qLate:(e,a)=>`Le délai « ${e} » ne peut pas être tenu : il faudrait dépasser le plafond de ${a} mémos par jour.`,qRunning:"En cours",qUpNext:e=>`À venir — ${e} société${e>1?"s":""} dans la file, dans l’ordre de tirage`,qUpNextWait:"À venir — lecture de la file…",qFileWait:"Lecture de la file en cours — quelques secondes.",qHedge:"Ordre projeté, recalculé chaque matin. Un lead frais tombé dans la nuit passe devant.",qFresh:"frais",qLater:"plus tard",qVerdictsT:"Les verdicts de Stan — où part chaque dossier",qVerdicts:[["CALL","sa meilleure trouvaille : à vous de trancher OUI ou NON → onglet « À trancher »."],["CONSIDER","solide, mérite un regard de plus → onglet « Analysées »."],["MONITOR","à garder à l’œil, pas encore prioritaire → onglet « Analysées »."],["PASS","hors sujet pour l’instant → onglet « Écartées »."]],covHowT:"D’où vient ce chiffre ?",covTotal:"Total du marché",covColCode:"Code · pays",covColN:"Sociétés",covColSource:"Source",covWide:e=>`${e} non publié — élargi au code parent`,covMissing:"aucune donnée publiée",covRejected:e=>`Codes écartés faute de sociétés trouvées : ${e}.`,covComputedAt:e=>`calculé le ${e}`,filterOff:"Retirer ce filtre",fSelected:"sélectionnés",funScreened:(e,a)=>`sociétés criblées${e?a?` du ${e} au ${a}`:` depuis le ${e}`:""}`,funKept:"retenues comme cibles sérieuses",funAnalyzed:"analysées en profondeur",funShown:"publiées sur votre page, tous filtres levés",sigStripMore:e=>`+ voir les ${e} autre${e>1?"s":""}`,boxCollapse:"Réduire",boxExpand:"Agrandir",memoReadHere:"📄 Lire le mémo ici",memoHideHere:"▴ Replier le mémo",sigChipTitle:(e,a)=>`Signalé ${e} · ${a}`,funPerWindow:(e,a)=>`Du ${e} au ${a}`,funPerAll:"Depuis le début",funAnalyst:"— l’équivalent d’environ 3 semaines d’un analyste.",funOfMarket:(e,a)=>`sur ~${e} sociétés de votre marché, soit ${a} %`,funScope:"Sourcing de votre thèse uniquement — vos codes d’activité, vos pays, vos angles. Aucune société d’un autre fonds n’est comptée ici.",funToday:e=>`dont ${e} aujourd’hui`,actTitle:"Activité des 30 derniers jours",actScreened:"criblées",actKept:"retenues",actToday:"aujourd’hui",fstatsShow:"Voir l’activité des 30 derniers jours",fstatsHide:"Masquer l’activité",sinceTitle:(e,a)=>`${e} nouvelle${e>1?"s":""} cible${e>1?"s":""} depuis votre dernière visite (${a})`,sinceSub:"arrivées depuis votre dernier passage — à parcourir en premier",sinceMore:e=>`+${e} autres`,sinceOut:e=>`${e} sortie${e>1?"s":""} de la liste`,morningDock:e=>e?`${e} criblées ce matin`:"Crible du matin",morningDockTitle:"Voir les sociétés criblées ce matin — quel qu’ait été le verdict.",morningList:"criblées ce matin",sigList:"signaux",sinceList:"nouvelles depuis votre dernière visite",sinceDock:e=>`${e} nouvelle${e>1?"s":""}`,sigDock:e=>`${e} ${e>1?"signaux":"signal"}`,newsDock:e=>`${e} actualité${e>1?"s":""}`,newsSince:e=>`depuis le ${e}`,newsDockHint:"Les articles du flux — tribunes, listes, récaps — sans société évaluable. « Extraire les sociétés » est le pont vers l’évaluation.",newsWord:"actualités — lecture, pas décision",identSyncConfirm:"Relancer le sourcing maintenant ? Un passage des moteurs prend quelques minutes.",plugAutoOn:e=>`⚡ Envoi automatique ACTIF (${e}) — chaque cible que vous validez part toute seule en séquence.`,plugAutoOff:"Envoi automatique inactif — valider une cible ne l’envoie nulle part.",plugCrm:"Créer les dossiers dans mon CRM",plugCrmHint:"Collez l’URL de webhook de votre outil : chaque décision y arrive aussitôt.",plugUrlPh:"https://hook.eu1.make.com/…",plugSave:"Enregistrer",plugSaved:"Webhook enregistré",plugTest:"Tester",plugTested:"Test envoyé",plugTestThrottled:"Déjà testé il y a moins de 5 s — rien n’est reparti.",plugRemove:"Retirer",plugRemoved:"Webhook retiré",plugMcp:"Claude & IA (MCP)",plugBulk:"Contacter mes cibles",plugBulkHint:"Voyez d’abord qui partirait : l’aperçu ne contacte personne.",plugBulkTabs:[["valides","Validées"],["call","À trancher"],["retenus","Retenues"]],plugBulkPreview:"👁 Aperçu",bulkArm:"📤 Envoyer pour de vrai",bulkNoDest:"Aucune destination enregistrée : renseignez d’abord votre outil ci-dessus.",bulkScope:"Ce qui part, c’est l’onglet entier côté serveur — pas la vue filtrée à l’écran.",bulkWarn:(e,a)=>`Vous allez contacter ${e} société${e>1?"s":""} via ${a}. C’est irréversible, et le serveur ne vérifie pas si elles ont déjà été contactées.`,bulkConfirm:e=>`Oui, envoyer via ${e}`,bulkCancel:"Annuler",bulkSending:"Envoi en cours…",bulkDone:(e,a,r)=>`${e} société${e>1?"s":""} envoyée${e>1?"s":""}. ${a} joignable${a>1?"s":""} sur LinkedIn seulement, ${r} sans email.`,bulkNone:"Aucune société n’avait d’email : rien n’a été envoyé.",bulkLocked:(e,a)=>`Envoyé le ${e} — ${a} société${a>1?"s":""}. Nouvel envoi possible dans 24 h.`,bulkPreviewFirst:"Lancez d’abord l’aperçu : il dit exactement qui partirait.",cdEvaluation:"Évaluation",cdConviction:"Conviction",cdAnalyse:"Analyse",cdSociete:"Société",cdContact:"Contact",cdSuivi:"Suivi",actMemoOf:e=>e==="detailed"?"📖 Lire le mémo détaillé":"📖 Lire le mémo éclair",memoLoading:"Lecture du mémo…",memoLoadErr:"Le mémo ne se laisse pas lire ici — ouvrez-le en pleine page.",memoUnfold:e=>`Déplier cette section (${e} Ko)`,cdEngagementHint:"Score d’activité du dossier : vos clics et demandes sur cette page, plus l’avancement de l’approche commerciale. À partir de 20, le dossier est marqué 🔥.",mdMindmap:e=>`Carte mentale — ce que fait ${e}`,mdContactKnown:"Décideur — coordonnées du cockpit",cdCrible:"au crible",cdMemo:e=>e?`après mémo ${e}`:"après mémo",cdScore:"Score",cdConvScore:"Conviction",cdVerdictDate:"Verdict du",cdSector:"Secteur",cdMarket:"Marché",cdTags:"Critères",dsFound:"D’où elle sort",cdQuery:"Recherche",cdSrc:"Source",cdAngleSrc:"Profil recherché",cdStage:"Stade",cdCountry:"Où",cdSite:"Site",cdLinkedin:"LinkedIn",cdAngle:"Angle",cdDetected:"Détectée le",cdName:"Dirigeant",cdEmail:"Email",cdPhone:"Téléphone",cdCeoStatus:"Votre décision",cdEngagement:"Engagement",qaTitle:"Décrire cette société",qaHint:"Lecture de son site, puis quatre blocs : à qui elle s’adresse, ce qu’elle vend, comment elle gagne de l’argent, et ce qu’il faut en retenir. Aucun verdict — le crible a déjà tranché.",qaRun:"📄 Décrire",qaBusy:"Lecture du site…",qaVP:"À qui, et pour quel problème",qaProduct:"Ce qu’elle vend",qaModel:"Comment elle gagne de l’argent",qaSummary:"À retenir",qaSources:e=>`${e} page${e>1?"s":""} lue${e>1?"s":""}`,qaQuota:"Plafond du jour atteint : réessayez demain.",qaEmpty:"Le site ne dit rien d’exploitable — rien n’a été inventé.",dsBtn:"🗂 Dossier comité",dsHint:"Un A4 par société : le verdict, l’identité, et — quand un mémo existe déjà — la synthèse, le SWOT, les chiffres. On ne lance jamais un mémo juste pour imprimer.",dsTitle:e=>`Dossier comité — ${e} société${e>1?"s":""}`,dsCap:(e,a)=>`Les ${e} premières sur ${a} : un comité ne lit pas ${a} pages.`,dsWhy:"Pourquoi cette société est devant vous",dsAnalysis:"Ce qu’elle fait",dsExec:"Synthèse exécutive",dsSwot:"SWOT",dsSwotS:"Forces",dsSwotW:"Faiblesses",dsSwotO:"Opportunités",dsSwotT:"Menaces",dsSyn:"Synergies chiffrées",dsPnl:"P&L — l’essentiel",dsCf:"Flux de trésorerie — l’essentiel",dsRoi:"ROI & sensibilité",dsReco:"La recommandation",dsPlan:"Plan d’action",dsAnnex:"Mémo complet (annexe) :",dsTableNote:"Tableau condensé — le tableau complet vit dans le mémo.",dsDecision:"Votre décision",dsEmpty:"Aucune société dans la sélection courante.",dsFoot:e=>`Sélection établie par Proplace pour ${e} — document interne, ne pas diffuser.`,covFunnel:"Votre marché, au crible",covScreened:e=>`${e} sociétés passées au crible`,covOf:e=>`sur ~${e} sociétés pertinentes`,covNoEst:"Votre marché adressable n’est pas encore chiffré : la couverture s’affichera dès qu’il le sera.",covPace:e=>`${e} sociétés criblées par jour`,covEta:e=>e<=0?"Votre marché est entièrement couvert.":e<60?`Couverture complète dans ~${e} jours, à ce rythme.`:`Couverture complète dans ~${Math.round(e/30)} mois, à ce rythme.`,covRate:"Rythme d’analyse",covRateHint:"Combien de sociétés retenues reçoivent un verdict argumenté chaque jour. À zéro, l’analyse est en pause.",covRateNow:e=>e<=0?"En pause":`${e} par jour`,covKept:"retenues",covAna:"analysées",covScopeAll:"sur le monde entier",covShown:"présentées ici",bulkReplayed:"Cet envoi avait déjà été enregistré : rien n’est reparti. Vos cibles n’ont été contactées qu’une fois.",bulkPending:"L’envoi précédent est encore en cours : rien n’a été renvoyé.",plugBulkResult:(e,a,r)=>`${e} partiraient par email · ${a} par LinkedIn · ${r} sans contact.`,memoAlertTitle:"Votre alerte mémo",memoAlertSub:"Recevez un email dès qu’un mémo de votre fonds est finalisé — avec son lien direct.",memoAlertToggle:"M’envoyer chaque mémo terminé",memoAlertEmail:"Destinataire",memoAlertSaved:"Enregistré ✓",memoAlertErr:"Échec d’enregistrement — réessayez",memoAlertSections:"Sections de l’email",memoAlertSec:[["swot","SWOT"],["action","Plan d’action"],["synergies","Synergies"],["quadrant","Quadrants (images)"],["verdict","Verdict de Stan"]],memoAlertPreview:"👁 Prévisualiser",memoAlertBtn:"Email à chaque mémo terminé",alertTabDaily:"Quotidien",alertTabWeekly:"Hebdomadaire",alertTabMarket:"Le marché",alertSections:"Sections de l’email",alertSec:[["pending","Dossiers à trancher"],["stats","Vos chiffres clés"],["autonomous","Décisions automatiques de Stan"],["market","Analyse de marché"],["sourcing","Votre sourcing du jour"]],alertSecSlow:"(plus long à générer)",alertSecNote:"Décocher l’analyse de marché rend l’aperçu instantané.",alertPreview:"👁 Prévisualiser l’email d’aujourd’hui",alertPreviewWeekly:"👁 Prévisualiser le bilan",alertSubject:"Objet :",alertPreviewBusy:"Aperçu en cours de génération, réessayez dans quelques secondes.",alertPreviewRetry:e=>`Génération en cours — nouvel essai dans ${e} s…`,alertPreviewFail:"Aperçu indisponible pour l’instant — décochez « Analyse de marché » pour l’obtenir tout de suite.",alertPreviewEmpty:"À cet instant : rien à trancher — l’email ne partira pas.",alertTest:"✉ M’envoyer un test",alertTestOk:e=>`✓ Envoyé à ${e} — vérifiez aussi vos spams/promotions.`,alertTestHint:"N’affecte pas l’envoi quotidien.",alertBtnPrevBusy:"⏳ Fabrication…",alertBtnTestBusy:"⏳ Envoi…",alertPreviewWait:e=>`Fabrication de votre email — ${e} s. Le premier aperçu de la journée demande jusqu’à 90 s : il est rendu pour de vrai, pas simulé. Vous pouvez laisser la fenêtre ouverte.`,alertTestWait:e=>`Envoi en cours — ${e} s. L’email est d’abord fabriqué, puis expédié dans votre boîte. Ne refermez pas la fenêtre.`,csMoved:(e,a)=>`${e} → ${a} · la ligne rejoint l’onglet correspondant.`,sinceLabel:e=>e?`nouvelles depuis votre visite du ${e}`:"nouvelles depuis votre dernière visite",sinceChip:"nouvelles",sinceSince:e=>`depuis le ${e}`,alertSaving:"Enregistrement…",alertSavedShort:"✓ Enregistré",alertReadOnly:"Vue de démonstration : ces réglages sont en lecture seule.",alertWeeklySub:"Un email par semaine : le bilan de la semaine et ce que votre thèse a appris de vos décisions.",alertWeeklyOn:"📬 Recevoir votre bilan de la semaine",alertWeeklyWhen:"Jour et heure d’envoi (Paris)",alertDow:["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"],alertLoadError:"Impossible de charger vos préférences.",alertThrottled:"Trop vite — attendez quelques secondes et refaites le réglage.",alertInactive:"Votre accès n’est pas encore actif — parlons-en.",alertNoLead:"Destinataire à définir avec nous.",exportViewTitle:"CSV de la vue filtrée",exportViewDesc:e=>`Les ${e} lignes de votre sélection actuelle — onglet, facettes, recherche et fenêtre comprises. Séparateur « ; », prêt pour Excel.`,exportViewBtn:"Télécharger",exportViewDone:e=>`${e} ligne${e>1?"s":""} exportée${e>1?"s":""}`,printTitle:"Imprimer la sélection",printDesc:e=>`Les ${e} lignes à l'écran, en A4 : pour qui, à quelle date, l'entonnoir chiffré, puis la liste. La carte, les filtres et les boutons ne sont pas imprimés.`,printBtn:"Imprimer",exportViewHead:"Société|Statut|Verdict Stan|Score|Pays|Secteur|Étape post-OUI|Contact|Email|Lien mémo|Date|Raison",tourStart:"Lancer le guide pas à pas",tourIntro:"La visite guidée couvre toute la page de A à Z, sur la vraie page : chaque étape éclaire l’endroit exact — de votre thèse à votre alerte email.",tourStep:(e,a)=>`Étape ${e}/${a}`,tourPrev:"← Précédent",tourNext:"Suivant →",tourDone:"Terminer",tourClose:"Fermer",tourPlayTitle:"Visite guidée",ahaATitle1:"1 dossier attend votre décision",ahaATitleN:e=>`${e} dossiers attendent votre décision`,ahaABody:"OUI = on prépare l’approche ; NON = on affine le tir.",ahaABtn:"Trancher maintenant →",ahaBTitle:"Un mémo complet vous attend",ahaBBody:e=>`${e} a déjà son mémo d’analyse — lisible en 3 minutes.`,ahaBBtn:"Ouvrir le mémo →",ahaRetTitle:e=>e===1?"1 société retenue vous attend":`${e} sociétés retenues vous attendent`,ahaRetBody:"Le tri de Stan est fait — chaque retenue a sa fiche, sa carte et son signal.",ahaRetBtn:"Voir les sociétés retenues →",ahaEvalTitle:e=>e===1?"1 société attend votre évaluation":`${e} sociétés attendent votre évaluation`,ahaEvalBody:"Rien n’est encore retenu : c’est la première pile à dérouler. Une société à la fois, Stan fait le crible.",ahaEvalBtn:"Ouvrir la pile à évaluer →",loadMsgs:["Réveil des moteurs de sourcing…","Chargement de vos cibles…","Les cartes et les signaux arrivent…","Tri selon votre thèse…","Encore un instant — le premier chargement est le plus long."],ahaCTitle:"Vos premières cibles sont là",ahaCBody:"Dites-nous si ça vise juste — chaque retour affine la machine.",ahaCBtn:"Voir mes critères →",howto:[["**Réglez votre ciblage.** Ouvrez « Vos critères » : c’est votre thèse — ce que vous cherchez, ce que vous écartez. Corrigez-la en langage naturel dès que quelque chose cloche ; le sourcing du lendemain matin s’y réaligne tout seul.","crit"],["**Sourcez un maximum de cibles.** Évaluez une société en collant son nom ou son site — ou une liste entière —, et regardez vos moteurs ratisser le web avec vos réglages.","eval"],["**Faites avancer chaque cible dans le tunnel, de gauche à droite** — Évaluées › Retenues › Analysées › À trancher › Validées › Écartées. Sur chaque carte, « Votre statut » la classe en un clic ; votre note « pourquoi » reste visible. Les 👍/👎 ne classent jamais : ils affinent votre thèse.","tab1"],["**Tranchez les « À trancher ».** Stan vous laisse le dernier mot : OUI (Validée) ou NON (Écartée), avec un mot sur le pourquoi.","tab3"],["**Comprenez comment Stan classe vos cibles.** Votre statut prime toujours sur le verdict de Stan. Le pont entre les deux est expliqué dans « Vos critères » : Retenu ↔ MATCH, Analysé ↔ CONSIDER · MONITOR, À trancher ↔ CALL, Écarté ↔ NO MATCH · PASS…","crit"],["**Concentrez-vous sur les Validées** — et menez chaque dossier jusqu’au bout du closing !","tab4"],["**Faites sortir tout ça de la page.** Le bouton 🔌 la branche sur vos outils : envoyer vos cibles dans votre séquence d’emailing, créer les fiches dans votre CRM, enrichir les dossiers que vous y avez déjà.","plug"],["**Ne revenez que si ça vaut le coup.** Le bouton 🔔 règle deux emails : le quotidien des dossiers à trancher, et le bilan de la semaine.","alert"]],fhintLive:"Ce qui bouge en ce moment sur votre marché — cliquez une vignette pour ouvrir la source.",fhintGoal:"Ce que les moteurs ont sourcé au dernier passage, et ce qu’il reste à évaluer.",fhintSrcEng:`Chaque carte est un **moteur** : une requête qui ratisse une source précise — bases de données, presse spécialisée, annonces, signaux — avec vos réglages.
+· **Sociétés trouvées** : sa production sur la fenêtre choisie (1, 7, 30 jours ou 90 jours) — dont MATCH et écartées, deux nombres cliquables qui listent les sociétés.
+· **Vos réglages** : ce que votre thèse impose à ce moteur.
+· **✎ Ajuster ce moteur** : écrivez la correction en français — le sourcing du lendemain repart réaligné.`,fhintDecide:`OUI → Validées (à contacter). NON → Écartées.
+· Les deux boutons sont sur la ligne : pas besoin de déplier.
+· Ajoutez un mot sur le POURQUOI — c’est lui qui affine la thèse, bien plus que le clic.`,fhintMemoDeep:`Stan a classé ce dossier CALL : il pense que ça mérite votre temps.
+· Le mémo détaillé (~35-40 min) creuse avant que vous tranchiez.
+· Si un mémo est déjà prêt, le bouton dit « Lire » — rien à relancer.`,fhintStage:`Chaque Validée porte son pipeline : Contactée › A répondu › RDV › LOI › Signée.
+· Un clic met le stade à jour.
+· Sans réponse depuis quatre jours, la ligne vous le signale d’elle-même.`,fhintAppr:`Quatre messages espacés — J0, J2, J4, J6 — écrits sur ce dossier précis, en e-mail ou en LinkedIn.
+· Vous les modifiez avant d’envoyer.
+· Rien ne part tout seul : vous copiez, ou vous ouvrez votre email.`,fhintCampout:"C’est le point 1 de 🔌 Connecter : chaque Validée part dans votre outil d’emailing avec prénom, email, société, mémo, LinkedIn — prête à lancer une séquence.",fhintAddcrm:"C’est le point 2 de 🔌 Connecter : chaque dossier Validé est poussé dans votre CRM à la seconde du OUI — plus rien à retaper, rien de perdu entre deux exports.",fhintMemoDepths:`Le mémo éclair (~15 min) répond « est-ce que ça vaut mon temps ? » — il est lancé pour vous sur les retenues.
+· Le mémo détaillé (~35-40 min) creuse un dossier que vous voulez trancher : marché, concurrence, chiffres, risques.
+· Le compteur ci-dessus dit combien partent par jour et ce qui attend.`,fhintMHyp:`C’est ce que Stan a compris de votre stratégie — le crible, les profils et le classement en découlent tous.
+· Un mot vous gêne ? Corrigez-la en français plus bas, et tout se réaligne.`,fhintMProf:`Les familles de cibles que vos moteurs traquent en continu.
+· Chaque profil se déplie : ce qu’il cherche, ce qu’il écarte.
+· C’est le cadre exact que le sourcing ratisse.`,fhintMGate:`Chaque société passe ces critères, dans l’ordre.
+· Les raisons « STEP A, C… » que vous lisez sur les lignes renvoient ici.
+· Une fois retenue, Stan creuse et tranche : CALL, CONSIDER, MONITOR ou PASS.`,fhintTabAna:`Les dossiers dont le mémo est déjà lancé.
+· Ouvrez-en un pour lire le mémo et décider la suite.`,fhintTabValid:`Votre OUI.
+· Préparez l’approche, faites avancer le pipeline, gardez le suivi en mouvement.`,fhintTabRej:`Mises de côté pour l’instant.
+· Changé d’avis ? Repêchez-en une dans le tunnel — rien n’est perdu.`,fhintRank:`Le n°1 est votre priorité du moment.
+· D’abord vos CALL à trancher, puis les mémos déjà lancés, puis le reste par conviction.
+· Chaque onglet du tunnel dit où en est un dossier.`,fhintImprove:`Chaque semaine, Stan fait évoluer votre thèse — appliquée le lundi.
+· Vos 👍/👎 et vos notes OUI / NON affinent la sélection suivante encore plus vite.
+· « Vos critères » vous montre ce qu’il a compris, et vous laisse le corriger.`,fhintGoalAt:e=>`Dernier passage des moteurs : **${e}**.
+Cette barre dit ce qu’il a rapporté, et combien de sociétés attendent encore d’être évaluées.`,fhintDec:"La décision de Stan, dite et justifiée : c’est à quoi renvoient les « STEP A, C… ».",fhintStatus:"Votre statut prime toujours sur le verdict de Stan — et il s’enregistre aussitôt.",fhintFunnel:`Chaque cible avance **de gauche à droite** : Évaluées › Retenues › Analysées › À trancher › Validées › Écartées.
+· Cliquez un onglet pour n’afficher que cette étape.
+· « Votre statut », sur la fiche, fait avancer une cible en un clic.
+· Vos 👍 / 👎 ne classent jamais : ils affinent votre thèse.`,fhintChips:`Sur chaque ligne, l’état se lit sans rien ouvrir.
+· **MATCH · NO MATCH** — le crible de Stan sur votre thèse.
+· **CONSIDER · MONITOR · CALL · PASS** — le verdict du mémo, quand il existe.
+· **Mémo à lancer** — la société est retenue, son mémo n’a pas encore tourné.`,fhintMemo:`L’onglet **Mémo** porte l’analyse : la synthèse, puis le mémo complet en pleine page.
+· « Ouvrir le mémo ↗ » affiche le document tel qu’il a été écrit.
+· « Mémo détaillé » relance une analyse approfondie — **1 crédit**, une société à la fois.`,fhintIdent:`Tout en haut : le nom de votre fonds, et l’heure à laquelle cette page a été actualisée.
+· À droite, vos raccourcis — export, outils, alertes, relance du sourcing.
+· Le **▶** relance cette visite quand vous voulez.`,fhintCover:`Combien de votre marché vous avez déjà regardé.
+· Le **dénominateur** est chiffré à la création de votre thèse : vos codes d’activité, comptés sur les registres officiels (SIRENE en France, Eurostat en Europe).
+· Le **numérateur**, ce sont vos sociétés criblées. Cliquez pour voir le détail du calcul.`,fhintEngine:`Le rythme auquel vos mémos sont écrits.
+· **N par jour** : ce que le moteur s’autorise à lancer — réglable dans la couverture.
+· **En attente** : les retenues dont le mémo n’a pas encore tourné. Cliquez pour voir la file.
+· Un mémo = **1 crédit**, une société à la fois : rien ne part jamais en lot.`,tourToday:"ce matin",tourNoRun:"aucun passage enregistré",tourT:{ident:"Le bandeau de votre fonds",cover:"Votre couverture du marché",engine:"Le moteur de mémos",live:"Le direct",goal:"Le dernier sourcing",engines:"Vos moteurs de sourcing",decide:"OUI ou NON — le dernier mot",memoDeep:"Le mémo détaillé, avant de trancher",stage:"Après le OUI, le suivi",appr:"Le premier message, écrit pour vous",campout:"Créer une campagne outbound",addcrm:"Ajouter au CRM",memoDepths:"Deux profondeurs de mémo",mHyp:"Tout part de cette hypothèse",mProf:"Vos profils de cibles",mGate:"Le crible — Retenue ou Écartée",tabAna:"Analysées",tabValid:"Validées",tabRej:"Écartées",rank:"L’ordre de la liste est un classement",improve:"Stan s’améliore tout seul — et vous l’accélérez",funnel:"Le tunnel",tuto:"L’étape en cours",demand:"Évaluer une société",deals:"Les deals du jour",news:"La veille du jour",chips:"Les statuts, sur la ligne",dec:"Pourquoi cette décision",memo:"Le mémo détaillé",status:"Votre statut",learn:"Vos 👍 / 👎",tools:"Brancher vos outils",exportT:"Exporter en CSV",alerts:"Vos alertes email",crit:"Le paramétrage de Stan"},fhintDeals:"Les opérations M&A et levées de vos secteurs, aujourd’hui. Un clic en tire les sociétés à évaluer — le même geste que coller un article.",fhintNews:"Les articles retenus pour VOTRE thèse. Un clic en tire une carte mentale et les sociétés à évaluer.",fhintExport:"Sortez vos cibles au format CSV — la sélection courante, avec ses colonnes, prête pour votre tableur ou votre CRM.",fhintAlerts:"Réglez ce qui vous arrive par email : le brief du matin, le bilan de la semaine, et l’alerte quand un mémo est prêt.",csLabel:"Votre statut :",csKept:"Retenu",csAnalysed:"Analysé",csPending:"À trancher",csValidated:"Validé",csOut:"Écarté",csYes:"✓ Oui",csNo:"✗ Non",csSaved:"✓ enreg.",csNoteSaved:"note ajoutée ✓",csNoteOk:"OK",csNotePh:"Pourquoi ? (une ligne)",csAnaConfirm:"Aucun mémo sur ce dossier — le passer en Analysé quand même ?",whySend:"Envoyer",whyYesPh:"Pourquoi ce OUI ? (une ligne — ça affine votre thèse)",whyNoPh:"Pourquoi ce NON ? (une ligne — ça affine votre thèse)",stgLabel:"Votre avancement :",stg:[["todo","○ À faire"],["sent","✉ Contactée"],["replied","💬 A répondu"],["meeting","🤝 RDV"],["loi","📄 LOI"],["signed","✅ Signée"],["lost","✖ Perdue"]],j4Badge:e=>`⏰ Sans réponse depuis ${e} j — relancer ?`,actRepeche:"↩ Repêcher",actRegen:"↻ Régénérer le mémo",actConn:"🔌 Envoyer",actConnHint:"Mettre cette société en séquence, ou la pousser dans votre CRM.",memoRegenAsk:e=>`Refaire le mémo détaillé de ${e} ? L’actuel sera remplacé, et cela consomme un crédit.`,actErr:"Envoi impossible — réessayez dans un instant.",actNotPersisted:"Impossible d’enregistrer ce statut sur ce dossier.",decidedYes:e=>`${e} validée — place à l’approche`,decidedNo:e=>`${e} écartée`,repeched:e=>`${e} repêchée — de retour dans Retenues`,critHypTitle:"Notre hypothèse sur votre stratégie",critHypSub:"Toute la sélection en découle. Si elle est à côté, corrigez-la ci-dessous — la recherche est réalignée et vous recevez une sélection corrigée.",critProfilsTitle:"Vos profils de cibles",critProfilsSub:"Les familles de cibles que la machine traque en continu — chaque profil se déplie.",critLookFor:"Ce que nous recherchons",critRuleOut:"Ce que nous écartons",critGateTitle:"Le crible de Stan — comment il décide Retenu / Écarté",critGateSub:"Chaque société est confrontée à ces critères. C’est à eux que renvoient les « STEP A, C… » des raisons affichées sur les lignes.",rubricTitle:"Comment Stan décide l’analyse (CALL / CONSIDER / MONITOR / PASS)",rubricSub:"Une fois retenu, Stan approfondit et tranche. Voici ce qui fait pencher la balance.",qvTitle:"Les verdicts de Stan — où va chaque dossier",qv:[["CALL PENDING","le choix n°1 de Stan : à trancher OUI/NON maintenant → onglet « À trancher »."],["CALL YES","vous avez tranché OUI — le dossier rejoint « Validées », place à l’approche."],["CALL NO","vous avez tranché NON — le dossier rejoint « Écartées »."],["CONSIDER","solide, mérite un regard plus attentif → onglet « Analysées »."],["MONITOR","à surveiller, pas prioritaire pour l’instant → onglet « Analysées »."],["PASS","non pertinent pour le moment → onglet « Écartées »."]],brTitle:"Le routage automatique — où le verdict de Stan envoie chaque dossier",br:[["Retenu","MATCH — retenue au sourcing, mémo à venir → onglet « Retenues »"],["Analysé","CONSIDER · MONITOR — mémo fait, pas de call → onglet « Analysées »"],["À trancher","CALL PENDING — Stan propose un call, votre OUI/NON est attendu → onglet « À trancher »"],["Validé","CALL YES — vous avez tranché OUI → onglet « Validées »"],["Écarté","NO MATCH · PASS · CALL NO — refus de Stan, ou votre NON sur un call → onglet « Écartées »"]],brNote:"Un CALL passe par 3 états : CALL PENDING (le mémo est TERMINÉ, Stan propose le call — votre décision est en attente) › CALL YES (vous validez) › CALL NO (vous écartez). PENDING ne veut jamais dire « en cours d’analyse » : l’analyse est déjà faite.",vt:{MATCH:"MATCH — retenu : correspond à vos critères.","NO MATCH":"NO MATCH — écarté par vos critères.","CALL PENDING":"CALL — le choix n°1 de Stan : à trancher OUI/NON maintenant.","CALL YES":"CALL YES — vous avez tranché OUI : le dossier rejoint « Validées ».","CALL NO":"CALL NO — vous avez tranché NON : le dossier rejoint « Écartées ».",CONSIDER:"CONSIDER — solide, mérite un regard plus attentif.",MONITOR:"MONITOR — à surveiller, pas prioritaire pour l’instant.",PASS:"PASS — non pertinent pour le moment."},vKept:"Retenu",vOut:"Écarté",learnLine:"Comme sur Netflix, chaque 👍/👎 affine ce que Stan vous montre ensuite — vous jugez, il apprend.",learnLink:"Ajuster mes critères →",funnelHint:"Retrouvez ici toutes vos cibles sourcées automatiquement dans <b>évaluées</b> puis passez celles que vous souhaitez contacter dans <b>validées</b>.",fhintClose:"Masquer cette aide",queueTitle:"File de traitement",queueDone:(e,a)=>`<b>${e} / ${a}</b> mémos générés`,queueTomorrow:"À venir — ordre projeté, recalculé chaque matin",queueToday:"Analysés aujourd’hui",queueRate:"Rythme quotidien — appliqué dès demain matin",queueRetry:"Relancer",queueDelete:"Retirer",queueEmpty:"Aucun mémo en file pour l’instant.",exportTitle:"Exporter votre sélection",exportLead:"L’onglet affiché est la sélection. Aucune case à cocher.",exportCsv:["📄","CSV","Une ligne par société — verdict, angle, mémo, contact."],exportSheet:["📊","Tableur","Formule à coller : la table se met à jour toute seule."],exportLive:["🔗","Lien vivant","Une URL JSON, relue à chaque appel. Jamais d’export figé."],exportXlsx:["📥","Excel","Le classeur complet, contacts inclus."],exportWebhook:["⛓","Webhook","Chaque cible validée part dans votre outil."],exportCopy:"Copier",exportCopied:"Copié !",exportOpen:"Ouvrir",exportKeyWarning:"Ces liens contiennent la clé d’accès de cette page : partagez-les avec la même prudence.",plugTitle:"Connecter cette page à vos outils",plugWebhook:"Webhook CRM sortant",plugWebhookHint:"Chaque changement de statut part vers cette URL (https).",plugConfigured:"Configuré",plugMcpHint:"Ajoutez Proplace à votre client MCP : votre deal flow devient interrogeable en langage naturel.",coverTitle:"Couverture de votre marché",coverBody:(e,a)=>`<b>${e}</b> sociétés passées au crible sur un marché estimé à <b>~${a.toLocaleString("fr-FR")}</b>. L’estimation a été établie avec votre Corporate Developer et reste révisable à tout moment.`,coverScreened:e=>`${e} passées au crible`,alertTitle:"Vos alertes email",alertDaily:"Email du matin (Daily 5)",alertDailyHint:"Chaque matin : les dossiers à trancher, les stats, le marché.",alertHour:"Heure d’envoi (Paris)",alertDays:"Jours",alertWeekdays:"Jours ouvrés",alertEveryday:"Tous les jours",alertSaved:"Préférences enregistrées",critTitle:"Le paramétrage de Stan",critAngles:"Vos angles d’acquisition",critMemoKinds:"① Instantané · ~15 min — analyse, synergies, verdict. ② Détaillé · ~35-40 min — étude de marché, quadrant concurrentiel, scénarios.",tutoTitle:"Prise en main",tutoSteps:[["Votre thèse","Stan a déduit vos angles de votre présence en ligne. Vérifiez-les : tout en découle."],["Le crible","Chaque nuit, il confronte le marché à vos critères : MATCH ou NO MATCH."],["Retenues","Les MATCH atterrissent ici, sans mémo. C’est votre file de travail."],["Analyser","Un clic produit le mémo : synergies chiffrées, angle décisif, verdict."],["À trancher","CALL passe ici. Vous répondez OUI ou NON — vos OUI affinent Stan."],["Le rythme","Réglez le nombre de mémos par jour. La file se vide en ordre de priorité."]],similar:"🧬 Similaires",similarBusy:"🧬 Recherche…",similarNote:"Les retenues entrent dans votre liste au prochain rafraîchissement.",similarNone:"Aucune similaire trouvée (5 recherches par jour).",approachChannel:"Canal",loadingV2:"Chargement du cockpit…",updatedAt:e=>`actualisée le ${e}`,backV1:"← interface classique",identPause:"en pause",identPauseTitle:"Rythme à 0 — aucun mémo ne se lance. Remontez le rythme pour relancer.",identUpdatedAt:e=>`actualisée le ${e}`,critChatTitle:"Corriger la thèse en langage naturel",critChatHint:"Écrivez votre correction — le moteur l’applique ou vous pose sa question. Le sourcing du lendemain est réaligné sans intervention.",critChatPh:"Ex. : « écarte les sociétés de moins de 10 personnes »…",critChatSend:"Appliquer",critChatRunning:"⏳ Le moteur travaille — vous pouvez fermer, la correction survit.",critThumbsTitle:"📊 Journal de vos pouces",critThumbsEmpty:"Aucun pouce pour l’instant — 👍/👎 sur les lignes apprennent à Stan vos goûts.",actOnboard:"🚀 Onboarder ce lead",actOnboardTitle:"Déclenche l’onboarding complet A→Z de ce prospect (page, thèse, sourcing)",onboardSent:e=>`Onboarding lancé pour ${e} — suivez l’avancement dans le cockpit`,rsOpen:"🔎 Extraire les sociétés d’un article",rsOpenHint:"Collez l’URL d’un article ou d’une vidéo : Stan en sort les sociétés, comme dans le LIVE.",feedDeals:"🤝 Deals du jour",feedNews:"📰 Veille du jour",feedSent:e=>`${e} société${e>1?"s":""} ajoutée${e>1?"s":""} dans À évaluer`,feedExtractReady:"Article collé dans Coller une URL — cliquez Extraire les sociétés.",feedExtracting:"Lecture de l’article — les sociétés iront dans À évaluer.",feedDealsH:"D’où ça vient — les M&A et levées du LIVE, déjà filtrés sur votre thèse.",feedDealsHow:"Un article → Extraire les sociétés (Stan les verse dans À évaluer). Une société déjà nommée → Évaluer.",feedPasted:e=>`${e} est collé dans la barre — cliquez Évaluer.`,feedNewsH:"D’où ça vient — la veille d’articles que Stan a retenue aujourd’hui pour VOTRE thèse (même source que le LIVE).",feedNewsHow:"« Extraire les sociétés » lit l’article et verse les cibles dans À évaluer, avec la liste de ce qui a été trouvé.",feedWaitDeals:"Lecture des opérations du jour, filtrées sur votre thèse…",feedWaitNews:"Lecture de la veille retenue pour votre thèse…",feedPutEval:"Évaluer",feedPutAll:"Tout mettre dans À évaluer",feedEmptyDeals:"Aucune opération récente dans vos secteurs aujourd’hui — revenez demain, ou collez un article.",feedEmptyNews:"Aucun article retenu pour votre thèse aujourd’hui — revenez demain, ou collez un lien.",feedAnalyse:"🧠 Analyser",feedNew:e=>`${e} nouveau${e>1?"x":""}`,feedHint:"Nouveau depuis votre dernière visite",feedOpen:"Ouvrir la source ↗",feedFold:"Replier ↑",feedExpand:"Agrandir ↓",feedShrink:"Réduire ↑",rsUrlPh:"coller l’URL d’un article, d’une vidéo ou d’une note",rsTextPh:"Coller ici l’article complet",rsOr:"ou",rsGo:"🔎 Résumer et rechercher des sociétés",rsHint:"Résumé · carte mentale · sociétés",rsRunning:"Lecture en cours…",rsRunningVid:"Transcription de la vidéo…",rsElapsed:e=>`${e} s`,rsNeed:"Collez une URL, ou le texte complet de l’article.",rsFound:e=>e?`${e} société${e>1?"s":""} trouvée${e>1?"s":""} dans ce contenu.`:"Aucune société nommée dans ce contenu.",rsLink:"Voir la page publiée ↗",rsPublishing:"Publication de la fiche…",rsPublishFail:"Fiche produite, page non publiée",rsTags:"Tags",rsClose:"Fermer",rsMindmap:"Carte mentale",rsMmTip:"Cliquez une branche ou une catégorie pour l’ouvrir ou la replier.",rsMmCats:"Catégories",rsArticle:"Lecture de l’article",rsSource:"Source ↗",rsSaving:"Enregistrement…",rsSaved:"✓ Enregistrée dans votre cockpit",rsSavedIn:e=>`✓ Enregistrée dans le carnet de ${e}`,rsSavedOpen:"Ouvrir le carnet →",rsSaveFail:"Fiche produite, NON enregistrée",rsArchOpen:e=>`🗂 Carnet (${e})`,rsArchTitle:"Carnet de recherches",rsArchBack:"← toutes les recherches",rsArchLoading:"Chargement…",rsArchEmpty:"Aucune recherche enregistrée pour l’instant.",rsArchGone:"Cette recherche n’est plus disponible.",rsRowCounts:(e,a)=>`${e} citée${e>1?"s":""} · ${a} à évaluer`,rsPub:"Publiée",rsPriv:"Non publiée",rsCited:"Sociétés citées",rsCitedHint:"Toutes les sociétés nommées dans ce contenu.",rsMatch:"Sociétés qui pourraient correspondre",rsMatchHint:"Suggérées à partir de la thèse du contenu — elles n’y sont pas forcément nommées.",rsNoteRead:"Lu dans l’article",rsNoteFallback:"Page illisible (paywall ou trop courte). Sociétés lues dans le titre :",rsNoteNone:"Page illisible (paywall ou trop courte), et le titre ne nomme aucune société. Collez l’article ou ouvrez la source.",rsNoteCited:"Toutes les sociétés trouvées :",rsNoteMatch:"Pourraient correspondre à la thèse :",rsNoteNoMatch:"Aucune correspondance nette à la thèse — les sociétés citées sont versées dans À évaluer pour que vous tranchiez.",rsNoteAdded:e=>e?`${e} ajoutée${e>1?"s":""} dans À évaluer, ci-dessous.`:"Déjà dans À évaluer.",rsEvalOne:"⚡ Évaluer",rsAddAll:e=>`＋ Ajouter les ${e} à la liste`,rsNoCompanies:"Aucune société dans ce contenu.",rsConclusion:"Ce que ça implique",rsCriteria:"Critères de sourcing",rsSources:"Pour creuser",groupEngine:"Moteur",groupNone:"Rien",browse:e=>`Parcourir les ${e}`,chainAll:e=>`Évaluer les ${e}`,chainHint:"selon votre thèse, l’une après l’autre",winMenu:"Période",datesShort:["Aujourd’hui","7 jours","30 jours","Tout"],colCompany:"Société & description",grpCount:(e,a)=>`${e} à envoyer sur ${a} sourcées`,emptyTab:"Aucune cible dans cet onglet",emptyScope:"Aucune société dans ce périmètre",emptyWin:"La fenêtre de dates y est peut-être pour quelque chose.",emptyWinBtn:"Voir sur toute la période",emptyFilters:e=>`${e} filtre${e>1?"s":""} actif${e>1?"s":""}`,emptyFiltersBtn:"↺ Tout effacer",privLink:"🔒 Lien privé — ne le partagez qu’avec votre équipe.",fitTitle:"Cette thèse colle-t-elle à ce que vous voulez ?",fitSub:"Un clic et une phrase. C’est ce qui rend la machine vôtre — plus que n’importe quel avis sur une société.",fitYes:"Oui, c’est ça",fitPartial:"En partie",fitNo:"Pas vraiment",fitPh:"ex. viser 20–200 personnes · retirer le leisure · ajouter les connecteurs ERP…",fitSend:"Envoyer",fitSaved:"Réponse enregistrée ✓",fitDone:"✓ LA RÉPONSE DONNÉE",fitEdit:"Modifier ma réponse",fitKo:"Envoi impossible — réessayez.",refreshRun:"Actualisation en cours…",refreshKo:"Actualisation impossible — réessayez dans un instant.",refreshDone:(e,a)=>`Actualisée ✓ · +${e} nouvelle${e>1?"s":""} · −${a} sortie${a>1?"s":""}`,refreshSame:"Actualisée ✓ — aucun nouveau dossier.",refreshSlow:"La republication prend plus longtemps que prévu — elle continue de son côté, revenez dans quelques minutes.",fitSeen:"Votre réponse est lisible par Proplace et par quiconque ouvre ce lien : elle porte sur la thèse, pas sur vos données.",freshBan:"🆕 Le sourcing a tourné depuis que vous avez ouvert cet écran.",freshGo:"Recharger la liste",thumbWhyUpPh:"Ce qui vous a plu — une ligne suffit (facultatif)",thumbWhyDnPh:"Ce qui n’allait pas — une ligne suffit (facultatif)",alertRules:"Un seul email par jour, et rien du tout les jours sans nouvelle société : pas de mail vide. Il part dans la langue de cette page.",rowSite:"Site",rowLi:"LinkedIn",rowMail:"Écrire",rowTel:"Appeler",contWorld:"Monde",evalGoOn:e=>`⚡ Évaluer ${e}`,chromeEval:"Évaluer",chromeFilt:"Filtres",chromeBoth:"Les deux",rowExtract:"🔎 Extraire les sociétés",toSendCtx:(e,a)=>`sur ${e} dans l'édition${a>0?` (${a} sans société identifiable)`:""}`,grpCard:"la carte du jour",grpMa:"Opérations M&A",grpLev:"Levées de fonds",grpNews:"Actualités",grpNom:"Actualités · Nominations",grpNewsOther:"Actualités · Autres",grpHire:"Actualités · Recrutements",edLabel:"dans l'édition du jour",edSplit:(e,a)=>`⚡ ${e} évaluable${e!==1?"s":""}${a>0?`  ·  🔎 ${a} à explorer`:""}`},Rl={plabels:["To screen","Kept","Analyzed","To decide","Approved","Ruled out","Favorites","Screened"],phelp:["Everything STAN ran through the screen on this window: every company judged against your criteria, kept or discarded automatically.","STAN kept these companies against your criteria, decisions justified. WE verify its picks — discard, validate, or launch an analysis on the uncertain ones.","STAN’s memos, reviewed by US: quantified synergies, argued verdict. Validate the ones to contact, set “to decide” where you hesitate.","YOUR move: the best targets, presented on Monday by your Corporate Developer. Call YES or NO — your yeses move to Validated.","Your YESES — the shortlist to contact. WE prepare the approach, or engage it on your behalf (Enterprise plan).","Discarded by STAN or by YOU. Every NO sharpens Stan’s criteria. Recover one anytime.","Your pins, any status.","View: everything Stan has ruled on."],tuto:{0:{p:"Arrived through the engines, not screened yet.",a:"⚡ Screen all"},1:{p:"MATCH at screening, no memo. Launch the analysis: it routes them to Analyzed or To decide.",a:"⚡ Analyze selection"},2:{p:"Memo produced, CONSIDER or MONITOR verdict. Promote a file to reach the CEO same day.",a:"↑ Promote to To decide"},3:{p:"CALL verdict: your YES or NO is expected on each file.",a:null},4:{p:"Your YES list. Stan drafts the outreach sequence, you approve and send.",a:"✉ Prepare outreach"},5:{p:"Screened out, or PASS after memo. Any file can be rescued at any time.",a:"↩ Rescue selection"},6:{p:"Targets you pinned by hand, any status.",a:null},7:{p:"Everything Stan has ruled on — the full pool.",a:null}},tutoPending:(e,a,r)=>`<b>${e} Stan CALL${e>1?"s":""}</b>, <b>${a} promoted by you</b>. <b>${r} awaiting answer.</b>`,morningThesis:(e,a,r)=>`This morning, <b>${e}</b> compan${e===1?"y":"ies"} screened by your engines`+(typeof r=="number"?`, <b>${r}</b> kept.`:".")+(a?` <b>${a}</b> awaiting your evaluation.`:' <span class="ok">All screened.</span>'),morningEnginesTitle:"Your engines are tuned to YOUR thesis: activity codes, countries, acquisition angles, exclusion criteria. Only the news watch starts from a sweep shared across funds — but every deal it surfaces is then screened against your criteria, and only enters here if it passes.",morningLast:(e,a,r)=>`Engines last ran on <b>${r}</b>: <b>${e}</b> compan${e===1?"y":"ies"} sourced.`+(a?` <b>${a}</b> still to screen.`:' <span class="ok">All screened.</span>'),morningEval:e=>`▶ Work through them (${e})`,identTitle:e=>`Targets for ${e}`,identCoverage:"Market coverage",identCoverageOf:(e,a)=>`<b>${e}</b> of ~${a.toLocaleString("en-US")}`,identEngine:"Memo engine",identPerDay:"memo/day",identEtaDays:e=>e<=0?"queue already cleared":`queue cleared in ${e} day${e>1?"s":""}`,analyseLock:"Analyse all · Enterprise",analyseLockHint:"Analysing the whole selection at once fires several memos in parallel. The Enterprise plan (verdict within 24h) allows it; on Standard and trial, analyse one row at a time.",feedToEval:"→ To evaluate",feedToExtract:"Paste URL",identPending:e=>`→ ${e} queued`,identPendingWait:"→ reading the queue…",identExport:"Export — CSV, spreadsheet, live link",identPlug:"Connect this page to your tools",identBell:"Your email alerts",identSync:"Re-run sourcing",identSyncDone:"Sourcing relaunched — engines are back on your thesis",identSearch:"Search a target",identHelp:"Help",identTuto:"Getting started",toolUndo:"Undo last decision",toolReset:"Reset filters",toolSort:"Sort the list",toolTuto:"Getting started",toolCrit:"Stan’s configuration",undoDone:e=>`Decision undone on ${e}`,undoNone:"Nothing to undo",undoLockedTitle:"Cannot undo: previous status was empty (no server-side “clear” operation)",resetDone:"Filters reset",actAnalyse:"📝 Analyze",actAnalyseQueued:"⏳ Queued…",actPromote:"↑ To decide",actYes:"✓ Yes",actNo:"✗ NO",actYesTitle:"Yes: moves to Approved, Stan prepares the sequence",actNoTitle:"No: joins Ruled out",actApproach:"✉ Prepare outreach",actApproachSent:"✓ Sequence ready — check your email",actMemo:"📄 View memo",actMemoQueue:"memo to launch",actLocked:"🔒 Analyze",actToEval:"to screen",promoted:e=>`${e} promoted for decision`,thumbUp:"Good pick — Stan will learn from it",thumbDn:"Bad pick — Stan will correct",thumbUpDone:"Good pick recorded — Stan will learn from it",thumbDnDone:"Correction recorded — Stan will adjust its selection",colThumbs:"STAN",colVerdict:"Screen · memo",colCrible:"Screen",fVerdict:"Verdict",colMemo:"Memo",colScore:"Score",orgAuto:"⚡ Stan CALL",orgAutoTitle:"CALL PENDING verdict: Stan recommends the call",orgCd:"👤 promoted by you",orgCdTitle:"Promoted by hand to To decide",waitTitle:e=>`Since Stan’s verdict: ${e} d`,waitChip:e=>`⏱ ${e} d`,densList:"List",densOpen:"Open",densLigne:"Rows",densMaxi:"Cards",unfoldAll:"Unfold all",foldAllLbl:"Fold all",foldArts:"Articles",zoomSrc:"Source",viewLink:"View article",viewSite:"Site",viewSrc:"Source",viewSiteBusy:"Site…",viewSiteHint:"Company website",viewSiteBusyHint:"Looking up the company website…",viewSrcHint:"Source article",viewLinkClose:"Close article",viewLinkTab:"Open in a tab",viewLinkHint:"Opens in a new window",zoomSimilar:"See similar",zoomInCockpit:"Isolate in the list",zoomArt:"Today's editorial",zoomEvalHint:"Screen against your thesis",zoomSimilarHint:"Same sector in the list",zoomIsolateHint:"Keep only this company",zoomNewsMark:"Edition note — opens on the right",zoomPulseEval:"evaluable",zoomPulseExplore:"to explore",zoomPulseArts:"news",doNews:"📰 News",zoomPulseEd:"in today’s article",zoomPulseBtn:"Today’s edition",zoomPulseWeek:"Last 7 days",zoomPulseWeekEd:"this week",doAll:"All",doEdito:"📖 Today's editorial",doBrief:"📖 Today's brief",doEval:"⚡ Evaluable",doExplore:"🔎 Extract companies",doAna:"⚡ To analyse",doBriefHint:"Show today's brief",doTodo:"⚡ To evaluate",doDone:"✓ Already evaluated",cdMemoTab:"📖 Memo",evalPickSite:"several sites share this name — open to check, then confirm the right one.",evalPickChip:"Site to confirm",eqNamePh:"Company name or URL…",eqAdd:"Add a row",eqNoSite:"no site found — the name will be evaluated as is",eqReady:"ready",eqPick:"pick the site →",eqRunning:"⏳ evaluating…",eqGo:e=>`⚡ Evaluate the ${e} rows`,eqHint:"Your rows stay here: fill on the go, launch later.",eqColName:"Company",eqColSite:"Site",eqColDesc:"What it does",eqColState:"State",eqLookup:"finding the site…",eqDescBusy:"reading the site…",eqDescNone:"the site says nothing usable",eqDescQuota:"daily reading cap reached",eqRunOne:"Evaluate this row",eqRunOneShort:"Evaluate",eqRunOn:e=>`Evaluate ${e}`,sgGo:"💡 Find similar companies",sgBusy:e=>`🔎 twins of ${e}…`,sgFrom:(e,a)=>`from your kept companies (${e}${a>1?` +${a-1}`:""})`,sgQuota:"daily cap reached (5 searches) — try tomorrow",sgNone:"nothing new: the twins found are already in your list",sgVia:e=>`found from ${e}`,pxThesis:"your thesis",pxGoThesis:"🎯 Search on my thesis",pxGoFree:"🔎 Search",pxPlace:"a strong keyword, or a French NAF code (66.22Z)",eqClearDone:"Clear evaluated",evalPickGo:"✓ This one",chainMemoGo:"⚡ Launch the memo (1 credit)",analyseConfirm:e=>`Launch ${e} analysis memo${e>1?"s":""}?
+
+This uses ${e} memo credit${e>1?"s":""}. Companies move to "Analysed" or "To decide" once the memo is ready.`,sortBy:"Sort by",sortSig:"Signal",sortAmount:"Amount",sortAge:"Recency",sortName:"Name",sortCountry:"Country",sortStage:"Stage",sortSector:"Sector",sortCrible:"Screen",sortMemo:"Memo",sortScore:"Score",fMenu:"Filters",memoSynth:"Summary",memoOpenFull:"📖 View the full memo →",memoDeep:"📝 Launch a detailed memo",memoDeepHint:"For this file to decide, you can launch the detailed analysis: market study, competitive quadrant, scenarios.",memoDeepSent:e=>`Detailed memo launched on ${e} — ready in 35 to 40 minutes`,memoInstantSent:e=>`Analysis launched on ${e} — memo ready in ~15 minutes`,liveStrip:"Live analyses",liveBoot:"starting…",liveEnd:"done {t}",liveOpenQueue:"Open the queue",memoNone:"No memo for this file yet — launch the analysis.",creditsCap:"Memo credits",creditsToday:"today",creditsRecharge:"Top up →",creditsCost:e=>`−${e} credit${e>1?"s":""}`,creditsNone:"Out of credits — top up or wait for tomorrow 7am.",creditsTrialHint:e=>`Trial plan — ${e} credit${e>1?"s":""} a day, refilled every morning. Each analysis uses one.`,creditsPacksLbl:"Buy credits",creditsUnit:"credits",rechargeTitle:"Memo credits",rechargeHint:e=>`Your plan includes <b>${e} credits per day</b>, refilled every morning. Need more right now?`,rechargeNote:"Purchased credits never expire. They are used after your daily credits.",rechargeBuy:"Add",rechargeUnit:(e,a)=>`${e} credits — €${a}`,onbTag:"Private preview · read only",onbTitle:e=>`Your deal flow is ready — <b>${e} targets kept</b> by Stan`,onbSub:e=>`${e} companies screened against your thesis. The first ten rows are open; the rest unlocks in thirty minutes.`,onbSteps:[["Stan studied your online presence","Website, job posts, press — it inferred your acquisition angles."],["It screened the market","Every company checked against your criteria."],["It wrote memos","Quantified analyses, synergies, verdicts."],["Your turn to decide","Thirty minutes to tune your deal flow and unlock everything."]],onbCta:"Pick a slot →",lockbarText:"Let’s set up your dream deal flow in 30 minutes, with a Corporate Developer",lockbarContactBefore:"Alexandre — ",lockbarContactMid:" · ",lockbarCta:"Pick a slot",rdvHeading:"Let’s set up your ideal deal flow in 30 minutes",rdvSubBefore:"Pick a slot below, or reach your Corporate Development expert directly at ",rdvSubMid:" or by email at ",rdvCoFallback:"your company",rdvUnlockLabel:e=>`Unlock ${e}`,rdvUnlocks:e=>[["Access every target you kept","Full investment memos, synergies, contacts, approach angle."],["Acquisition strategy built with you","Hypothesis + acquisition strategy recalibrated live, with you."],["Let’s decide together on the targets you want","YES / NO, sourcing of similar companies, export and CRM sync."],["Your AI Corporate Developer is live",`Stan works for ${e} every morning — all you have to do is decide.`]],identRepub:"Republish the page now — re-renders it from what is already known. Free: no engine runs, and no model is called if your thesis has not changed.",identRepubDone:"Republish started — your numbers refresh in about thirty seconds. Reload the page to see them.",plugHow1:"In your tool (Make, Zapier, n8n, HubSpot, Pipedrive…), create a “webhook” trigger and copy the URL it gives you.",plugHow2:"Paste it below, Save, then Test: one sample message goes out to your tool right away.",plugHow3:"Done. Three moments trigger a send: you validate a target, you move it a stage, or an approach is prepared.",plugExT:"Exactly what your tool receives",plugExResult:"In your CRM you get one row per validated company: its name, your note, Stan’s score, its website and the memo link.",plugApiT:"One company at a time, from a script or Make",plugQuota:"This shortcut is capped at 10 companies per day per link — the normal path is the page’s evaluation bar.",plugFeeds:"The JSON, CSV, Google Sheets and Excel feeds live in the 📥 Export button next door — they are not repeated here.",plugTokenNote:"⚠️ These links carry this page’s access key: wherever you paste them, they open your targets. Only put them in your own tools.",plugDoc:"Full documentation → proplace.co/api/",plugDestLbl:"Destination",plugDestWh:"My webhook",plugDestInst:"Instantly (campaign)",plugDestInstS:"The campaign id is in the Instantly URL.",plugDestCrm:"My CRM",plugDestCrmS:"HubSpot, Pipedrive, Salesforce — via Make, Zapier or n8n.",plugDestScript:"Script or spreadsheet",plugDestScriptS:"One HTTP call, or a Google Sheets and Excel export.",plugLead:"Your decisions go automatically where you work. Three steps, once.",plugStep1:"Where should your decisions land?",plugStep2Wh:"Paste your tool’s webhook link",plugStep2Inst:"Enter the Instantly campaign id",plugStep2Script:"Use this endpoint",plugStep3:"When should we send?",plugPayloadSub:"one row per company, 15 fields",plugAideWh:"In Make, Zapier or n8n: create a “webhook” trigger, copy its link, paste it here. The test sends a sample company immediately.",plugAideInst:"The id is in your Instantly campaign URL. Automatic sending pushes every validated target there.",plugAideScript:"One POST per company, capped at 10 a day. For a regular volume, prefer the webhook.",plugEtatOn:"Automatic sending is on — every validated target goes out by itself.",plugEtatOff:"Automatic sending is off — validating a target sends it nowhere.",plugCampPh:"Instantly campaign id",plugCampNeed:"Instantly needs the id of the campaign that will receive these targets — it is in your campaign URL.",plugDestInstOn:e=>`Instantly · campaign ${e}`,plugAutoT:"⚡ Automatic sending",plugAutoSub:"Turn it on: every target you validate enters your sequence by itself. You never come back here.",plugAutoOnLbl:"Automatically send every validated target",plugAutoNeed:"First save a webhook above, or pick Instantly.",plugAutoSavedOn:"Automatic sending is on — every validated target will go out by itself.",plugAutoSavedOff:"Automatic sending stopped.",plugAutoBroken:"⚠ Nothing is going out: automatic sending targets your webhook, but no webhook is saved. Save one above, or stop automatic sending.",notesT:"📝 Deal log",notesHint:"Your dated notes on this file. They live on the deal record — you and your team read them in the same place.",notesPh:"What you want to remember: a call, an objection, a figure…",notesAdd:"Add",notesAdded:"Note added ✓",notesEmpty:"No notes yet.",notesErr:"Failed — try again.",notesEdit:"Edit",notesDel:"Delete",notesDelAsk:"Delete this note?",notesSave:"Save",notesCancel:"Cancel",notesLoading:"Reading the log…",notesCount:e=>`${e} note${e>1?"s":""}`,apprT:e=>`Approach draft — ${e}`,apprSeqHint:"4 messages spaced out: D0, D2, D4, D6.",apprWait:"Writing the tailored sequence…",apprFail:"Generation unavailable — try again in a moment.",apprChEmail:"✉ Email",apprChLi:"in LinkedIn",apprSubj:"Subject",apprCopy:"📋 Copy this message",apprMailto:"✉ Open in your email",apprLiNote:"Connection request: no note.",apprEdited:"✎ edited",apprLocal:"Your edits stay in this window — they are not saved on the server. Copy the message before closing.",apprSender:e=>`Signed: ${e}`,avisIntro:(e,a)=>`🎯 Stan noticed you often rule out the “${e}” sector (${a} rejections).`,avisAsk:"Would you like him to source less of it?",avisYes:"Yes, recalibrate",avisNo:"Ignore",avisRunning:"Recalibrating your thesis…",avisDone:"✓ Done — Stan recalibrated your thesis. You will see fewer of them.",avisFail:"Recalibration unavailable right now — try again soon.",propT:"🧠 What your calls say about your thesis",propSub:"Your 👍/👎 — and above all what you write underneath — tell how you choose. Stan reads them together and proposes the corrections that would bring the next selection closer to your own judgement. Nothing is applied without you.",propBtn:"Re-read my calls and propose corrections",propWait:"Re-reading your calls…",propNone:"Nothing solid enough yet. A single call never moves a thesis: keep judging the cards (one line of “why” helps a lot) and come back.",propFew:e=>`Not enough calls yet — ${e} compan${e===1?"y":"ies"} judged. Keep going, then come back.`,propFrom:"Based on:",propApply:"Apply this correction",propSkip:"Not this one",propApplying:"Applying…",propApplied:"Applied ✓ — Stan now sources on the corrected version.",propApplyFail:"Could not apply — try again.",propKo:"Cannot re-read right now — this is the engine, not you. Try again in a moment.",propSlow:"Stan is still working on this correction — it will apply by itself. The logbook will tell you.",engOn:"● on here",engOff:"○ off here",engOptOff:"○ to enable",engGlobalOff:"⊘ off (global)",engHintOpt:"Optional engine (paid Maps + free BODACC): enable it for THIS fund, then run BODACC on demand.",engHint:"Turns this engine on or off FOR THIS FUND — the shared pool is untouched.",engToggleFail:"Could not change the setting — try again.",engToggleNote:"The setting applies on the next sourcing run: nothing already here is removed.",engBodacc:"Run free BODACC now",engBodaccRun:"Starting…",engBodaccNote:"Free official FR bulletin (insolvencies, sales, closures). Google Maps stays optional and paid.",engBodaccOk:"BODACC radar started for this fund. Refresh the page in a few minutes.",engBodaccKo:"Could not start — try again.",engMore:e=>`+ ${e} more`,engParams:"Your settings",engParamsShared:"Shared source · filtered on your sectors",engParamsExample:"sample of the daily rotation",engParamsLess:"show less",engFresh:e=>`${e} new`,engFreshHint:"Kept by this engine since your last visit — click to see them",engFreshT:"New since your last visit",engFreshAll:e=>`${e} new since your last visit`,engToday:e=>`${e} today`,engTodayHint:"Sourced today by this engine",engTodayT:"Sourced today",propSections:{hypothesis:"The hypothesis",profils:"The target profiles",gate:"The Kept / Ruled-out screen",rubric:"The analysis decision"},plugCrmRecipeT:"Pipedrive, HubSpot, Salesforce — they do not accept a live link: they need a scenario, wired ONCE.",plugCrmRecipeOpen:"See the recipe, in 4 modules",plugCrmR1:"① In Make (or Zapier), schedule an hourly scenario starting with HTTP → “Make a request” on the JSON link in 📥 Export.",plugCrmR2:"② Add an “Iterator” on the returned array: one iteration = one company.",plugCrmR3:"③ Pipedrive → “Search organizations”, searching on the domain (it must appear somewhere on the record — website or custom field; otherwise search on the name). HubSpot natively matches its companies on domain: even more direct.",plugCrmR4:"④ Pipedrive → “Update an organization”: our columns land in the custom fields you created (verdict, conviction, angle, memo link). Wire “Add an organization” on the “nothing found” branch: companies you did not have yet get created instead of being lost.",plugCrmRNote:"By hand, without a scenario? Open the CSV (or Excel) link in your browser to get the file, then feed it to your CRM’s importer. Keep that path for companies you do NOT have yet: a file import cannot match cleanly on domain, it creates duplicates.",plugVarsT:"See the 15 variables received per target",plugVars:"first_name, last_name, email, company_name, phone, website, linkedin, sector, country · angle, why, verdict, conviction_score, memo_url, memo_pdf_url.",plugRefT:"See the link settings and the 26 columns",plugOpt:"Two settings to paste at the END of the link (it already contains “?”, so append with “&”): “&tab=valides” returns only your validated targets (also call, retenus, ecartes, chauds); “&since=YYYY-MM-DD” returns only what moved since that date — what you want for a sync running on a loop.",plugCols:"26 columns per company: company, domain, first_name, last_name, email, linkedin, phone, website, linkedin_company, country, sector, stage, ceo_status, verdict, conviction_score, engagement, angle, memo_url, memo_pdf_url, memo_type, status, score, tagline, engine, detected, reasoning.",plugEnrichT:"These companies are already yours?",plugEnrich:"Don’t recreate them: add our columns (verdict, conviction, angle, memos, decision-maker contact). Matching runs on the DOMAIN — acme.co — never on the name: “Acme” and “Acme Ltd” never meet.",plugEnrich1:"① Copy your tool’s link from 📥 Export.",plugEnrich2:"② Paste it following the instruction written just above the link. You get a table with one row per company, updating by itself.",plugEnrich3:"③ Match on the “domain” column (VLOOKUP). Your records gain our columns, without a single duplicate.",plugAirtable:"Airtable — Add a table → Sync data → CSV, then paste the feed URL.",plugExcel:"Excel — Data → Get data → From Web, then paste the feed URL.",plugScoreT:"Have YOUR OWN companies scored",plugScore:"Paste the companies you already have into the “Search companies to evaluate” bar at the top of the page: each one is genuinely researched on the web, then judged by your thesis — MATCH or NO MATCH, with the reason. It is the best way to judge our screen on files you know by heart.",plugCrmQT:"🔗 And inside your CRM?",plugCrmQ1:"Your HubSpot, Pipedrive or Airtable records carry our columns, MATCH / NO MATCH included: that is the recipe above, wired once.",plugCrmQ2:"A button placed on the record triggers the memo without coming back here: the quick memo on any company in your list, the full memo on those you moved to “To decide”.",plugCrmQ3:"The memo link comes back into the record at the next sync (memo_url column): a memo takes a few minutes to write, so it is never ready within the second.",plugApiMemoLbl:"Trigger a company’s quick memo (“detailed_request” for the full memo):",csNone:"Status",csAnaNeedMemo:"Moving to “Analysed” needs a memo.",csAnaRun:"⚡ Run the memo (1 credit)",csAnaAnyway:"Mark it anyway",qOffer:"Your plan",qDelay:"verdict within",qRate:e=>`${e} memo${e>1?"s":""} a day`,qManual:e=>`${e} memo a day, on request`,qPaused:"no automatic memo",qManualSet:"rate set by hand",qEta:(e,a,r)=>`At this rate (${a}/day), ${e} memo${e>1?"s":""} left to write — the whole queue is processed in ${r} day${r>1?"s":""}.`,qEtaPaused:"Rate at zero: nothing goes out. Activate a plan to project a date.",qEtaDone:"The whole queue is already analysed.",qLate:(e,a)=>`The “${e}” promise cannot be met: it would take more than the ${a} memos a day cap.`,qRunning:"In progress",qUpNext:e=>`Coming up — ${e} compan${e>1?"ies":"y"} in the queue, in pick order`,qUpNextWait:"Coming up — reading the queue…",qFileWait:"Reading the queue — a few seconds.",qHedge:"Projected order, recomputed every morning. A fresh lead landing overnight goes first.",qFresh:"fresh",qLater:"later",qVerdictsT:"Stan’s verdicts — where each file goes",qVerdicts:[["CALL","his top pick: decide YES or NO → “To decide” tab."],["CONSIDER","solid, worth a closer look → “Analysed” tab."],["MONITOR","keep an eye on it, not a priority yet → “Analysed” tab."],["PASS","not relevant right now → “Ruled out” tab."]],covHowT:"Where does this number come from?",covTotal:"Market total",covColCode:"Code · country",covColN:"Companies",covColSource:"Source",covWide:e=>`${e} not published — widened to its parent code`,covMissing:"no data published",covRejected:e=>`Codes dropped, no companies found: ${e}.`,covComputedAt:e=>`computed on ${e}`,filterOff:"Remove this filter",fSelected:"selected",funScreened:(e,a)=>`companies screened${e?a?` from ${e} to ${a}`:` since ${e}`:""}`,funKept:"kept as serious targets",funAnalyzed:"analysed in depth",funShown:"published on your page, all filters cleared",sigStripMore:e=>`+ see the other ${e}`,boxCollapse:"Collapse",boxExpand:"Expand",memoReadHere:"📄 Read the memo here",memoHideHere:"▴ Collapse the memo",sigChipTitle:(e,a)=>`Flagged ${e} · ${a}`,funPerWindow:(e,a)=>`From ${e} to ${a}`,funPerAll:"Since the start",funAnalyst:"— roughly the equivalent of 3 weeks of an analyst’s work.",funOfMarket:(e,a)=>`of ~${e} companies on your market, i.e. ${a} %`,funScope:"Sourcing from your thesis only — your activity codes, your countries, your angles. No company from another fund is counted here.",funToday:e=>`incl. ${e} today`,actTitle:"Last 30 days of activity",actScreened:"screened",actKept:"kept",actToday:"today",fstatsShow:"Show the last 30 days of activity",fstatsHide:"Hide activity",sinceTitle:(e,a)=>`${e} new target${e>1?"s":""} since your last visit (${a})`,sinceSub:"arrived since your last visit — start here",sinceMore:e=>`+${e} more`,sinceOut:e=>`${e} left the list`,morningDock:e=>e?`${e} screened this morning`:"Morning screen",morningDockTitle:"See the companies screened this morning — whatever the verdict.",morningList:"screened this morning",sigList:"signals",sinceList:"new since your last visit",sinceDock:e=>`${e} new`,sigDock:e=>`${e} signal${e>1?"s":""}`,newsDock:e=>`${e} news item${e>1?"s":""}`,newsSince:e=>`since ${e}`,newsDockHint:'Feed articles — op-eds, lists, recaps — with no evaluable company. "Extract companies" bridges into evaluation.',newsWord:"news — reading, not deciding",identSyncConfirm:"Relaunch sourcing now? An engine pass takes a few minutes.",plugAutoOn:e=>`⚡ Automatic sending ACTIVE (${e}) — every target you validate goes into the sequence on its own.`,plugAutoOff:"Automatic sending off — validating a target sends it nowhere.",plugCrm:"Create the records in my CRM",plugCrmHint:"Paste your tool’s webhook URL: every decision lands there right away.",plugUrlPh:"https://hook.eu1.make.com/…",plugSave:"Save",plugSaved:"Webhook saved",plugTest:"Test",plugTested:"Test sent",plugTestThrottled:"Already tested less than 5s ago — nothing was sent.",plugRemove:"Remove",plugRemoved:"Webhook removed",plugMcp:"Claude & AI (MCP)",plugBulk:"Contact my targets",plugBulkHint:"See who would go out first: the preview contacts nobody.",plugBulkTabs:[["valides","Validated"],["call","To decide"],["retenus","Kept"]],plugBulkPreview:"👁 Preview",bulkArm:"📤 Send for real",bulkNoDest:"No destination saved: set up your tool above first.",bulkScope:"What goes out is the whole server-side tab — not the filtered view on screen.",bulkWarn:(e,a)=>`You are about to contact ${e} compan${e>1?"ies":"y"} via ${a}. This cannot be undone, and the server does not check whether they were already contacted.`,bulkConfirm:e=>`Yes, send via ${e}`,bulkCancel:"Cancel",bulkSending:"Sending…",bulkDone:(e,a,r)=>`${e} compan${e>1?"ies":"y"} sent. ${a} reachable on LinkedIn only, ${r} with no email.`,bulkNone:"No company had an email: nothing was sent.",bulkLocked:(e,a)=>`Sent on ${e} — ${a} compan${a>1?"ies":"y"}. Next send available in 24 h.`,bulkPreviewFirst:"Run the preview first: it says exactly who would go out.",cdEvaluation:"Screening",cdConviction:"Conviction",cdAnalyse:"Analysis",cdSociete:"Company",cdContact:"Contact",cdSuivi:"Follow-up",actMemoOf:e=>e==="detailed"?"📖 Read the detailed memo":"📖 Read the instant memo",memoLoading:"Loading the memo…",memoLoadErr:"The memo will not load here — open it full page.",memoUnfold:e=>`Unfold this section (${e} KB)`,cdEngagementHint:"Activity score for this file: your clicks and requests on this page, plus outreach progress. From 20 up, the file is flagged 🔥.",mdMindmap:e=>`Mind map — what ${e} does`,mdContactKnown:"Decision-maker — cockpit data",cdCrible:"screening",cdMemo:e=>e?`after ${e} memo`:"after memo",cdScore:"Score",cdConvScore:"Conviction",cdVerdictDate:"Verdict on",cdSector:"Sector",cdMarket:"Market",cdTags:"Criteria",dsFound:"How we found it",cdQuery:"Search",cdSrc:"Source",cdAngleSrc:"Target profile",cdStage:"Stage",cdCountry:"Where",cdSite:"Website",cdLinkedin:"LinkedIn",cdAngle:"Angle",cdDetected:"Detected on",cdName:"Decision-maker",cdEmail:"Email",cdPhone:"Phone",cdCeoStatus:"Your decision",cdEngagement:"Engagement",qaTitle:"Describe this company",qaHint:"Reads its website, then four blocks: who it serves, what it sells, how it makes money, and what to remember. No verdict — the screening already decided.",qaRun:"📄 Describe",qaBusy:"Reading the website…",qaVP:"Who, and for what problem",qaProduct:"What it sells",qaModel:"How it makes money",qaSummary:"Takeaway",qaSources:e=>`${e} page${e>1?"s":""} read`,qaQuota:"Daily cap reached: try again tomorrow.",qaEmpty:"The website says nothing usable — nothing was invented.",dsBtn:"🗂 Committee pack",dsHint:"One A4 per company: the verdict, the identity, and — when a memo already exists — the summary, SWOT and figures. We never launch a memo just to print.",dsTitle:e=>`Committee pack — ${e} compan${e>1?"ies":"y"}`,dsCap:(e,a)=>`The first ${e} of ${a}: a committee will not read ${a} pages.`,dsWhy:"Why this company is in front of you",dsAnalysis:"What it does",dsExec:"Executive summary",dsSwot:"SWOT",dsSwotS:"Strengths",dsSwotW:"Weaknesses",dsSwotO:"Opportunities",dsSwotT:"Threats",dsSyn:"Quantified synergies",dsPnl:"P&L — the essentials",dsCf:"Cash flow — the essentials",dsRoi:"ROI & sensitivity",dsReco:"The recommendation",dsPlan:"Action plan",dsAnnex:"Full memo (annex):",dsTableNote:"Condensed table — the full table lives in the memo.",dsDecision:"Your decision",dsEmpty:"No company in the current selection.",dsFoot:e=>`Selection by Proplace for ${e} — internal document, do not circulate.`,covFunnel:"Your market, screened",covScreened:e=>`${e} companies screened`,covOf:e=>`out of ~${e} relevant companies`,covNoEst:"Your addressable market is not sized yet: coverage will show as soon as it is.",covPace:e=>`${e} companies screened per day`,covEta:e=>e<=0?"Your market is fully covered.":e<60?`Full coverage in ~${e} days at this pace.`:`Full coverage in ~${Math.round(e/30)} months at this pace.`,covRate:"Analysis pace",covRateHint:"How many kept companies get a reasoned verdict each day. At zero, analysis is paused.",covRateNow:e=>e<=0?"Paused":`${e} per day`,covKept:"kept",covAna:"analysed",covScopeAll:"worldwide",covShown:"shown here",bulkReplayed:"This send was already recorded: nothing went out again. Your targets were contacted once.",bulkPending:"The previous send is still running: nothing was sent again.",plugBulkResult:(e,a,r)=>`${e} would go by email · ${a} by LinkedIn · ${r} with no contact.`,memoAlertTitle:"Your memo alert",memoAlertSub:"Get an email as soon as one of your fund’s memos is finalised — with its direct link.",memoAlertToggle:"Send me every finished memo",memoAlertEmail:"Recipient",memoAlertSaved:"Saved ✓",memoAlertErr:"Could not save — try again",memoAlertSections:"Sections of the email",memoAlertSec:[["swot","SWOT"],["action","Action plan"],["synergies","Synergies"],["quadrant","Quadrants (images)"],["verdict","Stan’s verdict"]],memoAlertPreview:"👁 Preview",memoAlertBtn:"Email me every finished memo",alertTabDaily:"Daily",alertTabWeekly:"Weekly",alertTabMarket:"Market",alertSections:"Sections of the email",alertSec:[["pending","Files to decide on"],["stats","Your key numbers"],["autonomous","Stan’s automatic decisions"],["market","Market analysis"],["sourcing","Your sourcing of the day"]],alertSecSlow:"(slower to generate)",alertSecNote:"Unticking the market analysis makes the preview instant.",alertPreview:"👁 Preview today’s email",alertPreviewWeekly:"👁 Preview the weekly",alertSubject:"Subject:",alertPreviewBusy:"Preview being generated, try again in a few seconds.",alertPreviewRetry:e=>`Generating — new attempt in ${e}s…`,alertPreviewFail:"Preview unavailable right now — untick “Market analysis” to get it immediately.",alertPreviewEmpty:"Right now: nothing to decide on — the email will not go out.",alertTest:"✉ Send me a test",alertTestOk:e=>`✓ Sent to ${e} — check your spam/promotions too.`,alertTestHint:"Does not affect the daily send.",alertBtnPrevBusy:"⏳ Building…",alertBtnTestBusy:"⏳ Sending…",alertPreviewWait:e=>`Building your email — ${e}s. The first preview of the day takes up to 90s: it is rendered for real, not simulated. You can leave this window open.`,alertTestWait:e=>`Sending — ${e}s. The email is built first, then delivered to your inbox. Do not close this window.`,csMoved:(e,a)=>`${e} → ${a} · the row moves to the matching tab.`,sinceLabel:e=>e?`new since your visit of ${e}`:"new since your last visit",sinceChip:"new",sinceSince:e=>`since ${e}`,alertSaving:"Saving…",alertSavedShort:"✓ Saved",alertReadOnly:"Demo view: these settings are read-only.",alertWeeklySub:"One email a week: the week in review and what your thesis learned from your decisions.",alertWeeklyOn:"📬 Receive your week in review",alertWeeklyWhen:"Day and time (Paris)",alertDow:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],alertLoadError:"Could not load your preferences.",alertThrottled:"Too fast — wait a few seconds and set it again.",alertInactive:"Your access is not active yet — let’s talk about it.",alertNoLead:"Recipient to be set with us.",exportViewTitle:"CSV of the filtered view",exportViewDesc:e=>`The ${e} rows of your current selection — tab, facets, search and window included. Semicolon separated, ready for Excel.`,exportViewBtn:"Download",exportViewDone:e=>`${e} row${e>1?"s":""} exported`,printTitle:"Print the selection",printDesc:e=>`The ${e} rows on screen, on A4: who it is for, as of when, the funnel figures, then the list. The map, filters and buttons are not printed.`,printBtn:"Print",exportViewHead:"Company|Status|Stan verdict|Score|Country|Sector|Post-YES stage|Contact|Email|Memo link|Date|Reason",tourStart:"Start the step-by-step guide",tourIntro:"The guided tour covers the whole page A to Z, on the live page: each step spotlights the exact spot — from your thesis to your email alert.",tourStep:(e,a)=>`Step ${e}/${a}`,tourPrev:"← Previous",tourNext:"Next →",tourDone:"Finish",tourClose:"Close",tourPlayTitle:"Guided tour",ahaATitle1:"1 file awaits your decision",ahaATitleN:e=>`${e} files await your decision`,ahaABody:"YES = we prepare the approach; NO = we sharpen the aim.",ahaABtn:"Decide now →",ahaBTitle:"A full memo is waiting for you",ahaBBody:e=>`${e} already has its analysis memo — a 3-minute read.`,ahaBBtn:"Open the memo →",ahaRetTitle:e=>e===1?"1 kept company is waiting for you":`${e} kept companies are waiting for you`,ahaRetBody:"Stan’s sorting is done — every kept company has its sheet, card and signal.",ahaRetBtn:"See the kept companies →",ahaEvalTitle:e=>e===1?"1 company is waiting for your evaluation":`${e} companies are waiting for your evaluation`,ahaEvalBody:"Nothing is kept yet: this is the first pile to work through. One company at a time, Stan does the screening.",ahaEvalBtn:"Open the pile to evaluate →",loadMsgs:["Waking up the sourcing engines…","Loading your targets…","Cards and signals are coming…","Sorting by your thesis…","One more moment — the first load is the longest."],ahaCTitle:"Your first targets are here",ahaCBody:"Tell us if the aim is right — every signal sharpens the machine.",ahaCBtn:"See my criteria →",howto:[["**Set your targeting.** Open “Your criteria”: it’s your thesis — what you look for and what you rule out. Fix it in plain language whenever something is off; the next morning’s sourcing realigns on its own.","crit"],["**Source as many targets as you can.** Evaluate a company by pasting its name or website — or a whole list — and watch your engines comb the web with your settings.","eval"],["**Move every target through the funnel, left to right** — Evaluated › Kept › Analysed › To decide › Validated › Ruled out. On each card, “Your status” files it in one click; your “why” note stays visible. The 👍/👎 never file anything: they sharpen your thesis.","tab1"],["**Settle the “To decide”.** Stan leaves you the final word: YES (Validated) or NO (Ruled out), with a word on the why.","tab3"],["**Understand how Stan sorts your targets.** Your status always overrides Stan’s verdict. The bridge between the two is explained in “Your criteria”: Kept ↔ MATCH, Analysed ↔ CONSIDER · MONITOR, To decide ↔ CALL, Ruled out ↔ NO MATCH · PASS…","crit"],["**Focus on the Validated** — and take every file all the way to closing!","tab4"],["**Push all of this out of the page.** The 🔌 button wires it into your tools: send your targets to your emailing sequence, create the records in your CRM, enrich the files you already have there.","plug"],["**Only come back when it’s worth it.** The 🔔 button sets two emails: the daily one for files to decide on, and the week in review.","alert"]],fhintLive:"What is moving on your market right now — click a tile to open the source.",fhintGoal:"What the engines sourced on the last run, and what is left to evaluate.",fhintSrcEng:`Each card is an **engine**: a query combing one precise source — databases, trade press, announcements, signals — with your settings.
+· **Companies found**: its output over the chosen window (1, 7, 30 days or 90 days) — incl. MATCH and dropped, two clickable numbers listing the companies.
+· **Your settings**: what your thesis imposes on this engine.
+· **✎ Adjust this engine**: write the correction in plain language — tomorrow’s sourcing runs realigned.`,fhintDecide:`YES → Validated (to contact). NO → Ruled out.
+· Both buttons sit on the row: no need to expand.
+· Add a word on the WHY — that is what sharpens the thesis, far more than the click.`,fhintMemoDeep:`Stan ranked this file CALL: he thinks it deserves your time.
+· The detailed memo (~35-40 min) digs in before you settle.
+· If a memo is already there, the button reads “Read” — nothing to launch.`,fhintStage:`Every Validated card carries its pipeline: Contacted › Replied › Meeting › LOI › Signed.
+· One click updates the stage.
+· No reply for four days and the row flags it by itself.`,fhintAppr:`Four spaced messages — D0, D2, D4, D6 — written for this very file, by email or LinkedIn.
+· You edit them before sending.
+· Nothing goes out by itself: you copy, or you open your email.`,fhintCampout:"This is block 1 of 🔌 Connect: every Validated target flows into your emailing stack with first name, email, company, memo, LinkedIn — ready to launch a sequence.",fhintAddcrm:"This is block 2 of 🔌 Connect: each new Validated deal is pushed into your CRM the second you say YES — nothing to retype, nothing lost between exports.",fhintMemoDepths:`The quick memo (~15 min) answers “is this worth my time?” — it runs for you on kept companies.
+· The detailed memo (~35-40 min) digs into a file you want to settle: market, competition, figures, risks.
+· The counter above says how many go out per day and what is waiting.`,fhintMHyp:`This is what Stan understood of your strategy — the screen, the profiles and the ranking all follow from it.
+· One word off? Correct it in plain language below, and everything realigns.`,fhintMProf:`The families of targets your engines track continuously.
+· Each profile unfolds: what it looks for, what it rules out.
+· This is the exact frame sourcing combs.`,fhintMGate:`Every company goes through these criteria, in order.
+· The “STEP A, C…” reasons you read on the rows point back here.
+· Once kept, Stan digs in and settles: CALL, CONSIDER, MONITOR or PASS.`,fhintTabAna:`The files whose memo is already running.
+· Open one to read the memo and decide what comes next.`,fhintTabValid:`Your YES.
+· Prepare the approach, move the pipeline along, keep the follow-up going.`,fhintTabRej:`Set aside for now.
+· Changed your mind? Recover one back into the funnel — nothing is lost.`,fhintRank:`N°1 is your priority right now.
+· First your CALLs to settle, then the memos already launched, then the rest by conviction.
+· Each funnel tab tells you where a file stands.`,fhintImprove:`Every week Stan evolves your thesis — applied on Monday.
+· Your 👍/👎 and your YES / NO notes sharpen the next selection even faster.
+· “Your criteria” shows what he understood, and lets you correct it.`,fhintGoalAt:e=>`Engines last ran: **${e}**.
+This bar says what came back, and how many companies are still waiting to be evaluated.`,fhintDec:"Stan’s decision, stated and justified: this is what the “STEP A, C…” refer to.",fhintStatus:"Your status always overrides Stan’s verdict — and it is saved right away.",fhintFunnel:`Every target moves **left to right**: Evaluated › Kept › Analysed › To decide › Validated › Ruled out.
+· Click a tab to show only that step.
+· “Your status”, on the card, moves a target in one click.
+· Your 👍 / 👎 never sort: they sharpen your thesis.`,fhintChips:`On every row, the state reads without opening anything.
+· **MATCH · NO MATCH** — Stan’s screen against your thesis.
+· **CONSIDER · MONITOR · CALL · PASS** — the memo verdict, when there is one.
+· **Memo to run** — the company is kept, its memo has not run yet.`,fhintMemo:`The **Memo** tab holds the analysis: the synthesis, then the full memo in a page of its own.
+· “Open the memo ↗” shows the document as it was written.
+· “Detailed memo” runs a deeper analysis — **1 credit**, one company at a time.`,fhintIdent:`Right at the top: your fund’s name, and when this page was last refreshed.
+· On the right, your shortcuts — export, tools, alerts, re-run sourcing.
+· The **▶** restarts this tour whenever you want.`,fhintCover:`How much of your market you have already looked at.
+· The **denominator** is sized when your thesis is created: your activity codes, counted on the official registers (SIRENE in France, Eurostat in Europe).
+· The **numerator** is your screened companies. Click to see the calculation.`,fhintEngine:`The pace at which your memos get written.
+· **N per day**: what the engine allows itself to start — adjustable from the coverage panel.
+· **Waiting**: kept companies whose memo has not run yet. Click to see the queue.
+· One memo = **1 credit**, one company at a time: nothing ever goes out in bulk.`,tourToday:"this morning",tourNoRun:"no run recorded",tourT:{ident:"Your fund’s header",cover:"Your market coverage",engine:"The memo engine",live:"Live",goal:"The last sourcing",engines:"Your sourcing engines",decide:"YES or NO — the final word",memoDeep:"The detailed memo, before you decide",stage:"After the YES, the follow-up",appr:"The first message, written for you",campout:"Create an outbound campaign",addcrm:"Add to CRM",memoDepths:"Two memo depths",mHyp:"It all starts with this hypothesis",mProf:"Your target profiles",mGate:"The screen — Kept or Ruled out",tabAna:"Analysed",tabValid:"Validated",tabRej:"Ruled out",rank:"The list order is a ranking",improve:"Stan improves on its own — and you speed it up",funnel:"The funnel",tuto:"The current step",demand:"Evaluate a company",deals:"Today’s deals",news:"Today’s sector news",chips:"Statuses, on the row",dec:"Why this decision",memo:"The detailed memo",status:"Your status",learn:"Your 👍 / 👎",tools:"Connect your tools",exportT:"Export to CSV",alerts:"Your email alerts",crit:"Stan’s settings"},fhintDeals:"M&A deals and funding rounds in your sectors, today. One click extracts the companies to evaluate — the same gesture as pasting an article.",fhintNews:"Articles kept for YOUR thesis. One click produces a mind map and the companies to evaluate.",fhintExport:"Take your targets out as CSV — the current selection with its columns, ready for your spreadsheet or CRM.",fhintAlerts:"Set what reaches your inbox: the morning brief, the weekly recap, and the alert when a memo is ready.",csLabel:"Your status:",csKept:"Kept",csAnalysed:"Analysed",csPending:"To decide",csValidated:"Validated",csOut:"Ruled out",csYes:"✓ Yes",csNo:"✗ No",csSaved:"✓ saved",csNoteSaved:"note added ✓",csNoteOk:"OK",csNotePh:"Why? (one line)",csAnaConfirm:"No memo on this file — mark it Analysed anyway?",whySend:"Send",whyYesPh:"Why this YES? (one line — it sharpens your thesis)",whyNoPh:"Why this NO? (one line — it sharpens your thesis)",stgLabel:"Your progress:",stg:[["todo","○ To do"],["sent","✉ Contacted"],["replied","💬 Replied"],["meeting","🤝 Meeting"],["loi","📄 LOI"],["signed","✅ Signed"],["lost","✖ Lost"]],j4Badge:e=>`⏰ No reply for ${e} days — follow up?`,actRepeche:"↩ Recover",actRegen:"↻ Regenerate the memo",actConn:"🔌 Send",actConnHint:"Put this company into a sequence, or push it to your CRM.",memoRegenAsk:e=>`Redo the detailed memo for ${e}? The current one will be replaced, and this uses one credit.`,actErr:"Could not save — try again in a moment.",actNotPersisted:"This status cannot be saved on this record.",decidedYes:e=>`${e} validated — on to the approach`,decidedNo:e=>`${e} ruled out`,repeched:e=>`${e} recovered — back in Kept`,critHypTitle:"Our hypothesis about your strategy",critHypSub:"The whole selection follows from it. If it is off, correct it below — the search is realigned and you get a corrected selection.",critProfilsTitle:"Your target profiles",critProfilsSub:"The families of targets the machine tracks continuously — each profile unfolds.",critLookFor:"What we look for",critRuleOut:"What we rule out",critGateTitle:"Stan’s screen — how it decides Kept / Ruled out",critGateSub:"Every company is checked against these criteria. They are what the “STEP A, C…” in the reasons on each row refer to.",rubricTitle:"How Stan decides the analysis (CALL / CONSIDER / MONITOR / PASS)",rubricSub:"Once kept, Stan digs deeper and rules. Here’s what tips the balance.",qvTitle:"Stan’s verdicts — where each file goes",qv:[["CALL PENDING","Stan’s top pick: decide YES/NO now → “To decide” tab."],["CALL YES","you decided YES — the file joins “Validated”, on to the approach."],["CALL NO","you decided NO — the file joins “Ruled out”."],["CONSIDER","solid, worth a closer look → “Analysed” tab."],["MONITOR","keep an eye on it, not a priority yet → “Analysed” tab."],["PASS","not relevant right now → “Ruled out” tab."]],brTitle:"Automatic routing — where Stan’s verdict sends each file",br:[["Kept","MATCH — kept at sourcing, memo to come → “Kept” tab"],["Analysed","CONSIDER · MONITOR — memo done, no call → “Analysed” tab"],["To decide","CALL PENDING — Stan proposes a call, your YES/NO is awaited → “To decide” tab"],["Validated","CALL YES — you ruled YES → “Validated” tab"],["Ruled out","NO MATCH · PASS · CALL NO — Stan’s refusal, or your NO on a call → “Ruled out” tab"]],brNote:"A CALL goes through 3 states: CALL PENDING (the memo is DONE, Stan proposes the call — your decision is awaited) › CALL YES (you validate) › CALL NO (you rule out). PENDING never means “being analysed”: the analysis is already done.",vt:{MATCH:"MATCH — kept: it fits your criteria.","NO MATCH":"NO MATCH — ruled out by your criteria.","CALL PENDING":"CALL — Stan’s top pick: worth a YES/NO decision now.","CALL YES":"CALL YES — you ruled YES: the file joins “Validated”.","CALL NO":"CALL NO — you ruled NO: the file joins “Ruled out”.",CONSIDER:"CONSIDER — solid, worth a closer look.",MONITOR:"MONITOR — keep an eye on it, not a priority yet.",PASS:"PASS — not relevant right now."},vKept:"Kept",vOut:"Ruled out",learnLine:"Like Netflix, every 👍/👎 sharpens what Stan shows you next — you judge, it learns.",learnLink:"Tune my criteria →",funnelHint:"Find here all your automatically sourced targets in <b>evaluated</b>, then move the ones you want to contact into <b>validated</b>.",fhintClose:"Hide this hint",queueTitle:"Processing queue",queueDone:(e,a)=>`<b>${e} / ${a}</b> memos generated`,queueTomorrow:"Up next — projected order, recomputed every morning",queueToday:"Analyzed today",queueRate:"Daily rate — applied from tomorrow morning",queueRetry:"Retry",queueDelete:"Remove",queueEmpty:"No memo queued right now.",exportTitle:"Export your selection",exportLead:"The visible tab is the selection. No checkboxes.",exportCsv:["📄","CSV","One row per company — verdict, angle, memo, contact."],exportSheet:["📊","Spreadsheet","Paste the formula: the table refreshes itself."],exportLive:["🔗","Live link","A JSON URL, re-read on every call. Never a stale export."],exportXlsx:["📥","Excel","The full workbook, contacts included."],exportWebhook:["⛓","Webhook","Every approved target lands in your tool."],exportCopy:"Copy",exportCopied:"Copied!",exportOpen:"Open",exportKeyWarning:"These links contain this page’s access key: share them with the same care.",plugTitle:"Connect this page to your tools",plugWebhook:"Outbound CRM webhook",plugWebhookHint:"Every status change is sent to this URL (https).",plugConfigured:"Configured",plugMcpHint:"Add Proplace to your MCP client: your deal flow becomes queryable in natural language.",coverTitle:"Your market coverage",coverBody:(e,a)=>`<b>${e}</b> companies screened out of an estimated market of <b>~${a.toLocaleString("en-US")}</b>. The estimate was set with your Corporate Developer and can be revised at any time.`,coverScreened:e=>`${e} screened`,alertTitle:"Your email alerts",alertDaily:"Morning email (Daily 5)",alertDailyHint:"Every morning: files to decide, stats, the market.",alertHour:"Send hour (Paris)",alertDays:"Days",alertWeekdays:"Weekdays",alertEveryday:"Every day",alertSaved:"Preferences saved",critTitle:"Stan’s configuration",critAngles:"Your acquisition angles",critMemoKinds:"① Instant · ~15 min — analysis, synergies, verdict. ② Detailed · ~35-40 min — market study, competitive quadrant, scenarios.",tutoTitle:"Getting started",tutoSteps:[["Your thesis","Stan inferred your angles from your online presence. Check them: everything follows."],["The screen","Every night, the market is checked against your criteria: MATCH or NO MATCH."],["Kept","MATCHes land here, memo-less. This is your work queue."],["Analyze","One click produces the memo: quantified synergies, decisive angle, verdict."],["To decide","CALL lands here. You answer YES or NO — your YESes refine Stan."],["The pace","Set memos per day. The queue drains in priority order."]],similar:"🧬 Similar",similarBusy:"🧬 Searching…",similarNote:"The kept ones enter your list at the next refresh.",similarNone:"No similar companies found (5 searches per day).",approachChannel:"Channel",loadingV2:"Loading the cockpit…",updatedAt:e=>`updated ${e}`,backV1:"← classic interface",identPause:"paused",identPauseTitle:"Rate at 0 — no memo launches. Raise the rate to resume.",identUpdatedAt:e=>`updated ${e}`,critChatTitle:"Fix the thesis in natural language",critChatHint:"Write your correction — the engine applies it or asks its question. Tomorrow’s sourcing realigns without intervention.",critChatPh:"E.g.: “rule out companies under 10 people”…",critChatSend:"Apply",critChatRunning:"⏳ The engine is working — you can close, the correction survives.",critThumbsTitle:"📊 Your thumbs journal",critThumbsEmpty:"No thumbs yet — 👍/👎 on rows teach Stan your taste.",actOnboard:"🚀 Onboard this lead",actOnboardTitle:"Triggers the full A→Z onboarding of this prospect (page, thesis, sourcing)",onboardSent:e=>`Onboarding launched for ${e} — track progress in the cockpit`,rsOpen:"🔎 Extract companies from an article",rsOpenHint:"Paste an article or video URL — Stan lists the companies, same as LIVE.",feedDeals:"🤝 Deals today",feedSent:e=>`${e} compan${e>1?"ies":"y"} added to To screen`,feedExtractReady:"Article pasted into Paste a URL — click Extract companies.",feedExtracting:"Reading the article — companies will land in To screen.",feedNews:"📰 Sector news today",feedDealsH:"Where this comes from — LIVE M&A and fundraises, already filtered to your thesis.",feedDealsHow:"An article → Extract companies (Stan drops them into To screen). A named company → Evaluate.",feedPasted:e=>`${e} is in the bar — click Evaluate.`,feedNewsH:"Where this comes from — today’s articles Stan kept for YOUR thesis (same source as LIVE).",feedNewsHow:"“Extract companies” reads the article and drops the targets into To screen, with the list of what was found.",feedWaitDeals:"Reading today’s deals, filtered to your thesis…",feedWaitNews:"Reading the news kept for your thesis…",feedPutEval:"Evaluate",feedPutAll:"Add all to To screen",feedEmptyDeals:"No recent deals in your sectors today — come back tomorrow, or paste an article.",feedEmptyNews:"No article kept for your thesis today — come back tomorrow, or paste a link.",feedAnalyse:"🧠 Analyse",feedNew:e=>`${e} new`,feedHint:"New since your last visit",feedOpen:"Open the source ↗",feedFold:"Fold ↑",feedExpand:"Expand ↓",feedShrink:"Reduce ↑",rsUrlPh:"paste the URL of an article, a video or a note",rsTextPh:"Paste the full article here",rsOr:"or",rsGo:"🔎 Summarize and find companies",rsHint:"Summary · mind map · companies",rsRunning:"Reading…",rsRunningVid:"Transcribing the video…",rsElapsed:e=>`${e}s`,rsNeed:"Paste a URL, or the full text of the article.",rsFound:e=>e?`${e} compan${e>1?"ies":"y"} found in this content.`:"No company named in this content.",rsLink:"See the published page ↗",rsPublishing:"Publishing the note…",rsPublishFail:"Note produced, page not published",rsTags:"Tags",rsClose:"Close",rsMindmap:"Mind map",rsMmTip:"Click a branch or a category to open or fold it.",rsMmCats:"Categories",rsArticle:"Article reading",rsSource:"Source ↗",rsSaving:"Saving…",rsSaved:"✓ Saved to your cockpit",rsSavedIn:e=>`✓ Saved to ${e}'s notebook`,rsSavedOpen:"Open the notebook →",rsSaveFail:"Note produced, NOT saved",rsArchOpen:e=>`🗂 Notebook (${e})`,rsArchTitle:"Research notebook",rsArchBack:"← all research runs",rsArchLoading:"Loading…",rsArchEmpty:"No research saved yet.",rsArchGone:"This research is no longer available.",rsRowCounts:(e,a)=>`${e} mentioned · ${a} to evaluate`,rsPub:"Published",rsPriv:"Not published",rsCited:"Companies mentioned",rsCitedHint:"Every company named in this content.",rsMatch:"Companies that could match",rsMatchHint:"Suggested from the content’s thesis — they are not necessarily named in it.",rsNoteRead:"Read in the article",rsNoteFallback:"Page unreadable (paywall or too short). Companies read from the title:",rsNoteNone:"Page unreadable (paywall or too short), and the title names no company. Paste the article or open the source.",rsNoteCited:"Every company found:",rsNoteMatch:"Could match the thesis:",rsNoteNoMatch:"No clear thesis match — mentioned companies are in To screen so you can decide.",rsNoteAdded:e=>e?`${e} added to To screen, below.`:"Already in To screen.",rsEvalOne:"⚡ Evaluate",rsAddAll:e=>`＋ Add all ${e} to the list`,rsNoCompanies:"No company in this content.",rsConclusion:"What it implies",rsCriteria:"Sourcing criteria",rsSources:"Dig deeper",groupEngine:"Engine",groupNone:"None",browse:e=>`Browse the ${e}`,chainAll:e=>`Evaluate the ${e}`,chainHint:"against your thesis, one after another",winMenu:"Period",datesShort:["Today","7 days","30 days","All"],colCompany:"Company & description",grpCount:(e,a)=>`${e} to send out of ${a} sourced`,emptyTab:"No target in this tab",emptyScope:"No company in this scope",emptyWin:"The date window may have something to do with it.",emptyWinBtn:"See the whole period",emptyFilters:e=>`${e} active filter${e>1?"s":""}`,emptyFiltersBtn:"↺ Clear everything",privLink:"🔒 Private link — share it with your team only.",fitTitle:"Does this thesis match what you want?",fitSub:"One click and one sentence. That is what makes the machine yours — far more than any call on a single company.",fitYes:"Yes, that’s it",fitPartial:"Partly",fitNo:"Not really",fitPh:"e.g. aim at 20–200 people · drop leisure · add ERP connectors…",fitSend:"Send",fitSaved:"Answer saved ✓",fitDone:"✓ THE ANSWER GIVEN",fitEdit:"Edit my answer",fitKo:"Could not send — try again.",refreshRun:"Refreshing…",refreshKo:"Refresh failed — try again in a moment.",refreshDone:(e,a)=>`Refreshed ✓ · +${e} new · −${a} gone`,refreshSame:"Refreshed ✓ — no new file.",refreshSlow:"The republish is taking longer than expected — it keeps going on its side, come back in a few minutes.",fitSeen:"Your answer is readable by Proplace and by anyone opening this link: it is about the thesis, not your data.",freshBan:"🆕 Sourcing has run since you opened this screen.",freshGo:"Reload the list",thumbWhyUpPh:"What you liked — one line is enough (optional)",thumbWhyDnPh:"What was off — one line is enough (optional)",alertRules:"One email a day, and nothing at all on days without a new company: no empty mail. It goes out in this page’s language.",rowSite:"Site",rowLi:"LinkedIn",rowMail:"Email",rowTel:"Call",contWorld:"World",evalGoOn:e=>`⚡ Evaluate ${e}`,chromeEval:"Evaluate",chromeFilt:"Filters",chromeBoth:"Both",rowExtract:"🔎 Extract companies",toSendCtx:(e,a)=>`of ${e} in the edition${a>0?` (${a} without an identifiable company)`:""}`,grpCard:"today's card",grpMa:"M&A deals",grpLev:"Fundraising",grpNews:"News",grpNom:"News · Appointments",grpNewsOther:"News · Other",grpHire:"News · Hiring",edLabel:"in today's edition",edSplit:(e,a)=>`⚡ ${e} evaluable${e!==1?"s":""}${a>0?`  ·  🔎 ${a} to explore`:""}`},Ol=new Set(["PROSPECTION","OUTBOUND","SALES","B2B","LEADGEN","LEAD_GEN","LEAD-GENERATION","LEAD GENERATION","SDR","PROSPECTING","COMMERCIAL"]);function Dl(e){const a=String(e||"").trim().toUpperCase();return a?Ol.has(a)?"PROSPECTION":a==="VC"?"VC":"MA":"MA"}const Ml={fr:{VC:{identTitle:e=>`Opportunités pour ${e}`,identSearch:"Rechercher une opportunité",emptyScope:"Aucune opportunité dans ce périmètre",colCompany:"Opportunité & description"},PROSPECTION:{identTitle:e=>`Prospects pour ${e}`,identSearch:"Rechercher un prospect",emptyScope:"Aucun prospect dans ce périmètre",colCompany:"Prospect & description"}},en:{VC:{identTitle:e=>`Opportunities for ${e}`,identSearch:"Search an opportunity",emptyScope:"No opportunity in this scope",colCompany:"Opportunity & description"},PROSPECTION:{identTitle:e=>`Prospects for ${e}`,identSearch:"Search a prospect",emptyScope:"No prospect in this scope",colCompany:"Prospect & description"}}};function Il(e,a){var n;const r=Dl(a);return r==="MA"?{}:((n=Ml[e])==null?void 0:n[r])||{}}const Pl={fr:{...cr.fr,...Fl},en:{...cr.en,...Rl}},_l=`.atl2{
+  
+  --brand:var(--pp-green,#12A150); --brand-d:var(--pp-green-h,#0E8A44); --brand-l:var(--pp-green-bg,#E7F6EE);
+  --blue:#1E5FCC; --bolt:var(--pp-amber,#E0A81E); --red:var(--pp-red,#E5484D);
+  --panel:var(--pp-bg,#FFFFFF); --panel2:var(--pp-bg-zone,#F9FBFD); --panel3:var(--pp-bg-page,#F5F7FA);
+  --line:var(--pp-line,#E3E8F0); --line2:var(--pp-line-dash,#C9D6E6);
+  --ink:var(--pp-ink,#16233A); --muted:var(--pp-ink-2,#4B5E78); --dim:var(--pp-ink-4,#8FA0B8);
+  --sea:#E4EDF3; --land:#FFFFFF; --landline:#B2C2D0; --empty:#F5F7FA; --emptyline:#DCE4EB;
+  --rail:240px;
+  --r:10px;       
+  --rs:8px;       
+  --ra:8px;       
+  --rb:18px;      
+  
+  --p0:var(--pp-line-in,#EEF2F7); --p1:var(--pp-p1,#E7F6EE); --p2:var(--pp-p2,#C4E9D3);
+  --p3:var(--pp-p3,#7FCDA0); --p4:var(--pp-p4,#12A150);
+  --p5:var(--pp-red,#E5484D); --pv:var(--pp-navy,#0F1D33); --pf:var(--pp-amber,#E0A81E);
+  
+  --d0:var(--pp-ink-4,#8FA0B8); --d1:#9ED9B8; --d2:#5FBF8E; --d3:#2E9F68; --d4:var(--pp-green-p,#0A6432);
+  
+  --mono:var(--pp-body,"Instrument Sans",system-ui,sans-serif);
+  --body:var(--pp-body,"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif);
+}
+.atl2,.atl2 *{box-sizing:border-box}
+.atl2,.atl2{height:100%;margin:0;overflow:hidden}
+.atl2{background:var(--panel2);color:var(--ink);font-family:var(--body);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased}
+.atl2 button,.atl2 input,.atl2 textarea{font-family:inherit}
+.atl2,.atl2 *{scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
+.atl2 ::-webkit-scrollbar{width:11px;height:11px}
+.atl2 ::-webkit-scrollbar-track{background:transparent}
+.atl2 ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:6px;border:3px solid var(--panel);background-clip:padding-box}
+.atl2 ::-webkit-scrollbar-thumb:hover{background:var(--muted);border-width:2px}
+.atl2 .app{display:flex;flex-direction:column;height:100dvh;overflow:hidden}
+@keyframes atl2-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+.atl2 .ident{flex:none;background:var(--panel);border-bottom:1px solid var(--line);padding:9px 14px}
+.atl2 .ident[hidden]{display:none}
+.atl2 .idrow{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.atl2 .idrow .eyebrow{font-family:var(--mono);font-size:12px;color:var(--brand-d);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .idrow h1{margin:0;font-size:22px;font-weight:700;letter-spacing:-.02em}
+.atl2 .idpill{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:99px;
+  padding:4px 11px;font-family:var(--mono);font-size:9.5px;color:var(--muted)}
+.atl2 .idpill .bar{width:46px;height:5px;background:var(--panel3);border-radius:99px;overflow:hidden}
+.atl2 .idpill .bar i{display:block;height:100%;background:var(--brand)}
+.atl2 .idpill.pause{color:#E0A81E;border-color:#FFF3D6;background:#FFF7ED}
+.atl2 .idsp{flex:1}
+.atl2 .idupd{font-family:var(--mono);font-size:9px;color:var(--dim)}
+.atl2 .idrow .ic{width:26px;height:26px;border-radius:var(--r);border:1px solid var(--line);display:grid;
+  place-items:center;font-size:12px;color:var(--muted);cursor:pointer;background:var(--panel)}
+.atl2 .idrow .ic:hover{border-color:var(--line2);color:var(--ink)}
+.atl2 .idrow .ic.sm{width:22px;height:20px;font-size:11px;margin-left:4px}
+.atl2 .idsep{width:1px;height:20px;background:var(--line);margin:0 3px}
+.atl2 .eyebrow .lang{display:inline-flex;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  margin-left:8px;vertical-align:middle}
+.atl2 .eyebrow .lang b,.atl2 .eyebrow .lang span{padding:2px 7px;font-size:9px;font-weight:700;color:var(--muted);background:var(--panel)}
+.atl2 .eyebrow .lang b{background:var(--ink);color:#fff}
+.atl2 .isrch{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:var(--r);
+  padding:0 10px;height:28px;background:var(--panel);width:170px}
+.atl2 .isrch input{border:0;outline:none;font-size:12px;flex:1;min-width:0;background:none}
+.atl2 .idpill .mi{cursor:pointer;color:var(--muted);padding:0 2px}
+.atl2 .idpill .mi:hover{color:var(--ink)}
+.atl2 .idlogo{font-weight:700;font-size:12.5px;border:1px solid var(--line);padding:5px 10px;border-radius:var(--r)}
+.atl2 .funnel{flex:none;background:var(--panel);border-bottom:1px solid var(--line);padding:9px 14px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.atl2 .funnel[hidden]{display:none}
+.atl2 .chain2{display:flex;align-items:stretch;flex:1 1 440px;min-width:0}
+.atl2 .step{flex:1 1 0;min-width:0;position:relative;display:flex;flex-direction:column;justify-content:center;gap:2px;
+  padding:7px 12px 7px 25px;background:var(--panel3);color:var(--muted);cursor:pointer;border:0;text-align:left;
+  clip-path:polygon(0 0,calc(100% - 13px) 0,100% 50%,calc(100% - 13px) 100%,0 100%,13px 50%);
+  margin-left:-13px;transition:background .13s}
+.atl2 .step:first-child{margin-left:0;padding-left:14px;
+  clip-path:polygon(0 0,calc(100% - 13px) 0,100% 50%,calc(100% - 13px) 100%,0 100%)}
+.atl2 .step:hover{background:#E4EBF2;color:var(--ink);z-index:4}
+.atl2 .step[aria-selected="true"]{background:var(--c);color:var(--tc,#fff);z-index:5}
+.atl2 .step .l{font-family:var(--mono);font-size:12px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .step .n{font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.atl2 .step .warn{position:absolute;top:5px;right:9px;width:7px;height:7px;border-radius:50%;background:#E0A81E;
+  box-shadow:0 0 0 3px rgba(234,124,11,.25);animation:atl2-pulse2 1.8s infinite}
+@keyframes atl2-pulse2{0%,100%{opacity:1}50%{opacity:.35}}
+.atl2 .offtrack{display:flex;align-items:stretch;gap:5px;flex:none}
+.atl2 .ftools{display:flex;align-items:center;gap:4px;flex:none}
+.atl2 .tool{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:6px 10px;cursor:pointer;
+  font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;white-space:nowrap;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .tool:hover{border-color:var(--line2);color:var(--ink)}
+.atl2 .tool[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.atl2 .offtrack .div{width:1px;background:var(--line);margin:3px}
+.atl2 .off{display:flex;flex-direction:column;justify-content:center;gap:2px;padding:7px 12px;background:var(--panel);
+  border:1px solid var(--line);border-radius:var(--r);cursor:pointer;color:var(--muted);text-align:left}
+.atl2 .off:hover{border-color:var(--line2);color:var(--ink)}
+.atl2 .off .l{font-family:var(--mono);font-size:12px;white-space:nowrap;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .off .n{font-size:15px;font-weight:700;line-height:1;color:var(--ink)}
+.atl2 .off[aria-selected="true"]{background:var(--c);border-color:var(--c);color:#fff}
+.atl2 .off[aria-selected="true"] .n{color:#fff}
+.atl2 .off.view{border-style:dashed}
+.atl2 .off .lock{font-size:10px;opacity:.6}
+.atl2 .tuto{flex:none;position:relative;background:var(--bg);border-bottom:1px solid var(--line);
+  padding:10px 14px;display:flex;gap:12px;align-items:flex-start}
+.atl2 .tuto[hidden]{display:none}
+.atl2 .tuto::before{content:"";position:absolute;top:-7px;left:var(--ax,60px);width:14px;height:14px;
+  background:var(--bg);transform:rotate(45deg)}
+.atl2 .tuto.mini{padding:7px 14px}
+.atl2 .tuto.mini p{margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;color:var(--muted)}
+.atl2 .tuto.mini .acts,.atl2 .tuto.mini .goal{display:none}
+.atl2 .fbar{flex:none;background:var(--panel);border-bottom:1px solid var(--line);padding:10px 14px}
+.atl2 .fbar[hidden]{display:none}
+.atl2 .fbar .act{background:var(--panel2);border:1px solid var(--line);border-radius:var(--ra);padding:10px 12px;margin-bottom:9px}
+.atl2 .fbar .act .hd{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:600;margin-bottom:8px;flex-wrap:wrap}
+.atl2 .fbar .act .hd .lg{display:flex;gap:11px;margin-left:auto;font-size:11px;color:var(--muted);font-weight:500}
+.atl2 .fbar .act .hd .lg i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px}
+.atl2 .fbar .bars{display:flex;align-items:flex-end;gap:3px;height:56px}
+.atl2 .fbar .bars .b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;cursor:pointer;min-width:0}
+.atl2 .fbar .bars .b:hover{opacity:.75}
+.atl2 .fbar .bars .b i{display:block;width:100%}
+.atl2 .fbar .ax{display:flex;justify-content:space-between;font-family:var(--mono);font-size:8.5px;color:var(--dim);margin-top:4px}
+.atl2 .fbar .chips{display:flex;flex-wrap:wrap;gap:5px}
+.atl2 .fbar .chips .srch{display:flex;align-items:center;gap:6px;border:1px solid var(--line2);border-radius:var(--r);
+  padding:0 10px;height:30px;background:var(--panel);min-width:210px}
+.atl2 .fbar .chips .srch input{border:0;outline:none;font-size:12.5px;flex:1;min-width:0}
+.atl2 .fchip{display:flex;align-items:center;gap:6px;height:30px;padding:0 11px;background:var(--panel);
+  border:1px solid var(--line);border-radius:var(--r);font-size:11.5px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.atl2 .fchip:hover{border-color:var(--line2);color:var(--ink)}
+.atl2 .fchip b{color:var(--ink);font-weight:700}
+.atl2 .fchip .cv{font-size:8px;color:var(--dim)}
+.atl2 .tuto .fold{background:none;border:0;font-family:var(--mono);font-size:12px;
+  color:var(--muted);cursor:pointer;padding:3px 6px;flex:none;align-self:center;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .tuto .fold:hover{color:var(--ink)}
+.atl2 .tuto p{margin:0 0 8px;font-size:12.5px;font-weight:600;max-width:90ch;line-height:1.5}
+.atl2 .tuto .acts{display:flex;gap:6px;flex-wrap:wrap}
+.atl2 .tuto .acts button{font-size:12px;font-weight:600;border:0;border-radius:var(--ra);padding:7px 14px;cursor:pointer;color:#fff;background:var(--ink)}
+.atl2 .tuto .acts button.ghost{background:var(--panel);color:var(--ink);border:1px solid var(--line2);font-weight:500}
+.atl2 .tuto .goal{flex:none;font-family:var(--mono);font-size:9px;color:var(--muted);border:1px solid var(--line);
+  background:var(--panel);border-radius:var(--r);padding:6px 10px}
+.atl2 .onb{flex:none;margin:0;background:#0F1D33;color:#fff;padding:18px 20px;border-bottom:1px solid var(--line)}
+.atl2 .onb[hidden]{display:none}
+.atl2 .onb .tag{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12px;color:#5FB98C;font-weight:600;margin-bottom:9px;font-variant-numeric:tabular-nums}
+.atl2 .onb .tag i{width:7px;height:7px;border-radius:50%;background:#5FB98C}
+.atl2 .onb h2{margin:0 0 5px;font-size:21px;font-weight:700;letter-spacing:-.02em}
+.atl2 .onb .sub{font-size:13px;color:#A7B6CC;margin-bottom:14px}
+.atl2 .onb .steps{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap}
+.atl2 .onb .st{flex:1 1 190px;background:#16233A;border-radius:var(--rb);padding:13px 15px;position:relative}
+.atl2 .onb .st.go{background:var(--brand)}
+.atl2 .onb .st .h{font-size:14.5px;font-weight:700;margin-bottom:3px}
+.atl2 .onb .st .d{font-size:12px;color:#A7B6CC;margin-bottom:10px}
+.atl2 .onb .st.go .d{color:#E7F6EE}
+.atl2 .onb .st button{background:#22334A;color:#fff;border:0;border-radius:99px;padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer}
+.atl2 .onb .st.go button{background:#0F1D33}
+.atl2 .onb .foot{margin-top:13px;font-size:12px;color:#A7B6CC}
+.atl2 .onb .foot b{color:#fff}
+.atl2 .row.locked{filter:blur(4px);pointer-events:none;user-select:none}
+.atl2 .lockbar{flex:none;display:none;align-items:center;gap:14px;justify-content:center;padding:11px 14px;
+  background:var(--ink);color:#fff;position:sticky;bottom:0;z-index:20}
+.atl2 .lockbar.on{display:flex}
+.atl2 .lockbar b{font-weight:600;font-size:13px}
+.atl2 .lockbar button{background:#fff;color:var(--ink);border:0;border-radius:99px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer}
+.atl2 .lk{font-size:10px;opacity:.75;margin-right:3px}
+.atl2 .c-vd{display:flex;flex-direction:column;gap:3px;align-items:flex-start;min-width:0}
+.atl2 .vd{display:inline-flex;align-items:center;font-size:12px;font-weight:600;border-radius:var(--rs);
+  padding:3px 8px;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;}
+.atl2 .vd.v-ok{background:var(--brand);color:#fff}
+.atl2 .vd.v-no{background:var(--red);color:#fff}
+.atl2 .vd.call{background:#E7F6EE;color:#0E8A44;box-shadow:inset 0 0 0 1px #B6DCC6}
+.atl2 .vd.v-yes{background:#7C3AED;color:#fff}
+.atl2 .vd.v-pass,.atl2 .vd.v-no2{background:#FDECEC;color:#C0353A;box-shadow:inset 0 0 0 1px #F5C2C2}
+.atl2 .vd.v-cons{background:#EFF6FF;color:#1D4ED8;box-shadow:inset 0 0 0 1px #C7DDFA}
+.atl2 .vd.v-mon{background:var(--panel3);color:var(--muted);box-shadow:inset 0 0 0 1px var(--line)}
+.atl2 .vd.wait{background:none;color:var(--dim);font-weight:500;font-style:italic;padding-left:0}
+.atl2 .c-sc{font-family:var(--mono);font-size:12px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.atl2 .c-sc s{text-decoration:none;font-size:8.5px;color:var(--dim)}
+.atl2 .stbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--c);color:var(--tc,var(--c));
+  background:var(--bgc,var(--panel));border-radius:var(--r);padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
+.atl2 .memobtn{background:var(--blue);color:#fff;border:0;border-radius:var(--ra);padding:6px 11px;font-size:11.5px;font-weight:700;cursor:pointer;white-space:nowrap}
+.atl2 .memobtn:hover{filter:brightness(1.1)}
+.atl2 .yn{display:flex;gap:4px}
+.atl2 .ynb{border-radius:var(--ra);padding:5px 10px;font-size:11.5px;font-weight:700;cursor:pointer;
+  border:1.5px solid var(--c);background:var(--panel);color:var(--c);white-space:nowrap}
+.atl2 .ynb.oui{--c:#0E8A44}
+.atl2 .ynb.non{--c:var(--red)}
+.atl2 .ynb:hover{background:var(--c);color:#fff}
+.atl2 .ticker{flex:none;display:flex;height:46px;background:#0F1D33;color:#fff;border-bottom:1px solid #1B2F4E}
+.atl2 .ticker .lbl{flex:none;display:flex;align-items:center;gap:9px;padding:0 17px;background:var(--red);
+  font-family:var(--mono);font-size:12px;font-weight:600;
+  box-shadow:1px 0 0 rgba(255,255,255,.16);font-variant-numeric:tabular-nums}
+.atl2 .ticker .lbl .cnt{font-size:10px;letter-spacing:0;font-weight:700;background:rgba(255,255,255,.24);
+  border-radius:var(--rs);padding:1px 7px;min-width:22px;text-align:center}
+.atl2 .tk.quiet{color:#7E97B2;font-size:12.5px;cursor:default;border:0}
+.atl2 .ticker .lbl i{width:7px;height:7px;border-radius:50%;background:#fff;animation:atl2-blink 1.6s infinite}
+@keyframes atl2-blink{0%,100%{opacity:1}50%{opacity:.2}}
+.atl2 .ticker .win{flex:1;min-width:0;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent)}
+.atl2 .ticker .run{display:flex;width:max-content;animation:atl2-roll 140s linear infinite}
+.atl2 .ticker:hover .run{animation-play-state:paused}
+@keyframes atl2-roll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.atl2 .tk{display:flex;align-items:center;gap:11px;flex:none;padding:0 20px;height:46px;background:none;border:0;
+  border-right:1px solid #22334A;white-space:nowrap;cursor:pointer;transition:background .12s}
+.atl2 .tk:hover{background:#16233A}
+.atl2 .tk .sig{flex:none}
+.atl2 .tk .sigwin{margin:0;font-size:10.5px;color:#A7B6CC}
+.atl2 .tk .sigwin .gg i{background:rgba(255,255,255,.18)}
+.atl2 .tk .sigwin .gg i.on{background:#A7B6CC}
+.atl2 .tk .sigwin.hot{color:#F5C6C8;font-weight:600}
+.atl2 .tk .sigwin.hot .gg i.on{background:#F5C6C8}
+.atl2 .tk .sigwin a{display:none}
+.atl2 .tk .tkfl{width:21px;height:16px;object-fit:cover;border-radius:var(--rs);flex:none;
+  box-shadow:0 0 0 1px rgba(255,255,255,.22)}
+.atl2 .tk .who{display:flex;align-items:center;gap:7px;flex:none}
+.atl2 .tk .co{font-weight:700;font-size:15px;color:#fff;letter-spacing:-.015em}
+.atl2 .tk .what{font-size:12.5px;color:#AFC2D3}
+.atl2 .tk .am{font-family:var(--mono);font-size:13px;color:#fff;font-weight:600;
+  background:rgba(255,255,255,.09);border-radius:var(--rs);padding:3px 8px;font-variant-numeric:tabular-nums}
+.atl2 .tk .mt{font-size:12px;color:#B7C9D8;border:1px solid rgba(255,255,255,.2);border-radius:var(--rs);
+  padding:2px 8px;font-weight:600}
+.atl2 .tk .ang{font-family:var(--mono);font-size:12px;color:#FDBA74;
+  border:1px solid rgba(253,186,116,.4);border-radius:var(--rs);padding:2px 7px;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .tk .tkgo{font-size:13px;color:#4A6379;transition:color .12s,transform .12s}
+.atl2 .tk:hover .tkgo{color:#fff;transform:translateX(3px)}
+.atl2 .tk.spent{opacity:1}
+.atl2 .tk.spent .co{color:#8FA0B8}
+.atl2 .tk .ty.sig{background:#F9A8D4}
+.atl2 .goal{flex:none;display:flex;align-items:center;gap:9px 14px;padding:6px 14px;background:var(--panel);
+  border-bottom:1px solid var(--line);flex-wrap:wrap}
+.atl2 .gtxt{font-size:15px;font-weight:500;color:var(--ink)}
+.atl2 .gtxt b{font-weight:700;font-size:17px}
+.atl2 .gtxt .ok{color:var(--brand-d);font-weight:700}
+.atl2 .gtxt a{color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.atl2 .gtxt a:hover{color:var(--ink)}
+.atl2 .pbar{flex:1;min-width:90px;max-width:200px;height:6px;background:var(--panel3);border-radius:99px;overflow:hidden}
+.atl2 .pbar i{display:block;height:100%;width:0;background:var(--brand);border-radius:99px;transition:width .45s cubic-bezier(.22,1,.36,1)}
+.atl2 .pilebtn{background:var(--ink);color:#fff;border:0;border-radius:var(--ra);padding:9px 16px;font-size:13px;
+  font-weight:700;cursor:pointer;white-space:nowrap;flex:none}
+.atl2 .pilebtn:hover{background:#000}
+.atl2 .pilebtn[hidden]{display:none}
+.atl2 .gxtra{font-size:12.5px;color:var(--muted)}
+.atl2 .gspace{flex:1}
+.atl2 .conts{flex:none;display:flex;background:var(--panel);border-bottom:1px solid var(--line);overflow-x:auto}
+.atl2 .cbtn{display:flex;align-items:center;gap:7px;background:none;border:0;border-bottom:2.5px solid transparent;
+  padding:5px 14px;cursor:pointer;font-size:12.5px;color:var(--muted);white-space:nowrap}
+.atl2 .cbtn:hover{background:var(--panel2);color:var(--ink)}
+.atl2 .cbtn[aria-selected="true"]{color:var(--ink);font-weight:700;border-bottom-color:var(--ink)}
+.atl2 .cbtn .n{font-family:var(--mono);font-size:9.5px;background:var(--panel3);border-radius:var(--rs);padding:1px 7px;color:var(--muted)}
+.atl2 .cbtn.hint{background:var(--brand-l);color:var(--brand-d);font-weight:700}
+.atl2 .cbtn.hint .n{background:var(--brand);color:#fff}
+.atl2 .cbtn[aria-selected="true"] .n{background:var(--ink);color:#fff}
+.atl2 .conts .side{margin-left:auto;display:flex;align-items:center;flex:none}
+.atl2 .conts .side button{background:none;border:0;border-left:1px solid var(--line);padding:0 14px;height:100%;
+  font-family:var(--mono);font-size:12px;color:var(--muted);cursor:pointer;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .conts .side button:hover{color:var(--ink)}
+.atl2 .mapzone{flex:1;min-width:0;position:relative;background:var(--sea);overflow:hidden}
+.atl2 .mapzone svg{width:100%;height:100%;display:block}
+.atl2 .ct path{fill:var(--land);stroke:var(--landline);stroke-width:.55;transition:fill .12s}
+.atl2 .ct.empty path{fill:var(--empty);stroke:var(--emptyline)}
+.atl2 .ct:hover path{fill:#F0F7FC}
+.atl2 g.co{cursor:pointer;transition:opacity .16s}
+.atl2 g.co circle.h{fill:#000;fill-opacity:0;pointer-events:all}
+.atl2 g.co circle.v{pointer-events:none;stroke:#fff;stroke-opacity:.92}
+.atl2 g.co.off{opacity:.05;pointer-events:none}
+.atl2 g.co.done circle.v{fill-opacity:.32;stroke-opacity:.4}
+.atl2 g.co:hover circle.v{stroke:var(--ink);stroke-opacity:1}
+.atl2 .ring{pointer-events:none;opacity:0}
+.atl2 .ring.on{opacity:1}
+.atl2 .hov{position:absolute;pointer-events:none;opacity:0;z-index:6;background:var(--ink);color:#fff;padding:5px 9px;
+  border-radius:var(--r);font-family:var(--mono);font-size:10px;white-space:nowrap;transform:translate(-50%,-165%)}
+.atl2 .hov.on{opacity:1}
+.atl2 .legend{position:absolute;left:10px;bottom:9px;display:flex;align-items:center;gap:11px;z-index:4;opacity:.4;
+  transition:opacity .15s;font-family:var(--mono);font-size:12px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .legend:hover{opacity:1}
+.atl2 .legend span{display:flex;align-items:center;gap:5px}
+.atl2 .legend i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.atl2 .legend b{font-weight:600}
+.atl2 .fzone{position:relative;flex:none;z-index:25;display:flex;flex-direction:column}
+.atl2 .stage{display:flex;height:30vh;min-height:316px;max-height:38vh;
+  border-bottom:1px solid var(--line);transition:height .2s}
+.atl2 .stage.folded{height:auto;min-height:0}
+.atl2 .stage.folded .mapzone{display:none}
+.atl2 .frail{width:var(--rail);flex:none;background:var(--panel);border-left:1px solid var(--line);
+  display:flex;flex-direction:column;gap:0;padding:11px 10px;overflow-y:auto;overflow-x:hidden}
+.atl2 .stage.folded .frail{width:auto;flex:1;border-left:0;flex-direction:row;flex-wrap:wrap;
+  align-items:center;overflow:visible;padding:9px 12px;gap:7px}
+.atl2 .stage.folded .frail .cap{margin:0 1px 0 0;line-height:1;align-self:center}
+.atl2 .stage.folded .frail .cap+*{margin-bottom:0}
+.atl2 .stage.folded .frail .statusf{margin-bottom:0;flex-direction:row}
+.atl2 .stage.folded .frail .dates,.atl2 .stage.folded .frail .fgrid{align-self:center}
+.atl2 .stage.folded .frail .sep2{width:1px;height:20px;background:var(--line);flex:none;margin:0 3px}
+.atl2 .frail .cap{font-family:var(--mono);font-size:12px;color:var(--dim);
+  padding:0 1px;line-height:1.4;margin-bottom:7px;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .frail .cap+*{margin-bottom:15px}
+.atl2 .frail .fgrid{margin-bottom:0}
+.atl2 .sig{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;border-radius:var(--rs);
+  padding:3px 9px;font-size:12px;font-weight:600;white-space:nowrap;line-height:1.5;
+  font-family:var(--body);border:0}
+.atl2 .sig-lg{font-size:12.5px;padding:5px 12px;gap:7px}
+.atl2 .sig-o{background:transparent;color:var(--red);box-shadow:inset 0 0 0 1px #F0B4B4}
+.atl2 .sig-o:hover{box-shadow:inset 0 0 0 1px var(--red)}
+.atl2 .sigwin{display:block;margin-top:3px;font-style:normal;
+  font-family:var(--body);font-size:11px;color:var(--muted);line-height:1.3}
+.atl2 .sigwin .gg{display:flex;gap:2px;flex:none}
+.atl2 .sigwin .gg i{width:5px;height:3px;border-radius:1px;background:var(--line2)}
+.atl2 .sigwin .gg i.on{background:var(--muted)}
+.atl2 .sigwin .lb{white-space:nowrap}
+.atl2 .sigwin a{color:var(--dim);text-decoration:none;font-size:11px;line-height:1}
+.atl2 .sigwin a:hover{color:var(--ink)}
+.atl2 .sigwin.hot{color:var(--red);font-weight:600}
+.atl2 .sigwin.hot .gg i.on{background:var(--red)}
+.atl2 .sigwin a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;opacity:.7}
+.atl2 .sigwin a:hover{opacity:1}
+.atl2 .sigstrip{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#FDECEC;
+  border-bottom:1px solid #FCD9D9;flex-wrap:wrap}
+.atl2 .sigstrip .t{font-size:13.5px;font-weight:700;color:#C0353A}
+.atl2 .sigstrip .s{font-size:12.5px;color:#9F5A5A}
+.atl2 .sigstrip button{margin-left:auto;background:var(--red);color:#fff;border:0;border-radius:var(--ra);
+  padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.atl2 .sigstrip button:hover{filter:brightness(1.1)}
+.atl2 .sigstrip[hidden]{display:none}
+.atl2 .fbtn.fsig{border-color:#F0B4B4;color:var(--red);grid-column:1 / -1}
+.atl2 .fbtn.fsig:hover{border-color:var(--red)}
+.atl2 .fbtn.fsig .cv{color:#E9A0A0}
+.atl2 .fbtn.fsig .n{background:var(--red)}
+.atl2 .fbtn.fsig[aria-expanded="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.atl2 .fbtn.fsig[aria-expanded="true"] .n{background:#fff;color:var(--red)}
+.atl2 .opt .sig{pointer-events:none}
+.atl2 .statusf{display:flex;flex-direction:column;gap:5px;margin-bottom:15px}
+.atl2 .statusf[hidden]{display:none}
+.atl2 .statusf button{display:flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--panel);
+  border-radius:var(--r);padding:0 10px;height:28px;font-size:11.5px;color:var(--muted);cursor:pointer;text-align:left}
+.atl2 .statusf button:hover{border-color:var(--line2);color:var(--ink)}
+.atl2 .statusf button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.atl2 .statusf button b{margin-left:auto;font-family:var(--mono);font-size:9px;font-weight:700;
+  background:var(--panel3);color:var(--muted);border-radius:var(--rs);padding:1px 6px}
+.atl2 .statusf button[aria-pressed="true"] b{background:rgba(255,255,255,.22);color:#fff}
+.atl2 .statusf{gap:5px}
+.atl2 .stage.folded .statusf{flex-direction:row}
+.atl2 .stage.folded .sigtypes{display:none}
+.atl2 .dates{display:flex;flex-direction:column;flex:none;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.atl2 .dates button{display:flex;align-items:center;gap:9px;width:100%;height:28px;padding:0 10px;background:var(--panel);
+  border:0;border-bottom:1px solid var(--line);cursor:pointer;font-family:var(--body);font-size:11.5px;
+  font-weight:600;color:var(--muted);text-align:left}
+.atl2 .dates button:last-child{border-bottom:0}
+.atl2 .dates button:hover{background:var(--panel2);color:var(--ink)}
+.atl2 .dates button .rd{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--line2);flex:none;position:relative}
+.atl2 .dates button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.atl2 .dates button[aria-pressed="true"] .rd{border-color:#fff}
+.atl2 .dates button[aria-pressed="true"] .rd::after{content:"";position:absolute;inset:2px;border-radius:50%;background:#fff}
+.atl2 .dates button .dn{margin-left:auto;font-family:var(--mono);font-size:9.5px;color:var(--muted);font-weight:700;
+  background:var(--panel3);border-radius:var(--rs);padding:1px 6px}
+.atl2 .dates button[aria-pressed="true"] .dn{background:rgba(255,255,255,.22);color:#fff}
+.atl2 .stage.folded .dates{flex-direction:row;align-items:center;gap:0;border-radius:var(--r)}
+.atl2 .stage.folded .dates .dbh{display:none}
+.atl2 .stage.folded .dates button{width:auto;height:28px;padding:0 11px;border-bottom:0;
+  border-right:1px solid var(--line);white-space:nowrap;font-size:11.5px}
+.atl2 .stage.folded .dates button:last-child{border-right:0}
+.atl2 .frow{display:flex;gap:5px;flex-wrap:wrap;min-width:0}
+.atl2 .frow .alertbtn{flex:1 1 84px}
+.atl2 .frow .resetbtn{flex:0 0 auto}
+.atl2 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.atl2 .stage.folded .fgrid{display:flex;gap:4px}
+.atl2 .stage.folded .fbtn.fsig{grid-column:auto}
+.atl2 .fbtn{display:flex;align-items:center;gap:7px;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r);padding:0 10px;height:28px;cursor:pointer;font-family:var(--body);font-size:11.5px;
+  font-weight:600;color:var(--muted);white-space:nowrap;overflow:hidden;text-align:left}
+.atl2 .fbtn:hover{border-color:var(--line2);color:var(--ink)}
+.atl2 .fbtn .sp{flex:1}
+.atl2 .fbtn .cv{font-size:8px;color:var(--dim);transition:transform .14s}
+.atl2 .fbtn .n{background:var(--ink);color:#fff;border-radius:var(--rs);padding:1px 6px;
+  font-family:var(--mono);font-size:9px;font-weight:700}
+.atl2 .fbtn .n[hidden]{display:none}
+.atl2 .fbtn[aria-expanded="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.atl2 .fbtn[aria-expanded="true"] .cv{color:#fff;transform:rotate(-90deg)}
+.atl2 .fbtn[aria-expanded="true"] .n{background:#fff;color:var(--ink)}
+.atl2 .alertbtn{background:var(--brand);color:#fff;border:0;border-radius:var(--ra);height:30px;padding:0 10px;font-size:11.5px;
+  font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.atl2 .alertbtn:hover{background:var(--brand-d)}
+.atl2 .resetbtn{display:none;align-items:center;gap:5px;background:var(--panel);border:1px dashed var(--line2);
+  border-radius:var(--ra);height:30px;padding:0 10px;font-family:var(--body);font-size:11.5px;font-weight:600;
+  color:var(--muted);cursor:pointer;white-space:nowrap}
+.atl2 .resetbtn.on{display:flex}
+.atl2 .resetbtn:hover{border-style:solid;border-color:var(--ink);color:var(--ink)}
+.atl2 .resetbtn .rot{display:inline-block;font-size:12px}
+.atl2 .resetbtn.spin .rot{animation:atl2-spin .5s ease}
+@keyframes atl2-spin{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+.atl2 .frail .grow{flex:1}
+.atl2 .stage.folded .frail .grow{display:none}
+.atl2 .fpanel{position:absolute;right:var(--rail);top:0;width:min(640px,calc(100% - var(--rail) - 10px));
+  background:var(--panel);border-left:1px solid var(--line2);border-right:1px solid var(--line2);
+  border-bottom:1px solid var(--line2);box-shadow:-16px 6px 34px rgba(15,29,51,.16);
+  display:none;flex-direction:column;max-height:min(52vh,430px);z-index:30}
+.atl2 .fpanel.on{display:flex}
+.atl2 .stage.folded ~ .fpanel{right:0;left:0;top:100%;width:auto;border-left:0;border-right:0;
+  box-shadow:0 20px 36px rgba(15,29,51,.16)}
+.atl2 .fpanel .ph{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid var(--line);background:var(--panel2)}
+.atl2 .fpanel .ph b{font-family:var(--mono);font-size:12px;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .fpanel .ph .sp{flex:1}
+.atl2 .fpanel .ph button{background:none;border:0;font-family:var(--mono);font-size:12px;color:var(--muted);cursor:pointer;padding:3px 6px;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .fpanel .ph button:hover{color:var(--ink)}
+.atl2 .fcols{flex:1;min-height:0;overflow:auto;padding:10px 14px;columns:3;column-gap:16px}
+.atl2 .fcols.two{columns:2}
+.atl2 .opt{width:100%;display:flex;align-items:center;gap:8px;padding:5px 6px;background:none;border:0;cursor:pointer;
+  text-align:left;font-size:12px;color:var(--muted);border-radius:var(--r);break-inside:avoid}
+.atl2 .opt:hover{background:var(--panel2);color:var(--ink)}
+.atl2 .opt .bx{width:12px;height:12px;border:1.5px solid var(--line2);border-radius:var(--rs);flex:none;position:relative}
+.atl2 .opt[aria-pressed="true"] .bx{background:var(--brand);border-color:var(--brand)}
+.atl2 .opt[aria-pressed="true"] .bx::after{content:"";position:absolute;left:2.8px;top:.4px;width:3.6px;height:6.4px;
+  border:solid #fff;border-width:0 1.6px 1.6px 0;transform:rotate(42deg)}
+.atl2 .opt[aria-pressed="true"]{color:var(--ink);font-weight:600}
+.atl2 .opt .l{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.atl2 .opt .n{font-family:var(--mono);font-size:9px;color:var(--dim)}
+.atl2 .fpanel .pf{border-top:1px solid var(--line);padding:10px 14px;background:var(--panel2);display:flex;align-items:center;gap:10px}
+.atl2 .fpanel .pf .t{font-size:12px;color:var(--muted);flex:1}
+.atl2 .no{width:21px;height:21px;border-radius:50%;background:var(--ink);color:#fff;display:inline-grid;place-items:center;
+  font-family:var(--mono);font-size:11px;font-weight:700;flex:none}
+.atl2 .no.g{background:var(--brand)}
+.atl2 .demand{flex:none;background:var(--panel2);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:10px 14px}
+.atl2 .drow{display:flex;align-items:stretch;gap:9px;flex-wrap:wrap}
+.atl2 .dfield{flex:1;min-width:230px;position:relative;display:flex;align-items:center}
+.atl2 .dfield input{width:100%;height:46px;background:var(--panel);border:1px solid var(--line2);
+  border-radius:var(--ra);padding:0 100px 0 15px;font-size:15px;outline:none;transition:.14s;
+  box-shadow:0 1px 2px rgba(15,29,51,.05)}
+.atl2 .dfield input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(22,163,74,.15)}
+.atl2 .dfield.pulse input{animation:atl2-pulse .7s ease}
+@keyframes atl2-pulse{0%{box-shadow:0 0 0 0 rgba(22,163,74,.45)}100%{box-shadow:0 0 0 12px rgba(22,163,74,0)}}
+.atl2 .detect{position:absolute;right:13px;font-family:var(--mono);font-size:12px;background:var(--panel3);
+  color:var(--muted);border-radius:var(--rs);padding:3px 8px;pointer-events:none;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .detect.url{background:var(--brand-l);color:var(--brand-d)}
+.atl2 .dunder{margin-top:6px;display:flex}
+.atl2 .memo{margin-top:12px;background:var(--panel);border:0;border-top:2px solid var(--ink);
+  border-radius:0 0 var(--ra) var(--ra);overflow:hidden;box-shadow:0 6px 18px rgba(15,29,51,.07)}
+.atl2 .memo[hidden]{display:none}
+.atl2 .memo .mh{display:flex;align-items:center;gap:10px;padding:11px 16px 9px;background:var(--panel)}
+.atl2 .memo .mh .nm{font-weight:700;font-size:14.5px}
+.atl2 .memo .mh .vv{font-family:var(--mono);font-size:12px;background:#EFF6FF;color:#1D4ED8;
+  border-radius:var(--rs);padding:3px 8px;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .memo .mh .sp{flex:1}
+.atl2 .memo .mh .x{background:none;border:0;font-size:18px;color:var(--dim);cursor:pointer}
+.atl2 .memo .tabs2{display:flex;gap:0;border-bottom:1px solid var(--line);overflow-x:auto;background:var(--panel);padding:0 10px}
+.atl2 .memo .tabs2 button{flex:none;background:none;border:0;border-bottom:2.5px solid transparent;padding:9px 15px;
+  font-family:var(--mono);font-size:12px;color:var(--muted);cursor:pointer;white-space:nowrap;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .memo .tabs2 button:hover{color:var(--ink)}
+.atl2 .memo .tabs2 button[aria-selected="true"]{border-bottom-color:var(--blue);color:var(--ink);font-weight:700}
+.atl2 .memo .mb2{padding:15px 16px 17px;max-height:240px;overflow:auto;font-size:13.5px;line-height:1.65;color:var(--muted)}
+.atl2 .memo .mb2 b{color:var(--ink)}
+.atl2 .memo .mb2 ul{margin:0;padding:0;list-style:none}
+.atl2 .memo .mb2 li{position:relative;padding-left:16px;margin-bottom:6px}
+.atl2 .memo .mb2 li::before{content:"—";position:absolute;left:0;color:var(--brand)}
+.atl2 .memo .msyn{width:100%;border-collapse:collapse;font-size:12.5px}
+.atl2 .memo .msyn td{padding:6px 0;border-bottom:1px solid var(--line)}
+.atl2 .memo .msyn td:last-child{text-align:right;font-family:var(--mono);font-weight:700;color:var(--ink)}
+.atl2 .memo .msyn .tot td{border-bottom:0;font-weight:700;color:var(--ink)}
+.atl2 .memo .msyn .tot td:last-child{color:var(--brand-d);font-size:14px}
+.atl2 .memo .mf{display:flex;align-items:center;gap:12px;padding:11px 16px;border-top:1px solid var(--line);background:var(--panel2)}
+.atl2 .memo .mf .t{flex:1;font-size:12px;color:var(--muted)}
+.atl2 .memo .mf .go{background:var(--blue);color:#fff;border:0;border-radius:var(--ra);padding:10px 18px;
+  font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.atl2 .memo .mf .go:hover{filter:brightness(1.1)}
+.atl2 .evalbtn{position:relative;overflow:hidden;background:var(--brand);color:#fff;border:0;border-radius:var(--ra);
+  height:46px;padding:0 30px;flex:none;font-size:15px;font-weight:700;box-shadow:0 1px 2px rgba(15,29,51,.08);cursor:pointer;flex:none;display:flex;align-items:center;gap:8px}
+.atl2 .evalbtn:hover{background:var(--brand-d)}
+.atl2 .evalbtn[disabled]{opacity:.6;cursor:default}
+.atl2 .evalbtn .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(255,255,255,.28)}
+.atl2 .evalbtn.loading .fill{width:100%;transition:width 1.15s linear}
+.atl2 .dmulti{background:none;border:0;font-size:12px;color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px;flex:none}
+.atl2 .dmulti:hover{color:var(--brand-d)}
+.atl2 .bulk{display:none;margin-top:10px;gap:9px;align-items:flex-start}
+.atl2 .bulk.on{display:flex}
+.atl2 .bulk textarea{flex:1;min-height:118px;overflow:hidden;border:1.5px solid var(--line2);border-radius:var(--ra);
+  padding:11px 13px;font-size:13.5px;line-height:1.7;resize:none;outline:none;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.atl2 .bulk textarea:focus{border-color:var(--brand)}
+.atl2 .bulk .side{display:flex;flex-direction:column;gap:6px;flex:none;width:180px}
+.atl2 .bulk .hint{font-family:var(--mono);font-size:12px;color:var(--dim);text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .result{display:none;margin-top:10px;border-radius:var(--r);border:1.5px solid var(--c);background:var(--bgc);
+  padding:11px 14px;align-items:center;gap:14px;flex-wrap:wrap;animation:atl2-pop .22s ease}
+.atl2 .result.on{display:flex}
+@keyframes atl2-pop{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.atl2 .result .vv{display:flex;align-items:center;gap:8px;flex:none}
+.atl2 .result .vp{font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;
+  background:var(--c);border-radius:var(--rs);padding:5px 10px;font-variant-numeric:tabular-nums}
+.atl2 .result .vs{font-family:var(--mono);font-size:17px;font-weight:700;color:var(--c);font-variant-numeric:tabular-nums}
+.atl2 .result .vs s{text-decoration:none;font-size:10px;color:var(--muted)}
+.atl2 .result .rn{font-weight:700;font-size:14px}
+.atl2 .result .rr{flex:1;min-width:180px;font-size:12.5px;color:var(--muted)}
+.atl2 .result .rr b{color:var(--ink);font-weight:600}
+.atl2 .result .go{background:var(--c);color:#fff;border:0;border-radius:var(--ra);padding:8px 13px;font-size:11.5px;
+  font-weight:700;cursor:pointer;white-space:nowrap}
+.atl2 .tally{display:flex;align-items:center;gap:10px;margin-top:9px;font-family:var(--mono);font-size:12px;color:var(--dim);flex-wrap:wrap;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .tally b{color:var(--ink);font-weight:700;font-size:12px}
+.atl2 .tally .k{color:var(--brand-d)}
+.atl2 .tally .d{color:var(--red)}
+.atl2 .tally a{color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.atl2 .tally a:hover{color:var(--ink)}
+.atl2 .mcard .fgrp{margin-bottom:14px}
+.atl2 .mcard .fgrp label{display:block;font-size:12.5px;font-weight:600;margin-bottom:5px}
+.atl2 .mcard .fgrp input{width:100%;border:1.5px solid var(--line2);border-radius:var(--ra);padding:11px 13px;font-size:14px;outline:none}
+.atl2 .mcard .fgrp input:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-l)}
+.atl2 .mcard .fgrp .h{font-size:11.5px;color:var(--muted);margin-top:4px}
+.atl2 .mcard .lead{font-size:13.5px;line-height:1.55;color:var(--ink);margin:0 0 16px}
+.atl2 .mcard .lead b{font-weight:700}
+.atl2 .mcard .ctx{background:var(--panel3);border-left:3px solid var(--brand);padding:10px 13px;border-radius:0 5px 5px 0;
+  font-size:12.5px;margin-bottom:14px}
+.atl2 .mcard .opt-more{background:none;border:0;color:var(--muted);font-size:12px;cursor:pointer;text-decoration:underline;
+  text-underline-offset:3px;padding:0;margin-bottom:14px}
+.atl2 .mcard .note{font-size:12px;color:var(--muted);margin:0 0 14px}
+.atl2 .mcard .cta{width:100%;justify-content:center;padding:14px;font-size:14.5px}
+.atl2 .groupbar{display:flex;align-items:center;gap:4px;margin-left:auto;flex:none}
+.atl2 .groupbar .gl{font-family:var(--mono);font-size:12px;color:var(--dim);margin-right:3px;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .groupbar button{font-size:11.5px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:5px 11px;cursor:pointer;color:var(--muted)}
+.atl2 .groupbar button:hover{border-color:var(--line2);color:var(--ink)}
+.atl2 .groupbar button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.atl2 .groupbar[hidden]{display:none}
+.atl2 .subh{padding:9px 14px 7px;border-bottom:1px solid var(--line);background:#FBFDFE}
+.atl2 .subh b{display:block;font-size:12.5px;font-weight:700}
+.atl2 .subh span{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .listhead{flex:none;display:flex;align-items:baseline;gap:9px;padding:6px 14px;background:var(--panel2);
+  border-bottom:1px solid var(--line);overflow:hidden}
+.atl2 .listhead .main{font-size:13.5px;font-weight:600;color:var(--ink);white-space:nowrap;flex:none}
+.atl2 .listhead .main b{font-size:17px;font-weight:700;letter-spacing:-.01em}
+.atl2 .listhead .dot{color:var(--line2);flex:none}
+.atl2 .listhead .ctx{font-family:var(--mono);font-size:12px;color:var(--dim);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1 1 auto;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .listhead .chain{align-self:center;flex:none;margin-left:9px}
+.atl2 .exitpile{background:none;border:1px solid var(--line2);border-radius:var(--r);padding:5px 10px;
+  font-family:var(--mono);font-size:12px;color:var(--muted);cursor:pointer;align-self:center;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .exitpile:hover{border-color:var(--red);color:var(--red)}
+.atl2 .exitpile[hidden]{display:none}
+.atl2 .sp-tabs{display:flex;gap:6px;margin-bottom:14px}
+.atl2 .sp-tab{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:var(--ra);padding:8px 13px;
+  font-size:12.5px;font-weight:600;background:var(--panel);cursor:pointer}
+.atl2 .sp-tab[aria-selected="true"]{background:var(--c);border-color:var(--c);color:#fff}
+.atl2 .sp-row{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+.atl2 .sp-row:last-child{border-bottom:0}
+.atl2 .sp-row .sc{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--c);flex:none;width:34px;font-variant-numeric:tabular-nums}
+.atl2 .sp-row .nm{font-weight:700;font-size:13.5px}
+.atl2 .sp-row .rr{font-size:12px;color:var(--muted);margin-top:2px}
+.atl2 .sp-empty{padding:26px;text-align:center;font-size:13px;color:var(--muted)}
+.atl2 .chain{margin-left:auto;background:var(--ink);color:#fff;border:0;border-radius:var(--ra);padding:8px 16px;font-size:12.5px;
+  font-weight:700;cursor:pointer;display:flex;align-items:center;gap:7px}
+.atl2 .chain:hover{background:#000}
+.atl2 .chain .b{color:var(--brand)}
+.atl2 .list{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;background:var(--panel)}
+.atl2 .row>*{min-width:0}
+.atl2 .grp-h{display:flex;align-items:center;gap:10px;padding:8px 14px;background:var(--panel3);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:3}
+.atl2 .grp-h .ic{width:24px;height:24px;border-radius:var(--r);background:var(--ink);color:#fff;display:grid;place-items:center;font-size:12px}
+.atl2 .grp-h .t{font-weight:700;font-size:13px}
+.atl2 .grp-h .s{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .grp-h .go{margin-left:auto;background:var(--panel);border:1px solid var(--line2);border-radius:var(--ra);padding:6px 12px;
+  font-size:11.5px;font-weight:600;cursor:pointer}
+.atl2 .grp-h .go:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.atl2 .row,.atl2 .cols{display:grid;
+  grid-template-columns:11px 30px minmax(260px,1fr) 86px 80px 168px 158px;
+  gap:12px;align-items:center;padding:6px 14px}
+.atl2 .c-vd,.atl2 .h-vd,.atl2 .c-sc,.atl2 .h-sc{display:none}
+.atl2 .app.pipe .row,.atl2 .app.pipe .cols{grid-template-columns:11px 30px minmax(190px,1fr) 76px 70px 132px 140px 44px 146px 52px}
+.atl2 .app.pipe .c-vd,.atl2 .app.pipe .h-vd{display:flex;flex-direction:column;gap:3px;align-items:flex-start;min-width:0}
+.atl2 .app.pipe .c-sc,.atl2 .app.pipe .h-sc{display:flex;justify-content:flex-end}
+.atl2 .nd{min-width:0;display:flex;align-items:baseline;gap:9px}
+.atl2 .nd .rnm{font-weight:700;font-size:13.5px;flex:none;max-width:44%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atl2 .nd .rds{font-size:12.5px;color:var(--muted);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atl2 .c-amt{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.atl2 .c-amt.none{color:var(--dim);font-weight:400}
+.atl2 .c-flag{display:flex;align-items:center;justify-content:center}
+.atl2 .c-flag img{width:24px;height:18px;object-fit:cover;border-radius:var(--rs);box-shadow:0 0 0 1px rgba(15,29,51,.12)}
+.atl2 .c-flag .em{font-size:16px}
+.atl2 .row{border-bottom:1px solid var(--line);cursor:pointer}
+.atl2 .cols{flex:none;padding:0 14px;background:var(--panel2);border-bottom:1px solid var(--line);align-items:stretch}
+.atl2 .cols>*{display:flex;align-items:center;font-family:var(--mono);font-size:12px;
+  color:var(--dim);background:none;border:0;padding:4px 0;text-align:left;min-width:0;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .cols button{cursor:pointer;gap:4px}
+.atl2 .cols button:hover{color:var(--ink)}
+.atl2 .cols button .ar{opacity:0;font-size:9px}
+.atl2 .cols button[aria-sort]:not([aria-sort="none"]){color:var(--ink);font-weight:700}
+.atl2 .cols button[aria-sort]:not([aria-sort="none"]) .ar{opacity:1}
+.atl2 .c-flag{display:flex;align-items:center;gap:5px;min-width:0}
+.atl2 .c-flag .fl{font-size:15px;line-height:1}
+.atl2 .c-flag .cc{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .c-stade{font-family:var(--mono);font-size:12px;color:var(--muted);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .card{display:none;padding:0 14px 16px;background:var(--panel2);border-bottom:1px solid var(--line)}
+.atl2 .row.open+.card{display:grid;grid-template-columns:1fr 300px;gap:20px;padding-top:14px}
+.atl2 .card .lead{font-style:italic;font-size:13px;margin:0 0 10px}
+.atl2 .card ul{margin:0 0 11px;padding:0;list-style:none}
+.atl2 .card li{position:relative;padding-left:16px;font-size:12.5px;color:var(--muted);margin-bottom:5px}
+.atl2 .card li::before{content:"—";position:absolute;left:0;color:var(--brand)}
+.atl2 .card .dec{background:#F3FAF6;border-left:3px solid var(--brand);padding:10px 12px;font-size:12.5px;
+  margin-bottom:11px;border-radius:0 var(--r) var(--r) 0}
+.atl2 .card .dec b{color:var(--brand-d)}
+.atl2 .card .tg{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.atl2 .card .tg span{font-size:10px;background:var(--panel3);border-radius:var(--rs);padding:3px 8px;color:var(--muted)}
+.atl2 .card .im{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:6px;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .card .im b{color:var(--ink);font-weight:600;font-family:var(--body);font-size:12px;letter-spacing:0}
+.atl2 .cside{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:13px}
+.atl2 .cside .lb{font-family:var(--mono);font-size:12px;color:var(--dim);display:block;margin-bottom:6px;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .cside .blk{margin-bottom:13px}
+.atl2 .cside .blk:last-child{margin-bottom:0}
+.atl2 .cside .sc2{font-size:22px;font-weight:700}
+.atl2 .cside .sc2 s{text-decoration:none;font-size:11px;color:var(--dim)}
+.atl2 .cside .found{font-size:11.5px;color:var(--muted);line-height:1.5}
+.atl2 .cside .found b{color:var(--ink)}
+.atl2 .cside .btn{width:100%;border-radius:var(--ra);padding:9px;font-size:12px;font-weight:600;cursor:pointer;
+  border:0;margin-bottom:6px;display:flex;align-items:center;justify-content:center;gap:6px}
+.atl2 .cside .btn.p{background:var(--blue);color:#fff}
+.atl2 .cside .btn.g{background:var(--panel);color:var(--ink);border:1px solid var(--line2)}
+.atl2 .cside .btn.d{background:var(--ink);color:#fff}
+.atl2 .stsw{display:flex;flex-wrap:wrap;gap:3px}
+.atl2 .stsw button{font-size:10.5px;border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  padding:4px 8px;border-radius:var(--rs);cursor:pointer}
+.atl2 .stsw button[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:var(--tc,#fff);font-weight:700}
+.atl2 .thumbs{display:flex;gap:6px}
+.atl2 .thumbs button{border:1px solid var(--line);background:var(--panel);border-radius:var(--rs);padding:4px 9px;cursor:pointer}
+@media (max-width:960px){
+.atl2 .row.open+.card{grid-template-columns:1fr}}
+.atl2 .moregrp{width:100%;padding:11px 14px;background:var(--panel2);border:0;border-bottom:1px solid var(--line);
+  font-family:var(--mono);font-size:12px;color:var(--muted);cursor:pointer;text-align:left;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .moregrp:hover{color:var(--ink);background:var(--panel3)}
+.atl2 .c-sig{min-width:0;display:flex;flex-direction:column;gap:0;align-items:flex-start}
+.atl2 .c-sig .mo{font-family:var(--mono);font-size:12px;color:var(--muted);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .c-sig .win{display:block;font-style:normal;font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:4px;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .c-sig .sig{max-width:100%;overflow:hidden}
+.atl2 .row:hover,.atl2 .row.on{background:#F6FBF8}
+.atl2 .row.on{box-shadow:inset 3px 0 0 var(--brand)}
+.atl2 .pt{width:11px;height:11px;border-radius:50%;background:var(--c)}
+.atl2 .rnm{font-weight:700;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atl2 .rds{font-size:12px;color:var(--muted);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.atl2 .rc{font-family:var(--mono);font-size:9.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atl2 .rc em{display:block;font-style:normal;color:var(--dim);font-size:8.5px;margin-top:2px}
+.atl2 .rev{position:relative;overflow:hidden;background:var(--brand);color:#fff;border:0;border-radius:var(--ra);padding:8px 10px;
+  font-size:11.5px;font-weight:700;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:6px;
+  white-space:nowrap}
+.atl2 .cell{min-width:0}
+.atl2 .cell>*{white-space:nowrap}
+.atl2 .memobtn,.atl2 .stbtn,.atl2 .ynb{white-space:nowrap}
+.atl2 .rev:hover{background:var(--brand-d)}
+.atl2 .rev .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(255,255,255,.3)}
+.atl2 .rev.loading .fill{width:100%;transition:width 1.15s linear}
+.atl2 .verdict{display:flex;align-items:center;justify-content:center;gap:5px;border-radius:var(--r);padding:7px 6px;
+  font-family:var(--mono);font-size:12px;font-weight:600;border:1px solid var(--c);color:var(--c);background:var(--panel);font-variant-numeric:tabular-nums}
+.atl2 .verdict b{font-family:var(--body);font-size:11px}
+.atl2 .artic{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-bottom:1px solid var(--line)}
+.atl2 .artic .kind{font-family:var(--mono);font-size:12px;border-radius:var(--rs);padding:3px 7px;flex:none;
+  background:var(--panel3);color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .artic .kind.new{background:var(--brand);color:#fff}
+.atl2 .artic .body{flex:1;min-width:0}
+.atl2 .artic .ti{font-weight:600;font-size:13.5px;line-height:1.35;margin-bottom:3px}
+.atl2 .artic .me{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .artic .acts{display:flex;gap:6px;flex:none;flex-wrap:wrap;justify-content:flex-end}
+.atl2 .abtn{background:var(--panel);border:1px solid var(--line2);border-radius:var(--ra);padding:7px 12px;font-size:11.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+.atl2 .abtn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.atl2 .abtn.p{background:var(--brand);border-color:var(--brand);color:#fff}
+.atl2 .abtn.p:hover{background:var(--brand-d)}
+.atl2 .void{padding:48px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .fin{padding:34px 20px;text-align:center}
+.atl2 .fin .em{font-size:30px}
+.atl2 .fin .t{font-weight:700;font-size:16px;margin:8px 0 4px}
+.atl2 .fin .s{font-size:13px;color:var(--muted)}
+.atl2 .pop{position:fixed;width:322px;z-index:60;opacity:0;pointer-events:none;background:var(--panel);border:1px solid var(--line2);
+  border-radius:var(--r);box-shadow:0 18px 48px rgba(15,29,51,.24);transition:opacity .11s}
+.atl2 .pop.on{opacity:1;pointer-events:auto}
+.atl2 .pop .ph{padding:13px 15px 10px;border-bottom:1px solid var(--line);display:flex;gap:9px;align-items:flex-start}
+.atl2 .pop .ph h3{margin:0;font-size:17px;font-weight:700;flex:1;letter-spacing:-.01em}
+.atl2 .pop .ph .id{display:block;font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:3px;font-weight:400;font-variant-numeric:tabular-nums}
+.atl2 .pop .x{background:none;border:0;font-size:19px;color:var(--dim);cursor:pointer;line-height:1}
+.atl2 .pop .pb{padding:12px 15px;max-height:min(38vh,320px);overflow:auto}
+.atl2 .tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:11px}
+.atl2 .tags span{font-family:var(--mono);font-size:12px;border:1px solid var(--line);color:var(--muted);padding:4px 7px;border-radius:var(--rs);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .tags span.hi{background:var(--panel3);color:var(--ink);font-weight:600}
+.atl2 .fld{margin-bottom:12px}
+.atl2 .fld:last-child{margin-bottom:0}
+.atl2 .fld .l{font-family:var(--mono);font-size:12px;color:var(--dim);display:block;margin-bottom:5px;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .fld p{margin:0;font-size:12.5px;line-height:1.5}
+.atl2 .fld .memo{font-size:12px;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
+.atl2 .pop .pf{padding:11px 15px;border-top:1px solid var(--line);background:var(--panel2)}
+.atl2 .modal{position:fixed;inset:0;z-index:80;background:rgba(15,29,51,.55);display:none;align-items:center;justify-content:center;padding:20px}
+.atl2 .modal.on{display:flex}
+.atl2 .mcard{background:var(--panel);border-radius:var(--rb);width:min(560px,100%);max-height:88vh;display:flex;flex-direction:column;overflow:hidden}
+.atl2 .mcard .mh{padding:15px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.atl2 .mcard .mh h2{margin:0;font-size:18px;font-weight:700;flex:1}
+.atl2 .mcard .mh .x{background:none;border:0;font-size:21px;color:var(--dim);cursor:pointer}
+.atl2 .mcard .mb{padding:18px 20px;overflow:auto;flex:1}
+.atl2 .cs{display:flex;gap:13px;margin-bottom:20px}
+.atl2 .cs .no{width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;flex:none;
+  display:grid;place-items:center;font-size:11.5px;font-weight:700}
+.atl2 .cs h3{margin:0 0 5px;font-size:15px;font-weight:700}
+.atl2 .cs p{margin:0 0 8px;font-size:13px;line-height:1.6;color:var(--muted)}
+.atl2 .cs .hint{font-size:12px;color:var(--dim)}
+.atl2 .cs ul,.atl2 .cs ol.abc{margin:0;padding:0;list-style:none}
+.atl2 .cs li{position:relative;padding-left:17px;font-size:13px;color:var(--muted);margin-bottom:6px;line-height:1.5}
+.atl2 .cs ul li::before{content:"—";position:absolute;left:0;color:var(--brand)}
+.atl2 .cs ol.abc li{padding-left:24px}
+.atl2 .cs ol.abc li b{position:absolute;left:0;color:var(--ink)}
+.atl2 .acc{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);
+  border-radius:var(--r);padding:11px 14px;margin-bottom:6px;font-size:13.5px;cursor:pointer;background:var(--panel)}
+.atl2 .acc:hover{border-color:var(--line2)}
+.atl2 .acc span{color:var(--brand);font-weight:700}
+.atl2 .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.atl2 .two .dp{border:1px solid #C9E3D5;background:#F5FBF7;border-radius:var(--r);padding:12px}
+.atl2 .two .dp.blue{border-color:#C7DDFA;background:#F5F9FF}
+.atl2 .two .dp b{font-size:13px}
+.atl2 .two .dp p{font-size:12px;margin:5px 0 0}
+.atl2 .qrow{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:var(--r);
+  padding:11px 14px;margin-bottom:12px;font-size:13px}
+.atl2 .qset{display:flex;align-items:center;gap:8px;margin-left:auto}
+.atl2 .qset button{width:24px;height:24px;border:1px solid var(--line);background:var(--panel);border-radius:var(--rs);cursor:pointer}
+.atl2 .qst{font-size:11px;color:#E0A81E;border:1px solid #FFF3D6;background:#FFF7ED;border-radius:99px;padding:3px 10px}
+.atl2 .qlist{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:12px}
+.atl2 .qi{display:flex;align-items:center;gap:11px;padding:9px 13px;border-bottom:1px solid var(--line);font-size:13px}
+.atl2 .qi:last-child{border-bottom:0}
+.atl2 .qn{width:20px;height:20px;border-radius:50%;background:var(--panel3);display:grid;place-items:center;
+  font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--muted)}
+.atl2 .qs{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.atl2 .qe{font-family:var(--mono);font-size:12px;color:var(--dim);width:62px;text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+@media (max-width:660px){
+.atl2 .two{grid-template-columns:1fr}}
+.atl2 .crit{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.atl2 .crit .r{display:flex;gap:12px;padding:9px 13px;border-bottom:1px solid var(--line);font-size:12.5px}
+.atl2 .crit .r:last-child{border-bottom:0}
+.atl2 .crit .k{font-family:var(--mono);font-size:12px;color:var(--dim);width:112px;flex:none;padding-top:2px;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .crit .v{flex:1;font-weight:500}
+.atl2 .crit .v em{font-style:normal;color:var(--muted);font-weight:400}
+.atl2 .mfield{display:flex;gap:8px}
+.atl2 .mfield input{flex:1;border:1.5px solid var(--line2);border-radius:var(--ra);padding:12px 13px;font-size:14px;outline:none}
+.atl2 .mfield input:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-l)}
+.atl2 .mnote{font-size:12px;color:var(--muted);margin:12px 0 0}
+.atl2 .fcard{background:var(--panel);border-radius:var(--rb);width:min(660px,100%);max-height:88vh;display:flex;flex-direction:column;overflow:hidden}
+.atl2 .fcard .fh{padding:12px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.atl2 .fcard .fh .p{flex:1;height:6px;background:var(--panel3);border-radius:99px;overflow:hidden}
+.atl2 .fcard .fh .p i{display:block;height:100%;background:var(--brand);border-radius:99px;transition:width .3s}
+.atl2 .fcard .fh .c{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .fcard .fh .x{background:none;border:0;font-size:20px;color:var(--dim);cursor:pointer}
+.atl2 .fcard .fb{padding:20px 22px;overflow:auto;flex:1}
+.atl2 .fcard h2{margin:0 0 4px;font-size:25px;font-weight:700;letter-spacing:-.02em}
+.atl2 .fcard .sub{font-family:var(--mono);font-size:12px;color:var(--dim);margin-bottom:14px;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .fcard .ff{padding:14px 18px;border-top:1px solid var(--line);background:var(--panel2);display:flex;gap:9px}
+.atl2 .vbox{border-radius:var(--rb);padding:16px;display:flex;align-items:center;gap:14px;border:2px solid var(--c);background:var(--panel)}
+.atl2 .vbox .vs{font-size:30px;font-weight:800;color:var(--c);line-height:1}
+.atl2 .vbox .vt{font-weight:700;font-size:15px;color:var(--c)}
+.atl2 .vbox .vd{font-size:12.5px;color:var(--muted)}
+.atl2 .plus{position:fixed;z-index:90;font-weight:800;font-size:22px;color:var(--brand);pointer-events:none;animation:atl2-up 1s ease forwards}
+@keyframes atl2-up{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-46px)}}
+@media (max-width:1440px){
+.atl2 .row,.atl2 .cols{grid-template-columns:11px 30px minmax(230px,1fr) 84px 162px 154px}
+.atl2 .app.pipe .row,.atl2 .app.pipe .cols{grid-template-columns:11px 30px minmax(172px,1fr) 70px 128px 136px 42px 142px 52px}
+.atl2 .c-stade,.atl2 .h-stade{display:none}}
+@media (max-width:1200px){
+.atl2 .row,.atl2 .cols{grid-template-columns:11px 30px minmax(200px,1fr) 158px 150px}
+.atl2 .app.pipe .row,.atl2 .app.pipe .cols{grid-template-columns:11px 30px minmax(155px,1fr) 126px 132px 40px 138px 52px}
+.atl2 .c-amt,.atl2 .h-amt{display:none}}
+@media (max-width:900px){
+.atl2 .stage{flex-direction:column;height:auto;min-height:0;max-height:none}
+.atl2 .mapzone{height:26vh;min-height:150px;flex:none}
+.atl2 .frail{width:auto;flex:1;border-left:0;border-top:1px solid var(--line);
+    flex-direction:row;flex-wrap:wrap;align-items:center;overflow:visible;padding:9px 10px;gap:6px}
+.atl2 .frail .cap{margin:0 1px 0 0;line-height:1;align-self:center}
+.atl2 .frail .cap+*{margin-bottom:0}
+.atl2 .frail .statusf{margin-bottom:0;flex-direction:row}
+.atl2 .dates{flex-direction:row;flex-wrap:wrap;gap:4px}
+.atl2 .dates .dbh{display:none}
+.atl2 .dates button{width:auto;height:29px;padding:0 11px;border-bottom:0;border-right:1px solid var(--line);font-size:12px}
+.atl2 .dates button .dn{margin-left:6px}
+.atl2 .fgrid{display:flex;flex-wrap:wrap;gap:4px}
+.atl2 .frail .grow{display:none}
+.atl2 .frow{flex:1 1 auto;justify-content:flex-end}
+.atl2 .fpanel{right:0;left:0;top:100%;width:auto;border-left:0;border-right:0;max-height:52vh;
+    box-shadow:0 20px 36px rgba(15,29,51,.18)}
+.atl2 .fcols{columns:2}
+.atl2 .listhead{flex-wrap:wrap;overflow:visible}
+.atl2 .listhead .ctx{flex:1 1 100%;order:3}
+.atl2 .groupbar{margin-left:0}
+.atl2 .row,.atl2 .cols{grid-template-columns:11px 26px 1fr 142px;gap:9px;padding:9px 11px}
+.atl2 .app.pipe .row,.atl2 .app.pipe .cols{grid-template-columns:11px 26px 1fr 142px}
+.atl2 .c-vd,.atl2 .h-vd,.atl2 .c-sc,.atl2 .h-sc{display:none}
+.atl2 .c-amt,.atl2 .h-amt,.atl2 .c-stade,.atl2 .h-stade,.atl2 .c-sig,.atl2 .h-sig{display:none}
+.atl2 .nd{flex-direction:column;align-items:flex-start;gap:2px}
+.atl2 .nd .rnm{max-width:100%}
+.atl2 .nd .rds{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.atl2 .demand{padding:10px 11px}
+.atl2 .pop{width:calc(100vw - 20px);left:10px!important;top:auto!important;bottom:10px}
+.atl2 .goal{gap:8px 12px;padding:9px 11px}
+.atl2 .pbar{max-width:none}
+.atl2 .sigstrip .s{display:none}
+.atl2 .bulk{flex-direction:column}
+.atl2 .bulk .side{width:100%}}
+@media (max-width:560px){
+.atl2 .mapzone{height:22vh;min-height:120px}
+.atl2 .fcols{columns:1}
+.atl2 .row,.atl2 .cols{grid-template-columns:11px 24px 1fr 92px;gap:8px}
+.atl2 .cols>*{font-size:7.5px}
+.atl2 .listhead .main{font-size:12.5px}
+.atl2 .listhead .main b{font-size:15px}
+.atl2 .chain{padding:7px 11px;font-size:11.5px}
+.atl2 .fcard,.atl2 .mcard{width:100%;max-height:92vh}
+.atl2 .fcard .ff{flex-direction:column}
+.atl2 .fcard .ff .abtn{flex:1 1 auto}}
+@media (prefers-reduced-motion:reduce){
+.atl2,.atl2 *{transition:none!important;animation:none!important}}
+.atl2 .fzone2{position:relative;flex:none;z-index:24}
+.atl2 .fbar{display:flex;align-items:center;gap:7px;padding:9px 14px;background:var(--panel);
+  border-bottom:1px solid var(--line);flex-wrap:wrap}
+.atl2 .seg{display:flex;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;flex:none}
+.atl2 .seg button{background:var(--panel);border:0;border-right:1px solid var(--line);height:30px;padding:0 11px;
+  font-size:11.5px;font-weight:600;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.atl2 .seg button:last-child{border-right:0}
+.atl2 .seg button:hover{background:var(--panel2);color:var(--ink)}
+.atl2 .seg button b{font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--dim)}
+.atl2 .seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.atl2 .seg button[aria-pressed="true"] b{color:#fff;opacity:.8}
+.atl2 .fsep{width:1px;align-self:stretch;background:var(--line);margin:0 3px}
+.atl2 .fsrch{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:var(--r);
+  padding:0 10px;height:30px;background:var(--panel);min-width:190px;flex:1 1 190px;max-width:280px}
+.atl2 .fsrch input{border:0;outline:none;font-size:12.5px;flex:1;min-width:0;background:none}
+.atl2 .fbtn{display:flex;align-items:center;gap:7px;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r);padding:0 11px;height:30px;cursor:pointer;font-size:11.5px;font-weight:600;
+  color:var(--muted);white-space:nowrap;flex:none}
+.atl2 .fbtn:hover{border-color:var(--line2);color:var(--ink)}
+.atl2 .fbtn .v{font-weight:400;color:var(--dim)}
+.atl2 .fbtn .n{background:var(--ink);color:#fff;border-radius:var(--rs);padding:1px 6px;font-family:var(--mono);font-size:9px;font-weight:700}
+.atl2 .fbtn .n[hidden]{display:none}
+.atl2 .fbtn .cv{font-size:8px;color:var(--dim)}
+.atl2 .fbtn[aria-expanded="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.atl2 .fbtn[aria-expanded="true"] .v,.atl2 .fbtn[aria-expanded="true"] .cv{color:rgba(255,255,255,.75)}
+.atl2 .fbtn[aria-expanded="true"] .n{background:#fff;color:var(--ink)}
+.atl2 .fbtn.fsig{border-color:#F0B4B4;color:var(--red)}
+.atl2 .fbtn.fsig:hover{border-color:var(--red)}
+.atl2 .fbtn.fsig .n{background:var(--red)}
+.atl2 .fbtn.fsig[aria-expanded="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.atl2 .fbtn.fsig[aria-expanded="true"] .n{background:#fff;color:var(--red)}
+.atl2 .fgrow{flex:1}
+.atl2 .resetbtn{display:none;align-items:center;gap:5px;background:var(--panel);border:1px dashed var(--line2);
+  border-radius:var(--ra);height:30px;padding:0 11px;font-size:11.5px;font-weight:600;color:var(--muted);
+  cursor:pointer;white-space:nowrap;flex:none}
+.atl2 .resetbtn.on{display:flex}
+.atl2 .resetbtn:hover{border-style:solid;border-color:var(--ink);color:var(--ink)}
+.atl2 .resetbtn .rot{display:inline-block;font-size:12px}
+.atl2 .resetbtn.spin .rot{animation:atl2-spin .5s ease}
+.atl2 .alertbtn{background:var(--brand);color:#fff;border:0;border-radius:var(--ra);height:30px;padding:0 13px;
+  font-size:11.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap;flex:none}
+.atl2 .alertbtn:hover{background:var(--brand-d)}
+.atl2 .fpanel{position:absolute;left:0;right:0;top:100%;background:var(--panel);border-bottom:1px solid var(--line2);
+  box-shadow:0 20px 36px rgba(15,29,51,.16);display:none;flex-direction:column;max-height:min(54vh,440px);z-index:30}
+.atl2 .fpanel.on{display:flex}
+.atl2 .fpanel .ph{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid var(--line);background:var(--panel2)}
+.atl2 .fpanel .ph b{font-family:var(--mono);font-size:12px;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .fpanel .ph .sp{flex:1}
+.atl2 .fpanel .ph button{background:none;border:0;font-family:var(--mono);font-size:12px;color:var(--muted);cursor:pointer;padding:3px 6px;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .fpanel .ph button:hover{color:var(--ink)}
+.atl2 .fcols{flex:1;min-height:0;overflow:auto;padding:10px 14px;columns:4;column-gap:16px}
+.atl2 .fcols.two{columns:2}
+.atl2 .fpanel .pf{border-top:1px solid var(--line);padding:10px 14px;background:var(--panel2);display:flex;align-items:center;gap:10px}
+.atl2 .fpanel .pf .t{font-size:12px;color:var(--muted);flex:1}
+.atl2 .act{flex:none;background:var(--panel2);border-bottom:1px solid var(--line);padding:9px 14px}
+.atl2 .act[hidden]{display:none}
+.atl2 .act .hd{display:flex;align-items:center;gap:12px;font-size:11.5px;font-weight:600;margin-bottom:7px;flex-wrap:wrap;color:var(--muted)}
+.atl2 .act .hd .lg{display:flex;gap:11px;margin-left:auto;font-size:11px;font-weight:500}
+.atl2 .act .hd .lg i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px}
+.atl2 .act .bars{display:flex;align-items:flex-end;gap:3px;height:44px}
+.atl2 .act .bars .b{flex:1;display:flex;flex-direction:column;justify-content:flex-end;cursor:pointer;min-width:0}
+.atl2 .act .bars .b:hover{opacity:.7}
+.atl2 .act .bars .b i{display:block;width:100%}
+.atl2 .act .ax{display:flex;justify-content:space-between;font-family:var(--mono);font-size:8.5px;color:var(--dim);margin-top:4px}
+.atl2 .app:not(.pipe) .h-vd,.atl2 .app:not(.pipe) .h-sc,.atl2 .app:not(.pipe) .c-vd,.atl2 .app:not(.pipe) .c-sc{display:none}
+.atl2 .cols{flex-wrap:nowrap}
+.atl2 .cols>*{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atl2 .stage{display:flex}
+.atl2 .fzone2{display:contents}
+.atl2 .fbar{width:var(--rail,256px);flex:none;flex-direction:column;align-items:stretch;gap:5px;
+  padding:11px 10px;background:var(--panel);border-left:1px solid var(--line);border-bottom:0;
+  overflow-y:auto;overflow-x:hidden;flex-wrap:nowrap}
+.atl2 .fbar .seg{display:grid;grid-template-columns:1fr 1fr;gap:5px;border:0;border-radius:0;overflow:visible}
+.atl2 .fbar .seg button{border:1px solid var(--line);border-radius:var(--r);justify-content:space-between;padding:0 10px}
+.atl2 .fbar .fsep{display:none}
+.atl2 .fbar .fsrch{max-width:none;flex:none;width:100%}
+.atl2 .fbar .fgrow{flex:1}
+.atl2 .fbar .fbtn{justify-content:space-between;width:100%}
+.atl2 .fbar .fbtn .v{margin-left:auto}
+.atl2 .fbar .facets{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.atl2 .fbar .frow2{display:flex;gap:5px}
+.atl2 .fbar .frow2 .alertbtn{flex:1}
+.atl2 .fpanel{position:absolute;right:var(--rail,256px);left:auto;top:0;
+  width:min(660px,calc(100% - var(--rail,256px) - 10px));
+  border-left:1px solid var(--line2);border-right:1px solid var(--line2);
+  box-shadow:-16px 6px 34px rgba(15,29,51,.16);max-height:min(54vh,430px)}
+.atl2 .fcols{columns:3}
+.atl2 .stage.folded .fbar{width:auto;flex:1;flex-direction:row;flex-wrap:wrap;align-items:center;
+  border-left:0;border-top:1px solid var(--line);overflow:visible;padding:9px 12px}
+.atl2 .stage.folded .fbar .seg{display:flex;gap:4px}
+.atl2 .stage.folded .fbar .fsrch{width:auto;flex:1 1 200px;max-width:280px}
+.atl2 .stage.folded .fbar .facets{display:flex;flex-wrap:wrap;gap:5px}
+.atl2 .stage.folded .fbar .fbtn{width:auto}
+.atl2 .stage.folded .fbar .fgrow{display:none}
+.atl2 .stage.folded ~ .fpanel{right:0;left:0;top:100%;width:auto;border-left:0;border-right:0;
+  box-shadow:0 20px 36px rgba(15,29,51,.16)}
+@media (max-width:960px){
+.atl2 .stage{flex-direction:column}
+.atl2 .fbar{width:auto;flex-direction:row;flex-wrap:wrap;align-items:center;border-left:0;
+    border-top:1px solid var(--line);overflow:visible}
+.atl2 .fbar .seg,.atl2 .fbar .facets{display:flex;flex-wrap:wrap;gap:5px}
+.atl2 .fbar .fbtn{width:auto}
+.atl2 .fbar .fsrch{width:auto;flex:1 1 180px}
+.atl2 .fpanel{right:0;left:0;top:100%;width:auto;border-left:0;border-right:0}
+.atl2 .fcols{columns:2}}
+.atl2 .act{padding:0}
+.atl2 .act .tog{width:100%;display:flex;align-items:center;gap:8px;background:none;border:0;padding:8px 14px;
+  cursor:pointer;font-size:11.5px;font-weight:600;color:var(--muted);text-align:left}
+.atl2 .act .tog:hover{color:var(--ink)}
+.atl2 .act .tog .cv{font-size:9px;color:var(--dim)}
+.atl2 .act .tog .lg{margin-left:auto;display:flex;gap:11px;font-size:11px;font-weight:500}
+.atl2 .act .tog .lg i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px}
+.atl2 .act .body{padding:0 14px 10px}
+.atl2 .act.closed .body,.atl2 .act.closed .tog .lg{display:none}
+.atl2 .dens{display:flex;gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;flex:none;align-self:center}
+.atl2 .dens button{background:var(--panel);border:0;border-right:1px solid var(--line);padding:5px 9px 4px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:3px}
+.atl2 .dens button:last-child{border-right:0}
+.atl2 .dens button:hover{background:var(--panel2)}
+.atl2 .dens button i{display:block;width:16px;height:9px;position:relative}
+.atl2 .dens button i::before,.atl2 .dens button i::after,.atl2 .dens button i em{content:"";position:absolute;left:0;right:0;
+  background:var(--line2);border-radius:1px}
+.atl2 .dens button i::before{top:0;height:1.5px}
+.atl2 .dens button i em{top:3.5px;height:1.5px;display:block;position:absolute}
+.atl2 .dens button i::after{bottom:0;height:1.5px}
+.atl2 .dens button[data-d="deplie"] i::before{height:2px}
+.atl2 .dens button[data-d="deplie"] i em{top:3px;height:5px;background:var(--line)}
+.atl2 .dens button[data-d="deplie"] i::after{display:none}
+.atl2 .dens button[data-d="maxi"] i::before{height:4px;right:9px}
+.atl2 .dens button[data-d="maxi"] i em{top:0;left:9px;bottom:5px;height:auto}
+.atl2 .dens button[data-d="maxi"] i::after{height:4px;right:9px;top:5px;bottom:auto}
+.atl2 .dens button b{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .dens button[aria-pressed="true"]{background:var(--ink)}
+.atl2 .dens button[aria-pressed="true"] i::before,.atl2 .dens button[aria-pressed="true"] i em,.atl2 .dens button[aria-pressed="true"] i::after{background:#fff}
+.atl2 .dens button[aria-pressed="true"] b{color:#fff}
+.atl2 .list.deplie .card{display:grid;grid-template-columns:1fr 300px;gap:20px;padding-top:14px}
+.atl2 .list.deplie .row{background:var(--panel2)}
+.atl2 .list.maxi{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px;padding:12px;
+  align-content:start;background:var(--panel2)}
+.atl2 .dcard{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:var(--rb);
+  padding:14px;display:flex;flex-direction:column;gap:9px}
+.atl2 .dcard .dh{display:flex;align-items:center;gap:9px}
+.atl2 .dcard .dsc{width:38px;height:38px;border-radius:var(--r);background:var(--panel3);display:grid;place-items:center;
+  font-family:var(--mono);font-size:15px;font-weight:800;color:var(--ink);flex:none;font-variant-numeric:tabular-nums}
+.atl2 .dcard .dnm{font-size:16px;font-weight:700;letter-spacing:-.01em;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atl2 .dcard .dv{display:flex;gap:5px;flex-wrap:wrap}
+.atl2 .dcard .dmeta{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .dcard .ddesc{font-size:12.5px;color:var(--muted);line-height:1.5;background:var(--panel2);
+  border-radius:var(--r);padding:9px 11px}
+.atl2 .dcard .dstat{display:flex;gap:3px;flex-wrap:wrap}
+.atl2 .dcard .dstat button{font-size:10.5px;border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  padding:4px 9px;border-radius:var(--rs);cursor:pointer}
+.atl2 .dcard .dstat button[aria-pressed="true"]{background:var(--c2);border-color:var(--c2);color:var(--tc2,#fff);font-weight:700}
+.atl2 .dcard .dtags{display:flex;flex-wrap:wrap;gap:4px}
+.atl2 .dcard .dtags span{font-size:10px;background:var(--panel3);border-radius:var(--rs);padding:3px 8px;color:var(--muted)}
+.atl2 .dcard .dmemo{background:var(--ink);color:#fff;border:0;border-radius:var(--ra);padding:11px;font-size:12.5px;
+  font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px}
+.atl2 .dcard .dmemo:hover{background:#000}
+.atl2 .dcard .dyn{display:flex;gap:7px}
+.atl2 .dcard .dyn button{flex:1;border-radius:var(--ra);padding:10px;font-size:13px;font-weight:700;cursor:pointer;
+  border:1.5px solid var(--c3);background:var(--panel);color:var(--c3)}
+.atl2 .dcard .dyn button:hover{background:var(--c3);color:#fff}
+.atl2 .dcard .pick{background:#FFFBEB;border-left:3px solid #E0A81E;border-radius:0 var(--r) var(--r) 0;padding:9px 11px}
+.atl2 .dcard .pick b{font-size:11.5px;color:#96690E;display:block;margin-bottom:2px}
+.atl2 .dcard .pick span{font-size:12px;color:#9A6B1F}
+.atl2 .radar{width:100%;height:150px;display:block}
+.atl2 .radar .grid{fill:none;stroke:var(--line);stroke-width:.7}
+.atl2 .radar .axl{font-family:var(--mono);font-size:12px;fill:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .radar .poly{fill:rgba(22,163,74,.18);stroke:var(--brand);stroke-width:1.6}
+.atl2 .ident{padding:8px 14px 10px}
+.atl2 .idtop{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.atl2 .idmain{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.atl2 .idmain h1{margin:0;font-size:23px;font-weight:700;letter-spacing:-.025em;margin-right:3px}
+.atl2 .eyebrow{font-family:var(--mono);font-size:12px;color:var(--brand-d);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .idsp{flex:1}
+.atl2 .idsep{width:1px;height:22px;background:var(--line);margin:0 3px}
+.atl2 .idupd{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .idlogo{font-weight:600;font-size:12px;border:1px solid var(--line);
+  padding:4px 9px;border-radius:var(--r);color:var(--muted)}
+.atl2 .lang{display:inline-flex;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.atl2 .lang b,.atl2 .lang span{padding:2px 7px;font-size:8.5px;font-weight:700;color:var(--muted);background:var(--panel)}
+.atl2 .lang b{background:var(--ink);color:#fff}
+.atl2 .ic{width:28px;height:28px;border-radius:var(--r);border:1px solid var(--line);display:grid;place-items:center;
+  font-size:12.5px;color:var(--muted);cursor:pointer;background:var(--panel);padding:0}
+.atl2 .ic:hover{border-color:var(--line2);color:var(--ink);background:var(--panel2)}
+.atl2 .ic.sm{width:24px;height:22px;font-size:11px}
+.atl2 .icgrp{display:flex;gap:0}
+.atl2 .icgrp .ic{border-radius:0;border-right-width:0}
+.atl2 .icgrp .ic:first-child{border-radius:var(--r) 0 0 var(--r)}
+.atl2 .icgrp .ic:last-child{border-radius:0 var(--r) var(--r) 0;border-right-width:1px}
+.atl2 .idpill{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:var(--r);
+  height:28px;padding:0 11px;font-size:11.5px;color:var(--muted);white-space:nowrap}
+.atl2 .idpill .bar{width:44px;height:5px;background:var(--panel3);border-radius:99px;overflow:hidden}
+.atl2 .idpill .bar i{display:block;height:100%;background:var(--brand)}
+.atl2 .idpill.pause{color:#96690E;border-color:#FFF3D6;background:#FFFBEB;font-weight:600}
+.atl2 .idpill.quota{cursor:pointer}
+.atl2 .idpill.quota:hover{border-color:var(--line2);color:var(--ink)}
+.atl2 .idpill .mi{width:16px;height:16px;border-radius:var(--rs);background:var(--panel3);display:grid;place-items:center;
+  font-size:11px;color:var(--muted);font-weight:600}
+.atl2 .idpill .q{font-weight:700;color:var(--ink);font-size:13px}
+.atl2 .isrch{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:var(--r);
+  padding:0 11px;height:28px;background:var(--panel);width:180px}
+.atl2 .isrch input{border:0;outline:none;font-size:12px;flex:1;min-width:0;background:none}
+.atl2 .ftools .tool{width:30px;height:30px;padding:0;justify-content:center;font-size:13px;letter-spacing:0}
+.atl2 .ftools .tool.spin{animation:atl2-spin .55s ease}
+.atl2 .cside{padding:0;border:0;background:none}
+.atl2 .cside .top{display:flex;align-items:center;gap:11px;padding-bottom:11px;border-bottom:1px solid var(--line)}
+.atl2 .cside .sc3{width:46px;height:46px;border-radius:var(--r);background:var(--panel);border:1px solid var(--line);
+  display:grid;place-items:center;font-family:var(--mono);font-size:18px;font-weight:800;flex:none;font-variant-numeric:tabular-nums}
+.atl2 .cside .top .vv{display:flex;flex-direction:column;gap:4px;min-width:0}
+.atl2 .cside .sec2{padding:12px 0;border-bottom:1px solid var(--line)}
+.atl2 .cside .sec2:last-child{border-bottom:0;padding-bottom:0}
+.atl2 .cside .k2{font-size:11px;color:var(--dim);margin-bottom:7px}
+.atl2 .cside .found{font-size:12.5px;color:var(--muted);line-height:1.55}
+.atl2 .cside .found b{color:var(--ink)}
+.atl2 .stsw{display:flex;flex-wrap:wrap;gap:4px}
+.atl2 .stsw button{font-size:11px;border:1px solid var(--line);background:var(--panel);color:var(--muted);
+  padding:5px 10px;border-radius:var(--r);cursor:pointer}
+.atl2 .stsw button:hover{border-color:var(--line2);color:var(--ink)}
+.atl2 .stsw button[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:var(--tc,#fff);font-weight:700}
+.atl2 .cside .acts2{display:flex;flex-direction:column;gap:6px}
+.atl2 .cside .acts2 .r2{display:flex;gap:6px}
+.atl2 .cside .acts2 .r2 button{flex:1}
+.atl2 .cside .btn{border-radius:var(--ra);padding:10px;font-size:12.5px;font-weight:600;cursor:pointer;border:0;
+  display:flex;align-items:center;justify-content:center;gap:6px}
+.atl2 .cside .btn.p{background:var(--blue);color:#fff}
+.atl2 .cside .btn.g{background:var(--panel);color:var(--ink);border:1px solid var(--line2);font-weight:500}
+.atl2 .cside .fb{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.atl2 .cside .fb .th{margin-left:auto;display:flex;gap:5px}
+.atl2 .cside .fb button{border:1px solid var(--line);background:var(--panel);border-radius:var(--r);
+  width:30px;height:28px;cursor:pointer;font-size:13px}
+.atl2 .cside .fb button:hover{border-color:var(--line2)}
+.atl2 .mcard .mh{padding:18px 22px 15px}
+.atl2 .mcard .mh h2{font-size:19px;letter-spacing:-.02em}
+.atl2 .mcard .mb{padding:20px 22px 22px}
+.atl2 .qrow{border:0;background:var(--panel2);border-radius:var(--ra);padding:13px 15px}
+.atl2 .qlist{border:0;background:var(--panel2);border-radius:var(--ra);padding:4px 6px}
+.atl2 .qi{border-bottom:1px solid rgba(15,29,51,.06);padding:9px 9px}
+.atl2 .qi b{font-size:13.5px}
+.atl2 .qn{background:var(--panel);border:1px solid var(--line)}
+.atl2 .flash{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(10px);z-index:120;
+  background:var(--ink);color:#fff;border-radius:99px;padding:10px 20px;font-size:13px;font-weight:600;
+  opacity:0;pointer-events:none;transition:.18s}
+.atl2 .flash.on{opacity:1;transform:translateX(-50%)}
+.atl2 .brand{display:flex;align-items:center;gap:9px;padding-right:12px;border-right:1px solid var(--line);flex:none}
+.atl2 .brand b{width:38px;height:38px;border-radius:var(--r);background:var(--ink);color:#fff;display:grid;
+  place-items:center;font-size:14px;font-weight:800;letter-spacing:-.02em}
+.atl2 .brand i{font-style:normal;font-size:9.5px;line-height:1.25;color:var(--muted);font-weight:600}
+.atl2 .idttl{display:flex;flex-direction:column;gap:1px;min-width:0}
+.atl2 .idttl h1{margin:0;font-size:22px;font-weight:700;letter-spacing:-.025em}
+.atl2 .idupd{font-family:var(--body);font-size:11.5px;color:var(--dim);letter-spacing:0}
+.atl2 .engine{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:var(--ra);
+  padding:0 13px;height:36px;background:var(--panel);cursor:pointer;position:relative}
+.atl2 .engine:hover{border-color:var(--line2);background:var(--panel2)}
+.atl2 .engine .el{position:absolute;top:-7px;left:11px;background:var(--panel);padding:0 6px;
+  font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .engine .ev{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);white-space:nowrap}
+.atl2 .engine .ev b{color:var(--ink);font-weight:700}
+.atl2 .engine .bar{width:40px;height:5px;background:var(--panel3);border-radius:99px;overflow:hidden}
+.atl2 .engine .bar i{display:block;height:100%;background:var(--brand)}
+.atl2 .engine .edv{width:1px;height:16px;background:var(--line)}
+.atl2 .engine .mi{width:17px;height:17px;border-radius:var(--rs);background:var(--panel3);display:grid;
+  place-items:center;font-size:11px;color:var(--muted);font-weight:600}
+.atl2 .engine .q{font-size:13.5px}
+.atl2 .engine .epause{font-size:11px;font-weight:600;color:#96690E;background:#FFFBEB;border:1px solid #FFF3D6;
+  border-radius:99px;padding:3px 10px}
+.atl2 .engine .eic{width:20px;height:20px;border-radius:var(--rs);display:grid;place-items:center;font-size:11px;color:var(--muted)}
+.atl2 .engine .eic:hover{background:var(--panel3);color:var(--ink)}
+.atl2 .engine .ego{font-size:11.5px;font-weight:600;color:var(--brand-d)}
+.atl2 .step .warn{position:absolute;top:0;left:0;right:0;width:auto;height:3px;background:#E0A81E;
+  border-radius:0;box-shadow:none;animation:none}
+.atl2 .step .wl{position:absolute;top:5px;right:11px;font-family:var(--mono);font-size:12px;color:#96690E;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .step[aria-selected="true"] .wl{color:#fff}
+.atl2 .list.deplie>div{border-bottom:9px solid var(--panel3)}
+.atl2 .list.deplie .row{background:var(--panel);box-shadow:inset 3px 0 0 var(--ink)}
+.atl2 .list.deplie .card{border-bottom:0}
+.atl2 .listhead .ctx{font-family:var(--body);font-size:12px;letter-spacing:0;color:var(--muted)}
+.atl2 .c-sig .mo{font-family:var(--body);font-size:12px;letter-spacing:0;text-transform:none}
+.atl2 .c-stade{font-family:var(--body);font-size:12px;letter-spacing:0;text-transform:none}
+.atl2 .approach{background:#7C3AED;color:#fff;border:0;border-radius:var(--ra);padding:7px 12px;
+  font-size:11.5px;font-weight:700;cursor:pointer;white-space:nowrap}
+.atl2 .approach:hover{filter:brightness(1.1)}
+.atl2 .qi .qs{margin-left:auto;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink);
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--rs);padding:2px 8px;font-variant-numeric:tabular-nums}
+.atl2 .qi .qe{font-family:var(--body);font-size:11.5px;color:var(--muted);width:74px;text-align:right;letter-spacing:0}
+.atl2 .credits{display:inline-flex;align-items:center;gap:7px;margin-top:8px;font-size:11.5px;color:var(--muted);
+  border:1px solid var(--line);border-radius:99px;padding:4px 12px;cursor:pointer;background:var(--panel)}
+.atl2 .credits b{color:var(--ink);font-weight:700;font-size:13px}
+.atl2 .credits:hover{border-color:var(--line2);color:var(--ink)}
+.atl2 .credits.empty{border-color:#FFF3D6;background:#FFFBEB;color:#96690E}
+.atl2 .credits .rc{font-weight:700;color:var(--brand-d)}
+.atl2 .credits[hidden]{display:none}
+.atl2 .evalbtn.read{background:var(--blue)}
+.atl2 .evalbtn.read:hover{filter:brightness(1.12)}
+.atl2 .memobtn.read{background:#EEF3FD;color:var(--blue);box-shadow:none;border:0}
+.atl2 .memobtn.read:hover{background:#DFE9FB;filter:none}
+.atl2 .memobtn.sm{padding:6px 10px;background:#EEF3FD;color:var(--blue)}
+.atl2 .c-sc{font-family:var(--body);font-size:13px;font-weight:700;color:var(--ink);text-align:right;
+  display:flex;align-items:center;justify-content:flex-end}
+.atl2 .c-sc s{display:none}
+.atl2 .qs2{font-family:var(--body);font-size:12px;font-weight:700;color:var(--muted)}
+.atl2 .qsub{font-weight:400;font-size:13px;color:var(--muted)}
+.atl2 .qbox{border:1px solid var(--line);border-radius:var(--rb);padding:16px 18px;margin-bottom:18px;background:var(--panel2)}
+.atl2 .qhead{display:flex;align-items:baseline;gap:12px;margin-bottom:9px}
+.atl2 .qhead b{font-size:17px;font-weight:700}
+.atl2 .qpct{margin-left:auto;font-size:24px;font-weight:800;color:var(--brand-d);letter-spacing:-.02em}
+.atl2 .qbar{height:9px;background:var(--panel3);border-radius:99px;overflow:hidden;margin-bottom:12px}
+.atl2 .qbar i{display:block;height:100%;background:linear-gradient(90deg,#3FB584,var(--brand));border-radius:99px}
+.atl2 .qchips{display:flex;gap:8px;margin-bottom:14px}
+.atl2 .qc{font-size:12.5px;font-weight:600;border-radius:99px;padding:5px 13px}
+.atl2 .qc.ok{background:#E7F6EE;color:#0E8A44}
+.atl2 .qc.todo{background:#FFF7ED;color:#96690E}
+.atl2 .qrate{font-size:13px;color:var(--muted);border-top:1px dashed var(--line2);padding-top:13px;margin-bottom:10px}
+.atl2 .qrate b{color:var(--ink)}
+.atl2 .qrates{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:9px}
+.atl2 .qr{flex:1;min-width:92px;border:1px solid var(--line);background:var(--panel);border-radius:var(--r);
+  padding:9px 11px;cursor:pointer;text-align:center}
+.atl2 .qr:hover{border-color:var(--line2)}
+.atl2 .qr b{display:block;font-size:14px;font-weight:700}
+.atl2 .qr span{display:block;font-size:10.5px;color:var(--dim);margin-top:2px}
+.atl2 .qr.on{background:var(--brand);border-color:var(--brand)}
+.atl2 .qr.on b,.atl2 .qr.on span{color:#fff}
+.atl2 .qnote{font-size:12px;color:var(--dim);font-style:italic}
+.atl2 .qsec{font-family:var(--mono);font-size:12px;font-weight:600;margin:20px 0 8px;font-variant-numeric:tabular-nums}
+.atl2 .qsec.ok{color:#0E8A44}
+.atl2 .qsec.todo{color:#96690E}
+.atl2 .qrows{display:flex;flex-direction:column}
+.atl2 .qr2{display:flex;align-items:center;gap:11px;padding:10px 2px;border-bottom:1px solid var(--line);font-size:13.5px}
+.atl2 .qr2:last-child{border-bottom:0}
+.atl2 .qr2 b{font-weight:700;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atl2 .qn2{font-family:var(--mono);font-size:10px;color:var(--dim);width:22px}
+.atl2 .qday{font-size:11px;font-weight:600;color:#0E8A44;background:#E7F6EE;border-radius:99px;padding:3px 10px;white-space:nowrap}
+.atl2 .qd{font-size:11px;color:var(--muted);background:var(--panel3);border-radius:99px;padding:3px 9px}
+.atl2 .qt{font-size:12.5px;color:var(--muted);white-space:nowrap}
+.atl2 .qgo{background:var(--blue);color:#fff;border:0;border-radius:var(--ra);padding:7px 14px;font-size:12px;
+  font-weight:700;cursor:pointer;white-space:nowrap}
+.atl2 .qgo:hover{filter:brightness(1.1)}
+.atl2 .qgo.an{background:var(--blue)}
+.atl2 .packs{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:14px 0}
+.atl2 .pack{border:1px solid var(--line);border-radius:var(--rb);padding:14px;text-align:center}
+.atl2 .pack.hi{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-l)}
+.atl2 .pack .pt{font-size:12.5px;font-weight:600;color:var(--muted)}
+.atl2 .pack .pp{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:5px 0 2px}
+.atl2 .pack .pd{font-size:11.5px;color:var(--dim);margin-bottom:11px}
+.atl2 .pack button{width:100%;background:var(--ink);color:#fff;border:0;border-radius:var(--ra);padding:9px;
+  font-size:12.5px;font-weight:700;cursor:pointer}
+.atl2 .pack.hi button{background:var(--brand)}
+.atl2 .credits{display:inline-flex;align-items:center;gap:7px;margin:0;font-size:12px;color:var(--muted);
+  border:1px solid var(--line);border-radius:var(--ra);height:42px;padding:0 14px;flex:none;cursor:pointer;background:var(--panel)}
+.atl2 .credits .cl{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .credits b{color:var(--ink);font-weight:800;font-size:17px;letter-spacing:-.02em}
+.atl2 .credits .cm{color:var(--dim);font-size:12px;margin-left:-3px}
+.atl2 .credits .cd{font-size:11px;color:var(--dim)}
+.atl2 .credits:hover{border-color:var(--line2)}
+.atl2 .credits.empty{border-color:#FFF3D6;background:#FFFBEB}
+.atl2 .credits.empty b{color:#96690E}
+.atl2 .credits .rc{font-weight:700;color:var(--brand-d);font-size:11.5px}
+.atl2 .evalbtn.memo{background:var(--blue)}
+.atl2 .evalbtn.memo:hover{filter:brightness(1.12)}
+.atl2 .evalbtn em{font-style:normal;font-weight:600;font-size:11px;opacity:.75;margin-left:2px}
+.atl2 .evalbtn.read{background:var(--blue)}
+.atl2 .evalbtn.read:hover{filter:brightness(1.12)}
+.atl2 .memobtn.read{background:#EEF3FD;color:var(--blue);box-shadow:none;border:0}
+.atl2 .memobtn.read:hover{background:#DFE9FB;filter:none}
+.atl2 .memo .mh .nm{font-size:15px}
+.atl2 .memo .tabs2 button{padding:10px 14px 9px}
+.atl2 .memo .mf .go{background:var(--blue)}
+.atl2 .memo .mf .go:hover{filter:brightness(1.12)}
+.atl2 .step .n{position:relative;transition:transform .18s}
+.atl2 .step .n.up,.atl2 .step .n.down{animation:atl2-bump .5s ease}
+@keyframes atl2-bump{0%{transform:translateY(0)}30%{transform:translateY(-4px)}100%{transform:translateY(0)}}
+.atl2 .step .delta{position:absolute;top:-13px;right:-6px;font-style:normal;font-family:var(--mono);
+  font-size:9px;font-weight:700;padding:1px 5px;border-radius:99px;animation:atl2-fade 1.8s ease forwards}
+.atl2 .step .n.up .delta{background:#E7F6EE;color:#0E8A44}
+.atl2 .step .n.down .delta{background:#FDECEC;color:#C0353A}
+@keyframes atl2-fade{0%{opacity:0;transform:translateY(4px)}20%{opacity:1;transform:translateY(0)}80%{opacity:1}100%{opacity:0}}
+.atl2 .cover{display:flex;align-items:center;gap:9px;cursor:pointer;flex-wrap:wrap}
+.atl2 .cover .cl2{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .cover .cbar{width:74px;height:5px;background:var(--panel3);border-radius:99px;overflow:hidden}
+.atl2 .cover .cbar i{display:block;height:100%;background:var(--brand);border-radius:99px}
+.atl2 .cover b{font-size:12.5px;font-weight:800;color:var(--brand-d)}
+.atl2 .cover .cd2{font-size:11.5px;color:var(--muted)}
+.atl2 .cover .cn{font-size:11px;color:var(--dim);border-left:1px solid var(--line);padding-left:9px}
+.atl2 .cover:hover .cd2,.atl2 .cover:hover .cn{color:var(--ink)}
+.atl2 .qc.neuf{background:var(--panel3);color:var(--muted)}
+.atl2 .idtop{display:flex;align-items:center;gap:12px;margin-bottom:11px}
+.atl2 .idtop h1{margin:0;font-size:23px;font-weight:700;letter-spacing:-.025em}
+.atl2 .idmain{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.atl2 .cover{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:var(--ra);
+  padding:0 13px;height:36px;background:var(--panel);cursor:pointer;position:relative}
+.atl2 .cover:hover{border-color:var(--line2);background:var(--panel2)}
+.atl2 .cover .el{position:absolute;top:-7px;left:11px;background:var(--panel);padding:0 6px;
+  font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .cover .ev{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);white-space:nowrap}
+.atl2 .cover .ev b{color:var(--ink);font-weight:700}
+.atl2 .cover .bar{width:52px;height:5px;background:var(--panel3);border-radius:99px;overflow:hidden}
+.atl2 .cover .bar i{display:block;height:100%;background:var(--brand)}
+.atl2 .cover .edv{width:1px;height:16px;background:var(--line)}
+.atl2 .cover .ego{font-size:11.5px;font-weight:600;color:var(--brand-d)}
+.atl2 .c-vd .vd{font-size:9.5px;padding:3px 7px}
+.atl2 .step .wl{display:none}
+.atl2 .step .l{display:flex;align-items:center;gap:6px}
+.atl2 .step .wd{width:6px;height:6px;border-radius:50%;background:#E0A81E;flex:none;
+  box-shadow:0 0 0 2.5px rgba(245,158,11,.22)}
+.atl2 .step[aria-selected="true"] .wd{background:#fff;box-shadow:0 0 0 2.5px rgba(255,255,255,.3)}
+.atl2 .step .warn{height:2.5px;background:#E0A81E}
+.atl2 .bigbtn{width:100%;margin-top:14px;background:var(--brand);color:#fff;border:0;border-radius:var(--ra);
+  height:48px;font-size:14.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;
+  justify-content:center;gap:9px;letter-spacing:.01em}
+.atl2 .bigbtn:hover{background:var(--brand-d)}
+.atl2 .cs{align-items:flex-start}
+.atl2 .cs .no{margin-top:1px}
+.atl2 .cs h3{font-size:14.5px;margin-bottom:3px}
+.atl2 .cs p{font-size:12.5px;margin-bottom:0;line-height:1.55}
+.atl2 .cs+.cs{margin-top:16px}
+.atl2 .step.wait{background:#FFF8ED}
+.atl2 .step.wait .l,.atl2 .step.wait .n{color:#96690E}
+.atl2 .step.wait:hover{background:#FEF0DC}
+.atl2 .step.wait[aria-selected="true"]{background:var(--c)}
+.atl2 .step.wait[aria-selected="true"] .l,.atl2 .step.wait[aria-selected="true"] .n{color:var(--tc,#fff)}
+.atl2 .step .warn{position:absolute;top:0;left:14px;right:14px;width:auto;height:3px;background:#E0A81E;
+  border-radius:0 0 2px 2px;box-shadow:none;animation:none}
+.atl2 .step .wl,.atl2 .step .wd{display:none}
+.atl2 .lead2{font-size:13.5px;color:var(--muted);margin:0 0 16px}
+.atl2 .steps2{list-style:none;margin:0;padding:0;counter-reset:st}
+.atl2 .steps2 li{counter-increment:st;position:relative;padding:0 0 14px 40px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.atl2 .steps2 li:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.atl2 .steps2 li::before{content:counter(st);position:absolute;left:0;top:-1px;width:25px;height:25px;border-radius:50%;
+  background:var(--ink);color:#fff;display:grid;place-items:center;font-size:11.5px;font-weight:700}
+.atl2 .steps2 b{display:block;font-size:14.5px;font-weight:700;margin-bottom:3px}
+.atl2 .steps2 span{display:block;font-size:13px;color:var(--muted);line-height:1.55}
+.atl2 .mfoot{display:flex;gap:9px;justify-content:flex-end;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.atl2 .mfoot .evalbtn{height:42px;padding:0 22px;font-size:13.5px}
+.atl2 .ghost2{background:none;border:0;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;padding:10px 14px}
+.atl2 .ghost2:hover{color:var(--ink)}
+.atl2 .list{scrollbar-width:thin;scrollbar-color:var(--line2) transparent;scroll-behavior:smooth}
+.atl2 .list::-webkit-scrollbar{width:12px}
+.atl2 .list::-webkit-scrollbar-track{background:transparent;margin:6px 0}
+.atl2 .list::-webkit-scrollbar-thumb{background:var(--line2);border-radius:99px;min-height:44px;
+  border:4px solid var(--panel);background-clip:padding-box;transition:background .15s}
+.atl2 .list:hover::-webkit-scrollbar-thumb{background:#9AA8B8;background-clip:padding-box}
+.atl2 .list::-webkit-scrollbar-thumb:hover{background:var(--muted);background-clip:padding-box;border-width:3px}
+.atl2 .list::-webkit-scrollbar-thumb:active{background:var(--ink);background-clip:padding-box;border-width:3px}
+.atl2 .list.maxi::-webkit-scrollbar-thumb{border-color:var(--panel2)}
+.atl2 .list{background-image:linear-gradient(var(--panel) 30%,rgba(255,255,255,0)),
+  linear-gradient(rgba(255,255,255,0),var(--panel) 70%) 0 100%,
+  radial-gradient(farthest-side at 50% 0,rgba(15,29,51,.09),transparent),
+  radial-gradient(farthest-side at 50% 100%,rgba(15,29,51,.09),transparent) 0 100%;
+  background-repeat:no-repeat;background-size:100% 34px,100% 34px,100% 11px,100% 11px;
+  background-attachment:local,local,scroll,scroll}
+.atl2 .stage.folded .fbar,.atl2 .fbar{row-gap:6px}
+.atl2 .stage.folded .fbar .fbtn,.atl2 .stage.folded .fbar .seg button{justify-content:flex-start}
+.atl2 .stage.folded .fbar .fbtn .sp{display:none}
+.atl2 .stage.folded .fbar .fbtn{padding:0 10px;gap:6px}
+.atl2 .stage.folded .fbar .fbtn .v{margin-left:0}
+.atl2 .stage.folded .fbar .seg{border:0;gap:4px}
+.atl2 .stage.folded .fbar .seg button{border:1px solid var(--line);border-radius:var(--r);padding:0 10px;gap:5px}
+.atl2 .stage.folded .fbar .fsrch{flex:0 1 156px;max-width:156px;min-width:120px}
+.atl2 .stage.folded .fbar .frow2{flex:none;margin-left:auto}
+.atl2 .stage.folded .fbar .fgrow{display:none}
+@media (max-width:960px){
+.atl2 .fbar .fbtn{justify-content:flex-start;padding:0 10px}
+.atl2 .fbar .fbtn .sp{display:none}
+.atl2 .fbar .seg{border:0;gap:4px}
+.atl2 .fbar .seg button{border:1px solid var(--line);border-radius:var(--r)}
+.atl2 .fbar .fsrch{flex:0 1 150px;max-width:150px}
+.atl2 .fbar .frow2{margin-left:auto}}
+.atl2 .demand{padding:8px 14px}
+.atl2 .dfield input,.atl2 .evalbtn,.atl2 .credits{height:42px}
+.atl2 .dunder{margin-top:5px}
+.atl2 .list .row{padding-top:4px;padding-bottom:4px}
+.atl2 .stage.folded .fbar,.atl2 .fbar{row-gap:6px}
+.atl2 .stage.folded .fbar .fbtn,.atl2 .stage.folded .fbar .seg button{justify-content:flex-start}
+.atl2 .stage.folded .fbar .fbtn .sp{display:none}
+.atl2 .stage.folded .fbar .fbtn{padding:0 10px;gap:6px}
+.atl2 .stage.folded .fbar .fbtn .v{margin-left:0}
+.atl2 .stage.folded .fbar .seg{border:0;gap:4px}
+.atl2 .stage.folded .fbar .seg button{border:1px solid var(--line);border-radius:var(--r);padding:0 10px;gap:5px}
+.atl2 .stage.folded .fbar .fsrch{flex:0 1 156px;max-width:156px;min-width:120px}
+.atl2 .stage.folded .fbar .frow2{flex:none;margin-left:auto}
+.atl2 .stage.folded .fbar .fgrow{display:none}
+@media (max-width:960px){
+.atl2 .fbar .fbtn{justify-content:flex-start;padding:0 10px}
+.atl2 .fbar .fbtn .sp{display:none}
+.atl2 .fbar .seg{border:0;gap:4px}
+.atl2 .fbar .seg button{border:1px solid var(--line);border-radius:var(--r)}
+.atl2 .fbar .fsrch{flex:0 1 150px;max-width:150px}
+.atl2 .fbar .frow2{margin-left:auto}}
+.atl2 .demand{padding:8px 14px}
+.atl2 .dfield input,.atl2 .evalbtn,.atl2 .credits{height:42px}
+.atl2 .dunder{margin-top:5px}
+.atl2 .list .row{padding-top:4px;padding-bottom:4px}
+.atl2 .estab{margin-top:6px;border:1px solid var(--line);border-left:3px solid var(--brand);
+  border-radius:0 var(--rb) var(--rb) 0;padding:15px 17px;background:var(--panel2)}
+.atl2 .estab .eh{font-size:14px;font-weight:700;margin-bottom:7px}
+.atl2 .estab p{font-size:13px;line-height:1.65;color:var(--muted);margin:0 0 12px}
+.atl2 .estab .er{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.atl2 .estab .er span{font-size:11.5px;color:var(--dim);flex:1;min-width:180px}
+.atl2 .ebtn{background:var(--panel);border:1px solid var(--line2);border-radius:var(--ra);padding:8px 14px;
+  font-size:12.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+.atl2 .ebtn:hover{border-color:var(--ink)}
+.atl2 .thu{display:flex;gap:3px;justify-content:flex-end}
+.atl2 .thu .tb{border:1px solid var(--line);background:var(--panel);border-radius:var(--rs);
+  width:24px;height:24px;font-size:11px;cursor:pointer;padding:0;line-height:1;opacity:.55;transition:.13s}
+.atl2 .row:hover .thu .tb{opacity:1}
+.atl2 .thu .tb:hover{border-color:var(--line2);transform:translateY(-1px)}
+.atl2 .thu .tb.on{background:var(--brand);border-color:var(--brand)}
+.atl2 .h-thu{justify-content:flex-end}
+.atl2 .wait2{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:12px;font-weight:600;border-radius:var(--rs);padding:2px 6px;
+  background:var(--panel3);color:var(--muted);font-variant-numeric:tabular-nums}
+.atl2 .wait2.warm{background:#FFF7ED;color:#96690E}
+.atl2 .wait2.hot{background:#FDECEC;color:#C0353A}
+.atl2 .rule{border:1px solid var(--line);border-left:3px solid var(--brand);border-radius:0 var(--r) var(--r) 0;
+  padding:14px 16px;margin:14px 0;background:var(--panel2)}
+.atl2 .rule b{font-size:13.5px}
+.atl2 .rule p{font-size:12.5px;line-height:1.65;color:var(--muted);margin:8px 0 0}
+.atl2 .rule p b{color:var(--ink);font-size:12.5px}
+.atl2 .org{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;font-weight:600;
+  border-radius:var(--rs);padding:2px 7px;white-space:nowrap}
+.atl2 .org.au{background:#E7F3EC;color:var(--brand-d)}
+.atl2 .org.cd{background:#F3EEFE;color:#6D28D9}
+.atl2 .promo{background:var(--ink);color:#fff;border:0;border-radius:var(--ra);padding:6px 11px;
+  font-size:11.5px;font-weight:700;cursor:pointer;white-space:nowrap}
+.atl2 .promo:hover{background:#000}
+.atl2 .fzone>.conts{border-bottom:0}
+.atl2 .stage{border-top:1px solid var(--line)}
+.atl2 .fbtn{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 11px;background:var(--panel);
+  border:1px solid var(--line);border-radius:var(--r);cursor:pointer;font-size:11.5px;font-weight:600;
+  color:var(--ink);white-space:nowrap;flex:none;justify-content:flex-start;width:auto}
+.atl2 .fbtn>*{border:0!important;background:none;padding:0;margin:0}
+.atl2 .fbtn .fl{font-weight:600}
+.atl2 .fbtn .v{font-weight:400;color:var(--dim);font-size:11px}
+.atl2 .fbtn .n{background:var(--ink)!important;color:#fff;border-radius:99px;padding:1px 7px!important;
+  font-family:var(--mono);font-size:9px;font-weight:700}
+.atl2 .fbtn .cv{font-size:8px;color:var(--dim);margin-left:1px}
+.atl2 .fbtn:hover{border-color:var(--line2);background:var(--panel2)}
+.atl2 .fbtn[aria-expanded="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.atl2 .fbtn[aria-expanded="true"] .v,.atl2 .fbtn[aria-expanded="true"] .cv{color:rgba(255,255,255,.72)}
+.atl2 .fbtn[aria-expanded="true"] .n{background:#fff!important;color:var(--ink)}
+.atl2 .fbtn.fsig{border-color:#F0B4B4;color:var(--red)}
+.atl2 .fbtn.fsig .n{background:var(--red)!important}
+.atl2 .fbtn.fsig[aria-expanded="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.atl2 .fbtn.fsig[aria-expanded="true"] .n{background:#fff!important;color:var(--red)}
+.atl2 .fbar .facets,.atl2 .stage.folded .fbar .facets{display:flex;flex-wrap:wrap;gap:5px}
+.atl2 .fbar:not(.col) .facets{display:flex}
+.atl2 .stage:not(.folded) .fbar .facets{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.atl2 .stage:not(.folded) .fbar .fbtn{width:100%;justify-content:space-between}
+.atl2 .act .tog{all:unset;display:flex;align-items:center;gap:9px;width:100%;box-sizing:border-box;
+  padding:7px 14px;cursor:pointer;font-family:var(--body);font-size:11.5px;font-weight:600;color:var(--muted)}
+.atl2 .act .tog:hover{color:var(--ink)}
+.atl2 .act .tog .cv{font-size:9px;color:var(--dim);width:9px}
+.atl2 .act .tog .tt{white-space:nowrap}
+.atl2 .act .tog .lg{margin-left:auto;display:flex;gap:11px;font-size:11px;font-weight:500}
+.atl2 .tuto{align-items:center;gap:12px;padding:7px 14px}
+.atl2 .tuto.mini{padding:6px 14px}
+.atl2 .tuto .txt{flex:1;min-width:0}
+.atl2 .tuto.mini p{margin:0;font-size:12.5px;font-weight:500;color:var(--ink);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.atl2 .tuto:not(.mini) p{margin:0 0 8px}
+.atl2 .tprim{flex:none;background:var(--ink);color:#fff;border:0;border-radius:var(--ra);padding:7px 14px;
+  font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.atl2 .tprim:hover{background:#000}
+.atl2 .tuto .fold{flex:none;width:24px;height:24px;padding:0;border-radius:var(--rs);font-size:10px;
+  letter-spacing:0;display:grid;place-items:center}
+.atl2 .tuto .fold:hover{background:rgba(15,29,51,.06)}
+.atl2 .act .tog{padding:5px 14px;font-size:11px}
+.atl2 .act .tog .lg{font-size:10px}
+.atl2 .act .tog .cv{font-size:8px}
+.atl2 .fbtn{padding:0 9px;gap:6px;font-size:11.5px}
+.atl2 .fbtn .v{font-weight:500;color:var(--muted);font-size:11px}
+.atl2 .fbar .fsrch{flex:0 1 150px;max-width:150px;min-width:116px}
+.atl2 .stage.folded .fbar .fsrch{flex:0 1 148px;max-width:148px}
+.atl2 .stage.folded .fbar .seg button{padding:0 9px;gap:4px;font-size:11px}
+.atl2 .act .tog .tgc{font-size:8px;color:var(--dim);width:9px;display:inline-block;background:none;border:0;padding:0}
+.atl2 .stage.folded ~ .conts,.atl2 .fzone>.conts{transition:none}
+.atl2 .fzone.mapoff>.conts{display:none}
+.atl2 .row,.atl2 .cols{grid-template-columns:11px 30px minmax(200px,1fr) 84px 78px 186px 156px}
+.atl2 .app.pipe .row,.atl2 .app.pipe .cols{grid-template-columns:11px 30px minmax(175px,1fr) 72px 66px 168px 130px 42px 138px 48px}
+@media (max-width:1440px){
+.atl2 .row,.atl2 .cols{grid-template-columns:11px 30px minmax(190px,1fr) 80px 180px 152px}
+.atl2 .app.pipe .row,.atl2 .app.pipe .cols{grid-template-columns:11px 30px minmax(165px,1fr) 70px 166px 130px 42px 138px 50px}}
+@media (max-width:1200px){
+.atl2 .row,.atl2 .cols{grid-template-columns:11px 30px minmax(175px,1fr) 174px 148px}
+.atl2 .app.pipe .row,.atl2 .app.pipe .cols{grid-template-columns:11px 30px minmax(150px,1fr) 160px 126px 40px 134px 50px}}
+.atl2 .app:not(.pipe) .h-thu,.atl2 .app:not(.pipe) .thu{display:none}
+.atl2 .mapbtn{display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;background:var(--panel);
+  border:1px solid var(--line);border-radius:var(--r);font-size:11.5px;font-weight:600;color:var(--muted);
+  cursor:pointer;white-space:nowrap;flex:none}
+.atl2 .mapbtn:hover{border-color:var(--line2);color:var(--ink)}
+.atl2 .fzone.mapoff .stage{border-top:0}
+.atl2 .fzone.mapoff .fbar{border-top:0}
+.atl2 .c-sig{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+  gap:4px;min-width:0;overflow:visible;padding:2px 0}
+.atl2 .c-sig>*{max-width:100%;flex:none}
+.atl2 .c-sig .sig{display:inline-flex;align-items:center;gap:5px;flex:none;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;max-width:100%;padding:3px 9px;font-size:10.5px;line-height:1.35}
+.atl2 .c-sig .sigwin{display:flex;align-items:center;gap:5px;margin:0;font-size:11px;color:var(--muted);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.atl2 .c-sig .sigwin a{color:var(--dim);text-decoration:none;font-size:10px}
+.atl2 .c-sig .sigwin a:hover{color:var(--ink)}
+.atl2 .c-sig .sigwin.hot{color:#C0353A;font-weight:600}
+.atl2 .app:not(.pipe) .h-thu,.atl2 .app:not(.pipe) .thu{display:none!important}
+.atl2 .fzone.mapoff>.conts{display:flex}
+.atl2 .fzone.mapoff>.conts .cbtn{display:none}
+.atl2 .fzone.mapoff>.conts{border-bottom:0;padding-top:4px;padding-bottom:4px}
+.atl2 .fzone.mapoff .stage{border-top:0}
+.atl2 .tuto.mini .goal{display:inline-flex;align-items:center;flex:none;font-size:11px;padding:4px 10px}
+.atl2 .fzone.mapoff>.conts{display:none}
+.atl2 .mapbtn{display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;background:var(--panel);
+  border:1px solid var(--line);border-radius:var(--r);font-size:11.5px;font-weight:600;color:var(--muted);
+  cursor:pointer;white-space:nowrap;flex:none}
+.atl2 .mapbtn:hover{border-color:var(--line2);color:var(--ink)}
+.atl2 .fbar .fsrch{height:30px;padding:0 10px;box-sizing:border-box;font-size:12px}
+.atl2 .stage:not(.folded) .fbar .fsrch{width:100%;max-width:none;flex:none;min-width:0}
+.atl2 .fbar .fsrch input{font-size:12px;height:100%}
+.atl2 .fbar .fsrch{flex:0 1 128px;max-width:128px;min-width:104px}
+.atl2 .stage.folded .fbar .fsrch{flex:0 1 128px;max-width:128px}
+.atl2 .fbar .seg button{padding:0 9px;gap:5px}
+.atl2 .alertbtn{padding:0 12px}
+.atl2 .resetbtn{padding:0 10px}
+.atl2 .tuto{align-items:center;gap:12px;padding:8px 14px 9px}
+.atl2 .tuto::before{content:"";position:absolute;top:-6px;left:var(--ax,60px);width:13px;height:13px;
+  background:var(--bg);transform:rotate(45deg);border-radius:2px}
+.atl2 .tuto .fold{display:none}
+.atl2 .tuto p{margin:0;font-size:12.5px;font-weight:500;color:var(--ink);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.atl2 .tuto .acts{display:none}
+.atl2 .fbar{gap:5px}
+.atl2 .fbtn{padding:0 8px;gap:5px;font-size:11.5px}
+.atl2 .fbar .seg{gap:4px}
+.atl2 .fbar .seg button{padding:0 8px;gap:4px;font-size:11px}
+.atl2 .fbar .frow2{gap:5px}
+.atl2 .alertbtn{padding:0 11px}
+.atl2 .mapbtn{padding:0 10px}
+.atl2 .funnel{border-bottom:0;padding-bottom:0}
+.atl2 .tuto{position:relative;margin-top:0;border-top:0;border-bottom:1px solid var(--line);
+  padding:11px 14px 11px 14px;align-items:center;gap:12px}
+.atl2 .tuto::before{content:"";position:absolute;top:-7px;left:var(--ax,60px);width:15px;height:15px;
+  background:var(--bg);transform:rotate(45deg);border-radius:2px;z-index:2}
+.atl2 .tstep{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:600;
+  color:var(--ink);background:rgba(15,29,51,.07);border-radius:var(--rs);
+  padding:3px 8px;margin-right:9px;vertical-align:1px;font-variant-numeric:tabular-nums}
+.atl2 .tuto p{margin:0;font-size:12.5px;font-weight:500;color:var(--muted);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.atl2 .tuto .goal{background:rgba(255,255,255,.6)}
+.atl2 .drow{flex-wrap:nowrap}
+.atl2 .dfield{flex:1 1 auto;min-width:0}
+@media (max-width:900px){
+.atl2 .drow{flex-wrap:wrap}}
+.atl2 .memo .mf .deep{background:var(--blue);color:#fff;border:0;border-radius:var(--ra);padding:10px 16px;
+  font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap}
+.atl2 .memo .mf .deep:hover{filter:brightness(1.12)}
+.atl2 .memo .mf .deep em{font-style:normal;font-weight:600;font-size:11px;opacity:.8;margin-left:4px}
+.atl2 .memo .mf .go{background:var(--ink)}
+.atl2 .memo .mf .go:hover{background:#000;filter:none}
+.atl2 .memo .mf .t b{color:var(--ink)}
+.atl2 .funnel{align-items:stretch}
+.atl2 .chain2{align-items:stretch}
+.atl2 .offtrack{align-items:stretch}
+.atl2 .offtrack .off{height:auto;justify-content:center;padding:7px 13px}
+.atl2 .offtrack .div{align-self:stretch;margin:0 4px}
+.atl2 .tuto::before{content:"";position:absolute;top:-8px;left:var(--ax,60px);width:17px;height:17px;
+  background:var(--bg);transform:rotate(45deg);border-radius:3px;z-index:3;
+  margin-left:-8px}
+.atl2 .tstep{background:var(--stc,rgba(15,29,51,.07));color:var(--stt,#fff)}
+.atl2 .funnel{border-bottom:0;padding-bottom:7px;background:var(--panel)}
+.atl2 .tuto{position:relative;overflow:visible}
+.atl2 .tuto::before{content:"";position:absolute;top:-9px;left:var(--ax,60px);margin-left:-9px;
+  width:18px;height:18px;background:var(--bg);transform:rotate(45deg);border-radius:3px;z-index:4;
+  border-top:1.5px solid var(--stc,var(--line2));border-left:1.5px solid var(--stc,var(--line2))}
+.atl2 .funnel{border-bottom:0;padding-bottom:0;background:var(--panel);position:relative;z-index:1}
+.atl2 .tuto{position:relative;overflow:visible;box-shadow:none;z-index:2}
+.atl2 .tuto::before{content:"";position:absolute;top:-8px;left:var(--ax,60px);margin-left:-8px;
+  width:16px;height:16px;background:var(--bg);transform:rotate(45deg);border-radius:2px;z-index:5;
+  border-top:1px solid var(--stc,var(--line2));border-left:1px solid var(--stc,var(--line2))}
+.atl2 .vd{width:auto!important;height:auto!important;border-radius:var(--rs)!important;display:inline-flex}
+.atl2 .step .warn{display:none}
+.atl2 .co.off{pointer-events:none}
+.atl2 .co.off .h{pointer-events:none}
+.atl2 .offtrack{display:flex;align-items:stretch;gap:0;flex:none;margin-left:10px;
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.atl2 .offtrack .div{display:none}
+.atl2 .off{display:flex;flex-direction:column;justify-content:center;gap:2px;
+  border:0;border-right:1px solid var(--line);border-radius:0;background:none;
+  padding:7px 15px;cursor:pointer;color:var(--muted);text-align:left;transition:background .13s}
+.atl2 .off:last-child{border-right:0}
+.atl2 .off:hover{background:var(--panel2);color:var(--ink)}
+.atl2 .off.view{border-style:solid}
+.atl2 .off .l{font-family:var(--mono);font-size:12px;white-space:nowrap;color:var(--dim);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .off .n{font-size:15px;font-weight:700;line-height:1;color:var(--ink)}
+.atl2 .off[aria-selected="true"]{background:var(--c)}
+.atl2 .off[aria-selected="true"] .l{color:rgba(255,255,255,.85)}
+.atl2 .off[aria-selected="true"] .n{color:#fff}
+.atl2 .off.view .l{color:var(--dim)}
+.atl2 .off.view[aria-selected="true"]{background:var(--ink)}
+.atl2 .offtrack{display:flex;align-items:stretch;gap:0;flex:none;margin-left:16px;
+  background:none;border:0;border-radius:0;overflow:visible;
+  border-left:1px solid var(--line);padding-left:16px}
+.atl2 .off{border:0;border-right:1px solid var(--line);border-radius:0;background:none;padding:7px 15px}
+.atl2 .off:last-child{border-right:0;padding-right:2px}
+.atl2 .off:hover{background:none;color:var(--ink)}
+.atl2 .off:hover .n{text-decoration:underline;text-underline-offset:3px}
+.atl2 .off[aria-selected="true"]{background:none}
+.atl2 .off[aria-selected="true"] .l{color:var(--c)}
+.atl2 .off[aria-selected="true"] .n{color:var(--c);position:relative}
+.atl2 .off.view[aria-selected="true"] .l,.atl2 .off.view[aria-selected="true"] .n{color:var(--ink)}
+.atl2 .off[aria-selected="true"] .n::after{content:"";position:absolute;left:0;right:0;bottom:-5px;
+  height:2px;background:currentColor;border-radius:2px}
+.atl2 #pName{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.atl2 .pfl{width:20px;height:14px;border-radius:2px;object-fit:cover;box-shadow:0 0 0 1px rgba(15,29,51,.12)}
+.atl2 .pctry{font-size:11.5px;font-weight:500;color:var(--muted)}
+.atl2 .psrc{color:var(--muted);text-decoration:none;border-bottom:1px dotted var(--line2)}
+.atl2 .psrc:hover{color:var(--ink)}
+.atl2 #pMemo{border:0;border-left:2px solid var(--line2);border-radius:0;background:none;
+  padding:2px 0 2px 13px;margin-top:6px;font-size:13px;line-height:1.6;color:var(--muted);font-style:italic}
+.atl2 .pop .fld .l{margin-bottom:5px}
+.atl2 .pop .fld+.fld{margin-top:14px}
+.atl2 .memobtn,.atl2 .memobtn.read,.atl2 .memobtn.sm,.atl2 .memo .mf .go,.atl2 .memo .mf .deep,.atl2 .cside .btn.p,.atl2 .evalbtn.read,.atl2 .evalbtn.memo,.atl2 .qgo,.atl2 .qgo.an,.atl2 .dmemo{
+  background:var(--blue);color:#fff;border:0;box-shadow:none}
+.atl2 .memobtn:hover,.atl2 .memobtn.read:hover,.atl2 .memo .mf .go:hover,.atl2 .memo .mf .deep:hover,.atl2 .cside .btn.p:hover,.atl2 .evalbtn.read:hover,.atl2 .evalbtn.memo:hover,.atl2 .qgo:hover,.atl2 .dmemo:hover{
+  filter:brightness(1.1);background:var(--blue)}
+.atl2 .dmemo{background:var(--blue)}
+.atl2 .offtrack{display:flex;align-items:stretch;gap:6px;flex:none;margin-left:14px;padding-left:0;
+  background:none;border:0;border-radius:0;overflow:visible}
+.atl2 .offtrack .div{display:none}
+.atl2 .off{border:0!important;border-radius:var(--r);padding:7px 15px;
+  background:color-mix(in srgb, var(--c) 13%, #fff);
+  display:flex;flex-direction:column;justify-content:center;gap:2px;cursor:pointer;text-align:left}
+.atl2 .off:hover{background:color-mix(in srgb, var(--c) 22%, #fff)}
+.atl2 .off .l{font-family:var(--mono);font-size:12px;white-space:nowrap;
+  color:color-mix(in srgb, var(--c) 78%, #16233A);font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .off .n{font-size:15px;font-weight:700;line-height:1;
+  color:color-mix(in srgb, var(--c) 62%, #16233A);text-decoration:none}
+.atl2 .off:hover .n{text-decoration:none}
+.atl2 .off[aria-selected="true"]{background:var(--c)}
+.atl2 .off[aria-selected="true"] .l{color:rgba(255,255,255,.85)}
+.atl2 .off[aria-selected="true"] .n{color:#fff}
+.atl2 .off .n::after{display:none}
+.atl2 .off[style*="--pf"][aria-selected="true"] .l{color:rgba(15,29,51,.6)}
+.atl2 .off[style*="--pf"][aria-selected="true"] .n{color:#16233A}
+.atl2 .expl{display:flex;flex-direction:column;gap:9px;margin:6px 0 14px}
+.atl2 .exi{display:flex;align-items:center;gap:13px;border:1px solid var(--line);border-radius:var(--r);padding:13px 15px}
+.atl2 .exic{font-size:17px;width:34px;height:34px;display:grid;place-items:center;background:var(--panel2);
+  border-radius:var(--r);flex:none}
+.atl2 .exi b{font-size:14px}
+.atl2 .exi p{font-size:12.5px;color:var(--muted);margin:3px 0 0;line-height:1.55}
+.atl2 .exi>div{flex:1;min-width:0}
+.atl2 .exb{background:var(--panel);border:1px solid var(--line2);border-radius:var(--ra);padding:8px 14px;
+  font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;flex:none}
+.atl2 .exb:hover{border-color:var(--ink)}
+.atl2 .ic.spin{animation:atl2-spin .6s ease}
+.atl2 #pMemo,.atl2 .pop .memo{background:none!important;box-shadow:none!important;border:0;
+  border-left:2px solid var(--line2);border-radius:0;padding:1px 0 1px 13px;margin-top:5px;
+  font-size:13px;line-height:1.6;color:var(--muted);font-style:italic}
+.atl2 .pop .tags button{font-family:var(--mono);font-size:12px;border:1px solid var(--line);
+  background:var(--panel);color:var(--muted);border-radius:var(--rs);padding:4px 8px;cursor:pointer;font-weight:600;font-variant-numeric:tabular-nums}
+.atl2 .pop .tags button:hover{border-color:var(--ink);color:var(--ink)}
+.atl2 .pop .tags button.hi{background:var(--ink);border-color:var(--ink);color:#fff}
+.atl2 .pop .tags button.hi:hover{filter:brightness(1.25)}
+.atl2 .pop .tags .am2{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ink);
+  background:var(--panel3);border-radius:var(--rs);padding:3px 9px}
+.atl2 .psig{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:9px}
+.atl2 .pdate{font-size:11.5px;color:var(--muted)}
+.atl2 .pnos{margin-top:6px;font-size:11.5px;color:var(--dim)}
+.atl2 .pop .pf{display:flex;gap:8px;align-items:stretch}
+.atl2 .pop .pf .evalbtn{flex:1;justify-content:center}
+.atl2 .psite{flex:none;width:46px;display:grid;place-items:center;border:1px solid var(--line2);
+  border-radius:var(--ra);font-size:16px;text-decoration:none;background:var(--panel)}
+.atl2 .psite:hover{border-color:var(--ink);background:var(--panel2)}
+.atl2 .off{border-radius:0!important}
+.atl2 .pop{width:352px}
+.atl2 .pop .pb{max-height:none;overflow:visible;padding:13px 16px}
+.atl2 .pop .pb .fld p{font-size:13px;line-height:1.6}
+.atl2 .pop .pb .fld{margin-bottom:13px}
+.atl2 .pop .pb .fld:last-child{margin-bottom:0}
+@media (max-height:760px){
+.atl2 .pop .pb .fld p{font-size:12.5px;line-height:1.55}
+.atl2 .pop .pb{padding:11px 15px}}
+.atl2 .off.view[aria-selected="true"],.atl2 .off[aria-selected="true"]{background:var(--c)}
+.atl2 .off.view[aria-selected="true"] .l,.atl2 .off[aria-selected="true"] .l{color:rgba(255,255,255,.86)}
+.atl2 .off.view[aria-selected="true"] .n,.atl2 .off[aria-selected="true"] .n{color:#fff}
+.atl2 .off.view[style*="--pf"][aria-selected="true"] .l{color:rgba(15,29,51,.62)}
+.atl2 .off.view[style*="--pf"][aria-selected="true"] .n{color:#16233A}
+.atl2 .off .n::after,.atl2 .off[aria-selected="true"] .n::after,.atl2 .off.view[aria-selected="true"] .n::after{display:none!important;content:none!important}
+.atl2 .onb{background:#0F1D33;color:#fff;padding:22px 22px 24px;border-bottom:1px solid var(--line)}
+.atl2 .onbh{margin-bottom:20px}
+.atl2 .onb .tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;color:#5FD39B;font-weight:600;margin-bottom:11px;font-variant-numeric:tabular-nums}
+.atl2 .onb .tag i{width:6px;height:6px;border-radius:50%;background:#5FD39B;animation:atl2-blink 1.8s infinite}
+.atl2 .onb h2{margin:0 0 7px;font-size:23px;font-weight:700;letter-spacing:-.028em;line-height:1.15}
+.atl2 .onb h2 b{color:#5FD39B;font-weight:700}
+.atl2 .onb .sub{font-size:13.5px;color:#A7B6CC;line-height:1.55;max-width:76ch}
+.atl2 .steps4{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0;position:relative}
+.atl2 .s4{position:relative;padding:0 18px 0 0}
+.atl2 .s4+.s4{padding-left:18px;border-left:1px solid #1B2F4E}
+.atl2 .s4n{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;
+  background:#1B2A40;color:#7C93AB;font-family:var(--mono);font-size:11px;font-weight:700;margin-bottom:10px}
+.atl2 .s4.go .s4n{background:var(--brand);color:#fff}
+.atl2 .s4t{font-size:14.5px;font-weight:700;margin-bottom:4px}
+.atl2 .s4d{font-size:12.5px;color:#93A9BE;line-height:1.5;margin-bottom:12px;min-height:38px}
+.atl2 .s4b{background:none;border:1px solid #2A3B54;color:#C6D5E3;border-radius:99px;padding:8px 15px;
+  font-size:12px;font-weight:600;cursor:pointer}
+.atl2 .s4b:hover{border-color:#4A607E;color:#fff}
+.atl2 .s4b.p{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:700}
+.atl2 .s4b.p:hover{filter:brightness(1.12)}
+@media (max-width:820px){
+.atl2 .s4+.s4{border-left:0;padding-left:0;margin-top:18px}}
+.atl2 #rdvM .mcard{width:min(760px,100%)}
+.atl2 #rdvM .mb{padding:0 22px 22px}
+.atl2 .mksrc{padding:8px 12px;border-bottom:1px solid var(--line);background:var(--panel);
+  font-size:12px;color:var(--dim);font-weight:600}
+.atl2 .bulk .side{min-width:210px;flex:none}
+.atl2 .bulk .side .evalbtn{width:100%;white-space:nowrap;padding:0 18px;min-width:0}
+.atl2 .bulk .side .hint{white-space:nowrap}`,Bl=`
+/* À évaluer : une rangée = un fond gris très clair, pas un cadre. */
+.atl2.cibles .eq-card,.atl2 .eq-card{border:0;border-radius:10px;
+  padding:10px 12px 8px;background:#F4F6F9;box-shadow:none}
+/* fiche droite : bouton plein, puis un lien secondaire centré — pas un titre gras */
+.atl2 .zoom-memo-acts{display:flex;flex-direction:column;align-items:stretch;
+  gap:6px;margin:12px 0 2px}
+.atl2 .zoom-memo-acts .btn.mdfull{margin-top:0;width:100%}
+.atl2 .md-deep-txt,.atl2.cibles .readpane .md-deep-txt,
+.atl2.cibles .readpane .zoom-memo-acts .md-deep-txt{
+  display:block;width:100%;margin:0;padding:8px 4px 2px;border:0;
+  background:none!important;box-shadow:none!important;height:auto;
+  font:inherit;font-size:13px;font-weight:400;letter-spacing:.01em;
+  color:#5B6B82!important;text-align:center;cursor:pointer;line-height:1.45}
+.atl2 .md-deep-txt:hover,.atl2.cibles .readpane .md-deep-txt:hover,
+.atl2.cibles .readpane .zoom-memo-acts .md-deep-txt:hover{
+  color:#0F1D33!important;text-decoration:underline;text-underline-offset:3px}
+.atl2 .md-deep-txt .xtra-ask-pip,.atl2.cibles .readpane .md-deep-txt .xtra-ask-pip{
+  margin-left:5px;vertical-align:middle;opacity:.85}
+.atl2 .cdacts .md-deep-txt{width:100%;flex:1 0 100%;text-align:center}
+/* carte Rachetée : toute la largeur du panneau droit, sans cadre ni plafond 560 */
+.atl2.cibles .readpane .zoom-news .zoom-card,
+.atl2.cibles .readpane .zoom-news .zoom-card-host,
+.atl2.cibles .readpane .zoom-card-host.ppcard-fit{width:100%!important;
+  max-width:100%!important;margin-left:0;margin-right:0;border:0;
+  border-radius:12px;box-sizing:border-box;display:block}
+.atl2.cibles .readpane .zoom-pipe>.zoom-news{justify-self:stretch;width:100%;
+  min-width:0}
+.atl2.cibles .eq-card.r-kept,.atl2 .eq-card.r-kept{background:#F3FBF6}
+.atl2.cibles .eq-card.r-out,.atl2 .eq-card.r-out{background:#FDF6F6}
+.atl2.cibles .evalq .eq-rows{gap:8px}
+.atl2.cibles .eq-card .eq-go,.atl2 .eq-card .eq-go{min-width:148px;height:34px;
+  padding:0 14px;font-size:12.5px}
+.atl2.cibles .eq-row,.atl2.cibles .eq-head{
+  grid-template-columns:minmax(120px,1fr) minmax(100px,160px) minmax(0,1.2fr) 72px 22px minmax(160px,max-content)}
+/* coque : hauteur pilotée par le montage (page /carte, iframe onglet ⑤, démo home) */
+.atl2{height:var(--atelier-h,calc(100dvh - 60px));display:block;position:relative;overflow:hidden;border-radius:inherit}
+.atl2 .app{height:100%}
+/* ── LA BARRE D'APERÇU EN HAUT, COLLANTE (17/08). Elle vivait en bas de page,
+   dernier enfant : la déplacer en premier enfant est la moitié du correctif,
+   l'autre moitié est ici. Le conteneur devient une colonne flex pour que la
+   barre garde sa hauteur et que le cockpit prenne le reste. Rang 40 :
+   au-dessus de la carte, qui monte à 20. */
+.atl2:has(> .lockbar.on){display:flex;flex-direction:column;
+  min-height:calc(100dvh - var(--pp-gap,60px))}
+.atl2:has(> .lockbar.on) .app{flex:1 1 auto;min-height:0;height:auto;padding-bottom:8px}
+/* RDV : collée EN BAS, juste au-dessus du footer (plus sous la nav). */
+.atl2 .lockbar{position:sticky;top:auto;bottom:0;z-index:40;
+  flex-wrap:wrap;margin:0;border-radius:0;margin-top:auto;
+  box-shadow:0 -10px 28px -16px rgba(15,29,51,.5)}
+body.pp-navfold .atl2 .lockbar{top:auto;bottom:0}
+@media (max-width:760px){.atl2 .lockbar{top:auto;bottom:0}}
+body.pp-desk:has(.atl2 .lockbar.on) footer{padding-bottom:84px}
+/* ── CE QUI RESTE SOUS LA MAIN QUAND ON DESCEND (17/08 : « laisse le ticker
+   sticky, et aussi les filtres essentiels quand on scroll »). La page s'allonge
+   sur 3 400 px et laissait le direct comme l'en-tête de liste tout en haut,
+   hors de portée : pour changer de période ou de mode il fallait remonter.
+   ⚠️ Le composant Band ne pose AUCUN nœud — il n'enveloppe rien. Les
+   sélecteurs doivent donc viser les racines réelles : .ticker (le direct,
+   enfant direct de .app) et .listhead (le compte, les filtres actifs et
+   les modes d'affichage). Les décalages sont cumulés — nav, puis barre
+   d'aperçu, puis direct — sinon ils se recouvrent. */
+/* ⚠️ LE FIL N'EST PAS ENFANT DE .app — mesuré : il vit dans .live-stack
+   (le bloc sombre qui réunit le direct et la bande des jours). Mon premier
+   sélecteur .app > .ticker ne matchait donc RIEN, d'où « le ticker n'est pas
+   sticky ». On colle la PILE entière : le fil et les jours ensemble, comme
+   ils sont dessinés. */
+/* ⚠️ LE DIRECT N'EST PLUS COLLANT (17/08, après essai : « laisse le LIVE en haut
+   et NON sticky »). Collé, il mangeait 48 px de hauteur en permanence et se
+   superposait au reste ; en haut de page, il se lit une fois et laisse la place.
+   La barre d'aperçu, elle, RESTE collante — c'est un appel à l'action, pas une
+   information à consulter. */
+/* ⚠️ L'EN-TÊTE COLLANT PASSAIT PAR-DESSUS LA FENÊTRE DE TIR (17/08 : « toutes
+   les cibles avec un signal fort apparaissent SOUS les menus, c'est
+   catastrophique »). C'est ma régression : rendre l'en-tête collant l'a sorti
+   du flux, et la box des signaux — qui vient APRÈS lui dans le DOM — se
+   retrouvait recouverte. Un élément collant doit laisser passer ce qui le suit.
+   La box reçoit donc un rang supérieur et sa propre surface opaque : elle
+   glisse SOUS l'en-tête quand on défile, jamais dessous à l'arrêt. */
+.atl2 .listhead{position:sticky;z-index:24;background:var(--panel);
+  top:var(--pp-gap,60px)}
+.atl2 .sigstrip,.atl2 .since{position:relative;z-index:26}
+body.pp-navfold .atl2 .listhead{top:26px}
+.atl2 .lockbar .lb-c{font-size:12px;color:#C7D5E5}
+.atl2 .lockbar .lb-c a{color:#fff;font-weight:700;text-decoration:none;white-space:nowrap}
+.atl2 .lockbar .lb-c a:hover{text-decoration:underline}
+
+/* ── LIVE + jours collés (/cibles) ────────────────────────────────────────
+   « exactement le même look & feel que les jours collés au LIVE dans
+   /actualites » (Antoine, 15/08) : UNE seule surface d'encre, le ticker et la
+   bande des jours dedans, un filet entre les deux — le miroir de .pp-band
+   (src/live/core.ts). L'ancienne surface claire est ABANDONNÉE : elle faisait
+   deux bandeaux différents pour le même objet. */
+.atl2 .live-stack{flex:none;display:flex;flex-direction:column;background:#0F1D33;
+  border-bottom:1px solid var(--line,#E3E8F0)}
+/* LIVE collant : /cibles et /actualites, même pile (nav → LIVE → URL → filtres). */
+.atl2.cibles .live-stack,.atl2.ops .live-stack{position:sticky;z-index:27;top:var(--pp-gap,60px)}
+body.pp-navfold .atl2.cibles .live-stack,body.pp-navfold .atl2.ops .live-stack{top:26px}
+.atl2.cibles .listhead{top:calc(var(--pp-gap,60px) + 44px)}
+body.pp-navfold .atl2.cibles .listhead{top:74px}
+.atl2 .live-stack--cibles .ticker{border-bottom:1px solid #1B2F4E;height:44px;
+  align-items:center}
+/* LE PAVÉ ROUGE « LIVE » REPREND TOUTE LA HAUTEUR (29/08). 'align-items:center'
+   ci-dessus retire le 'stretch' par défaut du flex : mesuré sur la page servie,
+   la barre faisait 44 px et le pavé 15 px — la hauteur de son seul texte, d'où
+   l'impression d'un badge qui flotte au milieu (retour Antoine). On rend le
+   stretch à CE bloc, sans toucher aux autres enfants (la puce « Tout », le
+   bouton Édito) qui portent, eux, leur propre hauteur. */
+.atl2 .live-stack--cibles .ticker .lbl{align-self:stretch}
+.atl2.cibles .ticker .tk .what{color:#E8EEF5}
+.atl2.cibles .ticker .tk .co{color:#fff}
+.atl2.cibles .ticker .tk.spent .co{color:#8FA0B8}
+.atl2.cibles .ticker .tk .am{color:#fff;background:rgba(255,255,255,.16)}
+.atl2 .ticker .dytog{flex:none;width:40px;height:100%;border:0;border-left:1px solid #1B2F4E;
+background:transparent;color:#C5D4E3;cursor:pointer;display:grid;place-items:center}
+.atl2 .ticker .dytog:hover{background:#16233A;color:#fff}
+.atl2 .ticker .dytog[aria-pressed="true"]{color:#7FD8A6;background:#0E1A2C}
+.atl2 .live-stack--cibles .thesis-days{border-top:0;padding-top:0}
+/* LES PUCES DU LIVE (15/08) — « 48 » vit à côté de « Tout », plus dans un
+   bloc « 48 ouverts » qui mangeait la largeur du fil. Même grammaire que le
+   bandeau public (.pp-fil / .pp-film de src/live/core.ts). */
+.atl2 .ticker .lbl .cnt{display:none}
+.atl2 .tkfil{flex:none;position:relative;display:flex;align-items:center;padding:0 10px;
+  border-right:1px solid #1B2F4E}
+.atl2 .tkfilb{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);
+  font-size:12px;font-weight:600;color:#D5E3F0;background:transparent;
+  border:1px solid #1B2F4E;border-radius:4px;padding:5px 9px;cursor:pointer;white-space:nowrap}
+.atl2 .tkfilb:hover{color:#fff;border-color:#5FD39B}
+.atl2 .tkfilb b,.atl2 .tkfilm button b{font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:0;color:#fff;background:rgba(255,255,255,.16);border-radius:3px;padding:1px 6px}
+.atl2 .tkfilb b{background:#12A150}
+.atl2 .tkfilm{position:absolute;top:calc(100% + 4px);left:0;z-index:60;min-width:180px;
+  display:flex;flex-direction:column;background:#0F1D33;border:1px solid #1B2F4E;
+  border-radius:8px;padding:4px;box-shadow:0 16px 40px rgba(0,0,0,.45)}
+.atl2 .tkfilm[hidden]{display:none!important}
+.atl2 .tkfilm button{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  text-align:left;font-family:var(--mono);font-size:12px;font-weight:600;
+  color:#D5E3F0;background:transparent;border:0;border-radius:5px;padding:8px 10px;
+  cursor:pointer;white-space:nowrap}
+.atl2 .tkfilm button:hover{background:#16233A;color:#fff}
+.atl2 .tkfilm button[aria-pressed="true"]{background:#12A150;color:#fff}
+/* Ce que le LIVE regroupe, en tête du menu (16/08) : la SEULE ligne du
+   déroulant qui se lit, donc la seule qui revient à la ligne. */
+/* L'ACHETEUR sur la ligne (17/08) : discret, mais cliquable — c'est une
+   entrée dans le cockpit, pas une décoration. */
+.atl2 .racq{margin-left:8px;flex:0 0 auto;font-family:var(--mono);font-size:12px;
+  font-weight:600;color:#4B5E78;background:transparent;border:0;
+  border-bottom:1px dashed #C9D6E6;padding:0 0 1px;cursor:pointer;white-space:nowrap}
+.atl2 .racq:hover{color:#0E8A44;border-bottom-color:#0E8A44}
+.atl2 .acqchip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);
+  font-size:12px;font-weight:600;color:#0E8A44;background:#E7F6EE;
+  border:1px solid #BBF7D0;border-radius:999px;padding:5px 10px}
+.atl2 .acqchip button{border:0;background:none;color:#0E8A44;cursor:pointer;
+  font:inherit;padding:0;opacity:.7}
+.atl2 .acqchip button:hover{opacity:1}
+.atl2 .tkfilscope{display:block;max-width:290px;padding:9px 10px 10px;margin-bottom:3px;
+  border-bottom:1px solid #1B2F4E;font-family:var(--mono);font-size:12px;line-height:1.6;font-weight:600;color:#9DB2CA;white-space:normal;text-transform:none}
+/* les deux axes : rubriques d'édition, puis signaux ouverts */
+.atl2 .tkfilg{font-family:var(--mono);font-size:12px;font-weight:600;
+  color:#5A6E85;padding:9px 10px 4px}
+/* elle reste sur téléphone : c'est le seul compteur de la barre */
+/* UN ONGLET VIDE MÈNE QUELQUE PART : le chiffre, la phrase, la sortie.
+   La liste ne doit pas s'effondrer à 0 px quand elle est vide, sinon son
+   contenu déborde par-dessus la ligne d'apprentissage et lui donne le clic. */
+.atl2 .list.list-empty{flex:none;min-height:190px;overflow:visible}
+.atl2 .void.void-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;padding:34px 18px 38px;text-align:center}
+.atl2 .void-empty b{font-size:16px;font-weight:700;letter-spacing:-.01em;color:var(--ink,#16233A);
+  text-transform:none}
+.atl2 .void-empty span{font-size:13.5px;color:var(--muted,#4B5E78);text-transform:none;
+  letter-spacing:0}
+.atl2 .void-empty .abtn{margin-top:4px;padding:10px 18px;font-size:13px;font-weight:700;
+  color:#fff;background:var(--ink,#16233A);border:1.5px solid var(--ink,#16233A);
+  border-radius:var(--ra,8px);cursor:pointer}
+.atl2 .void-empty .abtn:hover{background:#1B2F4E;border-color:#1B2F4E}
+/* brief sous liste : fluide dans le scroll app */
+.atl2 .app > .thesis-brief{flex:none}
+/* Afficher plus — vrai bouton encre (pas un lien vert) */
+.atl2 .moregrp{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:5px;width:100%;padding:18px 16px 20px;background:var(--panel,#fff);
+  border:0;border-top:1px solid var(--line);cursor:pointer;font:inherit}
+.atl2 .moregrp .more-label{display:inline-flex;align-items:center;justify-content:center;
+  min-width:220px;padding:12px 22px;font-size:13.5px;font-weight:700;letter-spacing:-.01em;
+  color:#fff;background:var(--ink,#16233A);border:1.5px solid var(--ink,#16233A);
+  border-radius:var(--ra,8px);transition:background .12s,border-color .12s}
+.atl2 .moregrp:hover .more-label{background:#1B2F4E;border-color:#1B2F4E}
+.atl2 .moregrp .more-meta{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--dim,#8FA0B8)}
+
+/* ── retours Antoine 15/08 : cockpit = LA surface de lecture ─────────────── */
+/* « ⚡ Évaluer {nom} » sur chaque ligne : libellé ellipsé, jamais de casse */
+.atl2 .rev{min-width:0}
+.atl2 .rev .lbl{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* lignes ACTUALITÉ : « faut écrire ⚡ Évaluer X sinon on comprend plus rien »
+   (15/08 soir 4) — les DEUX gestes en toutes lettres, EMPILÉS dans la
+   cellule d'action, plus jamais d'icône nue (ex-stylesPatch.ts, refusionné) */
+.atl2 .cell.cell-duo{display:flex;flex-direction:column;align-items:stretch;gap:5px}
+.atl2 .cell.cell-duo .rev{flex:none;width:100%;min-width:0}
+/* pistes d'action élargies (le nom entre dans le bouton) — reprises des
+   gabarits EFFECTIFS styles.gen.ts:1375/1378/1381, en prenant sur le nom */
+.atl2 .row,.atl2 .cols{grid-template-columns:11px 30px minmax(180px,1fr) 84px 78px 186px 200px}
+@media (max-width:1440px){
+.atl2 .app:not(.pipe) .row,.atl2 .app:not(.pipe) .cols{grid-template-columns:11px 30px minmax(170px,1fr) 80px 180px 196px}}
+@media (max-width:1200px){
+.atl2 .app:not(.pipe) .row,.atl2 .app:not(.pipe) .cols{grid-template-columns:11px 30px minmax(160px,1fr) 174px 188px}}
+.atl2 .app.pipe .row,.atl2 .app.pipe .cols{grid-template-columns:11px 30px minmax(175px,1fr) 72px 66px 168px 130px 42px 138px 48px}
+@media (max-width:1440px){
+.atl2 .app.pipe .row,.atl2 .app.pipe .cols{grid-template-columns:11px 30px minmax(165px,1fr) 70px 166px 130px 42px 138px 50px}}
+@media (max-width:1200px){
+.atl2 .app.pipe .row,.atl2 .app.pipe .cols{grid-template-columns:11px 30px minmax(150px,1fr) 160px 126px 40px 134px 50px}}
+/* ── LE DÉPLIÉ OPS, grammaire unique (carte blanche 15/08 soir) ───────────
+   Texte à gauche (mesure de lecture), carte sociale à COLONNE FIXE à droite,
+   une rangée de méta en pastilles mono, une rangée d'actions. Rythme calme :
+   fond panel2, panneaux blancs, filets doux, rayons 10. */
+.atl2 .row.on+.card{display:grid;grid-template-columns:1fr 300px;gap:20px;padding-top:14px}
+.atl2 .card.ops-open{display:grid!important;grid-template-columns:minmax(0,1fr) 340px;
+  justify-content:stretch;gap:36px;align-items:start;padding:22px 28px 26px;background:#FBFCFE;
+  border-bottom:1px solid var(--line)}
+@media (max-width:1000px){.atl2 .card.ops-open{grid-template-columns:1fr;gap:18px;padding:18px 16px 20px}}
+.atl2 .ops-open .oc-main{min-width:0;max-width:68ch}
+/* le décryptage : titre fort, source discrète, prose de lecture */
+.atl2 .ops-open .ed-decrypt-b{margin:0;padding:0;background:none;border:0}
+.atl2 .card .ed-decrypt-b h4{margin:2px 0 6px;font-size:17px;font-weight:700;
+  line-height:1.3;letter-spacing:-.02em;color:var(--ink)}
+.atl2 .card .ed-decrypt-b .art-srcline{margin:0 0 12px;font-family:var(--mono);
+  font-size:12px;color:var(--dim);font-weight:600}
+.atl2 .card .ed-decrypt-b .art-srcline a{color:var(--dim)}
+.atl2 .card .ed-decrypt-b p{margin:0 0 11px;font-size:14px;line-height:1.68;
+  color:#3F4E61}
+.atl2 .card .ed-decrypt-b p:last-child{margin-bottom:0}
+.atl2 .card .ed-decrypt-b em{color:#4B5E78}
+.atl2 .card .ed-decrypt-b a{color:var(--brand-d,#0E8A44)}
+/* pas de décryptage : le titre plein, jamais tronqué */
+.atl2 .ops-open .oc-head{margin:2px 0 0;font-size:15.5px;line-height:1.5;
+  font-weight:500;color:var(--ink)}
+/* UNE rangée de méta — pastilles monospace calmes */
+.atl2 .ops-open .oc-meta{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+/* les chips sont des FILTRES (16/08 : « quand je clique sur un tag, ça
+   personnalise le cockpit ») — même habit span/button, la main en plus */
+.atl2 .ops-open .oc-meta span,.atl2 .ops-open .oc-meta button{
+  font:inherit;font-family:var(--mono);font-size:12px;color:#4B5E78;background:#F5F7FA;
+  border:1px solid var(--line);border-radius:5px;padding:4px 8px;font-weight:600}
+.atl2 .ops-open .oc-meta button{cursor:pointer}
+.atl2 .ops-open .oc-meta button:hover{color:var(--ink);border-color:var(--ink)}
+.atl2 .ops-open .oc-meta .oc-amt{color:var(--ink);font-weight:700;background:#fff}
+.atl2 .card .tg button{font:inherit;font-size:10px;background:var(--panel3);
+  border:1px solid transparent;border-radius:var(--rs);padding:3px 8px;
+  color:var(--muted);cursor:pointer}
+.atl2 .card .tg button:hover{color:var(--ink);border-color:var(--ink)}
+/* UNE rangée d'actions — un CTA plein, un ghost, la source en lien mono */
+.atl2 .ops-open .oc-acts{display:flex;flex-wrap:wrap;align-items:center;
+  gap:10px;margin:16px 0 0}
+.atl2 .ops-open .oc-cta{background:var(--brand);color:#fff;border:0;
+  border-radius:8px;padding:10px 16px;font:inherit;font-size:12.5px;
+  font-weight:700;cursor:pointer;white-space:nowrap}
+.atl2 .ops-open .oc-cta:hover{background:var(--brand-d,#0E8A44)}
+.atl2 .ops-open .oc-ghost{background:#fff;border:1px solid var(--line2);
+  border-radius:8px;padding:10px 14px;font:inherit;font-size:12.5px;
+  font-weight:600;color:var(--ink);cursor:pointer;white-space:nowrap}
+.atl2 .ops-open .oc-ghost:hover{border-color:var(--ink)}
+.atl2 .ops-open .oc-src{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--dim);text-decoration:none;white-space:nowrap;font-weight:600}
+.atl2 .ops-open .oc-src:hover{color:var(--brand-d,#0E8A44)}
+/* la carte : colonne fixe, cadre doux, clic = grand (déjà câblé) */
+.atl2 .ops-open .oc-side{min-width:0}
+.atl2 .ops-open .oc-side>div{margin-top:0!important}
+@media (max-width:1000px){.atl2 .ops-open .oc-side{max-width:420px}}
+
+/* ── LIVE : poste de travail (liste | lecture) ───────────────────────────
+   La page ne s'allonge plus : le cockpit tient l'écran, la liste défile,
+   le décryptage occupe la colonne de droite (plus d'île 62ch dans le vide). */
+.atl2.ops .app{min-height:0}
+.atl2.ops .app > .listhead,
+.atl2.ops .app > .since,
+.atl2.ops .app > .sigstrip{flex:none}
+.atl2.ops .listhead{z-index:28}
+.atl2.ops .readpane{z-index:20}
+.atl2.ops .desk{display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(280px,38%);
+  align-items:start;border-top:1px solid var(--line);background:var(--panel)}
+.atl2.ops .desk-list{min-width:0;display:flex;flex-direction:column;overflow:hidden}
+.atl2.ops .desk-list .list{flex:none;overflow:hidden;max-width:100%}
+.atl2.ops .desk-list .list.maxi{display:grid;grid-template-columns:1fr;gap:10px;
+  padding:10px 12px 20px;background:#F9FBFD}
+@media (min-width:1100px){.atl2.ops .desk-list .list.maxi{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}
+.atl2.ops .desk-list .list.maxi .grp-h{grid-column:1/-1;position:static;background:transparent;
+  border:0;padding:12px 2px 0;margin:0}
+.atl2.ops .desk-list .dcard.dops .dimg{display:none}
+.atl2.ops .desk-list .list.ligne{padding:6px 10px 16px}
+.atl2.ops .desk-list .dcard.sel{box-shadow:inset 4px 0 0 #12A150;outline:2px solid #12A150;
+  outline-offset:-2px}
+.atl2.ops .desk-list .cols{flex:none;position:sticky;top:0;z-index:2;
+  background:var(--panel)}
+/* dans le split, la ligne = drapeau + nom + action. Montant / stade / signal
+   vivent dans le panneau (sinon le nom se retrouve à 4 lettres). */
+.atl2.ops .desk-list .row,
+.atl2.ops .desk-list .cols{
+  grid-template-columns:11px 28px minmax(0,1fr) minmax(132px,168px)!important}
+.atl2.ops .desk-list .c-amt,
+.atl2.ops .desk-list .c-stade,
+.atl2.ops .desk-list .c-sig,
+.atl2.ops .desk-list .h-amt,
+.atl2.ops .desk-list .h-stade,
+.atl2.ops .desk-list .h-sig{display:none!important}
+.atl2.ops .desk-list .nd{min-width:0}
+.atl2.ops .desk-list .rnm,
+.atl2.ops .desk-list .rds{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atl2.ops .row,
+.atl2.ops .dcard{scroll-margin-top:calc(var(--pp-gap,60px) + var(--pp-live-h,44px) + var(--demand-h,56px) + var(--listhead-h,52px) + 8px)}
+.atl2.ops .row.sel,.atl2.ops .row.sel.on,
+.atl2.cibles .row.sel,.atl2.cibles .row.sel.on,
+.atl2.ops .demand.pair,.atl2.cibles .demand.pair{background:#DFF3E6;
+  box-shadow:inset 4px 0 0 #12A150;outline:none}
+.atl2.ops .row.sel .rnm,.atl2.cibles .row.sel .rnm{font-weight:750;color:#0E8A44}
+.atl2.ops .row.sel .cell .rev,.atl2.cibles .row.sel .cell .rev{box-shadow:none}
+.atl2.ops .demand.pair .dfield input,.atl2.cibles .demand.pair .dfield input{color:#0E8A44;font-weight:700}
+.atl2.ops .row.sel.echo,.atl2.ops .demand.pair.echo,
+.atl2.cibles .row.sel.echo,.atl2.cibles .demand.pair.echo{
+  animation:pp-echo .85s ease}
+.atl2.cibles .row,.atl2.cibles .dcard{scroll-margin-top:calc(var(--pp-gap,60px) + 44px + var(--demand-h,56px) + var(--listhead-h,52px) + 8px)}
+@keyframes pp-echo{
+  0%{background:#B7E6C8;box-shadow:inset 4px 0 0 #12A150,0 0 0 0 rgba(18,161,80,.35)}
+  55%{background:#DFF3E6;box-shadow:inset 4px 0 0 #12A150,0 0 0 6px rgba(18,161,80,.12)}
+  100%{background:#DFF3E6;box-shadow:inset 4px 0 0 #12A150,0 0 0 0 rgba(18,161,80,0)}}
+/* UN SEUL scroll = la fenêtre. L'encadré colle, mais overflow:visible :
+   la molette au-dessus reste le défilement natif de la page (pas un
+   preventDefault JS, trop lent). */
+body.pp-desk .atl2.ops,
+body.pp-desk .atl2.ops .app{height:auto!important;max-height:none!important;
+  overflow:visible!important}
+body.pp-desk .atl2.ops .list,
+body.pp-desk .atl2.ops .desk-list .list{flex:none!important;max-height:none!important;
+  overflow:visible!important}
+body.pp-desk .atl2.ops .desk,
+body.pp-desk .atl2.ops .desk-list,
+body.pp-desk .atl2.ops .grp{
+  overflow:visible!important;overflow-x:visible!important;overflow-y:visible!important}
+.atl2.ops .desk-list{overflow:visible}
+.atl2.ops .readpane{min-width:0;position:sticky;align-self:start;z-index:35;
+  top:calc(var(--pp-gap,60px) + var(--pp-live-h,44px) + var(--demand-h,56px));
+  min-height:calc(100dvh - var(--pp-gap,60px) - var(--pp-live-h,44px) - var(--demand-h,56px));
+  height:auto;max-height:none;overflow:visible;
+  background:#F9FBFD;border-left:1px solid var(--line);
+  box-shadow:-1px 0 0 var(--line,#E3E8F0)}
+.atl2.ops .readpane .zoom,
+.atl2.ops .readpane .zoom-pipe,
+.atl2.ops .readpane .readpane-empty{position:static;max-height:none;
+  overflow:visible;background:transparent}
+.atl2.ops .readpane .zoom-k{position:static;margin:0 0 10px;padding:0}
+.atl2.ops .readpane .card.ops-open{display:flex!important;flex-direction:column;
+  grid-template-columns:none;justify-content:stretch;gap:0;
+  padding:28px 32px 40px;background:transparent;border-bottom:0}
+.atl2.ops .readpane .oc-main{max-width:68ch}
+.atl2.ops .readpane .oc-side{margin-top:22px;max-width:340px}
+.atl2.ops .readpane-empty{margin:48px 32px;font-size:14.5px;line-height:1.55;color:#4B5E78;
+  max-width:32ch}
+/* carte plein cadre : les vides océan sont DES CARTES (édition + filtres)
+   posées PAR-DESSUS, plus un rail qui rétrécit le planisphère. */
+.atl2.ops .stage:not(.folded){display:block!important;position:relative;
+  flex-direction:unset;--rail:384px}
+.atl2.ops .stage:not(.folded) .fpanel{z-index:5;max-height:calc(100% - 24px);
+  border-radius:12px;overflow:auto}
+.atl2.ops .map-pulse{position:absolute;z-index:4;left:12px;top:12px;
+  width:min(220px,28%);text-align:left;padding:14px 16px 12px;
+  background:rgba(255,255,255,.93);backdrop-filter:blur(12px);
+  border:1px solid rgba(15,29,51,.10);border-radius:12px;
+  box-shadow:0 10px 32px rgba(15,29,51,.10);cursor:pointer;font:inherit;color:inherit}
+.atl2.ops .map-pulse:hover{border-color:rgba(18,161,80,.45)}
+.atl2.ops .map-pulse.on{border-color:#12A150;box-shadow:0 0 0 2px rgba(18,161,80,.18),
+  0 10px 32px rgba(15,29,51,.10)}
+.atl2.ops .map-pulse em{display:block;font-style:normal;font-family:var(--mono);
+  font-size:12px;font-weight:600;
+  color:#12A150;margin:0 0 6px}
+.atl2.ops .map-pulse b{font-size:32px;font-weight:800;letter-spacing:-.04em;
+  line-height:1;color:var(--ink)}
+.atl2.ops .map-pulse>span{display:block;font-family:var(--mono);font-size:12px;color:var(--dim);margin:4px 0 10px;font-weight:600}
+.atl2.ops .map-pulse ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.atl2.ops .map-pulse li{font-size:12.5px;color:#0F1D33;line-height:1.35}
+.atl2.ops .stage:not(.folded) .fbar{position:absolute;z-index:4;right:12px;top:12px;
+  bottom:12px;width:min(360px,38%);height:auto!important;max-height:calc(100% - 24px);
+  box-sizing:border-box;padding:12px 14px;overflow-y:auto;overscroll-behavior:auto;
+  background:rgba(255,255,255,.94);backdrop-filter:blur(12px);
+  border:1px solid rgba(15,29,51,.10);border-radius:12px;
+  box-shadow:0 10px 32px rgba(15,29,51,.10)}
+.atl2.ops .zoom{padding:22px 26px 36px;max-width:40rem}
+.atl2.ops .readpane.is-edito .zoom{max-width:none;padding:22px 28px 48px}
+.atl2.ops .zoom-k{font-family:var(--mono);font-size:12px;font-weight:600;color:#12A150;margin:0 0 10px}
+.atl2.ops .zoom-h{margin:0;font-size:19px;font-weight:700;letter-spacing:-.03em;
+  line-height:1.28;color:var(--ink)}
+.atl2.ops .zoom .ed-decrypt-b{margin:0}
+.atl2.ops .zoom-body{margin:14px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+.atl2.ops .zoom-body h4{margin:0 0 10px;font-size:16px;font-weight:700;
+  letter-spacing:-.02em;line-height:1.3}
+/* Édito marché : même cadre que /actualites (une langue, sections, lignes). */
+.atl2 .i18n-en{display:none}
+html[lang^=en] .atl2 .i18n-en,html[data-pplang=en] .atl2 .i18n-en{display:inline}
+html[lang^=en] .atl2 .i18n-fr,html[data-pplang=en] .atl2 .i18n-fr{display:none}
+.atl2.ops .zoom-body .mk-edito{margin:0}
+.atl2.ops .zoom-body .mk-lead,.atl2.ops .zoom-body .ed-lead{
+  margin:0 0 22px;font-size:15px;line-height:1.65;color:#4B5E78}
+.atl2.ops .zoom-body .mk-sec{margin:26px 0 0}
+.atl2.ops .zoom-body .mk-sec:first-child{margin-top:0}
+.atl2.ops .zoom-body .mk-sec h2,.atl2.ops .zoom-body .acq-h{
+  margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line,#E3E8F0);
+  font-size:14.5px;font-weight:700;letter-spacing:-.02em;line-height:1.3;color:var(--ink)}
+.atl2.ops .zoom-body .mk-ops{list-style:none;margin:0;padding:0}
+.atl2.ops .zoom-body .mk-op{padding:12px 0;border-bottom:1px solid #F5F7FA}
+.atl2.ops .zoom-body .mk-op:last-child{border-bottom:0}
+.atl2.ops .zoom-body .mk-op-t{font-size:14.5px;font-weight:650;line-height:1.4;color:var(--ink)}
+.atl2.ops .zoom-body .mk-op-t strong{font-weight:750}
+.atl2.ops .zoom-body .mk-op-m{margin-top:4px;font-size:12.5px;line-height:1.45;color:#4B5E78}
+.atl2.ops .zoom-body .mk-op-m a{color:#0E8A44}
+.atl2.ops .zoom-body .mk-empty{margin:8px 0 0;font-size:14px;color:#4B5E78}
+.atl2.ops .zoom-body .acq-land{margin:18px 0 4px;padding:14px 14px 8px;background:#F9FBFD;
+  border:1px solid #E8EEF4;border-radius:12px}
+.atl2.ops .zoom-body .acq-h{font-size:13.5px;margin:0 0 8px;padding-bottom:6px}
+.atl2.ops .zoom-body .acq-row{padding:10px 0;border-top:1px solid #E8EEF4}
+.atl2.ops .zoom-body .acq-row:first-of-type{border-top:0;padding-top:0}
+.atl2.ops .zoom-body .acq-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.atl2.ops .zoom-body .acq-n{font:inherit;font-size:14px;font-weight:750;color:var(--ink);
+  background:none;border:0;padding:0;cursor:pointer;text-align:left;
+  text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
+.atl2.ops .zoom-body .acq-n:hover{color:#0E8A44}
+.atl2.ops .zoom-body .acq-c{font-size:12px;color:#4B5E78;font-weight:600}
+.atl2.ops .zoom-body .acq-b{display:inline-block;font-size:10.5px;font-weight:700;
+  border-radius:5px;padding:1px 7px}
+.atl2.ops .zoom-body .acq-b-strat{color:#1d6fb8;background:rgba(29,111,184,.12)}
+.atl2.ops .zoom-body .acq-b-fin{color:#9a6b00;background:rgba(214,158,0,.15)}
+.atl2.ops .zoom-body .acq-tg{font-size:13px;color:#4B5E78;margin-top:4px;line-height:1.45}
+.atl2.ops .zoom-body .acq-tg a{color:#0E8A44}
+.atl2.ops .zoom-srcbox{display:flex;flex-direction:column;align-items:flex-start;
+  gap:6px;margin:18px 0 0;padding:12px 14px;background:#fff;
+  border:1px solid #E8EEF4;border-radius:12px}
+.atl2.ops .zoom-src{display:inline-block;margin:0;font-family:var(--mono);
+  font-size:12px;color:#4B5E78;text-decoration:none;
+  border-bottom:1px solid #E3E8F0;font-weight:600}
+.atl2.ops .zoom-src:hover{color:#0E8A44;border-color:#0E8A44}
+.atl2.ops .zoom-src-art{color:#0E8A44;font-weight:700;border-color:#BBF7D0}
+.atl2.ops .zoom-meta{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.atl2.ops .zoom-meta button,.atl2.ops .zoom-meta span{
+  font:inherit;font-family:var(--mono);font-size:12px;color:#4B5E78;background:#F5F7FA;border:1px solid var(--line);
+  border-radius:5px;padding:4px 8px;font-weight:600}
+.atl2.ops .zoom-meta button{cursor:pointer}
+.atl2.ops .zoom-meta button:hover{color:var(--ink);border-color:var(--ink)}
+.atl2.ops .zoom-meta .oc-amt{color:var(--ink);font-weight:700;background:#fff}
+.atl2.ops .zoom-card{margin:16px 0 0;width:100%}
+.atl2 .zoom-card-host{width:100%;max-width:100%;margin:0;line-height:0;border:0;
+  border-radius:12px;overflow:hidden;cursor:zoom-in;background:transparent;
+  box-sizing:border-box}
+.atl2.ops .zoom-cta,.atl2.ops .zoom-acts{display:flex;flex-direction:column;
+  gap:10px;margin:20px 0 0;padding-top:16px;border-top:1px solid var(--line)}
+.atl2.ops a.zp-go{text-decoration:none;color:inherit;box-sizing:border-box}
+.atl2.ops .zp-go{display:flex;align-items:center;gap:12px;width:100%;
+  text-align:left;background:#12A150;color:#fff;border:0;border-radius:12px;
+  padding:12px 14px;font:inherit;cursor:pointer}
+.atl2.ops .zp-go:hover{background:#0E8A44}
+.atl2.ops .zp-go:disabled{opacity:.55;cursor:default}
+.atl2.ops .zp-go.ghost{background:#fff;color:var(--ink);border:1px solid #D7E2EC}
+.atl2.ops .zp-go.ghost:hover{border-color:#12A150;background:#F4FBF6}
+.atl2.ops .zp-ico{flex:none;width:28px;height:28px;border-radius:8px;
+  display:grid;place-items:center;background:rgba(255,255,255,.16);font-size:14px}
+.atl2.ops .zp-go.ghost .zp-ico{background:#F5F7FA}
+.atl2.ops .zp-txt{display:flex;flex-direction:column;gap:1px;min-width:0}
+.atl2.ops .zp-txt b{font-size:13.5px;font-weight:700;letter-spacing:-.01em}
+.atl2.ops .zp-txt em{font-style:normal;font-size:11.5px;opacity:.78}
+.atl2.ops .zp-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:1100px){.atl2.ops .zp-row{grid-template-columns:1fr}}
+.atl2.ops .zp-sec{display:flex;flex-direction:column;align-items:flex-start;gap:2px;
+  text-align:left;background:#fff;border:1px solid #E3E8F0;border-radius:12px;
+  padding:11px 12px;font:inherit;cursor:pointer;min-width:0}
+.atl2.ops .zp-sec:hover{border-color:#12A150;background:#F8FBF9}
+.atl2.ops .zp-k{font-family:var(--mono);font-size:12px;font-weight:600;color:#12A150}
+.atl2.ops .zp-v{font-size:13px;font-weight:650;color:var(--ink);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.atl2.ops .zp-sec em{font-style:normal;font-size:11.5px;color:#4B5E78}
+.atl2 .arttog{background:none;border:1px solid var(--line);border-radius:6px;
+  font:inherit;font-size:10.5px;font-weight:600;color:var(--muted);
+  padding:5px 9px;cursor:pointer;white-space:nowrap;margin-left:8px}
+.atl2 .arttog:hover{color:var(--ink);border-color:var(--ink)}
+.atl2 .arttog[aria-pressed="true"]{color:var(--brand-d);border-color:var(--brand);
+  background:var(--brand-l,#E7F6EE)}
+.atl2 .demand .drow.has-url .dfield input{border-color:rgba(18,161,80,.45)!important}
+/* Toute la ligne « Collez une URL » colle sous LIVE, pas seulement le champ. */
+body.pp-desk .atl2.ops .eval-stick{position:sticky;
+  top:calc(var(--pp-gap,60px) + var(--pp-live-h,44px));z-index:36;
+  align-self:flex-start;width:100%;background:var(--panel2,#fff);
+  box-shadow:0 1px 0 var(--line,#E3E8F0)}
+body.pp-desk .atl2.ops .readpane{
+  top:calc(var(--pp-gap,60px) + var(--pp-live-h,44px) + var(--demand-h,56px));
+  min-height:calc(100dvh - var(--pp-gap,60px) - var(--pp-live-h,44px) - var(--demand-h,56px));
+  height:auto;max-height:none;overflow:visible}
+.atl2.ops .demand{scroll-margin-top:calc(var(--pp-gap,60px) + var(--pp-live-h,44px));
+  background:transparent}
+.atl2.ops .demand.pair{border-radius:0}
+/* Le bandeau LISTE / filtres reste à GAUCHE : sinon il recouvre Radar / titre. */
+body.pp-desk .atl2.ops .listhead,
+body.pp-desk .atl2.ops .listhead.mapoff{
+  top:calc(var(--pp-gap,60px) + var(--pp-live-h,44px) + var(--demand-h,56px))!important;
+  z-index:34;width:62%;max-width:calc(100% - 280px);box-sizing:border-box}
+/* ⚠️ …MAIS CES 62 % SONT CEUX DE LA PAGE, et en mode deux colonnes le bandeau
+   vit DANS .desk-list — qui les porte déjà (.desk = 1fr | 38 %). Ils se
+   multipliaient : 0,62 × 0,62 ≈ 38 % de la page. Mesuré le 27/08 à cinq
+   largeurs : colonne 682/794/893/1190/1587 px pour un bandeau de
+   402/492/554/738/984 px, soit 280 à 603 px de bandeau COLLANT TRANSPARENT à
+   droite, où la liste défilait à découvert sous les filtres. La colonne fait
+   déjà la largeur : le bandeau la prend toute. Même correction que /cibles
+   (« Plus de 62% page qui recouvrait l'édito »). Le cas SANS colonne
+   (!split, listhead enfant de .app) garde ses 62 % — c'est là qu'ils
+   protègent le Radar. */
+body.pp-desk .atl2.ops .desk-list .listhead,
+body.pp-desk .atl2.ops .desk-list .listhead.mapoff{width:100%;max-width:none}
+.atl2.ops .readpane.is-edito,
+body.pp-desk .atl2.ops .readpane.is-edito{
+  position:static;top:auto;min-height:0;height:auto;max-height:none;
+  align-self:stretch}
+.atl2 .demand .drow.flash .dfield input{border-color:rgba(18,161,80,.55)!important}
+@keyframes pp-prefill{0%{background:rgba(18,161,80,.10)}100%{background:transparent}}
+.atl2 .demand .drow.flash{animation:pp-prefill .9s ease}
+/* carte plus basse sur LIVE : la liste+lecture gardent la main */
+.atl2.ops .mapzone{height:320px;min-height:320px;max-height:320px}
+.atl2.ops .mapzone svg{height:320px!important;max-height:320px!important;width:100%}
+@media (min-width:1400px){
+  .atl2.ops .mapzone{height:380px;min-height:380px;max-height:380px}
+  .atl2.ops .mapzone svg{height:380px!important;max-height:380px!important}}
+@media (min-width:1800px){
+  .atl2.ops .mapzone{height:420px;min-height:420px;max-height:420px}
+  .atl2.ops .mapzone svg{height:420px!important;max-height:420px!important}}
+@media (max-width:1000px){
+  .atl2.ops .map-pulse,.atl2.ops .stage:not(.folded) .fbar{position:static;width:auto;
+    max-height:none;bottom:auto;box-shadow:none;border-radius:0;backdrop-filter:none}
+  .atl2.ops .stage:not(.folded){display:flex!important;flex-direction:column}}
+body.pp-desk .atl2.ops .listhead,
+body.pp-desk .atl2.ops .app:has(.stage.folded) .listhead,
+body.pp-desk .atl2.ops .app:has(> .fzone:has(.stage.folded)) .listhead{
+  top:calc(var(--pp-gap,60px) + var(--pp-live-h,44px) + var(--demand-h,56px))}
+.atl2.ops .zoom-body .ed-box{margin:0 0 40px;padding:0;background:none;border:0}
+.atl2.ops .zoom-body .ed-box:first-child > h2{margin-top:0}
+.atl2.ops .zoom-body .ed-decrypt{margin:16px 0 0}
+.atl2.ops .zoom-body .ed-box:not(:has(.art-allops li, .ed-decrypt, .opcard, .ppcard, h4)){display:none}
+.atl2.ops .zoom-body .art-allops{display:block;margin:0}
+.atl2.ops .zoom-body .art-allops ul{list-style:none;margin:0;padding:0;border:0;background:none}
+.atl2.ops .zoom-body .opcard{margin:16px 0 28px}
+.atl2.ops .zoom-body .mk-lead{margin:0 0 28px;font-size:15px;line-height:1.75;
+  color:#4B5E78;max-width:62ch}
+.atl2.ops .zoom-body .mk-empty{display:none}
+.atl2.ops .zoom-body .mk-sec:has(.mk-empty):not(:has(.mk-op,.ed-op,.acq-land,.art-allops li)){display:none}
+.atl2.ops .zoom-body .mk-sec{margin:0 0 40px}
+.atl2.ops .zoom-body .mk-op{padding:18px 0 20px;border-bottom:1px solid #EEF2F6}
+.atl2.ops .zoom-body .mk-op-t{font-size:15.5px;font-weight:700;letter-spacing:-.02em;
+  line-height:1.3}
+.atl2.ops .zoom-body .mk-op-m{margin-top:8px;font-family:inherit;font-size:13px;
+  letter-spacing:0;color:#4B5E78}
+.atl2.ops .zoom-body .mk-op-m a{color:#0E8A44}
+.atl2.ops .ckdock{flex:none;display:flex;flex-direction:column;gap:0;
+  border-top:1px solid var(--line);background:#F9FBFD}
+.atl2.ops .ckdock-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;
+  padding:14px 28px;border-bottom:1px solid var(--line)}
+.atl2.ops .ckdock-row:last-child{border-bottom:0}
+.atl2.ops .ckdock-k{flex:1 1 220px;min-width:0}
+.atl2.ops .ckdock-k b{display:block;font-size:14px;font-weight:700;letter-spacing:-.01em;
+  color:var(--ink)}
+.atl2.ops .ckdock-k span{display:block;margin-top:2px;font-size:12.5px;color:#4B5E78}
+.atl2.ops .ckdock-act{display:flex;flex-wrap:wrap;align-items:center;gap:8px;flex:1 1 340px}
+.atl2.ops .ckdock-act input[type=email]{flex:1 1 200px;min-width:160px;height:40px;
+  padding:0 12px;border:1px solid var(--line);border-radius:8px;background:#fff;
+  font:inherit;font-size:14px}
+.atl2.ops .ckdock-act button{height:40px;padding:0 16px;border:0;border-radius:8px;
+  background:var(--brand,#12A150);color:#fff;font:inherit;font-size:13.5px;
+  font-weight:700;cursor:pointer}
+.atl2.ops .ckdock-act button:hover{background:#0E8A44}
+.atl2.ops .ckdock-act a{font-size:12.5px;color:#4B5E78;text-decoration:none;
+  border-bottom:1px solid #E3E8F0}
+.atl2.ops .ckdock-act a:hover{color:var(--ink)}
+.atl2.ops .ckdock-hp{position:absolute;left:-9999px;height:0;width:0;border:0;padding:0}
+.atl2.ops .ckdock-msg{flex:1 0 100%;margin:0;font-size:12.5px;color:#0E8A44}
+.atl2.ops .ckdock-msg.err{color:#E5484D}
+.atl2.ops .ckdock-site .ur{display:flex;gap:8px;margin:0;max-width:none;
+  justify-content:flex-start;width:100%}
+.atl2.ops .ckdock-site .uf{display:flex;align-items:center;gap:8px;flex:1;height:40px;
+  padding:0 12px;background:#fff;border:1px solid var(--line);border-radius:8px}
+.atl2.ops .ckdock-site .uf input{flex:1;border:0;outline:none;font:inherit;font-size:14px;
+  background:none;min-width:0}
+.atl2.ops .ckdock-site .ub{flex:none;height:40px;padding:0 16px;border:0;border-radius:8px;
+  background:var(--brand,#12A150);color:#fff;font:inherit;font-size:13.5px;font-weight:700;
+  cursor:pointer;white-space:nowrap}
+.atl2.ops .ckdock-site .ub:hover{background:#0E8A44}
+.atl2.ops .ckdock-site .usug{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+@media (max-width:1000px){
+  .atl2.ops .desk{grid-template-columns:1fr;grid-template-rows:auto auto}
+  .atl2.ops .readpane,.atl2.ops .readpane.is-edito,
+  body.pp-desk .atl2.ops .readpane,body.pp-desk .atl2.ops .readpane.is-edito{
+    position:relative;top:auto;height:auto;min-height:0;max-height:none;
+    overflow:visible;border-left:0;border-top:1px solid var(--line);
+    align-self:stretch}
+  .atl2.ops .readpane .card.ops-open{padding:20px 18px 28px}
+  body.pp-desk .atl2.ops .listhead,body.pp-desk .atl2.ops .listhead.mapoff{
+    width:100%;max-width:none}
+  .atl2.ops .desk-list .row,
+  .atl2.ops .desk-list .cols{
+    grid-template-columns:11px 26px minmax(0,1fr) minmax(108px,140px)!important}}
+
+/* ── /cibles : même poste liste | lecture, page qui défile, panneau collé ─ */
+.atl2.cibles .desk{display:grid;grid-template-columns:minmax(360px,1fr) minmax(320px,38%);
+  align-items:start;border-top:1px solid var(--line);background:var(--panel)}
+.atl2.cibles .desk-list{min-width:0}
+.atl2.cibles .desk-list .list{overflow:visible;flex:none;max-height:none}
+.atl2.cibles .desk-list .list.maxi{display:grid;grid-template-columns:1fr;gap:10px;
+  padding:10px 12px 20px;background:#F9FBFD}
+@media (min-width:720px){.atl2.cibles .desk-list .list.maxi{grid-template-columns:1fr 1fr}}
+.atl2.cibles .desk-list .list.maxi .grp-h{grid-column:1/-1;position:static;background:transparent;
+  border:0;padding:12px 2px 0}
+.atl2.cibles .desk-list .list.ligne{padding:6px 10px 16px}
+.atl2.cibles .desk-list .dcard.sel{box-shadow:inset 4px 0 0 #12A150;outline:2px solid #12A150;
+  outline-offset:-2px}
+.atl2.cibles .desk-list .row,
+.atl2.cibles .desk-list .cols{
+  grid-template-columns:11px 28px minmax(0,1fr) minmax(92px,120px) max-content!important}
+.atl2.cibles .desk-list .c-amt,
+.atl2.cibles .desk-list .c-stade,
+.atl2.cibles .desk-list .c-sig,
+.atl2.cibles .desk-list .c-sc,
+.atl2.cibles .desk-list .h-amt,
+.atl2.cibles .desk-list .h-stade,
+.atl2.cibles .desk-list .h-sig,
+.atl2.cibles .desk-list .h-sc,
+.atl2.cibles .desk-list .thu,
+.atl2.cibles .desk-list .h-thu{display:none!important}
+.atl2.cibles .desk-list .cell{justify-self:end}
+.atl2.cibles .readpane{position:sticky;z-index:20;align-self:start;
+  top:calc(var(--pp-gap,60px) + 48px);
+  max-height:none;overflow-x:hidden;overflow-y:visible;overscroll-behavior:auto;
+  background:#F9FBFD;border-left:1px solid var(--line);min-width:0}
+body.pp-navfold .atl2.cibles .readpane{top:74px}
+body.pp-desk .atl2.cibles .eval-stick{position:sticky;z-index:36;
+  top:calc(var(--pp-gap,60px) + 44px);align-self:flex-start;width:100%;
+  background:var(--panel2,#fff);box-shadow:0 1px 0 var(--line,#E3E8F0)}
+body.pp-desk .atl2.cibles .readpane{
+  top:calc(var(--pp-gap,60px) + 44px + var(--demand-h,56px))}
+body.pp-desk .atl2.cibles .drow{
+  display:flex;flex-wrap:nowrap;align-items:stretch;width:100%;gap:8px}
+body.pp-desk .atl2.cibles .dfield{flex:1 1 auto!important;min-width:0!important;max-width:none}
+body.pp-desk .atl2.cibles .dacts{flex:none;margin-left:0}
+/* listhead VIT DANS la colonne liste : largeur 100% de cette colonne,
+   collé au funnel → « 18 retenues ». Plus de 62% page qui recouvrait l'édito. */
+body.pp-desk .atl2.cibles .desk-list .listhead,
+body.pp-desk .atl2.cibles .desk-list .listhead.mapoff{
+  display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;
+  align-items:stretch!important;z-index:34;width:100%!important;max-width:none!important;
+  box-sizing:border-box;padding:6px 14px 0;overflow:visible;background:var(--panel);
+  position:sticky;left:auto;
+  top:calc(var(--pp-gap,60px) + 44px + var(--demand-h,56px))}
+.atl2.cibles .fhint{display:none}
+.atl2.cibles .lh-dock{display:flex;flex-wrap:wrap;align-items:center;gap:6px;
+  padding:0 0 6px;margin:0;order:2}
+.atl2.cibles .dockbtn{height:28px;padding:0 10px;border:1px solid var(--line,#E3E8F0);
+  border-radius:999px;background:#fff;color:#0F1D33;font:inherit;font-size:12px;
+  font-weight:650;cursor:pointer;white-space:nowrap}
+.atl2.cibles .dockbtn:hover{border-color:#8FA0B8;background:#F9FBFD}
+.atl2.cibles .dockbtn.on{border-color:#12A150;background:#DFF3E6;color:#0E8A44}
+.atl2.cibles .dockbtn.since{border-color:#CFE9DA;color:#0E7F3F}
+.atl2.cibles .dockbtn.since.on{background:#F3FAF6}
+.atl2.cibles .dockbtn.sig{border-color:#FECACA;color:#C0353A}
+.atl2.cibles .dockbtn.sig.on{background:#FDECEC}
+body.pp-desk .atl2.cibles .listhead .lh-tools{order:1;width:100%;padding:0 0 8px;
+  margin:0 0 4px;border-bottom:1px solid var(--line);display:flex;flex-direction:row;
+  align-items:center;gap:8px}
+body.pp-desk .atl2.cibles .listhead .lh-dock{order:2}
+body.pp-desk .atl2.cibles .listhead .lh-stats{width:100%;padding:4px 0 8px;
+  margin:0;border:0;order:3}
+body.pp-desk .atl2.cibles .listhead .lh-stats .goal{padding:0 0 8px;margin:0;border:0;background:transparent}
+body.pp-desk .atl2.cibles .listhead .lh-stats .fstats{margin:0;padding:0}
+body.pp-desk .atl2.cibles .listhead .lh-funnel{width:100%;padding:2px 0 0;
+  margin:0;border:0;order:4}
+body.pp-desk .atl2.cibles .listhead .lh-funnel .funnel{
+  gap:8px;flex-wrap:nowrap;align-items:center;padding:2px 0 0;background:transparent;border:0}
+body.pp-desk .atl2.cibles .listhead .lh-funnel .chain2{flex:1 1 auto;min-width:0}
+body.pp-desk .atl2.cibles .listhead .lh-funnel .ftools{margin-left:auto;flex:none}
+body.pp-desk .atl2.cibles .listhead .lh-funnel .tuto{display:none}
+body.pp-desk .atl2.cibles .listhead .lh-top{order:5;padding:0 0 8px;margin:0;
+  border-bottom:1px solid var(--line)}
+body.pp-desk .atl2.cibles .listhead.mapoff .lh-top{
+  display:flex!important;flex-direction:row;flex-wrap:nowrap;align-items:center;
+  gap:8px;width:100%;min-width:0}
+/* Édito /cibles = même cadre que /actualites (.zoom + .zoom-body).
+   overflow-x:hidden sur le panneau recadrait les cartes 1200 px avant
+   qu'elles aient le temps d'être mises à l'échelle. On clippe UNIQUEMENT
+   le .ppcard-fit, pas le fil de l'edito. */
+.atl2.cibles .readpane.is-edito{overflow-x:clip;min-width:0}
+.atl2.cibles .readpane .zoom{padding:22px 26px 48px;max-width:none;min-width:0;
+  overflow:visible;box-sizing:border-box}
+.atl2.cibles .zoom .thesis-brief{padding:0;margin:0;border:0;background:transparent;
+  overflow:visible;max-width:100%}
+.atl2.cibles .zoom .thesis-brief__kicker{color:#4B5E78;font-family:inherit;
+  font-size:12px;font-weight:600;}
+.atl2.cibles .zoom .thesis-brief__title{font-size:14.5px;font-weight:700;letter-spacing:-.015em;
+  line-height:1.35}
+.atl2.cibles .zoom .thesis-brief__hint{display:none}
+.atl2.cibles .thesis-brief__body,.atl2.cibles .thesis-brief__acq{
+  margin:14px 0 0;padding-top:14px;border-top:1px solid var(--line);
+  overflow-wrap:anywhere;word-break:break-word;max-width:100%}
+.atl2.cibles .thesis-brief__body *,.atl2.cibles .thesis-brief__acq *{
+  max-width:100%;box-sizing:border-box}
+.atl2.cibles .thesis-brief__body .ppcard-fit,
+.atl2.cibles .thesis-brief__acq .ppcard-fit{max-width:100%}
+.atl2.cibles .thesis-brief__body .ppcard-fit *,
+.atl2.cibles .thesis-brief__acq .ppcard-fit *{max-width:none}
+.atl2.cibles .thesis-brief__body .ed-lead{
+  margin:0 0 20px;padding:0 0 14px;background:none;border:0;
+  border-bottom:1px solid #E3E8F0;font-size:13px;line-height:1.65;color:#1B2F4E}
+.atl2.cibles .thesis-brief__body .ed-lead p{margin:0 0 10px;font-size:13px;font-weight:400;color:#1B2F4E}
+.atl2.cibles .thesis-brief__body .ed-lead ul{margin:0;padding-left:0;list-style:none}
+.atl2.cibles .thesis-brief__body .ed-lead li{margin:0 0 8px;color:#1B2F4E;padding-left:0}
+.atl2 .ident .goal{padding:8px 16px 12px;margin:0;border-top:1px solid var(--line);
+  background:var(--panel)}
+.atl2 .ident .goal .pbar{max-width:200px}
+.atl2 .ticker .tk-edito{flex:none;display:inline-flex;align-items:center;justify-content:center;
+  align-self:center;height:28px;margin:0 8px;padding:0 10px;border:1px solid #1B2F4E;border-radius:5px;
+  background:transparent;color:#E8EEF5;font:inherit;font-size:11.5px;font-weight:650;
+  cursor:pointer;white-space:nowrap;line-height:1}
+.atl2 .ticker .tk-edito:hover{background:#16233A;color:#fff;border-color:#5FD39B}
+.atl2 .live-stack--cibles .thesis-days{padding:0 8px 8px;background:#0F1D33}
+@media (max-width:1000px){
+  body.pp-desk .atl2.cibles .listhead,body.pp-desk .atl2.cibles .listhead.mapoff{
+    width:100%;max-width:none}}
+.atl2.cibles .zoom-pipe{padding:22px 22px 36px}
+.atl2.cibles .zoom-pipe .zoom-h{margin:0 0 8px;font-size:22px;font-weight:750;
+  letter-spacing:-.03em;line-height:1.2}
+.atl2.cibles .zoom-pipe .zoom-cta{margin:14px 0 18px;padding:0;border:0}
+.atl2.cibles .zoom-pipe .zoom-cta .cell{display:block;width:100%}
+.atl2.cibles .zoom-pipe .zoom-cta .rev{width:100%}
+/* onglets DU PANNEAU, pas un tableau dans un cadre */
+.atl2.cibles .readpane .cdtabs{border:0;border-radius:0;margin:0;background:transparent;
+  overflow:visible}
+.atl2.cibles .readpane .cdnav{background:transparent;gap:2px;flex-wrap:wrap;
+  border-bottom:1px solid var(--line);padding:0 0 2px}
+.atl2.cibles .readpane .cdnav button{padding:8px 11px;font-size:12px;font-weight:650;
+  letter-spacing:-.01em;border-bottom-width:2px}
+.atl2.cibles .readpane .cdbody{padding:16px 0 8px}
+.atl2.cibles .readpane .cdgrid{grid-template-columns:1fr;gap:0}
+.atl2.cibles .readpane .cdl{flex-direction:column;align-items:stretch;gap:2px;
+  padding:10px 0;border-bottom:1px solid #F5F7FA}
+.atl2.cibles .readpane .cdk{min-width:0;font-size:10px}
+.atl2.cibles .readpane .cdv{white-space:normal;font-size:14px;line-height:1.45}
+.atl2.cibles .readpane .cdrich{max-height:none;overflow:visible;font-size:14px;line-height:1.6}
+.atl2.cibles .readpane .cdtxt{font-size:14px;line-height:1.6;color:#0F1D33}
+@media (max-width:1000px){
+  .atl2.cibles .desk{grid-template-columns:1fr}
+  .atl2.cibles .readpane{position:relative;top:auto;max-height:none;
+    border-left:0;border-top:1px solid var(--line)}}
+
+.atl2 .rdvcard{max-width:720px;width:min(720px,94vw);max-height:90dvh;overflow:auto}
+.atl2 .rdv-unlocks{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 16px}
+.atl2 .rdv-u{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--panel2)}
+.atl2 .rdv-u em{display:block;font-style:normal;font-size:12px;font-weight:600;color:var(--brand);margin-bottom:4px}
+.atl2 .rdv-u b{display:block;font-size:13px;line-height:1.35;margin-bottom:3px}
+.atl2 .rdv-u span{display:block;font-size:12px;line-height:1.45;color:var(--muted)}
+.atl2 .rdv-emb{min-height:520px}
+@media (max-width:640px){.atl2 .rdv-unlocks{grid-template-columns:1fr}}
+/* 📖 sur une ligne : un décryptage éditorial à creuser (clic = dépli) */
+.atl2 .nd .rdec{flex:none;font-size:12px;line-height:1;opacity:.85;cursor:help}
+.atl2 .edito-go{flex:none;font:inherit;font-size:11.5px;font-weight:650;color:#0E8A44;
+  background:#F4FBF6;border:1px solid #BBF7D0;border-radius:6px;padding:5px 9px;
+  cursor:pointer;white-space:nowrap}
+.atl2 .edito-go:hover{border-color:#12A150}
+.atl2 .edito-go[aria-pressed="true"]{background:#12A150;color:#fff;border-color:#12A150}
+.atl2.ops .readpane .pane-edito{display:block;width:calc(100% - 32px);
+  margin:12px 16px 8px;text-align:left}
+.atl2 .zoom-src.zoom-src-art{background:none;border:0;border-bottom:1px solid #BBF7D0;
+  padding:0;cursor:pointer;font:inherit}
+/* LIGHTBOX des images/cartes du cockpit — clic n'importe où pour fermer */
+.atl2 .atl2-lb{position:fixed;inset:0;z-index:90;background:rgba(15,29,51,.72);
+  display:grid;place-items:center;padding:24px;cursor:zoom-out}
+.atl2 .atl2-lb img{max-width:min(1100px,92vw);max-height:88vh;width:auto;
+  border-radius:10px;box-shadow:0 30px 80px rgba(15,29,51,.5)}
+.atl2 .atl2-lb-x{position:fixed;top:14px;right:18px;background:none;border:0;
+  color:#fff;font-size:30px;cursor:pointer;line-height:1}
+
+/* ÉCRAN ÉTROIT : ON SORT DU MODÈLE DE BOÎTE FIXE.
+   Mesuré à 390x844 : les bandeaux s'y enroulent et coûtent 1202 px pour une
+   boîte de 776 — la liste tombait à ZÉRO ligne, et aucun réglage de hauteur ne
+   pouvait la sauver, parce que le chrome seul dépassait déjà l'écran. Ce n'est
+   pas un problème de réglage, c'est le modèle qui ne convient pas : sous 861 px
+   de large la V1 était une PAGE QUI DÉFILE, et c'est ce qu'on rétablit ici.
+   L'app pousse à sa hauteur naturelle, la liste rend toutes ses lignes, le
+   navigateur fait le reste. Mesure après : liste 3808 px, 12 lignes à l'écran
+   une fois descendu jusqu'à elle, contre zéro.
+   Seuil aligné sur celui du plancher d'app (CartePage/foldCss) : au-dessus,
+   boîte fixe avec plancher ; en dessous, flux. Rien ne dépend du défilement
+   PROPRE de la liste — la visite guidée écoute en phase de capture, et les
+   appels scrollIntoView fonctionnent dans les deux modèles. */
+/* IMPRIMER LA SELECTION — mesure avant : le cockpit sortait 3 lignes sur 60,
+   parce que la liste reste une boite de 189 px a overflow:hidden, et la page
+   /cibles sortait UNE page tronquee (l'iframe est coupee a sa hauteur visible).
+   Autrement dit : la fonction existait, elle ne rendait rien d'exploitable.
+
+   Ce qu'on imprime, c'est EXACTEMENT ce qui est a l'ecran — meme onglet, memes
+   facettes, meme recherche — comme l'export CSV de la vue. On garde ce qui fait
+   un document lisible par un tiers : pour qui, a quelle date, l'entonnoir chiffre,
+   l'onglet, puis la liste. On enleve tout ce qui ne veut rien dire sur papier :
+   le bandeau LIVE, la carte, les filtres, les boutons d'action, la pedagogie.
+
+   Le « Dossier comite » (SWOT, P&L, synergies) ne transite PAS par
+   list.json : il est lu, a la demande, sur la page memo deja publiee.
+   Ce bloc-ci n'est que la SELECTION imprimable (la liste). */
+@media print {
+  .atl2{height:auto!important;overflow:visible!important;border-radius:0}
+  .atl2 .app{height:auto!important;overflow:visible!important}
+  .atl2 .list{flex:none!important;overflow:visible!important;max-height:none!important;
+    background:none!important;background-image:none!important}
+  /* rien qui ne veuille dire quelque chose sur papier */
+  .atl2 .ticker, .atl2 .goal, .atl2 .since, .atl2 .fhint, .atl2 .tuto,
+  .atl2 .fzone, .atl2 .demand, .atl2 .learn, .atl2 .lockbar,
+  .atl2 .fst-x, .atl2 .ident .ic, .atl2 .ident .isrch, .atl2 .listhead button,
+  .atl2 .cell, .atl2 .thu{display:none!important}
+  /* les deux dernieres colonnes de la grille sont les ACTIONS et les pouces :
+     on ne les cache pas seulement, on retire leur piste, sinon la ligne garde
+     198 px de vide a droite. Le nom recupere la place. */
+  .atl2 .app.pipe .row, .atl2 .app.pipe .cols{
+    grid-template-columns:11px 30px minmax(190px,1fr) 76px 70px 132px 140px 44px!important}
+  /* une societe ne doit jamais etre coupee en deux pages */
+  .atl2 .row{break-inside:avoid;page-break-inside:avoid;background:none!important}
+  .atl2 .ident, .atl2 .fstats, .atl2 .funnel{break-inside:avoid;page-break-inside:avoid}
+  .atl2 .fstats{break-after:avoid;page-break-after:avoid}
+  .atl2 *{box-shadow:none!important}
+}
+@page{size:A4;margin:12mm}
+
+@media (max-width: 860px) {
+  .atl2{height:auto;overflow:visible}
+  .atl2 .app{height:auto;overflow:visible}
+  .atl2 .list{flex:none;overflow-y:visible;max-height:none}
+}
+
+/* ...ET LA LISTE PASSE EN PREMIER.
+   Mesuré : 1 060 px de bandeaux avant la première société — une écran et demi à
+   descendre pour voir ce qu'on est venu voir. Les compacter ne suffisait pas :
+   identité 203, filtres 157, évaluateur 133, pédagogie 143, et chacun a sa raison
+   d'être. C'est l'ORDRE qui était faux, pas la taille.
+   Restent en tête ce qui dit DE QUOI on parle : identité, entonnoir chiffré,
+   onglets du tunnel. Tout ce qui sert à FILTRER ou à ÉVALUER passe sous la liste —
+   on s'en sert après avoir regardé, pas avant. Rien n'est masqué : le contenu est
+   là, il a seulement cessé de faire barrage.
+   La propriete order sur une colonne flex : aucun changement de balisage, rien à maintenir en
+   double, et sur grand écran l'ordre du DOM s'applique tel quel. */
+@media (max-width: 860px) {
+  .atl2 .app > *{order:5}
+  .atl2 .app > .ident{order:0}
+  .atl2 .app > .fstats{order:1}
+  .atl2 .app > .funnel{order:2}
+  .atl2 .app > .listhead{order:3}
+  .atl2 .app > .cols{order:3}
+  .atl2 .app > .list{order:4}
+  /* sous la liste, dans l'ordre où l'on s'en sert */
+  .atl2 .app > .chrome-tog{order:1}
+  .atl2 .app > .eval-stick{order:2}
+  .atl2 .app > .fzone{order:6}
+  .atl2 .app > .demand{order:7}
+  .atl2 .app > .goal{order:8}
+  .atl2 .app > .fhint{order:8}
+  .atl2 .app > .tuto{order:8}
+  .atl2 .app > .since{order:8}
+  .atl2 .app > .learn{order:9}
+  .atl2 .app > .ticker,.atl2 .app > .live-stack{order:10}
+  .atl2 .app > .thesis-brief{order:11}
+}
+
+/* ...et les bandeaux qui s'y ENROULENT poussent la liste hors de l'ecran.
+   Mesure a 390 px : il faut descendre de 1191 px avant de voir la premiere
+   societe. Les deux plus gros postes ne sont pas ceux qu'on croit :
+   · la barre de filtres, 194 px, DANS la carte pourtant repliee ;
+   · le tunnel, 149 px, parce que ses trois rangees s'empilent.
+   Ils defilent donc lateralement au lieu de s'enrouler — rien n'est retire,
+   tout reste atteignable d'un glissement, et la liste remonte d'autant.
+   fpanel (le menu d'une facette) est monte HORS de la barre : il n'est pas
+   rogne par ce defilement. listhead est laisse tel quel : le proto y pose un
+   overflow:visible delibere sur ecran etroit, et overflow-x:auto forcerait
+   aussi l'axe vertical (regle CSS), donc rognerait ce qui doit en sortir. */
+@media (max-width: 860px) {
+  /* .facets est vise par des selecteurs a DEUX classes dans le proto
+     (.atl2 .stage.folded .fbar .facets, ligne 1342 de styles.gen) : une regle
+     a une seule classe se fait ecraser sur flex-wrap — mesure : overflow-x
+     passait, flex-wrap restait a wrap et la barre gardait ses deux rangees.
+     On egale donc leur specificite. */
+  .atl2 .fbar .facets, .atl2 .stage.folded .fbar .facets,
+  .atl2 .facets, .atl2 .frow2, .atl2 .funnel{
+    display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .atl2 .fbar .seg{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;
+    scrollbar-width:none}
+  .atl2 .fbar .seg > *{flex:none}
+  .atl2 .facets::-webkit-scrollbar,
+  .atl2 .frow2::-webkit-scrollbar,
+  .atl2 .funnel::-webkit-scrollbar{display:none}
+  .atl2 .facets > *, .atl2 .frow2 > *, .atl2 .funnel > *{flex:none}
+}
+/* Carte OUVERTE seulement — repliée, .fzone n'est plus monté. Ne plus
+   plafonner à 300 px : ça coupait le planisphère (hauteur carte = 460).
+   Les onglets de continent sont le chrome de la carte, pas de la liste. */
+.atl2 .fzone{flex:0 0 auto;height:auto;min-height:0;max-height:none;
+  display:flex;flex-direction:column;background:var(--panel);
+  border-bottom:1px solid var(--line)}
+.atl2 .fzone .conts{flex:none;background:var(--panel);
+  border-bottom:1px solid var(--line)}
+.atl2 .stage{flex:1;height:auto;min-height:0;max-height:none}
+.atl2 .stage.folded{flex:none;height:auto;min-height:0}
+.atl2 .fzone:has(.stage.folded){height:auto;min-height:0}
+/* ── LES FILTRES ESSENTIELS RESTENT SOUS LA MAIN, CARTE REPLIÉE (17/08,
+   resserré 24/08). Carte repliée, plus de rangée de continents dans le
+   sticky — un menu compact + recherche + Filtres. Carte DÉPLIÉE on ne
+   colle rien : 460 px de planisphère épinglés, ce serait pire. */
+.atl2 .app > .fzone:has(.stage.folded){position:static;box-shadow:none}
+.atl2 .app:has(.stage.folded) .listhead{top:var(--pp-gap,60px)}
+@media (max-width:760px){
+  .atl2 .app > .fzone:has(.stage.folded){position:static}}
+.atl2 .mapzone svg{max-height:100%}
+/* les portails (popup, modales, toast) montent sur document.body AVEC la classe
+   .atl2 sur leur racine : le scope s'applique, position:fixed reste viewport. */
+
+/* ENCADRÉ RAISON — l'étiquette Retenu/Écarté et sa variante rouge, reprises de
+   .cb-reasonbox / .cb-rbox-kept / .cb-rbox-out (cibles_publish.py:2401-2407).
+   Le cas « retenu » réutilise tel quel le fond vert déjà posé sur .dec. */
+.atl2 .card .dec em{display:block;font-style:normal;font-size:12px;font-weight:600;color:#0E7F3F;margin-bottom:4px}
+.atl2 .card .dec.out{background:#fdf1f1;border-left-color:#C0353A;color:#5c2b2b}
+.atl2 .card .dec.out em{color:#C0353A}
+.atl2 .card .ceonote{margin:-4px 0 11px;font-size:12px;line-height:1.45;color:#56697e}
+.atl2 .card .ceonote i{color:#0F1D33}
+
+/* LIGNE D'APPRENTISSAGE — sous la liste, à côté de .tally : elle donne leur sens
+   aux pouces (cibles_publish.py:24826). flex:none obligatoire, .list est le seul
+   conteneur qui a le droit de grandir. */
+.atl2 .learn{flex:none;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:7px 14px;border-top:1px solid var(--line);background:var(--panel);
+  font-size:11.5px;color:var(--sub)}
+.atl2 .learn button{background:none;border:0;padding:0;cursor:pointer;font:inherit;
+  font-weight:700;color:var(--brand-d);text-decoration:underline}
+.atl2 .learn button:hover{opacity:.75}
+
+/* SÉLECTEUR DE STATUT, NOTE « POURQUOI ? » et SUIVI POST-OUI — gabarit repris
+   de .cb-cs-* / .cb-stg-* (cibles_publish.py:3540-3562 et 3874-3900). */
+.atl2 .csp{margin:2px 0 10px}
+.atl2 .csrow{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.atl2 .cslb{font-size:12px;font-weight:600;
+  color:var(--dim);margin-right:2px}
+.atl2 .csb{font:inherit;font-size:10.5px;font-weight:700;color:#56697e;background:var(--panel3);
+  border:1px solid var(--line);border-radius:6px;padding:4px 9px;cursor:pointer;line-height:1;
+  transition:background .12s ease,border-color .12s ease}
+.atl2 .csb:hover:not(:disabled){background:var(--line2);border-color:var(--line2)}
+.atl2 .csb.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.atl2 .csb:disabled{opacity:.55;cursor:default}
+.atl2 .csb.busy{opacity:.7}
+.atl2 .csok{font-size:10px;font-weight:800;color:var(--brand-d)}
+.atl2 .csnote{display:flex;gap:5px;align-items:center;margin:6px 0 0}
+.atl2 .csnote input{flex:1 1 auto;min-width:0;font:inherit;font-size:10.5px;color:var(--ink);
+  border:1px solid var(--line);border-radius:6px;padding:4px 7px;background:var(--panel)}
+.atl2 .csnote input::placeholder{color:var(--dim)}
+.atl2 .csnote button{flex:0 0 auto;font:inherit;font-size:10px;font-weight:700;color:#56697e;
+  background:var(--panel3);border:1px solid var(--line);border-radius:6px;padding:4px 9px;cursor:pointer;line-height:1}
+.atl2 .csnote button:disabled{opacity:.5;cursor:default}
+.atl2 .csnote.why input{border-color:var(--brand);background:var(--gp,#F3FAF6)}
+
+.atl2 .stg{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin:0 0 10px}
+.atl2 .stglb{font-size:12px;font-weight:600;
+  color:var(--dim);margin-right:2px}
+.atl2 .stgb{font:inherit;font-size:10.5px;font-weight:600;color:#56697e;background:var(--panel3);
+  border:1px solid var(--line);border-radius:99px;padding:3px 9px;cursor:pointer;line-height:1.3}
+.atl2 .stgb:hover:not(:disabled){background:var(--line2)}
+.atl2 .stgb.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.atl2 .stgb:disabled{opacity:.55;cursor:default}
+.atl2 .stgj4{font-size:10.5px;font-weight:700;color:#8A5008;background:#FAF0DF;
+  border:1px solid #EBD9B8;border-radius:99px;padding:3px 9px}
+
+.atl2 .mnote.warn{color:#8A5008;background:#FAF0DF;border:1px solid #EBD9B8;
+  border-radius:var(--r);padding:7px 10px}
+.atl2 .exb.pri{background:var(--ink);border-color:var(--ink);color:#fff}
+
+/* MODALE D'ALERTE — onglets, checklist des sections, aperçu de l'email. */
+.atl2 .ntabs{display:flex;gap:4px;margin:0 0 14px;border-bottom:1px solid var(--line)}
+.atl2 .ntabs button{font:inherit;font-size:12.5px;font-weight:700;color:var(--muted);
+  background:none;border:0;border-bottom:2px solid transparent;padding:7px 12px;cursor:pointer;
+  margin-bottom:-1px}
+.atl2 .ntabs button:hover{color:var(--ink)}
+.atl2 .ntabs button.on{color:var(--ink);border-bottom-color:var(--brand)}
+.atl2 .secl{display:flex;flex-direction:column;gap:5px;margin:2px 0 6px}
+.atl2 .secli{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--sub);cursor:pointer}
+.atl2 .secli input{accent-color:var(--brand);flex:none}
+.atl2 .secli i{font-style:normal;color:var(--dim);font-size:11.5px}
+.atl2 .mnote.dim{color:var(--dim);font-size:11.5px}
+.atl2 .mailp{margin:12px 0 4px;padding-top:12px;border-top:1px solid var(--line)}
+.atl2 .mailp-row{display:flex;gap:8px;flex-wrap:wrap}
+.atl2 .mailp-frame{width:100%;height:420px;margin-top:10px;border:1px solid var(--line);
+  border-radius:var(--r);background:#fff}
+.atl2 .qset select{font:inherit;font-size:12px;padding:4px 7px;border:1px solid var(--line);
+  border-radius:6px;background:var(--panel);color:var(--ink)}
+
+.atl2 .ebell{background:none;border:0;padding:0 0 0 6px;cursor:pointer;font-size:11px;
+  line-height:1;opacity:.55}
+.atl2 .ebell:hover{opacity:1}
+.atl2 .mailin{font:inherit;font-size:12px;padding:4px 7px;border:1px solid var(--line);
+  border-radius:6px;background:var(--panel);color:var(--ink);min-width:0;width:180px}
+
+.atl2 .lk{background:none;border:0;padding:0;cursor:pointer;font:inherit;font-size:inherit;
+  color:var(--brand-d);text-decoration:underline}
+.atl2 .lk:disabled{opacity:.5;cursor:default;text-decoration:none}
+.atl2 .mfield select{font:inherit;font-size:12px;padding:5px 8px;border:1px solid var(--line);
+  border-radius:6px;background:var(--panel);color:var(--ink)}
+
+/* 🧬 SIMILAIRES — dans la fiche societe, sous le corps et au-dessus du pied. */
+.atl2 .simb{margin:0 0 10px}
+.atl2 .pbody .simb,.atl2 .pf ~ .simb{padding:0 16px 12px;margin:0}
+.atl2 .siml{margin:8px 0 4px;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;
+  max-height:200px;overflow-y:auto}
+.atl2 .siml li{font-size:12px;line-height:1.45;color:var(--sub)}
+.atl2 .siml b{display:block;font-size:12.5px}
+.atl2 .siml b.ok{color:#0E7F3F}
+.atl2 .siml b.ko{color:#C0353A}
+
+/* LE DOSSIER COMITÉ — un A4 par société, relisible à l'écran et taillé pour le
+   papier. Une société n'est JAMAIS coupée entre deux pages : c'est la seule
+   chose qui compte vraiment quand le document circule autour d'une table. */
+.atl2 .dossier{max-height:64vh;overflow-y:auto;padding-right:4px}
+.atl2 .dsbar{display:flex;align-items:center;gap:10px;margin-bottom:10px;
+  padding-bottom:9px;border-bottom:1px solid var(--line)}
+.atl2 .dsbar b{font-size:13px;color:var(--ink)}
+.atl2 .dssp{flex:1}
+.atl2 .dscover{margin-bottom:14px;padding:11px 12px;border-radius:var(--r);
+  background:var(--panel2);border:1px solid var(--line)}
+.atl2 .dscover b{font-size:15px;color:var(--ink)}
+.atl2 .dscover p{margin:3px 0 0;font-size:12px;color:var(--sub)}
+.atl2 .dspage{padding:13px 14px;margin-bottom:12px;border:1px solid var(--line);
+  border-radius:var(--r);background:var(--panel)}
+.atl2 .dsh{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+  padding-bottom:9px;margin-bottom:10px;border-bottom:1px solid var(--line)}
+.atl2 .dsh b{font-size:15px;color:var(--ink)}
+.atl2 .dsh p{margin:2px 0 0;font-size:12px;color:var(--sub);max-width:60ch}
+.atl2 .dsv{flex:none;font-size:12px;font-weight:600;color:#0E7F3F;
+  text-align:right}
+.atl2 .dsv.out{color:#C0353A}
+.atl2 .dsv em{display:block;font-style:normal;font-size:10.5px;font-weight:700;
+  color:var(--ink);margin-top:2px}
+.atl2 .dspage h3{margin:11px 0 5px;font-size:12px;color:var(--dim);font-weight:600}
+.atl2 .dstxt{margin:0 0 6px;font-size:12.5px;line-height:1.55;color:var(--sub);max-width:78ch}
+.atl2 .dsgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:3px 18px;margin-top:8px}
+.atl2 .dsl{display:flex;align-items:baseline;gap:8px;min-width:0}
+.atl2 .dsl span{flex:none;font-size:12px;
+  color:var(--dim);min-width:74px;font-weight:600}
+.atl2 .dsl b{font-size:12.5px;font-weight:600;color:var(--ink);overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.atl2 .dsb{margin-bottom:7px}
+.atl2 .dsb span{display:block;font-size:12px;color:var(--dim);font-weight:600}
+.atl2 .dsb p{margin:1px 0 0;font-size:12.5px;line-height:1.5;color:var(--ink);max-width:78ch}
+.atl2 .dsf{margin-top:11px;padding-top:8px;border-top:1px solid var(--line);
+  font-size:10.5px;color:var(--dim)}
+.atl2 .dsswot{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0 10px}
+.atl2 .dssq{border:1px solid var(--line);border-radius:7px;padding:8px 10px;min-width:0}
+.atl2 .dssq b{display:block;font-size:11px;font-weight:700;margin-bottom:4px}
+.atl2 .dssq ul{margin:0;padding-left:16px;font-size:12px;line-height:1.45;color:var(--ink)}
+.atl2 .dssq.s{border-top:3px solid #0E7F3F}
+.atl2 .dssq.w{border-top:3px solid #C0353A}
+.atl2 .dssq.o{border-top:3px solid #2B6CB0}
+.atl2 .dssq.t{border-top:3px solid #C05621}
+.atl2 .dsfin{margin-top:8px}
+.atl2 .dstbl{overflow-x:auto;max-width:100%;font-size:12px;line-height:1.45}
+.atl2 .dstbl table{border-collapse:collapse;width:100%;font-size:11.5px}
+.atl2 .dstbl th,.atl2 .dstbl td{border:1px solid var(--line);padding:3px 6px;text-align:left}
+.atl2 .dsnote{margin:4px 0 0;font-size:11px;color:var(--dim);font-style:italic}
+.atl2 .dsannex{margin:10px 0 0;font-size:11.5px;color:var(--sub);word-break:break-all}
+.atl2 .dsannex a{color:var(--brand-d,#0E8A44)}
+.atl2 .dsl a{color:var(--brand-d,#0E8A44);text-decoration:none}
+.atl2 .dsl a:hover{text-decoration:underline}
+@media print{
+  /* le dossier est la SEULE chose qui s'imprime quand il est ouvert : la modale
+     devient le document, le cockpit dessous disparait. */
+  .atl2 .modal.on{position:static!important;background:none!important;padding:0!important}
+  .atl2 .modal.on .mcard{width:auto!important;max-width:none!important;border:0!important;
+    box-shadow:none!important;border-radius:0!important}
+  .atl2 .modal.on .mh, .atl2 .dsbar{display:none!important}
+  .atl2 .dossier{max-height:none!important;overflow:visible!important}
+  /* v76 : break-inside:avoid sur TOUTE la page renvoyait un P&L plus haut
+     qu'une feuille a la page suivante, laissant un grand vide. auto sur la
+     page, avoid seulement sur les petits blocs (en-tete, SWOT). */
+  .atl2 .dspage{break-inside:auto;page-break-inside:auto;break-after:page;
+    page-break-after:always;border:0;padding:0}
+  .atl2 .dspage:last-child{break-after:auto;page-break-after:auto}
+  .atl2 .dsh, .atl2 .dsswot, .atl2 .dssq{break-inside:avoid;page-break-inside:avoid}
+  .atl2 .dstbl{overflow:visible!important}
+  .atl2 .dstbl table{font-size:6.8pt;white-space:normal}
+  .atl2 .app{display:none!important}
+}
+
+/* LES QUATRE BLOCS DESCRIPTIFS — sobres : ils vivent DANS un onglet d'une fiche
+   qui s'ouvre sous une ligne de liste, pas dans une page a eux. */
+.atl2 .qab{margin-top:2px}
+.atl2 .qal{margin:0 0 9px}
+.atl2 .qak{display:block;font-size:12px;
+  color:var(--dim);margin-bottom:2px;font-weight:600}
+.atl2 .qal p{margin:0;font-size:12.5px;line-height:1.5;color:var(--ink);max-width:70ch}
+
+/* LA COUVERTURE UNIFIÉE — la jauge garde son côté jeu (une barre qui se
+   remplit), mais elle dit enfin quelque chose de vrai : le VRAI total criblé
+   sur le marché adressable, et le délai qu'il reste. Le rythme est en bas,
+   volontairement discret : c'est un réglage, pas une décision quotidienne. */
+.atl2 .covg{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.atl2 .covg b{font-size:17px;font-weight:800;color:var(--ink)}
+.atl2 .covg span{font-size:12.5px;color:var(--sub)}
+.atl2 .covbar{position:relative;height:16px;border-radius:99px;background:var(--panel3);
+  border:1px solid var(--line);overflow:hidden;margin:4px 0 8px}
+.atl2 .covbar i{display:block;height:100%;border-radius:99px;
+  background:linear-gradient(90deg,#2f9e63,#12A150);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.atl2 .covbar em{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-style:normal;font-size:12px;font-weight:600;color:var(--ink);}
+.atl2 .covf{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0 2px;padding-top:9px;
+  border-top:1px solid var(--line)}
+.atl2 .covf span{font-size:12px;color:var(--sub)}
+.atl2 .covf b{font-family:var(--mono);font-size:14px;color:var(--ink);margin-right:4px;font-variant-numeric:tabular-nums}
+.atl2 .covr{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.atl2 .covrh{display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  font-size:12px;color:var(--dim);font-weight:600}
+.atl2 .covrh b{font-size:12px;text-transform:none;letter-spacing:0;color:var(--ink)}
+.atl2 .covrb{display:flex;gap:5px;margin:6px 0 4px}
+.atl2 .covrb button{flex:none;min-width:32px;font:inherit;font-size:11.5px;font-weight:700;
+  color:var(--sub);background:var(--panel2);border:1px solid var(--line);border-radius:7px;
+  padding:4px 8px;cursor:pointer}
+.atl2 .covrb button:hover:not(:disabled){border-color:var(--line2);color:var(--ink)}
+.atl2 .covrb button.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.atl2 .covrb button:disabled{opacity:.5;cursor:default}
+
+/* LA FICHE À ONGLETS — 35 champs servis, 7 affichés jusqu'ici (CardTabs.tsx).
+   Les onglets restent SOBRES : la fiche s'ouvre sous une ligne de liste, elle
+   ne doit pas ressembler à une seconde application. Un onglet vide n'est jamais
+   rendu, donc la barre reste courte. */
+.atl2 .cdtabs{margin:8px 0 2px;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--panel);overflow:hidden}
+.atl2 .cdnav{display:flex;gap:0;border-bottom:1px solid var(--line);background:var(--panel2);
+  overflow-x:auto;scrollbar-width:none}
+.atl2 .cdnav::-webkit-scrollbar{display:none}
+.atl2 .cdnav button{flex:none;font:inherit;font-size:12px;font-weight:600;
+  color:var(--sub);background:none;border:0;border-bottom:2px solid transparent;
+  padding:7px 12px;cursor:pointer;white-space:nowrap}
+.atl2 .cdnav button:hover{color:var(--ink)}
+.atl2 .cdnav button.on{color:var(--brand-d);border-bottom-color:var(--brand)}
+.atl2 .cdbody{padding:10px 12px}
+/* les deux niveaux de verdict, l'un sous l'autre : le crible d'abord, le memo
+   ensuite — les ecraser ferait perdre l'etape deja payee */
+.atl2 .cdv1{display:flex;align-items:baseline;gap:7px;margin-bottom:5px}
+.atl2 .cdv1 b{font-size:12px;font-weight:800;letter-spacing:.04em;color:#0E7F3F}
+.atl2 .cdv1.out b{color:#C0353A}
+.atl2 .cdv1.memo b{color:var(--ink)}
+.atl2 .cdw{font-size:12px;color:var(--dim);font-weight:600}
+.atl2 .cdtxt{margin:0 0 8px;font-size:12.5px;line-height:1.5;color:var(--sub)}
+.atl2 .cdgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:4px 16px}
+.atl2 .cdl{display:flex;align-items:baseline;gap:8px;min-width:0}
+.atl2 .cdk{flex:none;font-size:12px;
+  color:var(--dim);min-width:78px;font-weight:600}
+.atl2 .cdv{font-size:12.5px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap}
+.atl2 a.cdv{color:var(--brand-d);text-decoration:none}
+.atl2 a.cdv:hover{text-decoration:underline}
+/* l'analyse de Stan : du texte long, donc une colonne lisible et bornee */
+.atl2 .cdrich{font-size:12.5px;line-height:1.55;color:var(--sub);max-height:260px;
+  overflow-y:auto;max-width:70ch}
+.atl2 .cdrich b{color:var(--ink);font-weight:700}
+.atl2 .cdacts{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+.atl2 .cdacts a.abtn{text-decoration:none;display:inline-flex;align-items:center}
+@media print{
+  /* sur papier, pas de barre d'onglets : seul le contenu ouvert a un sens */
+  .atl2 .cdnav{display:none!important}
+  .atl2 .cdrich{max-height:none!important;overflow:visible!important}
+  .atl2 .cdtabs{break-inside:avoid;page-break-inside:avoid}
+}
+
+/* ENVOI RÉEL — le seul bouton du cockpit qui contacte de vrais prospects et
+   qu'on ne peut pas défaire. Il ne ressemble donc à aucun autre : rouge plein,
+   et la confirmation est encadrée pour qu'on ne clique pas au travers. */
+.atl2 .abtn.dgr{background:#C0353A;border-color:#C0353A;color:#fff}
+.atl2 .abtn.dgr:hover:not(:disabled){background:#8f1e18;border-color:#8f1e18}
+.atl2 .abtn.dgr:disabled{opacity:.55}
+.atl2 .bulkc{margin-top:8px;padding:10px 11px;border-radius:var(--r);
+  border:1px solid #f0c8c4;background:#fdf4f3;display:flex;flex-direction:column;gap:8px}
+.atl2 .bulkc .mnote.warn{margin:0}
+
+/* ENTONNOIR DATÉ + ACTIVITÉ 30 J — flex:none, comme tous les enfants de .app. */
+.atl2 .fstats{flex:none;margin:0 14px 4px;padding:4px 12px;border-radius:var(--r);
+  background:var(--panel3);border:1px solid var(--line)}
+.atl2 .fstats.on{padding:9px 12px;margin-bottom:6px}
+.atl2 .fst-row{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.atl2 .fst-t{display:flex;align-items:baseline;gap:5px}
+.atl2 .fst-x{margin-left:auto;background:none;border:0;cursor:pointer;font-size:11px;
+  line-height:1;color:var(--muted);padding:2px 4px}
+.atl2 .fst-x:hover{color:var(--ink)}
+.atl2 .fst-t b{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.atl2 .fst-t i{font-style:normal;font-size:11px;color:var(--sub);white-space:nowrap}
+.atl2 .fst-t em{font-style:normal;font-size:10.5px;font-weight:700;color:var(--brand-d)}
+.atl2 .fst-ar{color:var(--dim);font-size:12px}
+.atl2 .fst-act{margin-top:9px}
+.atl2 .fst-ah{display:flex;align-items:center;gap:10px;font-size:10.5px;color:var(--dim);
+  margin-bottom:3px}
+.atl2 .fst-lg{display:inline-flex;align-items:center;gap:4px}
+.atl2 .fst-lg i{width:8px;height:8px;border-radius:2px;display:inline-block}
+/* SUR ECRAN ETROIT la ligne s'enroulait sur quatre niveaux : 109 px mesures,
+   soit le troisieme poste de la boite derriere la carte et l'identite, pour un
+   bloc qui n'est qu'un rappel. Elle defile lateralement au lieu de s'enrouler —
+   la premiere etape (« N criblees depuis le … »), qui porte l'essentiel, reste
+   visible sans geste. */
+@media (max-width: 860px) {
+  .atl2 .fst-row{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
+    -webkit-overflow-scrolling:touch}
+  .atl2 .fst-row::-webkit-scrollbar{display:none}
+  .atl2 .fst-t{flex:none}
+  .atl2 .fst-x{position:sticky;right:0;margin-left:6px;background:var(--panel3)}
+}
+.atl2 .fst-act svg{width:100%;height:46px;display:block}
+.atl2 .fst-ax{display:flex;justify-content:space-between;font-size:10px;color:var(--dim);
+  margin-top:2px}
+
+/* ✨ DEPUIS VOTRE DERNIÈRE VISITE — bandeau refermable, flex:none comme tous
+   les enfants de .app (seule .list a le droit de grandir). */
+/* L'ENCART « nouvelles depuis votre visite » RESTE VERT (17/08 : « pour les
+   nouvelles cibles en vert, je ne veux pas la perdre, et bien l'organiser »).
+   Je l'avais dégradé en note grise pour calmer la page — c'était trop : cet
+   encart dit ce qui est arrivé depuis la dernière fois, et c'est la première
+   chose qu'on cherche en ouvrant. Il garde donc sa couleur, mais il est ORDONNÉ :
+   un en-tête sur une ligne avec ses deux contrôles à droite (réduire, fermer),
+   et les noms en dessous. Et il se réduit, comme la box rouge. */
+.atl2 .since{flex:none;margin:0 14px 8px;padding:9px 12px;border-radius:var(--r);
+  background:#F3FAF6;border:1px solid #CFE9DA;border-left:4px solid #12A150}
+.atl2 .since-h{display:flex;align-items:center;gap:8px}
+.atl2 .since-h b{flex:1;font-size:12.5px;color:#0E7F3F;font-weight:700}
+.atl2 .since .sg-x{background:none;border:0;cursor:pointer;font-size:14px;line-height:1;
+  color:#5f8f76;padding:1px 5px;border-radius:5px}
+.atl2 .since .sg-x:hover{background:#E7F6EE;color:#0b5c34}
+.atl2 .since.mini .since-c{display:none}
+.atl2 .since-h .x{background:none;border:0;cursor:pointer;font-size:15px;line-height:1;
+  color:var(--muted);padding:0 3px}
+.atl2 .since-h .x:hover{color:var(--ink)}
+.atl2 .since-c{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.atl2 .since-c button{font:inherit;font-size:11px;font-weight:600;color:#0E7F3F;background:#fff;
+  border:1px solid #CFE9DA;border-radius:99px;padding:3px 9px;cursor:pointer}
+.atl2 .since-c button:hover{background:#EAF6EF}
+.atl2 .since-c button.mr{color:var(--sub);border-color:var(--line);font-weight:500}
+.atl2 .since-c .gone{font-size:11px;color:var(--dim);text-decoration:line-through;
+  padding:3px 7px}
+
+/* VISITE GUIDÉE — voile + anneau projecteur. Le voile ET le trou tiennent en UN
+   seul élément : une ombre portée immense autour du rectangle de la cible. */
+.atl2 .tour{position:fixed;inset:0;z-index:200}
+.atl2 .tour-veil{position:fixed;inset:0;background:rgba(15,29,51,.62)}
+.atl2 .tour-hole{position:fixed;border-radius:10px;pointer-events:none;
+  box-shadow:0 0 0 9999px rgba(15,29,51,.62),0 0 0 2px var(--brand) inset;
+  transition:left .18s ease,top .18s ease,width .18s ease,height .18s ease}
+.atl2 .tour-card{position:fixed;z-index:201;background:var(--panel);border-radius:14px;
+  box-shadow:0 18px 46px rgba(15,29,51,.34);padding:15px 20px 14px}
+.atl2 .tour-card.fin{width:min(420px,calc(100vw - 32px));text-align:center;padding:26px 24px 20px}
+/* le compteur ET sa barre sur la même ligne : on sait où on en est sans lire */
+.atl2 .tour-n{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;color:var(--dim);margin-bottom:7px;font-weight:600}
+.atl2 .tour-bar{flex:1;height:3px;border-radius:2px;background:var(--panel3);overflow:hidden}
+.atl2 .tour-bar i{display:block;height:100%;background:var(--brand);border-radius:2px;
+  transition:width .2s ease}
+.atl2 .tour-card h3{margin:0 0 8px;font-size:15.5px;font-weight:800;color:var(--ink);line-height:1.3}
+.atl2 .tour-card.fin h3{font-size:19px;margin-bottom:8px}
+/* AÉRATION (16/08 : « c'est moche, pas aéré ») — les paragraphes respirent,
+   et le dernier ne colle pas aux boutons. */
+.atl2 .tour-card p{margin:0 0 9px;font-size:12.5px;line-height:1.62;color:var(--sub)}
+.atl2 .tour-card p:last-of-type{margin-bottom:13px}
+.atl2 .tour-card p b{color:var(--ink);font-weight:700}
+.atl2 .tour-ul{margin:0 0 13px;padding:0;list-style:none;display:grid;gap:5px}
+.atl2 .tour-ul li{position:relative;padding-left:14px;font-size:12.5px;line-height:1.5;color:var(--sub)}
+.atl2 .tour-ul li:before{content:'';position:absolute;left:3px;top:7px;width:4px;height:4px;
+  border-radius:50%;background:var(--brand)}
+.atl2 .tour-ul li b{color:var(--ink);font-weight:700}
+.atl2 .tour-nav{display:flex;gap:8px;justify-content:flex-end;align-items:center}
+.atl2 .tour-card.fin .tour-nav{justify-content:center}
+.atl2 .tour-nav button{font:inherit;font-size:12px;font-weight:700;border-radius:8px;
+  padding:7px 13px;cursor:pointer;line-height:1;border:1px solid var(--line)}
+.atl2 .tour-nav .gh{background:var(--panel3);color:var(--sub)}
+.atl2 .tour-nav .gh:disabled{opacity:.45;cursor:default}
+.atl2 .tour-nav .pri{background:var(--ink);border-color:var(--ink);color:#fff}
+.atl2 .tour-nav .pri:hover{opacity:.9}
+.atl2 .tour-x{position:absolute;top:8px;right:9px;background:none;border:0;cursor:pointer;
+  font-size:17px;line-height:1;color:var(--dim);padding:2px 5px}
+.atl2 .tour-x:hover{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.atl2 .tour-hole{transition:none}}
+
+/* PANNEAU « COMMENT UTILISER CETTE PAGE » — 8 étapes CLIQUABLES : chacune ouvre
+   la surface dont elle parle, au lieu d'être une liste morte. */
+.atl2 .howto{display:flex;flex-direction:column;gap:6px;margin:0 0 14px;padding:0;list-style:none}
+.atl2 .howto li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;
+  border:1px solid var(--line);border-radius:var(--r);padding:9px 11px;background:var(--panel);
+  cursor:pointer;text-align:left;font:inherit;color:var(--sub);font-size:12.5px;line-height:1.5;
+  width:100%}
+.atl2 .howto li:hover{background:var(--panel3);border-color:var(--line2)}
+.atl2 .howto li b{color:var(--ink)}
+.atl2 .howto .n{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--brand-d);
+  background:var(--gp,#F3FAF6);border-radius:6px;text-align:center;padding:2px 0}
+.atl2 .howto-go{display:flex;align-items:center;gap:10px;margin:0 0 14px;padding:11px 13px;
+  border:1px solid var(--brand);border-radius:var(--r);background:var(--gp,#F3FAF6)}
+.atl2 .howto-go p{flex:1;margin:0;font-size:12px;line-height:1.5;color:var(--sub)}
+.atl2 .howto-go button{flex:none;font:inherit;font-size:12px;font-weight:700;color:#fff;
+  background:var(--brand);border:0;border-radius:8px;padding:8px 13px;cursor:pointer}
+
+/* « POURQUOI CE OUI / CE NON ? » — posée au-dessus du toast, donc toujours
+   visible : la ligne, elle, vient de quitter son onglet. */
+.atl2 .whydock{position:absolute;left:50%;bottom:62px;transform:translateX(-50%);z-index:110;
+  width:min(460px,calc(100% - 32px));background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r);box-shadow:0 10px 30px rgba(15,31,51,.16);padding:10px 12px}
+.atl2 .whydock > b{display:block;font-size:11px;color:var(--ink);margin-bottom:5px}
+.atl2 .whydock .csnote{margin:0}
+
+/* TOAST D'ERREUR — il n'en existait aucune variante : un échec total (réseau
+   coupé, token expiré, 502 Airtable) s'affichait avec le style d'un succès. */
+.atl2 .flash.err{background:#7F1D1D;box-shadow:0 8px 24px rgba(127,29,29,.32)}
+.atl2 .flash.err::before{content:'⚠ ';opacity:.9}
+
+/* « VOS CRITÈRES » — hypothèse, profils de cibles, crible. Gabarit repris de
+   _criteria_html / _gate_steps_html de la page V1. */
+.atl2 .critpts{margin:6px 0 12px;padding-left:18px;font-size:12.5px;line-height:1.55;color:var(--sub)}
+.atl2 .critpts li{margin-bottom:4px}
+.atl2 .prof{border:1px solid var(--line);border-radius:var(--r);margin:0 0 7px;background:var(--panel)}
+.atl2 .prof summary{cursor:pointer;list-style:none;padding:9px 12px;font-size:13px;font-weight:700;
+  color:var(--ink);display:flex;align-items:center;gap:8px}
+.atl2 .prof summary::-webkit-details-marker{display:none}
+.atl2 .prof summary::before{content:'▸';color:var(--muted);font-size:11px;transition:transform .15s ease}
+.atl2 .prof[open] summary::before{transform:rotate(90deg)}
+.atl2 .prof summary:hover{background:var(--panel3)}
+.atl2 .prof .why{margin:0;padding:0 12px 10px 28px;font-size:12.5px;line-height:1.5;color:var(--sub)}
+.atl2 .prof .lo{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px 11px 28px}
+.atl2 .prof .lo em{display:block;font-style:normal;font-size:12px;font-weight:600;color:#0E7F3F;margin-bottom:4px}
+.atl2 .prof .lo .ko em{color:#C0353A}
+.atl2 .prof .lo ul{margin:0;padding-left:16px;font-size:12px;line-height:1.5;color:var(--sub)}
+.atl2 .prof .lo li{margin-bottom:3px}
+.atl2 .gate1{margin:2px 0 14px;padding:10px 12px;background:var(--panel3);border-radius:var(--r);
+  font-size:12.5px;line-height:1.55;color:var(--sub)}
+.atl2 .gatesteps{margin:2px 0 14px;padding-left:20px;font-size:12.5px;line-height:1.55;color:var(--sub)}
+.atl2 .gatesteps li{margin-bottom:5px}
+.atl2 .gatesteps b{color:var(--ink);margin-right:5px}
+@media (max-width:560px){.atl2 .prof .lo{grid-template-columns:1fr}}
+
+/* GLOSSAIRE DES VERDICTS et ROUTAGE verdict → onglet, dans « Vos critères ».
+   Deux listes de même gabarit : une pastille (ou une étiquette de statut) à
+   gauche, la phrase à droite. */
+.atl2 .vlist{display:flex;flex-direction:column;gap:7px;margin:2px 0 14px}
+.atl2 .vrow{display:grid;grid-template-columns:auto 1fr;gap:9px;align-items:baseline;
+  font-size:12.5px;line-height:1.45;color:var(--sub)}
+.atl2 .vrow .vd{justify-self:start}
+.atl2 .vtag{justify-self:start;font-size:12px;font-weight:600;padding:3px 7px;border-radius:5px;white-space:nowrap;
+  background:var(--panel3);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+
+/* LÉGENDE DU TUNNEL — la phrase qui fait des chevrons un PARCOURS, au-dessus de
+   la barre d'onglets comme en V1 (24806). */
+.atl2 .fhint{flex:none;display:flex;align-items:center;gap:7px;
+  padding:6px 14px 0;font-size:11.5px;line-height:1.4;color:var(--sub)}
+.atl2 .fhint b{color:var(--ink);font-weight:700}
+.atl2 .fhint svg{flex:none;opacity:.5}
+.atl2 .fhint span{flex:1;min-width:0}
+.atl2 .fhint button{flex:none;background:none;border:0;padding:0 2px;cursor:pointer;
+  font:inherit;font-size:11px;color:var(--muted);opacity:.55}
+.atl2 .fhint button:hover{opacity:1;color:var(--ink)}
+
+/* ── L'ATELIER DE RECHERCHE ────────────────────────────────────────────────
+   Le jumeau de « ＋ Évaluer plusieurs à la fois », à sa droite, et son panneau
+   est bâti sur EXACTEMENT la même grammaire que le panneau de masse : la zone
+   de saisie à gauche, la colonne d'action à droite (bouton + légende), pour
+   qu'on lise les deux gestes comme deux entrées d'un même geste.
+
+   BUDGET VERTICAL — .atl2 est une boîte à hauteur fixe et tout ce qui vit
+   au-dessus de la liste se paie en lignes visibles (mesuré : 519 px de
+   bandeaux permanents sur une fenêtre de 900). Ces deux blocs n'apparaissent
+   donc QUE sur un geste, et la fiche est PLAFONNÉE avec son propre
+   défilement : sans ce plafond, un résumé long chassait la liste de l'écran. */
+.atl2 .dunder{gap:16px;flex-wrap:wrap;align-items:center}
+/* même gris que « Évaluer plusieurs » — pas de vert « lien » sur la recherche */
+.atl2 .dmulti.dsearch{color:var(--muted)}
+.atl2 .dmulti.dsearch:hover{color:var(--ink)}
+.atl2 .dmulti.dsearch.on{font-weight:700;color:var(--ink)}
+/* Le carnet, À DROITE de la recherche : une PARENTHÈSE, pas une troisième porte
+   d'entrée. Elle ne fait pas un geste de plus, elle rouvre ce qui a été fait. */
+.atl2 .dmulti.darch{color:var(--ink);font-size:12.5px;font-weight:650}
+.atl2 .dmulti.darch:hover{color:var(--brand-d);text-decoration:underline}
+.atl2 .dmulti.darch.on{font-weight:700;color:var(--brand-d,#0E8A44)}
+.atl2 .rscard .rsfoot .rslink.ok{cursor:pointer;border:0;background:none;font:inherit;
+  font-size:12px;font-weight:700;color:var(--brand-d,#0E8A44);text-decoration:underline}
+.atl2 .dmulti.dfbtn{display:inline-flex;align-items:center;gap:6px}
+.atl2 .dmulti.dfbtn em{font-style:normal;font-size:10px;font-weight:700;
+  background:var(--brand,#12A150);color:#fff;border-radius:8px;padding:0 6px;line-height:16px}
+.atl2 .dfpane{flex:1 0 100%;width:100%;margin:8px 0 0;padding:12px 14px;
+  border:1px solid var(--pp-line,#E3E8F0);border-radius:12px;background:#F7FBF8;
+  display:flex;flex-direction:column;min-height:0;max-height:min(280px,36vh);overflow:hidden}
+.atl2 .dfpane.tall{max-height:min(480px,52vh)}
+.atl2 .dfhow{margin:0 0 8px;flex:none}
+.atl2 .dfhow-h{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.atl2 .dfhow-h .dfh{flex:1;min-width:0;margin:0}
+.atl2 .dfhow-acts{display:flex;align-items:center;gap:6px;flex:none}
+.atl2 .dffold{font:inherit;font-size:12px;font-weight:700;color:#4A5C73;background:#fff;
+  border:1px solid #E3E8F0;border-radius:999px;padding:4px 10px;cursor:pointer;white-space:nowrap}
+.atl2 .dffold:hover{border-color:#12A150;color:#0E8A44;background:#F4FBF6}
+.atl2 .dfh{margin:0 0 4px;font-size:12.5px;color:var(--ink);line-height:1.45;font-weight:650}
+.atl2 .dfh2{margin:0;font-size:12.5px;color:#4A5C73;line-height:1.5;font-weight:500}
+.atl2 .dfwait,.atl2 .dfall,.atl2 .dfempty,.atl2 .dferr{flex:none}
+.atl2 .dfwait{display:flex;align-items:flex-start;gap:10px;margin:4px 0 10px;
+  padding:10px 12px;border-radius:10px;background:#fff;border:1px solid #E3E8F0}
+.atl2 .dfspin{width:16px;height:16px;flex:none;margin-top:2px;border:2px solid #D7E8DC;
+  border-top-color:#12A150;border-radius:50%;animation:pp-sitespin .7s linear infinite}
+.atl2 .dfwait b{display:block;font-size:13px;font-weight:700;color:#0F1D33;line-height:1.35}
+.atl2 .dfbar{display:block;height:4px;margin-top:8px;border-radius:99px;background:#EAF0F6;overflow:hidden}
+.atl2 .dfbar i{display:block;height:100%;width:40%;border-radius:99px;background:#12A150;
+  animation:dfslide 1.1s ease-in-out infinite}
+@keyframes dfslide{0%{transform:translateX(-120%)}100%{transform:translateX(320%)}}
+.atl2 .dfall{font:inherit;font-size:12px;font-weight:700;color:#fff;background:#12A150;
+  border:0;border-radius:999px;padding:7px 12px;cursor:pointer;margin:0 0 10px}
+.atl2 .dfall:hover{background:#0E8A44}
+.atl2 .dfload,.atl2 .dferr,.atl2 .dfempty{margin:0;font-size:12.5px;color:var(--muted)}
+.atl2 .qpacks-mini{margin-top:10px}
+.atl2 .qpacks-mini>span{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+.atl2 .qpacks-mini>div{display:flex;flex-wrap:wrap;gap:6px}
+.atl2 .qpack-mini{font:inherit;font-size:11.5px;font-weight:700;padding:5px 10px;
+  border:1px solid var(--line,#E3E8F0);border-radius:999px;background:#fff;cursor:pointer;
+  color:var(--ink)}
+.atl2 .qpack-mini:hover{border-color:#12A150;background:#F4FBF6;color:#0E8A44}
+.atl2 .dferr{color:#C0353A}
+.atl2 .dflist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;
+  overflow-y:auto;min-height:0;flex:1}
+.atl2 .dflist li{display:flex;align-items:flex-start;justify-content:space-between;
+  gap:10px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.atl2 .dflist li.new{border-color:var(--brand,#12A150);
+  box-shadow:0 0 0 1px var(--brand,#12A150) inset}
+.atl2 .dflist b{display:block;font-size:12.5px}
+.atl2 .dflist span{display:block;font-size:11px;color:var(--dim);margin-top:2px}
+.atl2 .dfacts{display:flex;flex-direction:row;align-items:center;gap:8px 14px;flex:none;flex-wrap:wrap;justify-content:flex-end}
+.atl2 .dfacts a{font-size:12px;color:var(--brand-d,#0E8A44);padding-right:14px;
+  border-right:1px solid #E3E8F0;white-space:nowrap}
+.atl2 .dfan{border:0;cursor:pointer;padding:3px 8px;border-radius:7px;
+  background:var(--brand,#12A150);color:#fff;font-size:11px;font-weight:700}
+.atl2 .dfan:disabled{opacity:.55;cursor:default}
+.atl2 .dfrs{margin-top:8px}
+
+.atl2 .rsp{display:flex;margin-top:10px;gap:9px;align-items:flex-start}
+.atl2 .rsp .rsf{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.atl2 .rsp .rsurl{width:100%;height:40px;background:var(--panel);border:1.5px solid var(--line2);
+  border-radius:var(--ra);padding:0 13px;font:inherit;font-size:13px;color:var(--ink);outline:none}
+.atl2 .rsp .rsurl:focus{border-color:var(--brand)}
+.atl2 .rsp .rsor{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600}
+.atl2 .rsp .rstext{width:100%;min-height:72px;overflow:auto;border:1.5px solid var(--line2);
+  border-radius:var(--ra);padding:9px 11px;font:inherit;font-size:13px;line-height:1.5;
+  color:var(--ink);background:var(--panel);outline:none;resize:vertical}
+.atl2 .rsp .rstext:focus{border-color:var(--brand)}
+.atl2 .rsp .side{display:flex;flex-direction:column;gap:6px;flex:none;width:210px}
+.atl2 .rsp .side .evalbtn{width:100%;white-space:normal;line-height:1.25;padding:0 14px;min-width:0}
+.atl2 .rsp .hint{font-family:var(--mono);font-size:12px;
+  color:var(--dim);text-align:center;font-weight:600}
+.atl2 .demand.rs-mode .evalbtn{white-space:nowrap;padding:0 14px;min-width:0}
+.atl2 .viewbtn{flex:none;height:42px;padding:0 12px;background:#fff;color:var(--ink);
+  border:1.5px solid var(--line2);border-radius:var(--ra);font:inherit;font-weight:650;
+  font-size:13px;cursor:pointer;white-space:nowrap;gap:7px}
+.atl2 .viewbtn:hover{border-color:var(--ink)}
+.atl2 .viewbtn.on{border-color:#12A150;color:#0E8A44;background:#F4FBF6}
+.atl2 .viewbtn.off{opacity:.45;pointer-events:none;cursor:default}
+.atl2 a.viewbtn{display:inline-flex;align-items:center;text-decoration:none}
+.atl2 .viewbtn.sm{padding:0 10px;font-size:12.5px;gap:5px}
+.atl2 .viewbtn.searching{
+  opacity:1;pointer-events:none;cursor:wait;position:relative;overflow:hidden;
+  color:#0E8A44;border-color:#86EFAC;background:#E7F6EE}
+.atl2 .viewbtn.searching .sitespin{
+  width:11px;height:11px;border:1.6px solid #BBF7D0;border-top-color:#12A150;
+  border-radius:50%;flex:none;animation:pp-sitespin .65s linear infinite}
+.atl2 .viewbtn.searching::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(18,161,80,.18),transparent);
+  animation:pp-siteshimmer .95s ease infinite}
+@keyframes pp-sitespin{to{transform:rotate(360deg)}}
+@keyframes pp-siteshimmer{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){
+  .atl2 .viewbtn.searching .sitespin,.atl2 .viewbtn.searching::after{animation:none}
+}
+.atl2 .extico{flex:none;display:block}
+.atl2 .dacts{display:flex;align-items:stretch;gap:8px;flex:none}
+body.pp-desk .atl2.ops .drow{
+  display:flex;flex-wrap:nowrap;align-items:stretch;width:100%;gap:8px}
+body.pp-desk .atl2.ops .dfield{flex:1 1 auto!important;min-width:0!important;max-width:none}
+body.pp-desk .atl2.ops .dfield input{width:100%}
+body.pp-desk .atl2.ops .dacts{flex:none;margin-left:0}
+.atl2 .detect{transition:opacity .2s ease}
+.atl2 .detect.off{opacity:0}
+.atl2 .demand.swap{animation:pp-bar-swap .55s ease}
+@keyframes pp-bar-swap{
+  0%{background:#fff}
+  40%{background:#E7F7EE}
+  100%{background:transparent}}
+.atl2 .demand.swap .dfield::after{
+  content:'';position:absolute;inset:3px;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(18,161,80,.18),transparent);
+  animation:pp-bar-shimmer .55s ease}
+@keyframes pp-bar-shimmer{
+  from{transform:translateX(-70%)}
+  to{transform:translateX(70%)}}
+.atl2 .demand.swap .dfield input{animation:pp-bar-ink .4s ease}
+@keyframes pp-bar-ink{
+  0%{opacity:.2}
+  100%{opacity:1}}
+.atl2.ops .zp-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
+@media (max-width:1100px){.atl2.ops .zp-pair{grid-template-columns:1fr}}
+.atl2 .rsp.slim{display:grid;grid-template-rows:1fr;flex-direction:unset;gap:0;margin-top:8px;
+  overflow:hidden;
+  transition:grid-template-rows .32s ease,opacity .22s ease,margin .32s ease}
+.atl2 .rsp.slim.off{grid-template-rows:0fr;opacity:0;margin-top:0;pointer-events:none}
+.atl2 .rsp.slim .rsp-in{min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:6px}
+.atl2 .rsp.slim .rstext{width:100%;min-height:72px;max-height:140px;resize:vertical}
+.atl2 .rspaste{display:inline-flex;align-items:center;gap:6px;margin:0;padding:0;
+  background:none;border:0;font:inherit;font-size:12px;color:var(--muted);cursor:pointer}
+.atl2 .rspaste:hover{color:var(--ink)}
+.atl2 .rspaste i{font-style:normal;font-size:10px;opacity:.7}
+.atl2.ops .zoom-ext{display:inline-flex;align-items:center;gap:7px;margin:10px 0 0;
+  padding:8px 12px;background:#fff;color:#0E8A44;border:1.5px solid #BBF7D0;
+  border-radius:10px;font:inherit;font-size:13.5px;font-weight:700;text-decoration:none;
+  width:fit-content;max-width:100%}
+.atl2.ops .zoom-ext:hover{background:#F4FBF6;border-color:#12A150}
+.atl2.ops .zoom-ext em{font-style:normal;font-weight:500;font-size:11.5px;color:#4B5E78;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:18ch}
+
+.atl2 .rserr{position:relative;margin-top:8px;padding:8px 28px 8px 11px;border-radius:var(--ra);font-size:12px;
+  line-height:1.45;color:#9f1239;background:#FDECEC;border:1px solid #FECACA}
+
+/* La fiche : titre, tags, carte mentale, résumé — l'aperçu du studio, au format
+   du cockpit. Le PNG vient du worker (mindmap_png_b64) : aucune bibliothèque
+   distante à charger, donc rien à voir avec un CDN bloqué. */
+.atl2 .rscard{margin-top:9px;border:1px solid var(--line);border-radius:var(--ra);
+  background:var(--panel);overflow:visible}
+.atl2 .rscard .rsh{display:flex;align-items:center;gap:9px;padding:9px 11px;
+  border-bottom:1px solid var(--line);background:var(--panel3)}
+.atl2 .rscard .rsh b{flex:1;min-width:0;font-size:13px;line-height:1.3;color:var(--ink);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atl2 .rscard .rsh a{flex:none;font-size:11px;color:var(--brand-d);text-decoration:none}
+.atl2 .rscard .rsh a:hover{text-decoration:underline}
+.atl2 .rscard .rsx{flex:none;background:none;border:0;font:inherit;font-size:16px;line-height:1;
+  color:var(--muted);cursor:pointer;padding:0 2px}
+.atl2 .rscard .rsx:hover{color:var(--ink)}
+.atl2 .rscard .rsmk{margin:9px 11px 0;font-size:12.5px;line-height:1.5;color:var(--ink)}
+.atl2 .rscard .rstags{display:flex;flex-wrap:wrap;align-items:center;gap:5px;padding:8px 11px 0}
+.atl2 .rscard .rstags em{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--dim);margin-right:2px;font-weight:600}
+.atl2 .rscard .rstags span{font-size:10.5px;font-weight:700;color:var(--muted);
+  background:var(--panel3);border:1px solid var(--line);border-radius:5px;padding:2px 7px}
+/* MESURÉ le 11/08 sur une fenêtre de 900 px : avec un plafond FIXE de 240 px, la
+   liste tombait de 542 à 147 px au moment où la fiche s'affiche — c'est-à-dire
+   au moment précis où les sociétés viennent d'y être versées. Le plafond suit
+   donc l'écran : pleine taille au-dessus de ~1330 px de haut, et il rend ses
+   pixels à la liste sur les écrans courts, où ils manquent vraiment. */
+.atl2 .rscard .rsbody{display:flex;gap:12px;padding:9px 11px;
+  max-height:min(240px,18vh);overflow-y:auto}
+.atl2 .rscard .rsmm{flex:none;width:44%;max-width:340px;margin:0}
+.atl2 .rscard .rsmm img{width:100%;display:block;border:1px solid var(--line);border-radius:6px;
+  background:#fff}
+.atl2 .rscard .rsmm figcaption{margin-top:4px;font-family:var(--mono);font-size:12px;color:var(--dim);text-align:center;font-weight:600}
+.atl2 .rscard .rssum{flex:1;min-width:0;font-size:12.5px;line-height:1.55;color:var(--muted)}
+.atl2 .rscard .rssum p{margin:0 0 7px}
+.atl2 .rscard .rsfoot{display:flex;align-items:center;gap:10px;padding:8px 11px;
+  border-top:1px solid var(--line);font-size:11.5px;color:var(--muted);background:var(--panel3)}
+.atl2 .rscard .rsfoot>span{flex:1;min-width:0}
+.atl2 .rscard .rsfoot .rslink{flex:none;padding:4px 9px}
+
+/* Le lien vers la fiche publiée, dans la colonne d'action de la liste
+   pré-remplie — au même niveau que ⚡ Évaluer la liste. Trois états, et
+   l'échec est DIT : afficher un lien vers une page qui n'a pas été publiée
+   serait le même mensonge que « enregistré » avant la réponse du serveur. */
+.atl2 .rslink{font-size:11px;text-align:center;text-decoration:none;color:var(--brand-d);
+  border:1px solid var(--line2);border-radius:var(--ra);padding:6px 8px;line-height:1.25}
+.atl2 a.rslink:hover{border-color:var(--brand);background:var(--brand-l)}
+.atl2 .rslink.pend{color:var(--dim);border-style:dashed}
+.atl2 .rslink.fail{color:#9f1239;border-color:#FECACA;background:#FDECEC}
+
+.atl2 .rslink.ok{color:var(--brand-d);border-color:var(--brand);background:var(--brand-l)}
+
+/* ── LES DEUX LISTES DE SOCIÉTÉS ───────────────────────────────────────────
+   🏷 citées (ce que le contenu NOMME) et 🎯 correspondantes (ce que le modèle
+   PROPOSE). Même gabarit de rangée pour les deux — la différence se lit dans
+   l'en-tête, pas dans l'habillage : donner deux styles à deux listes qui
+   s'évaluent du même geste ferait croire à deux mécaniques.
+
+   PLAFOND + DÉFILEMENT PROPRE : un article nomme volontiers vingt sociétés, et
+   .atl2 est une boîte à hauteur fixe où tout ce qui vit au-dessus de la liste
+   se paie en lignes visibles. */
+.atl2 .rsblk{border-top:1px solid var(--line);padding:9px 11px 10px}
+.atl2 .rsblk-h{display:flex;align-items:center;gap:8px;margin-bottom:2px}
+.atl2 .rsblk-h b{font-size:12px;color:var(--ink)}
+.atl2 .rsblk-h .n{font-family:var(--mono);font-size:9.5px;color:var(--dim);
+  border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+.atl2 .rsblk-all{margin-left:auto;background:none;border:1px solid var(--line2);
+  border-radius:var(--ra);font:inherit;font-size:10.5px;color:var(--muted);
+  padding:3px 8px;cursor:pointer;white-space:nowrap}
+.atl2 .rsblk-all:hover{border-color:var(--brand);color:var(--brand-d);background:var(--brand-l)}
+.atl2 .rsblk-hint{margin:0 0 7px;font-size:11px;line-height:1.4;color:var(--dim)}
+.atl2 .rsblk-none{margin:0;padding:10px 11px;border-top:1px solid var(--line);
+  font-size:11.5px;color:var(--dim)}
+.atl2 .rsblk-rows{display:flex;flex-direction:column;gap:5px;
+  max-height:min(230px,26vh);overflow-y:auto}
+.atl2 .rsrow{display:flex;align-items:flex-start;gap:9px;padding:7px 9px;
+  border:1px solid var(--line);border-radius:var(--ra);background:var(--panel3)}
+.atl2 .rsrow-t{flex:1;min-width:0}
+.atl2 .rsrow-h{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px}
+.atl2 .rsrow-h .nm{font-size:12.5px;font-weight:700;color:var(--ink)}
+.atl2 .rsrow-h .ch{font-family:var(--mono);font-size:12px;color:var(--dim);border:1px solid var(--line2);
+  border-radius:4px;padding:1px 5px;font-weight:600}
+.atl2 .rsrow .w{margin:3px 0 0;font-size:11.5px;line-height:1.45;color:var(--muted)}
+.atl2 .rsrow .r{margin:2px 0 0;font-size:11px;line-height:1.4;color:var(--dim);font-style:italic}
+.atl2 .rsrow-go{flex:none;background:none;border:1px solid var(--line2);border-radius:var(--ra);
+  font:inherit;font-size:10.5px;color:var(--muted);padding:4px 9px;cursor:pointer;white-space:nowrap}
+.atl2 .rsrow-go:hover{border-color:var(--brand);color:var(--brand-d);background:var(--brand-l)}
+
+/* ── LE CARNET ─────────────────────────────────────────────────────────────
+   La liste des recherches du cockpit, et le lecteur d'une recherche. Il vit
+   sous la barre, au même endroit que la fiche d'aperçu : c'est la MÊME chose
+   qu'on regarde, hier ou à l'instant. */
+.atl2 .rsarch{margin-top:9px;border:1px solid var(--line);border-radius:var(--ra);
+  background:var(--panel);overflow:auto;max-height:min(78vh,840px)}
+.atl2 .rsarch-h{display:flex;align-items:center;gap:9px;padding:9px 11px;
+  border-bottom:1px solid var(--line);background:var(--panel3)}
+.atl2 .rsarch-h b{font-size:12.5px;color:var(--ink)}
+.atl2 .rsarch-h .ti{flex:1;min-width:0;font-size:12px;color:var(--muted);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atl2 .rsarch-h .n{font-family:var(--mono);font-size:9.5px;color:var(--dim);
+  border:1px solid var(--line);border-radius:5px;padding:1px 6px;margin-right:auto}
+.atl2 .rsarch-back{background:none;border:0;font:inherit;font-size:11.5px;
+  color:var(--brand-d);cursor:pointer;padding:0;flex:none}
+.atl2 .rsarch-back:hover{text-decoration:underline}
+.atl2 .rsarch .rsx{flex:none;background:none;border:0;font:inherit;font-size:16px;line-height:1;
+  color:var(--muted);cursor:pointer;padding:0 2px}
+.atl2 .rsarch .rsx:hover{color:var(--ink)}
+.atl2 .rsarch-msg{margin:0;padding:14px 11px;font-size:11.5px;color:var(--dim)}
+.atl2 .rsarch-list{display:flex;flex-direction:column;max-height:min(320px,34vh);overflow-y:auto}
+.atl2 .rsarch-row{display:flex;align-items:center;gap:10px;width:100%;text-align:left;
+  background:none;border:0;border-bottom:1px solid var(--line);font:inherit;
+  padding:9px 11px;cursor:pointer}
+.atl2 .rsarch-row:hover{background:var(--panel3)}
+.atl2 .rsarch-row .ti{flex:1;min-width:0;font-size:12.5px;font-weight:700;color:var(--ink);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atl2 .rsarch-row .me{flex:none;font-family:var(--mono);font-size:9.5px;color:var(--dim)}
+.atl2 .rsarch-row .cn{flex:none;font-size:10.5px;color:var(--muted)}
+.atl2 .rsarch-row .st,.atl2 .rsarch-sub .st{flex:none;font-family:var(--mono);font-size:12px;color:var(--dim);
+  border:1px solid var(--line2);border-radius:4px;padding:1px 6px;font-weight:600}
+.atl2 .rsarch-row .st.on,.atl2 .rsarch-sub .st.on{color:var(--brand-d);
+  border-color:var(--brand);background:var(--brand-l)}
+.atl2 .rsarch-one{max-height:none;overflow:visible}
+.atl2 .rslive{padding:10px 12px 12px;border-top:1px solid var(--line)}
+.atl2 .rslive-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  margin-bottom:8px}
+.atl2 .rslive-h b{font-size:13.5px;color:var(--ink)}
+.atl2 .rslive-h span{font-size:12px;color:var(--muted);line-height:1.4}
+.atl2 .rslive-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(180px,0.8fr);
+  gap:12px;align-items:stretch}
+.atl2 .rslive-map{min-width:0;border:1px solid var(--line);border-radius:10px;background:#fff;
+  overflow:hidden}
+.atl2 .rs-mm-frame{display:block;width:100%;height:380px;border:0;background:#fff;overflow:hidden}
+.atl2 .rslive-png{display:block;width:100%;height:auto}
+.atl2 .rslive-cat-hint{display:none}
+.atl2 .rslive-cats{min-width:0;border:1px solid var(--line);border-radius:10px;
+  background:var(--panel3);padding:10px 12px;overflow:visible}
+.atl2 .rslive-cats > b{display:block;font-size:12px;color:var(--dim);margin-bottom:8px;
+  font-family:var(--mono);letter-spacing:.02em}
+.atl2 .rscats{list-style:none;margin:0;padding:0}
+.atl2 .rscats.nested{padding-left:12px;margin-top:4px;border-left:1px solid var(--line)}
+.atl2 .rscats li{margin:0 0 4px;font-size:13px;line-height:1.45;color:var(--ink)}
+.atl2 .rscats summary{cursor:pointer;font-weight:700;color:#16233A;list-style:none}
+.atl2 .rscats summary::-webkit-details-marker{display:none}
+.atl2 .rscats summary::before{content:"▸ ";color:#12A150;font-size:11px}
+.atl2 .rscats details[open] > summary::before{content:"▾ "}
+.atl2 .rscats span{display:block;padding:2px 0 2px 2px;color:#3A4A63}
+.atl2 .rsart{padding:14px 18px 16px;border-top:1px solid var(--line);background:#fff}
+.atl2 .rsart > b{display:block;font-size:13px;color:#16233A;margin-bottom:10px}
+.atl2 .rsart p{margin:0 0 10px;font-size:14.5px;line-height:1.55;color:#16233A;max-width:none}
+@media (max-width:800px){
+  .atl2 .rslive-grid{grid-template-columns:1fr}
+  .atl2 .rs-mm-frame{height:300px}
+}
+.atl2 .rsarch-sub{display:flex;align-items:center;gap:10px;padding:8px 11px;
+  border-bottom:1px solid var(--line)}
+.atl2 .rsarch-sub a{font-size:11px;color:var(--brand-d);text-decoration:none}
+.atl2 .rsarch-sub a:hover{text-decoration:underline}
+
+/* Le lecteur de fiche : mêmes briques que l'aperçu (.rscard), sans son plafond
+   serré — ici on vient POUR lire, la liste des dossiers n'attend pas dessous. */
+.atl2 .rsdet .rsmk{margin:9px 11px 0;font-size:12.5px;line-height:1.5;color:var(--ink)}
+.atl2 .rsdet .rstags{display:flex;flex-wrap:wrap;align-items:center;gap:5px;padding:8px 11px 0}
+.atl2 .rsdet .rstags em{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--dim);margin-right:2px;font-weight:600}
+.atl2 .rsdet .rstags span{font-size:10.5px;font-weight:700;color:var(--muted);
+  background:var(--panel3);border:1px solid var(--line);border-radius:5px;padding:2px 7px}
+.atl2 .rsdet .rsbody{display:flex;gap:12px;padding:9px 11px}
+.atl2 .rsdet .rsmm{flex:none;width:44%;max-width:340px;margin:0}
+.atl2 .rsdet .rsmm img{width:100%;display:block;border:1px solid var(--line);border-radius:6px;
+  background:#fff}
+.atl2 .rsdet .rsmm figcaption{margin-top:4px;font-family:var(--mono);font-size:12px;color:var(--dim);text-align:center;font-weight:600}
+.atl2 .rsdet .rssum{flex:1;min-width:0;font-size:12.5px;line-height:1.55;color:var(--muted)}
+.atl2 .rsdet .rssum p{margin:0 0 7px}
+.atl2 .rsdet .rsblk-rows{max-height:none}
+.atl2 .rspro-c{margin:0 0 8px;font-size:12px;line-height:1.55;color:var(--muted)}
+.atl2 .rspro-l{margin:0;padding-left:16px;font-size:11.5px;line-height:1.5;color:var(--muted)}
+.atl2 .rssrc{display:flex;flex-wrap:wrap;gap:6px}
+.atl2 .rssrc a{font-size:11px;color:var(--brand-d);text-decoration:none;
+  border:1px solid var(--line2);border-radius:var(--ra);padding:3px 8px;
+  max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atl2 .rssrc a:hover{border-color:var(--brand);background:var(--brand-l)}
+
+@media (max-width:760px){
+  .atl2 .rsp{flex-direction:column}
+  .atl2 .rsp .side{width:100%}
+  .atl2 .rscard .rsbody,.atl2 .rsdet .rsbody{flex-direction:column;max-height:300px}
+  .atl2 .rscard .rsmm,.atl2 .rsdet .rsmm{width:100%;max-width:none}
+  .atl2 .rsarch-row{flex-wrap:wrap;gap:4px 10px}
+  .atl2 .rsarch-row .ti{flex:1 0 100%}
+}
+/* ── LISTE UNIFIÉE (16/08 : « quand on clique ça passe en mode carte ») :
+   les lignes PLIÉES restent des lignes compactes ; une ligne OUVERTE (+ son
+   panneau) devient un BLOC blanc bordé à coins ronds qui respire — le look
+   déplié validé, appliqué ligne par ligne. Scopé .opsl (feed ops). */
+.atl2 .list.opsl .row.open{margin-top:12px;background:#fff;
+  border:1px solid #E3E8F0;border-bottom:0;border-radius:10px 10px 0 0}
+.atl2 .list.opsl .row.open + .card,
+.atl2 .list.opsl .card{background:#fff;border:1px solid #E3E8F0;
+  border-top:0;border-radius:0 0 10px 10px;margin-bottom:12px;
+  box-shadow:0 1px 2px rgba(15,29,51,.04)}
+/* « Tout déplier / Tout replier » — deux gestes discrets près du sélecteur */
+.atl2 .foldall{display:inline-flex;gap:4px;margin-left:8px}
+.atl2 .foldall button{background:none;border:1px solid var(--line);
+  border-radius:6px;font:inherit;font-size:10.5px;font-weight:600;
+  color:var(--muted);padding:5px 9px;cursor:pointer;white-space:nowrap}
+.atl2 .foldall button:hover{color:var(--ink);border-color:var(--ink)}
+.atl2 .foldall button[aria-pressed=true]{color:var(--brand-d);
+  border-color:var(--brand);background:var(--brand-l)}
+/* MAXI : le tri au menu (plus de colonnes dans la grille) */
+.atl2 .sortsel{display:inline-flex;align-items:center;gap:6px;margin-left:8px}
+.atl2 .sortsel span{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600}
+.atl2 .sortsel select{font:inherit;font-size:11.5px;border:1px solid var(--line);
+  border-radius:6px;padding:4px 6px;background:#fff;color:var(--ink)}
+/* ── LIGNE (16/08 : « le déplié de tout à l'heure avec les bords arrondis
+   et l'arrière-plan gris, c'était vraiment bien ») : la nappe grise commune,
+   CHAQUE ligne devient un bloc blanc arrondi — pliée ou ouverte — et l'air
+   sépare. Les en-têtes de groupe flottent sur la nappe. */
+.atl2 .list.ligne{background:#F5F7FA;padding:6px 28px 32px}
+@media (max-width:760px){.atl2 .list.ligne{padding:4px 12px 20px}}
+.atl2 .list.ligne .row{margin-top:10px;background:#fff;
+  border:1px solid #E3E8F0;border-radius:10px;
+  box-shadow:0 1px 2px rgba(15,29,51,.04)}
+.atl2 .list.ligne .row.open{border-radius:10px 10px 0 0;border-bottom:0;
+  box-shadow:none;margin-top:12px}
+.atl2 .list.ligne .card{background:#fff;border:1px solid #E3E8F0;
+  border-top:0;border-radius:0 0 10px 10px;margin-bottom:2px;
+  box-shadow:0 1px 2px rgba(15,29,51,.04)}
+.atl2 .list.ligne .grp-h{background:transparent;border:0;margin-top:18px;
+  padding-left:2px}
+.atl2 .list.ligne .moregrp{background:transparent}
+/* ── LA CARTE À HAUTEUR CONSTANTE (16/08 : « que les continents fassent la
+   même hauteur que la map monde ») : l'Europe en portrait doublait la page.
+   Le viewBox garde son aspect, la hauteur est bornée, le fond centre. */
+/* hauteur IDENTIQUE pour tous les onglets (16/08 : « je veux la même hauteur
+   pour toutes ») : un plafond ne suffisait pas — Monde tombait à 448 et
+   l'Amérique du Nord tenait 520. Hauteur FIXE, le viewBox se centre dedans
+   (preserveAspectRatio par défaut : xMidYMid meet). */
+/* la CARTE remplit la scène : min 460 partout (hauteur uniforme /actualites),
+   et si le rail est plus haut (/cibles : 11 contrôles), la carte S'ÉTIRE à sa
+   hauteur — le continent ENTIER se centre dedans (meet), jamais coupé, et le
+   rail ne déborde plus sur « Effacer / Alerte email » (16/08). */
+/* hauteur FIXE (jamais le ratio du continent : l'Europe portrait montait à
+   925px, 16/08) — la scène vaut donc max(460, rail) et contient tout. */
+.atl2 .mapzone{display:flex;height:460px;min-height:460px;max-height:460px}
+.atl2 .mapzone svg{display:block;width:100%;height:460px!important;
+  flex:1;max-height:460px!important;margin:0 auto}
+@media (min-width:1400px){
+  .atl2 .mapzone{height:500px;min-height:500px;max-height:500px}
+  .atl2 .mapzone svg{height:500px!important;max-height:500px!important}
+}
+.atl2 .stage:not(.folded){flex-direction:row}
+.atl2 .fzone .conts{padding:0 12px 0 20px}
+.atl2 .listhead{padding-left:28px;padding-right:28px}
+@media (max-width:760px){
+  .atl2 .listhead{padding-left:12px;padding-right:12px}
+  .atl2 .fzone .conts{padding:0 8px}
+}
+/* JAMAIS DE SCROLL DANS LE RAIL (16/08 : « je ne veux pas de scroll vertical
+   sur le menu à droite, comme dans /actualites ») : le rail portait
+   overflow-y:auto (styles.gen:866) et se coupait dès que la carte était plus
+   courte que ses filtres. Il pousse maintenant la scène à SA hauteur. */
+.atl2 .fbar{overflow-y:visible;overflow-x:visible;height:auto}
+.atl2 .stage{align-items:stretch}
+/* l'attente habitée S'ÉTEND à la carte et au pipeline (16/08) : la surface
+   respire au lieu d'afficher un planisphère mort et des zéros. */
+.atl2 .mapzone.waiting svg{animation:lwmap 1.6s ease-in-out infinite}
+.atl2 .funnel.waiting{animation:lwmap 1.6s ease-in-out infinite}
+.atl2 .funnel.waiting .n{color:transparent!important;
+  background:linear-gradient(90deg,#EEF2F6 25%,#E3E8F0 45%,#EEF2F6 65%);
+  background-size:200% 100%;border-radius:6px;animation:lws 1.4s linear infinite}
+@keyframes lwmap{0%,100%{opacity:1}50%{opacity:.55}}
+/* L'ESSENTIEL DU JOUR de la thèse — même grammaire que l'intro /actualites :
+   libellé mono, puces légères, pleine largeur. */
+.atl2 .thesis-lead{padding:14px 16px 4px;background:var(--panel)}
+.atl2 .thesis-lead .tlk{display:block;font-family:var(--mono);font-size:12px;
+  font-weight:600;color:var(--dim);
+  margin:0 0 7px}
+.atl2 .thesis-lead ul{margin:0;padding:0;list-style:none}
+.atl2 .thesis-lead li{position:relative;padding-left:16px;margin:0 0 5px;
+  font-size:13.5px;line-height:1.6;color:#46566B}
+.atl2 .thesis-lead li::before{content:'·';position:absolute;left:4px;top:-1px;
+  color:#8FA0B8;font-weight:700}
+.atl2 .thesis-lead .tlp{margin:0;font-size:13.5px;line-height:1.6;color:#46566B}
+/* le menu « ce qu'on peut faire » S'OUVRE SUR PLACE, jamais sous la liste
+   (16/08 : PJ3) — l'ancêtre .listhead doit laisser sortir l'absolu.
+   ⚠️ PLUS DE position:relative ICI. Cette ligne écrasait le position:sticky
+   posé plus haut — même spécificité, mais plus bas dans le fichier, donc elle
+   gagnait. Résultat mesuré : l'en-tête restait relative AVEC mon top:158px,
+   donc décalé de 158 px vers le bas au lieu d'être collé, et il recouvrait la
+   box des signaux (17/08 : « les cibles avec un signal fort apparaissent SOUS
+   les menus »). sticky crée le même contexte de positionnement que relative
+   pour l'absolu du menu : rien n'est perdu. */
+.atl2 .listhead{overflow:visible;flex-wrap:wrap}
+.atl2 .listhead .conts{flex:1 0 100%;border:0;padding:6px 0 0;background:transparent}
+.atl2 .listhead.mapoff{align-items:center;row-gap:8px;padding:8px 28px 10px}
+.atl2 .listhead.mapoff .ctx{flex:1 1 auto;min-width:0;order:unset}
+body.pp-desk .atl2.ops .listhead.mapoff .groupbar{display:none}
+.atl2 .listhead .lh-top{display:contents}
+.atl2 .listhead .lh-acts{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;
+  margin-left:auto;flex:none}
+/* 2 rangées, largeur de la LISTE seulement.
+   1) compte · Monde · LISTE · Tout ▾ · Évaluer
+   2) recherche · Filtres · Effacer · Alerte */
+body.pp-desk .atl2.ops .listhead.mapoff{
+  display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;
+  align-items:stretch!important;gap:0;padding:8px 14px 10px;overflow:visible}
+body.pp-desk .atl2.ops .listhead.mapoff .lh-top{
+  display:flex!important;flex-direction:row;flex-wrap:nowrap;align-items:center;
+  gap:8px;width:100%;min-width:0;min-height:40px}
+body.pp-desk .atl2.ops .listhead.mapoff .lh-acts{flex-wrap:nowrap}
+body.pp-desk .atl2.ops .listhead.mapoff .lh-top .main,
+body.pp-desk .atl2.ops .listhead.mapoff .lh-top .ctx{min-width:0}
+body.pp-desk .atl2.ops .listhead.mapoff .chainwrap{
+  flex-direction:row;align-items:center;gap:8px;margin-left:auto;flex:none}
+body.pp-desk .atl2.ops .listhead.mapoff .chainhint{display:none}
+body.pp-desk .atl2.ops .listhead.mapoff .lh-tools{
+  display:flex;flex-direction:row;align-items:center;width:100%;flex:none;
+  gap:8px;padding:8px 0 0;margin:6px 0 0;border-top:1px solid var(--line);
+  min-height:44px;box-sizing:border-box}
+body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .fstrip{
+  display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;
+  align-items:center;flex:1 1 auto!important;width:100%;min-width:0;
+  padding:0;margin:0;border:0;order:unset!important;gap:8px}
+body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .fstrip-b,
+body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .frow2{
+  display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:8px}
+body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .fstrip-b{flex:1;min-width:0}
+body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .frow2{margin-left:auto;flex:none}
+body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .fsrch{
+  flex:1 1 180px;min-width:120px;max-width:240px}
+body.pp-desk .atl2.ops .grp{display:block}
+body.pp-desk .atl2.ops .list.maxi .grp{display:contents}
+.atl2.ops .grp-pin{position:fixed;z-index:33;display:flex;align-items:center;gap:10px;
+  padding:8px 14px;box-sizing:border-box;background:var(--panel2,#fff);
+  border-bottom:1px solid var(--line,#E3E8F0);box-shadow:0 1px 0 var(--line,#E3E8F0);
+  pointer-events:none}
+.atl2.ops .grp-pin .ic{width:24px;height:24px;border-radius:var(--r,6px);background:var(--ink);
+  color:#fff;display:grid;place-items:center;font-size:12px;flex:none}
+.atl2.ops .grp-pin .t{font-weight:700;font-size:13px}
+.atl2.ops .grp-pin .s{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:600}
+/* Carte encore à l'écran : UNE ligne, Évaluer tout à droite.
+   (ctx en 100% + wrap envoyait Tout / Évaluer sur une 2e rangée.) */
+body.pp-desk .atl2.ops .listhead:not(.mapoff){
+  flex-wrap:nowrap!important;align-items:center;gap:8px;padding:6px 16px}
+body.pp-desk .atl2.ops .listhead:not(.mapoff) .ctx{
+  flex:1 1 auto!important;min-width:0;order:unset!important;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body.pp-desk .atl2.ops .listhead:not(.mapoff) .chainwrap{
+  flex-direction:row;align-items:center;gap:8px;margin-left:auto}
+body.pp-desk .atl2.ops .listhead:not(.mapoff) .chainhint{display:none}
+body.pp-desk .atl2.ops .listhead:not(.mapoff) .doable{margin-left:0}
+.atl2 .chainwrap{display:inline-flex;flex-direction:column;align-items:flex-end;
+  gap:2px;margin-left:auto;flex:none}
+.atl2 .chainwrap .chain{margin-left:0}
+.atl2 .chainhint{font-style:normal;font-size:12px;line-height:1.2;color:var(--muted);max-width:22ch;text-align:right;font-weight:600}
+.atl2 .fstrip .mapbtn{flex:none}
+.atl2 .fstrip{flex:1 0 100%;display:flex;flex-direction:row;flex-wrap:wrap;
+  align-items:center;gap:8px;padding:6px 0 0;min-width:0;
+  border-top:1px solid var(--line)}
+.atl2 .fstrip-a{flex:none}
+.atl2 .fstrip-a .seg{display:flex;flex-wrap:wrap;gap:6px;width:auto;
+  grid-template-columns:none;background:none;border:0;overflow:visible}
+.atl2 .fstrip-a .seg button{flex:0 1 auto;min-width:0;display:inline-flex;
+  align-items:center;gap:6px;height:auto;padding:7px 10px;font-size:11px;
+  border:1px solid var(--line);border-radius:var(--r);background:var(--panel);
+  color:var(--ink);cursor:pointer;white-space:nowrap}
+.atl2 .fstrip-a .seg button:last-child{border-right:1px solid var(--line)}
+.atl2 .fstrip-a .seg button[aria-pressed="true"]{border-color:var(--ink);
+  background:var(--ink);color:#fff}
+.atl2 .fstrip-a .seg button b{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.atl2 .fstrip-a .seg button[aria-pressed="true"] b{color:#fff}
+.atl2 .fstrip-b{display:flex;flex-wrap:wrap;align-items:center;gap:6px;
+  flex:1 1 220px;min-width:0}
+.atl2 .fstrip .fsrch{flex:0 1 220px;min-width:140px}
+.atl2 .fstrip .facets{display:flex;flex-wrap:wrap;gap:6px}
+.atl2 .fstrip .frow2{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-left:auto}
+.atl2 .listhead .fpanel{position:absolute;left:0;right:0;top:100%;width:auto;
+  z-index:30;max-height:52vh}
+.atl2 .doable{position:relative}
+.atl2 .doable .dolist{z-index:220}
+/* CRIBLE · MÉMO sur UNE ligne (16/08 : « garder MATCH mais mettre mémo à
+   lancer sur la même ligne, ça augmente trop la hauteur ») — badges en rang,
+   ellipsés, jamais d'empilement dans la cellule. */
+/* ⚠️ styles.gen:555 pose .atl2 .app.pipe .c-vd (flex-direction:column) —
+   PLUS SPÉCIFIQUE que .atl2 .row .c-vd : ma première règle ne gagnait pas,
+   « mémo à lancer » restait sous MATCH (16/08, vu en navigation privée).
+   On reprend donc le même niveau de spécificité. */
+.atl2 .app.pipe .c-vd,.atl2 .app .row .c-vd,.atl2 .row .c-vd{
+  display:inline-flex!important;flex-direction:row!important;
+  flex-wrap:nowrap!important;align-items:center;gap:4px;min-width:0;
+  max-width:100%;overflow:hidden}
+/* UNE LIGNE, toujours : le 11ᵉ enfant (Statut) et .c-sig en colonne
+   faisaient tomber pouces + Analyser à la ligne. */
+.atl2 .list .row{align-items:center}
+.atl2 .nd{flex-wrap:nowrap}
+.atl2 .nd .racq{flex:none;max-width:14ch;overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap}
+.atl2 .row .c-sig{flex-direction:row!important;flex-wrap:nowrap;align-items:center;
+  gap:6px;overflow:hidden}
+.atl2 .row .c-sig .sigwin{display:none}
+.atl2 .row .rstat{flex:none}
+.atl2 .row .c-vd>*{flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis}
+.atl2 .row .c-vd .vd.wait{max-width:96px;border:0!important;background:none!important;
+  padding-left:0;padding-right:0}
+/* le filet sous MATCH ne sépare plus rien depuis que tout tient sur une
+   ligne (16/08 : « une ligne au-dessus qui ne sert à rien ») */
+.atl2 .row .c-vd::after,.atl2 .row .c-vd::before{display:none!important}
+.atl2 .row .c-vd{border:0!important;border-top:0!important;border-bottom:0!important}
+/* ── L'EN-TÊTE DU FONDS : deux modules LISIBLES (16/08 soir) ─────────────
+   « COUVERTURE DU MARCHÉ » chevauchait « MOTEUR DE MÉMOS » : les libellés se
+   superposaient et le chiffre restait seul, sans dire de quoi il parle. Les
+   deux modules sont désormais des blocs autonomes qui passent à la ligne
+   plutôt que de se marcher dessus, avec leur libellé en entier. */
+.atl2 .idmain{display:flex;flex-wrap:nowrap;align-items:center;gap:8px;min-width:0}
+.atl2 .idmain .cover,.atl2 .idmain .engine{flex:0 1 auto;min-width:0;
+  display:inline-flex;flex-direction:row;flex-wrap:nowrap;align-items:center;
+  gap:8px;padding:6px 12px;height:36px;box-sizing:border-box;
+  border:1px solid var(--line);border-radius:10px;background:var(--panel);
+  cursor:pointer}
+.atl2 .idmain .cover:hover,.atl2 .idmain .engine:hover{border-color:var(--ink)}
+.atl2 .idmain .el{position:static!important;font-family:var(--mono);font-size:12px;color:var(--dim);white-space:nowrap;
+  overflow:visible;width:auto;height:auto;clip:auto;flex:none;font-weight:600}
+.atl2 .idmain .ev{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  font-size:13px;color:var(--ink)}
+.atl2 .idmain .edv{display:none}
+.atl2 .idmain .bar{width:52px;height:6px;border-radius:3px;background:var(--line);
+  overflow:hidden;display:inline-block}
+.atl2 .idmain .bar i{display:block;height:100%;background:var(--brand)}
+.atl2 .idmain .idsp{flex:1 1 auto;min-width:8px}
+.atl2 .idmain .icgrp,.atl2 .idmain .isrch{flex:none}
+@media (max-width:900px){
+  .atl2 .idmain{flex-wrap:wrap}
+  .atl2 .idmain .cover,.atl2 .idmain .engine{height:auto;min-height:36px;flex-wrap:wrap}
+}
+/* ── ALERTES EMAIL : la présentation (16/08 soir) ────────────────────────
+   « les OFF débordent, les + − ne sont pas précis, les cases à cocher sont
+   illisibles ». Une rangée = libellé à gauche qui peut aller à la ligne,
+   commande à droite qui ne rétrécit jamais ; boutons ± carrés et lisibles ;
+   cases à cocher à taille réelle avec leur libellé aligné. */
+/* ⚠️ CORRECTIF DU CORRECTIF (17/08 : « le popup Vos alertes email n'a toujours
+   pas été corrigé, c'est catastrophique, Tous les jours débordent »). Le
+   16/08 j'avais mis flex-wrap:nowrap avec la commande en flex:none : deux
+   boutons « Jours ouvrés » + « Tous les jours » ne tiennent PAS dans la
+   largeur, et nowrap + flex:none les fait DÉBORDER de la carte, qui les
+   coupe. Interdire le retour à la ligne ne fait pas rentrer un contenu trop
+   large : ça le pousse dehors. La rangée peut donc passer à la ligne, et la
+   commande y descend en entier plutôt que d'être rognée. */
+.atl2 .qrow{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap}
+.atl2 .qrow>span:first-child{flex:1 1 180px;min-width:0}
+.atl2 .qrow .qset{flex:0 1 auto;max-width:100%;display:inline-flex;align-items:center;
+  gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.atl2 .qrow .qset .abtn{min-width:0;justify-content:center;padding:8px 12px;
+  font-weight:700;letter-spacing:.04em;white-space:nowrap}
+/* la pastille ON/OFF garde sa largeur : elle doit rester cliquable et lisible */
+.atl2 .qrow .qset .abtn.onoff{min-width:62px}
+.atl2 .qrow .qset button:not(.abtn){width:34px;height:34px;display:inline-grid;
+  place-items:center;padding:0;font-size:16px;line-height:1;border:1px solid var(--line);
+  border-radius:8px;background:#fff;cursor:pointer;color:var(--ink)}
+.atl2 .qrow .qset button:not(.abtn):hover:not(:disabled){border-color:var(--ink)}
+.atl2 .qrow .qset button:not(.abtn):disabled{opacity:.45;cursor:default}
+.atl2 .qrow .qset b{min-width:56px;text-align:center;font-size:14px}
+/* les jours : deux boutons qui tiennent, jamais coupés */
+.atl2 .qrow .qset .abtn+.abtn{margin-left:0}
+/* sections de l'email : cases à cocher lisibles */
+.atl2 .secl{display:flex;flex-direction:column;gap:8px;margin:6px 0 2px}
+.atl2 .secl .secli{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;
+  line-height:1.45;color:var(--ink);cursor:pointer}
+.atl2 .secl .secli input[type=checkbox]{flex:none;width:17px;height:17px;
+  margin:1px 0 0;accent-color:var(--brand);cursor:pointer}
+.atl2 .secl .secli i{color:var(--dim);font-size:12px;font-style:italic}
+/* L'APERÇU : UN SEUL ascenseur (16/08 : « quand je clique sur prévisualiser
+   il y a un scroll vertical ») — l'iframe prend toute la hauteur de son
+   contenu et c'est la modale qui défile, pas un cadre dans le cadre. */
+.atl2 .mailp-frame{width:100%;height:78vh;min-height:420px;border:1px solid var(--line);
+  border-radius:10px;background:#fff;display:block;margin-top:10px}
+.atl2 .mailp-row{display:flex;gap:8px;flex-wrap:wrap}
+/* le choix du bon site quand plusieurs le portent (16/08) */
+.atl2 .sitepick{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;width:100%}
+.atl2 .sitepick .sp1{display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--line);border-radius:8px;padding:4px 6px 4px 10px;background:#fff}
+.atl2 .sitepick a{font-family:var(--mono);font-size:10.5px;color:var(--muted);
+  text-decoration:none}
+.atl2 .sitepick a:hover{color:var(--ink)}
+.atl2 .sitepick button{font:inherit;font-size:11px;font-weight:700;cursor:pointer;
+  color:#fff;background:var(--brand);border:0;border-radius:6px;padding:5px 9px}
+.atl2 .sitepick button:hover{background:var(--brand-d)}
+/* la ligne qu'on vient de rejoindre se signale (16/08) */
+.atl2 .row.flashrow{animation:flashrow 2.2s ease-out}
+@keyframes flashrow{0%,60%{background:var(--brand-l);box-shadow:inset 3px 0 0 var(--brand)}
+  100%{background:transparent;box-shadow:none}}
+/* LES COMPTEURS EN ENTIER dans le rail (16/08 : « 650 » coupé en « 65 ») :
+   le libellé peut s'ellipser, JAMAIS le nombre. */
+.atl2 .fbar .seg button{font-size:10px;padding:7px 7px;gap:4px}
+.atl2 .fbar .seg button b{flex:none!important;margin-left:auto;overflow:visible!important;
+  text-overflow:clip!important;font-size:10px}
+/* CRÉDITS MÉMO (16/08 : « ils sont tous mal affichés ») — grille propre :
+   le libellé « N crédits · P € » AU-DESSUS, le bouton dessous, rien qui
+   chevauche et une hauteur égale par carte. */
+.atl2 .packs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;align-items:stretch;margin:14px 0}
+@media (max-width:560px){
+  .atl2 .packs{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+.atl2 .packs .pack{display:flex;flex-direction:column;align-items:center;
+  text-align:center;gap:2px;min-width:0;padding:14px 10px 12px;
+  border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.atl2 .packs .pack .pk-n{display:block;width:auto;height:auto;border-radius:0;
+  background:none;font-size:22px;font-weight:800;letter-spacing:-.02em;
+  line-height:1;color:var(--ink);margin:0}
+.atl2 .packs .pack .pk-u{font-size:11px;font-weight:600;color:var(--dim);line-height:1.2}
+.atl2 .packs .pack .pk-p{font-size:13px;font-weight:700;color:var(--ink);margin:6px 0 8px}
+.atl2 .packs .pack button{order:unset;margin-top:auto;width:100%;justify-content:center}
+/* UNE seule surface matin + stats (16/08 : « un encadré arrondi et une ligne
+   séparatrice en trop — fondre tout cet espace ») : la phrase du matin, la
+   chaîne 1132 → 86 → 1 → 41 et le graphe respirent dans le même bloc, sans
+   cadre interne ; le chevron agrandir/réduire reste. */
+.atl2 .goal{border-bottom:0!important;padding-bottom:6px}
+.atl2 .fstats{border:0!important;border-radius:0!important;box-shadow:none!important;
+  margin:0!important;background:var(--panel);border-bottom:1px solid var(--line)!important;
+  padding-top:2px}
+.atl2 .fstats .fst-row{border-top:0}
+/* ── L'ENTONNOIR AVEC SES PÉRIODES À GAUCHE (17/08 : « relie, montre la
+   logique »). Une rangée = une période nommée + la même chaîne de nombres.
+   C'est l'alignement des libellés de période qui fait comprendre que le jour
+   est dans la fenêtre et la fenêtre dans le total. */
+.atl2 .fstats .fst-lab{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 8px;
+  padding:3px 0}
+.atl2 .fstats .fst-per{flex:none;min-width:132px;font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600}
+.atl2 .fstats .fst-mkt i{color:var(--dim)}
+/* ── LA FENÊTRE DE TIR, portée de la V1 (17/08) : les puces par cible sous le
+   titre rouge. Une box qui ne donne qu'un nombre ne dit pas qui contacter. */
+.atl2 .sigstrip .sg-h{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.atl2 .sigstrip .sg-sp{flex:1}
+.atl2 .sigstrip .sg-c{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.atl2 .sigstrip .sg-chip{display:inline-flex;align-items:baseline;gap:6px;
+  padding:5px 10px;border:1px solid #f0b8b8;border-radius:11px;background:#fff;
+  font:inherit;cursor:pointer;text-align:left;max-width:340px}
+.atl2 .sigstrip .sg-chip:hover{border-color:#e79a9a}
+.atl2 .sigstrip .sg-chip b{font-size:12px;color:#C0353A;font-weight:800;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px}
+.atl2 .sigstrip .sg-chip i{font-style:normal;font-size:11px;color:#C0353A;opacity:.82;
+  font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atl2 .sigstrip .sg-chip em{font-style:normal;font-size:10px;color:#9a6a63;white-space:nowrap}
+.atl2 .sigstrip .sg-more{font:inherit;font-size:11.5px;font-weight:800;color:#C0353A;
+  background:#fff;border:1px solid #f0b8b8;border-radius:999px;padding:5px 11px;cursor:pointer}
+.atl2 .sigstrip .sg-x{background:none;border:0;cursor:pointer;font-size:14px;line-height:1;
+  color:#c08a86;padding:1px 5px;border-radius:5px}
+.atl2 .sigstrip .sg-x:hover{background:#fbe4e2;color:#8a1d17}
+.atl2 .sigstrip.mini .sg-c{display:none}
+/* le mémo en ONGLET (16/08) */
+.atl2 .cdmemo .cdtxt{margin:0 0 10px}
+.atl2 .cdmemo .cdacts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+/* ── le segment de dates RENTRE dans le rail (16/08 : « déborde à droite,
+   c'est moche ») : grille 2×2 pleine largeur, libellés ellipsés. */
+.atl2 .fbar .seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;min-width:0}
+/* ⚠️ CE BLOC-CI EST CELUI QUI GAGNE. Il existe un bloc identique en
+   spécificité plus haut (« LES COMPTEURS EN ENTIER », 16/08) : à spécificité
+   égale, c'est l'ordre source qui tranche, donc corriger le premier ne change
+   RIEN à l'écran. C'est exactement ce qui s'est passé le 16/08 — Antoine a
+   revu « 269 » et « 518 » coupés le lendemain.
+   Le bouton ne rogne plus (overflow visible) : c'est le LIBELLÉ qui s'ellipse
+   (.sl), et le nombre garde sa place quoi qu'il arrive. */
+.atl2 .fbar .seg button{min-width:0;display:flex;align-items:center;gap:5px;
+  overflow:visible;white-space:nowrap;font-size:10.5px;padding:7px 8px}
+.atl2 .fbar .seg button .sl{min-width:0;overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap}
+.atl2 .fbar .seg button b{flex:none;margin-left:auto;overflow:visible;
+  text-overflow:clip}
+/* ── REMONTER EN HAUT (17/08) : discret, en bas à droite, au-dessus de tout —
+   la barre d'aperçu est à 40, la carte à 25. */
+.atl2 .totop{position:fixed;right:16px;bottom:18px;z-index:60;width:38px;height:38px;
+  border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);
+  font:inherit;font-size:16px;line-height:1;cursor:pointer;
+  box-shadow:0 6px 18px rgba(15,29,51,.16)}
+.atl2 .totop:hover{border-color:var(--ink);background:var(--panel2)}
+/* ── LA BOX MOTEUR DE MÉMOS DÉBORDAIT (17/08, PJ1). Elle a une hauteur FIXE de
+   36 px pour trois à quatre informations — rythme, état de pause, file, cloche —
+   qui ne tiennent pas sur une ligne à cette largeur : le contenu sortait par le
+   bas, hors du cadre. On laisse la boîte prendre la hauteur de ce qu'elle
+   contient, et les éléments passer à la ligne proprement. Même traitement pour
+   la couverture, qui a la même contrainte et le même risque. */
+.atl2 .engine,.atl2 .cover{height:36px;min-height:36px;flex-wrap:nowrap;
+  padding:6px 12px;row-gap:0;align-items:center;overflow:hidden}
+.atl2 .engine .ev,.atl2 .cover .ev{white-space:nowrap}
+.atl2 .engine .ego{white-space:nowrap}
+/* ── LE PANNEAU OUTILS, complété d'après la V1 (17/08) : les trois étapes
+   numérotées, et le message d'exemple dépliable. */
+.atl2 .plughow{margin:6px 0 10px;padding-left:20px;display:grid;gap:5px}
+.atl2 .plughow li{font-size:12.5px;line-height:1.5;color:var(--sub)}
+.atl2 .plugex{margin:8px 0 4px}
+.atl2 .plugex summary{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--ink);
+  list-style:none;padding:2px 0}
+.atl2 .plugex summary::-webkit-details-marker{display:none}
+.atl2 .plugex summary:before{content:'▸ ';color:var(--dim)}
+.atl2 .plugex[open] summary:before{content:'▾ '}
+.atl2 .mnote.warn{color:#8a5300}
+/* ── LE STATUT DEPUIS LA LIGNE (17/08) : un menu compact posé dans la cellule
+   de verdict, et un panneau qui propose de lancer le mémo quand on demande
+   « Analysée » sans mémo — au lieu d'une boîte système qui ne dit ni le coût
+   ni ce qu'on y gagne. */
+.atl2 .rstat{position:relative;display:inline-flex;margin-left:6px}
+.atl2 .rstb{display:inline-flex;align-items:center;gap:3px;padding:1px 5px;
+  border:1px solid var(--line);border-radius:6px;background:var(--panel);
+  color:var(--sub);font:inherit;font-size:9.5px;line-height:1.6;cursor:pointer;
+  white-space:nowrap;max-width:96px;overflow:hidden;text-overflow:ellipsis}
+.atl2 .rstb:hover{border-color:var(--brand);color:var(--ink)}
+.atl2 .rstb i{font-style:normal;font-size:8px;color:var(--dim)}
+.atl2 .rstm{position:absolute;top:calc(100% + 3px);right:0;z-index:30;
+  display:flex;flex-direction:column;min-width:150px;padding:4px;
+  border:1px solid var(--line);border-radius:8px;background:var(--panel);
+  box-shadow:0 10px 26px rgba(15,29,51,.16)}
+.atl2 .rsti{text-align:left;padding:5px 8px;border:0;border-radius:6px;
+  background:none;color:var(--ink);font:inherit;font-size:11.5px;cursor:pointer}
+.atl2 .rsti:hover{background:var(--panel2)}
+.atl2 .rsti.on{background:var(--brand-l);color:var(--brand);font-weight:700}
+.atl2 .rsti.busy{opacity:.5;cursor:default}
+.atl2 .rstask{display:flex;flex-direction:column;gap:6px;padding:6px 7px;max-width:230px}
+.atl2 .rstask b{font-size:11.5px;line-height:1.45;color:var(--ink);font-weight:600}
+.atl2 .rsta{padding:5px 9px;border:1px solid var(--line);border-radius:6px;
+  background:var(--panel2);color:var(--sub);font:inherit;font-size:11px;cursor:pointer}
+.atl2 .rsta.pri{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}
+.atl2 .rsta:disabled{opacity:.5;cursor:default}
+/* ── LA FILE DE TRAITEMENT, reprise de la V1 (17/08). En tête, l'offre et son
+   DÉLAI DE VERDICT — la question à laquelle ce popup doit répondre. Puis
+   l'échéance en clair, et la file entière avec rang, date réelle et extrait.
+   Le bandeau passe en rouge sobre quand le délai vendu ne peut pas être tenu :
+   un retard annoncé vaut mieux qu'un retard découvert. */
+.atl2 .qoffre{display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+  padding:10px 14px;margin:0 0 10px;border:1px solid var(--line);border-radius:10px;
+  background:var(--panel2);font-size:12.5px}
+.atl2 .qoffre.late{border-color:var(--red);background:#FDECEC}
+.atl2 .qoffre .ol{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600}
+.atl2 .qoffre b{color:var(--ink);font-weight:800}
+.atl2 .qoffre .od{color:var(--sub)}
+.atl2 .qoffre .osp{flex:1}
+.atl2 .qoffre .or{color:var(--ink);font-weight:700}
+.atl2 .qoffre .or.dim{color:var(--dim);font-weight:600}
+.atl2 .qeta{margin:8px 0 0;font-size:12px;line-height:1.5;color:var(--sub)}
+.atl2 .qeta em{font-style:normal;color:var(--red);font-weight:700}
+.atl2 .qhedge{margin:2px 0 8px;font-size:11px;color:var(--dim);line-height:1.45}
+/* UN SEUL ascenseur : celui de la carte (.mb). La file entière se déroule
+   dedans — plus de cadre dans le cadre (17/08 : « ne mets pas de double
+   scroll, tout doit apparaître »). */
+.atl2 .qrows.qfile{max-height:none;overflow:visible}
+.atl2 .qr2.qfl{display:grid;grid-template-columns:34px 74px minmax(0,1fr) auto auto auto;
+  gap:8px;align-items:center}
+.atl2 .qr2.qfl .qex{grid-column:3 / -1;font-size:11px;color:var(--dim);line-height:1.45;
+  display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atl2 .qwhen{font-family:var(--mono);font-size:12px;color:var(--dim);white-space:nowrap;font-weight:600}
+.atl2 .qwhen.soon{color:var(--brand);font-weight:700}
+.atl2 .qfresh{font-size:12px;font-family:var(--mono);color:#12A150;background:#E7F6EE;border-radius:999px;
+  padding:1px 6px;white-space:nowrap;font-weight:600}
+.atl2 .qverd{margin:6px 0 0;padding:0 0 0 2px;list-style:none;display:grid;gap:5px}
+.atl2 .qverd li{font-size:11.5px;line-height:1.5;color:var(--sub)}
+.atl2 .qverd li b{font-family:var(--mono);font-size:10.5px;color:var(--ink)}
+/* ── LE CALCUL DU MARCHÉ, dépliable dans le popup Couverture (17/08) : un
+   tableau sobre, une ligne par code d'activité et par pays, le total en bas.
+   Les lignes à zéro sont grisées — elles disent honnêtement qu'un pays n'a
+   rien apporté plutôt que de disparaître. */
+.atl2 .covcalc{margin:14px 0 0;border:1px solid var(--line);border-radius:12px;
+  padding:12px 18px 16px;background:var(--panel2)}
+.atl2 .covcalc > summary{cursor:pointer;list-style:none;font-size:13px;font-weight:700;
+  color:var(--ink);padding:4px 0}
+.atl2 .covcalc > summary::-webkit-details-marker{display:none}
+.atl2 .covcalc > summary::after{content:' ▾';color:#4B5E78;font-weight:500}
+.atl2 .covcalc[open] > summary::after{content:' ▴'}
+.atl2 .covcalc h3{margin:0 0 8px;font-size:13px;font-weight:800;color:var(--ink);
+  letter-spacing:-.01em}
+/* ── LE TABLEAU REPRIS (27/08 : « le tableau d'où vient ce chiffre est toujours
+   horrible … rends-le propre, aéré, lisible avec une belle police, et retire
+   le background du haut du tableau qui marche pas »).
+   POURQUOI LE BANDEAU NE MARCHAIT PAS — mesuré, pas supposé : 'thead th'
+   posait color:#fff sur un fond #16233A, mais '.cc', '.cn' et '.cs'
+   (trois classes) BATTENT 'thead th' (deux classes + un élément) et
+   repeignaient l'encre en var(--ink)/var(--sub). Deux libellés sur trois
+   étaient donc écrits en noir SUR NOIR — invisibles à l'écran. Aggravant :
+   '--sub' n'est défini NULLE PART dans la feuille, donc var(--sub) sans
+   repli retombe sur l'encre héritée. Le bandeau part : un en-tête clair posé
+   sur un filet se lit toujours, et ne peut plus se retourner contre lui-même.
+   Les repères de couleur sont écrits en dur avec repli — plus de dépendance
+   à une variable fantôme. */
+.atl2 .covcalc table{width:100%;border-collapse:collapse;margin:14px 0 4px;
+  font-size:13px;background:none;border:0}
+.atl2 .covcalc thead th{padding:0 12px 10px;background:none;
+  font-family:var(--body);font-size:12px;font-weight:600;text-align:left;white-space:nowrap;
+  color:#4B5E78;border-bottom:1.5px solid var(--line2)}
+.atl2 .covcalc thead th.mkc,
+.atl2 .covcalc thead th.mkn,
+.atl2 .covcalc thead th.mks{color:#4B5E78;font-family:var(--body);font-size:10.5px;
+  font-weight:700}
+.atl2 .covcalc thead th.mkn{text-align:right}
+.atl2 .covcalc th:first-child,.atl2 .covcalc td:first-child{padding-left:2px}
+.atl2 .covcalc th:last-child,.atl2 .covcalc td:last-child{padding-right:2px}
+/* de l'air : une ligne de tableau à 8 px de haut se lit comme un mur */
+.atl2 .covcalc td{padding:12px;border-bottom:1px solid var(--line);
+  vertical-align:baseline;line-height:1.5;background:none}
+.atl2 .covcalc td.mkc{font-family:var(--mono);font-size:12px;font-weight:600;
+  letter-spacing:.01em;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.atl2 .covcalc td.mkn{text-align:right;font-family:var(--body);font-size:14px;
+  font-weight:700;color:var(--ink);width:96px;font-variant-numeric:tabular-nums;
+  font-feature-settings:'tnum' 1}
+.atl2 .covcalc td.mks{font-size:12.5px;color:#4B5E78}
+.atl2 .covcalc td.mks span{display:block}
+.atl2 .covcalc td.mks em{display:block;font-style:normal;color:#8FA0B8;
+  font-size:11.5px;line-height:1.45;margin-top:3px}
+/* une ligne à zéro reste lisible : elle pâlit, elle ne s'efface pas */
+.atl2 .covcalc tr.zero td.mkc,.atl2 .covcalc tr.zero td.mkn{color:#8FA0B8}
+.atl2 .covcalc tr.zero td.mks{color:#8FA0B8}
+.atl2 .covcalc tr.tot td{border-bottom:0;border-top:1.5px solid var(--line2);
+  padding-top:14px;padding-bottom:2px;font-weight:800}
+.atl2 .covcalc tr.tot td.mkc{font-family:var(--body);font-size:12.5px;
+  letter-spacing:.02em;color:var(--ink)}
+.atl2 .covcalc tr.tot td.mkn{font-size:16px;color:var(--ink)}
+/* ── L'ATTENTE MISE EN SCÈNE (17/08 : « fais charger la carte avec une
+   animation dynamique sérieuse, et aussi Cibles pour… »). Des pins qui
+   apparaissent l'un après l'autre sur la carte, un message qui dit ce qui se
+   charge, et des barres qui scintillent à la place du titre — au lieu d'un
+   « Cibles pour … » en typographie finale qui sautait ensuite au vrai nom. */
+.atl2 .mapzone{position:relative}
+.atl2 .mapskel{position:absolute;inset:0;pointer-events:none;z-index:2}
+.atl2 .mapskel i{position:absolute;width:11px;height:11px;margin:-5px 0 0 -5px;
+  border-radius:50%;background:var(--brand);opacity:.25;
+  animation:mskpin 1.9s ease-in-out infinite;animation-delay:var(--d)}
+@keyframes mskpin{0%,100%{transform:scale(.55);opacity:.18}
+  50%{transform:scale(1);opacity:.8}}
+.atl2 .mapskel .mskm{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-size:12.5px;color:var(--sub);background:rgba(255,255,255,.86);
+  border:1px solid var(--line);border-radius:999px;padding:6px 14px;white-space:nowrap;
+  box-shadow:0 2px 10px rgba(15,29,51,.06)}
+.atl2 .skt{display:inline-block;border-radius:5px;vertical-align:middle;
+  background:linear-gradient(90deg,var(--panel3) 25%,var(--line) 37%,var(--panel3) 63%);
+  background-size:400% 100%;animation:sktsh 1.4s ease-in-out infinite}
+@keyframes sktsh{0%{background-position:100% 0}100%{background-position:0 0}}
+.atl2 .skt.sk-h1{width:210px;height:19px}
+.atl2 .skt.sk-ini{width:16px;height:11px}
+.atl2 .skt.sk-nm{width:74px;height:9px}
+.atl2 .skt.sk-upd{width:132px;height:10px}
+@media (prefers-reduced-motion:reduce){
+  .atl2 .mapskel i,.atl2 .skt{animation:none}}
+/* ── APERÇU : TOUTES LES LIGNES, SEUL LE NOM EST VOILÉ (17/08 : « afficher
+   toutes les entreprises de 1 à 10 comme aujourd'hui, et pour toutes les
+   autres uniquement flouter leurs noms mais toutes les mettre »). Avant, la
+   ligne entière était floutée — activité, verdict, score et pays devenaient
+   illisibles alors que ce sont eux qui donnent envie. */
+.atl2 .row.tzr .rnm.nmx{filter:blur(5px);user-select:none}
+.atl2 .row.tzr .rnm.nmx .tb{display:none}
+.atl2 .dcard.tzr .dnm{filter:blur(5px);user-select:none}
+/* ── LES PUCES DE FILTRE du fil d'Ariane (17/08 : « pour qu'on comprenne bien
+   que c'est une liste filtrée ») : discrètes, cliquables, elles disent ce qui
+   restreint le nombre affiché juste à leur gauche. */
+.atl2 .listhead .ctx .fpuce{display:inline-flex;align-items:center;gap:4px;
+  margin-left:6px;padding:2px 6px 2px 7px;border:1px solid var(--line);
+  border-radius:999px;background:var(--panel2);color:var(--sub);
+  font:inherit;font-size:10.5px;line-height:1.5;cursor:pointer;vertical-align:middle}
+.atl2 .listhead .ctx .fpuce:hover{border-color:var(--brand);color:var(--ink)}
+.atl2 .listhead .ctx .fpuce i{font-style:normal;font-size:12px;color:var(--dim);line-height:1}
+.atl2 .listhead .ctx .fpuce:hover i{color:var(--red)}
+/* ── L'ATTENTE HABITÉE (16/08 : « une animation hyper jolie qui permette de
+   patienter et qui soit utile ») : point de marque qui pulse, message qui
+   dit ce qui se charge, squelette de lignes qui scintille. */
+.atl2 .loadwait{padding:18px 16px 28px}
+.atl2 .loadwait .lw-top{display:flex;align-items:center;gap:10px;margin:6px 0 18px}
+.atl2 .loadwait .lw-dot{width:10px;height:10px;border-radius:50%;
+  background:var(--brand);animation:lwp 1.2s ease-in-out infinite}
+.atl2 .loadwait .lw-msg{font-size:13px;color:var(--muted)}
+.atl2 .loadwait .lw-row{display:flex;gap:14px;margin:12px 0;opacity:0;
+  animation:lwf .4s both;animation-delay:var(--d)}
+.atl2 .loadwait .lw-c{height:14px;border-radius:7px;
+  background:linear-gradient(90deg,#EEF2F6 25%,#E3E8F0 45%,#EEF2F6 65%);
+  background-size:200% 100%;animation:lws 1.4s linear infinite}
+.atl2 .loadwait .lw-c1{width:24%}
+.atl2 .loadwait .lw-c2{flex:1}
+.atl2 .loadwait .lw-c3{width:11%}
+@keyframes lwp{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.65);opacity:.4}}
+@keyframes lws{from{background-position:200% 0}to{background-position:-200% 0}}
+@keyframes lwf{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+/* MAXI ops : la carte sociale EST l'image de la tuile — et la tuile porte
+   TOUT ce que porte la ligne dépliée (16/08 soir) : chips-filtres, montant,
+   moteur, signal, source, geste. */
+.atl2 .dcard.dops{display:flex;flex-direction:column;gap:8px}
+.atl2 .dcard.dops .dimg{margin:-2px -2px 2px;border-radius:8px;overflow:hidden}
+.atl2 .dcard.dops .ddesc{font-size:12.5px;line-height:1.5;color:#33404E}
+.atl2 .dcard.dops .dtags{display:flex;flex-wrap:wrap;gap:5px}
+.atl2 .dcard.dops .dtags span,.atl2 .dcard.dops .dtags button{
+  font:inherit;font-family:var(--mono);font-size:12px;color:#4B5E78;background:#F5F7FA;
+  border:1px solid var(--line);border-radius:5px;padding:3px 7px;font-weight:600}
+.atl2 .dcard.dops .dtags button{cursor:pointer}
+.atl2 .dcard.dops .dtags button:hover{color:var(--ink);border-color:var(--ink)}
+.atl2 .dcard.dops .dtags .damt{color:var(--ink);font-weight:700;background:#fff}
+.atl2 .dcard.dops .dsig{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.atl2 .dcard.dops .dmo{font-size:10.5px;color:var(--muted)}
+.atl2 .dcard.dops .dsrc{font-family:var(--mono);font-size:9.5px;color:var(--dim);
+  text-decoration:none;border-bottom:1px dotted var(--line2)}
+.atl2 .dcard.dops .dsrc:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.atl2 .dcard.dops .dact{margin-top:auto}
+.atl2 .dcard.dops .dact .cell{display:flex}
+.atl2 .dcard.dops .rdec{margin-left:6px}
+/* « ce qu'on peut faire » — MENU VERTICAL compact (16/08 soir : trois boutons
+   côte à côte décalaient « Enchaîner ») : un bouton, la liste par-dessus. */
+.atl2 .doable{position:relative;display:inline-flex;margin-left:8px}
+.atl2 .doable button{background:none;border:1px solid var(--line);border-radius:6px;
+  font:inherit;font-size:10.5px;font-weight:600;color:var(--muted);padding:5px 9px;
+  cursor:pointer;white-space:nowrap}
+.atl2 .doable button:hover{color:var(--ink);border-color:var(--ink)}
+.atl2 .doable .dobtn i{font-style:normal;margin-left:6px;opacity:.6}
+.atl2 .doable .dolist{position:absolute;z-index:80;top:calc(100% + 5px);left:0;right:auto;
+  display:flex;flex-direction:column;gap:2px;min-width:196px;padding:4px;
+  background:#fff;border:1px solid var(--line);border-radius:8px;
+  box-shadow:0 14px 34px -18px rgba(15,29,51,.55)}
+.atl2 .doable .dolist button{width:100%;text-align:left;border-color:transparent}
+.atl2 .doable .dolist button[aria-pressed=true]{color:var(--brand-d);
+  border-color:var(--brand);background:var(--brand-l)}
+.atl2 .doable .dolist{z-index:90}
+/* ── UN AXE COMMUN POUR LA LIGNE DU MATIN (17/08, PJ3 : « essaye d'afficher les
+   boutons mieux alignés, et idem pour Ce matin, 33 sociétés criblées… »).
+   La phrase, « Tout est évalué », la barre de progression et le bouton
+   flottaient sans axe : la barre s'étirait jusqu'à 200 px n'importe où dans la
+   ligne, et le bouton était collé au bord. On pose une grille en trois zones —
+   la phrase prend la place, puis la mesure, puis l'action — toutes alignées sur
+   la même ligne médiane. */
+.atl2 .goal{display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap}
+.atl2 .goal .gtxt{flex:1 1 340px;min-width:0}
+.atl2 .goal .pbar{flex:0 0 160px;max-width:160px;margin-left:auto;align-self:center}
+.atl2 .goal .pilebtn{flex:none;align-self:center;white-space:nowrap}
+/* la cale vide de fin de ligne ne sert plus qu'à séparer : elle ne doit pas
+   pousser le bouton hors de l'axe */
+.atl2 .goal .gspace{display:none}
+/* ── LA BOX VERTE = LA BOX ROUGE (17/08) : même géométrie, même en-tête,
+   mêmes puces, seuls le fond et l'encre changent. */
+.atl2 .since{display:block;margin:0 0 8px;padding:10px 14px;border-radius:0;
+  background:#E7F6EE;border:0;border-bottom:1px solid #BBF7D0;border-left:0}
+.atl2 .since .sg-h{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.atl2 .since .t{font-size:13.5px;font-weight:700;color:#0E7F3F}
+.atl2 .since .s{font-size:12.5px;color:#3F8F68}
+.atl2 .since .sg-sp{flex:1}
+.atl2 .since .sg-c{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.atl2 .since .sg-chip{display:inline-flex;align-items:baseline;gap:6px;
+  padding:5px 10px;border:1px solid #86D4A8;border-radius:11px;background:#fff;
+  font:inherit;cursor:pointer;text-align:left;max-width:340px}
+.atl2 .since .sg-chip:hover{border-color:#12A150}
+.atl2 .since .sg-chip b{font-size:12px;color:#0E7F3F;font-weight:800;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px}
+.atl2 .since .sg-more{font:inherit;font-size:11.5px;font-weight:800;color:#0E7F3F;
+  background:#fff;border:1px solid #86D4A8;border-radius:999px;padding:5px 11px;cursor:pointer}
+.atl2 .since .sg-x{background:none;border:0;cursor:pointer;font-size:14px;line-height:1;
+  color:#5f8f76;padding:1px 5px;border-radius:5px}
+.atl2 .since .sg-x:hover{background:#E7F6EE;color:#0b5c34}
+.atl2 .since.mini .sg-c{display:none}
+.atl2 .since .gone{font-size:11px;color:var(--dim);text-decoration:line-through;
+  padding:3px 7px}
+.atl2 .sigstrip{margin-left:0;margin-right:0}
+/* ── LE MÉMO LU SUR PLACE (17/08) : le bouton bleu de la V1, et le document
+   dans la fiche plutôt que dans un onglet perdu. Hauteur généreuse mais bornée
+   pour que la liste reste atteignable dessous. */
+.atl2 .cdmemo .btn.b{background:#1E5FCC;border-color:#1E5FCC;color:#fff;font-weight:700}
+.atl2 .cdmemo .btn.b:hover{background:#1a52b0;border-color:#1a52b0}
+.atl2 .cdembed{width:100%;height:70vh;min-height:420px;margin-top:11px;display:block;
+  border:1px solid var(--line);border-radius:10px;background:#fff}
+/* ── OÙ EN EST CE DOSSIER, en tête du popup (17/08) : les mêmes pastilles que
+   la ligne du cockpit, plus l'étape du tunnel et le statut posé par le
+   dirigeant. Sans elles, le popup affichait une justification sous le titre
+   « VERDICT » sans jamais dire le verdict. */
+.atl2 .pstat{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:9px 0 2px}
+.atl2 .pstat .pstep{font-family:var(--mono);font-size:12px;color:var(--dim);border:1px solid var(--line);
+  border-radius:999px;padding:2px 8px;font-weight:600}
+.atl2 .pstat .pstep.own{color:var(--brand-d);border-color:var(--brand)}
+
+/* ══ TYPOGRAPHIE DES MODALES — une échelle, cinq niveaux (17/08) ═══════════
+   Antoine : « c'est catastrophique… l'écriture c'est des pattes de mouche,
+   toutes les polices sont mal choisies mal ordonnées ». Mesuré avant, sur cinq
+   popups (outils, export, alertes, file, couverture) : QUATORZE tailles
+   cohabitaient, 93 nœuds sur 267 passaient sous 12 px, et le titre de section
+   — du mono de 9 px très tracké — était PLUS PETIT de 3 px que le corps qu'il
+   annonce. Une hiérarchie inversée : voilà pourquoi rien ne se lisait.
+
+   Cinq niveaux, rien sous 12 px, et le mono rendu à son seul usage légitime :
+   le code. Les titres de section passent en sans, gras, encre pleine, avec un
+   filet de séparation — ils redeviennent plus gros que leur corps.
+
+   PORTÉE VOLONTAIREMENT LIMITÉE À .modal : les mêmes classes (.mnote, .qsec)
+   vivent aussi dans les fiches et la liste, où elles sont bien réglées. Les
+   toucher globalement casserait le cockpit pour réparer les popups. */
+.atl2 .modal{
+  --m1:20px;    /* titre de modale  */
+  --m2:15px;    /* titre de section */
+  --m3:13px;    /* corps            */
+  --m4:12px;    /* note             */
+  --m5:12.5px;  /* mono / code      */
+}
+/* ① le titre, et la croix qui redevient plus PETITE que lui — elle était à
+      21 px contre 19, donc l'œil tombait d'abord sur le bouton de fermeture. */
+.atl2 .modal .mcard .mh h2{font-size:var(--m1);font-weight:700;
+  letter-spacing:-.01em;line-height:1.3}
+.atl2 .modal .mcard .mh .x{font-size:18px;line-height:1}
+/* ② titre de section : plus jamais un mono minuscule. Les variantes ne
+      changent QUE la couleur, jamais le rang. */
+.atl2 .modal .qsec{font-family:inherit;font-size:var(--m2);font-weight:700;
+  letter-spacing:0;color:var(--ink);line-height:1.35;text-transform:none;
+  margin:22px 0 9px;padding-top:15px;border-top:1px solid var(--line)}
+.atl2 .modal .mb>.qsec:first-child{margin-top:0;padding-top:0;border-top:0}
+.atl2 .modal .qsec.ok{color:var(--brand-d)}
+.atl2 .modal .qsec.todo{color:#96690E}
+.atl2 .modal .qsec.run{color:var(--ink)}
+/* ③ le corps — une seule taille pour tout ce qui se lit en phrases */
+.atl2 .modal .qrow,
+.atl2 .modal .lead2,
+.atl2 .modal .secl .secli,
+.atl2 .modal .plughow li,
+.atl2 .modal .qverd li,
+.atl2 .modal .exi p,
+.atl2 .modal .qeta,
+.atl2 .modal details>summary{font-size:var(--m3);line-height:1.55}
+/* ④ les notes : secondaires, mais LISIBLES — plusieurs étaient à 10,5 px */
+.atl2 .modal .mnote,
+.atl2 .modal .hint,
+.atl2 .modal .qhedge,
+.atl2 .modal .qrate{font-size:var(--m4);line-height:1.6}
+/* ⑤ le mono, réservé au code — et il RESPIRE : les blocs sortaient sur une
+      seule ligne compacte, illisibles (retour d'Antoine sur le curl et le
+      JSON). Retour à la ligne, hauteur d'interligne, et un fond qui les
+      détache du texte. */
+.atl2 .modal .cpy{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap;
+  background:var(--panel2);border:1px solid var(--line);border-radius:9px;
+  padding:11px 12px;margin:8px 0 4px}
+.atl2 .modal .cpy code{flex:1 1 260px;min-width:0;font-family:var(--mono);
+  font-size:var(--m5);line-height:1.65;color:var(--ink);white-space:pre-wrap;
+  word-break:break-word;background:none;padding:0}
+.atl2 .modal .cpy button{flex:none;align-self:flex-start}
+/* ⑥ les étapes numérotées du panneau outils : de vraies puces alignées */
+.atl2 .modal .plughow{margin:8px 0 12px;padding-left:22px;display:grid;gap:7px}
+.atl2 .modal .plughow li{color:var(--sub)}
+.atl2 .modal .plughow li::marker{color:var(--dim);font-weight:700}
+/* ⑦ le pied d'une rangée de réglage ne colle plus à la suivante */
+.atl2 .modal .qrow{padding:9px 0;border-bottom:1px solid var(--line)}
+.atl2 .modal .qrow:last-of-type{border-bottom:0}
+.atl2 .modal .qrow>span:first-child{color:var(--ink)}
+.atl2 .modal .qrow>span:first-child div{font-size:var(--m4);line-height:1.5}
+
+/* ── NOTICE = COULEUR DE L'ÉTAPE (17/08) : la ligne sous les flèches reprend
+   --p0…--pf, plus de teinte maison. Texte via --tc (encre ou blanc).
+   25/08 : p b color inherit peignait le chip .tstep de la même encre
+   que le fond (noir sur noir / blanc sur blanc). Le nowrap coupait le texte. */
+.atl2 .tuto{background:var(--bg);align-items:flex-start}
+.atl2 .tuto.mini p,.atl2 .tuto p{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;
+  color:var(--tc,var(--ink))!important;
+  white-space:normal!important;overflow:visible!important;text-overflow:unset;
+  line-height:1.45;max-width:none}
+.atl2 .tuto.mini p b,.atl2 .tuto p b{color:inherit}
+.atl2 .tuto p b.tstep,.atl2 .tuto.mini p b.tstep{
+  flex:none;display:inline-block;font-size:12px;
+  color:var(--stt,#fff)!important;background:var(--stc,var(--ink));
+  padding:3px 8px;margin-right:0;border-radius:var(--rs);line-height:1.2;font-weight:600}
+.atl2 .tuto .tbody{flex:1 1 14em;min-width:0;white-space:normal}
+.atl2 .tuto .tprim{flex:none;align-self:center}
+.atl2 .tuto.on-dark .tprim{background:#fff;color:var(--ink)}
+.atl2 .tuto.on-dark .tprim:hover{filter:brightness(.96)}
+.atl2 .step .l{font-size:12px;font-weight:600}
+
+/* Monde n'est plus un îlot vert — même grammaire que les autres continents. */
+.atl2 .cbtn.hint{background:none;color:inherit;font-weight:inherit}
+.atl2 .cbtn.hint .n{background:var(--panel3);color:var(--muted)}
+.atl2 .cbtn[aria-selected="true"].hint .n{background:var(--ink);color:#fff}
+
+/* CRIBLE · MÉMO : deux tris dans la même cellule d'en-tête. */
+.atl2 .app.pipe .cols .h-vd.h-vd-sort{flex-direction:row;align-items:center;gap:4px}
+.atl2 .h-vd-sort button{font:inherit;letter-spacing:inherit;color:inherit;
+  background:none;border:0;padding:4px 0;cursor:pointer;display:inline-flex;
+  align-items:center;gap:3px}
+.atl2 .h-vd-sort button[aria-sort="ascending"],
+.atl2 .h-vd-sort button[aria-sort="descending"]{color:var(--ink)}
+.atl2 .h-vd-sort i{font-style:normal;opacity:.4;padding:0 1px}
+
+.atl2 .listhead:has(.fstrip){align-items:center}
+.atl2 .listhead .fstrip{order:9}
+/* Mobile /actualites : les menus du haut restent, mais s'alignent en rangées
+   au lieu de partir chacun de son côté (nowrap desk trop large à 390 px). */
+@media (max-width:760px){
+  body.pp-desk .atl2.ops .eval-stick{
+    position:sticky;width:100%;flex:none;
+    top:calc(var(--pp-gap,48px) + var(--pp-live-h,44px) + var(--chrome-tog-h,36px));
+    z-index:36;background:var(--panel2,#fff);
+    box-shadow:0 1px 0 var(--line,#E3E8F0)}
+  body.pp-desk .atl2.ops .listhead,
+  body.pp-desk .atl2.ops .listhead.mapoff{
+    position:sticky!important;
+    width:100%!important;max-width:none!important;
+    top:calc(var(--pp-gap,48px) + var(--pp-live-h,44px) + var(--chrome-tog-h,36px) + var(--demand-h,56px))!important}
+  body.pp-desk .atl2.ops.chrome-filt .listhead,
+  body.pp-desk .atl2.ops.chrome-filt .listhead.mapoff{
+    top:calc(var(--pp-gap,48px) + var(--pp-live-h,44px) + var(--chrome-tog-h,36px))!important}
+  body.pp-desk .atl2.ops .list.maxi,
+  body.pp-desk .atl2.ops .desk-list .list.maxi{
+    overflow:visible!important;max-height:none!important;height:auto!important}
+  body.pp-desk .atl2.ops .fzone,
+  body.pp-desk .atl2.ops .mapzone,
+  body.pp-desk .atl2.ops .stage{
+    display:none!important;height:0!important;min-height:0!important;max-height:0!important}
+  body.pp-desk .atl2.ops .contpick > .mapbtn{display:none}
+  /* Filtres + Moteur : feuille collée en BAS d'écran (jamais top:100% hors champ). */
+  body.pp-desk .atl2.ops .fmenu{position:static}
+  body.pp-desk .atl2.ops .fmenu-pop,
+  body.pp-desk .atl2.ops .listhead .fpanel,
+  body.pp-desk .atl2.ops .fpanel.on,
+  body.pp-desk .atl2.ops .winpick-pop{
+    position:fixed!important;left:10px!important;right:10px!important;
+    top:auto!important;bottom:12px!important;width:auto!important;
+    max-width:none!important;min-width:0!important;
+    max-height:min(42vh,320px);overflow-y:auto;-webkit-overflow-scrolling:touch;
+    z-index:200;border-radius:14px;
+    box-shadow:0 16px 40px rgba(15,29,51,.28)}
+  body.pp-desk .atl2.ops .fpanel .fcols{
+    columns:1;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;min-height:0}
+  body.pp-desk .atl2.ops .listhead.mapoff{padding:8px 12px 10px}
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-top{
+    flex-wrap:wrap!important;row-gap:8px;column-gap:8px;min-height:0}
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-top .main,
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-top .ctx{flex:none}
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-acts{
+    flex:1 1 100%;justify-content:flex-start;margin-left:0;flex-wrap:wrap;
+    gap:8px}
+  body.pp-desk .atl2.ops .listhead.mapoff .chainwrap{margin-left:0}
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-tools{
+    padding-top:8px;margin-top:6px}
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .fstrip{
+    flex-wrap:wrap!important;row-gap:8px}
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .fstrip-a{
+    flex:1 1 100%;min-width:0}
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .fstrip-a .seg{
+    flex-wrap:wrap;gap:6px}
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .fstrip-b,
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .frow2{
+    flex:1 1 100%;flex-wrap:wrap!important;margin-left:0;justify-content:flex-start}
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .fsrch{
+    flex:1 1 100%;max-width:none;min-width:0}
+}
+.atl2 .winpick{position:relative;flex:none}
+.atl2 .winpick-btn{display:inline-flex;align-items:center;gap:6px;
+  background:#fff;border:1px solid var(--line);border-radius:6px;
+  padding:6px 10px;font:inherit;font-size:12px;color:var(--ink);cursor:pointer;
+  white-space:nowrap}
+.atl2 .winpick-btn:hover{border-color:var(--ink)}
+.atl2 .winpick-k{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--dim)}
+.atl2 .winpick-v{font-weight:650}
+.atl2 .winpick-btn b{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.atl2 .winpick-btn i{font-style:normal;font-size:9px;color:var(--dim)}
+.atl2 .winpick-pop{position:absolute;z-index:80;top:calc(100% + 5px);left:0;
+  display:flex;flex-direction:column;gap:2px;min-width:180px;padding:4px;
+  background:#fff;border:1px solid var(--line);border-radius:8px;
+  box-shadow:0 14px 34px -18px rgba(15,29,51,.55)}
+.atl2 .winpick-pop button{display:flex;align-items:center;justify-content:space-between;
+  gap:16px;width:100%;text-align:left;background:none;border:0;border-radius:5px;
+  padding:8px 10px;font:inherit;font-size:12.5px;cursor:pointer;color:var(--ink)}
+.atl2 .winpick-pop button:hover{background:#F5F7FA}
+.atl2 .winpick-pop button[aria-selected="true"]{background:#E7F6EE;color:#0E8A44;font-weight:650}
+.atl2 .winpick-pop .n{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.atl2 .listhead .conts + .conts{display:none}
+
+/* Menu continent compact — carte repliée. Même grammaire que « Tout ▾ ». */
+.atl2 .contpick{position:relative;display:inline-flex;align-items:center;gap:10px;flex:none}
+.atl2 .contpick > .mapbtn{flex:none;font-size:12px;font-weight:600;border:1px solid var(--line);color:var(--ink)}
+.atl2 .contpick-btn{display:inline-flex;align-items:center;gap:6px;
+  background:none;border:0;border-bottom:2.5px solid var(--ink);border-radius:0;
+  padding:2px 2px 4px;font:inherit;font-size:13px;font-weight:700;color:var(--ink);
+  cursor:pointer;white-space:nowrap}
+.atl2 .contpick-btn .n{font-family:var(--mono);font-size:9.5px;font-weight:700;
+  background:var(--ink);color:#fff;border-radius:var(--rs);padding:1px 7px}
+.atl2 .contpick-btn i{font-style:normal;font-size:9px;color:var(--dim);margin-left:2px}
+.atl2 .contpick-btn:hover{color:var(--ink)}
+.atl2 .contpick-pop{position:absolute;z-index:60;top:calc(100% + 6px);left:0;
+  display:flex;flex-direction:column;gap:2px;min-width:220px;padding:6px;
+  background:#fff;border:1px solid var(--line);border-radius:8px;
+  box-shadow:0 14px 34px -18px rgba(15,29,51,.55)}
+.atl2 .contpick-pop button{display:flex;align-items:center;justify-content:space-between;
+  gap:12px;width:100%;text-align:left;background:none;border:0;border-radius:6px;
+  padding:7px 10px;font:inherit;font-size:13px;color:var(--muted);cursor:pointer}
+.atl2 .contpick-pop button:hover{background:var(--panel2);color:var(--ink)}
+.atl2 .contpick-pop button[aria-selected="true"]{color:var(--ink);font-weight:700;
+  background:var(--panel2)}
+.atl2 .contpick-pop button .n{font-family:var(--mono);font-size:9.5px;
+  background:var(--panel3);color:var(--muted);border-radius:var(--rs);padding:1px 7px}
+.atl2 .contpick-pop button[aria-selected="true"] .n{background:var(--ink);color:#fff}
+
+/* Menu Filtres : les 7 facettes ne s'étalent plus, elles s'ouvrent au clic. */
+.atl2 .fmenu{position:relative;flex:none;z-index:30}
+.atl2 .fmenu-pop{position:absolute;left:0;top:calc(100% + 5px);z-index:32;
+  display:flex;flex-wrap:wrap;gap:5px;min-width:280px;
+  max-width:min(540px,calc(100vw - 40px));padding:10px;
+  background:var(--panel);border:1px solid var(--line2);border-radius:8px;
+  box-shadow:0 10px 28px rgba(15,29,51,.14)}
+.atl2 .fmenu-pop .facets{display:flex;flex-wrap:wrap;gap:5px}
+.atl2 .fmenu-btn.on:not([aria-expanded="true"]){border-color:var(--ink)}
+@media (max-width:700px){
+  .atl2 .fmenu-pop{left:0;right:0;min-width:0;max-width:none}}
+/* Sous 900 px le proto empilait nom + description (2–3 lignes) et
+   cachait trop de pistes : pouces et Analyser tombaient hors grille.
+   On garde UNE ligne : nom ellipsé, action + pouces visibles. */
+@media (max-width:900px){
+  .atl2 .nd{flex-direction:row!important;align-items:baseline!important;gap:8px!important}
+  .atl2 .nd .rnm{max-width:46%!important}
+  .atl2 .nd .rds{white-space:nowrap!important;display:block!important;
+    overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:unset;
+    -webkit-box-orient:unset}
+  .atl2 .app.pipe .row,.atl2 .app.pipe .cols{
+    grid-template-columns:11px 26px minmax(0,1fr) 90px 36px!important}
+}
+
+/* ── MÉMO EN DIRECT (V1 cb-live-strip / cb-run-track) ─────────────────── */
+.atl2 .livestrip{display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+  margin:0 14px 10px;padding:10px 14px;border:1px solid #bfe3cf;border-radius:13px;
+  cursor:pointer;background:linear-gradient(180deg,#f2fbf6,#e9f7f0);
+  box-shadow:0 1px 4px rgba(15,90,50,.07)}
+.atl2 .livestrip:hover{border-color:#12A150}
+.atl2 .ls-ico{font-size:14px}
+.atl2 .ls-lab{font-size:12px;font-weight:600;
+  color:#0E7F3F}
+.atl2 .ls-chip{display:inline-flex;align-items:center;gap:8px;background:#fff;
+  border:1px solid #C9D6E6;border-radius:999px;padding:5px 12px;font-size:12px;
+  font-weight:600;color:#0F1D33}
+.atl2 .ls-chip b{font-weight:800}
+.atl2 .ls-chip.err{border-color:#f2c9c6;color:#C0353A}
+.atl2 .ls-chip.done{border-color:#bfe3cf;background:#f2fbf6;color:#0E7F3F}
+.atl2 .ls-more{font-size:11px;font-weight:800;color:#56697e}
+.atl2 .ls-go{margin-left:auto;font-size:12px;font-weight:800;color:#0E7F3F}
+.atl2 .runtrack{display:inline-flex;flex-direction:column;gap:3px;min-width:140px}
+.atl2 .runchrono{font-size:10.5px;font-weight:700;color:#43536a;white-space:nowrap}
+.atl2 .runbar{display:block;width:100%;height:6px;border-radius:999px;background:#e6ecf3;
+  overflow:hidden}
+.atl2 .runbar i{display:block;height:100%;border-radius:999px;
+  background:linear-gradient(90deg,#7cc7ff,#2563eb);transition:width 1s linear}
+.atl2 .runbar i.ind{width:35%;animation:runind 1.3s ease-in-out infinite alternate}
+@keyframes runind{from{margin-left:0}to{margin-left:65%}}
+.atl2 .runerr{font-size:11px;font-weight:700;color:#C0353A}
+/* L'étape réelle du mémo (carnet memo-live-notes) — sous le chrono,
+   clipée : une phrase de pipeline ne doit pas déformer la ligne. */
+.atl2 .runnote{display:block;max-width:340px;overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;font-size:10.5px;color:#4B5E78;line-height:1.3}
+.atl2 .livestrip .runnote{max-width:230px}
+.atl2 .rundone{font-size:12px;font-weight:800;color:#0E7F3F}
+.atl2 .evalbtn.analyse{background:#1E5FCC}
+.atl2 .evalbtn.analyse:hover{filter:brightness(1.08)}
+.atl2 .evalbtn{display:inline-flex;align-items:center;justify-content:center;gap:4px}
+.atl2 .evalbtn .elab{position:relative;z-index:1;min-width:0}
+/* languette mobile : collée SOUS le LIVE, jamais au milieu de la liste */
+.atl2 .chrome-tog{display:none}
+@media (max-width:760px){
+  body.pp-desk .atl2.ops{--chrome-tog-h:36px}
+  body.pp-desk .atl2.ops .chrome-tog{
+    display:flex;align-items:stretch;justify-content:stretch;gap:0;
+    position:sticky;z-index:38;order:1;flex:none;width:100%;
+    height:36px;margin:0;padding:3px;border:0;border-bottom:1px solid var(--line,#E3E8F0);
+    background:#F5F7FA;top:calc(var(--pp-gap,48px) + var(--pp-live-h,44px))}
+  body.pp-desk .atl2.ops .chrome-tog button{
+    flex:1;min-width:0;margin:0;padding:0 6px;border:0;border-radius:6px;
+    background:transparent;color:#4B5E78;font:inherit;font-size:12px;font-weight:650;
+    cursor:pointer}
+  body.pp-desk .atl2.ops .chrome-tog button[aria-selected="true"]{
+    background:#fff;color:#16233A;box-shadow:0 1px 2px rgba(15,29,51,.12)}
+  body.pp-desk .atl2.ops.chrome-eval .listhead{display:none!important}
+  body.pp-desk .atl2.ops.chrome-filt .eval-stick{display:none!important}
+}
+.atl2 .result.memolive{align-items:center;gap:10px}
+.atl2 .result.memolive .runtrack{min-width:160px}
+.atl2 .cell .runtrack{min-width:118px;align-items:flex-start}
+@media(max-width:760px){
+  .atl2 .livestrip{flex-direction:column;align-items:stretch}
+  .atl2 .ls-go{margin-left:0}
+  .atl2 .ls-chip{width:100%;justify-content:space-between}
+  .atl2.ops .mapzone{height:180px;min-height:180px;max-height:180px}
+  .atl2.ops .mapzone svg{height:180px!important;max-height:180px!important}
+  .atl2.ops .grp-pin{display:none}
+  .atl2.ops .desk-list .row,
+  .atl2.ops .desk-list .cols{
+    grid-template-columns:11px 22px minmax(0,1fr) minmax(92px,118px)!important}
+  .atl2 .demand{padding:8px 12px}
+  .atl2 .viewbtn,.atl2 .viewbtn.sm,.atl2 .evalbtn{height:40px}
+  body.pp-desk .atl2.ops .drow{flex-wrap:wrap}
+  body.pp-desk .atl2.ops .dfield{flex:1 1 100%!important}
+  body.pp-desk .atl2.ops .dacts{
+    flex:1 1 100%;flex-wrap:nowrap;justify-content:flex-start;gap:6px;margin-left:0}
+  body.pp-desk .atl2.ops .dacts .evalbtn{
+    flex:1 1 auto;min-width:0;max-width:none;padding:0 10px;justify-content:center}
+  body.pp-desk .atl2.ops .dacts .evalbtn .elab{
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+  body.pp-desk .atl2.ops .dacts .viewbtn,
+  body.pp-desk .atl2.ops .dacts .viewbtn.sm{flex:none;padding:0 10px}
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-top,
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-tools,
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .fstrip,
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .fstrip-b,
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-tools .frow2{flex-wrap:wrap!important}
+  body.pp-desk .atl2.ops .listhead.mapoff .lh-tools{min-height:0}
+}
+/* ── LES COMMANDES DES POPUPS D'ALERTES, TROISIÈME PASSE (27/08, PJ2 :
+   « les menus aujourd'hui + et − sont décalés, faut corriger ça »).
+   Bloc AUTONOME posé en fin de feuille : il n'édite aucune règle existante,
+   il tranche par l'ordre de cascade — le worktree est partagé.
+
+   CE QUI CLOCHAIT, mesuré au navigateur (getBoundingClientRect sur
+   /fr/carte, popup « Vos alertes email », onglets Quotidien et Hebdomadaire) :
+     · pastille ON / OFF ......................  62 × 24 px
+     · boutons − et + .........................  34 × 34 px
+     · menu déroulant du jour .................  90 × 27 px
+     · « Jours ouvrés » / « Tous les jours » ..  26 × 24 px  ← cassés
+   Trois hauteurs de commande sur des lignes voisines : c'est ça, « décalé ».
+   Et les deux boutons de jours sortaient à 26 px de LARGE, texte en nowrap
+   débordant l'un sur l'autre puis coupé par le bord de la carte — parce que
+   la feuille générée pose '.atl2 .qset button{width:24px;height:24px}'
+   (spécificité 0,2,1), qui attrape AUSSI les .abtn, et que
+   '.atl2 .qrow .qset .abtn' (0,3,0) ne reposait jamais de largeur : min-width
+   ne sauve que la pastille ON/OFF, qui en a une.
+   Une seule hauteur pour tout ce que .qset contient, et les boutons de texte
+   reprennent leur largeur naturelle. */
+.atl2 .qrow .qset{--qh:34px;align-items:center;row-gap:8px}
+.atl2 .qrow .qset .abtn{width:auto;min-width:0;max-width:100%;height:var(--qh);
+  display:inline-flex;align-items:center;justify-content:center;padding:0 14px;
+  font-size:12px;font-weight:700;letter-spacing:.03em;white-space:nowrap;
+  border-radius:8px}
+.atl2 .qrow .qset .abtn.onoff{min-width:62px}
+/* − et + : mêmes carrés, même poids optique (le « ＋ » pleine chasse du JSX
+   pesait plus lourd que le « − » d'en face — il est passé en + simple) */
+.atl2 .qrow .qset button:not(.abtn){width:var(--qh);height:var(--qh);flex:none;
+  font-size:17px;font-weight:600;line-height:1;border-radius:8px}
+.atl2 .qrow .qset select{height:var(--qh);padding:0 10px;font-size:12.5px;
+  border:1px solid var(--line);border-radius:8px;background:var(--panel);
+  color:var(--ink);cursor:pointer}
+.atl2 .qrow .qset select:disabled{opacity:.45;cursor:default}
+.atl2 .qrow .qset input{height:var(--qh);padding:0 10px;font-size:12.5px;
+  border-radius:8px}
+.atl2 .qrow .qset b{min-width:56px;text-align:center;font-size:14px;
+  font-variant-numeric:tabular-nums}
+
+/* ── « LECTURE DE LA FILE » (27/08) : le popup File de traitement mettait
+   jusqu'à ~55 s à répondre et affichait pendant tout ce temps « 0 / 0 » et
+   « À venir — 0 sociétés », sous une barre qui annonçait déjà 19 en attente.
+   Un point qui bat et une phrase valent mieux qu'un zéro qu'on n'a pas
+   vérifié. Couleurs en dur : '--sub' n'est défini nulle part dans la feuille. */
+.atl2 .modal .qwait{display:inline-flex;align-items:center;gap:9px;
+  font-size:12.5px;line-height:1.5;color:#4B5E78}
+.atl2 .modal .qwait.qwrow{padding:12px 2px}
+.atl2 .modal .qwait .qwd{flex:none;width:8px;height:8px;border-radius:50%;
+  background:var(--brand);animation:lwp 1.2s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.atl2 .modal .qwait .qwd{animation:none}}
+
+/* ── L'ÉTAT DE L'ENREGISTREMENT DES SECTIONS (27/08) : discret, à côté du titre,
+   il devient vert une fois écrit. Sans lui, cocher une case ne produisait aucun
+   signe à l'écran. */
+.atl2 .modal .qsec .secsave{margin-left:10px;font-size:12px;font-weight:600;color:#8FA0B8;vertical-align:middle}
+.atl2 .modal .qsec .secsave.done{color:var(--brand)}
+
+/* ── LE PLANISPHÈRE DU COCKPIT AU TRAITEMENT DE /actualites (27/08 : « le menu
+   droite avec les filtres et l'encadré gauche [ne sont] pas dessus le
+   planisphère … le planisphère monde ne ressemble toujours pas au planisphère
+   dans /actualites qui est beaucoup mieux. Je veux qu'il lui ressemble »).
+
+   MESURÉ AVANT, sur les deux pages, viewport 1500 :
+     /actualites  .stage display:block position:relative — carte 1500 px de
+                  large, .fbar en position:absolute z-4 POSÉE DESSUS (360 px,
+                  coins arrondis, ombre portée), encadré d'édition flottant
+                  à gauche.
+     /cibles      .stage display:flex — carte 1260 px, .fbar STATIQUE de
+                  240 px collée à droite : la carte est amputée d'un sixième
+                  et le panneau n'est pas une carte, juste une colonne.
+
+   Mêmes valeurs que .ops, sélecteurs à part (le worktree est partagé et la
+   session voisine travaille dans les règles .atl2.ops). */
+.atl2.cibles .stage:not(.folded){display:block!important;position:relative;
+  flex-direction:unset;--rail:384px}
+.atl2.cibles .stage:not(.folded) .fpanel{z-index:5;max-height:calc(100% - 24px);
+  border-radius:12px;overflow:auto}
+.atl2.cibles .stage:not(.folded) .fbar{position:absolute;z-index:4;right:12px;top:12px;
+  /* 29/08 : « trop d'espace vide dans ces filtres » — bottom:12px ETIRAIT la
+     carte sur toute la hauteur du planisphere ; le vide entre les facettes et
+     « Alerte email » n'etait que ca. Hauteur au contenu, plafond conserve. */
+  bottom:auto;width:min(360px,38%);height:auto!important;max-height:calc(100% - 24px);
+  box-sizing:border-box;padding:12px 14px;overflow-y:auto;overscroll-behavior:auto;
+  background:rgba(255,255,255,.94);backdrop-filter:blur(12px);
+  border:1px solid rgba(15,29,51,.10);border-radius:12px;
+  box-shadow:0 10px 32px rgba(15,29,51,.10)}
+.atl2.cibles .map-pulse{position:absolute;z-index:4;left:12px;top:12px;
+  width:min(220px,28%);text-align:left;padding:14px 16px 12px;
+  background:rgba(255,255,255,.93);backdrop-filter:blur(12px);
+  border:1px solid rgba(15,29,51,.10);border-radius:12px;
+  box-shadow:0 10px 32px rgba(15,29,51,.10);cursor:pointer;font:inherit;color:inherit}
+.atl2.cibles .map-pulse:hover{border-color:rgba(18,161,80,.45)}
+.atl2.cibles .map-pulse em{display:block;font-style:normal;font-family:var(--mono);
+  font-size:12px;font-weight:600;
+  color:#12A150;margin:0 0 6px}
+.atl2.cibles .map-pulse b{font-size:32px;font-weight:800;letter-spacing:-.04em;
+  line-height:1;color:var(--ink)}
+.atl2.cibles .map-pulse>span{display:block;font-family:var(--mono);font-size:12px;color:#8FA0B8;margin:4px 0 10px;font-weight:600}
+.atl2.cibles .map-pulse ul{list-style:none;margin:0;padding:0;display:flex;
+  flex-direction:column;gap:5px}
+.atl2.cibles .map-pulse li{font-size:12.5px;color:#0F1D33;line-height:1.35}
+/* Le périmètre de la ligne « retenues » — discret mais présent : l'encadré
+   compte le fonds entier, le tunnel d'à côté le seul continent ouvert. */
+.atl2.cibles .map-pulse li .cpscope,.atl2.ops .map-pulse li .cpscope{
+  font-style:normal;font-family:var(--mono);font-size:12px;color:#8FA0B8;margin-left:5px;font-weight:600}
+/* SOUS 1000 px les deux cartes flottantes redeviennent des blocs empilés —
+   même repli que /actualites : une carte de 360 px posée sur un planisphère
+   de 700 px le recouvrirait entièrement. */
+@media (max-width:1000px){
+  .atl2.cibles .map-pulse,.atl2.cibles .stage:not(.folded) .fbar{position:static;
+    width:auto;max-height:none;bottom:auto;box-shadow:none;border-radius:0;
+    backdrop-filter:none}
+  .atl2.cibles .stage:not(.folded){display:flex!important;flex-direction:column}}
+
+/* ── LA LIGNE DE TITRE DE LA LISTE TENAIT SUR QUATRE LIGNES (29/08 : « au-dessus
+   de la liste il y a beaucoup trop de hauteur qui sert à rien »).
+   CAUSE, mesurée au navigateur : la feuille pose
+   '.atl2 .listhead .lh-top{display:contents}' — la rangée est DISSOUTE dans la
+   colonne flex du bandeau, donc chacun de ses enfants devient sa propre ligne.
+   Elle n'était re-matérialisée en rangée que sous '.listhead.mapoff', c'est-à-
+   dire CARTE REPLIÉE. Carte ouverte — le cas par défaut — on mesurait :
+     lh-top      h=0    (display:contents : la boîte n'existe pas)
+       .main     y=847  « 19 retenues »
+       .dot      y=880  « · »      ← un point de séparation, seul sur sa ligne
+       .ctx      y=909  « Europe · winhealthgroup »
+       .lh-acts  y=936  LISTE · LIGNE · MAXI · Tout
+   Soit ~120 px pour une ligne de texte, et un point d'énumération isolé au
+   milieu. On la remet en rangée dans le cockpit, carte ouverte ou repliée. */
+body.pp-desk .atl2.cibles .listhead .lh-top{
+  display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;
+  gap:8px;width:100%;min-width:0}
+body.pp-desk .atl2.cibles .listhead .lh-top .main,
+body.pp-desk .atl2.cibles .listhead .lh-top .ctx{min-width:0}
+/* et le groupe d'actions reste UNE rangée : mesuré, il s'enroulait sur trois
+   lignes (LISTE/LIGNE/MAXI, puis Tout, puis Parcourir) et redonnait au bandeau
+   les 35 px qu'on venait de lui reprendre. */
+body.pp-desk .atl2.cibles .listhead .lh-top .lh-acts{margin-left:auto;flex:none;
+  display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:8px}
+
+/* ── « 📖 Edito du jour » AU MÊME TRAITEMENT QUE /actualites (29/08 : « je ne
+   comprends pas pourquoi tu as mis la languette Edito du jour collée en haut à
+   gauche, c'est pas beau, inspire-toi de la page /actualites »).
+   La règle pleine largeur existait — et n'était écrite que pour '.atl2.ops' :
+     .atl2.ops .readpane .pane-edito{display:block;width:calc(100% - 32px);
+       margin:12px 16px 8px;text-align:left}
+   Dans le cockpit, le bouton retombait sur la petite pastille en ligne de
+   '.edito-go', sans marge, collée dans l'angle du panneau. Mêmes valeurs ici. */
+.atl2.cibles .readpane .pane-edito{display:block;width:calc(100% - 32px);
+  margin:12px 16px 8px;text-align:left}
+
+/* ── LE BANDEAU DE LISTE, PASSE DU 29/08 (six retours d'Antoine d'un coup).
+   Bloc autonome en fin de feuille : rien n'est édité au-dessus. */
+
+/* ⑤ LE TUNNEL PASSE SOUS LA LIGNE DE TITRE (« le funnel devrait être plus bas,
+   là il y a écrit Europe winhealthgroup »). L'ordre était : pastilles, stats,
+   TUNNEL, puis « 19 retenues · Europe · winhealthgroup ». On inverse les deux
+   derniers : on annonce d'abord CE QU'ON REGARDE, le tunnel vient ensuite. */
+body.pp-desk .atl2.cibles .listhead .lh-funnel{order:6;padding:6px 0 0}
+
+/* ④ LA BARRE VERTE NE SERT À RIEN (« à droite de ça il y a une barre verte qui
+   sert à rien »). C'est la jauge de progression de la barre du matin : sur un
+   fonds dont tout est évalué elle est pleine en permanence, donc elle
+   n'informe jamais. Elle disparaît du cockpit ; la phrase suffit. */
+body.pp-desk .atl2.cibles .listhead .lh-stats .goal .pbar{display:none}
+body.pp-desk .atl2.cibles .listhead .lh-stats .goal{gap:8px}
+
+/* ③ LES PASTILLES ALIGNÉES : même boîte, même hauteur, même ligne de base. */
+.atl2.cibles .dockbtn{display:inline-flex;align-items:center;gap:5px;
+  height:28px;line-height:1;vertical-align:middle}
+.atl2.cibles .lh-dock{align-items:center;row-gap:6px}
+
+/* ⑥ LE PAVÉ DE STATISTIQUES PRENAIT TROP DE HAUTEUR (« tout ce texte prend trop
+   de hauteur »). Mesuré : la phrase du matin, puis deux lignes de bilan, puis
+   la ligne de marché — quatre blocs empilés au-dessus d'une liste qui, elle,
+   est le sujet. On resserre : corps plus petit, interlignes courts, moins de
+   marges. Aucun chiffre n'est retiré. */
+body.pp-desk .atl2.cibles .listhead .lh-stats{padding:2px 0 6px}
+body.pp-desk .atl2.cibles .listhead .lh-stats .goal .gtxt{font-size:12.5px;line-height:1.45}
+body.pp-desk .atl2.cibles .listhead .lh-stats .fstats{font-size:11.5px;line-height:1.4}
+body.pp-desk .atl2.cibles .listhead .lh-stats .fstats .fsrow{margin:2px 0;gap:6px}
+body.pp-desk .atl2.cibles .listhead .lh-stats .fstats b{font-size:12px}
+
+/* ⑦ LE SIGNAL, ROUGE, COLLÉ AU NOM. La colonne .c-sig est masquée dans le
+   cockpit : le badge est désormais rendu dans la cellule du nom, et doit y
+   garder son fond rouge et sa place — jamais un retour à la ligne. */
+.atl2.cibles .desk-list .row .sig{flex:none;margin-right:7px;white-space:nowrap}
+.atl2.cibles .desk-list .row .rnm{min-width:0}
+
+/* ── ④ LES TROIS PASTILLES REJOIGNENT LA LIGNE DE TITRE (29/08 : « on gagnerait
+   de la place si tu mettais les pastilles sur la ligne 171 nouvelles · Europe …
+   car là ça prend trop de hauteur pour rien »).
+   Le bandeau est déjà un flex qui enroule : il suffit que les deux blocs
+   cessent de réclamer 100 % de la largeur, et de leur donner le MÊME rang.
+   La ligne de titre garde la priorité d'espace, les pastilles ne rétrécissent
+   jamais, et si la largeur manque elles repassent en dessous d'elles-mêmes. */
+/* Les pastilles sont maintenant DANS la rangée de titre : leur 'order' (qui
+   les plaçait dans la colonne du bandeau) les renverrait après le groupe
+   d'actions, donc à la ligne. Elles reprennent le rang par défaut. */
+body.pp-desk .atl2.cibles .listhead .lh-top .lh-dock{order:0;width:auto;
+  flex:0 0 auto;padding:0;margin:0 14px 0 0;border:0}
+body.pp-desk .atl2.cibles .listhead .lh-top{width:100%}
+body.pp-desk .atl2.cibles .listhead .lh-top .main{flex:0 0 auto}
+
+/* ── ⑥ LE MENU « STATUT » NE RECEVAIT PAS LE CLIC (29/08 : « quand je clique sur
+   statut sur la ligne ça met rien à jour »).
+   Ce n'est pas l'action qui échouait : le clic n'arrivait JAMAIS au bouton.
+   Playwright le dit mot pour mot — « <span class='vd wait'>mémo à lancer</span>
+   intercepts pointer events ». Mesure de la rangée : la colonne verdict fait
+   120 px et doit loger TROIS choses (le badge MATCH, « mémo à lancer », et le
+   menu Statut) ; elle est en overflow:hidden, donc les enfants se chevauchent
+   et c'est le libellé qui passe devant le bouton — un menu qu'on ne peut pas
+   ouvrir a l'air d'un menu qui ne fait rien.
+   On donne à la colonne la largeur qu'il lui faut, on la met en rangée qui ne
+   s'enroule pas, et le menu passe au-dessus. */
+.atl2.cibles .desk-list .row,
+.atl2.cibles .desk-list .cols{
+  grid-template-columns:11px 28px minmax(0,1fr) minmax(168px,214px) max-content!important}
+.atl2.cibles .desk-list .c-vd{overflow:visible!important;display:flex;
+  flex-wrap:nowrap;align-items:center;justify-content:flex-end;gap:7px}
+.atl2.cibles .desk-list .c-vd > *{flex:none}
+.atl2.cibles .desk-list .c-vd .rstat{position:relative;z-index:4}
+/* Un LIBELLE ne doit pas capter le clic. « MATCH » et « memo a lancer » sont
+   decoratifs ; c est pourtant l un d eux que le navigateur designait comme
+   cible a la place du bouton. pointer-events:none les rend transparents au
+   pointeur sans rien changer a ce qu ils affichent. */
+.atl2.cibles .desk-list .c-vd .vd{white-space:nowrap;pointer-events:none}
+
+/* ── PASSE DU 29/08, SUITE (7 retours) ─────────────────────────────────────── */
+
+/* ③ PASTILLES : même boîte, même axe. Le décalage venait d'un reliquat de
+   padding et du wrap ; on aligne tout au centre de la rangée, sans marge
+   verticale possible. */
+body.pp-desk .atl2.cibles .listhead .lh-top{align-items:center}
+body.pp-desk .atl2.cibles .listhead .lh-top .lh-dock{align-items:center;
+  align-self:center;padding:0;margin:0 14px 0 0;row-gap:6px}
+body.pp-desk .atl2.cibles .listhead .lh-top .lh-dock .dockbtn{margin:0;
+  align-self:center;position:relative;top:0}
+
+/* ② LES LIGNES SONT NUMÉROTÉES — le lien visuel entre le compteur du filtre et
+   la liste (« il faudrait numéroter les lignes »). Compteur CSS : aucun
+   changement de grille, le numéro vit en tête de la cellule nom. */
+.atl2.cibles .desk-list{counter-reset:ppligne}
+.atl2.cibles .desk-list .row{counter-increment:ppligne}
+.atl2.cibles .desk-list .row .nd::before{content:counter(ppligne);
+  font-family:var(--mono);font-size:9.5px;color:#8FA0B8;min-width:20px;
+  margin-right:6px;text-align:right;flex:none}
+
+/* ✨ la puce « nouvelle » sur la ligne */
+.atl2.cibles .desk-list .row .rfresh{flex:none;margin-right:5px;font-size:11px;
+  line-height:1}
+
+/* ⑥ (retour précédent) LA LIGNE PORTE LA COULEUR DE SON ONGLET, comme la V1 :
+   écartées rosées, validées vertes pâles, favoris jaunes pâles — la lecture
+   d'un coup d'œil. Les fonds restent sous le hover/sélection (déclarés avant
+   .on/.sel ? non : même fin de feuille — on redonne donc aussi leurs états). */
+.atl2.cibles .desk-list .row.p5{background:#FEF6F6}
+.atl2.cibles .desk-list .row.p5:hover,.atl2.cibles .desk-list .row.p5.on{background:#FDEDED}
+.atl2.cibles .desk-list .row.p4{background:#F3FAF6}
+.atl2.cibles .desk-list .row.p4:hover,.atl2.cibles .desk-list .row.p4.on{background:#E9F6EF}
+.atl2.cibles .desk-list .row.fav{background:#FFFBEB}
+.atl2.cibles .desk-list .row.fav:hover,.atl2.cibles .desk-list .row.fav.on{background:#FFF3D6}
+
+/* ── PASSE DU 29/08, TROISIEME SERIE ──────────────────────────────────────── */
+
+/* ③ « Parcourir les 171 est trop décalé à droite » : lh-top était en nowrap,
+   son groupe d'actions DÉBORDAIT du bandeau (62 % de large) et flottait sur la
+   colonne de droite — d'où aussi le « texte tassé » perçu sur le zoom. La
+   rangée peut se replier : les actions passent dessous quand la place manque,
+   elles ne sortent plus jamais du cadre. */
+body.pp-desk .atl2.cibles .listhead .lh-top{flex-wrap:wrap;row-gap:8px}
+body.pp-desk .atl2.cibles .listhead .lh-top .lh-acts{margin-left:auto;flex:0 1 auto}
+
+/* ④ OUI / NON directement sur la ligne d'un CALL — le geste de la V1. */
+.atl2.cibles .desk-list .rst2{display:inline-flex;gap:5px}
+.atl2.cibles .desk-list .rsd{font:inherit;font-size:12px;font-weight:600;padding:4px 11px;border-radius:7px;cursor:pointer;
+  border:1px solid transparent;line-height:1.2}
+.atl2.cibles .desk-list .rsd.yes{background:#12A150;border-color:#12A150;color:#fff}
+.atl2.cibles .desk-list .rsd.yes:hover{background:#0E8A44}
+.atl2.cibles .desk-list .rsd.no{background:#fff;border-color:#F5C6C8;color:#C0353A}
+.atl2.cibles .desk-list .rsd.no:hover{background:#FDECEC}
+.atl2.cibles .desk-list .rsd.busy{opacity:.5;cursor:default}
+
+/* ── 29/08, dernier retour du soir : « la police de l'édito est trop grande ».
+   MESURÉ en prod avant de toucher : le CORPS est déjà à 12-12,5 px — la même
+   taille que les lignes de la liste. Ce qui reste GROS, c'est le TITRE du
+   panneau : 19 px, posés par la règle '.atl2.cibles .zoom .thesis-brief__title'
+   (~661) qui bat le réglage du composant. Il redescend au rang d'un titre de
+   colonne, et le kicker/la date suivent. */
+.atl2.cibles .zoom .thesis-brief__title{font-size:14.5px;letter-spacing:-.015em}
+.atl2.cibles .zoom .thesis-brief__date{font-size:10.5px}
+
+/* ── 29/08, derniere passe du bandeau ────────────────────────────────────────
+   ① « quand je clique sur 27 criblees, tout le detail devrait etre EN DESSOUS
+   et pas au-dessus » : lh-stats (le pave du matin) etait en ordre 3, avant la
+   ligne de titre (5). Il passe apres elle, avant le tunnel (6).
+   ② « mets ca sur 2 lignes au meme niveau que LISTE LIGNE TOUT » : la rangee
+   ne s enroule plus — les pastilles se replient ENTRE ELLES a gauche, le
+   contexte s ellipse, et le groupe d outils reste au meme niveau a droite. */
+body.pp-desk .atl2.cibles .listhead .lh-top{order:4;flex-wrap:nowrap}
+body.pp-desk .atl2.cibles .listhead .lh-stats{order:5}
+body.pp-desk .atl2.cibles .listhead .lh-top .lh-dock{flex:0 1 auto;min-width:0;
+  flex-wrap:wrap;row-gap:4px}
+body.pp-desk .atl2.cibles .listhead .lh-top .main{flex:none;white-space:nowrap}
+body.pp-desk .atl2.cibles .listhead .lh-top .ctx{flex:0 1 auto;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body.pp-desk .atl2.cibles .listhead .lh-top .lh-acts{flex:none}
+
+/* ── LE STATUT COMME EN V1 (29/08, demande repetee) : plus un menu deroulant
+   etroit — une RANGEE horizontale, tous les statuts visibles d un coup, un
+   clic. Ancree a droite au-dessus de la ligne pour ne rien recouvrir d utile. */
+.atl2.cibles .desk-list .rstm{top:auto;bottom:calc(100% + 4px);right:0;
+  flex-direction:row;gap:4px;min-width:0;padding:5px 6px;white-space:nowrap}
+.atl2.cibles .desk-list .rstm .rsti{padding:6px 10px;font-size:11.5px;
+  font-weight:650;white-space:nowrap}
+
+/* -- 29/08, nuit -------------------------------------------------------------
+   (1) "mets le texte a droite de la pastille (7 evaluees) AU-DESSUS de
+   Europe / winhealthgroup" : la rangee de titre devient une grille - pastilles
+   a gauche, compteur EMPILE sur son contexte au centre, outils a droite. */
+body.pp-desk .atl2.cibles .listhead .lh-top{display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;grid-auto-rows:min-content;
+  align-items:center;column-gap:14px;row-gap:1px}
+body.pp-desk .atl2.cibles .listhead .lh-top .lh-dock{grid-column:1;grid-row:1 / span 2}
+body.pp-desk .atl2.cibles .listhead .lh-top .main{grid-column:2;grid-row:1;align-self:end}
+body.pp-desk .atl2.cibles .listhead .lh-top .dot{display:none}
+body.pp-desk .atl2.cibles .listhead .lh-top .ctx{grid-column:2;grid-row:2;align-self:start}
+body.pp-desk .atl2.cibles .listhead .lh-top .lh-acts{grid-column:3;grid-row:1 / span 2}
+
+/* (2) le select natif du statut - l'outil de la V1 */
+.atl2.cibles .desk-list .rsel{font:inherit;font-size:11px;font-weight:650;
+  height:24px;padding:0 4px;border:1px solid var(--line);border-radius:6px;
+  background:#fff;color:var(--ink);cursor:pointer;max-width:112px}
+.atl2.cibles .desk-list .rsel:hover{border-color:#8FA0B8}
+.atl2.cibles .desk-list .rsel:disabled{opacity:.5;cursor:default}
+
+/* (3) l'encart verdict de la carte Parcourir : la raison ENTIERE, aeree */
+.atl2 .vbox.vfull{display:block}
+.atl2 .vbox.vfull .vt{display:block;margin-bottom:6px}
+.atl2 .vbox.vfull .vd{display:block;white-space:normal;overflow:visible;
+  text-overflow:clip;font-size:12.5px;line-height:1.65;color:var(--muted)}
+
+/* -- 29/08, fin de soiree ----------------------------------------------------
+   (3) "je t'ai dit de mettre sur une seule ligne : 482 evaluees" : la grille
+   a deux etages ne rendait pas — retour a UNE rangee flex, contexte ellipse.
+   Ce bloc, plus tardif, bat la grille au-dessus. */
+body.pp-desk .atl2.cibles .listhead .lh-top{display:flex;flex-wrap:nowrap;
+  align-items:center;gap:10px}
+body.pp-desk .atl2.cibles .listhead .lh-top .lh-dock{flex:0 1 auto;min-width:0;
+  flex-wrap:wrap;row-gap:4px}
+/* align-self : la grille d'avant posait end/start — en flex ils etagent tout,
+   on recentre chaque bloc explicitement. */
+body.pp-desk .atl2.cibles .listhead .lh-top .main{flex:none;white-space:nowrap;
+  align-self:center}
+body.pp-desk .atl2.cibles .listhead .lh-top .dot{display:inline;align-self:center}
+body.pp-desk .atl2.cibles .listhead .lh-top .ctx{flex:0 1 auto;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;align-self:center}
+body.pp-desk .atl2.cibles .listhead .lh-top .lh-acts{flex:none;margin-left:auto;
+  align-self:center}
+
+/* (2) "on ne voit plus la separation avec les fleches entre les etapes" :
+   tous les compteurs a zero, chaque chevron portait le MEME gris — les
+   pointes existaient mais rien ne les dessinait. Chaque etape reprend une
+   version pale de SA couleur : la forme redevient lisible. */
+.atl2.cibles .listhead .step{background:color-mix(in srgb, var(--c) 16%, #fff)}
+.atl2.cibles .listhead .step:hover{background:color-mix(in srgb, var(--c) 30%, #fff)}
+.atl2.cibles .listhead .step[aria-selected="true"]{background:var(--c)}
+
+/* (1) le select Statut, habille : chevron dessine, teinte du statut courant,
+   focus visible — le navigateur garde toute la mecanique. */
+.atl2.cibles .desk-list .rsel{appearance:none;-webkit-appearance:none;
+  font:inherit;font-size:11px;font-weight:650;height:24px;padding:0 20px 0 9px;
+  border:1px solid var(--line);border-radius:999px;color:var(--ink);
+  cursor:pointer;max-width:118px;
+  background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%2364748B' fill='none' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 7px center}
+.atl2.cibles .desk-list .rsel:hover{border-color:#8FA0B8;box-shadow:0 1px 4px rgba(15,29,51,.10)}
+.atl2.cibles .desk-list .rsel:focus-visible{outline:2px solid #12A150;outline-offset:1px}
+.atl2.cibles .desk-list .rsel.rs-off{color:#4B5E78;font-weight:600}
+.atl2.cibles .desk-list .rsel.rs-ret{background-color:#F1FAF4;border-color:#BBE7CC;color:#0E8A44}
+.atl2.cibles .desk-list .rsel.rs-ana{background-color:#F1F6FE;border-color:#BFD8F9;color:#1E5FCC}
+.atl2.cibles .desk-list .rsel.rs-tra{background-color:#FFF8EB;border-color:#F5DFAE;color:#92600A}
+.atl2.cibles .desk-list .rsel.rs-val{background-color:#12A150;border-color:#12A150;color:#fff}
+.atl2.cibles .desk-list .rsel.rs-eca{background-color:#FDF3F3;border-color:#F3C6C6;color:#C0353A}
+
+/* (5) les onglets Analyse / Societe du zoom : plus de filet gris sous la
+   rangee — l'onglet actif porte deja son soulignement. */
+.atl2.cibles .readpane .cdnav{border-bottom:0;padding:0}
+
+/* (29/08 : « dans l'edito du jour il faut que l'image prenne toute la
+   largeur ») : la carte marché tient la colonne, mise à l'échelle — plus
+   de marges négatives qui la faisaient déborder puis recadrer. */
+.atl2.ops .readpane.is-edito .zoom .opcard.art-mktcard{max-width:100%;
+  margin-left:0;margin-right:0;width:100%}
+.atl2.ops .readpane.is-edito .zoom .opcard.art-mktcard .ppcard-fit{
+  width:100%}
+
+/* (29/08 soir : « plus d'espace entre la box verte et le haut de la page,
+   la ca fait colle ») */
+.atl2 .livestrip{margin-top:12px}
+
+/* Le menu du statut, version carte (29/08 soir : « le menu deroulant fait
+   vieux et cheap ») : la pastille .rsel devient un bouton (plus d'anneau de
+   focus au clic souris), le deroulant est une carte du cockpit — point de
+   couleur par statut, coche implicite via .on. Mecanique du menu
+   Tout / Evaluables. */
+.atl2.cibles .desk-list .rstat{position:relative}
+/* le deroulant DOIT sortir de sa pastille : .atl2 .row .c-vd>* pose
+   overflow:hidden sur .rstat, qui est aussi le containing block du menu —
+   sans ce reset, le menu est entierement rogne (revue 29/08, bloquant). */
+.atl2.cibles .desk-list .c-vd .rstat{overflow:visible!important}
+/* ... et DOIT passer au-dessus des pastilles des lignes suivantes : chaque
+   .rstat porte z-index:4 — la ligne du menu ouvert prend la main. */
+.atl2.cibles .desk-list .c-vd .rstat.rs-open{z-index:240}
+.atl2.cibles .desk-list .row:has(.rs-open){position:relative;z-index:10}
+.atl2.cibles .desk-list button.rsel{display:inline-flex;align-items:center;
+  text-align:left;white-space:nowrap}
+.atl2.cibles .desk-list .rsmenu{position:absolute;z-index:230;top:calc(100% + 5px);
+  right:0;display:flex;flex-direction:column;gap:2px;min-width:152px;padding:5px;
+  background:#fff;border:1px solid var(--line);border-radius:11px;
+  box-shadow:0 10px 28px rgba(15,29,51,.16)}
+.atl2.cibles .desk-list .rsopt{display:flex;align-items:center;gap:8px;width:100%;
+  border:0;background:none;border-radius:7px;padding:7px 9px;font:inherit;
+  font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left}
+.atl2.cibles .desk-list .rsopt:hover{background:#F5F7FA}
+.atl2.cibles .desk-list .rsopt.on{background:#EFF8F2;color:#0E8A44;font-weight:750}
+.atl2.cibles .desk-list .rsopt.busy{opacity:.5;cursor:default}
+.atl2.cibles .desk-list .rsopt .pt2{width:8px;height:8px;border-radius:50%;flex:none}
+
+`,$l=`
+/* ── 🔎 VOS MOTEURS DE SOURCING (module V1 v55-v72 porté, 29/08) ─────────── */
+.atl2 .srceng{margin:0 0 10px;border:1px solid var(--line);border-radius:10px;
+  background:var(--panel);overflow:hidden}
+.atl2 .se-head{display:flex;align-items:center;gap:9px;width:100%;padding:9px 13px;
+  border:0;background:transparent;cursor:pointer;font:inherit;text-align:left}
+.atl2 .se-head b{font-size:13px;letter-spacing:-.01em}
+.atl2 .se-head .se-sum{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.atl2 .se-head .se-arr{margin-left:auto;color:var(--dim)}
+.atl2 .se-body{padding:0 13px 13px}
+.atl2 .se-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:2px 0 10px}
+.atl2 .se-win{font:inherit;font-size:11px;font-weight:650;padding:3px 10px;
+  border:1px solid var(--line);border-radius:999px;background:#fff;cursor:pointer}
+.atl2 .se-win.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.atl2 .se-note{font-size:10.5px;color:var(--dim);margin-left:4px}
+.atl2 .se-load,.atl2 .se-err{font-size:12px;color:var(--muted);padding:8px 0}
+.atl2 .se-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:9px}
+.atl2 .se-card{position:relative;border:1px solid var(--line);border-radius:9px;
+  padding:10px 12px;background:var(--panel2)}
+.atl2 .se-card.idle{opacity:.55}
+/* LA BOITE DE RECEPTION PAR SOURCE : le liseré dit « il y a du neuf ici » de
+   loin, la pastille dit combien et s'ouvre d'un clic. Vert de la marque, pas
+   une couleur d'alerte — c'est une bonne nouvelle, pas un probleme. */
+.atl2 .se-card.has-new{border-color:var(--brand,#12A150);
+  box-shadow:0 0 0 1px var(--brand,#12A150) inset}
+.atl2 .se-new{border:0;cursor:pointer;padding:1px 8px;border-radius:9px;
+  background:var(--brand,#12A150);color:#fff;font-size:11px;font-weight:700;
+  line-height:16px;white-space:nowrap}
+.atl2 .se-new:hover{background:var(--brand-d,#0E8A44)}
+.atl2 .se-newsum{color:var(--brand-d,#0E8A44);font-size:11px;font-weight:700}
+.atl2 .se-ct{display:flex;align-items:center;gap:8px}
+.atl2 .se-ct b{font-size:12.5px}
+.atl2 .se-st{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600}
+.atl2 .se-st.ok{color:var(--brand-d)}
+.atl2 .se-spark{margin-left:auto;color:var(--brand)}
+.atl2 .se-desc{margin:5px 0 7px;font-size:11px;line-height:1.5;color:var(--muted)}
+.atl2 .se-hero{display:flex;align-items:baseline;gap:6px}
+.atl2 .se-hero b{font-size:21px;font-weight:800;letter-spacing:-.03em}
+.atl2 .se-hero span{font-size:11px;color:var(--muted)}
+.atl2 .se-split{margin-top:3px;font-size:11px;color:var(--muted)}
+.atl2 .se-split button{font:inherit;font-weight:700;color:var(--ink);background:none;
+  border:0;border-bottom:1px dotted var(--line2);cursor:pointer;padding:0}
+.atl2 .se-split em{font-style:normal;color:var(--dim)}
+.atl2 .se-params{margin-top:6px;font-size:10px;color:var(--dim)}
+.atl2 .se-params i{display:block;font-style:normal;font-weight:700;color:var(--muted);margin-bottom:4px}
+.atl2 .se-chips{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.atl2 .se-chip{display:inline-block;padding:1px 7px;border-radius:999px;
+  background:#fff;border:1px solid var(--line);font-size:10.5px;font-weight:650;
+  color:var(--ink);max-width:100%;overflow-wrap:anywhere;word-break:break-word}
+.atl2 .se-chip.soft{color:var(--muted);background:var(--panel);font-weight:500}
+.atl2 .se-chipmore{font:inherit;font-size:10.5px;font-weight:700;padding:1px 7px;
+  border:1px dashed var(--line2);border-radius:999px;background:#fff;cursor:pointer;color:var(--brand-d,#0E8A44)}
+.atl2 .se-pnote{display:block;margin-top:4px;font-size:10px;color:var(--dim)}
+.atl2 .se-acts{margin-top:8px}
+.atl2 .se-adj{font:inherit;font-size:11px;font-weight:650;padding:4px 10px;
+  border:1px solid var(--line);border-radius:7px;background:#fff;cursor:pointer}
+.atl2 .se-adj:hover{border-color:var(--brand)}
+.atl2 .se-ovl{position:absolute;left:6px;right:6px;top:6px;z-index:5;background:#fff;
+  border:1px solid var(--line2);border-radius:9px;box-shadow:0 10px 28px rgba(15,29,51,.16);
+  padding:9px 11px;max-height:250px;overflow:auto}
+.atl2 .se-ovl-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.atl2 .se-ovl-h b{font-size:11.5px}
+.atl2 .se-ovl-h button{border:0;background:none;font-size:15px;cursor:pointer;color:var(--dim)}
+.atl2 .se-ovl ul{list-style:none;margin:0;padding:0}
+.atl2 .se-ovl li{display:flex;justify-content:space-between;gap:8px;padding:3px 0;
+  border-top:1px solid var(--panel3);font-size:11px}
+.atl2 .se-ovl li span{color:var(--dim);white-space:nowrap}
+.atl2 .se-nl{margin-top:11px;border:1px solid var(--brand);border-radius:9px;
+  padding:10px 12px;background:var(--brand-l)}
+.atl2 .se-nl-h{font-size:12px;font-weight:750;margin-bottom:6px}
+.atl2 .se-nl textarea{width:100%;box-sizing:border-box;font:inherit;font-size:12px;
+  border:1px solid var(--line);border-radius:7px;padding:7px 9px;resize:vertical}
+.atl2 .se-nl-a{display:flex;gap:7px;margin-top:7px}
+.atl2 .se-nl-a button{font:inherit;font-size:11.5px;font-weight:700;padding:5px 13px;
+  border-radius:7px;border:0;background:var(--brand-d);color:#fff;cursor:pointer}
+.atl2 .se-nl-a button.gh{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.atl2 .se-nl-r{margin-top:8px;font-size:12px;line-height:1.55;white-space:pre-wrap}
+
+/* montée dans la LISTE (onglet À évaluer) : cadre doux, marges de section */
+.atl2 .list .evalq,.atl2 .desk-list .evalq{margin:10px 12px;border:1px dashed var(--line2);
+  border-radius:10px;padding:12px;background:var(--panel2);display:flex;gap:14px}
+/* ── LA FILE D'ÉVALUATION (+ lignes, 29/08) ─────────────────────────────── */
+.atl2 .evalq .eq-rows{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.atl2 .eq-note{position:relative;margin:0 0 10px;padding:10px 28px 10px 12px;
+  border:1px solid #BBF7D0;background:#F4FBF6;border-radius:10px;
+  font-size:12.5px;line-height:1.5;color:var(--ink)}
+.atl2 .eq-note.fb{border-color:#F6D9A8;background:#FFF8EC}
+.atl2 .eq-note b{display:block;font-size:13px;margin-bottom:4px;font-weight:700}
+.atl2 .eq-note .eq-nl{margin:2px 0;color:var(--muted)}
+.atl2 .eq-note .eq-nl i{font-style:normal;color:var(--ink);font-weight:600}
+.atl2 .eq-note-x{position:absolute;top:6px;right:8px;border:0;background:none;
+  font:inherit;font-size:16px;line-height:1;color:var(--muted);cursor:pointer;padding:0 2px}
+.atl2 .eq-note-x:hover{color:var(--ink)}
+/* LES COLONNES (30/08) : société · site · ce qu'elle fait · état · ⚡ · ×.
+   Une grille, pas un flex : les colonnes s'alignent d'une ligne à l'autre —
+   sans quoi « un vrai dossier » n'est qu'une suite de bouts collés. */
+.atl2 .eq-item{display:flex;flex-direction:column;min-width:0}
+.atl2 .eq-row,.atl2 .eq-head{display:grid;align-items:center;gap:10px;
+  grid-template-columns:minmax(130px,180px) minmax(110px,170px) minmax(0,1fr) 80px 22px minmax(108px,max-content)}
+.atl2 .eq-head{padding:0 0 2px;font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600}
+.atl2 .eq-row.r-kept{background:rgba(18,161,80,.05);border-radius:7px}
+.atl2 .eq-row.r-out{background:rgba(229,72,77,.04);border-radius:7px}
+.atl2 .eq-desc{min-width:0;font-size:11.5px;line-height:1.35;color:var(--muted);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.atl2 .eq-desc i{font-style:normal;color:var(--dim)}
+.atl2 .eq-desc em{font-style:normal;color:var(--dim);font-size:10.5px}
+.atl2 .eq-go{border:1px solid var(--line);background:#fff;border-radius:7px;cursor:pointer;
+  font-size:12px;line-height:1;padding:4px 6px}
+.atl2 .eq-go:hover:not(:disabled){border-color:var(--brand);background:var(--brand-l)}
+.atl2 .eq-go:disabled{opacity:.3;cursor:default}
+/* LE PAVÉ DE DROITE (30/08 : « le texte apparaît sous le tableau ») : il vit
+   dans une colonne de 180 px et sa phrase, en une seule ligne mono, sortait du
+   cadre. Elle s'enroule et s'aligne à gauche, comme un texte. */
+/* ⚠️ SPÉCIFICITÉ : styles.gen.ts pose « .atl2 .bulk .side .hint{white-space:nowrap} »
+   — QUATRE classes. Une règle en trois classes ne la bat pas, même écrite plus
+   loin (mesuré : whiteSpace restait nowrap, scrollWidth 391 pour 210 px de
+   colonne, la phrase sortait du cadre). On monte à cinq. */
+.atl2 .bulk.evalq .side{width:190px;flex:none}
+.atl2 .bulk.evalq .side .hint{white-space:normal;text-align:left;line-height:1.5;font-size:12px;font-weight:600}
+/* 💡 SUGGESTIONS — les jumelles des retenues, déjà criblées. */
+.atl2 .eq-sugg{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:8px;
+  padding-top:9px;border-top:1px dashed var(--line)}
+.atl2 .eq-sugg-go{font:inherit;font-size:11.5px;font-weight:700;padding:5px 12px;
+  border:1px solid var(--brand);border-radius:999px;background:var(--brand-l);
+  color:var(--brand-d);cursor:pointer}
+.atl2 .eq-sugg-go:disabled{opacity:.55;cursor:default}
+.atl2 .eq-sugg-go2{font:inherit;font-size:11.5px;font-weight:650;padding:5px 11px;
+  border:1px solid var(--line2);border-radius:999px;background:#fff;
+  color:var(--ink);cursor:pointer}
+.atl2 .eq-sugg-go2:disabled{opacity:.5;cursor:default}
+/* La saisie libre : un mot porteur, ou un code NAF. Elle prend la place qui
+   reste sur la ligne sans jamais la faire deborder. */
+.atl2 .eq-sugg-in{font:inherit;font-size:11.5px;padding:5px 11px;flex:1 1 190px;
+  min-width:150px;max-width:320px;border:1px solid var(--line2);
+  border-radius:999px;background:#fff;color:var(--ink)}
+.atl2 .eq-sugg-in:focus{outline:none;border-color:var(--brand)}
+.atl2 .eq-sugg-note{font-size:10.5px;color:var(--dim)}
+.atl2 .eq-sugg-q{font-size:10.5px;color:var(--bolt);font-weight:650}
+.atl2 .eq-sc{display:inline-flex;align-items:center;gap:5px;padding:3px 4px 3px 10px;
+  border:1px solid var(--line2);border-radius:999px;font-size:11.5px;background:#fff}
+.atl2 .eq-sc.ok{border-color:var(--brand);background:var(--brand-l)}
+.atl2 .eq-sc i{font-style:normal;color:var(--brand-d);font-weight:800}
+.atl2 .eq-sc button{border:0;background:var(--ink);color:#fff;width:18px;height:18px;
+  border-radius:50%;cursor:pointer;font-size:12px;line-height:1;padding:0}
+.atl2 .eq-sc button:hover{background:var(--brand-d)}
+.atl2 .eq-row input{flex:0 0 220px;font:inherit;font-size:12.5px;padding:6px 9px;
+  border:1px solid var(--line);border-radius:7px}
+.atl2 .eq-site{flex:1;min-width:0;display:flex;align-items:center;gap:5px;flex-wrap:nowrap;
+  font-size:11.5px;overflow:hidden}
+.atl2 .eq-site a{color:var(--blue);text-decoration:none;white-space:nowrap}
+.atl2 .eq-site em{color:var(--dim);font-style:normal;font-size:10.5px}
+.atl2 .eq-spin{color:var(--dim);font-style:normal}
+.atl2 .eq-cand{font:inherit;font-size:10.5px;font-weight:650;padding:2px 8px;
+  border:1px solid var(--blue);border-radius:999px;background:#fff;color:var(--blue);cursor:pointer}
+.atl2 .eq-cand:hover{background:var(--blue);color:#fff}
+.atl2 .eq-st{flex:none;font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600}
+.atl2 .eq-st.s-kept{color:var(--brand-d);font-weight:700}
+.atl2 .eq-st.s-out{color:var(--red);font-weight:700}
+.atl2 .eq-st.s-ready{color:var(--ink)}
+.atl2 .eq-x{flex:none;border:0;background:none;color:var(--dim);font-size:15px;cursor:pointer;padding:0 3px}
+.atl2 .eq-x:hover{color:var(--red)}
+.atl2 .eq-add{align-self:flex-start;font:inherit;font-size:11.5px;font-weight:650;
+  padding:4px 11px;border:1px dashed var(--line2);border-radius:7px;background:#fff;
+  color:var(--muted);cursor:pointer}
+.atl2 .eq-add:hover{border-color:var(--brand);color:var(--brand-d)}
+/* la date d'une ligne-article (vue 📰) */
+.atl2 .rds .rdate{flex:none;font-family:var(--mono);font-size:10px;font-weight:700;
+  color:var(--muted);background:var(--panel3);border-radius:5px;padding:1px 5px;margin-right:7px}
+
+/* 📰 la pastille Actualités — même famille que ✨/🔴, teinte neutre lecture */
+.atl2 .dockbtn.news.on{background:#0F1D33;color:#fff;border-color:#0F1D33}
+
+/* ── LA LIGNE DE TITRE, PLUS PETITE ET INCASSABLE (29/08 : « winhealth est
+   coupé… mets ce texte et les filtres sur 1 seule et même ligne, écrit plus
+   petit ») : corps réduit d'un cran sur toute la rangée, et le NOM DU FONDS ne
+   peut plus être la victime du rétrécissement — un minimum lisible lui est
+   réservé, les pastilles de gauche cèdent avant lui. Vaut carte ouverte ET
+   repliée (même sélecteur, ce bloc tardif gagne la cascade). */
+body.pp-desk .atl2.cibles .listhead .lh-top{font-size:11.5px;gap:8px}
+body.pp-desk .atl2.cibles .listhead .lh-top .main{font-size:11.5px}
+body.pp-desk .atl2.cibles .listhead .lh-top .main b{font-size:12.5px}
+body.pp-desk .atl2.cibles .listhead .lh-top .ctx{font-size:11px;min-width:150px;flex:1 1 auto}
+body.pp-desk .atl2.cibles .listhead .lh-top .lh-dock{flex:0 1 auto}
+body.pp-desk .atl2.cibles .listhead .lh-top .lh-dock .dockbtn{font-size:10.5px;padding:3px 8px}
+/* -- 29/08 nuit --------------------------------------------------------------
+   (1) LA LIGNE DE TITRE au-dessus du tunnel : « 17 retenues · Europe ·
+   winhealthgroup » lisible, et chaque filtre actif en puce fermable. */
+.atl2.cibles .listhead .lh-title{display:flex;align-items:center;gap:10px;
+  flex-wrap:wrap;padding:8px 0 2px;min-width:0}
+/* la colonne desktop ORDONNE ses rangees (outils 1, pastilles 4, stats 5,
+   tunnel 6) : sans order, la ligne de titre partait en order:0 — arrachee
+   tout en haut du bandeau au lieu d'etre collee au tunnel (revue 29/08).
+   5 = apres les stats (egalite tranchee par l'ordre DOM), juste avant le
+   tunnel. */
+body.pp-desk .atl2.cibles .listhead .lh-title{order:5}
+.atl2.cibles .listhead .lh-title .main{font-size:15px;font-weight:750;
+  color:var(--ink);white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+.atl2.cibles .listhead .lh-title .dot{display:inline;color:#8FA0B8}
+.atl2.cibles .listhead .lh-title .ctx{display:inline-flex;align-items:center;
+  gap:6px;flex-wrap:wrap;font-size:13px;color:#4B5E78;min-width:0}
+.atl2.cibles .listhead .lh-title .ctx .fpuce{font-size:12px}
+
+/* la pastille sombre du compte — cerclee de la couleur de l'etape active,
+   identique a celle du chevron selectionne : le lien tunnel → liste. */
+.atl2.cibles .listhead .lh-title .main .tn{display:inline-flex;align-items:center;
+  justify-content:center;min-width:30px;height:24px;padding:0 9px;
+  border-radius:999px;background:#16233A;color:#fff;font-size:13.5px;
+  font-weight:800;box-shadow:0 0 0 2.5px color-mix(in srgb, var(--c) 78%, #4B5E78)}
+
+/* (2) « on ne voit pas qu'on EST sur Retenues » : l'etape active grossit et
+   son compteur passe dans la MEME pastille sombre que le titre. (Pas
+   d'ombre : clip-path s'applique APRES filter sur le meme element — un
+   drop-shadow y est entierement rogne, mesure en revue.) */
+.atl2.cibles .listhead .step, .atl2.cibles .listhead .off{position:relative}
+.atl2.cibles .listhead .step[aria-selected="true"],
+.atl2.cibles .listhead .off[aria-selected="true"]{
+  transform:scale(1.06);z-index:6}
+.atl2.cibles .listhead .step[aria-selected="true"] .l,
+.atl2.cibles .listhead .off[aria-selected="true"] .l{font-weight:800}
+.atl2.cibles .listhead .step[aria-selected="true"] .n,
+.atl2.cibles .listhead .off[aria-selected="true"] .n{background:#16233A;
+  color:#fff;border-radius:999px;min-width:26px;height:22px;
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:0 8px;font-weight:800;
+  /* le chevron est une colonne flex en stretch : sans align-self, la
+     pastille devenait une barre pleine largeur (revue 29/08) */
+  align-self:flex-start}
+
+/* (4) les outils de l'entonnoir repondent : desactive VISIBLEMENT gris,
+   pression au clic, menu de tri en carte (meme habillage que le menu
+   statut). */
+.atl2.cibles .lh-funnel .ftools .tool:disabled{opacity:.35;cursor:default}
+.atl2.cibles .lh-funnel .ftools .tool:not(:disabled):active{transform:translateY(1px)}
+.atl2.cibles .lh-funnel .fsort{position:relative;display:inline-flex}
+.atl2.cibles .lh-funnel .sortmenu{position:absolute;z-index:230;
+  top:calc(100% + 5px);right:0;display:flex;flex-direction:column;gap:2px;
+  min-width:180px;padding:5px;background:#fff;border:1px solid var(--line);
+  border-radius:11px;box-shadow:0 10px 28px rgba(15,29,51,.16)}
+.atl2.cibles .lh-funnel .sortopt{display:flex;align-items:center;
+  justify-content:space-between;gap:10px;width:100%;border:0;background:none;
+  border-radius:7px;padding:7px 9px;font:inherit;font-size:12px;
+  font-weight:600;color:var(--ink);cursor:pointer;text-align:left}
+.atl2.cibles .lh-funnel .sortopt:hover{background:#F5F7FA}
+.atl2.cibles .lh-funnel .sortopt.on{background:#EFF8F2;color:#0E8A44;font-weight:750}
+.atl2.cibles .lh-funnel .sortopt i{font-style:normal;font-weight:800;min-width:12px}
+@media (max-width:860px){
+  /* la bande funnel defile en x et ROGNE en y (overflow-y:hidden) : un menu
+     absolu y est invisible — meme piege que .fpanel, monte hors de la barre.
+     position:fixed echappe au rognage (aucun ancetre transforme ici). */
+  .atl2.cibles .lh-funnel .sortmenu{position:fixed;top:auto;bottom:14px;
+    left:14px;right:14px;z-index:400;box-shadow:0 -6px 30px rgba(15,29,51,.25)}
+}
+
+/* ═══ LE MÉMO DANS LA FICHE (29/08) — onglets Évaluation / Conviction / Mémo ═══
+   La conviction rend ses <b> en têtes de rubrique (Angle / Market / Timing…),
+   et l'onglet Mémo accueille les sections RÉELLES de la page publiée : en-tête
+   score+tags, table des matières, sections avec images/tables/barres de score
+   re-stylées à l'échelle de la fiche. Bloc AUTONOME, tardif = il gagne la
+   cascade à spécificité égale. */
+.atl2 .convrich b{display:block;font-size:12px;font-weight:600;color:var(--dim);margin:14px 0 3px}
+.atl2 .convrich b:first-child{margin-top:0}
+.atl2 .memodoc{margin-top:6px}
+.atl2 .md-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:2px 0 8px}
+.atl2 .md-score{font-size:13px;font-weight:800;padding:3px 10px;border-radius:999px;
+  background:#EEF3FB;color:#1E5FCC;font-variant-numeric:tabular-nums}
+.atl2 .md-score.md-green{background:#E8F5EE;color:#0E7F3F}
+.atl2 .md-score.md-amber,.atl2 .md-score.md-orange{background:#FDF6E7;color:#92600A}
+.atl2 .md-score.md-red{background:#FDF3F3;color:#C0353A}
+.atl2 .md-tag{font-size:12px;font-weight:600;
+  color:var(--dim);border:1px solid var(--line);border-radius:999px;padding:2px 8px;
+  background:var(--panel2)}
+.atl2 .md-tagline{width:100%;margin:2px 0 0;font-size:12px;line-height:1.45;color:var(--dim)}
+/* la table des matières COLLE en haut pendant qu'on parcourt le mémo (30/08).
+   Dans le popup elle colle au conteneur défilant (top:0) ; dans le panneau,
+   c'est la page qui défile → décalage sous l'en-tête du site. */
+/* L'OFFSET DÉPEND DU CONTENEUR QUI DÉFILE, pas du composant : par défaut la
+   liste (.list overflow-y:auto du proto) → top:0 ; sur /cibles c'est la PAGE
+   qui défile (.desk-list .list{overflow:visible}) → sous l'en-tête du site ;
+   le popup défile dans sa propre fiche → top:0. */
+.atl2 .md-toc{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 4px;padding:8px;
+  border:1px solid var(--line);border-radius:var(--r);background:var(--panel2);
+  position:sticky;top:0;z-index:8;box-shadow:0 4px 10px rgba(15,29,51,.06)}
+.atl2.cibles .md-toc{top:calc(var(--pp-gap,60px) + 8px)}
+.atl2.cibles .readpane .md-toc{top:calc(var(--pp-gap,60px) + 50px + var(--demand-h,0px))}
+.atl2.cibles .pop .md-toc{top:0}
+.atl2 .md-jump{font:inherit;font-size:11px;font-weight:650;color:var(--brand-d);
+  background:var(--panel);border:1px solid var(--line);border-radius:999px;
+  padding:3px 9px;cursor:pointer;white-space:nowrap}
+.atl2 .md-jump:hover{border-color:var(--brand)}
+.atl2 .md-grp-h{font-size:12px;font-weight:600;
+  color:var(--dim);margin:16px 0 0;padding-top:10px;border-top:2px solid var(--ink)}
+.atl2 .md-sec{padding:10px 0 2px;scroll-margin-top:70px;position:relative}
+.atl2 .md-sec + .md-sec{border-top:1px solid var(--line)}
+.atl2 .md-h{margin:0 0 6px;font-size:13.5px;font-weight:750;letter-spacing:-.01em;
+  color:var(--ink)}
+.atl2 .md-more{margin:2px 0 8px}
+.atl2 .md-body{font-size:12.5px;line-height:1.6;color:#0F1D33;overflow-wrap:anywhere;
+  max-width:72ch}
+.atl2 .md-body p{margin:0 0 8px}
+.atl2 .md-body ul,.atl2 .md-body ol{margin:0 0 8px;padding-left:18px}
+.atl2 .md-body img{max-width:100%;height:auto;display:block;margin:8px 0;
+  border:1px solid var(--line);border-radius:8px;background:#fff}
+.atl2 .md-body h3{margin:14px 0 4px;font-size:13px;font-weight:750;color:var(--ink)}
+.atl2 .md-body h4,.atl2 .md-body .kicker{margin:12px 0 3px;font-size:12px;font-weight:600;color:var(--dim)}
+.atl2 .md-body pre{font-size:11px;background:var(--panel2);border:1px solid var(--line);
+  border-radius:6px;padding:8px;white-space:pre-wrap;overflow-x:auto}
+/* tables : celles du mémo arrivent stylées inline ou pas du tout — on impose
+   une grille sobre et un défilement horizontal DANS la fiche (jamais la page).
+   ⚠️ width:max-content!important : la page pose width:100% EN INLINE sur ses
+   tableaux financiers ; dans un panneau étroit, leurs 6 colonnes nowrap
+   écrasaient la colonne Source (overflow-wrap:anywhere) à quelques pixels —
+   une lettre par ligne, des cellules de 500px de haut (capture Antoine,
+   30/08). En largeur naturelle, la table défile ; min-width garde les
+   petites tables pleine largeur. */
+.atl2 .md-body table{width:max-content!important;min-width:100%;max-width:none;
+  border-collapse:collapse;font-size:11px;margin:8px 0}
+.atl2 .md-body th,.atl2 .md-body td{border:1px solid var(--line);padding:4px 6px;
+  text-align:left;vertical-align:top}
+.atl2 .md-body th{background:var(--panel2);font-weight:700}
+/* la page publiée enveloppe 27 tables sur 34 dans .table-container et confiait
+   son overflow à sa feuille de style (retirée au scrub) : sans ces règles, les
+   cellules nowrap débordaient de la fiche. .md-body en dernier filet. */
+.atl2 .md-body .memo-table-fallback,.atl2 .md-body .table-container{overflow-x:auto}
+.atl2 .md-body{overflow-x:auto}
+.atl2 .md-body .split-container{display:block}
+.atl2 .md-body .img-col img{position:static}
+/* les barres de score de la page publiée (score-row / sr-*) — les largeurs
+   viennent d'un style inline width:% posé au bake, on ne fournit que le cadre */
+.atl2 .md-body .score-row{display:flex;align-items:center;gap:8px;margin:3px 0;
+  font-size:11.5px}
+.atl2 .md-body .score-row.sr-head{font-weight:700}
+.atl2 .md-body .sr-label{flex:1 1 42%;min-width:0}
+.atl2 .md-body .sr-bar{flex:1 1 46%;height:7px;border-radius:99px;
+  background:var(--panel3);overflow:hidden}
+.atl2 .md-body .sr-fill{display:block;height:100%;background:#1E5FCC}
+.atl2 .md-body .sr-green .sr-fill{background:#0E7F3F}
+.atl2 .md-body .sr-amber .sr-fill{background:#B07D1A}
+.atl2 .md-body .sr-red .sr-fill{background:#C0353A}
+.atl2 .md-body .sr-val{flex:none;font-weight:700;font-variant-numeric:tabular-nums}
+.atl2 .md-body .sr-note,.atl2 .md-body .sr-sub{flex:none;color:var(--dim);font-size:10px}
+.atl2 .md-body .metric-row{display:flex;justify-content:space-between;gap:10px;
+  font-size:11.5px;margin:2px 0}
+.atl2 .md-body .swot-grid{display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0}
+.atl2 .md-body .swot-item{border:1px solid var(--line);border-left-width:3px;
+  border-radius:8px;padding:8px 10px}
+.atl2 .md-body .swot-item h3{margin:0 0 4px;font-size:12px}
+.atl2 .md-body .s-green{border-left-color:#0E7F3F}
+.atl2 .md-body .s-red{border-left-color:#C0353A}
+.atl2 .md-body .s-blue{border-left-color:#1E5FCC}
+.atl2 .md-body .s-amber{border-left-color:#B07D1A}
+.atl2 .md-body .angle-deep-dive{border-left:3px solid var(--brand);
+  padding:2px 0 2px 10px;margin:10px 0}
+.atl2 .md-body .conv-badge{display:inline-block;font-size:12px;font-weight:600;border:1px solid var(--line);
+  border-radius:999px;padding:2px 8px;margin:2px 0}
+.atl2 .md-body .disclaimer-box{border:1px dashed var(--line);border-radius:8px;
+  padding:8px 10px;background:var(--panel2);font-size:11.5px;color:var(--dim)}
+.atl2 .md-body .source-list a{color:var(--brand-d)}
+/* le GRAND bouton de pied : « Voir le mémo complet » */
+.atl2 .btn.mdfull{display:flex;width:100%;justify-content:center;margin-top:10px;
+  padding:11px 14px;font-size:13px;text-decoration:none}
+/* la carte mentale interactive, sous son PNG (iframe /cibles/mindmap-view) */
+.atl2 .md-mm{width:100%;height:440px;border:1px solid var(--line);border-radius:8px;
+  margin:4px 0 8px;background:#fff}
+.atl2 .md-mm-h{margin-top:10px}
+/* le décideur, données du COCKPIT — quand la carte du mémo dit « unavailable » */
+.atl2 .md-ctc{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;
+  border:1px solid var(--line);border-left:3px solid var(--brand);border-radius:8px;
+  padding:8px 10px;margin:0 0 8px;background:var(--panel2);font-size:12.5px}
+.atl2 .md-ctc .cdk{min-width:0;width:100%}
+.atl2 .md-ctc a{color:var(--brand-d)}
+/* Fiche « Comment contacter » : même carte que le reste du cockpit
+   (blanc, filet, 12 px) — bat les styles inline du HTML publié. */
+.atl2 .md-body [data-ct-card]{border:1px solid var(--pp-line,#E3E8F0)!important;
+  border-radius:12px!important;box-shadow:none!important;margin:0 0 18px!important;
+  background:#fff!important;overflow:hidden;font-family:inherit}
+.atl2 .md-body [data-ct-card] > div:first-child{background:#fff!important;color:#16233A!important;
+  border-bottom:1px solid var(--pp-line,#E3E8F0)!important;padding:14px 16px!important}
+.atl2 .md-body [data-ct-card] h2{color:#16233A!important;font:inherit!important;
+  font-size:15px!important;font-weight:700!important;letter-spacing:-.01em!important}
+.atl2 .md-body [data-ct-card] [data-ct-body]{background:#fff!important;padding:16px 18px!important}
+.atl2 .md-body [data-ct-card] > div:first-child button{font:inherit!important;font-size:12px!important;
+  font-weight:600!important;color:#4B5E78!important;background:#fff!important;
+  border:1px solid var(--pp-line,#E3E8F0)!important;border-radius:8px!important}
+/* « Décrire » respire : séparé du texte du crible (30/08) */
+.atl2 .qab{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+/* les pastilles de chiffres des onglets Évaluation / Conviction / Suivi */
+.atl2 .md-head.evalhead{margin:2px 0 10px}
+/* le bouton 📄 du grand panneau porte AUSSI son texte ; dans les lignes
+   denses, l'icône seule suffit (30/08 : « faut aussi le texte ») */
+.atl2 .memobtn.sm .mlbl{display:none}
+.atl2 .zoom-cta .memobtn.sm .mlbl{display:inline}
+/* dans le panneau de droite, la fiche respire un peu plus — et la MÊME taille
+   que la conviction (.cdrich 14px) : une seule échelle de texte (30/08) */
+.atl2.cibles .readpane .md-body{font-size:14px}
+/* la conviction intégrale hors panneau (ligne dépliée, popup) : une lucarne de
+   260px ne suffit plus — on monte la borne, le panneau la lève déjà */
+.atl2 .cdrich.convrich{max-height:420px}
+/* LE POPUP CARTE (352px, position:fixed, overflow forcé visible par le proto) :
+   le document sectionné et la conviction intégrale y défilent DANS la fiche,
+   sinon le popup traverse l'écran. Et la barre d'onglets y wrappe : six
+   onglets ne tiennent pas sur 352px et l'ascenseur est masqué. */
+.atl2 .pop .cdmemo.memodoc{max-height:min(48vh,440px);overflow-y:auto}
+.atl2 .pop .cdrich.convrich{max-height:300px}
+.atl2 .pop .cdnav{flex-wrap:wrap}
+/* à l'impression : pas de table des matières, mais le bouton « Déplier » d'une
+   section repliée RESTE — c'est la seule trace que du contenu n'est pas là */
+@media print{.atl2 .md-toc{display:none!important}}
+/* -- LOT CONNECTEURS (30/08) -------------------------------------------------
+   La bascule d'envoi automatique : le rail de la V1 (cb-notif-sw, 40x22,
+   vert 0f6e3f a l'allumage) porte au cockpit. Un interrupteur doit se lire
+   allume/eteint d'un coup d'oeil, sans lire le texte a cote. */
+/* la rangee d'envoi porte desormais QUATRE controles (onglet, destination,
+   campagne, apercu) : .mfield est un flex SANS retour a la ligne (proto) —
+   sans ceci le bouton Apercu sortait de la modale (revue 30/08). */
+.atl2 .mfield{flex-wrap:wrap}
+.atl2 .mfield input[type=text]{min-width:150px;flex:1 1 150px}
+
+/* les liens du contact sur la ligne : discrets au repos, ils s'allument au
+   survol de la ligne — presents sans encombrer. */
+.atl2.cibles .desk-list .row .rlnk{display:inline-flex;align-items:center;gap:7px;
+  flex:none;margin-left:6px;opacity:.7;transition:opacity .12s}
+.atl2.cibles .desk-list .row:hover .rlnk,
+.atl2.cibles .desk-list .row.sel .rlnk{opacity:1}
+/* sans survol (tactile), les liens restent PLEINEMENT lisibles : a .35 ils
+   etaient sous le contraste minimal sur toutes les lignes sauf une. */
+@media (hover:none){.atl2.cibles .desk-list .row .rlnk{opacity:1}}
+.atl2.cibles .desk-list .row .rlnk a{font-size:11px;line-height:1;color:var(--muted);
+  text-decoration:none;font-weight:700}
+.atl2.cibles .desk-list .row .rlnk a:hover{color:var(--brand-d,#0A6B3D)}
+
+/* un jour du graphe se clique : il faut que ca se voie, et que le jour
+   choisi reste reperable. */
+/* LES VALEURS LONGUES PRENNENT TOUTE LA LARGEUR (mesure du 30/08 : 8 criteres
+   de these = 186 caracteres, une requete de sourcing jusqu'a 196). Les colonnes
+   des grilles font 190 px : sans ca, douze lignes empilees. */
+.atl2 .cdl.cdw,.atl2 .dsl.dsw{grid-column:1/-1}
+.atl2 .cdtags{display:flex;flex-wrap:wrap;gap:4px;min-width:0}
+.atl2 .cdtag{display:inline-block;padding:1px 7px;border-radius:9px;
+  background:var(--brand-l,#EAF3EE);color:var(--brand-d,#0E7F3F);
+  font-size:11px;line-height:16px;white-space:nowrap}
+
+/* l'equivalence en travail humain : discrete, elle commente les chiffres
+   sans leur disputer la vedette. */
+.atl2 .fst-roi i{opacity:.72;font-style:normal}
+.atl2 .fst-day{cursor:pointer}
+/* le lien « Source » d'un dossier suit l'encre du dossier — un bleu de
+   navigateur serait le seul element colore de la page, a l'ecran comme a
+   l'impression. */
+.atl2 .dsl a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.atl2 .dsl a:hover{color:var(--brand-d)}
+/* ⚠️ nth-of-TYPE, pas nth-child : le 2e ENFANT du <g> est la cible de clic
+   transparente (pleine hauteur), le 2e <rect> est la barre « criblées ». Avec
+   nth-child, le survol peignait un bloc opaque par-dessus les deux barres. */
+.atl2 .fst-day:hover rect:nth-of-type(2){fill:#B9D4C4}
+.atl2 .fst-day.on rect:nth-of-type(2){fill:#9CC7AF}
+.atl2 .fst-day:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+
+/* l'etat de la republication, a cote du bouton : il tombe apres plusieurs
+   minutes, souvent quand le dirigeant regarde ailleurs — un toast de 2,4 s
+   n'etait lu par personne. */
+.atl2 .repubst{display:inline-flex;align-items:center;gap:7px;margin-left:8px;
+  font-size:11.5px;font-weight:650;color:var(--brand-d,#0A6B3D);
+  background:#EFF8F2;border:1px solid #BBE7CC;border-radius:999px;padding:3px 10px}
+.atl2 .repubst button{border:0;background:none;padding:0;cursor:pointer;
+  color:var(--dim);font-size:13px;line-height:1}
+
+/* 🆕 le bandeau de fraicheur — meme palette que « depuis votre visite », il
+   dit la meme chose a l'echelle de l'ecran ouvert. */
+.atl2 .freshban{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin:0 14px 10px;padding:9px 13px;border-left:3px solid #2F9E63;
+  border-radius:9px;background:#F2FBF5;font-size:12.5px;color:var(--ink)}
+.atl2 .freshban span{flex:1 1 auto;min-width:0}
+
+/* l'etat vide qui DIT pourquoi, et la mention du lien prive. */
+.atl2 .void .voidb{margin:8px 0 0;font-size:12.5px;color:var(--muted)}
+.atl2 .privnote{margin:14px 14px 0;font-size:11.5px;color:var(--dim);text-align:center}
+
+/* ⚙ l'interrupteur d'un moteur POUR CE FONDS : il se lit d'un coup d'oeil,
+   comme en V1 (vert = actif ici, rouge = coupe, ambre = eteint globalement). */
+.atl2 .se-sw{font:inherit;font-size:10px;font-weight:800;letter-spacing:.02em;
+  border-radius:999px;padding:3px 9px;cursor:pointer;margin-left:auto;flex:none;
+  background:#FDEAEC;color:#B0344A;border:1px solid #F5C2C7}
+.atl2 .se-sw.on{background:#E7F7EE;color:#1A7F46;border-color:#B7E4C7}
+.atl2 .se-sw.dead{background:#FEF3C7;color:#92400E;border-color:#FDE68A;
+  cursor:not-allowed}
+.atl2 .se-sw:disabled{opacity:.55}
+.atl2 .se-bod{margin-top:8px;align-self:flex-start;font:inherit;font-size:11.5px;
+  font-weight:800;color:#fff;background:#0F1F33;border:1px solid #0F1F33;
+  border-radius:8px;padding:6px 12px;cursor:pointer}
+.atl2 .se-bod:disabled{opacity:.55;cursor:default}
+
+/* le nom d'une societe du drilldown moteur MENE a sa carte (V1) : il doit se
+   voir cliquable, sinon personne n'essaie. */
+.atl2 .se-jump{border:0;background:none;padding:0;font:inherit;font-size:inherit;
+  font-weight:700;color:var(--brand-d,#0A6B3D);cursor:pointer;text-align:left;
+  text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px}
+.atl2 .se-jump:hover{text-decoration-style:solid}
+/* le conteneur garde un max-height:250px plus haut dans la feuille : poser la
+   hauteur sur le seul <ul> creait DEUX ascenseurs imbriques et n'ouvrait rien
+   (revue 30/08). On ouvre la boite, et le ul defile seul. */
+.atl2 .se-ovl{max-height:min(56vh,520px);overflow:hidden;display:flex;
+  flex-direction:column}
+.atl2 .se-ovl ul{flex:1 1 auto;min-height:0;overflow-y:auto;margin:0}
+.atl2 .se-more{margin:6px 0 0;font-size:11px;color:var(--dim);flex:none}
+
+/* « Cette these colle-t-elle ? » — trois choix francs, une phrase, et la
+   reponse deja donnee qui se relit d'un coup d'oeil. */
+.atl2 .fitbox .fitopts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.atl2 .fitopt{font:inherit;font-size:12.5px;font-weight:650;padding:7px 14px;
+  border:1px solid var(--line);border-radius:999px;background:var(--panel);
+  color:var(--ink);cursor:pointer}
+.atl2 .fitopt:hover{border-color:#94A3B8}
+.atl2 .fitopt.on{background:#EFF8F2;border-color:#BBE7CC;color:#0A6B3D}
+.atl2 .fitbox .fitrep{margin:8px 0 2px;font-size:13.5px;line-height:1.55;
+  color:var(--ink)}
+
+/* 🎯 « vous jugez, il apprend » + 🧠 les propositions de correction : deux
+   encadres qui PROPOSENT — jamais un ecran qui applique tout seul. */
+.atl2 .avisp{margin:12px 0;padding:11px 13px;border:1px solid #F5DFAE;
+  border-radius:10px;background:#FFF8EB}
+.atl2 .avisp .mnote{margin:0 0 5px}
+.atl2 .avisa{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px}
+.atl2 .propc{margin:10px 0 0;padding:11px 13px;border:1px solid var(--line);
+  border-radius:10px;background:var(--panel)}
+.atl2 .props{display:inline-block;font-family:var(--mono);font-size:12px;color:var(--brand-d,#0E8A44);
+  background:#EFF8F2;border-radius:999px;padding:3px 9px;margin-bottom:6px;font-weight:600}
+/* .atl2 .rule p (0-2-1) battait .atl2 .propt (0-2-0) — la carte vit DANS
+   .rule : on remonte la specificite au lieu de renommer. */
+.atl2 .rule .propc p.propt{margin:0 0 5px;font-size:13.5px;font-weight:700;
+  line-height:1.45;color:var(--ink)}
+.atl2 .propc .mnote{margin:0 0 4px}
+
+/* ✉ L'OVERLAY D'APPROCHE — canaux, jours, champs. La barre du haut est la
+   navigation : le canal a gauche, les quatre touches a droite. */
+.atl2 .apnav{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.atl2 .apnav .sp{flex:1 1 auto}
+.atl2 .apch,.atl2 .apday{font:inherit;font-size:11.5px;font-weight:650;
+  border:1px solid var(--line);background:var(--panel);color:var(--ink);
+  border-radius:999px;padding:5px 12px;cursor:pointer}
+.atl2 .apch:hover,.atl2 .apday:hover{border-color:#8FA0B8}
+.atl2 .apch.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.atl2 .apday.on{background:#EFF8F2;border-color:#BBE7CC;color:#0E8A44}
+.atl2 .apday i{font-style:normal;margin-left:5px;color:#B25E09}
+.atl2 .apfield{display:flex;flex-direction:column;gap:4px;margin:8px 0}
+.atl2 .apfield label{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:600}
+.atl2 .apfield input,.atl2 .apta{font:inherit;font-size:13px;line-height:1.55;
+  padding:9px 11px;border:1px solid var(--line);border-radius:9px;
+  background:var(--panel);color:var(--ink);width:100%}
+.atl2 .apta{resize:vertical;white-space:pre-wrap;margin-top:4px}
+.atl2 .apfield input:focus-visible,.atl2 .apta:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+.atl2 .apacts{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:9px 0 4px}
+.atl2 .apacts a.abtn{text-decoration:none;display:inline-flex;align-items:center}
+.atl2 .apedit{font-size:11px;color:#B25E09;font-weight:650}
+
+/* 📝 LE CARNET DE SUIVI d'un deal, dans la fiche — un fil de notes datees,
+   replie par defaut (la lecture ne part qu'au depliage). */
+.atl2 .dnotes{margin-top:10px;border-top:1px solid var(--line);padding-top:9px}
+.atl2 .dn-h{display:flex;align-items:center;gap:8px;width:100%;border:0;
+  background:none;padding:0;font:inherit;font-size:12.5px;color:var(--ink);
+  cursor:pointer;text-align:left}
+.atl2 .dn-h i{font-style:normal;color:var(--dim);margin-left:auto}
+.atl2 .dn-n{font-size:11px;font-weight:650;color:var(--brand-d,#0E8A44);
+  background:#EFF8F2;border-radius:999px;padding:2px 8px}
+.atl2 .dn-b{margin-top:8px;display:flex;flex-direction:column;gap:8px}
+.atl2 .dn-b .mnote{margin:0}
+.atl2 .dn-e{border-left:2px solid var(--line);padding:2px 0 2px 10px}
+.atl2 .dn-d{font-family:var(--mono);font-size:12px;
+  color:var(--dim);font-weight:600}
+.atl2 .dn-t{margin:3px 0 0;font-size:12.5px;line-height:1.55;color:var(--ink);
+  /* pre-wrap SEUL laisse un mot insecable (une URL collee) sortir de la fiche,
+     dont l'ancetre .cdtabs est en overflow:hidden : il etait coupe net. */
+  white-space:pre-wrap;overflow-wrap:anywhere}
+.atl2 .dn-a{display:flex;gap:10px;margin-top:4px}
+.atl2 .dn-a .lk{font-size:11px}
+.atl2 .dn-new{display:flex;gap:8px;align-items:flex-end}
+.atl2 .dnotes textarea{flex:1 1 auto;width:100%;font:inherit;font-size:12.5px;
+  line-height:1.5;padding:7px 9px;border:1px solid var(--line);border-radius:8px;
+  background:var(--panel);color:var(--ink);resize:vertical}
+.atl2 .dnotes textarea:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+
+/* la pastille de couleur des options de la facette CRIBLE — reprise des
+   .cb-fdot de la V1 : un verdict se reconnait a sa couleur avant son mot. */
+.atl2 .fpanel .opt .l .fdot{display:inline-block;width:8px;height:8px;
+  border-radius:50%;margin-right:6px;vertical-align:middle;flex:none}
+
+/* 🔥 le lead chaud sur la ligne (engagement >= 20) — meme gabarit que le
+   marqueur des nouvelles, il se lit sans elargir la ligne. */
+.atl2.cibles .desk-list .row .rhot{flex:none;margin-right:5px;font-size:11px;
+  line-height:1;cursor:help}
+
+.atl2 .plugauto{margin:14px 0 4px;padding-top:12px;border-top:1px dashed var(--line)}
+.atl2 .plugauto .mnote{margin:0 0 4px}
+.atl2 .apsw{display:inline-flex;align-items:center;gap:9px;margin-top:8px;
+  border:0;background:none;padding:0;font:inherit;font-size:12.5px;
+  font-weight:650;color:var(--ink);cursor:pointer;text-align:left}
+.atl2 .apsw .apr{width:40px;height:22px;border-radius:22px;background:#C9D6E4;
+  position:relative;flex:none;transition:background .15s}
+.atl2 .apsw .apr::after{content:"";position:absolute;top:2px;left:2px;
+  width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s;
+  box-shadow:0 1px 2px rgba(15,29,51,.25)}
+.atl2 .apsw.on .apr{background:#0E7F3F}
+.atl2 .apsw.on .apr::after{left:20px}
+.atl2 .apsw:disabled{opacity:.55;cursor:default}
+.atl2 .apsw:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:6px}
+
+/* La recette CRM et « et dans votre CRM ? » : deux encadres, l'un neutre
+   (le mode d'emploi), l'autre vert (ce que le dirigeant y gagne) — la V1
+   les separait deja ainsi, et le retour CEO disait « la ligne Pipedrive est
+   collee » : ils doivent respirer. */
+.atl2 .plugcrm,.atl2 .plugcrmq{margin:14px 0 4px;padding:11px 12px;
+  border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.atl2 .plugcrmq{border-color:#DBE7E0;background:#F4FAF6}
+.atl2 .plugcrm .mnote,.atl2 .plugcrmq .mnote{margin:0 0 6px}
+.atl2 .plugcrm .mnote:last-child,.atl2 .plugcrmq .mnote:last-child{margin-bottom:0}
+.atl2 .plugcrmq .mnote b{color:#0E7F3F}
+.atl2 .plugcrm .plugex,.atl2 .plugcrmq .plugex{margin:8px 0 0}
+/* ═════════════════════════════════════════════════════════════════════════
+   RESTYLE v3 — dernier bloc du fichier, donc le dernier mot (css = PROTO +
+   OVERRIDES). Deux choses vivent ici :
+     · les règles de composant du handoff (chips, boutons, focus, modales) ;
+     · les RATTRAPAGES de la passe mécanique. Elle a remonté tous les
+       micro-libellés à 12px sans savoir lesquels vivaient dans une boîte
+       mesurée — trois d'entre eux n'y rentrent pas, et c'est ici qu'on le dit.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+/* ── ① Les trois boîtes mesurées ─────────────────────────────────────────── */
+
+/* LE TUNNEL. Cinq chevrons se partagent 440px et chacun perd 37px de rabat :
+   il reste ~51px de texte. À 12px, « Détectées » devenait « Déte… ». On rend
+   de la place (rabat 25→20px, base 440→520px) et on pose 11px : lisible, et
+   entier. La casse normale vient de Funnel.tsx (le .toUpperCase() est parti). */
+.atl2 .chain2{flex:1 1 520px}
+.atl2 .step{padding:7px 10px 7px 20px}
+.atl2 .step:first-child{padding-left:12px}
+.atl2 .step .l{font-size:11px;font-weight:600;opacity:1}
+.atl2 .step:not([aria-selected="true"]) .l{color:var(--pp-ink-3)}
+/* L'ETAPE ACTIVE doit se voir. Le handoff la veut « vert plein » ; mais la
+   couleur du chevron porte deja une information — la rampe p0→p4 dit la
+   maturite, et l'ecraser en vert ferait mentir les cinq etapes. On garde donc
+   la rampe et on ajoute ce qui manquait vraiment : un liseré vert et l'ombre
+   portée. L'étape choisie se lit du premier coup, la rampe survit. */
+.atl2 .step[aria-selected="true"]{box-shadow:inset 0 0 0 2px var(--pp-green),
+  0 2px 10px rgba(18,161,80,.30)}
+.atl2 .step[aria-selected="true"] .l{color:var(--pp-green-tx);font-weight:700}
+.atl2 .step[aria-selected="true"] .n{color:var(--pp-ink)}
+.atl2 .off .l{font-size:11px;font-weight:600}
+
+/* L'EN-TÊTE DE COLONNES n'est pas un libellé de page : c'est une étiquette de
+   tableau, prise dans des pistes de 86 et 80px. On garde la règle du handoff
+   (600, #8FA0B8, fond #F9FBFD) et on descend à 11px avec une coupe propre —
+   le README interdit qu'un libellé déborde autant qu'il interdit la capitale. */
+.atl2 .cols{background:var(--pp-bg-zone)}
+.atl2 .cols>*{font-size:11px;font-weight:600;color:var(--pp-ink-4);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* LES AXES DU RADAR sont posés dans un viewBox SVG : leur taille est une
+   COORDONNÉE, pas une typographie. À 12px ils chevauchaient le polygone. */
+.atl2 .radar .axl{font-size:5.4px;font-weight:500}
+
+/* ── ② Le chasse-fixe là où il porte du sens ─────────────────────────────── */
+/* Le handoff bannit le monospace sur les LIBELLÉS. Il reste juste là où l'on
+   relit caractère par caractère : la zone où l'on colle des URL, et le bout de
+   code de « Connecter à vos outils ». */
+.atl2 .bulk textarea{font-family:var(--pp-mono);font-size:12.5px;line-height:1.6}
+.atl2 .modal .cpy code{font-family:var(--pp-mono)}
+
+/* ── ③ Chips : TOUJOURS la même hauteur ──────────────────────────────────── */
+/* C'est la règle qui fait qu'une rangée de chips forme une ligne, et pas une
+   vague. box-sizing compris : sans lui, la bordure ajoute 2px à certaines. */
+.atl2 .fpuce,.atl2 .acqchip,.atl2 .sig,.atl2 .dockbtn{
+  height:28px;box-sizing:border-box;display:inline-flex;align-items:center;
+  gap:7px;border-radius:var(--pp-r-pill);padding:0 12px;
+  font-size:12px;font-weight:600;line-height:1;white-space:nowrap}
+.atl2 .sig{background:var(--pp-red);color:#fff;border:0}
+.atl2 .acqchip{background:var(--pp-bg-page);border:1px solid var(--pp-line);color:var(--pp-ink)}
+.atl2 .fpuce{background:var(--pp-green-chip);border:1px solid var(--pp-green-bd);color:var(--pp-green-tx)}
+
+/* ── ④ Aucun libellé de bouton ne se coupe sur deux lignes ───────────────── */
+.atl2 button,.atl2 .cbtn,.atl2 .tool,.atl2 .dockbtn,.atl2 .dens button{white-space:nowrap}
+
+/* ── ⑤ Le débordement horizontal ne s'annonce pas ────────────────────────── */
+/* La liste déborde en largeur sur petit écran ; elle ne doit pas afficher de
+   barre. Le cockpit en dessinait une de 11px (règle du proto) : on la
+   REMPLACE ici, on ne l'empile pas. Le défilement vertical, lui, reste visible. */
+.atl2 .list,.atl2 .desk-list{scrollbar-width:none;-ms-overflow-style:none}
+.atl2 .list::-webkit-scrollbar:horizontal,
+.atl2 .desk-list::-webkit-scrollbar:horizontal{display:none;height:0}
+
+/* ── ⑥ Focus vert, et jamais un rectangle DANS un champ ──────────────────── */
+/* C'est le conteneur en pilule qui réagit, pas l'input : sinon on voit deux
+   cadres imbriqués. */
+.atl2 :focus{outline:none}
+.atl2 :focus-visible{outline:2px solid var(--pp-green);outline-offset:2px}
+.atl2 input:focus,.atl2 textarea:focus,.atl2 select:focus{outline:none}
+.atl2 .bulk:focus-within,.atl2 .srch:focus-within,.atl2 .pill:focus-within{
+  border-color:var(--pp-green-soft);box-shadow:0 0 0 4px rgba(18,161,80,.14)}
+.atl2 .bulk,.atl2 .srch,.atl2 .pill{transition:border-color .18s,box-shadow .18s}
+
+/* ── ⑦ Modales ───────────────────────────────────────────────────────────── */
+.atl2 .modal{background:rgba(15,29,51,.45);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.atl2 .modal .mcard{border-radius:var(--pp-r-xl);max-height:86vh;
+  box-shadow:var(--pp-sh-modal)}
+
+/* ── ⑧ La barre d'outils collante ────────────────────────────────────────── */
+/* Elle était déjà collante et déjà sur plusieurs rangées (ordres 1→5 côté
+   /cibles, deux rangées explicites côté /actualites carte repliée) : ce qui
+   manquait, c'est qu'elle laisse DEVINER ce qui passe dessous. Surface à 96%
+   + flou, comme la maquette — sinon, en descendant, on ne sait plus si la
+   liste défile ou si la barre a sauté. */
+.atl2 .listhead{background:rgba(255,255,255,.96);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--pp-line)}
+/* Le bouton d'action de la barre tombe à l'aplomb de la colonne Action de la
+   liste : c'est ce qui fait lire les deux comme une seule grille. */
+.atl2 .listhead .lh-acts{margin-left:auto}
+
+/* ── ⑨ Le clignotement d'une ligne qu'on vient de désigner ───────────────── */
+/* Rien à écrire ici : le geste du handoff (clic dans le fil → la ligne défile
+   et clignote) EXISTE déjà, et mieux que décrit. la classe .row.flashrow
+   (styles.ts, 2,2 s, liseré vert intérieur) est posé par EvalBar après une
+   évaluation, et pp-echo par DossierList quand le ticker donne le focus —
+   avec un recalage en deux passes qui remet la ligne sous le chrome collant,
+   ce qu'un scrollIntoView seul ne sait pas faire. On ne réécrit pas. */
+
+/* ── ⑩ L'enrichissement d'une ligne saisie ───────────────────────────────── */
+/* Les pastilles que Stan devine (domaine, pays, secteur) apparaissent au lieu
+   de surgir : 3px de montée, 280ms. Assez pour dire « ça vient de moi ». */
+@keyframes atl2-enrichIn{
+  from{opacity:0;transform:translateY(3px)}
+  to{opacity:1;transform:none}
+}
+.atl2 [data-enrich]{animation:atl2-enrichIn .28s ease-out both}
+.atl2 .enrichpill{display:inline-flex;align-items:center;height:22px;box-sizing:border-box;
+  border-radius:var(--pp-r-pill);padding:0 9px;font-size:11.5px;font-weight:600;
+  white-space:nowrap;background:var(--pp-bg-page);border:1px solid var(--pp-line);
+  color:var(--pp-ink-3)}
+
+/* ── ⑪ Points de rupture ─────────────────────────────────────────────────── */
+/* Les valeurs du handoff, posées sur les classes qui existent — pas sur des
+   attributs data-r, qui sont le procédé interne des maquettes. */
+@media (max-width:1080px){
+  /* le panneau de lecture passe SOUS la liste au lieu de la comprimer */
+  .atl2 .stage{flex-direction:column}
+  .atl2 .readpane,.atl2 .fiche{order:2;width:100%;max-width:none}
+}
+@media (max-width:860px){
+  .atl2 .listhead{padding-left:14px;padding-right:14px}
+  .atl2 .app>.ident,.atl2 .app>.eval-stick{padding-left:14px;padding-right:14px}
+  .atl2 .mapzone{min-height:300px}
+  .atl2 .fpanel{display:none}          /* les filtres passent par le rabat */
+  .atl2 .cols .c-crible,.atl2 .row .c-crible,
+  .atl2 .cols .c-vue,.atl2 .row .c-vue{display:none}
+  .atl2 .kpi{flex:1 1 100%;min-width:0}
+}
+
+/* ── ⑫ Un seul niveau d'accent vert par zone ─────────────────────────────── */
+/* Le vert souligne l'action ; il ne remplit pas les fonds. Les surfaces qui le
+   prenaient en aplat sans porter d'action repassent en teinte. */
+.atl2 .step:not([aria-selected="true"]){background:var(--pp-line-in);color:var(--pp-ink-3)}
+
+`,Ul=`
+/* ═══════════════════════════════════════════════════════════════════════════
+   COCKPIT v3 — LE CALQUE FINAL
+   Source : data/design_handoff_proplace_v3/Cockpit.html, lue trait pour trait.
+
+   Le passage précédent avait repeint les JETONS (vert, encre, filets, police)
+   mais laissé la MISE EN PAGE d'avant : bandeaux pleine largeur collés bord à
+   bord, aucune marge, aucun cadre. Résultat : les bonnes couleurs sur la
+   mauvaise architecture.
+
+   Ce que la maquette impose, et qui n'existait nulle part :
+     · 28 px de marge à gauche ET à droite, sur TOUTE section ;
+     · chaque bloc est une CARTE — filet 1 px, rayon 10-14 px, fond blanc —
+       et non un bandeau qui touche les bords ;
+     · les indicateurs du haut sont TROIS cartes cliquables, pas trois phrases
+       posées sur une ligne ;
+     · les continents sont des pastilles à compteur, pas des onglets soulignés ;
+     · la liste et le panneau de lecture sont DEUX cartes séparées par 24 px,
+       pas deux colonnes soudées par un filet.
+
+   Ordre : ce bloc est le DERNIER concaténé (voir export css en bas de fichier).
+   À spécificité égale, c'est lui qui gagne — d'où l'absence quasi totale de
+   !important : il n'en porte que là où le code d'avant en portait déjà.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── ① LE RYTHME DE PAGE ─────────────────────────────────────────────────── */
+/* Une seule variable de marge, lue par toutes les sections. La maquette la
+   met à 28 px, et à 14 px sous 860 px : deux valeurs, un seul endroit. */
+.atl2.cibles{--v3-pad:28px;--v3-gap:16px}
+@media (max-width:860px){.atl2.cibles{--v3-pad:14px}}
+.atl2.cibles .app{background:var(--pp-bg)}
+
+/* ── ② L'EN-TÊTE : carré d'initiales, titre, actions ─────────────────────── */
+.atl2.cibles .ident{background:transparent;border-bottom:0;
+  padding:20px var(--v3-pad) 0}
+.atl2.cibles .idtop{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  margin-bottom:16px}
+/* le carré marine : 36 px, rayon 9, initiales centrées */
+.atl2.cibles .idtop .brand{display:flex;align-items:center;gap:12px;min-width:0;
+  flex:0 1 auto}
+.atl2.cibles .idtop .brand b{width:36px;height:36px;flex:none;border-radius:9px;
+  background:var(--pp-navy);color:#fff;display:grid;place-items:center;
+  font-weight:700;font-size:15px;letter-spacing:0}
+.atl2.cibles .idtop .brand i{font-style:normal;font-size:12px;font-weight:600;
+  color:var(--pp-ink-4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  letter-spacing:0;text-transform:none}
+.atl2.cibles .idtop h1{margin:0;font-size:clamp(17px,2.1vw,22px);line-height:1.25;
+  font-weight:700;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis;min-width:0;flex:0 1 auto}
+.atl2.cibles .idtop .idsp{flex:1 1 auto}
+.atl2.cibles .idtop .idupd{font-size:12px;color:var(--pp-ink-4);white-space:nowrap}
+/* les ronds « ? » et « ▶ » : 28 px, filet, rien de plein */
+.atl2.cibles .ident .ic{width:28px;height:28px;flex:none;display:grid;
+  place-items:center;border:1px solid var(--pp-line);border-radius:50%;
+  background:transparent;color:var(--pp-ink-4);font-size:12px;line-height:1;
+  cursor:pointer;padding:0}
+.atl2.cibles .ident .ic:hover:not(:disabled){border-color:var(--pp-green-soft);
+  color:var(--pp-green-tx)}
+.atl2.cibles .ident .ic:disabled{opacity:.4;cursor:default}
+
+/* ── ③ LES INDICATEURS, EN CARTES ────────────────────────────────────────── */
+/* Avant : des phrases alignées sur une ligne, sans cadre — on ne voyait pas
+   qu'elles étaient cliquables. La maquette en fait des cartes à filet, qui
+   s'éclairent au survol. */
+.atl2.cibles .idmain{display:flex;flex-wrap:wrap;align-items:stretch;gap:12px;
+  padding:0 0 16px;min-width:0}
+.atl2.cibles .idmain>.cover,
+.atl2.cibles .idmain>.engine{display:flex;align-items:center;gap:14px;
+  box-sizing:border-box;border:1px solid var(--pp-line);border-radius:10px;
+  padding:12px 16px;background:var(--pp-bg);cursor:pointer;
+  transition:border-color .16s ease,background .16s ease}
+.atl2.cibles .idmain>.cover:hover,
+.atl2.cibles .idmain>.engine:hover{border-color:var(--pp-line-strong);
+  background:var(--pp-bg-hover)}
+.atl2.cibles .idmain>.cover{flex:2 1 320px;min-width:280px}
+.atl2.cibles .idmain>.engine{flex:1.4 1 260px;min-width:240px}
+/* le libellé de carte : 12 px, 600, encre faible — la règle du handoff */
+.atl2.cibles .idmain .el{font-size:12px;font-weight:600;color:var(--pp-ink-4);
+  white-space:nowrap;letter-spacing:0;text-transform:none}
+.atl2.cibles .idmain .ev{display:flex;align-items:center;gap:8px;font-size:13px;
+  color:var(--pp-ink-3);white-space:nowrap}
+.atl2.cibles .idmain .ev b{font-size:15px;font-weight:700;color:var(--pp-ink)}
+.atl2.cibles .idmain .ev strong{color:var(--pp-ink);font-weight:700}
+/* la jauge de couverture : 6 px, pleine largeur restante */
+.atl2.cibles .idmain .bar{flex:1 1 auto;height:6px;min-width:80px;border-radius:999px;
+  background:#EAF0F6;position:relative;overflow:hidden}
+.atl2.cibles .idmain .bar i{position:absolute;inset:0 auto 0 0;border-radius:999px;
+  background:var(--pp-green)}
+.atl2.cibles .idmain .edv{display:none}
+/* « en pause » : pastille ambre, hauteur de chip */
+.atl2.cibles .idmain .epause{display:inline-flex;align-items:center;height:22px;
+  box-sizing:border-box;background:var(--pp-amber-bg);color:var(--pp-amber-tx);
+  font-size:11px;font-weight:700;border-radius:999px;padding:0 10px;
+  white-space:nowrap;letter-spacing:0;text-transform:none}
+.atl2.cibles .idmain .ego{font-size:13px;color:var(--pp-ink-3);white-space:nowrap}
+.atl2.cibles .idmain .ebell{border:0;background:none;cursor:pointer;font-size:13px;
+  line-height:1;padding:0 2px}
+/* LA TROISIÈME CARTE : la file. Elle sortait du module « moteur de mémos »,
+   qui portait trois idées dans une boîte prévue pour une. */
+.atl2.cibles .idmain>.filec{display:flex;align-items:center;gap:14px;
+  box-sizing:border-box;flex:1 1 200px;min-width:190px;
+  border:1px solid var(--pp-line);border-radius:10px;padding:12px 16px;
+  background:var(--pp-bg);cursor:pointer;
+  transition:border-color .16s ease,background .16s ease}
+.atl2.cibles .idmain>.filec:hover{border-color:var(--pp-line-strong);
+  background:var(--pp-bg-hover)}
+.atl2.cibles .idmain>.idsp{display:none}
+
+/* le groupe d'icônes et la recherche vivent dans la LIGNE DE TITRE — c'est là
+   que la maquette les met, à droite de l'horodatage. */
+.atl2.cibles .idtop .icgrp{display:flex;align-items:center;gap:6px;flex:none}
+.atl2.cibles .idtop .isrch{display:inline-flex;align-items:center;gap:7px;flex:none;
+  height:34px;box-sizing:border-box;border:1px solid var(--pp-line);
+  border-radius:var(--pp-r-s);padding:0 12px;background:var(--pp-bg-page);
+  font-size:13px;color:var(--pp-ink-4);
+  transition:border-color .18s ease,box-shadow .18s ease,background .18s ease}
+.atl2.cibles .idtop .isrch:focus-within{border-color:var(--pp-green-soft);
+  box-shadow:0 0 0 4px rgba(18,161,80,.14);background:var(--pp-bg)}
+.atl2.cibles .idtop .isrch input{width:180px;max-width:28vw;border:0;
+  background:transparent;font:inherit;font-size:13px;color:var(--pp-ink);
+  outline:none;padding:0}
+
+/* ── ④ LES CONTINENTS : pastilles à compteur ─────────────────────────────── */
+/* Avant : des onglets soulignés d'un trait de 2,5 px, en typographie
+   condensée. La maquette en fait des pastilles rayon 8 px — l'active en
+   marine plein, son compteur en pastille translucide. */
+.atl2.cibles .fzone{background:transparent}
+.atl2.cibles .fzone>.conts,.atl2.cibles .fzone>.contpick{
+  display:flex;align-items:center;gap:8px;flex-wrap:nowrap;
+  overflow:visible;background:transparent;border-bottom:0;
+  padding:0 var(--v3-pad) 10px}
+.atl2.cibles .fzone>.conts{gap:4px;overflow-x:auto}
+.atl2.cibles .conts .cbtn{display:inline-flex;align-items:center;gap:8px;
+  border:0;border-bottom:0;background:transparent;color:var(--pp-ink-3);
+  padding:7px 14px;border-radius:var(--pp-r-s);font-size:13px;font-weight:600;
+  letter-spacing:0;text-transform:none;cursor:pointer;white-space:nowrap}
+.atl2.cibles .conts .cbtn:hover{background:var(--pp-bg-page);color:var(--pp-ink)}
+.atl2.cibles .conts .cbtn[aria-selected="true"]{background:var(--pp-navy);color:#fff;
+  border-bottom-color:transparent}
+.atl2.cibles .conts .cbtn .n{font-family:var(--pp-body);font-size:11px;font-weight:700;
+  background:#EAF0F6;color:var(--pp-ink-3);border-radius:999px;padding:1px 8px;
+  letter-spacing:0}
+.atl2.cibles .conts .cbtn[aria-selected="true"] .n{background:rgba(255,255,255,.16);
+  color:#fff}
+.atl2.cibles .conts .side,.atl2.cibles .contpick .resetmap,
+.atl2.cibles .contpick .mapbtn{margin-left:auto;flex:none;white-space:nowrap}
+.atl2.cibles .conts .side{display:flex;align-items:center;gap:12px}
+.atl2.cibles .conts .side button,.atl2.cibles .contpick .resetmap,
+.atl2.cibles .contpick .mapbtn{font-size:12px;font-weight:600;color:var(--pp-ink-3);
+  background:none;border:0;cursor:pointer;white-space:nowrap;padding:0;
+  min-width:0}
+.atl2.cibles .conts .side .mapbtn,.atl2.cibles .contpick .mapbtn{min-width:132px;
+  text-align:right;justify-content:flex-end}
+.atl2.cibles .conts .side button:hover,.atl2.cibles .contpick .resetmap:hover,
+.atl2.cibles .contpick .mapbtn:hover{color:var(--pp-green-tx)}
+
+/* ── ⑤ LA CARTE : une section encadrée, deux panneaux flottants ──────────── */
+/* ⚠️ PIÈGE MESURÉ, DEUX FOIS. La coque des pages /cibles — servie par Python,
+   donc invisible depuis ce fichier — impose :
+       .atl2 .stage{height:auto!important;min-height:0!important;
+                    max-height:none!important;overflow:visible!important}
+   Aucune hauteur posée ICI ne peut gagner : le !important d'une autre feuille
+   bat n'importe quelle spécificité. Ma première tentative posait height:440px
+   sur .stage et sortait le planisphère du flux (position:absolute) : la
+   section s'est écrasée à 2 px — les deux filets — et la carte a disparu de
+   la page en production.
+   La bonne prise est le PLANISPHÈRE : il reste dans le flux et porte la
+   hauteur ; la section s'y ajuste toute seule, ce que la coque veut. Les deux
+   panneaux, eux, flottent par-dessus. */
+.atl2.cibles .stage:not(.folded){position:relative;display:block!important;
+  margin:0 var(--v3-pad);border:1px solid var(--pp-line);
+  border-radius:var(--pp-r-m);background:#F2F6FA}
+.atl2.cibles .stage:not(.folded) .mapzone{position:relative;inset:auto;
+  width:auto;height:auto;min-height:440px;background:transparent;
+  border-radius:var(--pp-r-m);overflow:hidden}
+@media (max-width:860px){
+  .atl2.cibles .stage:not(.folded) .mapzone{min-height:300px}}
+/* la carte de couverture, en haut à gauche */
+.atl2.cibles .stage:not(.folded) .map-pulse{position:absolute;left:20px;top:20px;z-index:6;
+  width:230px;box-sizing:border-box;background:var(--pp-bg);
+  border:1px solid var(--pp-line);border-radius:var(--pp-r-m);padding:16px 18px;
+  box-shadow:0 8px 24px rgba(15,29,51,.08);text-align:left;cursor:pointer}
+.atl2.cibles .stage:not(.folded) .map-pulse em{display:block;font-style:normal;font-size:12px;
+  font-weight:600;color:var(--pp-green-tx);letter-spacing:0;text-transform:none}
+.atl2.cibles .stage:not(.folded) .map-pulse b{display:block;margin:6px 0 0;font-size:38px;
+  font-weight:700;line-height:1;letter-spacing:-.02em;color:var(--pp-ink)}
+.atl2.cibles .stage:not(.folded) .map-pulse>span{display:block;margin:4px 0 12px;font-size:12px;
+  font-weight:600;color:var(--pp-ink-4)}
+.atl2.cibles .stage:not(.folded) .map-pulse ul{margin:0;padding:10px 0 0;list-style:none;
+  border-top:1px solid #EAF0F6;font-size:13px;color:var(--pp-ink-3)}
+@media (max-width:860px){
+  .atl2.cibles .stage:not(.folded) .map-pulse{left:14px;top:14px;width:190px;padding:12px 14px}
+  .atl2.cibles .stage:not(.folded) .map-pulse b{font-size:28px}
+}
+/* le panneau de filtres, en haut à droite */
+.atl2.cibles .stage:not(.folded) .fbar{position:absolute;right:20px;top:20px;bottom:20px;
+  z-index:6;width:330px;box-sizing:border-box;background:var(--pp-bg);
+  border:1px solid var(--pp-line);border-radius:var(--pp-r-m);padding:16px;
+  display:flex;flex-direction:column;gap:10px;overflow:hidden;
+  box-shadow:0 8px 24px rgba(15,29,51,.08)}
+@media (max-width:1080px){.atl2.cibles .stage:not(.folded) .fbar{display:none}}
+.atl2.cibles .fbar .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.atl2.cibles .fbar .seg button{display:flex;justify-content:space-between;
+  align-items:center;gap:8px;box-sizing:border-box;padding:8px 12px;
+  border:1px solid var(--pp-line);border-radius:var(--pp-r-s);background:var(--pp-bg);
+  font:inherit;font-size:12.5px;font-weight:600;color:var(--pp-ink);cursor:pointer;
+  white-space:nowrap}
+.atl2.cibles .fbar .seg button[aria-pressed="true"],
+.atl2.cibles .fbar .seg button.on{background:var(--pp-navy);color:#fff;
+  border-color:var(--pp-navy)}
+.atl2.cibles .fbar .fsrch{display:flex;align-items:center;gap:8px;box-sizing:border-box;
+  border:1px solid var(--pp-line);border-radius:var(--pp-r-s);padding:0 12px;
+  height:38px;background:var(--pp-bg-page);
+  transition:border-color .18s ease,box-shadow .18s ease,background .18s ease}
+.atl2.cibles .fbar .fsrch:focus-within{border-color:var(--pp-green-soft);
+  box-shadow:0 0 0 4px rgba(18,161,80,.14);background:var(--pp-bg)}
+.atl2.cibles .fbar .fsrch input{flex:1;min-width:0;border:0;background:transparent;
+  font:inherit;font-size:13px;outline:none;color:var(--pp-ink)}
+.atl2.cibles .fbar .facets{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.atl2.cibles .fbar .fbtn{display:flex;justify-content:space-between;align-items:center;
+  gap:8px;box-sizing:border-box;height:auto;padding:9px 12px;
+  border:1px solid var(--pp-line);border-radius:var(--pp-r-s);background:var(--pp-bg);
+  font:inherit;font-size:13px;font-weight:600;color:var(--pp-ink);cursor:pointer;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.atl2.cibles .fbar .fbtn:hover{border-color:var(--pp-line-strong)}
+/* « Signal actif » traverse les deux colonnes : c'est un état, pas une facette */
+.atl2.cibles .fbar .fbtn.fsig{grid-column:1/-1;border-color:var(--pp-red-bd);
+  background:var(--pp-red-bg);color:var(--pp-red-tx);border-radius:999px;
+  justify-content:flex-start;gap:8px;font-size:12.5px}
+.atl2.cibles .fbar .frow2{margin-top:auto}
+.atl2.cibles .fbar .alertbtn{width:100%;box-sizing:border-box;font:inherit;
+  font-weight:600;font-size:13px;background:var(--pp-green);color:#fff;border:0;
+  border-radius:var(--pp-r-s);padding:11px;cursor:pointer}
+.atl2.cibles .fbar .alertbtn:hover{background:var(--pp-green-h)}
+
+/* Sous 1000 px la maquette n'a plus de panneaux flottants : les deux cartes
+   redeviennent des blocs empilés, et le planisphère reprend sa place dans le
+   flux. Sans ça, un panneau de 360 px recouvrirait toute la carte. */
+@media (max-width:1000px){
+  .atl2.cibles .stage:not(.folded){display:flex!important;flex-direction:column;
+    background:var(--pp-bg)}
+  .atl2.cibles .stage:not(.folded) .mapzone{min-height:280px;border-radius:0}
+  .atl2.cibles .stage:not(.folded) .map-pulse{position:static;width:auto;
+    box-shadow:none;border:0;border-bottom:1px solid var(--pp-line-in);
+    border-radius:0}
+}
+
+/* ── ⑤ bis LA CARTE REPLIÉE : le rabat des filtres ───────────────────────── */
+/* Quand on replie la carte, la maquette ne laisse pas un trou : une barre
+   compacte reprend la recherche, les six facettes, le signal et la fenêtre —
+   tout en pilules de 32 px, sur une ligne qui passe à la ligne. */
+.atl2.cibles .stage.folded{display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  margin:0 var(--v3-pad);padding:12px 16px;height:auto;min-height:0;
+  border:1px solid var(--pp-line);border-radius:var(--pp-r-m);
+  background:var(--pp-bg)}
+.atl2.cibles .stage.folded .map-pulse{display:none}
+.atl2.cibles .stage.folded .fbar{position:static;width:auto;flex:1 1 auto;
+  min-width:0;border:0;padding:0;background:transparent;box-shadow:none;
+  backdrop-filter:none;-webkit-backdrop-filter:none;border-radius:0;
+  flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px;max-height:none}
+.atl2.cibles .stage.folded .fbar .seg{display:flex;gap:6px}
+.atl2.cibles .stage.folded .fbar .seg button,
+.atl2.cibles .stage.folded .fbar .fbtn{height:32px;box-sizing:border-box;
+  width:auto;border-radius:999px;padding:0 13px;font-size:12.5px;font-weight:600;
+  border:1px solid var(--pp-line);background:var(--pp-bg);color:var(--pp-ink-2)}
+.atl2.cibles .stage.folded .fbar .seg button[aria-pressed="true"],
+.atl2.cibles .stage.folded .fbar .seg button.on{background:var(--pp-green-chip);
+  border-color:var(--pp-green-bd);color:var(--pp-green-tx);font-weight:700}
+.atl2.cibles .stage.folded .fbar .fsrch{height:32px;box-sizing:border-box;
+  border-radius:999px;flex:1 1 200px;max-width:280px;padding:0 14px}
+.atl2.cibles .stage.folded .fbar .facets{display:flex;flex-wrap:wrap;gap:8px}
+.atl2.cibles .stage.folded .fbar .fbtn.fsig{grid-column:auto;
+  border-color:var(--pp-red-bd);background:var(--pp-red-bg);
+  color:var(--pp-red-tx)}
+.atl2.cibles .stage.folded .fbar .frow2{margin-top:0}
+.atl2.cibles .stage.folded .fbar .alertbtn{width:auto;height:32px;box-sizing:border-box;
+  border-radius:999px;padding:0 16px;font-size:12.5px;font-weight:700}
+
+/* ── ⑤ ter « ANALYSES EN DIRECT » ────────────────────────────────────────── */
+/* Le bandeau vert de la maquette : teinte pleine, pas de dégradé, et les
+   mêmes 28 px de marge que tout le reste. */
+.atl2.cibles .livestrip{margin:var(--v3-gap) var(--v3-pad) 0;padding:12px 18px;
+  gap:18px;border:1px solid var(--pp-green-bd);border-radius:var(--pp-r-m);
+  background:var(--pp-green-bg);box-shadow:none}
+.atl2.cibles .livestrip:hover{border-color:var(--pp-green)}
+.atl2.cibles .ls-lab{font-size:12px;font-weight:600;color:var(--pp-green-tx);
+  letter-spacing:0;text-transform:none}
+.atl2.cibles .ls-chip{height:28px;box-sizing:border-box;padding:0 12px;
+  border-color:var(--pp-line);font-size:12px}
+.atl2.cibles .ls-go{font-size:13px;font-weight:600;color:var(--pp-green-tx)}
+
+/* ── ⑥ « COLLER UNE URL ET ÉVALUER » : une carte, pas un bandeau ─────────── */
+/* La bande reste COLLANTE (elle l'était déjà) mais devient opaque : avec un
+   fond transparent et 16 px de gouttière au-dessus de la carte, la liste
+   défilait visiblement dans l'interstice. */
+.atl2.cibles .eval-stick{background:var(--pp-bg);box-shadow:none;
+  padding-bottom:2px}
+.atl2.cibles .demand{margin:var(--v3-gap) var(--v3-pad) 0;padding:18px;
+  border:1px solid var(--pp-line);border-radius:14px;background:var(--pp-bg);
+  border-top:1px solid var(--pp-line)}
+.atl2.cibles .demand .drow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+/* le champ « premium » : pilule, point d'état à gauche, bouton collé à droite */
+.atl2.cibles .demand .dfield{display:flex;align-items:center;gap:10px;
+  flex:1 1 260px;min-width:0;box-sizing:border-box;border:1px solid var(--pp-line);
+  border-radius:999px;padding:0 8px 0 18px;background:#F9FBFD;
+  transition:border-color .18s ease,box-shadow .18s ease,background .18s ease}
+.atl2.cibles .demand .dfield:focus-within{border-color:var(--pp-green-soft);
+  box-shadow:0 0 0 4px rgba(18,161,80,.14);background:var(--pp-bg)}
+.atl2.cibles .demand .dfield::before{content:"";width:8px;height:8px;flex:none;
+  border-radius:50%;background:var(--pp-line-dash)}
+.atl2.cibles .demand .dfield:focus-within::before{background:var(--pp-green)}
+.atl2.cibles .demand .dfield input{flex:1;min-width:0;border:0;background:transparent;
+  font:inherit;font-size:14px;padding:13px 0;color:var(--pp-ink);outline:none}
+.atl2.cibles .demand .detect{font-size:12px;font-weight:600;color:var(--pp-ink-5);
+  white-space:nowrap;padding-right:6px;letter-spacing:0;text-transform:none}
+.atl2.cibles .demand .dacts{display:flex;align-items:center;gap:10px;flex:none}
+.atl2.cibles .demand .evalbtn{font:inherit;font-weight:700;font-size:14px;
+  background:var(--pp-green);color:#fff;border:0;border-radius:999px;
+  padding:13px 26px;cursor:pointer;white-space:nowrap;box-shadow:var(--pp-sh-cta)}
+.atl2.cibles .demand .evalbtn:hover:not(:disabled){background:var(--pp-green-h)}
+.atl2.cibles .demand .evalbtn:disabled{background:var(--pp-line-in);
+  color:var(--pp-ink-5);box-shadow:none;cursor:not-allowed}
+/* Site | Source : un segment, pas deux liens posés à côté */
+.atl2.cibles .demand .dacts .viewbtn.sm{display:inline-flex;align-items:center;
+  border:1px solid var(--pp-line);border-radius:0;padding:8px 14px;font-size:12px;
+  font-weight:600;color:var(--pp-ink-3);background:var(--pp-bg);
+  text-decoration:none;white-space:nowrap}
+.atl2.cibles .demand .dacts .viewbtn.sm:not(.off){background:var(--pp-navy);color:#fff;
+  border-color:var(--pp-navy)}
+.atl2.cibles .demand .dacts .viewbtn.sm:first-of-type{border-right:0;
+  border-radius:999px 0 0 999px}
+.atl2.cibles .demand .dacts .viewbtn.sm:last-of-type{border-left:0;
+  border-radius:0 999px 999px 0}
+.atl2.cibles .demand .dunder{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  margin-top:12px}
+.atl2.cibles .demand .dmulti{font:inherit;font-size:12.5px;color:var(--pp-ink-4);
+  background:none;border:0;cursor:pointer;padding:0;text-align:left}
+.atl2.cibles .demand .dmulti:hover{color:var(--pp-green-tx)}
+
+/* ── ⑦ LES MOTEURS DE SOURCING ───────────────────────────────────────────── */
+.atl2.cibles .srceng{margin:var(--v3-gap) var(--v3-pad) 0;border:1px solid var(--pp-line);
+  border-radius:var(--pp-r-m);background:var(--pp-bg);overflow:visible}
+.atl2.cibles .se-head{padding:12px 18px;gap:14px}
+.atl2.cibles .se-head b{font-size:13.5px;font-weight:700;letter-spacing:0}
+.atl2.cibles .se-head .se-sum{font-family:var(--pp-body);font-size:12.5px;
+  color:var(--pp-ink-4);letter-spacing:0;text-transform:none}
+.atl2.cibles .se-body{padding:0 18px 16px}
+.atl2.cibles .se-cards{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.atl2.cibles .se-card{border:1px solid var(--pp-line-in);border-radius:var(--pp-r-m);
+  padding:14px 16px;background:#FDFEFE}
+.atl2.cibles .se-ct b{font-size:13.5px;font-weight:700}
+.atl2.cibles .se-st{font-family:var(--pp-body);font-size:10.5px;font-weight:700;
+  letter-spacing:0;text-transform:none}
+.atl2.cibles .se-desc{font-size:12px;line-height:1.55;color:var(--pp-ink-4)}
+.atl2.cibles .se-hero b{font-size:20px;font-weight:700;letter-spacing:-.02em}
+.atl2.cibles .se-hero span{font-size:12px;color:var(--pp-ink-4)}
+.atl2.cibles .se-split{font-size:12px;color:var(--pp-ink-3)}
+.atl2.cibles .se-adj{font-size:12px;font-weight:700;border-radius:var(--pp-r-s);
+  padding:6px 12px;border:1px solid var(--pp-line)}
+.atl2.cibles .se-win{height:28px;box-sizing:border-box;display:inline-flex;
+  align-items:center;font-size:12.5px;padding:0 13px}
+
+/* ── ⑧ LE POSTE À DEUX COLONNES ──────────────────────────────────────────── */
+/* Deux CARTES séparées par 24 px — pas deux colonnes soudées par un filet. */
+.atl2.cibles .desk{margin:20px var(--v3-pad) 0;border-top:0;background:transparent;
+  grid-template-columns:minmax(0,63fr) minmax(0,37fr);gap:24px;align-items:start}
+@media (max-width:1080px){
+  .atl2.cibles .desk{grid-template-columns:minmax(0,1fr);gap:16px}
+  .atl2.cibles .readpane{order:2}
+}
+.atl2.cibles .desk-list{border:1px solid var(--pp-line);border-radius:var(--pp-r-m);
+  background:var(--pp-bg);overflow:visible}
+
+/* ── ⑨ LA BARRE D'OUTILS COLLANTE, SUR DEUX RANGÉES ──────────────────────── */
+/* L'entonnoir passe SOUS les deux rangées d'outils : c'est l'ordre de la
+   maquette, et c'est le bon — on règle la vue, puis on lit l'étape. */
+body.pp-desk .atl2.cibles .desk-list .listhead,
+body.pp-desk .atl2.cibles .desk-list .listhead.mapoff,
+.atl2.cibles .desk-list .listhead{padding:0;background:rgba(255,255,255,.96);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border-radius:var(--pp-r-m) var(--pp-r-m) 0 0;border-bottom:1px solid var(--pp-line)}
+.atl2.cibles .listhead .lh-title{order:0;display:flex;align-items:center;gap:8px;
+  flex-wrap:wrap;padding:12px 18px 0;margin:0}
+.atl2.cibles .listhead .lh-top{order:1;display:flex;align-items:center;gap:8px;
+  flex-wrap:wrap;padding:10px 18px 12px;margin:0}
+.atl2.cibles .listhead .lh-funnel{order:2;padding:12px 18px;margin:0;
+  border-top:1px solid var(--pp-line-in)}
+.atl2.cibles .listhead .lh-title .main{display:inline-flex;align-items:center;
+  font-size:13px;font-weight:700;color:var(--pp-ink);white-space:nowrap}
+.atl2.cibles .listhead .lh-title .main b.tn{font-size:13px;font-weight:700}
+.atl2.cibles .listhead .lh-title .dot{color:var(--pp-line-dash)}
+.atl2.cibles .listhead .lh-title .ctx{font-size:12px;font-weight:600;
+  color:var(--pp-ink-4);letter-spacing:0;text-transform:none}
+/* les chips de contexte : hauteur UNIQUE de 28 px — la règle qui fait
+   qu'une rangée de pastilles s'aligne au lieu de faire des marches */
+.atl2.cibles .listhead .lh-dock{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.atl2.cibles .listhead .dockbtn{display:inline-flex;align-items:center;gap:6px;
+  height:28px;box-sizing:border-box;background:var(--pp-bg-page);
+  border:1px solid var(--pp-line);border-radius:999px;padding:0 12px;
+  font:inherit;font-size:12px;font-weight:600;color:var(--pp-ink);cursor:pointer;
+  white-space:nowrap;letter-spacing:0;text-transform:none}
+.atl2.cibles .listhead .dockbtn:hover{border-color:var(--pp-line-strong)}
+.atl2.cibles .listhead .dockbtn.sig{background:var(--pp-red-bg);
+  border-color:var(--pp-red-bd);color:var(--pp-red-tx);font-weight:700}
+.atl2.cibles .listhead .lh-acts{margin-left:auto;display:flex;align-items:center;
+  gap:8px;flex-wrap:wrap;justify-content:flex-end;height:auto}
+/* LISTE | LIGNE | MAXI : un segment de 30 px, filet unique */
+.atl2.cibles .listhead .dens{display:inline-flex;align-items:stretch;height:30px;
+  box-sizing:border-box;border:1px solid var(--pp-line);border-radius:var(--pp-r-s);
+  overflow:hidden;background:var(--pp-bg);gap:0}
+.atl2.cibles .listhead .dens button{display:inline-flex;align-items:center;gap:5px;
+  border:0;border-radius:0;background:transparent;padding:0 10px;font:inherit;
+  font-size:10.5px;font-weight:700;letter-spacing:.02em;color:var(--pp-ink-4);
+  cursor:pointer;white-space:nowrap}
+.atl2.cibles .listhead .dens button[aria-pressed="true"],
+.atl2.cibles .listhead .dens button.on{background:var(--pp-navy);color:#fff}
+.atl2.cibles .listhead .dens button b{font-size:10.5px;font-weight:700}
+.atl2.cibles .listhead .doable .dobtn{display:inline-flex;align-items:center;gap:6px;
+  height:30px;box-sizing:border-box;border:1px solid var(--pp-line);
+  border-radius:var(--pp-r-s);padding:0 12px;font:inherit;font-size:12px;
+  font-weight:600;color:var(--pp-ink-2);background:var(--pp-bg);cursor:pointer;
+  white-space:nowrap}
+.atl2.cibles .listhead .doable .dobtn:hover{border-color:var(--pp-line-strong)}
+
+/* ── ⑩ L'ENTONNOIR : chevrons à gauche, compteurs à droite ───────────────── */
+.atl2.cibles .listhead .funnel{display:flex;align-items:center;gap:12px;
+  flex-wrap:wrap;margin:0}
+/* MESURÉ : à 451 px pour cinq chevrons, « À évaluer » se coupait en
+   « À évalu… ». La maquette leur donne 520 px et fait passer les outils à la
+   ligne — un libellé d'étape tronqué ne dit plus quelle étape c'est. */
+.atl2.cibles .listhead .chain2{flex:1 1 520px;min-width:420px;align-items:stretch}
+@media (max-width:1200px){
+  .atl2.cibles .listhead .chain2{flex:1 1 100%;min-width:0}
+  .atl2.cibles .listhead .offtrack{flex:1 1 auto}
+}
+.atl2.cibles .listhead .chain2 .step{padding:8px 8px 8px 20px;gap:2px}
+.atl2.cibles .listhead .chain2 .step:first-child{padding-left:14px}
+.atl2.cibles .listhead .chain2 .step .l{display:block;font-size:12px;font-weight:600;
+  opacity:.75;letter-spacing:0;text-transform:none;line-height:1.3;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.atl2.cibles .listhead .chain2 .step .n{display:block;margin-top:2px;font-size:17px;
+  font-weight:700;letter-spacing:-.01em;line-height:1.1}
+/* l'étape active en vert PLEIN, avec l'ombre du handoff */
+.atl2.cibles .listhead .chain2 .step[aria-selected="true"]{background:var(--pp-green);
+  color:#fff;box-shadow:var(--pp-sh-step)}
+.atl2.cibles .listhead .chain2 .step:not([aria-selected="true"]){
+  background:var(--pp-line-in);color:var(--pp-ink-3)}
+/* les compteurs hors tunnel : trois boîtes rayon 8 */
+.atl2.cibles .listhead .offtrack{display:flex;gap:8px;flex:none;align-items:stretch}
+.atl2.cibles .listhead .offtrack .off{display:block;box-sizing:border-box;
+  border:1px solid var(--pp-line-in);border-radius:var(--pp-r-s);padding:7px 11px;
+  background:var(--pp-bg);cursor:pointer;text-align:left}
+.atl2.cibles .listhead .offtrack .off .l{display:block;font-size:12px;font-weight:600;
+  opacity:.8;white-space:nowrap;letter-spacing:0;text-transform:none}
+.atl2.cibles .listhead .offtrack .off .n{display:block;margin-top:2px;font-size:17px;
+  font-weight:700;letter-spacing:-.01em}
+.atl2.cibles .listhead .offtrack .off[aria-selected="true"]{border-color:var(--pp-line)}
+/* les outils : carrés de 30 px à filet, comme ⇅ et ⚙ de la maquette */
+/* Les outils passent SOUS l'entonnoir, alignés à droite. Dans la maquette ils
+   ne sont pas dans la rangée des chevrons du tout — ils vivent avec les modes
+   d'affichage. Collés au tunnel, ils lui prenaient 170 px et coupaient
+   « À évaluer » en « À évalu… ». */
+.atl2.cibles .listhead .ftools{display:flex;align-items:center;gap:6px;
+  flex:1 0 100%;justify-content:flex-end;margin:8px 0 0}
+.atl2.cibles .listhead .ftools .tool{width:30px;height:30px;box-sizing:border-box;
+  display:grid;place-items:center;border:1px solid var(--pp-line);
+  border-radius:var(--pp-r-s);background:var(--pp-bg);color:var(--pp-ink-4);
+  font-size:13px;cursor:pointer;padding:0}
+.atl2.cibles .listhead .ftools .tool:hover{border-color:var(--pp-line-strong);
+  color:var(--pp-ink-2)}
+
+/* ── ⑪ LE BANDEAU D'ÉTAPE, sous l'entonnoir ──────────────────────────────── */
+.atl2.cibles .listhead .tuto.mini{order:3;display:flex;align-items:center;gap:12px;
+  flex-wrap:wrap;padding:11px 18px;margin:0;border-top:1px solid var(--pp-line-in);
+  background:#F4FBF7;border-radius:0}
+.atl2.cibles .listhead .tuto.mini .tstep{display:inline-flex;align-items:center;gap:8px;
+  font-size:13.5px;font-weight:700;color:var(--pp-green-tx);letter-spacing:0;
+  text-transform:none}
+.atl2.cibles .listhead .tuto.mini .tstep::before{content:"";width:8px;height:8px;
+  border-radius:50%;background:var(--pp-green)}
+.atl2.cibles .listhead .tuto.mini .tbody{font-size:12.5px;color:var(--pp-ink-3)}
+
+/* ── ⑫ L'EN-TÊTE DE COLONNES ET LES LIGNES ───────────────────────────────── */
+.atl2.cibles .desk-list .row,
+.atl2.cibles .desk-list .cols{
+  grid-template-columns:11px 20px minmax(140px,1fr) minmax(84px,116px) 92px!important;
+  gap:8px;align-items:center;box-sizing:border-box}
+.atl2.cibles .desk-list .cols{padding:9px 14px;background:#F9FBFD;
+  border-bottom:1px solid var(--pp-line)}
+.atl2.cibles .desk-list .cols button,
+.atl2.cibles .desk-list .cols span{font-family:var(--pp-body);font-size:12px;
+  font-weight:600;color:var(--pp-ink-4);letter-spacing:0;text-transform:none}
+.atl2.cibles .desk-list .list .row{padding:10px 14px;
+  border-bottom:1px solid var(--pp-line-in);cursor:pointer}
+.atl2.cibles .desk-list .list .row:hover{background:#F9FBFD}
+/* le drapeau : 20×14, rayon 2, cerné d'un filet d'un pixel */
+.atl2.cibles .desk-list .row .c-flag{width:20px;height:14px;display:block;
+  border-radius:2px;overflow:hidden;box-shadow:0 0 0 1px rgba(15,29,51,.10);
+  background-size:cover;background-position:center}
+.atl2.cibles .desk-list .row .c-flag .em{font-size:11px;line-height:14px}
+.atl2.cibles .desk-list .row .nd{min-width:0;display:block;overflow:hidden}
+.atl2.cibles .desk-list .row .rnm{display:flex;align-items:center;gap:7px;min-width:0;
+  font-weight:600;font-size:13.5px;color:var(--pp-ink);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.atl2.cibles .desk-list .row .rds{display:block;margin-left:13px;font-size:12.5px;
+  color:var(--pp-ink-4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* MATCH : un badge dans SA colonne, jamais posé sur la description */
+.atl2.cibles .desk-list .row .c-vd{display:flex;align-items:center;gap:7px;
+  flex-wrap:wrap;min-width:0}
+.atl2.cibles .desk-list .row .vd.v-ok{background:var(--pp-green-bg);
+  color:var(--pp-green-tx);font-size:10px;font-weight:700;border-radius:5px;
+  padding:3px 6px;letter-spacing:0;text-transform:none;white-space:nowrap}
+.atl2.cibles .desk-list .row .vd.wait{display:inline-flex;align-items:center;gap:7px;
+  border:1px solid var(--pp-line);border-radius:999px;padding:4px 9px;
+  font-size:11.5px;font-weight:600;color:var(--pp-ink-2);background:var(--pp-bg);
+  white-space:nowrap;letter-spacing:0;text-transform:none}
+/* le bouton d'action : marine, plein, jamais coupé — largeur de contenu,
+   pas de la colonne (le panneau extras s'ouvre au clic, plus en dessous). */
+.atl2.cibles .desk-list .row .cell{justify-self:end;width:auto}
+.atl2.cibles .desk-list .row .cell-an{display:flex;justify-content:flex-end;
+  position:relative;z-index:2}
+.atl2.cibles .desk-list .row .memobtn{width:auto;box-sizing:border-box;font:inherit;
+  font-size:11.5px;font-weight:700;background:var(--pp-navy);color:#fff;border:0;
+  border-radius:var(--pp-r-s);padding:8px 12px;cursor:pointer;white-space:nowrap;
+  display:inline-flex;align-items:center;justify-content:center}
+.atl2.cibles .desk-list .row .memobtn:hover:not(:disabled){background:var(--pp-navy-h)}
+@media (max-width:860px){
+  .atl2.cibles .desk-list .row,
+  .atl2.cibles .desk-list .cols{
+    grid-template-columns:11px 20px minmax(0,1fr) 88px!important}
+  .atl2.cibles .desk-list .c-vd,.atl2.cibles .desk-list .h-vd{display:none!important}
+}
+
+/* ── ⑬ LE PANNEAU DE LECTURE : une carte, détachée de la liste ───────────── */
+.atl2.cibles .readpane{background:transparent;border-left:0;padding:0;
+  display:flex;flex-direction:column;gap:14px;overflow:visible}
+/* « Édito du jour » : une ligne cliquable, pas un bouton perdu */
+.atl2.cibles .readpane .edito-go{display:flex;align-items:center;gap:10px;width:100%;
+  box-sizing:border-box;border:1px solid var(--pp-line);border-radius:var(--pp-r-m);
+  padding:12px 16px;background:var(--pp-bg);font:inherit;font-size:13px;
+  font-weight:700;color:var(--pp-ink);cursor:pointer;text-align:left;
+  white-space:nowrap;letter-spacing:0;text-transform:none;margin:0}
+.atl2.cibles .readpane .edito-go::before{content:"";width:8px;height:8px;flex:none;
+  border-radius:50%;background:var(--pp-green)}
+.atl2.cibles .readpane .edito-go:hover{border-color:var(--pp-green-bd);
+  background:#FBFDFC}
+.atl2.cibles .readpane .edito-go[aria-pressed="true"]{border-color:var(--pp-green-bd);
+  background:var(--pp-green-chip);color:var(--pp-green-tx)}
+/* la fiche : cadre blanc, rayon 14. overflow:hidden recadrait les cartes
+   1200 px de l'edito du jour — on clippe le .ppcard-fit, pas le zoom. */
+.atl2.cibles .readpane .zoom{border:1px solid var(--pp-line);border-radius:14px;
+  background:var(--pp-bg);overflow:visible;padding:0;margin:0;min-width:0}
+.atl2.cibles .readpane .zoom-pipe{padding:20px 20px 0}
+.atl2.cibles .readpane .zoom-k{font-size:12px;font-weight:600;color:var(--pp-ink-4);
+  letter-spacing:0;text-transform:none;margin:0}
+.atl2.cibles .readpane .zoom-h{margin:6px 0 0;font-size:21px;font-weight:700;
+  letter-spacing:-.01em;color:var(--pp-ink);line-height:1.2}
+.atl2.cibles .readpane .zoom-meta{margin:4px 0 0;font-size:13px;color:var(--pp-ink-3);
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.atl2.cibles .readpane .zoom-cta{margin:14px 0 0}
+/* les onglets : soulignés en vert, jamais encadrés */
+.atl2.cibles .readpane .cdtabs{margin:14px -20px 0}
+.atl2.cibles .readpane .cdnav{display:flex;gap:2px;padding:0 12px;overflow-x:auto;
+  border-bottom:1px solid var(--pp-line-in);scrollbar-width:none}
+.atl2.cibles .readpane .cdnav::-webkit-scrollbar{display:none;height:0}
+.atl2.cibles .readpane .cdnav button{flex:none;border:0;background:none;
+  font:inherit;font-size:13px;font-weight:600;color:var(--pp-ink-4);
+  padding:10px 9px 11px;border-bottom:2px solid transparent;margin-bottom:-1px;
+  white-space:nowrap;cursor:pointer;letter-spacing:0;text-transform:none;
+  border-radius:0}
+.atl2.cibles .readpane .cdnav button:hover{color:var(--pp-ink-2)}
+/* le soulignement de l'onglet actif est VERT — mesuré : la feuille d'avant le
+   posait en encre, et l'accent du panneau disparaissait. Un cran de
+   spécificité de plus, sinon c'est elle qui gagne. */
+.atl2.cibles .readpane .cdtabs .cdnav button.on,
+.atl2.cibles .readpane .cdtabs .cdnav button[aria-selected="true"]{
+  color:var(--pp-ink);border-bottom:2px solid var(--pp-green);
+  background:transparent}
+.atl2.cibles .readpane .cdbody{padding:20px}
+.atl2.cibles .readpane .readpane-empty{border:1px dashed var(--pp-line);
+  border-radius:var(--pp-r-m);padding:28px 20px;text-align:center;font-size:13px;
+  color:var(--pp-ink-4);margin:0;background:var(--pp-bg)}
+/* l'édito déplié garde le même cadre que la fiche */
+.atl2.cibles .readpane .thesis-brief{margin:0;border:0;border-radius:0;
+  background:transparent}
+
+/* ── ⑭ CE QU'ON NE VEUT PLUS VOIR ────────────────────────────────────────── */
+/* Les barres horizontales : elles existent (on défile), elles ne se dessinent
+   plus — la maquette n'en montre aucune. */
+.atl2.cibles .desk-list,.atl2.cibles .cdnav,.atl2.cibles .conts,
+.atl2.cibles .listhead,.atl2.cibles .readpane{scrollbar-width:none}
+.atl2.cibles .desk-list::-webkit-scrollbar,
+.atl2.cibles .conts::-webkit-scrollbar,
+.atl2.cibles .listhead::-webkit-scrollbar{display:none;height:0}
+/* Aucun libellé de bouton court ne doit se couper en deux lignes. */
+.atl2.cibles .listhead button,.atl2.cibles .idmain button,
+.atl2.cibles .conts button,.atl2.cibles .demand button{white-space:nowrap}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COCKPIT v3 — SECONDE PASSE : ON NE RAPIÈCE PLUS, ON REPREND LA PILE
+   « Oublie l'ancienne mise en page dans le cockpit et embrasse entièrement
+     la nouvelle — l'encadré de droite, la liste, tout. »
+
+   POURQUOI LA PREMIÈRE PASSE N'A PAS TENU, mesuré au navigateur :
+   la feuille porte 213 règles sur .listhead, dont une vingtaine préfixées
+   « body.pp-desk » — spécificité (0,6,0). Mes règles v3, en (0,5,0), ne les
+   atteignaient jamais. Relevé sur la production :
+
+       .lh-top    order=4  padding=[0 0 8px 0]   border-bottom: 1px #E3E8F0
+       .lh-title  order=5  padding=[12px 18px 0]
+       .lh-funnel order=6  padding=[6px 0 0 0]
+       .tuto.mini          h=0        ← le bandeau d'étape était éteint
+
+   D'où, exactement, ce qu'on voit à l'écran :
+     · « 71 criblées ce matin » à 1 px du bord de la carte — la rangée n'a
+       AUCUN rembourrage gauche, alors que la ligne de titre juste en dessous
+       en a 18 ;
+     · un filet sous cette rangée, collé au filet de la carte : deux traits
+       parallèles à 1 px l'un de l'autre — les « box collées » ;
+     · l'entonnoir à ras du bord, lui aussi sans rembourrage ;
+     · cliquer « Écartées » ne raconte rien : le bandeau qui doit nommer
+       l'étape et proposer d'en sortir est en display:none depuis
+       « body.pp-desk … .lh-funnel .tuto », qu'aucune de mes règles ne battait.
+
+   La réponse n'est pas une retouche de plus. On reprend la pile ENTIÈRE au
+   même niveau de spécificité, en dernier : ordre, rembourrages, filets. Une
+   seule règle par décision, et plus aucune rangée qui touche un bord.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── ⑮ LA BARRE D'OUTILS : LA PILE REPRISE À ZÉRO ────────────────────────── */
+/* Un seul filet dans toute la barre : celui du bas. Les rangées ne portent
+   plus le leur — c'est ce qui collait les boîtes deux à deux. */
+body.pp-desk .atl2.cibles .desk-list .listhead,
+body.pp-desk .atl2.cibles .desk-list .listhead.mapoff{
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  padding:0!important;margin:0;gap:0;
+  background:rgba(255,255,255,.96);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  border:0;border-bottom:1px solid var(--pp-line);
+  border-radius:var(--pp-r-m) var(--pp-r-m) 0 0}
+
+/* rangée ① — ce qu'on regarde : « 40 retenues · Monde · winhealthgroup » */
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-title{
+  order:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:12px 18px 0;margin:0;border:0;width:auto}
+
+/* rangée ② — les pastilles de contexte à gauche, les modes d'affichage à
+   droite. C'est la rangée qui touchait le bord : 18 px de flanc, comme tout
+   le reste de la carte. */
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-top,
+body.pp-desk .atl2.cibles .desk-list .listhead.mapoff .lh-top{
+  order:2;display:flex!important;flex-direction:row;flex-wrap:wrap;
+  align-items:center;gap:8px;width:auto;min-width:0;
+  padding:10px 18px 0;margin:0;border:0}
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-top .lh-dock{
+  order:0;display:flex;align-items:center;flex-wrap:wrap;gap:8px;row-gap:8px;
+  flex:0 1 auto;width:auto;padding:0;margin:0;border:0}
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-top .lh-acts{
+  margin-left:auto;flex:none;display:flex;flex-direction:row;flex-wrap:wrap;
+  align-items:center;justify-content:flex-end;gap:8px;height:auto;padding:0}
+
+/* rangée ③ — le rabat des filtres, quand la carte est repliée. Il vivait dans
+   sa propre boîte à filet : il redevient une rangée de la barre. */
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-tools{
+  order:3;display:flex;flex-direction:row;align-items:center;flex-wrap:wrap;
+  gap:8px;width:auto;padding:10px 18px 0;margin:0;border:0}
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-tools .fstrip{
+  display:flex;align-items:center;flex-wrap:wrap;gap:8px;width:100%;
+  padding:0;margin:0;border:0;background:transparent}
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-tools .fstrip-a,
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-tools .fstrip-b{
+  display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:0;margin:0;
+  border:0;background:transparent}
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-tools .fstrip-b{flex:1 1 auto;min-width:0}
+
+/* rangée ④ — le pavé du matin : mêmes flancs que les autres */
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-stats{
+  order:4;width:auto;padding:8px 18px 0;margin:0;border:0}
+
+/* rangée ⑤ — l'entonnoir, séparé des commandes par UN filet pâle */
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-funnel{
+  order:5;width:auto;padding:12px 18px;margin:12px 0 0;
+  border:0;border-top:1px solid var(--pp-line-in)}
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-funnel .funnel{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:0;margin:0;border:0;background:transparent}
+
+/* ── ⑯ LE BANDEAU D'ÉTAPE — RALLUMÉ ─────────────────────────────────────── */
+/* « Quand je clique sur Écartées, ce n'est pas du tout le même comportement. »
+   Et pour cause : la liste changeait bien, mais RIEN ne le disait. La maquette
+   met sous l'entonnoir une ligne qui nomme l'étape, l'explique, et propose
+   d'en sortir. Elle était éteinte par
+       body.pp-desk .atl2.cibles .listhead .lh-funnel .tuto{display:none}
+   — six classes. Il en faut sept pour la rallumer. */
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-funnel .tuto.mini{
+  display:flex!important;align-items:center;gap:12px;flex-wrap:wrap;
+  position:relative;left:auto;right:auto;
+  width:auto;margin:12px -18px -12px;padding:11px 18px;
+  border:0;border-top:1px solid var(--pp-line-in);border-radius:0;
+  background:var(--bg,#FBFCFE);color:var(--tc,var(--pp-ink));
+  box-shadow:none}
+/* la flèche qui pointait le chevron actif : la maquette n'en a pas, et elle
+   dépassait du cadre de la carte */
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-funnel .tuto.mini::before{display:none}
+.atl2.cibles .listhead .tuto.mini .txt{display:flex;align-items:center;gap:12px;
+  flex-wrap:wrap;flex:1 1 auto;min-width:0}
+.atl2.cibles .listhead .tuto.mini .txt p{display:flex;align-items:center;gap:12px;
+  flex-wrap:wrap;margin:0;max-width:none;font-weight:400}
+/* ⚠️ le titre d'étape était une PASTILLE SOMBRE en capitales — la feuille pose
+   « .atl2 .tuto p b.tstep{color:var(--stt)!important;background:var(--stc)} ».
+   La maquette veut un titre en clair, précédé d'une pastille de 8 px. Il faut
+   donc défaire le fond ET reprendre la couleur avec la même arme. */
+.atl2.cibles .listhead .tuto.mini p b.tstep,
+.atl2.cibles .listhead .tuto.mini .tstep{display:inline-flex;align-items:center;gap:8px;
+  font-size:13.5px;font-weight:700;letter-spacing:0;text-transform:none;
+  background:transparent!important;padding:0;margin:0;border-radius:0;
+  line-height:1.35;color:var(--stepfg,var(--pp-ink))!important}
+.atl2.cibles .listhead .tuto.mini .tstep::before{content:"";width:8px;height:8px;
+  flex:none;border-radius:50%;background:var(--stepdot,var(--pp-line-dash))}
+.atl2.cibles .listhead .tuto.mini .tbody{font-size:12.5px;font-weight:400;
+  color:var(--pp-ink-3);line-height:1.5}
+.atl2.cibles .listhead .tuto.mini .tbody b,
+.atl2.cibles .listhead .tuto.mini .tbody strong{font-weight:700;color:var(--pp-ink-2)}
+/* l'action de masse garde sa place, à droite, en pilule discrète */
+.atl2.cibles .listhead .tuto.mini .tprim{flex:none;margin-left:auto;font:inherit;
+  height:28px;box-sizing:border-box;padding:0 14px;border:1px solid var(--pp-line);
+  border-radius:var(--pp-r-pill);background:var(--pp-bg);color:var(--pp-ink);
+  font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.atl2.cibles .listhead .tuto.mini .tprim:hover{border-color:var(--pp-line-strong)}
+/* « Revenir aux retenues ✕ » — le chemin de retour de la maquette */
+.atl2.cibles .listhead .tuto.mini .treset{flex:none;margin-left:auto;font:inherit;
+  border:0;background:none;padding:0;cursor:pointer;white-space:nowrap;
+  font-size:12px;font-weight:600;color:var(--pp-ink-4)}
+.atl2.cibles .listhead .tuto.mini .tprim+.treset{margin-left:0}
+.atl2.cibles .listhead .tuto.mini .treset:hover{color:var(--pp-ink-2)}
+/* LES DEUX SEULES PALETTES DE LA MAQUETTE. Le bandeau prenait la couleur de
+   son étape — cinq fonds différents, dont des sombres qui obligeaient à
+   retourner le texte en blanc. La maquette n'en connaît que deux : vert pâle
+   quand l'étape porte des lignes, blanc cassé sinon. */
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-funnel .tuto.mini{
+  background:#FBFCFE!important;--stepdot:var(--pp-line-dash);--stepfg:var(--pp-ink);
+  --tc:var(--pp-ink)}
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-funnel .tuto.mini.etape-on{
+  background:#F4FBF7!important;--stepdot:var(--pp-green);--stepfg:var(--pp-green-tx)}
+.atl2.cibles .listhead .tuto.mini.on-dark .tprim{background:var(--pp-bg);
+  color:var(--pp-ink)}
+
+/* ── ⑰ L'ÉTAT VIDE ──────────────────────────────────────────────────────── */
+/* Une étape sans ligne ne doit pas rendre une liste résiduelle : la maquette
+   centre un titre, une phrase, et le chemin de retour. */
+.atl2.cibles .desk-list .void,
+.atl2.cibles .desk-list .emptytab{padding:46px 18px;text-align:center;
+  border:0;background:transparent;margin:0}
+.atl2.cibles .desk-list .void h4,
+.atl2.cibles .desk-list .void .vt,
+.atl2.cibles .desk-list .emptytab .vt{margin:0;font-size:15px;font-weight:700;
+  color:var(--pp-ink);letter-spacing:0;text-transform:none}
+.atl2.cibles .desk-list .void p,
+.atl2.cibles .desk-list .emptytab p{margin:6px 0 0;font-size:13px;
+  color:var(--pp-ink-4);line-height:1.55}
+.atl2.cibles .desk-list .void button,
+.atl2.cibles .desk-list .emptytab button{font:inherit;font-size:12.5px;font-weight:700;
+  margin-top:16px;background:var(--pp-bg);color:var(--pp-ink);
+  border:1px solid var(--pp-line);border-radius:var(--pp-r-pill);
+  padding:9px 18px;cursor:pointer}
+.atl2.cibles .desk-list .void button:hover,
+.atl2.cibles .desk-list .emptytab button:hover{border-color:var(--pp-line-strong)}
+
+/* ── ⑱ LE RABAT DES FILTRES : DES PILULES DE 32 px ──────────────────────── */
+/* La maquette : une rangée qui passe à la ligne, tout en pilules de 32 px,
+   le champ de recherche compris. */
+.atl2.cibles .listhead .lh-tools .fstrip .fsrch,
+.atl2.cibles .listhead .lh-tools .fstrip input[type="text"],
+.atl2.cibles .listhead .lh-tools .fstrip input:not([type]){
+  height:32px;box-sizing:border-box;border-radius:var(--pp-r-pill);
+  border:1px solid var(--pp-line);background:var(--pp-bg-page);
+  padding:0 14px;font-size:13px;color:var(--pp-ink);outline:none}
+.atl2.cibles .listhead .lh-tools .fstrip .fbtn,
+.atl2.cibles .listhead .lh-tools .fstrip .dbtn,
+.atl2.cibles .listhead .lh-tools .fstrip .wbtn,
+.atl2.cibles .listhead .lh-tools .fstrip button{
+  display:inline-flex;align-items:center;gap:7px;height:32px;box-sizing:border-box;
+  padding:0 13px;border:1px solid var(--pp-line);border-radius:var(--pp-r-pill);
+  background:var(--pp-bg);font:inherit;font-size:12.5px;font-weight:600;
+  color:var(--pp-ink-2);cursor:pointer;white-space:nowrap;width:auto}
+.atl2.cibles .listhead .lh-tools .fstrip button:hover{border-color:var(--pp-line-strong)}
+.atl2.cibles .listhead .lh-tools .fstrip button.on,
+.atl2.cibles .listhead .lh-tools .fstrip button[aria-pressed="true"]{
+  background:var(--pp-green-chip);border-color:var(--pp-green-bd);
+  color:var(--pp-green-tx);font-weight:700}
+.atl2.cibles .listhead .lh-tools .fstrip .alertbtn{background:var(--pp-green);
+  border-color:var(--pp-green);color:#fff;font-weight:700}
+.atl2.cibles .listhead .lh-tools .fstrip .alertbtn:hover{background:var(--pp-green-h);
+  border-color:var(--pp-green-h)}
+.atl2.cibles .listhead .lh-tools .fstrip .fsig,
+.atl2.cibles .listhead .lh-tools .fstrip button.sig{border-color:var(--pp-red-bd);
+  background:var(--pp-red-bg);color:var(--pp-red-tx)}
+
+/* ── ⑲ LES LIGNES : LA GRILLE DE LA MAQUETTE ────────────────────────────── */
+/* pastille d'étape | drapeau | société & description | crible + statut | action.
+   La colonne verdict retrouve la largeur qu'il lui faut : c'est elle qui loge
+   le badge MATCH ET le menu de statut, et trop serrée elle les superposait
+   (le libellé captait le clic à la place du bouton). */
+.atl2.cibles .desk-list .row,
+.atl2.cibles .desk-list .cols{
+  grid-template-columns:11px 34px minmax(140px,1fr) minmax(150px,190px) 92px!important;
+  gap:8px;align-items:center;box-sizing:border-box}
+.atl2.cibles .desk-list .cols{padding:9px 14px;background:#F9FBFD;
+  border-bottom:1px solid var(--pp-line);border-top:0}
+.atl2.cibles .desk-list .c-vd{overflow:visible!important;display:flex;
+  flex-wrap:nowrap;align-items:center;justify-content:flex-start;gap:7px;min-width:0}
+.atl2.cibles .desk-list .c-vd>*{flex:none}
+@media (max-width:1240px){
+  .atl2.cibles .desk-list .row,
+  .atl2.cibles .desk-list .cols{
+    grid-template-columns:11px 34px minmax(0,1fr) minmax(120px,150px) 92px!important}
+}
+
+/* ── ⑳ LE PANNEAU DE DROITE — LA FICHE DE LA MAQUETTE ───────────────────── */
+/* ⚠️ RÉGRESSION QUE J'AI MOI-MÊME POSÉE À LA PASSE 1 : en donnant à .zoom le
+   cadre de la maquette, je lui ai retiré le rembourrage que la feuille d'avant
+   posait (22px 26px 48px). Mesuré : le corps du brief se retrouvait collé aux
+   deux filets de la carte. Le cadre reste sur .zoom ; le rembourrage passe au
+   CONTENU, qui seul sait de combien il a besoin. */
+.atl2.cibles .readpane{background:transparent;border-left:0;padding:0;
+  display:flex;flex-direction:column;gap:14px;overflow:visible}
+.atl2.cibles .readpane .zoom{border:1px solid var(--pp-line);border-radius:14px;
+  background:var(--pp-bg);overflow:hidden;padding:0;margin:0;min-width:0;
+  max-width:none;box-sizing:border-box}
+/* l'édito déplié : le rembourrage de la maquette (24 px) */
+.atl2.cibles .readpane .zoom>.thesis-brief,
+.atl2.cibles .readpane .zoom>.zoom-body{padding:24px;margin:0;border:0;
+  background:transparent;box-sizing:border-box}
+.atl2.cibles .readpane .zoom .thesis-brief__body{padding:0;margin:14px 0 0}
+.atl2.cibles .readpane .zoom .thesis-brief__hd{display:flex;align-items:baseline;
+  justify-content:space-between;gap:12px;flex-wrap:wrap}
+.atl2.cibles .readpane .zoom .thesis-brief__kicker{font-family:var(--pp-body);
+  font-size:12px;font-weight:600;color:var(--pp-ink-4);letter-spacing:0;
+  text-transform:none}
+.atl2.cibles .readpane .zoom .thesis-brief__title{font-size:16px;font-weight:700;
+  letter-spacing:-.01em;color:var(--pp-ink);margin:0}
+.atl2.cibles .readpane .zoom .thesis-brief__date{font-size:12px;color:var(--pp-ink-4);
+  white-space:nowrap}
+
+/* la barre « Édito du jour », repliée : une ligne, quatre éléments */
+.atl2.cibles .readpane .edito-go,
+.atl2.cibles .readpane .pane-edito{display:flex;align-items:center;gap:10px;
+  width:100%;box-sizing:border-box;margin:0;
+  border:1px solid var(--pp-line);border-radius:var(--pp-r-m);
+  padding:12px 16px;background:var(--pp-bg);font:inherit;font-size:13px;
+  font-weight:700;color:var(--pp-ink);cursor:pointer;text-align:left;
+  letter-spacing:0;text-transform:none;white-space:nowrap}
+.atl2.cibles .readpane .edito-go::before{content:"";width:8px;height:8px;flex:none;
+  border-radius:50%;background:var(--pp-green)}
+.atl2.cibles .readpane .edito-go .eg-t{flex:none;font-size:13px;font-weight:700;
+  color:inherit;white-space:nowrap}
+.atl2.cibles .readpane .edito-go .eg-sub{flex:1 1 auto;font-size:12.5px;font-weight:400;
+  color:var(--pp-ink-4);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  min-width:0}
+.atl2.cibles .readpane .edito-go .eg-chev{margin-left:auto;font-size:12px;
+  font-weight:600;color:var(--pp-ink-4);white-space:nowrap}
+.atl2.cibles .readpane .edito-go:hover{border-color:var(--pp-green-bd);background:#FBFDFC}
+.atl2.cibles .readpane .edito-go[aria-pressed="true"]{border-color:var(--pp-green-bd);
+  background:var(--pp-green-chip);color:var(--pp-green-tx)}
+
+/* la fiche : en-tête, ACTIONS À DROITE DU TITRE, onglets, corps à 20 px.
+   Le balisage pose le titre, le sous-titre, puis les actions — l'une sous
+   l'autre. La maquette met les actions SUR la ligne du titre. Une grille
+   nommée y arrive sans toucher au composant : chaque enfant garde sa place
+   dans le DOM et prend la case qu'on lui donne. */
+.atl2.cibles .readpane .zoom-pipe{padding:0;display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  grid-template-areas:"k k" "hd hd" "m m" "memo memo" "news news" "tabs tabs";
+  align-items:center;row-gap:0;column-gap:10px}
+.atl2.cibles .readpane .zoom-pipe>.zoom-k{grid-area:k}
+.atl2.cibles .readpane .zoom-pipe>.zoom-hd{grid-area:hd}
+.atl2.cibles .readpane .zoom-pipe>.zoom-h{grid-area:h}
+.atl2.cibles .readpane .zoom-pipe>.zoom-cta{grid-area:cta;justify-self:end}
+.atl2.cibles .readpane .zoom-pipe>.zoom-meta{grid-area:m}
+.atl2.cibles .readpane .zoom-pipe>.zoom-memo-acts{grid-area:memo;margin:12px 20px 0}
+.atl2.cibles .readpane .zoom-pipe>.zoom-news{grid-area:news;margin-left:20px;
+  margin-right:20px}
+.atl2.cibles .readpane .zoom-pipe>.cdtabs{grid-area:tabs}
+.atl2.cibles .readpane .zoom-pipe>.zoom-k,
+.atl2.cibles .readpane .zoom-pipe>.zoom-h,
+.atl2.cibles .readpane .zoom-pipe>.zoom-meta,
+.atl2.cibles .readpane .zoom-pipe>.zoom-cta{margin-left:20px;margin-right:20px}
+.atl2.cibles .readpane .zoom-pipe>.zoom-h{margin-right:0}
+.atl2.cibles .readpane .zoom-pipe>.zoom-cta{margin-left:0;margin-top:0}
+/* les boutons de la fiche : marine plein + un carré à filet, comme la maquette */
+.atl2.cibles .readpane .zoom-cta .btn,
+.atl2.cibles .readpane .zoom-cta button,
+.atl2.cibles .readpane .zoom-cta .memobtn,
+.atl2.cibles .readpane .zoom-cta .oc-cta{font:inherit;font-size:12.5px;font-weight:700;
+  background:var(--pp-navy);color:#fff;border:0;border-radius:var(--pp-r-s);
+  padding:8px 14px;cursor:pointer;white-space:nowrap}
+.atl2.cibles .readpane .zoom-cta .btn:hover,
+.atl2.cibles .readpane .zoom-cta button:hover,
+.atl2.cibles .readpane .zoom-cta .oc-cta:hover{background:var(--pp-navy-h)}
+.atl2.cibles .readpane .zoom-cta .btn.g,
+.atl2.cibles .readpane .zoom-cta .btn.d,
+.atl2.cibles .readpane .zoom-cta .ghost{background:var(--pp-bg);color:var(--pp-ink-2);
+  border:1px solid var(--pp-line)}
+.atl2.cibles .readpane .zoom-cta .btn.g:hover,
+.atl2.cibles .readpane .zoom-cta .btn.d:hover,
+.atl2.cibles .readpane .zoom-cta .ghost:hover{background:var(--pp-bg);
+  border-color:var(--pp-line-strong)}
+.atl2.cibles .readpane .zoom-k{margin-top:20px;font-size:12px;font-weight:600;
+  color:var(--pp-ink-4);letter-spacing:0;text-transform:none}
+.atl2.cibles .readpane .zoom-h{margin-top:6px;margin-bottom:0;font-size:21px;
+  font-weight:700;letter-spacing:-.01em;color:var(--pp-ink);line-height:1.2}
+.atl2.cibles .readpane .zoom-meta{margin-top:4px;margin-bottom:0;font-size:13px;
+  color:var(--pp-ink-3);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.atl2.cibles .readpane .zoom-meta span+span::before{content:"·";
+  color:var(--pp-line-dash);margin-right:8px}
+.atl2.cibles .readpane .zoom-cta{margin-top:14px;margin-bottom:0;display:flex;
+  align-items:center;gap:8px;flex-wrap:wrap}
+/* la rangée d'onglets mord sur le rayon de la carte : 12 px de flanc, pas 20 */
+.atl2.cibles .readpane .cdtabs{margin:14px 0 0}
+.atl2.cibles .readpane .cdnav{display:flex;gap:2px;padding:0 12px;overflow-x:auto;
+  border-bottom:1px solid var(--pp-line-in);scrollbar-width:none;margin:0}
+.atl2.cibles .readpane .cdnav::-webkit-scrollbar{display:none;height:0}
+.atl2.cibles .readpane .cdnav button{flex:none;border:0;background:none;font:inherit;
+  font-size:13px;font-weight:600;color:var(--pp-ink-4);padding:10px 9px 11px;
+  border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;
+  cursor:pointer;letter-spacing:0;text-transform:none;border-radius:0}
+.atl2.cibles .readpane .cdnav button:hover{color:var(--pp-ink-2)}
+.atl2.cibles .readpane .cdtabs .cdnav button.on,
+.atl2.cibles .readpane .cdtabs .cdnav button[aria-selected="true"]{
+  color:var(--pp-ink);border-bottom:2px solid var(--pp-green);background:transparent}
+.atl2.cibles .readpane .cdbody{padding:20px;margin:0}
+
+/* le corps de l'onglet : la typographie de la maquette */
+.atl2.cibles .readpane .cdbody h3,
+.atl2.cibles .readpane .cdbody .cdh{margin:22px 0 8px;font-size:14px;font-weight:700;
+  color:var(--pp-ink);letter-spacing:0;text-transform:none}
+.atl2.cibles .readpane .cdbody>h3:first-child,
+.atl2.cibles .readpane .cdbody>.cdh:first-child{margin-top:0}
+.atl2.cibles .readpane .cdbody p,
+.atl2.cibles .readpane .cdbody .cdtxt{margin:0 0 10px;font-size:13.5px;
+  line-height:1.7;color:var(--pp-ink-2)}
+.atl2.cibles .readpane .cdbody .cdtxt:last-child{margin-bottom:0}
+/* le visuel du mémo : 16/9, rayon 12, 18 px d'air en dessous */
+.atl2.cibles .readpane .cdbody img,
+.atl2.cibles .readpane .cdbody .cdimg{display:block;width:100%;height:auto;
+  aspect-ratio:16/9;object-fit:cover;border-radius:var(--pp-r-m);
+  margin:0 0 18px;background:var(--pp-bg-page)}
+/* le verdict en tête d'onglet : une pastille, pas une bannière */
+.atl2.cibles .readpane .cdv1{display:inline-flex;align-items:center;gap:8px;
+  margin:0 0 12px;padding:0;border:0;background:transparent;
+  font-size:11.5px;font-weight:700;color:var(--pp-green-tx);
+  letter-spacing:0;text-transform:none}
+.atl2.cibles .readpane .cdv1.out{color:var(--pp-red-tx)}
+.atl2.cibles .readpane .cdv1 .cdw{font-weight:400;color:var(--pp-ink-4)}
+/* les chiffres en pastilles */
+.atl2.cibles .readpane .md-head{display:flex;align-items:center;gap:8px;
+  flex-wrap:wrap;margin:0 0 12px}
+.atl2.cibles .readpane .md-score,
+.atl2.cibles .readpane .md-tag{display:inline-flex;align-items:center;height:28px;
+  box-sizing:border-box;padding:0 12px;border-radius:var(--pp-r-pill);
+  border:1px solid var(--pp-green-bd);background:var(--pp-green-chip);
+  color:var(--pp-green-tx);font-size:12px;font-weight:700;white-space:nowrap;
+  letter-spacing:0;text-transform:none}
+.atl2.cibles .readpane .md-tag{border-color:var(--pp-line);
+  background:var(--pp-bg-page);color:var(--pp-ink-2);font-weight:600}
+.atl2.cibles .readpane .md-amber{border-color:var(--pp-amber-bd);
+  background:var(--pp-amber-bg);color:var(--pp-amber-tx)}
+
+/* le ruban de sections du mémo : pastilles de 28 px, l'active en vert plein */
+.atl2.cibles .readpane .mdsec,
+.atl2.cibles .readpane .cdsecs{display:flex;gap:6px;margin:10px 0 0;
+  overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.atl2.cibles .readpane .mdsec::-webkit-scrollbar,
+.atl2.cibles .readpane .cdsecs::-webkit-scrollbar{display:none;height:0}
+.atl2.cibles .readpane .mdsec button,
+.atl2.cibles .readpane .cdsecs button{flex:none;display:inline-flex;align-items:center;
+  height:28px;box-sizing:border-box;border:1px solid var(--pp-line);
+  background:var(--pp-bg);color:var(--pp-ink-2);border-radius:var(--pp-r-pill);
+  padding:0 13px;font:inherit;font-size:12px;font-weight:600;cursor:pointer;
+  white-space:nowrap;letter-spacing:0;text-transform:none}
+.atl2.cibles .readpane .mdsec button.on,
+.atl2.cibles .readpane .cdsecs button.on{background:var(--pp-green);color:#fff;
+  border-color:var(--pp-green)}
+
+/* le tableau financier, la pièce jointe : deux cartes à bandeau */
+.atl2.cibles .readpane .cdbody table{width:100%;border-collapse:collapse;
+  font-size:12.5px;margin:14px 0 0;
+  border:1px solid var(--pp-line-in);border-radius:var(--pp-r-m);overflow:hidden}
+.atl2.cibles .readpane .cdbody table th{background:var(--pp-bg-zone);
+  color:var(--pp-ink-4);font-size:11px;font-weight:600;letter-spacing:0;
+  text-transform:none;padding:8px 14px;text-align:left;
+  border-bottom:1px solid var(--pp-line-in)}
+.atl2.cibles .readpane .cdbody table td{padding:8px 14px;font-size:12.5px;
+  color:var(--pp-ink-3);border-top:1px solid var(--pp-line-in2)}
+.atl2.cibles .readpane .cdbody table td:first-child{color:var(--pp-ink)}
+
+/* le panneau vide, avant qu'une ligne soit ouverte */
+.atl2.cibles .readpane .readpane-empty{border:1px dashed var(--pp-line);
+  border-radius:var(--pp-r-m);padding:28px 20px;text-align:center;font-size:13px;
+  color:var(--pp-ink-4);margin:0;background:var(--pp-bg)}
+
+/* ── ㉑ CE QUE LA MAQUETTE NE MONTRE PAS ─────────────────────────────────── */
+/* La flèche de la barre d'aperçu dépassait de la carte de liste. */
+.atl2.cibles .desk-list .listhead .tuto::before,
+.atl2.cibles .desk-list .listhead .tuto::after{display:none!important}
+
+/* ── ㉒ « COLLER UNE URL ET ÉVALUER » : LE TITRE DE SECTION ──────────────── */
+/* Le bloc n'avait pas de titre : on tombait sur un champ nu. La maquette le
+   nomme et l'explique d'une ligne — c'est ce qui fait la différence entre une
+   carte et une barre d'outils. */
+.atl2.cibles .demand .dhead{display:flex;align-items:baseline;gap:12px;
+  flex-wrap:wrap;margin:0 0 14px}
+.atl2.cibles .demand .dhead h2{margin:0;font-size:16px;font-weight:700;
+  letter-spacing:-.01em;color:var(--pp-ink)}
+.atl2.cibles .demand .dhead .dhint{font-size:12.5px;color:var(--pp-ink-4);
+  line-height:1.5}
+
+/* ── ㉓ LA PHRASE DE PIED DE LISTE ───────────────────────────────────────── */
+/* « Comme sur Netflix, chaque 👍 / 👎 affine ce que Stan vous montre ensuite »
+   — dans la maquette elle vit DANS la carte, au même rembourrage que les
+   lignes, pas flottante en dessous. */
+.atl2.cibles .desk-list .learn{margin:0;padding:14px 18px;font-size:12.5px;
+  line-height:1.55;color:var(--pp-ink-4);border-top:1px solid var(--pp-line-in);
+  background:transparent}
+.atl2.cibles .desk-list .learn a,
+.atl2.cibles .desk-list .learn button{font-weight:600;color:var(--pp-green-tx)}
+
+/* ── ㉔ LA VÉRIFICATION DU SITE : la carte rouge de la maquette ──────────── */
+.atl2.cibles .demand .rsp.on{margin:12px 0 0;padding:14px 18px;
+  border:1px solid #F3D2D4;border-radius:var(--pp-r-m);background:#FEF8F8}
+.atl2.cibles .demand .rsp.on .rsp-in{display:flex;align-items:center;gap:10px;
+  flex-wrap:wrap}
+.atl2.cibles .demand .rsp.on .rspaste{display:inline-flex;align-items:center;
+  height:30px;box-sizing:border-box;padding:0 13px;font:inherit;font-size:12.5px;
+  font-weight:600;border:1px solid var(--pp-line);border-radius:var(--pp-r-pill);
+  background:var(--pp-bg);color:var(--pp-ink);cursor:pointer;white-space:nowrap}
+
+/* ── ㉕ LE MODE « LIGNE » ET LE MODE « MAXI » ─────────────────────────────── */
+/* Ils gardaient l'apparence d'avant : cartes à angles vifs, filets sombres. */
+.atl2.cibles .desk-list .list.maxi{padding:16px 18px;gap:12px;
+  background:transparent}
+.atl2.cibles .desk-list .list.maxi .dcard,
+.atl2.cibles .desk-list .list .dcard{border:1px solid var(--pp-line-in);
+  border-radius:var(--pp-r-m);padding:16px 18px;background:var(--pp-bg);
+  box-shadow:none}
+.atl2.cibles .desk-list .list.maxi .dcard:hover,
+.atl2.cibles .desk-list .list .dcard:hover{border-color:var(--pp-line-strong)}
+.atl2.cibles .desk-list .list.ligne{padding:6px 12px 16px}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TROISIÈME PASSE — LES POINTS RELEVÉS À L'ÉCRAN (30/08)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── ③ « LE TEXTE FAIT GRIS SUR VERT FONCÉ ET DEVIENT ILLISIBLE » ────────── */
+/* Mesuré : sur l'étape active, le fond passe bien au vert #12A150, mais le
+   LIBELLÉ garde l'encre #16233A à 75 % d'opacité — de l'encre sombre sur du
+   vert sombre. Seul le nombre passait au blanc. */
+body.pp-desk .atl2.cibles .listhead .chain2 .step[aria-selected="true"],
+body.pp-desk .atl2.cibles .listhead .chain2 .step[aria-selected="true"] .l,
+body.pp-desk .atl2.cibles .listhead .chain2 .step[aria-selected="true"] .n{
+  color:#fff!important}
+body.pp-desk .atl2.cibles .listhead .chain2 .step[aria-selected="true"] .l{opacity:.8}
+body.pp-desk .atl2.cibles .listhead .offtrack .off[aria-selected="true"]{
+  border-color:currentColor}
+
+/* ── ④ LA BASCULE DE LA CARTE : le carré de la maquette, et elle ne bouge pas */
+/* L'emoji partait avec le libellé, et le libellé changeant de longueur, le lien
+   sautait d'une dizaine de pixels à chaque clic. La maquette met un carré de
+   15 px à filet, et le texte reste où il est. */
+.atl2.cibles .conts .side button{display:inline-flex;align-items:center;gap:7px;
+  justify-content:flex-end}
+.atl2.cibles .conts .side button::before{content:none}
+
+/* ── ⑤ « PAS D ARRIÈRE-PLAN GRIS NI DE BARRE DE SÉPARATEUR » ─────────────── */
+/* La bande d évaluation portait un fond #F9FBFD et une ombre d un pixel qui
+   faisait office de filet : deux traits gris autour d une carte blanche. */
+body.pp-desk .atl2.cibles .eval-stick,
+.atl2.cibles .eval-stick{background:#fff!important;box-shadow:none!important;
+  border:0;padding-bottom:0}
+
+/* ── ② L ONGLET « À ÉVALUER » : de vrais boutons, et une seule ligne en bas ── */
+.atl2.cibles .evalq{display:flex;flex-direction:column;gap:0;
+  margin:14px 18px 18px;padding:0;border:1px solid var(--pp-line-in);
+  border-radius:var(--pp-r-m);background:var(--pp-bg)}
+.atl2.cibles .evalq .eq-rows{padding:14px 16px 0;gap:10px}
+.atl2.cibles .eq-item{border:0;border-radius:10px;padding:10px 12px 8px;
+  background:#F4F6F9;box-shadow:none}
+.atl2.cibles .eq-item + .eq-item{margin-top:0}
+.atl2.cibles .eq-item.r-kept{background:#F3FBF6}
+.atl2.cibles .eq-item.r-out{background:#FDF6F6}
+.atl2.cibles .eq-row input{font-weight:700;font-size:13.5px;border-color:#C9D6E6;
+  background:#F9FBFD}
+.atl2.cibles .eq-row input:focus{outline:none;border-color:#12A150;background:#fff}
+/* ⚠️ la colonne du bouton faisait 26 px : de quoi loger un éclair, pas un mot */
+.atl2.cibles .eq-row,.atl2.cibles .eq-head{gap:10px;align-items:center;
+  grid-template-columns:minmax(120px,1fr) minmax(100px,160px) minmax(0,1.2fr) 72px 22px minmax(148px,max-content)}
+.atl2.cibles .eq-h-go{text-align:right;justify-self:end}
+.atl2.cibles .eq-go{display:inline-flex;align-items:center;justify-content:center;
+  gap:6px;height:34px;box-sizing:border-box;justify-self:end;width:auto;min-width:132px;
+  padding:0 14px;border:1px solid var(--pp-green);border-radius:var(--pp-r-pill);
+  background:var(--pp-green);color:#fff;font:inherit;font-size:12.5px;
+  font-weight:700;white-space:nowrap;cursor:pointer}
+.atl2.cibles .eq-go b{font-weight:700}
+.atl2.cibles .eq-go:hover:not(:disabled){background:var(--pp-green-h);
+  border-color:var(--pp-green-h)}
+.atl2.cibles .eq-go:disabled{background:var(--pp-bg);color:var(--pp-line-dash);
+  border-color:var(--pp-line-in);cursor:not-allowed}
+.atl2 .evalq .xtra{margin:2px 0 8px}
+.atl2 .evalq .xtra-tog{font-size:11.5px;padding:3px 0;font-weight:600;color:#4A5C73}
+.atl2.cibles .evalq .eq-add{display:inline-flex;align-items:center;height:36px;
+  box-sizing:border-box;padding:0 16px;margin:4px 0 14px;font:inherit;
+  font-size:13px;font-weight:700;color:#0E8A44;
+  border:1.5px dashed #9ED9B8;border-radius:var(--pp-r-pill);
+  background:#F4FBF6;cursor:pointer;align-self:flex-start}
+.atl2.cibles .evalq .eq-add:hover{border-color:#12A150;background:#E7F6EE;
+  color:#0E8A44}
+/* la rangée du bas : chercher à gauche, lancer à droite — sur UNE ligne */
+/* ⚠️ « flex-wrap:wrap » sur le pied ne suffisait pas : mesure sur la
+   production, les recherches finissaient a y=545 et le bouton a y=610 — deux
+   lignes, pas une. Les suggestions occupaient toute la largeur disponible et
+   poussaient le bouton au tour suivant. C'est « nowrap » qu'il faut, et c'est
+   la zone de gauche qui se replie sur elle-meme. */
+.atl2.cibles .evalq .eq-foot{display:flex;align-items:center;gap:12px;
+  flex-wrap:nowrap;padding:12px 16px;margin:0;
+  border-top:1px solid var(--pp-line-in);background:var(--pp-bg-zone);
+  border-radius:0 0 var(--pp-r-m) var(--pp-r-m)}
+@media (max-width:900px){.atl2.cibles .evalq .eq-foot{flex-wrap:wrap}}
+.atl2.cibles .evalq .eq-sugg{display:flex;align-items:center;flex-wrap:wrap;gap:8px;
+  flex:1 1 auto;min-width:0;margin:0;padding:0;border:0;background:transparent}
+.atl2.cibles .evalq .side{display:flex;flex-direction:row;align-items:center;
+  gap:10px;flex:0 0 auto;margin-left:auto;padding:0;width:auto;border:0;
+  background:transparent}
+/* la phrase d'aide repetait ce que le bouton dit deja, et mangeait 220 px
+   de la ligne qu'on cherche a tenir */
+.atl2.cibles .evalq .side .hint{display:none}
+.atl2.cibles .evalq .side .evalbtn{height:38px;box-sizing:border-box;width:auto;
+  padding:0 22px;border-radius:var(--pp-r-pill);font-size:13px;font-weight:700;
+  background:var(--pp-navy);color:#fff;border:0;box-shadow:none}
+.atl2.cibles .evalq .side .evalbtn:hover:not(:disabled){background:var(--pp-navy-h)}
+.atl2.cibles .evalq .side .evalbtn:disabled{background:var(--pp-line-in);
+  color:var(--pp-ink-5)}
+.atl2.cibles .evalq .side .dmulti{height:30px;padding:0 12px;font-size:12px}
+.atl2.cibles .evalq .eq-sugg-go,
+.atl2.cibles .evalq .eq-sugg-go2{display:inline-flex;align-items:center;height:30px;
+  box-sizing:border-box;padding:0 14px;font:inherit;font-size:12.5px;font-weight:600;
+  border:1px solid var(--pp-line);border-radius:var(--pp-r-pill);
+  background:var(--pp-bg);color:var(--pp-ink-2);cursor:pointer;white-space:nowrap}
+.atl2.cibles .evalq .eq-sugg-go:hover,
+.atl2.cibles .evalq .eq-sugg-go2:hover{border-color:var(--pp-line-strong)}
+
+/* ── LA COLONNE ACTION DÉBORDAIT DE LA CARTE ─────────────────────────────── */
+/* Mesuré : le bouton « ✗ Non » finissait à 890 px pour une carte qui s'arrête
+   à 885. La colonne faisait 92 px et devait loger DEUX boutons de 56 —
+   plus, parfois, le bouton mémo. Elle passe à 122 px, et le groupe OUI/NON
+   se replie plutôt que de sortir du cadre. */
+.atl2.cibles .desk-list .row,
+.atl2.cibles .desk-list .cols{
+  grid-template-columns:11px 34px minmax(120px,1fr) minmax(150px,190px) 122px!important}
+@media (max-width:1240px){
+  .atl2.cibles .desk-list .row,
+  .atl2.cibles .desk-list .cols{
+    grid-template-columns:11px 34px minmax(0,1fr) minmax(120px,150px) 122px!important}
+}
+.atl2.cibles .desk-list .row>.cell{min-width:0;overflow:hidden}
+.atl2.cibles .desk-list .row .yn{flex-wrap:wrap;justify-content:flex-end;
+  row-gap:4px;max-width:100%}
+.atl2.cibles .desk-list .row .ynb{padding:5px 9px}
+
+/* ── ⑧ LE BRIEF DU JOUR, AUX VALEURS DE LA MAQUETTE ─────────────────────── */
+.atl2.cibles .readpane .thesis-brief__hd{display:flex;align-items:baseline;
+  justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 4px}
+.atl2.cibles .readpane .thesis-brief__kicker{font-size:12px;font-weight:600;
+  color:var(--pp-ink-4);letter-spacing:0;text-transform:none;order:-1;
+  flex:1 1 100%}
+.atl2.cibles .readpane .thesis-brief__title{font-size:16px;font-weight:700;
+  letter-spacing:-.01em;color:var(--pp-ink);margin:0;line-height:1.3}
+.atl2.cibles .readpane .thesis-brief__date{font-size:12px;color:var(--pp-ink-4);
+  white-space:nowrap}
+.atl2.cibles .readpane .thesis-brief__sw{display:flex;gap:6px;flex-wrap:wrap;
+  margin:14px 0 0}
+.atl2.cibles .readpane .thesis-brief__sw button{display:inline-flex;
+  align-items:center;height:28px;box-sizing:border-box;padding:0 13px;font:inherit;
+  font-size:12px;font-weight:600;border:1px solid var(--pp-line);
+  border-radius:var(--pp-r-pill);background:var(--pp-bg);color:var(--pp-ink-2);
+  cursor:pointer;white-space:nowrap}
+.atl2.cibles .readpane .thesis-brief__sw button[aria-pressed="true"],
+.atl2.cibles .readpane .thesis-brief__sw button.on{background:var(--pp-green);
+  border-color:var(--pp-green);color:#fff;font-weight:700}
+.atl2.cibles .readpane .thesis-brief__body{font-size:14px;line-height:1.7;
+  color:var(--pp-ink)}
+.atl2.cibles .readpane .thesis-brief__body p{margin:12px 0 0;font-size:14px;
+  line-height:1.7}
+/* mesure : le chapeau rendait a 15 px parce qu'il n'a pas toujours de <p>
+   a l'interieur — la regle doit porter sur le bloc lui-meme */
+.atl2.cibles .readpane .ed-lead{margin:16px 0 0;padding-left:14px;font-size:14px;
+  line-height:1.7;border-left:2px solid var(--pp-green)}
+.atl2.cibles .readpane .ed-lead p{margin:0 0 8px;font-size:14px;line-height:1.7}
+.atl2.cibles .readpane .ed-lead ul{margin:0;padding-left:18px}
+.atl2.cibles .readpane .ed-lead li{margin:0 0 8px;font-size:14px;line-height:1.7}
+/* ⚠️ PIEGE QUE JE ME SUIS POSE MOI-MEME : les intertitres du brief SONT des
+   <p>. Ma propre regle « .atl2.cibles .readpane .thesis-brief__body p » —
+   quatre classes ET un element — battait « .atl2.cibles .readpane .tb-sec »,
+   qui n'en a que quatre. Mesure : 14 px au lieu de 12. Il faut donc que les
+   libelles portent le meme parent que le corps. Et « .tb-these » restait a
+   10 px, la petite capitale que le kit bannit nommement : je lui donnais une
+   couleur et une graisse, jamais une taille. */
+.atl2.cibles .readpane .thesis-brief__body .tb-sec,
+.atl2.cibles .readpane .tb-sec{margin:22px 0 0;font-size:12px!important;
+  font-weight:600;color:var(--pp-ink-4);letter-spacing:0;text-transform:none}
+.atl2.cibles .readpane .thesis-brief__body .tb-geo,
+.atl2.cibles .readpane .tb-geo{margin:12px 0 0;font-size:12px!important;
+  font-weight:600;color:var(--pp-ink-4)}
+.atl2.cibles .readpane .thesis-brief__body .tb-these,
+.atl2.cibles .readpane .tb-these{font-size:12px!important;
+  color:var(--pp-green-tx);font-weight:700}
+.atl2.cibles .readpane .thesis-brief__body em{font-style:italic;
+  color:var(--pp-ink-3)}
+.atl2.cibles .readpane .thesis-brief__body a{font-weight:700;
+  color:var(--pp-green-tx);text-underline-offset:3px}
+.atl2.cibles .readpane .thesis-brief__body hr{border:0;
+  border-top:1px solid var(--pp-line-in);margin:18px 0}
+.atl2.cibles .readpane .thesis-brief__body img{display:block;width:100%;
+  height:auto;border-radius:var(--pp-r-m);margin:14px 0}
+
+/* ── ⑨ LA FICHE : que rien ne dépasse, que rien ne se chevauche ──────────── */
+.atl2.cibles .readpane .cdbody{overflow-wrap:anywhere;word-break:normal}
+.atl2.cibles .readpane .cdbody>*{max-width:100%}
+.atl2.cibles .readpane .cdbody ul,
+.atl2.cibles .readpane .cdbody ol{margin:10px 0;padding-left:18px}
+.atl2.cibles .readpane .cdbody li{margin:0 0 6px;font-size:13px;line-height:1.6;
+  color:var(--pp-ink-2)}
+.atl2.cibles .readpane .cdbody hr{border:0;border-top:1px solid var(--pp-line-in);
+  margin:22px 0}
+.atl2.cibles .readpane .cdbody pre,
+.atl2.cibles .readpane .cdbody code{font-family:var(--pp-mono);font-size:12px;
+  background:var(--pp-bg-page);border-radius:6px;padding:2px 6px;
+  white-space:pre-wrap;overflow-wrap:anywhere}
+.atl2.cibles .readpane .cdbody div:has(>table){overflow-x:auto;
+  scrollbar-width:none;border-radius:var(--pp-r-m)}
+.atl2.cibles .readpane .cdbody div:has(>table)::-webkit-scrollbar{display:none;height:0}
+
+/* ── ⑨ LA FICHE, LIGNE POUR LIGNE COMME LA MAQUETTE ─────────────────────── */
+/* « Jumeaux de vos meilleures cibles · 16/08/2026 » puis, sur UNE ligne, le
+   nom et les gestes ; en dessous « secteur · pays · stade » ; puis les
+   onglets. Mesuré avant : les trois metadonnees etaient collees sans le
+   moindre separateur — « Insurtech de Mobilite InternationaleFranceSeed ». */
+.atl2.cibles .readpane .zoom-pipe{padding:20px 20px 0}
+.atl2.cibles .readpane .zoom-k{font-size:12px;font-weight:600;
+  color:var(--pp-ink-4);letter-spacing:0;text-transform:none;margin:0}
+.atl2.cibles .readpane .zoom-hd{display:flex;align-items:center;gap:10px;
+  margin-top:6px}
+.atl2.cibles .readpane .zoom-hd .zoom-h{margin:0;font-size:21px;font-weight:700;
+  letter-spacing:-.01em;line-height:1.2;min-width:0;overflow-wrap:anywhere}
+.atl2.cibles .readpane .zoom-hd .zoom-cta{margin:0 0 0 auto;display:flex;gap:8px;
+  flex:none;align-items:center}
+.atl2.cibles .readpane .zoom-meta{margin:4px 0 0;font-size:13px;
+  color:var(--pp-ink-3);display:flex;flex-wrap:wrap;align-items:baseline;gap:0}
+.atl2.cibles .readpane .zoom-meta span+span::before{content:"·";
+  color:var(--pp-line-dash);margin:0 7px}
+/* les deux gestes de l'en-tete : la pastille de statut et le carre du memo */
+.atl2.cibles .readpane .zoom-cta .oc-cta,
+.atl2.cibles .readpane .zoom-cta .stbtn,
+.atl2.cibles .readpane .zoom-cta .memobtn{font:inherit;font-size:12.5px;
+  font-weight:700;border-radius:var(--pp-r-s);padding:8px 14px;height:auto;
+  white-space:nowrap;cursor:pointer}
+.atl2.cibles .readpane .zoom-cta .oc-cta{background:var(--pp-navy);color:#fff;
+  border:0}
+.atl2.cibles .readpane .zoom-cta .oc-cta:hover{background:var(--pp-navy-h)}
+/* les onglets : filet clair, soulignement de 2 px sur l'onglet courant */
+.atl2.cibles .readpane .cdnav{display:flex;gap:2px;padding:0 12px;
+  border-bottom:1px solid var(--pp-line-in);margin-top:14px;overflow-x:auto;
+  scrollbar-width:none}
+.atl2.cibles .readpane .cdnav::-webkit-scrollbar{display:none;height:0}
+.atl2.cibles .readpane .cdnav button{font-size:13px;font-weight:600;
+  color:var(--pp-ink-4);padding:10px 9px 11px;margin-bottom:-1px;
+  border:0;border-bottom:2px solid transparent;background:transparent;
+  white-space:nowrap;cursor:pointer}
+.atl2.cibles .readpane .cdnav button.on{color:var(--pp-ink);
+  border-bottom-color:var(--pp-green)}
+.atl2.cibles .readpane .cdbody{padding:20px}
+.atl2.cibles .readpane .cdbody h3{margin:22px 0 8px;font-size:14px;font-weight:700;
+  color:var(--pp-ink)}
+.atl2.cibles .readpane .cdbody h3:first-child{margin-top:0}
+.atl2.cibles .readpane .cdtxt,.atl2.cibles .readpane .cdbody p{font-size:13.5px;
+  line-height:1.7;color:var(--pp-ink-2)}
+/* le visuel du memo : 16/9, rayon 12, jamais deforme */
+.atl2.cibles .readpane .cdbody img{display:block;width:100%;height:auto;
+  border-radius:12px;margin:0 0 18px}
+
+/* ── PASSE 30/08 (14 points) ─────────────────────────────────────────────── */
+
+/* 1. Site | Source : un segment joint, plus deux liens écartés de 10 px. */
+.atl2.cibles .demand .dacts{gap:10px}
+.atl2.cibles .demand .dacts .sitepair{display:inline-flex;align-items:stretch;
+  height:42px;box-sizing:border-box;border:1px solid var(--pp-line);
+  border-radius:999px;overflow:hidden;background:var(--pp-bg);flex:none}
+.atl2.cibles .demand .dacts .sitepair .viewbtn.sm{height:100%;border:0;border-radius:0;
+  padding:0 16px;font-size:12.5px;font-weight:600;color:var(--pp-ink-3);
+  background:transparent;gap:6px}
+.atl2.cibles .demand .dacts .sitepair .viewbtn.sm + .viewbtn.sm{
+  border-left:1px solid var(--pp-line)}
+.atl2.cibles .demand .dacts .sitepair .viewbtn.sm:not(.off){background:var(--pp-navy);
+  color:#fff;border-color:transparent}
+.atl2.cibles .demand .dacts .sitepair .viewbtn.sm.off{opacity:.4}
+.atl2.cibles .demand .dacts .sitepair .viewbtn.sm{flex-wrap:nowrap;white-space:nowrap}
+.atl2.cibles .demand .dacts .sitepair .xwin{font-size:9px;line-height:1;margin-left:3px;
+  opacity:.7}
+.atl2.cibles .demand .dacts .viewbtn.sm:first-of-type,
+.atl2.cibles .demand .dacts .viewbtn.sm:last-of-type{border-radius:0;border:0}
+
+/* 2. Le menu de facettes passait SOUS la carte couverture (z-index 5 vs 6). */
+.atl2.cibles .stage:not(.folded) .map-pulse{z-index:4}
+.atl2.cibles .stage:not(.folded) .fbar{z-index:8}
+.atl2.cibles .stage:not(.folded) .fpanel{z-index:18;max-height:calc(100% - 24px);
+  border-radius:12px;overflow:auto;box-shadow:0 16px 40px rgba(15,29,51,.16)}
+.atl2.cibles .listhead{overflow:visible;z-index:40}
+.atl2.cibles .listhead .fmenu-pop,
+.atl2.cibles .listhead .winpick-pop,
+.atl2.cibles .listhead .fpanel,
+.atl2.cibles .listhead .sortmenu,
+.atl2.cibles .listhead .dolist,
+.atl2.cibles .contpick-pop{z-index:420}
+
+/* 4-6. File + rythme rentrent dans Moteur de mémos. Plus de 3e carte. */
+.atl2.cibles .idmain>.filec{display:none}
+.atl2.cibles .idmain>.engine{flex:1.8 1 380px;min-width:280px;flex-wrap:wrap;
+  row-gap:8px}
+.atl2.cibles .idmain .erate{margin:0}
+.atl2.cibles .idmain .erate button{min-width:28px;height:26px;padding:0 8px;
+  font-size:11px;border-radius:7px}
+.atl2.cibles .idmain .engine .ego{margin-left:auto}
+
+/* 8. Modale Connecter — coque de la maquette v3. */
+.atl2 .mh-txt{min-width:0;flex:1}
+.atl2 .mh-txt h2{margin:0}
+.atl2 .mh-lead{margin:4px 0 0;font-size:13.5px;line-height:1.45;color:#61708A;
+  font-weight:400}
+.atl2 .mcard.m-plug{border-radius:18px;overflow:hidden}
+.atl2 .mcard.m-plug .mh{align-items:flex-start;gap:14px;padding:22px 26px 18px;
+  border-bottom:1px solid #EEF2F7}
+.atl2 .mcard.m-plug .mh .no{display:none}
+.atl2 .mcard.m-plug .mh h2{font-size:19px;font-weight:700}
+.atl2 .mcard.m-plug .mb{padding:22px 26px 26px}
+.atl2 .mcard.m-plug .plugetat{display:flex;align-items:center;gap:10px;
+  background:#F9FBFD;border:1px solid #E3E8F0;border-radius:12px;
+  padding:12px 16px;margin:0 0 22px}
+.atl2 .mcard.m-plug .plugetat.on{background:#EAF6EF;border-color:#BFE6CF}
+.atl2 .mcard.m-plug .plugetat i{width:8px;height:8px;border-radius:50%;
+  background:#8FA0B8;flex:none}
+.atl2 .mcard.m-plug .plugetat.on i{background:#12A150}
+.atl2 .mcard.m-plug .plugetat b{font-size:13px;font-weight:700;color:#16233A}
+.atl2 .mcard.m-plug .plugstep{display:flex;align-items:baseline;gap:10px;
+  margin:0 0 12px}
+.atl2 .mcard.m-plug .plugstep + .plugstep,
+.atl2 .mcard.m-plug .mfield + .plugstep,
+.atl2 .mcard.m-plug .cpy + .plugstep,
+.atl2 .mcard.m-plug .mnote + .plugstep{margin-top:24px}
+.atl2 .mcard.m-plug .pnum{width:22px;height:22px;flex:none;display:grid;
+  place-items:center;border-radius:50%;background:#0F1D33;color:#fff;
+  font-size:11.5px;font-weight:700}
+.atl2 .mcard.m-plug .plugstep h4{margin:0;font-size:15px;font-weight:700;color:#16233A}
+.atl2 .mcard.m-plug .plugdests{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;margin:0 0 8px}
+.atl2 .mcard.m-plug .plugdest{display:block;text-align:left;border:1.5px solid #E3E8F0;
+  background:#fff;border-radius:14px;padding:14px 16px;cursor:pointer;font:inherit;
+  min-width:0;overflow:hidden;white-space:normal;box-sizing:border-box}
+.atl2 .mcard.m-plug .plugdest:hover{border-color:#9ED9B8}
+.atl2 .mcard.m-plug .plugdest.on{border-color:#12A150;background:#F7FCF9}
+.atl2 .mcard.m-plug .plugdest .pradio{width:16px;height:16px;display:inline-grid;
+  place-items:center;border-radius:50%;border:1.5px solid #C9D6E6;vertical-align:middle;
+  margin-right:8px}
+.atl2 .mcard.m-plug .plugdest.on .pradio{border-color:#12A150;background:#12A150;
+  box-shadow:inset 0 0 0 3px #fff}
+.atl2 .mcard.m-plug .plugdest b{display:inline;font-size:13.5px;font-weight:700;color:#16233A;
+  white-space:normal}
+.atl2 .mcard.m-plug .plugdest em{display:block;margin-top:6px;font-style:normal;
+  font-size:12.5px;line-height:1.45;color:#61708A;white-space:normal;
+  overflow-wrap:anywhere;word-break:break-word}
+@media (max-width:640px){
+  .atl2 .mcard.m-plug .plugdests{grid-template-columns:1fr}
+}
+.atl2 .mcard.m-plug .mfield.pill{display:flex;align-items:center;gap:10px;
+  flex-wrap:wrap}
+.atl2 .mcard.m-plug .mfield.pill input{flex:1 1 260px;border:1px solid #E3E8F0;
+  border-radius:999px;background:#F9FBFD;padding:12px 18px;font:inherit;font-size:13.5px}
+.atl2 .mcard.m-plug .mfield.pill .abtn{border:0;border-radius:999px;padding:12px 22px;
+  font-weight:700;background:#12A150;color:#fff}
+.atl2 .mcard.m-plug .plugpay{margin-top:22px;border:1px solid #EEF2F7;border-radius:12px;
+  overflow:hidden}
+.atl2 .mcard.m-plug .plugpay > summary{display:flex;align-items:center;gap:10px;
+  padding:11px 16px;background:#F9FBFD;cursor:pointer;list-style:none}
+.atl2 .mcard.m-plug .plugpay > summary b{font-size:13px;font-weight:700}
+.atl2 .mcard.m-plug .plugpay > summary span{font-size:12px;color:#8FA0B8}
+
+/* 9. LISTE | LIGNE | MAXI : segment de la maquette, sans pictos. */
+.atl2.cibles .listhead .dens button i{display:none}
+.atl2.cibles .listhead .dens button{letter-spacing:.02em;text-transform:uppercase}
+
+/* 10. Nom + description + news sur UNE ligne. */
+.atl2.cibles .desk-list .row .nd{display:flex;align-items:center;gap:8px;
+  min-width:0;overflow:hidden;flex-wrap:nowrap}
+.atl2.cibles .desk-list .row .rnm{display:inline-flex;flex:0 1 auto;max-width:42%;
+  margin:0}
+.atl2.cibles .desk-list .row .rds{display:inline-block;margin-left:0;flex:1 1 8em;
+  min-width:0}
+
+/* 11-12. Drapeaux alignés, OUI/NON dans la carte. */
+.atl2.cibles .desk-list .row,
+.atl2.cibles .desk-list .cols{
+  grid-template-columns:11px 20px minmax(0,1fr) minmax(140px,1fr) auto!important;
+  gap:10px}
+.atl2.cibles .desk-list .row .c-flag{width:20px;height:14px;justify-self:center;
+  align-self:center}
+.atl2.cibles .desk-list .row .c-flag img{display:block;width:20px;height:14px;
+  object-fit:cover}
+.atl2.cibles .desk-list .row>.cell{min-width:0;justify-self:end;width:auto;
+  max-width:100%;overflow:visible}
+.atl2.cibles .desk-list .row .cell-an{display:flex;justify-content:flex-end;width:auto}
+.atl2.cibles .desk-list .row .memobtn{width:auto;padding:8px 12px;position:relative}
+.atl2.cibles .desk-list .row .memobtn .xtra-ask-pip{position:absolute;top:5px;right:5px;margin:0}
+.atl2.cibles .desk-list .row .yn{display:inline-flex;flex-wrap:nowrap;gap:4px;
+  justify-content:flex-end;max-width:100%}
+.atl2.cibles .desk-list .row .ynb{padding:5px 8px;font-size:11.5px;white-space:nowrap}
+.atl2.cibles .desk-list .row .yn .memobtn.sm{padding:5px 7px;width:auto}
+.atl2.cibles .desk-list .row .yn .memobtn.sm .mlbl{display:none}
+@media (max-width:1240px){
+  .atl2.cibles .desk-list .row,
+  .atl2.cibles .desk-list .cols{
+    grid-template-columns:11px 20px minmax(0,1fr) minmax(110px,150px) auto!important}
+}
+@media (max-width:860px){
+  .atl2.cibles .desk-list .row,
+  .atl2.cibles .desk-list .cols{
+    grid-template-columns:11px 20px minmax(0,1fr) auto!important}
+}
+
+/* 13. Écartées / Évaluées / Favoris : chips de la maquette. */
+.atl2.cibles .listhead .offtrack .off{border-radius:8px}
+.atl2.cibles .listhead .offtrack .off[data-off="5"]{background:#FDECEC;
+  border-color:#F5C6C8;color:#C0353A}
+.atl2.cibles .listhead .offtrack .off[data-off="7"]{background:#EAF0F6;
+  border-color:#DCE4F0;color:#4B5E78}
+.atl2.cibles .listhead .offtrack .off[data-off="6"]{background:#FFF3D6;
+  border-color:#F0E3BC;color:#96690E}
+.atl2.cibles .listhead .offtrack .off[aria-selected="true"]{
+  box-shadow:0 0 0 2px rgba(15,29,51,.12);font-weight:700}
+
+/* 14. Édito du jour = même grammaire que Édito · fonds.
+   object-fit:cover recadrait les visuels ; contain les montre entiers. */
+.atl2.cibles .readpane .thesis-brief__body img,
+.atl2.cibles .readpane .zoom-body img,
+.atl2.cibles .readpane .thesis-brief__body figure,
+.atl2.cibles .readpane .zoom-body figure{display:block;width:100%;max-width:100%;
+  height:auto;border-radius:12px;margin:14px 0;object-fit:contain}
+.atl2.cibles .readpane .thesis-brief__body figure img,
+.atl2.cibles .readpane .zoom-body figure img{margin:0}
+.atl2.cibles .readpane .thesis-brief__sw button[aria-selected="true"]{
+  background:var(--pp-green);border-color:var(--pp-green);color:#fff}
+.atl2.cibles .readpane .art-mktcard,.atl2.cibles .readpane .opcard{
+  max-width:100%;width:100%;margin:16px 0;box-sizing:border-box}
+.atl2.cibles .readpane .ppcard-fit{border-radius:12px;overflow:hidden;width:100%;
+  max-width:100%}
+.atl2.cibles .readpane .ed-ops,.atl2.cibles .readpane .mk-ops{list-style:none;
+  margin:0;padding:0}
+.atl2.cibles .readpane .ed-op,.atl2.cibles .readpane .mk-op{padding:15px 0;
+  border-bottom:1px solid var(--pp-line-in)}
+
+/* ── PASSE 31/08 ─────────────────────────────────────────────────────────── */
+.atl2.cibles .mapzone,.atl2.ops .mapzone{--sea:#B7C9D8;--land:#F7FBFE;
+  --landline:#6F879C;--empty:#C9D6E3;--emptyline:#7E93A6}
+.atl2.cibles .ct path,.atl2.ops .ct path{stroke-width:.85}
+
+.atl2.cibles .idmain>.cover{flex-wrap:wrap;row-gap:8px;align-items:center}
+.atl2.cibles .idmain .eeta{flex:1 1 100%;font-size:12px;line-height:1.4;
+  color:var(--pp-ink-4);font-weight:500}
+.atl2.cibles .idmain .erate{flex:1 1 100%;margin:0}
+.atl2.cibles .idmain>.engine{flex-wrap:nowrap;align-items:center;min-width:240px}
+.atl2.cibles .idmain>.engine .el{flex:none}
+.atl2.cibles .idmain>.engine .ev,.atl2.cibles .idmain>.engine .ego,
+.atl2.cibles .idmain>.engine .epause{align-items:center}
+
+.atl2 .conts .side{display:flex;align-items:center;gap:14px;margin-left:auto}
+.atl2 .conts .side .resetmap{border-left:0!important;padding:0 4px!important;
+  color:var(--pp-ink-3);font-size:12px;font-weight:600;height:auto!important}
+.atl2 .conts .side .resetmap:hover{color:var(--pp-ink)}
+
+.atl2.cibles .fbar .fsrch input,
+.atl2.cibles .listhead .lh-tools .fstrip .fsrch input,
+.atl2.cibles .listhead .lh-tools .fstrip .fsrch input[type="text"],
+.atl2.ops .fsrch input{border:0!important;box-shadow:none!important;
+  background:transparent!important;height:auto!important;padding:0!important;
+  border-radius:0!important}
+
+.atl2.cibles .listhead .dens{align-items:stretch}
+.atl2.cibles .listhead .dens button{align-items:center;justify-content:center;
+  height:100%;line-height:1;padding:0 12px}
+.atl2.cibles .listhead .dens button b{line-height:1;display:block;padding:0;
+  font-size:10.5px;letter-spacing:.04em}
+
+.atl2.cibles .listhead .funnel{background:#F9FBFD;border:1px solid #E3E8F0;
+  border-radius:12px;padding:10px 12px}
+.atl2.cibles .listhead .offtrack .off{border-radius:10px}
+.atl2.cibles .tprim.lock,.atl2.cibles .tprim:disabled{background:#FFF8EB;
+  color:#96690E;border:1px solid #F0E3BC;cursor:not-allowed;opacity:1}
+
+body.pp-desk .atl2.cibles .eval-stick,
+body.pp-desk .atl2.ops .eval-stick{position:sticky;z-index:42;width:100%;
+  top:var(--pp-gap,60px);background:#fff;
+  box-shadow:0 1px 0 var(--pp-line,#E3E8F0)}
+body.pp-desk .atl2.cibles .fzone:has(.stage.folded),
+body.pp-desk .atl2.ops .fzone:has(.stage.folded){position:sticky;z-index:40;
+  top:calc(var(--pp-gap,60px) + var(--demand-h,72px));background:#fff;
+  padding-bottom:8px}
+
+.atl2 .readpane .ppart,
+.atl2 .thesis-brief__body,
+.atl2 .zoom-body.ppart{font-family:"Instrument Sans",var(--pp-body),system-ui,sans-serif;
+  font-size:14px;line-height:1.7;color:#16233A}
+.atl2 .readpane .ppart h1,.atl2 .readpane .ppart h2{font-size:16px!important;
+  line-height:1.3!important;letter-spacing:-.01em!important;margin:22px 0 8px!important;
+  padding:0!important;font-weight:700}
+.atl2 .readpane .ppart p,.atl2 .readpane .ppart li{font-size:14px!important;
+  line-height:1.7!important;color:#16233A!important;margin:12px 0 0!important}
+.atl2 .readpane .ppart .lead,.atl2 .readpane .ppart .ed-lead,
+.atl2 .readpane .ppart > p:first-child{font-size:14px!important;line-height:1.7!important;
+  border-left:2px solid #12A150;padding-left:14px;margin:16px 0 0!important;
+  color:#16233A!important;font-weight:400!important}
+.atl2 .readpane .ppart .tb-sec,.atl2 .readpane .ppart h3{font-size:12px!important;
+  font-weight:600!important;color:#0F1D33!important;margin:22px 0 0!important}
+.atl2 .readpane .ppart img{display:block;width:100%;height:auto;border-radius:12px;
+  margin:14px 0}
+.atl2.ops .readpane .thesis-brief__kicker{font-size:12px;font-weight:600;color:#8FA0B8}
+.atl2.ops .readpane .thesis-brief__title{font-size:16px;font-weight:700;color:#16233A}
+.atl2.ops .readpane .ed-lead{border-left:2px solid #12A150;padding-left:14px;
+  font-size:14px;line-height:1.7}
+.atl2 .readpane .ppart h4{font-size:16px!important;line-height:1.35!important;
+  margin:16px 0 6px!important;letter-spacing:-.01em!important}
+.atl2 .readpane .ppart .art-srcline{font-size:12px!important;margin:0 0 10px!important}
+.atl2 .readpane .ppart .art-secviz,.atl2 .readpane .ppart .art-viz2{margin:14px 0!important;
+  border-radius:12px;overflow:hidden}
+.atl2 .readpane .ppart .art-secviz:hover{transform:none}
+.atl2 .eq-pick{max-width:100%;min-width:0;font:inherit;font-size:12px;
+  border:1px solid var(--pp-line);border-radius:8px;padding:5px 8px;background:#fff;
+  color:var(--pp-ink);cursor:pointer}
+.atl2.cibles .fzone>.contpick .contpick-btn{flex:none}
+.atl2.cibles .fzone>.contpick .resetmap{margin-left:auto}
+.atl2.cibles .fzone>.contpick .mapbtn{margin-left:0;min-width:132px;text-align:right}
+body.pp-desk .atl2.cibles .eval-stick{background:#fff!important}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STICKY UNIFIÉ + TUNNEL MAQUETTE (31/08)
+   Plus de bande transparente entre « Évaluer plusieurs à la fois » et
+   « N retenues » : eval, rabat carte repliée et listhead collent d'une seule
+   pièce opaque. Les chips Écartées / Évaluées / Favoris reprennent le fill
+   de Cockpit.html (blanc au repos, teinte au clic — jamais de pastille marine
+   ni de scale).
+   ═══════════════════════════════════════════════════════════════════════════ */
+.atl2.cibles,.atl2.ops{--fold-h:0px}
+body.pp-desk .atl2.cibles .eval-stick,
+body.pp-desk .atl2.ops .eval-stick{
+  position:sticky;z-index:42;width:100%;display:flow-root;
+  top:var(--pp-gap,60px);
+  background:#fff!important;
+  box-shadow:none!important;
+  border:0!important;
+  padding-bottom:0!important;
+  margin-bottom:0!important}
+body.pp-desk .atl2.cibles .fzone:has(.stage.folded),
+body.pp-desk .atl2.ops .fzone:has(.stage.folded){
+  position:sticky;z-index:41;
+  top:calc(var(--pp-gap,60px) + var(--demand-h,72px));
+  background:#fff!important;
+  padding-bottom:0!important;
+  margin-bottom:0!important;
+  box-shadow:none}
+body.pp-desk .atl2.cibles .desk-list .listhead,
+body.pp-desk .atl2.cibles .desk-list .listhead.mapoff,
+body.pp-desk .atl2.cibles .listhead,
+body.pp-desk .atl2.cibles .listhead.mapoff,
+body.pp-desk .atl2.ops .listhead,
+body.pp-desk .atl2.ops .listhead.mapoff,
+body.pp-desk .atl2.ops .desk-list .listhead,
+body.pp-desk .atl2.ops .desk-list .listhead.mapoff,
+body.pp-desk .atl2.ops .app:has(.stage.folded) .listhead,
+body.pp-desk .atl2.ops .app:has(> .fzone:has(.stage.folded)) .listhead{
+  top:calc(var(--pp-gap,60px) + var(--demand-h,72px) + var(--fold-h,0px))!important;
+  background:#fff!important;
+  -webkit-backdrop-filter:none;backdrop-filter:none;
+  z-index:40}
+
+/* Tunnel : chevrons maquette (clip 12px, recouvrement -8px). Étape active
+   = vert plein + texte blanc, sans scale ni pastille sombre sur le chiffre. */
+body.pp-desk .atl2.cibles .desk-list .listhead .funnel,
+.atl2.cibles .listhead .funnel{
+  background:transparent!important;border:0!important;border-radius:0!important;
+  padding:0!important}
+body.pp-desk .atl2.cibles .desk-list .listhead .chain2 .step,
+.atl2.cibles .listhead .chain2 .step{
+  margin-left:-8px;padding:8px 16px 8px 26px;gap:2px;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%,12px 50%);
+  transform:none!important}
+body.pp-desk .atl2.cibles .desk-list .listhead .chain2 .step:first-child,
+.atl2.cibles .listhead .chain2 .step:first-child{
+  margin-left:0;padding-left:14px;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%)}
+body.pp-desk .atl2.cibles .desk-list .listhead .chain2 .step:nth-child(1){z-index:5}
+body.pp-desk .atl2.cibles .desk-list .listhead .chain2 .step:nth-child(2){z-index:4}
+body.pp-desk .atl2.cibles .desk-list .listhead .chain2 .step:nth-child(3){z-index:3}
+body.pp-desk .atl2.cibles .desk-list .listhead .chain2 .step:nth-child(4){z-index:2}
+body.pp-desk .atl2.cibles .desk-list .listhead .chain2 .step:nth-child(5){z-index:1}
+body.pp-desk .atl2.cibles .desk-list .listhead .chain2 .step .l,
+.atl2.cibles .listhead .chain2 .step .l{
+  display:block;font-family:inherit!important;font-size:12px;font-weight:600;
+  opacity:.75;letter-spacing:0;text-transform:none;line-height:1.3;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.pp-desk .atl2.cibles .desk-list .listhead .chain2 .step .n,
+.atl2.cibles .listhead .chain2 .step .n,
+body.pp-desk .atl2.cibles .desk-list .listhead .chain2 .step[aria-selected="true"] .n,
+.atl2.cibles .listhead .chain2 .step[aria-selected="true"] .n{
+  display:block!important;margin-top:2px;font-size:17px!important;font-weight:700!important;
+  letter-spacing:-.01em;line-height:1.1;background:none!important;border-radius:0!important;
+  min-width:0!important;height:auto!important;padding:0!important;align-self:auto!important;
+  color:inherit!important;box-shadow:none!important}
+body.pp-desk .atl2.cibles .desk-list .listhead .chain2 .step:not([aria-selected="true"]),
+.atl2.cibles .listhead .chain2 .step:not([aria-selected="true"]){
+  background:#EEF2F7;color:#61708A}
+body.pp-desk .atl2.cibles .desk-list .listhead .chain2 .step[aria-selected="true"],
+.atl2.cibles .listhead .chain2 .step[aria-selected="true"]{
+  background:#12A150!important;color:#fff!important;z-index:6;transform:none!important}
+body.pp-desk .atl2.cibles .desk-list .listhead .chain2 .step[aria-selected="true"] .l,
+.atl2.cibles .listhead .chain2 .step[aria-selected="true"] .l{color:#fff!important;opacity:.8}
+
+/* Compteurs : blanc au repos, teinte au clic — chiffres 17px, pas de pastille. */
+body.pp-desk .atl2.cibles .desk-list .listhead .offtrack .off,
+.atl2.cibles .listhead .offtrack .off{
+  display:block;box-sizing:border-box;border-radius:8px!important;padding:7px 14px;
+  text-align:left;cursor:pointer;background:#fff;border:1px solid #EEF2F7;
+  transform:none!important}
+body.pp-desk .atl2.cibles .desk-list .listhead .offtrack .off .l,
+.atl2.cibles .listhead .offtrack .off .l{
+  display:block;font-family:inherit!important;font-size:12px;font-weight:600;
+  opacity:.8;white-space:nowrap;letter-spacing:0;text-transform:none}
+body.pp-desk .atl2.cibles .desk-list .listhead .offtrack .off .n,
+.atl2.cibles .listhead .offtrack .off .n,
+body.pp-desk .atl2.cibles .desk-list .listhead .offtrack .off[aria-selected="true"] .n,
+.atl2.cibles .listhead .offtrack .off[aria-selected="true"] .n{
+  display:block!important;margin-top:2px;font-size:17px!important;font-weight:700!important;
+  letter-spacing:-.01em;line-height:1.1;background:none!important;border-radius:0!important;
+  min-width:0!important;height:auto!important;padding:0!important;align-self:auto!important;
+  color:inherit!important;box-shadow:none!important}
+.atl2.cibles .listhead .offtrack .off[data-off="5"]{background:#fff;border-color:#EEF2F7;color:#C0353A}
+.atl2.cibles .listhead .offtrack .off[data-off="5"][aria-selected="true"]{
+  background:#FDECEC;border-color:#F5C6C8;color:#C0353A}
+.atl2.cibles .listhead .offtrack .off[data-off="7"]{background:#fff;border-color:#EEF2F7;color:#4B5E78}
+.atl2.cibles .listhead .offtrack .off[data-off="7"][aria-selected="true"]{
+  background:#EAF0F6;border-color:#DCE4F0;color:#4B5E78}
+.atl2.cibles .listhead .offtrack .off[data-off="6"]{background:#fff;border-color:#EEF2F7;color:#96690E}
+.atl2.cibles .listhead .offtrack .off[data-off="6"][aria-selected="true"]{
+  background:#FFF3D6;border-color:#F0E3BC;color:#96690E}
+body.pp-desk .atl2.cibles .desk-list .listhead .offtrack .off[aria-selected="true"],
+.atl2.cibles .listhead .offtrack .off[aria-selected="true"]{
+  transform:none!important;box-shadow:none}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   /actualites = MÊME LANGAGE QUE LE COCKPIT (31/08)
+   Planisphère trop haut et plein cadre, Replier/Réinit en mono, édito en
+   barre verte collée : on reprend le cadre, les pastilles et le brief
+   winhealth (Instrument Sans, 16/14, images 12 px, tableaux gris).
+   ═══════════════════════════════════════════════════════════════════════════ */
+.atl2.ops{--v3-pad:28px}
+@media (max-width:860px){.atl2.ops{--v3-pad:14px}}
+
+/* Continents + Replier / Réinitialiser : pastilles marine, liens 12px. */
+.atl2.ops .fzone{background:transparent}
+.atl2.ops .fzone>.conts,.atl2.ops .fzone>.contpick{
+  display:flex;align-items:center;gap:8px;flex-wrap:nowrap;
+  overflow:visible;background:transparent;border-bottom:0;
+  padding:0 var(--v3-pad) 10px}
+.atl2.ops .fzone>.conts{gap:4px;overflow-x:auto}
+.atl2.ops .conts .cbtn{display:inline-flex;align-items:center;gap:8px;
+  border:0;border-bottom:0;background:transparent;color:#61708A;
+  padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;
+  letter-spacing:0;text-transform:none;cursor:pointer;white-space:nowrap;
+  font-family:inherit}
+.atl2.ops .conts .cbtn:hover{background:#F5F7FA;color:#16233A}
+.atl2.ops .conts .cbtn[aria-selected="true"]{background:#0F1D33;color:#fff}
+.atl2.ops .conts .cbtn .n{font-family:inherit;font-size:11px;font-weight:700;
+  background:#EAF0F6;color:#61708A;border-radius:999px;padding:1px 8px;
+  letter-spacing:0}
+.atl2.ops .conts .cbtn[aria-selected="true"] .n{background:rgba(255,255,255,.16);color:#fff}
+.atl2.ops .fzone>.conts,.atl2.ops .fzone>.contpick{width:100%;box-sizing:border-box}
+.atl2.ops .conts .side{display:flex;align-items:center;gap:14px;margin-left:auto}
+.atl2.ops .contpick .resetmap{margin-left:auto}
+.atl2.ops .conts .side button,.atl2.ops .contpick .resetmap,
+.atl2.ops .contpick .mapbtn,.atl2.ops .conts .side .mapbtn{font-family:inherit;
+  font-size:12px;font-weight:600;color:#61708A;background:none;border:0;
+  border-left:0;cursor:pointer;white-space:nowrap;padding:0 4px;height:auto}
+.atl2.ops .conts .side .mapbtn,.atl2.ops .contpick .mapbtn{min-width:158px;
+  width:158px;text-align:right;flex:none;margin-left:0}
+.atl2.ops .conts .side button:hover,.atl2.ops .contpick .resetmap:hover,
+.atl2.ops .contpick .mapbtn:hover,.atl2.ops .conts .side .mapbtn:hover{color:#0E7F3F}
+
+/* Même cadre et même grain que /cibles — plus de 360 px ni de trait .55. */
+.atl2.ops .stage:not(.folded){position:relative;display:block!important;
+  margin:0 var(--v3-pad);border:1px solid #E3E8F0;border-radius:12px;
+  background:#F2F6FA;overflow:visible}
+.atl2.ops .stage:not(.folded) .mapzone{position:relative;inset:auto;width:auto;
+  height:auto!important;min-height:440px!important;max-height:none!important;
+  background:transparent;border-radius:12px;overflow:hidden}
+.atl2.ops .stage:not(.folded) .mapzone svg{height:440px!important;max-height:440px!important}
+.atl2.ops .ct path{stroke-width:.85}
+.atl2.ops .stage:not(.folded) .fbar{right:16px;top:16px;bottom:auto;
+  max-height:calc(100% - 32px);border-radius:12px}
+.atl2.ops .map-pulse{left:16px;top:16px;border-radius:12px}
+.atl2.ops .map-pulse em,.atl2.ops .map-pulse>span{font-family:inherit}
+
+/* Coller une URL : carte comme winhealth, plus un bandeau collé aux bords. */
+.atl2.ops .eval-stick{padding:0 var(--v3-pad) 8px;box-sizing:border-box}
+.atl2.ops .demand,.atl2.ops .demand.pair{margin:8px 0 0;padding:18px;
+  border:1px solid #E3E8F0;border-radius:14px;background:#fff}
+.atl2.ops .demand .dhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;
+  margin:0 0 12px}
+.atl2.ops .demand .dhead h2{margin:0;font-size:14px;font-weight:700;color:#16233A}
+.atl2.ops .demand .dhint{font-size:12.5px;color:#8FA0B8;line-height:1.4}
+.atl2.ops .demand .dfield{display:flex;align-items:center;gap:10px;
+  flex:1 1 260px;min-width:0;box-sizing:border-box;border:1px solid #E3E8F0;
+  border-radius:999px;padding:0 8px 0 18px;background:#F9FBFD}
+.atl2.ops .demand .dfield:focus-within{border-color:#9ED9B8;
+  box-shadow:0 0 0 4px rgba(18,161,80,.14);background:#fff}
+.atl2.ops .demand .evalbtn{border-radius:999px;font-weight:700}
+
+/* LISTE / LIGNE / MAXI = cockpit. */
+.atl2.ops .listhead .dens{display:inline-flex;align-items:stretch;height:30px;
+  box-sizing:border-box;border:1px solid #E3E8F0;border-radius:8px;
+  overflow:hidden;background:#fff;gap:0}
+.atl2.ops .listhead .dens button{display:inline-flex;align-items:center;
+  justify-content:center;border:0;border-radius:0;background:transparent;
+  padding:0 10px;font:inherit;font-size:10.5px;font-weight:700;
+  letter-spacing:.02em;text-transform:uppercase;color:#8FA0B8;
+  cursor:pointer;white-space:nowrap;height:100%}
+.atl2.ops .listhead .dens button i{display:none}
+.atl2.ops .listhead .dens button[aria-pressed="true"],
+.atl2.ops .listhead .dens button.on{background:#0F1D33;color:#fff}
+.atl2.ops .listhead .dens button b{font-size:10.5px;font-weight:700;line-height:1}
+
+/* Barre « Édito du jour » : ligne à pastille, plus de pavé vert collé. */
+.atl2.ops .readpane{display:flex;flex-direction:column;gap:14px;
+  padding:0 4px 24px;box-sizing:border-box}
+.atl2.ops .readpane .edito-go,
+.atl2.ops .readpane .pane-edito{display:flex!important;align-items:center;gap:10px;
+  width:100%!important;box-sizing:border-box;margin:0!important;
+  border:1px solid #E3E8F0;border-radius:12px;padding:12px 16px;
+  background:#fff!important;font:inherit;font-size:13px;font-weight:700;
+  color:#16233A!important;cursor:pointer;text-align:left;
+  letter-spacing:0;text-transform:none;white-space:nowrap}
+.atl2.ops .readpane .edito-go::before{content:"";width:8px;height:8px;flex:none;
+  border-radius:50%;background:#12A150}
+.atl2.ops .readpane .edito-go .eg-t{flex:none;font-size:13px;font-weight:700;
+  color:inherit;white-space:nowrap}
+.atl2.ops .readpane .edito-go .eg-sub{flex:1 1 auto;font-size:12.5px;font-weight:400;
+  color:#8FA0B8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.atl2.ops .readpane .edito-go .eg-chev{margin-left:auto;font-size:12px;
+  font-weight:600;color:#8FA0B8;white-space:nowrap}
+.atl2.ops .readpane .edito-go:hover{border-color:#BFE6CF;background:#FBFDFC}
+.atl2.ops .readpane .edito-go[aria-pressed="true"]{border-color:#BFE6CF;
+  background:#EAF6EF!important;color:#0E7F3F!important}
+
+/* Brief : mêmes 16 / 14 qu'édito winhealth, plus de mono ni de 19 px. */
+.atl2.ops .readpane.is-edito .zoom{padding:22px 22px 28px;margin:0;
+  border:1px solid #E3E8F0;border-radius:14px;background:#fff;max-width:none}
+.atl2.ops .readpane.is-edito .zoom-k{font-family:"Instrument Sans",system-ui,sans-serif!important;
+  font-size:12px!important;font-weight:600;color:#8FA0B8!important;
+  letter-spacing:0;text-transform:none;margin:0 0 4px}
+.atl2.ops .readpane.is-edito .zoom-h{font-size:16px!important;font-weight:700;
+  letter-spacing:-.01em;line-height:1.3;color:#16233A;margin:0}
+.atl2.ops .readpane.is-edito .zoom-body{margin:14px 0 0;padding-top:14px;
+  border-top:1px solid #EEF2F7;font-family:"Instrument Sans",system-ui,sans-serif;
+  font-size:14px;line-height:1.7;color:#16233A}
+.atl2.ops .readpane.is-edito .zoom-body .mk-lead,
+.atl2.ops .readpane.is-edito .zoom-body .ed-lead,
+.atl2.ops .readpane.is-edito .ppart .lead,
+.atl2.ops .readpane.is-edito .ppart > p:first-child{font-size:14px!important;
+  line-height:1.7!important;color:#16233A!important;font-weight:400!important;
+  border-left:2px solid #12A150;padding-left:14px;margin:16px 0 0!important}
+.atl2.ops .readpane.is-edito .zoom-body .mk-sec h2,
+.atl2.ops .readpane.is-edito .ppart h2{font-size:12px!important;font-weight:600!important;
+  color:#0F1D33!important;letter-spacing:0!important;border:0!important;
+  padding:0!important;margin:22px 0 8px!important}
+.atl2.ops .readpane.is-edito .zoom-body p,
+.atl2.ops .readpane.is-edito .ppart p,
+.atl2.ops .readpane.is-edito .ppart li{font-size:14px!important;line-height:1.7!important;
+  color:#16233A!important}
+.atl2.ops .readpane.is-edito .zoom-meta button,
+.atl2.ops .readpane.is-edito .zoom-meta span{font-family:inherit;font-size:12px}
+.atl2.ops .readpane.is-edito table{width:100%;border-collapse:collapse;font-size:13px;
+  margin:14px 0}
+.atl2.ops .readpane.is-edito th{font-size:12px;font-weight:600;color:#8FA0B8;
+  background:#F9FBFD;text-align:left;padding:8px 10px;border-bottom:1px solid #E3E8F0}
+.atl2.ops .readpane.is-edito td{padding:8px 10px;border-bottom:1px solid #EEF2F7;
+  color:#16233A}
+
+/* Cartes / visuels : plus de débordement -28 px, rayon 12.
+   max-height:200px recadrait la carte LIVE (retour 05/09) : on laisse
+   l'échelle 1200/675 remplir la colonne. */
+.atl2.ops .readpane.is-edito .zoom .opcard.art-mktcard{max-width:100%;
+  margin:14px 0!important;border-radius:12px;overflow:hidden}
+.atl2.ops .readpane.is-edito .zoom .opcard.art-mktcard .ppcard-fit{border-left:1px solid #E3E8F0;
+  border-right:1px solid #E3E8F0;max-height:none!important;overflow:hidden;
+  border-radius:12px}
+.atl2.ops .readpane.is-edito .ppart img,
+.atl2.ops .readpane.is-edito .art-secviz,
+.atl2.ops .readpane.is-edito .art-viz2{max-width:100%;border-radius:12px;
+  overflow:hidden;margin:14px 0}
+.atl2.ops .readpane.is-edito .art-secviz:hover{transform:none}
+
+/* Carte repliée : filtres sous le planisphère, rabat sticky. */
+.atl2.ops .stage.folded{display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  margin:0 var(--v3-pad);padding:12px 16px;height:auto;min-height:0;
+  border:1px solid #E3E8F0;border-radius:12px;background:#fff}
+.atl2.ops .stage.folded .map-pulse{display:none}
+.atl2.ops .stage.folded .fbar,
+.atl2.ops .stage.folded .fstrip{position:static;width:100%;flex:1 1 100%;
+  min-width:0;border:0;padding:0;margin:0;background:transparent;box-shadow:none;
+  backdrop-filter:none;-webkit-backdrop-filter:none;border-radius:0;
+  display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px;
+  max-height:none;height:auto!important}
+.atl2.ops .stage.folded .fbar .seg button,
+.atl2.ops .stage.folded .fbar .fbtn,
+.atl2.ops .stage.folded .fstrip .fbtn{height:32px;box-sizing:border-box;
+  width:auto;border-radius:999px;padding:0 13px;font-size:12.5px;font-weight:600}
+body.pp-desk .atl2.ops .fzone:has(.stage.folded){position:sticky;z-index:41;
+  top:calc(var(--pp-gap,60px) + var(--demand-h,72px));background:#fff;
+  padding-bottom:8px}
+@media (max-width:860px){
+  .atl2.ops .stage:not(.folded) .mapzone,
+  .atl2.ops .stage:not(.folded) .mapzone svg{height:300px!important;
+    min-height:300px!important;max-height:300px!important}
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COMPTEURS HORS TUNNEL = MÊME GESTE QUE LE CHEVRON VERT (05/09)
+   Le remplissage perdait contre body.pp-desk … .off { background:#fff }.
+   Écartées rouge, Évaluées marine, Favoris ambre : fond saturé, libellé
+   plus clair, chiffre blanc — bandeau teinté dessous.
+   ═══════════════════════════════════════════════════════════════════════════ */
+body.pp-desk .atl2.cibles .desk-list .listhead .offtrack .off[data-off="5"][aria-selected="true"],
+.atl2.cibles .listhead .offtrack .off[data-off="5"][aria-selected="true"]{
+  background:#E5484D!important;border-color:#E5484D!important;color:#fff!important;
+  box-shadow:0 2px 10px rgba(229,72,77,.30)}
+body.pp-desk .atl2.cibles .desk-list .listhead .offtrack .off[data-off="7"][aria-selected="true"],
+.atl2.cibles .listhead .offtrack .off[data-off="7"][aria-selected="true"]{
+  background:#0F1D33!important;border-color:#0F1D33!important;color:#fff!important;
+  box-shadow:0 2px 10px rgba(15,29,51,.28)}
+body.pp-desk .atl2.cibles .desk-list .listhead .offtrack .off[data-off="6"][aria-selected="true"],
+.atl2.cibles .listhead .offtrack .off[data-off="6"][aria-selected="true"]{
+  background:#E0A81E!important;border-color:#E0A81E!important;color:#fff!important;
+  box-shadow:0 2px 10px rgba(224,168,30,.35)}
+body.pp-desk .atl2.cibles .desk-list .listhead .offtrack .off[data-off="5"][aria-selected="true"] .l,
+body.pp-desk .atl2.cibles .desk-list .listhead .offtrack .off[data-off="7"][aria-selected="true"] .l,
+body.pp-desk .atl2.cibles .desk-list .listhead .offtrack .off[data-off="6"][aria-selected="true"] .l,
+.atl2.cibles .listhead .offtrack .off[data-off="5"][aria-selected="true"] .l,
+.atl2.cibles .listhead .offtrack .off[data-off="7"][aria-selected="true"] .l,
+.atl2.cibles .listhead .offtrack .off[data-off="6"][aria-selected="true"] .l{
+  color:rgba(255,255,255,.85)!important;opacity:1}
+body.pp-desk .atl2.cibles .desk-list .listhead .offtrack .off[data-off="5"][aria-selected="true"] .n,
+body.pp-desk .atl2.cibles .desk-list .listhead .offtrack .off[data-off="7"][aria-selected="true"] .n,
+body.pp-desk .atl2.cibles .desk-list .listhead .offtrack .off[data-off="6"][aria-selected="true"] .n,
+.atl2.cibles .listhead .offtrack .off[data-off="5"][aria-selected="true"] .n,
+.atl2.cibles .listhead .offtrack .off[data-off="7"][aria-selected="true"] .n,
+.atl2.cibles .listhead .offtrack .off[data-off="6"][aria-selected="true"] .n{
+  color:#fff!important;background:none!important}
+
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-funnel .tuto.mini.etape-out{
+  background:#FDECEC!important;--stepdot:#E5484D;--stepfg:#C0353A;--tc:#16233A}
+.atl2.cibles .listhead .tuto.mini.etape-out .tstep{color:#C0353A!important}
+.atl2.cibles .listhead .tuto.mini.etape-out .tbody{color:#9A6B6E}
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-funnel .tuto.mini.etape-view{
+  background:#EAF0F6!important;--stepdot:#0F1D33;--stepfg:#0F1D33;--tc:#16233A}
+.atl2.cibles .listhead .tuto.mini.etape-view .tstep{color:#0F1D33!important}
+.atl2.cibles .listhead .tuto.mini.etape-view .tbody{color:#4B5E78}
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-funnel .tuto.mini.etape-fav{
+  background:#FFF8EB!important;--stepdot:#E0A81E;--stepfg:#96690E;--tc:#16233A}
+.atl2.cibles .listhead .tuto.mini.etape-fav .tstep{color:#96690E!important}
+.atl2.cibles .listhead .tuto.mini.etape-fav .tbody{color:#A6842A}
+
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-funnel .tuto.mini{
+  flex-wrap:nowrap!important}
+.atl2.cibles .listhead .tuto.mini .txt,
+.atl2.cibles .listhead .tuto.mini .txt p{flex-wrap:nowrap;min-width:0;overflow:hidden}
+.atl2.cibles .listhead .tuto.mini .tbody{overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap}
+
+/* Parcourir : emplacement réservé, une ligne, pas d'accroche. Vide = invisible
+   mais la place reste : LISTE/LIGNE/MAXI ne saute plus d'un onglet à l'autre. */
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-top .lh-acts,
+.atl2.cibles .listhead .lh-top .lh-acts{flex-wrap:nowrap!important;flex:none;
+  align-items:center}
+body.pp-desk .atl2.cibles .desk-list .listhead .lh-top .chainwrap,
+.atl2.cibles .listhead .lh-top .chainwrap{display:inline-flex!important;
+  flex-direction:row;align-items:center;min-width:168px;margin-left:0;
+  flex:none}
+.atl2.cibles .listhead .lh-top .chainhint{display:none!important}
+.atl2.cibles .listhead .lh-top .chain{height:30px;box-sizing:border-box;
+  padding:0 14px;font-size:12.5px;white-space:nowrap;border-radius:8px}
+.atl2.cibles .listhead .lh-top .chainwrap.empty{visibility:hidden;
+  pointer-events:none}
+
+/* Drapeaux ronds, sans filet ni ombre : le 1 px de box-shadow faisait
+   l'encadré clair. Pastille 16×16, recadrage cover, rien autour. */
+body.pp-desk .atl2.cibles .desk-list .row .c-flag,
+.atl2.cibles .desk-list .row .c-flag{width:16px;height:16px;padding:0;border:0;
+  border-radius:50%;overflow:hidden;background:transparent;
+  box-shadow:none!important;outline:none;display:block;line-height:0;
+  justify-self:center;align-self:center}
+body.pp-desk .atl2.cibles .desk-list .row .c-flag img,
+.atl2.cibles .desk-list .row .c-flag img{width:16px!important;height:16px!important;
+  border:0!important;border-radius:50%!important;box-shadow:none!important;
+  outline:none;object-fit:cover;display:block}
+
+/* ── EDITO COCKPIT : source unique = Edito · fonds (winhealth) ───────────
+   L'edito du jour (today.json) et l'edito these partagent la meme police,
+   la meme echelle, le meme air. Les cartes 1200x675 se reduisent a la
+   largeur du panneau — plus jamais coupees (y compris le max-height:200px
+   pose le 31/08, qui recadrait le LIVE). */
+.atl2 .readpane .ppart,
+.atl2 .thesis-brief__body,
+.atl2 .zoom-body.ppart{font-family:"Instrument Sans",var(--pp-body),system-ui,sans-serif;
+  font-size:13px;line-height:1.65;color:#1B2F4E}
+.atl2 .readpane .thesis-brief__body,
+.atl2 .readpane .thesis-brief__body.ppart,
+.atl2 .readpane.is-edito .zoom-body,
+.atl2 .readpane.is-edito .zoom-body.ppart{font-size:13px!important;line-height:1.65!important;
+  color:#1B2F4E;text-align:left}
+.atl2 .readpane .thesis-brief__body p,
+.atl2 .readpane .thesis-brief__body li,
+.atl2 .readpane.is-edito .zoom-body p,
+.atl2 .readpane.is-edito .zoom-body li,
+.atl2 .readpane .ppart p,
+.atl2 .readpane .ppart li{font-size:13px!important;line-height:1.65!important;
+  color:#1B2F4E!important;margin:0 0 13px!important;font-weight:400!important}
+.atl2 .readpane .thesis-brief__body h2,
+.atl2 .readpane .thesis-brief__body h3,
+.atl2 .readpane .thesis-brief__body .tb-sec,
+.atl2 .readpane.is-edito .zoom-body h2,
+.atl2 .readpane.is-edito .zoom-body h3,
+.atl2 .readpane .ppart h1,
+.atl2 .readpane .ppart h2,
+.atl2 .readpane .ppart h3,
+.atl2 .readpane .ppart .tb-sec{font-size:12px!important;font-weight:600!important;
+  color:#0F1D33!important;margin:22px 0 8px!important;padding:0 0 6px!important;
+  line-height:1.5!important;letter-spacing:0!important;background:none!important;
+  border:0!important;border-bottom:1px solid #E3E8F0!important;display:block}
+.atl2 .readpane .ppart h2 .ct,.atl2 .readpane.is-edito .zoom-body h2 .ct{display:none}
+.atl2 .readpane .ppart h2 .ic,.atl2 .readpane.is-edito .zoom-body h2 .ic,
+.atl2 .readpane .thesis-brief__body h2 .ic{display:inline;background:none;width:auto;
+  height:auto;border-radius:0;color:inherit;font-size:inherit;line-height:1}
+.atl2 .readpane .ppart h2 .tw,.atl2 .readpane.is-edito .zoom-body h2 .tw{display:inline}
+.atl2 .readpane .ppart h2 .tt,.atl2 .readpane.is-edito .zoom-body h2 .tt{font-size:inherit;
+  font-weight:inherit;letter-spacing:inherit}
+.atl2 .readpane .ed-chapeau,.atl2 .readpane .ed-plus{margin:0 0 20px!important;
+  padding:0 0 14px!important;border:0!important;border-bottom:1px solid #E3E8F0!important;
+  background:none!important}
+.atl2 .readpane .ed-chapeau p,.atl2 .readpane .ed-plus p{font-size:13px!important;
+  line-height:1.65!important;color:#1B2F4E!important;border:0!important;padding:0!important;
+  margin:0 0 13px!important;max-width:none!important}
+.atl2 .readpane .ppart .lead,.atl2 .readpane .ppart > p:first-child{font-size:13px!important;
+  line-height:1.65!important;border-left:0!important;padding-left:0!important;
+  margin:0 0 13px!important;color:#1B2F4E!important;font-weight:400!important}
+.atl2 .readpane .aa-n{font-size:13px!important;font-weight:700!important;
+  letter-spacing:-.01em!important;line-height:1.5!important;color:#16233A!important}
+.atl2 .readpane .aa-d{font-size:13px!important;line-height:1.65!important;
+  color:#1B2F4E!important;margin:2px 0 0!important}
+.atl2 .readpane .aa-tags{margin:8px 0 0;gap:4px}
+.atl2 .readpane .aa-tag{font-size:10px;padding:2px 7px}
+.atl2 .readpane .ed-decrypt,.atl2 .readpane .ed-decrypt-solo{margin:10px 0 0!important;
+  padding:0!important;background:none!important;border:0!important;border-radius:0!important;
+  overflow:visible!important}
+.atl2 .readpane .ed-decrypt h4,.atl2 .readpane .ed-decrypt-solo h4,
+.atl2 .readpane .ppart h4,.atl2 .readpane.is-edito .zoom-body h4{font-size:13px!important;
+  font-weight:700!important;line-height:1.5!important;letter-spacing:-.01em!important;
+  margin:12px 0 4px!important;color:#16233A!important}
+.atl2 .readpane .art-srcline,.atl2 .readpane .ppart .art-srcline{font-size:12px!important;
+  margin:0 0 10px!important}
+.atl2 .readpane .art-allops ul,.atl2 .readpane .ed-ops,.atl2 .readpane .mk-ops{list-style:none;
+  margin:0;padding:0}
+.atl2 .readpane .art-allops li,.atl2 .readpane .ed-op{padding:15px 0!important;
+  border-bottom:1px solid #F5F7FA!important}
+.atl2 .readpane .ed-decrypt .opcard,.atl2 .readpane .ed-decrypt-solo .opcard{float:none!important;
+  width:100%!important;margin:12px 0!important;max-width:100%}
+.atl2 .readpane .ppart img,.atl2 .readpane .thesis-brief__body img,
+.atl2 .readpane .zoom-body img{display:block;width:100%;max-width:100%;height:auto;
+  border-radius:12px;margin:14px 0;object-fit:contain}
+.atl2 .readpane.is-edito .zoom-h,.atl2.cibles .zoom .thesis-brief__title{font-size:14.5px!important;
+  font-weight:700;letter-spacing:-.015em;line-height:1.35}
+.atl2 .readpane.is-edito .zoom-k,.atl2.ops .readpane .thesis-brief__kicker{font-size:12px;
+  font-weight:600;color:#4B5E78;font-family:inherit;letter-spacing:0}
+.atl2.ops .readpane .thesis-brief__title{font-size:14.5px;font-weight:700;color:#16233A}
+.atl2 .readpane .thesis-brief__body .ed-lead{text-align:left;margin:0 0 20px;
+  padding:0 0 14px;background:none;border:0;border-bottom:1px solid #E3E8F0;
+  border-left:0!important;font-size:13px!important;line-height:1.65!important}
+
+.atl2 .readpane .opcard,.atl2 .readpane .art-mktcard,
+.atl2 .thesis-brief__body .opcard,.atl2 .thesis-brief__body .art-mktcard{
+  max-width:100%;width:100%;margin:14px 0 18px;box-sizing:border-box}
+.atl2 .readpane .ppcard-fit,.atl2 .thesis-brief__body .ppcard-fit{
+  width:100%;max-width:100%;container-type:inline-size;overflow:hidden;
+  line-height:0;border-radius:12px;box-sizing:border-box;max-height:none!important}
+.atl2 .readpane .ppcard-fit:has(> .ppcard.f-x),
+.atl2 .thesis-brief__body .ppcard-fit:has(> .ppcard.f-x){aspect-ratio:1200/675;
+  height:auto!important;max-height:none!important}
+.atl2 .readpane .ppcard-fit:has(> .ppcard.f-li),
+.atl2 .thesis-brief__body .ppcard-fit:has(> .ppcard.f-li){aspect-ratio:1080/1350;
+  height:auto!important;max-height:none!important}
+.atl2 .readpane .ppcard-fit > .ppcard,
+.atl2 .thesis-brief__body .ppcard-fit > .ppcard{max-width:none!important;
+  transform-origin:top left!important;width:1200px!important;height:675px!important;
+  transform:scale(calc(100cqw / 1200px))}
+.atl2 .readpane .ppcard-fit > .ppcard.f-x,
+.atl2 .thesis-brief__body .ppcard-fit > .ppcard.f-x{width:1200px!important;
+  height:675px!important;transform:scale(calc(100cqw / 1200px))}
+.atl2 .readpane .ppcard-fit > .ppcard.f-li,
+.atl2 .thesis-brief__body .ppcard-fit > .ppcard.f-li{width:1080px!important;
+  height:1350px!important;transform:scale(calc(100cqw / 1080px))}
+.atl2 .readpane .ppcard-fit *,.atl2 .thesis-brief__body .ppcard-fit *{max-width:none!important}
+.atl2.cibles .readpane.is-edito,.atl2.cibles .readpane .zoom,
+.atl2.cibles .zoom .thesis-brief{overflow-x:clip;overflow-y:visible}
+
+/* Monde : le viewBox 984x210 (slice) agrandit le trait 0.85 ~5x vs un
+   continent (viewBox ~1000x765). On ramene l'epaisseur ecran a celle
+   d'Amerique du Nord. */
+.atl2.cibles .mapzone[data-cont="monde"] .ct path,
+.atl2.ops .mapzone[data-cont="monde"] .ct path{stroke-width:.22}
+
+/* La fiche /cibles reprend la phrase de la ligne (titre de l'actu). */
+.atl2.cibles .readpane .zoom-news{margin:12px 0 0;padding:12px 0 0;
+  border-top:1px solid var(--pp-line,#E3E8F0);min-width:0}
+.atl2.cibles .readpane .zoom-news .zoom-lead{margin:0 0 10px;font-size:14px;
+  line-height:1.5;font-weight:600;color:#16233A}
+.atl2.cibles .readpane .zoom-news .ed-decrypt-b{font-size:13px;line-height:1.65;
+  color:#1B2F4E}
+.atl2.cibles .readpane .zoom-news .zoom-src{display:inline-block;margin-top:8px;
+  font-size:12.5px;font-weight:600;color:#0E8A44;text-decoration:none}
+.atl2.cibles .readpane .zoom-news .zoom-card{margin:12px 0;max-width:100%;width:100%}
+.atl2.cibles .readpane .zoom-news .zoom-card-host,
+.atl2.cibles .readpane .zoom-card-host.ppcard-fit{width:100%;max-width:100%;
+  border:0;border-radius:12px;box-sizing:border-box}
+.atl2 .ticker .tk .what{max-width:36ch;overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap}
+
+/* Espace sous l onglet Edito du jour, avant le titre de l article. */
+.atl2 .readpane .thesis-brief__jour-h,
+.atl2.cibles .readpane .thesis-brief__jour-h{display:block;margin:22px 0 14px!important;
+  padding-top:4px}
+
+/* Plus de cartes Couverture / Moteur sous le titre : le titre respire. */
+.atl2.cibles .idmain{display:none!important}
+.atl2.cibles .idtop{margin-bottom:8px}
+
+/* Filet sous le planisphere : le stage a deja son cadre. */
+.atl2.cibles .fzone{border-bottom:0}
+
+/* HUD planisphere : couverture, moteur colle dessous. */
+.atl2.cibles .stage:not(.folded) .map-hud{position:absolute;left:20px;top:20px;z-index:6;
+  display:flex;flex-direction:column;gap:8px;width:230px;box-sizing:border-box;
+  pointer-events:none}
+.atl2.cibles .stage:not(.folded) .map-hud > *{pointer-events:auto}
+.atl2.cibles .stage:not(.folded) .map-hud .map-pulse{position:static!important;
+  left:auto;top:auto;width:100%;z-index:auto;box-sizing:border-box}
+.atl2.cibles .map-engine{cursor:default}
+.atl2.cibles .map-engine-hit{display:block;width:100%;margin:0;padding:0;border:0;
+  background:transparent;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.atl2.cibles .map-engine .map-engine-rate{display:flex;flex-wrap:wrap;align-items:center;
+  gap:4px;margin-top:10px;padding-top:10px;border-top:1px solid #EAF0F6}
+.atl2.cibles .map-engine .map-engine-rate button{min-width:26px;height:24px;padding:0 6px;
+  font-size:11px;box-sizing:border-box}
+.atl2.cibles .map-engine .ebell{margin-left:auto;border:0;background:none;cursor:pointer;
+  font-size:13px;line-height:1;padding:0 2px;min-width:0;height:auto}
+.atl2.cibles .map-engine .epause{display:inline-flex;align-items:center;height:20px;
+  box-sizing:border-box;background:var(--pp-amber-bg,#FFF4D6);color:var(--pp-amber-tx,#8A5A00);
+  font-size:11px;font-weight:700;border-radius:999px;padding:0 8px}
+@media (max-width:860px){
+  .atl2.cibles .stage:not(.folded) .map-hud{left:14px;top:14px;width:190px}
+}
+@media (max-width:1000px){
+  .atl2.cibles .stage:not(.folded) .map-hud{position:static;width:auto;left:auto;top:auto;
+    pointer-events:auto}
+}
+
+/* Gouttiere verticale unique entre les cartes (planisphere, Coller une URL,
+   moteurs, 59 retenues). Le 24 px sous la carte est sur .fzone, PAS dans
+   .demand : sinon il gonfle la barre collante. */
+.atl2.cibles{--pp-live-h:44px;--v3-stack:24px}
+.atl2.cibles .fzone{border-bottom:0;margin-bottom:var(--v3-stack)}
+.atl2.cibles .eval-stick{padding-bottom:8px}
+.atl2.cibles .demand{margin:0 var(--v3-pad);border-radius:14px;
+  border:1px solid var(--pp-line,#E3E8F0)}
+.atl2.cibles .srceng{margin-top:calc(var(--v3-stack) - 8px)}
+.atl2.cibles .desk{margin-top:var(--v3-stack)}
+body.pp-desk .atl2.cibles .eval-stick{top:calc(var(--pp-gap,60px) + var(--pp-live-h,0px))!important;
+  z-index:42;background:#fff!important;margin-bottom:0!important;
+  padding-bottom:8px!important;overflow:visible;box-shadow:none!important}
+body.pp-desk .atl2.cibles .eval-stick::after{content:none;display:none}
+/* Au sticky : Coller une URL s'imbrique dans « N retenues » — une seule
+   pièce blanche, sans filet ni coins arrondis (classe .url-stuck sur l'hôte). */
+body.pp-desk .atl2.cibles .eval-stick.is-stuck{padding-bottom:0!important}
+body.pp-desk .atl2.cibles .eval-stick.is-stuck .demand{margin:0!important;
+  border-radius:0!important;border:0!important;box-shadow:none!important}
+body.pp-desk .atl2.cibles .eval-stick.is-stuck .demand.pair{background:#fff!important;
+  box-shadow:inset 3px 0 0 #12A150}
+body.pp-desk .atl2.cibles.url-stuck .eval-stick{padding-bottom:0!important}
+body.pp-desk .atl2.cibles.url-stuck .demand{margin:0!important;border-radius:0!important;
+  border:0!important;padding-bottom:10px}
+body.pp-desk .atl2.cibles.url-stuck .desk{margin-top:0}
+body.pp-desk .atl2.cibles.url-stuck .desk-list{border-radius:0!important;border-top:0!important}
+body.pp-desk .atl2.cibles.url-stuck .desk-list .listhead,
+body.pp-desk .atl2.cibles.url-stuck .desk-list .listhead.mapoff,
+body.pp-desk .atl2.cibles.url-stuck .listhead,
+body.pp-desk .atl2.cibles.url-stuck .listhead.mapoff{border-radius:0!important;
+  border-top:0!important}
+body.pp-desk .atl2.cibles .desk-list .listhead,
+body.pp-desk .atl2.cibles .desk-list .listhead.mapoff,
+body.pp-desk .atl2.cibles .listhead,
+body.pp-desk .atl2.cibles .listhead.mapoff{top:calc(var(--pp-gap,60px) + var(--pp-live-h,0px) + var(--demand-h,0px))!important;
+  background:#fff!important;-webkit-backdrop-filter:none;backdrop-filter:none;
+  border-radius:var(--pp-r-m,12px) var(--pp-r-m,12px) 0 0!important;
+  box-shadow:none!important;margin-top:0!important}
+body.pp-desk .atl2.cibles.url-stuck .desk-list .listhead,
+body.pp-desk .atl2.cibles.url-stuck .desk-list .listhead.mapoff,
+body.pp-desk .atl2.cibles.url-stuck .listhead,
+body.pp-desk .atl2.cibles.url-stuck .listhead.mapoff{border-radius:0!important}
+body.pp-desk .atl2.cibles .readpane{top:calc(var(--pp-gap,60px) + var(--pp-live-h,0px) + var(--demand-h,0px) + 6px)!important;
+  z-index:21}
+
+/* source activement reste dans la carte (overflow hidden sur le titre, pas
+   la carte : le popup de noms doit encore sortir). */
+.atl2.cibles .se-ct{flex-wrap:wrap;min-width:0;max-width:100%;overflow:hidden}
+.atl2.cibles .se-st{flex:1 1 8em;min-width:0;max-width:100%;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Mobile /cibles : Coller une URL + 62 retenues (menus compris) restent colles.
+   Le LIVE est en bas de page (order:10) : on ne reserve plus sa hauteur en haut. */
+@media (max-width:860px){
+  .atl2.cibles{--pp-live-h:0px}
+  body.pp-desk .atl2.cibles .eval-stick{position:sticky;top:var(--pp-gap,60px)!important;
+    z-index:42;width:100%}
+  body.pp-desk .atl2.cibles .eval-stick.is-stuck{padding-bottom:0!important}
+  body.pp-desk .atl2.cibles .desk-list .listhead,
+  body.pp-desk .atl2.cibles .desk-list .listhead.mapoff,
+  body.pp-desk .atl2.cibles .listhead,
+  body.pp-desk .atl2.cibles .listhead.mapoff{position:sticky!important;
+    top:calc(var(--pp-gap,60px) + var(--demand-h,0px))!important;
+    z-index:40;max-height:min(52dvh, calc(100dvh - var(--pp-gap,60px) - var(--demand-h,0px) - 12px));
+    overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  body.pp-desk .atl2.cibles .demand{margin:0;border-radius:0;border-left:0;border-right:0}
+  body.pp-desk .atl2.cibles .eval-stick.is-stuck .demand{border-radius:0}
+  .atl2.cibles .desk{margin-left:0;margin-right:0}
+  .atl2.cibles .desk-list{border-radius:0;border-left:0;border-right:0}
+}
+
+/* ExtraFields hors des lignes : Analyser compact, nom + description prennent
+   tout le restant. La colonne MATCH était en 1fr et volait la moitié de la
+   ligne — les noms tombaient à « A. ». */
+.atl2.cibles .desk-list .row .xtra,
+.atl2.cibles .desk-list .cols .xtra{display:none!important}
+.atl2.cibles .desk-list .row,
+.atl2.cibles .desk-list .cols{
+  grid-template-columns:11px 20px minmax(0,1fr) max-content max-content!important}
+.atl2.cibles .desk-list .row .nd{min-width:0;overflow:hidden}
+.atl2.cibles .desk-list .row .rnm{max-width:48%}
+.atl2.cibles .desk-list .row .rds{flex:1 1 10em;min-width:0}
+.atl2.cibles .desk-list .row .c-vd{flex:none;width:auto;max-width:none}
+.atl2.cibles .desk-list .row>.cell,
+.atl2.cibles .desk-list .row .cell-an{
+  width:auto!important;max-width:none;justify-self:end;overflow:visible}
+.atl2.cibles .desk-list .row .memobtn{
+  width:auto!important;min-width:0;max-width:none;padding:6px 12px;
+  white-space:nowrap;display:inline-flex;align-items:center}
+@media (max-width:1240px){
+  .atl2.cibles .desk-list .row,
+  .atl2.cibles .desk-list .cols{
+    grid-template-columns:11px 20px minmax(0,1fr) max-content max-content!important}
+}
+@media (max-width:860px){
+  .atl2.cibles .desk-list .row,
+  .atl2.cibles .desk-list .cols{
+    grid-template-columns:11px 20px minmax(0,1fr) max-content!important}
+}
+
+/* Site | Source : ↗ à droite du mot, jamais en dessous. La pastille crédits
+   a été sortie de cette rangée (elle vit dans Moteur de mémos). */
+body.pp-desk .atl2.cibles .demand .drow{flex-wrap:nowrap!important}
+.atl2.cibles .demand .credits{display:none!important}
+.atl2.cibles .demand .dacts .sitepair{flex:none;max-width:none;height:42px}
+.atl2.cibles .demand .dacts .sitepair .viewbtn.sm{display:inline-flex!important;
+  flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;
+  justify-content:center;white-space:nowrap!important;width:auto;min-width:0;
+  gap:4px;padding:0 14px}
+.atl2.cibles .demand .dacts .sitepair .xwin{display:inline!important;flex:none;
+  font-size:11px;line-height:1;margin-left:2px;opacity:.75}
+
+/* Crédits essai — une ligne, packs d'achat dans la file de traitement. */
+.atl2.cibles .map-engine-credits,
+.atl2.cibles .stage:not(.folded) .map-engine-credits{margin-top:8px;padding-top:8px;
+  border-top:1px solid #EAF0F6}
+.atl2.cibles .stage:not(.folded) .map-engine-credits em{display:inline;font-style:normal;
+  font-size:11px;font-weight:700;color:var(--pp-green-tx,#0E8A44);letter-spacing:0;
+  margin:0;text-transform:none}
+.atl2.cibles .stage:not(.folded) .map-engine-credits>b{display:inline;margin:0 0 0 6px;
+  font-size:15px!important;font-weight:800;letter-spacing:-.02em;line-height:1.2;
+  color:var(--pp-ink,#0F1D33)}
+.atl2.cibles .stage:not(.folded) .map-engine-credits>b span{font-size:12px;font-weight:600;
+  color:#8FA0B8;letter-spacing:0}
+.atl2.cibles .stage:not(.folded) .map-engine-credits>span{display:inline;margin:0 0 0 4px;
+  font-size:11px;font-weight:600;color:#8FA0B8}
+.atl2.cibles .map-engine-alert{display:block;width:100%;margin:6px 0 0;padding:0;
+  border:0;background:none;text-align:left;cursor:pointer;
+  font:inherit;font-size:11.5px;font-weight:650;color:#1B2F4E;line-height:1.35}
+.atl2.cibles .map-engine-alert:hover{color:#0E8A44}
+.atl2 .qcredits{margin:0 0 16px;padding:12px 14px;border:1px solid var(--pp-line,#E3E8F0);
+  border-radius:10px;background:#F7FBF8}
+.atl2 .qcredits-h{margin:0;font-size:13px;color:var(--ink)}
+.atl2 .qcredits-n{margin:4px 0 10px;font-size:12px;line-height:1.4;color:var(--muted)}
+.atl2 .dmulti.busy,.atl2 .dfbtn.busy{color:#0E8A44;font-weight:700}
+.atl2 .tk.spent{opacity:1}
+.atl2 .tk.spent .co{color:#8FA0B8;font-weight:600}
+.atl2 .tk.spent .co::before{content:"✓ ";font-size:10px;color:#8FA0B8}
+
+.atl2 .ticker .tk .what.dim{color:#8FA0B8;font-weight:500}
+
+/* Mobile : en descendant, la barre URL se tasse pour laisser de la liste. */
+@media (max-width:860px){
+  body.pp-desk .atl2.cibles.url-stuck .dhead .dhint,
+  body.pp-desk .atl2.cibles.url-stuck .dunder,
+  body.pp-desk .atl2.cibles.url-stuck .rsp{display:none!important}
+  body.pp-desk .atl2.cibles.url-stuck .demand{padding:8px 12px 10px!important}
+  body.pp-desk .atl2.cibles.url-stuck .dhead h2{font-size:13px;margin:0 0 6px}
+  body.pp-desk .atl2.cibles .desk-list .listhead,
+  body.pp-desk .atl2.cibles .desk-list .listhead.mapoff,
+  body.pp-desk .atl2.cibles .listhead,
+  body.pp-desk .atl2.cibles .listhead.mapoff{
+    max-height:min(38dvh, calc(100dvh - var(--pp-gap,60px) - var(--demand-h,56px) - 16px))!important}
+}
+
+/* Carte repliée : plus de continents, un rabat filtres, Déplier dans la barre.
+   Espace avant Coller une URL. Menu Période au-dessus (overflow visible). */
+.atl2.cibles .fzone:not(:has(.stage)){margin-bottom:16px}
+.atl2.cibles .stage.folded,
+.atl2.cibles .fzone:has(.stage.folded),
+.atl2.cibles .fzone:has(.stage.folded) .stage{
+  height:auto!important;min-height:0!important;max-height:none!important;
+  flex:none!important;overflow:visible!important}
+.atl2.cibles .stage.folded .mapzone{display:none!important;height:0!important;
+  min-height:0!important}
+.atl2.cibles .stage.folded .fbar,.atl2.cibles .stage.folded .fstrip,
+.atl2.cibles .stage.folded .winpick{overflow:visible!important;position:relative}
+.atl2.cibles .stage.folded .fbar{height:auto!important;max-height:none!important;
+  bottom:auto!important;inset:auto!important}
+.atl2.cibles .stage.folded .winpick-pop{z-index:90;top:calc(100% + 6px)}
+.atl2.cibles .fzone:has(.stage.folded){margin-bottom:24px!important}
+.atl2.cibles .stage.folded{margin-bottom:0}
+body.pp-desk .atl2.cibles .fzone:has(.stage.folded){position:static!important;
+  top:auto!important}
+
+/* ── Édito / fiche droite ────────────────────────────────────────────────── */
+/* 1. Le filet vert h3::before (article.css) passe AU-DESSUS du titre M&A
+   dans la colonne étroite — on le retire. */
+.atl2 .readpane .ppart h3::before,
+.atl2 .readpane .thesis-brief__body h3::before,
+.atl2 .readpane .zoom-body h3::before,
+.atl2.cibles .readpane h3.art-sub::before{content:none!important;display:none!important}
+.atl2 .readpane .ppart h3,
+.atl2 .readpane .thesis-brief__body h3,
+.atl2 .readpane .zoom-body h3{display:block!important;align-items:unset}
+.atl2.cibles .readpane .thesis-brief__jour-h{display:none!important}
+
+/* 2. Cartes LIVE 3 colonnes (noms coupés) → une liste numérotée, texte entier. */
+.atl2 .readpane .art-mktcard,
+.atl2 .readpane .art-secviz,
+.atl2 .readpane .art-viz2,
+.atl2 .thesis-brief__body .art-mktcard,
+.atl2 .thesis-brief__body .art-secviz,
+.atl2 .thesis-brief__body .art-viz2{display:none!important}
+.atl2 .readpane .art-allops > ul,
+.atl2 .thesis-brief__body .art-allops > ul,
+.atl2 .readpane ul.ed-flat{columns:1!important;column-count:1!important;
+  counter-reset:edop;list-style:none;padding:0;margin:0}
+.atl2 .readpane .art-allops > ul > li,
+.atl2 .thesis-brief__body .art-allops > ul > li,
+.atl2 .readpane ul.ed-flat > li{counter-increment:edop;display:grid!important;
+  grid-template-columns:1.75em minmax(0,1fr);column-gap:8px;align-items:start;
+  break-inside:auto;-webkit-column-break-inside:auto}
+.atl2 .readpane .art-allops > ul > li::before,
+.atl2 .thesis-brief__body .art-allops > ul > li::before,
+.atl2 .readpane ul.ed-flat > li::before{content:counter(edop) ".";grid-column:1;
+  font-size:13px;font-weight:800;color:#12A150;line-height:1.5;padding-top:1px}
+.atl2 .readpane .art-allops > ul > li > *,
+.atl2 .readpane ul.ed-flat > li > *{grid-column:2;min-width:0}
+.atl2 .readpane .aa-d,.atl2 .thesis-brief__body .aa-d{white-space:normal;
+  overflow:visible;text-overflow:unset}
+
+/* 3. Nom d'entreprise = même gouttière que « Dénicheur hors radar » / Europe.
+   zoom-pipe a déjà 20 px de padding ; un 2e margin-left sur kicker/meta
+   décalait le titre (enfant de .zoom-hd) de 20 px vers la gauche. */
+.atl2.cibles .readpane .zoom-pipe{padding:20px 20px 0!important}
+.atl2.cibles .readpane .zoom-pipe>.zoom-k,
+.atl2.cibles .readpane .zoom-pipe>.zoom-hd,
+.atl2.cibles .readpane .zoom-pipe>.zoom-h,
+.atl2.cibles .readpane .zoom-pipe>.zoom-meta,
+.atl2.cibles .readpane .zoom-pipe>.zoom-cta,
+.atl2.cibles .readpane .zoom-pipe>.zoom-memo-acts,
+.atl2.cibles .readpane .zoom-pipe>.zoom-news{margin-left:0!important;margin-right:0!important}
+.atl2.cibles .readpane .zoom-hd .zoom-h{margin-left:0!important}
+.atl2.cibles .readpane .zoom-pipe{
+  grid-template-areas:"k k" "hd hd" "m m" "memo memo" "news news" "tabs tabs"!important}
+.atl2.cibles .readpane .zoom-pipe>.zoom-memo-acts{grid-area:memo;justify-self:stretch;
+  width:100%;margin-top:12px}
+.atl2.cibles .readpane .zoom-memo-acts .md-deep-txt{display:block;width:100%;
+  padding:8px 4px 2px;border:0;background:none!important;box-shadow:none!important;
+  font-size:13px;font-weight:400;letter-spacing:.01em;color:#5B6B82!important;
+  text-align:center;height:auto;line-height:1.45}
+.atl2.cibles .readpane .zoom-memo-acts .md-deep-txt:hover{color:#0F1D33!important;
+  text-decoration:underline;text-underline-offset:3px}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   /actualites (.ops) = même UX que /cibles ouvert : cartes, gouttière 24 px,
+   LIVE collant, Coller une URL + filtres qui s'imbriquent au scroll.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.atl2.ops{--v3-pad:28px;--v3-gap:16px;--v3-stack:24px;--pp-live-h:44px}
+@media (max-width:860px){.atl2.ops{--v3-pad:14px}}
+.atl2.ops .app{background:var(--pp-bg,#fff)}
+
+/* LIVE → continents : de l'air, plus collé au fil */
+.atl2.ops .live-stack{margin:0;border-bottom:0}
+.atl2.ops .fzone{background:transparent;border-bottom:0;margin:16px 0 var(--v3-stack)}
+.atl2.ops .fzone>.conts,.atl2.ops .fzone>.contpick{
+  display:flex;align-items:center;gap:8px;flex-wrap:nowrap;
+  padding:0 var(--v3-pad) 10px;background:transparent;border-bottom:0}
+.atl2.ops .fzone>.conts{gap:4px;overflow-x:auto}
+.atl2.ops .conts .cbtn{display:inline-flex;align-items:center;gap:8px;
+  border:0;background:transparent;color:var(--pp-ink-3,#4B5E78);
+  padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;
+  letter-spacing:0;text-transform:none;cursor:pointer;white-space:nowrap}
+.atl2.ops .conts .cbtn:hover{background:var(--pp-bg-page,#F5F7FA);color:var(--pp-ink,#0F1D33)}
+.atl2.ops .conts .cbtn[aria-selected="true"]{background:var(--pp-navy,#0F1D33);color:#fff}
+.atl2.ops .conts .cbtn .n{font-size:11px;font-weight:700;background:#EAF0F6;
+  color:var(--pp-ink-3,#4B5E78);border-radius:999px;padding:1px 8px}
+.atl2.ops .conts .cbtn[aria-selected="true"] .n{background:rgba(255,255,255,.16);color:#fff}
+.atl2.ops .stage:not(.folded){margin:0 var(--v3-pad);border:1px solid var(--pp-line,#E3E8F0);
+  border-radius:12px;background:#F2F6FA;overflow:hidden}
+.atl2.ops .stage.folded{margin:0 var(--v3-pad);padding:12px 16px;height:auto;
+  border:1px solid var(--pp-line,#E3E8F0);border-radius:12px;background:#fff}
+
+/* Coller une URL : une carte, puis imbrication au sticky */
+.atl2.ops .eval-stick{background:transparent;box-shadow:none;padding:0}
+.atl2.ops .demand{margin:16px var(--v3-pad,28px) 0;padding:18px 22px;
+  border:1px solid var(--pp-line,#E3E8F0);border-radius:14px;background:#fff}
+.atl2.ops .demand .evalbtn,.atl2.ops .demand .dacts .evalbtn{
+  font:inherit;font-weight:700;font-size:14px;background:var(--pp-green,#12A150);
+  color:#fff;border:0;border-radius:999px;padding:13px 26px;cursor:pointer;
+  white-space:nowrap}
+.atl2.ops .demand .dacts .viewbtn.sm{border:1px solid var(--pp-line,#E3E8F0);
+  padding:8px 14px;font-size:12px;font-weight:600;background:#fff;color:#4B5E78}
+.atl2.ops .demand .dacts .viewbtn.sm:not(.off){background:var(--pp-navy,#0F1D33);
+  color:#fff;border-color:var(--pp-navy,#0F1D33)}
+
+/* Deux cartes séparées de 24 px — plus de filet collé entre liste et édito */
+.atl2.ops .desk{display:grid!important;margin:var(--v3-stack,24px) var(--v3-pad,28px) 0!important;
+  border:0!important;border-top:0!important;background:transparent!important;
+  grid-template-columns:minmax(0,63fr) minmax(0,37fr)!important;gap:24px!important;
+  align-items:start!important}
+.atl2.ops .desk-list{border:1px solid var(--pp-line,#E3E8F0)!important;border-radius:12px!important;
+  background:#fff!important;overflow:visible!important;min-width:0}
+.atl2.ops .readpane,.atl2.ops .readpane.is-edito,
+body.pp-desk .atl2.ops .readpane,body.pp-desk .atl2.ops .readpane.is-edito{
+  background:transparent!important;border:0!important;border-left:0!important;
+  padding:0!important;display:flex!important;flex-direction:column!important;
+  gap:14px!important;overflow:visible;box-shadow:none!important;
+  position:sticky;align-self:start;z-index:21;
+  top:calc(var(--pp-gap,60px) + var(--pp-live-h,0px) + var(--demand-h,0px) + 6px);
+  min-height:0;height:auto;max-height:none}
+.atl2.ops .readpane .zoom,.atl2.ops .readpane.is-edito .zoom{
+  border:1px solid var(--pp-line,#E3E8F0)!important;border-radius:14px!important;
+  background:#fff!important;overflow:visible;padding:24px 28px 32px!important;
+  margin:0!important;max-width:none!important;min-width:0;box-sizing:border-box}
+.atl2.ops .readpane .zoom>.zoom-body,.atl2.ops .readpane .zoom>.thesis-brief,
+.atl2.ops .readpane .card.ops-open{padding:0;margin:0;background:transparent;border:0}
+.atl2.ops .readpane .edito-go,.atl2.ops .readpane .pane-edito{
+  display:flex;align-items:center;gap:10px;width:100%;box-sizing:border-box;
+  margin:0;border:1px solid var(--pp-line,#E3E8F0);border-radius:12px;
+  padding:12px 16px;background:#fff;font:inherit;font-size:13px;font-weight:700;
+  color:#0F1D33;cursor:pointer;text-align:left;white-space:nowrap}
+.atl2.ops .readpane .edito-go::before{content:"";width:8px;height:8px;flex:none;
+  border-radius:50%;background:var(--pp-green,#12A150)}
+.atl2.ops .readpane .readpane-empty{border:1px dashed var(--pp-line,#E3E8F0);
+  border-radius:12px;padding:28px 20px;margin:0;background:#fff;max-width:none}
+
+/* Filtres : pilules. Densité : segment /cibles (pas des boutons ronds). */
+.atl2.ops .listhead .lh-tools .fstrip button,.atl2.ops .listhead .doable .dobtn{
+  display:inline-flex;align-items:center;height:32px;box-sizing:border-box;
+  padding:0 13px;border:1px solid var(--pp-line,#E3E8F0);border-radius:999px;
+  background:#fff;font:inherit;font-size:12.5px;font-weight:600;color:#1B2F4E;
+  cursor:pointer;white-space:nowrap}
+.atl2.ops .desk-list .row .cell .rev,.atl2.ops .desk-list .row .memobtn,
+.atl2.ops .desk-list .row .evalbtn{
+  font:inherit;font-size:12.5px;font-weight:700;border-radius:8px;
+  padding:8px 14px;white-space:nowrap}
+
+/* Sticky : nav → LIVE → URL → filtres, une pièce au scroll */
+body.pp-desk .atl2.ops .eval-stick{position:sticky;z-index:42;
+  top:calc(var(--pp-gap,60px) + var(--pp-live-h,0px))!important;
+  width:100%;background:#fff!important;box-shadow:none!important;
+  padding-bottom:8px!important}
+body.pp-desk .atl2.ops .eval-stick.is-stuck,
+body.pp-desk .atl2.ops.url-stuck .eval-stick{padding-bottom:0!important}
+body.pp-desk .atl2.ops.url-stuck .demand,body.pp-desk .atl2.ops .eval-stick.is-stuck .demand{
+  margin:0!important;border-radius:0!important;border:0!important;box-shadow:none!important}
+body.pp-desk .atl2.ops.url-stuck .desk{margin-top:0}
+body.pp-desk .atl2.ops.url-stuck .desk-list{border-radius:0!important;border-top:0!important}
+body.pp-desk .atl2.ops .desk-list .listhead,
+body.pp-desk .atl2.ops .desk-list .listhead.mapoff,
+body.pp-desk .atl2.ops .listhead,
+body.pp-desk .atl2.ops .listhead.mapoff{
+  position:sticky;z-index:34;width:100%!important;max-width:none!important;
+  top:calc(var(--pp-gap,60px) + var(--pp-live-h,0px) + var(--demand-h,0px))!important;
+  background:#fff!important;border-radius:12px 12px 0 0;box-shadow:none!important}
+body.pp-desk .atl2.ops.url-stuck .desk-list .listhead,
+body.pp-desk .atl2.ops.url-stuck .listhead{border-radius:0!important;border-top:0!important}
+@media (max-width:1000px){
+  .atl2.ops .desk{grid-template-columns:1fr;gap:16px}
+  .atl2.ops .readpane,.atl2.ops .readpane.is-edito,
+  body.pp-desk .atl2.ops .readpane{position:relative;top:auto;border:0}
+  .atl2.ops .stage:not(.folded){margin:0 var(--v3-pad)}
+}
+@media (max-width:860px){
+  .atl2.ops{--pp-live-h:0px}
+  .atl2.ops .desk{margin-left:0;margin-right:0}
+  .atl2.ops .desk-list{border-radius:0;border-left:0;border-right:0}
+  .atl2.ops .demand{margin:0;border-radius:0;border-left:0;border-right:0}
+}
+`,Hl=_l+Bl+$l+Ul;function Cn(e){if(typeof window>"u")return"";try{return new URLSearchParams(window.location.search).get(e)||""}catch{return""}}function Vl(){const e=Cn("teaser");if(e==="0"||e==="1")return e;try{if(typeof window<"u"&&window.parent&&window.parent!==window){const a=new URL(window.parent.location.href).searchParams.get("teaser");if(a==="0"||a==="1")return a;if(/\/cibles\/[^/]+\/open\/?$/i.test(window.parent.location.pathname||""))return"0"}}catch{}return""}function Wl(e,a){if(e||a.mode!=="client"||!a.token)return"visiteur";const r=Vl();return r==="0"?"client":r==="1"||Cn("embed")==="1"&&Cn("chrome")==="1"?"apercu":"client"}const Gl={visiteur:{pipe:!1,showIdent:!1,showOnb:!1,showFunnel:!1,showDemand:!0,showThumbs:!1,showCredits:!1,showChain:!0,showGroupBar:!0,lockRowsAfter:null,lockActions:!1,showTicker:!0,showMorning:!0},apercu:{pipe:!0,showIdent:!0,showOnb:!0,showFunnel:!0,showDemand:!0,showThumbs:!1,showCredits:!1,showChain:!1,showGroupBar:!1,lockRowsAfter:10,lockActions:!0,showTicker:!0,showMorning:!0},client:{pipe:!0,showIdent:!0,showOnb:!1,showFunnel:!0,showDemand:!0,showThumbs:!0,showCredits:!0,showChain:!0,showGroupBar:!1,lockRowsAfter:null,lockActions:!1,showTicker:!0,showMorning:!0}},Yl=e=>Gl[e];function Jt(e){const a=(e||"").trim();return a.length<3?!1:!!(/^[^\p{L}(]/u.test(a)||/[:—]\s|…|\.{3}/.test(a)||/\?$/.test(a)||/^(this|that|these|those|why|what|what'?s|how|when|where|who|which|is|are|do|does|did|can)\b/i.test(a)||a.split(/\s+/).length>=3&&/\b(icymi|round-?up|wrap|weekly|podcast|interview|what|why|how|biggest|watch|inside|according)\b/i.test(a))}const It=e=>{if(e.noCo===void 0){const a=(e.name||"").trim();(!an(a)||Jt(a))&&(e.noCo=!0)}return Object.assign(e,{continent:ps(e.cc)})};function pn(e){const a=new Set,r=[];for(const n of e){const o=(n.name||"").toLowerCase();!o||a.has(o)||(a.add(o),r.push(n))}return r}const Ql=60*60*1e3;function Kl(e){try{const a=JSON.parse(sessionStorage.getItem("ppmap:swr:"+e)||"null");return!a||!Array.isArray(a.objs)||Date.now()-(a.ts||0)>Ql?null:a}catch{return null}}function Na(e,a){try{sessionStorage.setItem("ppmap:swr:"+e,JSON.stringify({...a,ts:Date.now()}))}catch{}}const Jl=e=>e==="default"?"":e==="ops"?"ops":"research:"+e.research;function Xl(e,a,r="default"){const n=r!=="default",o=p.useMemo(()=>e||n?{mode:"anon"}:Zi(),[e,n]),i=p.useMemo(()=>n?"visiteur":Wl(e,o),[e,o,n]),d=p.useMemo(()=>Yl(i),[i]),l=i!=="visiteur",s=Jl(r),[h,c]=p.useState([]),[g,u]=p.useState(""),[b,f]=p.useState(null),[y,w]=p.useState(null),[m,v]=p.useState(null),[k,E]=p.useState(()=>new Map),[S,N]=p.useState(()=>new Map),[A,T]=p.useState(""),[F,O]=p.useState(new Set),[D,V]=p.useState(null),[Q,R]=p.useState(!0),[x,q]=p.useState(!1),[C,P]=p.useState(0),[H,G]=p.useState(0),Z=p.useRef(0),z=p.useMemo(()=>{var M;if(i!=="client")return"";try{return((M=es())==null?void 0:M.email)||""}catch{return""}},[i]);p.useEffect(()=>{const M=++Z.current;let X=!0;const U=()=>X&&M===Z.current,ee=(l&&o.token?o.token:"pub:"+a)+(s?":"+s:""),ue=Kl(ee);return ue?(c(ue.objs.map(It)),ue.fund&&u(ue.fund),f(ue.marketEstimate??null),w(ue.criteria??null),v(ue.stats??null),T(ue.generatedAt||""),R(!1)):R(!0),(async()=>{try{if(r==="ops"){const fe=await on(),ve=((fe==null?void 0:fe.recent_ops)||[]).map(me=>{const we=Da(me.company_name||me.title?me:{...me,title:(me.headline_fr||me.headline||"").slice(0,120)},a),ze=String(me.rubrique||"").toLowerCase();return we&&(ze==="nominations"||ze==="recrutements")&&(we.engine=ze),we&&!String(me.company_name||"").trim()&&(we.noCo=!0),we}).filter(me=>!!me).map(me=>(an((me.name||"").trim())||(me.noCo=!0),me));try{const me=ts(),we=await as(),ze=((we==null?void 0:we.date)||"").slice(0,10),he=me?me.doc:we,ke=ns(he),ge=((me==null?void 0:me.day)||(he==null?void 0:he.date)||ze||"").slice(0,10);if(ge&&ke.length){const ie=new Set;for(const I of ve){if((I.date||"").slice(0,10)!==ge)continue;const ae=ur(ke,ie,I.name,"");ae>=0&&(ie.add(ae),I.decryptHtml=ke[ae].html)}for(const I of ve){if(I.decryptHtml||(I.date||"").slice(0,10)!==ge)continue;const ae=ur(ke,ie,"",I.headline||I.tagline||I.name);ae>=0&&(ie.add(ae),I.decryptHtml=ke[ae].html)}}if(ge){const ie=((he==null?void 0:he.title_fr)||"").trim(),I=((he==null?void 0:he.lead_fr)||"").trim(),ae=rs(he),pe=((he==null?void 0:he.url)||"").trim();ie&&(ae||pe)&&ve.unshift({id:`edito:${ge}`,kind:"op",name:ie,cc:null,date:ge,engine:"edito",dealKind:"other",headline:ie,tagline:I||ie,decryptHtml:ae||void 0,url:pe,noCo:!0})}}catch{}if(!U())return;c(ve.map(It)),Na(ee,{objs:ve})}else if(typeof r=="object"){const ve=(await mr()||[]).filter(we=>(we.slug||"")===r.research).map(we=>fr(we,a)).filter(we=>!!we),me=pn(await hr(ve,a));if(!U())return;c(me.map(It)),Na(ee,{objs:me})}else if(l&&o.token){const fe=os(o.token),ve=on(),me=is(o.token),we=ss(o.token),ze=ls(o.token),he=await fe;let ke=he?he.targets:[];U()&&he&&(u(he.fund||""),f(he.marketEstimate??null),w(he.criteria??null),v(he.stats??null),T(he.generatedAt||""),c(ke.map(It)),R(!1),q(!1));const[ge,ie,I,ae]=await Promise.all([ve,me,we,ze]),pe=((ge==null?void 0:ge.recent_ops)||[]).map(te=>Da(te,a)).filter(te=>!!te),se=new Set(ke.map(te=>te.id));if(ke=[...ke,...pe.filter(te=>!se.has(te.id)&&(se.add(te.id),!0))],!U())return;c(ke.map(It));const ne=new Set;for(const te of ie){const de=(te.id||te.co||"").toString().trim().toLowerCase();de&&ne.add(de.startsWith("t:")?de:"t:"+de)}O(ne),E(I),N(ae),he&&Na(ee,{fund:he.fund,marketEstimate:he.marketEstimate,criteria:he.criteria,stats:he.stats,generatedAt:he.generatedAt,objs:ke})}else{const fe=ds(),ve=mr(),me=on(),we=await fe;U()&&we.length&&(c(pn(we).map(It)),R(!1),q(!1));const[ze,he]=await Promise.all([ve,me]),ke=(ze||[]).map(ae=>fr(ae,a)).filter(ae=>!!ae),ge=await hr(ke,a),ie=((he==null?void 0:he.recent_ops)||[]).map(ae=>Da(ae,a)).filter(ae=>!!ae),I=pn([...we,...ge,...ie]);if(!U())return;c(I.map(It)),Na(ee,{objs:I})}U()&&q(!1)}catch{U()&&!ue&&q(!0)}finally{U()&&R(!1)}})(),()=>{X=!1}},[l,o.token,a,C,s]),p.useEffect(()=>{if(!d.showCredits||!z){V(null);return}let M=!0;return(async()=>{try{const X=await fetch(`${ka}/inbound/credits`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:z})});if(!X.ok)return;const U=await X.json();M&&U&&U.ok!==!1&&V(U)}catch{}})(),()=>{M=!1}},[d.showCredits,z,H]);const $=p.useCallback(M=>O(new Set(M)),[]);return{session:o,mode:i,caps:d,fund:g,email:z,marketEstimate:b,generatedAt:A,criteria:y,thesisMode:String((y==null?void 0:y.mode)||""),stats:m,thumbs:k,stages:S,dossiers:h,patchStatuses:(M,X)=>{c(U=>{let ee=!1;const ue=U.map(fe=>{if(!fe.checkId)return fe;const ve=M.get(fe.checkId);return!ve||ve===(fe.ceoStatus||"")||!X(fe.id)?fe:(ee=!0,{...fe,ceoStatus:ve})});return ee?ue:U})},favIds:F,setFavIds:$,credits:D,reloadCredits:()=>G(M=>M+1),loading:Q,error:x,refresh:()=>P(M=>M+1)}}function He(e){return e?e.engine==="edito"||String(e.id||"").startsWith("edito:"):!1}const Ma=new Set(["media","nominations","recrutements","tribunes","listes","evenements","partenariats","produits","regul","marche"]);function Va(e){return Ma.has(e.engine||"")}function tt(e){return!!e.noCo||Va(e)&&!!e.url}const Jo=()=>({win:"all",day:"",status:"all",crible:[],signalOnly:!1,signalEngines:[],sector:[],market:[],country:[],engine:[],stage:[],angle:[],memoLevel:[],dealKind:[],acquirer:"",search:""}),Zl=(e="europe",a=!1,r)=>({continent:e,ptab:(r==null?void 0:r.ptab)??1,dens:(r==null?void 0:r.dens)??"liste",filters:{...Jo(),...Object.fromEntries(Object.entries((r==null?void 0:r.filters)||{}).filter(([,n])=>n!==void 0))},sort:{key:"signal",dir:-1},groupBy:"engine",shown:{},pileMode:!1,openFacet:null,popupId:null,popupAnchor:null,focusId:null,modal:(r==null?void 0:r.modal)??null,chain:{queue:[],idx:0},spaceTab:"retenu",memoConsole:null,approachId:null,dossierId:null,memoTab:0,undo:[],mapFolded:a}),ed=new Set(["signal","amount","score","crible","memo"]);function td(e,a){switch(a.type){case"continent":return{...e,continent:a.key,filters:{...e.filters,country:[]},shown:{},popupId:null,focusId:null,openFacet:null};case"ptab":return{...e,ptab:a.tab,shown:{},popupId:null,focusId:null};case"dens":return{...e,dens:a.dens,shown:{}};case"filters":return{...e,filters:{...e.filters,...a.patch},shown:{}};case"toggleFacet":{const r=e.filters[a.facet],n=r.includes(a.value)?r.filter(o=>o!==a.value):[...r,a.value];return{...e,filters:{...e.filters,[a.facet]:n},shown:{}}}case"toggleMemoLevel":{const r=e.filters.memoLevel,n=r.includes(a.value)?r.filter(o=>o!==a.value):[...r,a.value];return{...e,filters:{...e.filters,memoLevel:n},shown:{}}}case"acquirer":return{...e,filters:{...e.filters,acquirer:a.value,day:"",win:"all"},shown:{}};case"clearFacet":return{...e,filters:{...e.filters,[a.facet]:[]},shown:{}};case"reset":return{...e,filters:Jo(),shown:{},openFacet:null,popupId:null,focusId:null,dens:"liste",sort:{key:"signal",dir:-1}};case"sort":return{...e,sort:e.sort.key===a.key?{key:a.key,dir:e.sort.dir*-1}:{key:a.key,dir:ed.has(a.key)?-1:1}};case"groupBy":return{...e,groupBy:a.groupBy};case"more":return{...e,shown:{...e.shown,[a.group]:(e.shown[a.group]??a.base??Xo)+a.by}};case"pile":return{...e,pileMode:a.on,popupId:null};case"openFacet":return{...e,openFacet:e.openFacet===a.facet?null:a.facet};case"popup":return{...e,popupId:a.id,popupAnchor:a.id?a.anchor??null:null};case"focus":return{...e,focusId:a.id,popupId:a.id?null:e.popupId};case"modal":return{...e,modal:a.modal,popupId:a.modal?null:e.popupId,dossierId:a.modal==="dossier"?null:a.modal?e.dossierId:null};case"chainStart":return{...e,modal:"chain",chain:{queue:a.queue,idx:0},popupId:null};case"chainNext":return{...e,chain:{...e.chain,idx:e.chain.idx+1}};case"spaceTab":return{...e,spaceTab:a.tab};case"approachOpen":return{...e,approachId:a.id,modal:a.id?"approach":null};case"dossierOpen":return{...e,dossierId:a.id,modal:a.id?"dossier":null};case"memoConsole":return{...e,memoConsole:a.id,memoTab:0};case"memoTab":return{...e,memoTab:a.tab};case"undoPush":return{...e,undo:[...e.undo,a.entry].slice(-50)};case"undoPop":return{...e,undo:e.undo.slice(0,-1)};case"mapFold":return{...e,mapFolded:a.folded,openFacet:null};default:return e}}const Xo=80;function Wa(e,a,r,n){var o;if(n!=="signal"&&a.signalOnly&&(!$e(e)||a.signalEngines.length&&!a.signalEngines.includes(e.engine||""))||n!=="dealKind"&&((o=a.dealKind)!=null&&o.length)&&!a.dealKind.includes(e.dealKind||"")||n!=="sector"&&a.sector.length&&!a.sector.includes(e.sector||"")||n!=="market"&&a.market.length&&!a.market.includes(e.market||"")||n!=="acquirer"&&a.acquirer.trim()&&(e.acquirer||"").trim().toLowerCase()!==a.acquirer.trim().toLowerCase()||n!=="engine"&&a.engine.length&&!a.engine.includes(e.engine||"")||n!=="stage"&&a.stage.length&&!a.stage.includes(e.stage||"")||n!=="angle"&&r&&a.angle.length&&!a.angle.includes(e.angle||"")||n!=="memoLevel"&&r&&a.memoLevel.length&&!a.memoLevel.includes(Yn(e)))return!1;if(n!=="win"){if(a.day){if((e.date||"").slice(0,10)!==a.day)return!1}else if(a.win!=="all"){const i=a.win==="1"?0:a.win==="7"?7:30;if(gt(e.date)>i)return!1}}if(n!=="status"&&!r&&a.status!=="all"&&Pt(e)!==a.status||n!=="crible"&&a.crible.length&&!a.crible.includes(Fo(e)))return!1;if(n!=="search"&&a.search.trim()){const i=a.search.trim().toLowerCase();if(![e.name,e.tagline,e.sector,e.market,...e.tags||[],e.acquirer,e.domain,e.website,e.city,e.countryLabel,e.contactName,e.angle,e.angleId,e.provQuery].filter(Boolean).join(" ").toLowerCase().includes(i))return!1}return!0}function _t(e,a,r){return He(e)?Wa(e,a.filters,r):a.continent!=="monde"&&e.continent!==a.continent||a.filters.country.length&&!a.filters.country.includes(e.cc||"")?!1:Wa(e,a.filters,r)}function ad(e,a,r,n){return!(!_t(e,a,r)||r&&!To(e,a.ptab,n))}function Ga(e,a){const r=a.key,n=o=>{switch(r){case"name":return(o.name||"").toLowerCase()||null;case"country":return o.countryLabel||o.cc||null;case"stage":return o.stage||null;case"sector":return(o.sector||"").toLowerCase()||null;case"market":return(o.market||"").toLowerCase()||null;case"amount":return typeof o.amountEur=="number"&&o.amountEur>0?o.amountEur:null;case"age":return-gt(o.date);case"score":return typeof o.score=="number"?o.score:null;case"crible":return us(o)||null;case"memo":return cs(o)||null;case"signal":{const i=$e(o);return i?100-(i.left??0):null}}};return[...e].sort((o,i)=>{const d=n(o),l=n(i);return d===null||l===null?d===l?(o.name||"").localeCompare(i.name||""):d===null?1:-1:d<l?-a.dir:d>l?a.dir:(o.name||"").localeCompare(i.name||"")})}const cn={},Rr=(cn==null?void 0:cn.VITE_API_BASE)||"https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run";function Or(){return new Date().toISOString().slice(0,10)}const Zn=p.createContext(null);function Zo(){return p.useContext(Zn)}function nd(e){if(!e||typeof DOMParser>"u")return[];const a=[];try{const r=new DOMParser().parseFromString(e,"text/html");for(const n of[...r.querySelectorAll("p")]){if((n.textContent||"").replace(/\s+/g," ").trim().length<40)continue;const i=n.querySelector("strong,b"),d=((i==null?void 0:i.textContent)||"").replace(/\s+/g," ").trim();if(!d||d.length<2||d.length>60)continue;const l=n.cloneNode(!0);l.querySelectorAll("script,style,iframe").forEach(s=>s.remove()),l.querySelectorAll("*").forEach(s=>{const h=s.tagName==="A"?s.getAttribute("href"):null;[...s.attributes].forEach(c=>s.removeAttribute(c.name)),h&&/^https?:\/\//i.test(h)&&(s.setAttribute("href",h),s.setAttribute("target","_blank"),s.setAttribute("rel","nofollow noopener"))}),a.push({t:d.toLowerCase(),html:l.outerHTML})}}catch{}return a}function ei(e){for(const a of[...e.querySelectorAll("p")]){const r=(a.textContent||"").replace(/\s+/g," ").trim();r&&r.length<=28&&!a.querySelector("a,ul,li,strong")&&!/[.:;!?]$/.test(r)&&r.split(" ").length<=3&&a.classList.add("tb-geo")}for(const a of[...e.querySelectorAll("p,h2,h3")]){const r=(a.textContent||"").replace(/\s+/g," ").trim();r&&r.length<=64&&/^[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(r)&&!a.querySelector("a,ul")&&a.classList.add("tb-sec")}for(const a of[...e.querySelectorAll("b,strong")]){const r=(a.textContent||"").replace(/\s+/g," ").trim().toLowerCase();/^[^a-zà-ÿ]*(pour votre th|for your thesis)/.test(r)&&a.classList.add("tb-these")}for(const a of[...e.querySelectorAll("div,section,p")]){const r=(a.textContent||"").replace(/\s+/g," ").trim();if(/^en bref|^in brief/i.test(r)&&a.querySelector("li,p,ul")){a.classList.add("ed-lead");break}}}function rd(e){if(!e||typeof DOMParser>"u")return e;try{const r=new DOMParser().parseFromString(`<div id="ed">${e}</div>`,"text/html").getElementById("ed");return r?(r.querySelectorAll("script,style,iframe,object,embed,link,meta,form,input,button").forEach(n=>n.remove()),r.querySelectorAll("*").forEach(n=>{[...n.attributes].forEach(o=>{const i=o.name.toLowerCase(),d=o.value,l=i==="class"||i==="alt"||i==="width"||i==="height"||i.startsWith("data-"),s=(i==="href"||i==="src")&&/^https?:\/\//i.test(d);!l&&!s&&n.removeAttribute(o.name)}),n.tagName==="A"&&n.getAttribute("href")&&(n.setAttribute("target","_blank"),n.setAttribute("rel","nofollow noopener"))}),ei(r),r.innerHTML):e}catch{return e}}function Dr(e){if(!e||typeof DOMParser>"u")return e;try{const r=new DOMParser().parseFromString(`<div id="tb">${e}</div>`,"text/html").getElementById("tb");return r?(r.querySelectorAll("script,style,iframe").forEach(n=>n.remove()),r.querySelectorAll("*").forEach(n=>{const o=n.tagName==="A"?n.getAttribute("href"):null,i=n.getAttribute("class"),d=i==="tb-geo"||i==="tb-these"||i==="tb-sec"?i:"";[...n.attributes].forEach(l=>n.removeAttribute(l.name)),d&&n.setAttribute("class",d),o&&/^https?:\/\//i.test(o)&&(n.setAttribute("href",o),n.setAttribute("target","_blank"),n.setAttribute("rel","nofollow noopener"))}),ei(r),r.innerHTML):e}catch{return e}}function Mr(e,a=!1){const r=/^(\d{4})-(\d{2})-(\d{2})$/.exec(e||"");if(!r)return e;const i=(a?["January","February","March","April","May","June","July","August","September","October","November","December"]:["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"])[Number(r[2])-1]||"",d=String(Number(r[3]));return a?`${i} ${d}, ${r[1]}`:`${d==="1"?"1ᵉʳ":d} ${i} ${r[1]}`}function ti(){const e=p.useContext(Zn);if(!e)throw new Error("ThesisEdition* must be under ThesisEditionProvider");return e}function od({token:e,children:a}){const{dispatch:r,st:n,lang:o}=K(),[i,d]=p.useState(()=>n.filters.day||Or()),[l,s]=p.useState(null),[h,c]=p.useState(!1),g=p.useCallback(y=>{if(/^\d{4}-\d{2}-\d{2}$/.test(y)){d(y);try{r({type:"filters",patch:{day:y,win:"all"}})}catch{}}},[r]),u=p.useCallback(()=>{d(Or());try{r({type:"filters",patch:{day:"",win:"all"}})}catch{}},[r]);p.useEffect(()=>{const y=w=>{var v;const m=(v=w.detail)==null?void 0:v.day;typeof m=="string"&&g(m)};return window.addEventListener("pp-edition-day",y),()=>window.removeEventListener("pp-edition-day",y)},[g]),p.useEffect(()=>{n.filters.day&&n.filters.day!==i&&d(n.filters.day)},[n.filters.day]),p.useEffect(()=>{if(!e||!i)return;let y=!1;c(!0);const w=new URLSearchParams({token:e,date:i});return fetch(`${Rr}/cibles/edition.json?${w}`).then(m=>m.json()).then(m=>{y||s(m)}).catch(()=>{y||s({ok:!1,error:"network"})}).finally(()=>{y||c(!1)}),()=>{y=!0}},[e,i]);const b=p.useMemo(()=>`${Rr}/cibles/editions.json?token=${encodeURIComponent(e)}`,[e]),f=p.useMemo(()=>({token:e,day:i,ed:l,loading:h,pickDay:g,pickWindow:u,dayPicked:!!n.filters.day,daysUrl:b,isEn:o==="en"}),[e,i,l,h,g,u,n.filters.day,b,o]);return t.jsx(Zn.Provider,{value:f,children:a})}function id(){const{day:e,daysUrl:a,pickDay:r,dayPicked:n}=ti(),[o,i]=p.useState(()=>n||Ro());return p.useEffect(()=>{n&&i(!0)},[n]),p.useEffect(()=>{const d=l=>{var s;return i(!!((s=l.detail)!=null&&s.open))};return window.addEventListener(Ba,d),()=>window.removeEventListener(Ba,d)},[]),o?t.jsx("div",{className:"thesis-days",children:t.jsx(ms,{mode:"local",theme:"dark",month:e.slice(0,7),current:n?e:"",windowDays:0,daysUrl:a,onPick:r})}):null}async function sd(e){try{const a=await fetch("https://proplace.co/actualites/today.json",{cache:"no-store"});if(!a.ok)return null;const r=await a.json(),n=String((r==null?void 0:r.date)||"").slice(0,10);if(!n||e&&n!==e.slice(0,10))return null;const o=String((r==null?void 0:r.html_fr)||(r==null?void 0:r.html_en)||"");return o.trim()?{date:n,title:String((r==null?void 0:r.title_fr)||(r==null?void 0:r.title_en)||""),html:o}:null}catch{return null}}function Ir(e){if(!e)return!1;const a=new Date,r=n=>String(n).padStart(2,"0");return e.slice(0,10)===`${a.getFullYear()}-${r(a.getMonth()+1)}-${r(a.getDate())}`}function Pr(e){const a=(e||"").slice(0,10);return/^\d{4}-\d{2}-\d{2}$/.test(a)?`https://proplace.co/actualites/operations-${a}/`:"https://proplace.co/actualites/"}function ld(){const{day:e,ed:a,loading:r,pickWindow:n,dayPicked:o,isEn:i}=ti(),d=!!(a!=null&&a.ok&&(a.html||a.acquirers_html)),l=(a==null?void 0:a.ok)&&!d,s=a&&!a.ok,h=p.useRef(null),[c,g]=p.useState("fonds"),[u,b]=p.useState(null),[f,y]=p.useState("idle"),w=p.useRef(!1);p.useEffect(()=>{b(null),y("idle"),w.current=!1,g("fonds")},[e]),p.useEffect(()=>{if(c!=="jour"||w.current)return;w.current=!0;let S=!0;return y("load"),sd(e).then(N=>{S&&(b(N),y("fait"))}),()=>{S=!1}},[c,e]);const m=p.useMemo(()=>rd((u==null?void 0:u.html)||""),[u==null?void 0:u.html]),v=p.useRef(null);p.useEffect(()=>{const S=v.current;if(!S||!m)return;let N=!1;return Nn(()=>Promise.resolve().then(()=>Gn),void 0).then(async A=>{await A.ensureEditoCss(),!(N||!S.isConnected)&&(A.beautifyEditoRows(S),A.mountCardFits(S))}),()=>{N=!0}},[m]);const k=p.useMemo(()=>Dr((a==null?void 0:a.html)||""),[a==null?void 0:a.html]),E=p.useMemo(()=>Dr((a==null?void 0:a.acquirers_html)||""),[a==null?void 0:a.acquirers_html]);return p.useEffect(()=>{const S=h.current;if(!S||!k)return;let N=!1;return Nn(()=>Promise.resolve().then(()=>Gn),void 0).then(async A=>{await A.ensureEditoCss(),!(N||!S.isConnected)&&(A.beautifyEditoRows(S),A.mountCardFits(S))}),()=>{N=!0}},[k]),t.jsxs("section",{className:"thesis-brief","data-day":(a==null?void 0:a.date)||e,"data-fund":(a==null?void 0:a.fund)||"",children:[t.jsx("style",{children:`
+        .thesis-brief{margin:0;padding:18px 16px 22px;background:transparent;border:none;
+          border-top:1px solid var(--line,#E3E8F0)}
+        .thesis-brief__hd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 8px}
+        .thesis-brief__kicker{font-family:var(--pp-body);font-size:12px;color:var(--muted,#4B5E78);font-weight:600}
+        .thesis-brief__title{margin:0;font-size:14.5px;font-weight:700;letter-spacing:-.015em;color:#16233A}
+        .thesis-brief__date{margin-left:auto;font-family:var(--pp-body);font-size:11px;color:#8FA0B8}
+        .thesis-brief__hint{margin:0 0 12px;font-size:12.5px;color:#4B5E78;line-height:1.45;max-width:62ch}
+        /* PLUS PETIT, PLUS AÉRÉ (29/08 : « la police de l'édito est trop grande,
+           la présentation n'est pas assez aérée »). Le corps passe de 14 à
+           13,5 px, l'interligne de 1,6 à 1,72, et chaque opération gagne de
+           l'air au lieu d'un filet serré. */
+        .thesis-brief__body,.thesis-brief__acq{font-size:12.5px;line-height:1.6;color:#1B2F4E}
+        .thesis-brief__body p{margin:0 0 16px}
+        .thesis-brief__body .tb-these{display:block;margin:12px 0 3px;font-size:12px;
+          font-weight:600;color:#0E8A44}
+        /* « EN BREF » : LE MÊME STYLE QUE LE RESTE (29/08, second retour :
+           « ton EN BREF devrait avoir la même police et le même style que le
+           reste »). Ma première version stylait TOUS les gras du bloc en
+           petites capitales sur leur propre ligne — donc « ALAN / lève /
+           480 M€ / auprès de Prosus… », une phrase hachée en morceaux. C'était
+           mon erreur : la règle visait le titre et attrapait chaque emphase.
+           Il ne reste que ce qui manquait vraiment : l'alignement à gauche
+           (la feuille de /actualites centre ce bloc, ce qui marche en pleine
+           page mais pas dans une colonne de 600 px) et un filet de séparation. */
+        .thesis-brief__body .ed-lead{text-align:left!important;margin:0 0 20px;
+          padding:0 0 14px;background:none;border:0;border-bottom:1px solid #E3E8F0}
+        .thesis-brief__body .ed-lead *{text-align:left!important}
+        .thesis-brief__body .ed-lead p,.thesis-brief__body .ed-lead li{
+          margin:0 0 10px}
+        .thesis-brief__body .ed-lead :last-child{margin-bottom:0}
+        /* ⑤ (29/08) : le contenu d'« En bref » est une LISTE — son padding-left
+           hérité le décalait par rapport aux textes des sections. Au fer, comme
+           le reste. */
+        .thesis-brief__body .ed-lead ul,.thesis-brief__body .ed-lead ol{
+          margin:0;padding-left:0;list-style:none}
+        .thesis-brief__body .ed-lead li{padding-left:0}
+        .thesis-brief__body .tb-geo{font-size:12px;font-weight:600;color:#8FA0B8;margin:18px 0 6px}
+        .thesis-brief__body a{color:#12A150;font-weight:600}
+        .thesis-brief__body h2,.thesis-brief__body h3{font-size:12.5px;font-weight:600;
+          margin:24px 0 9px;color:#0F1D33}
+        .thesis-brief__body .ed-sec{margin:26px 0 0}
+        .thesis-brief__body .ed-sec-h,.thesis-brief__body .mk-sec h2{font-size:14px;font-weight:700;
+          letter-spacing:-.01em;margin:0 0 8px;padding-bottom:6px;border-bottom:1px solid #E3E8F0;color:#16233A}
+        .thesis-brief__body .ed-ops,.thesis-brief__body .mk-ops{list-style:none;margin:0;padding:0}
+        .thesis-brief__body .ed-op,.thesis-brief__body .mk-op{padding:15px 0;
+          border-bottom:1px solid #F5F7FA}
+        .thesis-brief__body .ed-op:last-child,.thesis-brief__body .mk-op:last-child{border-bottom:0}
+        .thesis-brief__body .ed-op-t,.thesis-brief__body .mk-op-t{font-size:13.5px;
+          line-height:1.5;color:#16233A}
+        .thesis-brief__body .ed-op-m,.thesis-brief__body .mk-op-m{margin-top:5px;
+          font-size:12px;line-height:1.55;color:#4B5E78}
+        .thesis-brief__body ul{margin:0 0 14px;padding-left:1.25em}
+        .thesis-brief__body li{margin:0 0 7px}
+        .thesis-brief__loading,.thesis-brief__empty,.thesis-brief__err{
+          margin:0;font-size:13px;color:#4B5E78;line-height:1.5}
+        .thesis-brief__empty b{color:#16233A}
+        .thesis-brief__err{color:#C0353A}
+        .thesis-brief__clear{margin-top:12px;font-size:12.5px;font-weight:700;color:#12A150;
+          background:none;border:none;cursor:pointer;padding:0;text-decoration:underline}
+        /* -- UNE SEULE TAILLE (29/08 : "unifie et reduis cette police") --
+           Le brief melangeait 14/13,5/13/12,5/12 px selon que le bloc venait
+           du LLM, du repli ou de mes passes successives. Fin des exceptions :
+           TOUT le corps a 12 px / 1,62, TOUS les intertitres a 11 px en
+           petites capitales, les reperes (pays, "pour votre these") a 10 px.
+           Pose en dernier : il bat tout ce qui precede. */
+        /* 29/08, un cran au-dessus (« augmente d'un cran la police de tout
+           Édito · winhealthgroup pour qu'elle soit comme Édito du jour ») :
+           corps 13 px — la taille de l'article partagé. Toujours UNE seule. */
+        .thesis-brief__body,.thesis-brief__body p,.thesis-brief__body li,
+        .thesis-brief__body .ed-lead p,.thesis-brief__body .ed-lead li,
+        .thesis-brief__body .ed-op-t,.thesis-brief__body .ed-op-m,
+        .thesis-brief__acq{font-size:13px;line-height:1.65}
+        .thesis-brief__body p{margin:0 0 13px}
+        /* et TOUT au fer à gauche — plus aucun héritage centré possible,
+           d'où qu'arrive le HTML (« aligne ça à gauche », 3ᵉ fois). */
+        .thesis-brief__body,.thesis-brief__body *{text-align:left!important}
+        .thesis-brief__body h2,.thesis-brief__body h3,
+        .thesis-brief__body .tb-sec{font-size:12px;font-weight:600;color:#0F1D33;
+          margin:22px 0 8px;line-height:1.5}
+        .thesis-brief__body .tb-geo,.thesis-brief__body .tb-these{font-size:10px}
+        .thesis-brief__all{display:inline-block;margin-top:10px;font-size:12.5px;font-weight:700;
+          color:#12A150;text-decoration:none;border-bottom:1px solid #BBF7D0;padding-bottom:1px}
+        .thesis-brief__all:hover{border-bottom-color:#12A150}
+        .thesis-brief__sw{display:flex;gap:6px;margin:0 0 12px;flex-wrap:wrap}
+        .thesis-brief__sw button{font:inherit;font-size:12px;font-weight:700;letter-spacing:.01em;
+          padding:6px 12px;border-radius:999px;border:1px solid #E3E8F0;background:#fff;
+          color:#4B5E78;cursor:pointer;white-space:nowrap}
+        .thesis-brief__sw button:hover{border-color:#12A150;color:#16233A}
+        .thesis-brief__sw button[aria-selected="true"]{background:#12A150;border-color:#12A150;color:#fff}
+      `}),t.jsxs("header",{className:"thesis-brief__hd",children:[t.jsx("span",{className:"thesis-brief__kicker",children:i?"Daily brief":"Brief du jour"}),t.jsxs("h2",{className:"thesis-brief__title",children:[i?"Operations relevant to your thesis":"Opérations pertinentes pour votre thèse",(a==null?void 0:a.count)!=null&&a.count>0?` · ${a.count}`:""]}),((a==null?void 0:a.date)||e)&&t.jsx("time",{className:"thesis-brief__date",dateTime:(a==null?void 0:a.date)||e,children:(()=>{const S=(a==null?void 0:a.date)||e,N=/^(\d{4})-(\d{2})-(\d{2})/.exec(S);return N?i?`${N[2]}/${N[3]}/${N[1]}`:`${N[3]}/${N[2]}/${N[1]}`:S})()})]}),t.jsxs("div",{className:"thesis-brief__sw",role:"tablist",children:[t.jsx("button",{type:"button",role:"tab","aria-selected":c==="fonds",onClick:()=>g("fonds"),children:(i?"Editorial · ":"Édito · ")+((a==null?void 0:a.fund)||(i?"your thesis":"votre thèse"))}),t.jsx("button",{type:"button",role:"tab","aria-selected":c==="jour",onClick:()=>g("jour"),children:i?"Editorial of the day":"Édito du jour"})]}),c==="fonds"&&t.jsx("p",{className:"thesis-brief__hint",children:i?"Same content as your daily email for this fund. Pick a day above the map to change this brief and the LIVE ticker.":"Même contenu que l’email quotidien de ce fonds. Choisir un jour au-dessus de la carte change ce brief et le LIVE."}),c==="fonds"&&r&&!d&&t.jsx("p",{className:"thesis-brief__loading",children:i?"Loading your thesis brief…":"Chargement de votre brief de thèse…"}),c==="fonds"&&s&&t.jsxs("p",{className:"thesis-brief__err",children:[i?"Could not load this brief.":"Impossible de charger ce brief.",a!=null&&a.error?` (${a.error})`:""]}),c==="fonds"&&l&&!r&&t.jsxs(t.Fragment,{children:[t.jsx("p",{className:"thesis-brief__empty",children:i?Ir(e)?t.jsxs(t.Fragment,{children:["No operation relevant to your thesis was found ",t.jsx("b",{children:"today"}),"."]}):t.jsxs(t.Fragment,{children:["No operation relevant to your thesis was found on ",t.jsx("b",{children:Mr(e,!0)}),"."]}):Ir(e)?t.jsxs(t.Fragment,{children:["Aucune opération pertinente pour votre thèse n’a été relevée ",t.jsx("b",{children:"aujourd’hui"}),"."]}):t.jsxs(t.Fragment,{children:["Aucune opération pertinente pour votre thèse n’a été relevée le ",t.jsx("b",{children:Mr(e)}),"."]})}),t.jsx("button",{type:"button",className:"thesis-brief__all",onClick:()=>g("jour"),children:i?"See all of the day’s operations →":"Voir toutes les opérations du jour →"})]}),c==="fonds"&&d&&k?t.jsx("div",{ref:h,className:"thesis-brief__body zoom-body ppart",dangerouslySetInnerHTML:{__html:k}}):null,c==="fonds"&&d&&E?t.jsx("div",{className:"thesis-brief__acq zoom-body",dangerouslySetInnerHTML:{__html:E}}):null,c==="jour"&&(m?t.jsxs(t.Fragment,{children:[(u==null?void 0:u.title)&&t.jsx("h3",{className:"thesis-brief__title thesis-brief__jour-h",children:u.title}),t.jsx("div",{ref:v,className:"thesis-brief__body zoom-body ppart",dangerouslySetInnerHTML:{__html:m}})]}):t.jsx("p",{className:f==="fait"?"thesis-brief__empty":"thesis-brief__loading",children:f!=="fait"?i?"Loading the daily editorial…":"Chargement de l’édito du jour…":i?t.jsxs(t.Fragment,{children:["No shared editorial for this day. ",t.jsx("a",{className:"thesis-brief__all",href:Pr(e),target:"_blank",rel:"noopener noreferrer",children:"Open the day’s page →"})]}):t.jsxs(t.Fragment,{children:["Pas d’édito partagé pour ce jour. ",t.jsx("a",{className:"thesis-brief__all",href:Pr(e),target:"_blank",rel:"noopener noreferrer",children:"Ouvrir la page du jour →"})]})})),o&&t.jsx("button",{type:"button",className:"thesis-brief__clear",onClick:n,children:i?"← See all":"← Voir tout"})]})}const dd=300,Sa=7,pd={fr:{ma:"🤝 M&A",levees:"🚀 Levées de fonds",nominations:"👤 Nominations",recrutements:"💼 Offres d'emploi",actualites:"📰 Autres actualités"},en:{ma:"🤝 M&A",levees:"🚀 Fundraising",nominations:"👤 Appointments",recrutements:"💼 Job offers",actualites:"📰 Other news"}},ai={fr:{hiring:"💼 Recrute",raised:"💰 Lève des fonds",news:"📰 Presse",posting:"📣 Publie",building:"💻 Construit",community:"💬 Communauté",registry:"🆕 Nouveau",exodus:"👋 Départs",other:"🔔 Signal"},en:{hiring:"💼 Hiring",raised:"💰 Raising",news:"📰 Press",posting:"📣 Posting",building:"💻 Building",community:"💬 Community",registry:"🆕 New",exodus:"👋 Exodus",other:"🔔 Signal"}},cd=["hiring","raised","news","posting","building","community","registry","exodus","other"];function za(e){const a=(e.rubrique||"").toLowerCase();if(a==="ma"||a==="levees"||a==="nominations"||a==="recrutements")return a;if(e.dealKind==="ma")return"ma";if(e.dealKind==="levee")return"levees";const r=(e.engine||"").toLowerCase();if(r==="nominations")return"nominations";if(r==="recrutements")return"recrutements";if(xs(r)&&r!=="media")return"news:"+r;const n=$e(e);return n?"sig:"+(n.theme&&ai.fr[n.theme]?n.theme:"other"):"actualites"}function ud(){const{dossiers:e,st:a,t:r,dispatch:n,contName:o,pipe:i,lang:d,fund:l}=K(),s=Zo(),h=d==="en",[c,g]=p.useState("all"),[u,b]=p.useState(!1),f=p.useMemo(()=>{var X;const x=(a.filters.day||"").slice(0,10),q=U=>!(!i&&a.continent!=="monde"&&U.continent!==a.continent||x&&(U.date||"").slice(0,10)!==x),C=e.filter(U=>q(U)&&$e(U)&&(!i||U.kind!=="target"||Le(U)!==5)),P=i&&(((X=s==null?void 0:s.ed)==null?void 0:X.ops)||[]).length?s.ed.ops.map(U=>Da(U,d)).filter(U=>!!U).map(U=>(U.briefOnly=!0,U)).filter(U=>!x||(U.date||"").slice(0,10)===x):[],H=e.filter(U=>q(U)&&U.kind==="op"&&(x?!0:gt(U.date)<=Sa)),G=i?P.length?P:H.filter(U=>{const ee=(l||"").trim().toLowerCase();if(!ee)return!1;const ue=U.match||null;return ue?Object.keys(ue).map(fe=>fe.trim().toLowerCase()).includes(ee):!1}):H,Z=x||new Date().toISOString().slice(0,10),z=U=>{const ee=za(U);return ee==="ma"?0:ee==="levees"?1:2};G.sort((U,ee)=>{const ue=z(U)-z(ee);if(ue)return ue;const fe=(U.date||"").slice(0,10)===Z?0:1,ve=(ee.date||"").slice(0,10)===Z?0:1;return fe!==ve?fe-ve:(ee.amountEur||0)-(U.amountEur||0)});const $=new Set,M=[];for(const U of[...G,...Ga(C,{key:"signal",dir:-1})]){const ee=U.id||U.name;!ee||$.has(ee)||($.add(ee),M.push(U))}return i&&M.length===0?e.filter(ee=>q(ee)&&gt(ee.date)<=Sa).sort((ee,ue)=>(ue.date||"").localeCompare(ee.date||"")).slice(0,80):M},[e,a.continent,a.filters.day,i,l,d,s]),y=p.useMemo(()=>{const x={};for(const q of f){const C=za(q);x[C]=(x[C]||0)+1}return x},[f]),w=p.useMemo(()=>c==="all"?f:f.filter(x=>za(x)===c),[f,c]),m=p.useMemo(()=>w.slice(0,dd),[w]),v=w.length-m.length,k=p.useRef(null);p.useEffect(()=>{var G,Z;const x=k.current;if(!x)return;const q=()=>{const z=x.scrollWidth;z<200||(x.style.animationDuration=Math.max(18,Math.round(z/130))+"s")};q();const C=requestAnimationFrame(q),P=window.setTimeout(q,1200);let H=!0;return(Z=(G=document.fonts)==null?void 0:G.ready)==null||Z.then(()=>{H&&q()}),()=>{H=!1,cancelAnimationFrame(C),window.clearTimeout(P)}},[m.length,c]);const E=x=>x==="all"?f.length:y[x]||0,S=x=>{if(x==="all")return h?"All":"Tout";if(x.startsWith("sig:"))return ai[h?"en":"fr"][x.slice(4)]||"🔔";if(x.startsWith("news:")){const q=x.slice(5);return hs[q]?gs(q,h?"en":"fr"):x}return pd[h?"en":"fr"][x]},N=[{k:"all"}],A=["ma","levees"].filter(x=>E(x)>0||x===c);if(A.length){N.push({g:h?"Deals":"Opérations"});for(const x of A)N.push({k:x})}const T=["nominations","recrutements"].filter(x=>E(x)>0||x===c),F=fs.filter(x=>x!=="media").map(x=>"news:"+x).filter(x=>E(x)>0||x===c),O=E("actualites")>0||c==="actualites"?["actualites"]:[];if(T.length||F.length||O.length){N.push({g:h?"News":"Actualités"});for(const x of T)N.push({k:x});for(const x of F)N.push({k:x});for(const x of O)N.push({k:x})}const D=cd.map(x=>"sig:"+x).filter(x=>E(x)>0||x===c);if(D.length){N.push({g:h?"Signals (your engines)":"Signaux (vos moteurs)"});for(const x of D)N.push({k:x})}const V=x=>{try{return new Date(x+"T12:00:00Z").toLocaleDateString(h?"en-GB":"fr-FR",{day:"numeric",month:"long"})}catch{return x}},Q=(()=>{const x=(a.filters.day||"").slice(0,10),q=!i&&a.continent!=="monde"&&o?h?` Scope: ${o}.`:` Périmètre : ${o}.`:"";return x?(h?`LIVE covers the events of ${V(x)}.`:`Le LIVE regroupe les événements du ${V(x)}.`)+q:(h?`LIVE covers the still-open signals and the deals of the last ${Sa} days.`:`Le LIVE regroupe les signaux encore ouverts et les opérations des ${Sa} derniers jours.`)+q})(),R=x=>m.map(q=>t.jsxs("button",{type:"button",className:"tk"+(We(q)?" spent":""),onClick:C=>{const P=q.briefOnly===!0;try{window.dispatchEvent(new CustomEvent("ppmap:focus",{detail:{id:P?"":q.id,name:q.name,url:q.url||"",text:q.tagline||q.headline||"",card:q.card}}))}catch{}if(P||n({type:"focus",id:q.id}),a.dens!=="liste"){const H=C.currentTarget.getBoundingClientRect();n({type:"popup",id:q.id,anchor:{x:H.left+H.width/2,y:H.bottom}})}},title:We(q)?h?`${q.name} — already screened (dimmed)`:`${q.name} — déjà évaluée (grisée)`:q.name+(q.tagline?" — "+q.tagline:""),children:[t.jsx(Tt,{o:q}),t.jsxs("span",{className:"who",children:[t.jsx($i,{o:q}),t.jsx("span",{className:"co",children:q.name})]}),(()=>{const C=(q.tagline||q.headline||"").trim();if(C&&C!==q.name)return t.jsx("span",{className:"what",children:C});const P=za(q),H=P==="ma"?h?"M&A deal":"opération M&A":P==="levees"?h?"fundraising":"levée de fonds":P==="nominations"?h?"appointment":"nomination":P==="recrutements"?h?"hiring":"recrutement":P.startsWith("sig:")?h?"engine signal":"signal moteur":P.startsWith("news:")?h?"news":"actualité":q.kind==="target"?h?"sourced target":"cible sourcée":h?"news item":"actualité";return t.jsx("span",{className:"what dim",children:H})})(),typeof q.amountEur=="number"&&q.amountEur>0&&t.jsx("span",{className:"am",children:ju(q.amountEur)}),q.sector&&t.jsx("span",{className:"mt",children:q.sector}),t.jsx(nn,{o:q}),t.jsx("span",{className:"tkgo",children:"→"})]},x+(q.id||q.name))).concat(v>0?[t.jsx("span",{className:"tk quiet",children:h?`+ ${v} more — filter by section to see them`:`+ ${v} autres — filtrez par rubrique pour les voir`},x+":more")]:[]);return t.jsxs("div",{className:"ticker",children:[t.jsxs("span",{className:"lbl",children:[t.jsx("i",{}),r.live]}),t.jsxs("span",{className:"tkfil",onBlur:x=>{x.currentTarget.contains(x.relatedTarget)||b(!1)},children:[t.jsxs("button",{type:"button",className:"tkfilb","aria-expanded":u,onClick:()=>b(x=>!x),children:[S(c),t.jsx("b",{children:E(c)}),t.jsx("span",{"aria-hidden":"true",children:"▾"})]}),t.jsxs("div",{className:"tkfilm",hidden:!u,children:[t.jsx("span",{className:"tkfilscope",children:Q}),N.map(x=>"g"in x?t.jsx("span",{className:"tkfilg",children:x.g},x.g):t.jsxs("button",{type:"button","aria-pressed":x.k===c,onClick:()=>{g(x.k),b(!1)},children:[S(x.k),t.jsx("b",{children:E(x.k)})]},x.k))]})]}),t.jsx("div",{className:"win",children:m.length?t.jsxs("div",{className:"run",ref:k,children:[R(0),R(1)]}):t.jsx("div",{className:"run",style:{animation:"none"},children:t.jsx("span",{className:"tk quiet",children:r.liveQuiet(o)})})}),!!s&&t.jsxs("button",{type:"button",className:"tk-edito",title:h?"Show today's editorial":"Afficher Edito du jour",onClick:()=>{try{window.dispatchEvent(new CustomEvent("ppmap:edito"))}catch{}},children:["📖 ",h?"Today's editorial":"Edito du jour"]}),!!s&&t.jsx(fd,{isEn:h})]})}const md=t.jsxs("svg",{viewBox:"0 0 16 16",width:"15",height:"15",fill:"none",stroke:"currentColor",strokeWidth:"1.4","aria-hidden":"true",children:[t.jsx("rect",{x:"2",y:"3.5",width:"12",height:"10.5",rx:"1.5"}),t.jsx("path",{d:"M2 6.5h12M5.5 2v3M10.5 2v3"})]});function fd({isEn:e}){const[a,r]=p.useState(()=>Ro());p.useEffect(()=>{const o=i=>{var d;return r(!!((d=i.detail)!=null&&d.open))};return window.addEventListener(Ba,o),()=>window.removeEventListener(Ba,o)},[]);const n=a?e?"Hide the days":"Masquer les jours":e?"Show the days":"Voir les jours";return t.jsx("button",{type:"button",className:"dytog","aria-pressed":a,title:n,"aria-label":n,onClick:()=>bs(!a),children:md})}class ft extends p.Component{constructor(){super(...arguments);dr(this,"state",{dead:!1})}static getDerivedStateFromError(){return{dead:!0}}componentDidCatch(r,n){console.error(`[atl2] bandeau « ${this.props.name} » en échec :`,r,n.componentStack)}render(){return this.state.dead?this.props.fallback??null:this.props.children}}const ni=[["Retenu","csKept"],["Analysé","csAnalysed"],["À trancher","csPending"],["Validé","csValidated"],["Écarté","csOut"]];function _r(e,a){if((Ft(e)||"").startsWith("CALL")&&Le(e)===3)return[["Validé",a.csYes],["Écarté",a.csNo]];const n=Le(e)>=2;return ni.filter(([o])=>!(n&&o==="Retenu")).map(([o,i])=>[o,a[i]])}const Br=e=>e==="Retenu"?"ret":e==="Analysé"?"ana":e==="À trancher"?"tra":e==="Validé"?"val":e==="Écarté"?"eca":"off",hd={ret:"#12A150",ana:"#3B82F6",tra:"#F59E0B",val:"#0E8A4F",eca:"#EF4444",off:"#94A3B8"};function gd({o:e}){const{t:a,caps:r,canWrite:n,commitStatus:o,doAnalyse:i,memoQueued:d}=K(),[l,s]=p.useState(""),[h,c]=p.useState(!1),[g,u]=p.useState(!1),b=p.useRef(null);if(p.useEffect(()=>{if(!g)return;const v=k=>{b.current&&!b.current.contains(k.target)&&(u(!1),c(!1))};return document.addEventListener("click",v,!0),()=>document.removeEventListener("click",v,!0)},[g]),!r.pipe||!n||r.lockActions||e.kind==="op")return null;const f=(e.ceoStatus||"").trim(),y=async v=>{if(l)return;if(v==="Analysé"&&!e.memoUrl){c(!0);return}s(v);const k=(_r(e,a).find(([S])=>S===v)||[v,v])[1],E=await o(e,v,{msg:a.csMoved(e.name,k)});s(""),E&&(c(!1),u(!1))},w=_r(e,a),m=v=>(w.find(([k])=>k===v)||[])[1]||v;return w.length===2?t.jsx("span",{className:"rstat rst2",onClick:v=>v.stopPropagation(),children:w.map(([v,k])=>t.jsx("button",{type:"button",className:"rsd "+(v==="Validé"?"yes":"no")+(l===v?" busy":""),disabled:!!l,onClick:()=>{y(v)},children:k},v))}):t.jsxs("span",{className:"rstat"+(g||h?" rs-open":""),ref:b,onClick:v=>v.stopPropagation(),children:[t.jsx("button",{type:"button","aria-expanded":g,disabled:!!l,title:a.csLabel,className:"rsel rs-"+Br(f),onClick:()=>{u(v=>!v),c(!1)},children:l?m(l)+"…":f?m(f):a.csNone}),g&&!h&&t.jsx("span",{className:"rsmenu",role:"listbox",children:w.map(([v,k])=>t.jsxs("button",{type:"button",role:"option","aria-selected":f===v,className:"rsopt"+(f===v?" on":"")+(l===v?" busy":""),disabled:!!l,onClick:()=>{if(v===f){u(!1);return}y(v)},children:[t.jsx("i",{className:"pt2",style:{background:hd[Br(v)]}}),k]},v))}),h&&t.jsx("span",{className:"rstm",children:t.jsxs("span",{className:"rstask",children:[t.jsx("b",{children:a.csAnaNeedMemo}),t.jsx("button",{type:"button",className:"rsta pri",disabled:d.has(e.id),onClick:()=>{i(e),c(!1),u(!1)},children:d.has(e.id)?a.actMemoQueue:a.csAnaRun}),t.jsx("button",{type:"button",className:"rsta",onClick:()=>{(async()=>{s("Analysé");const v=await o(e,"Analysé");s(""),v&&(c(!1),u(!1))})()},children:a.csAnaAnyway})]})})]})}function xd({o:e}){const{t:a,caps:r,canWrite:n,commitStatus:o}=K(),[i,d]=p.useState(""),[l,s]=p.useState(!1);if(!r.pipe||!n||r.lockActions)return null;const h=(e.ceoStatus||"").trim(),c=(Ft(e)||"").startsWith("CALL")&&Le(e)===3,g=Le(e)>=2,u=async f=>{if(i||f==="Analysé"&&!e.memoUrl&&!window.confirm(a.csAnaConfirm))return;d(f);const y=await o(e,f);d(""),y&&(s(!0),setTimeout(()=>s(!1),2200))},b=c?[["Validé",a.csYes],["Écarté",a.csNo]]:ni.filter(([f])=>!(g&&f==="Retenu")).map(([f,y])=>[f,a[y]]);return t.jsxs("div",{className:"csp",onClick:f=>f.stopPropagation(),children:[t.jsxs("div",{className:"csrow",children:[t.jsx("span",{className:"cslb",children:a.csLabel}),b.map(([f,y])=>t.jsx("button",{type:"button",className:"csb"+(h===f?" on":"")+(i===f?" busy":""),disabled:!!i,onClick:()=>{u(f)},children:y},f)),l&&t.jsx("span",{className:"csok",children:a.csSaved})]}),t.jsx(bd,{o:e})]})}function bd({o:e}){const{t:a,saveNote:r,flash:n}=K(),[o,i]=p.useState(e.ceoNote||""),[d,l]=p.useState(!1),[s,h]=p.useState(!1),c=o.trim()!==(e.ceoNote||"").trim(),g=async()=>{if(d||!c)return;l(!0);const u=await r(e,o.trim());l(!1),u&&(h(!0),setTimeout(()=>h(!1),2200),n(a.csNoteSaved))};return t.jsxs("div",{className:"csnote",children:[t.jsx("input",{type:"text",maxLength:200,placeholder:a.csNotePh,value:o,disabled:d,onChange:u=>i(u.target.value),onKeyDown:u=>{u.key==="Enter"&&g()}}),t.jsx("button",{type:"button",disabled:d||!c,onClick:()=>{g()},children:s?a.csNoteSaved:a.csNoteOk})]})}function $r({placeholder:e,onDone:a}){const{t:r}=K(),[n,o]=p.useState("");return t.jsxs("div",{className:"csnote why",children:[t.jsx("input",{type:"text",maxLength:200,placeholder:e,value:n,autoFocus:!0,onChange:i=>o(i.target.value),onKeyDown:i=>{i.key==="Enter"&&a(n.trim()),i.key==="Escape"&&a("")},onBlur:()=>{n.trim()||a("")}}),t.jsx("button",{type:"button",onClick:()=>a(n.trim()),children:r.whySend})]})}function vd({o:e}){var w;const{t:a,token:r,caps:n,canWrite:o,stageOf:i,setStage:d,flashErr:l}=K(),[s,h]=p.useState(!1);if(!n.pipe||!o||n.lockActions||Le(e)!==4)return null;const c=i(e),g=(c==null?void 0:c.stage)||"todo",u=async m=>{if(s||m===g)return;h(!0);const v=c;d(e,{stage:m,stamps:(c==null?void 0:c.stamps)||{}});const k=Math.max(Date.now(),Ur+=1);Ur=k;const E=await vs(r,{company:e.name||"",stage:m,cts:k,deal_id:e.airtableId,check_id:e.checkId});h(!1),!E.stale&&(E.ok||(d(e,v),l(a.actErr)))},b=(w=c==null?void 0:c.stamps)==null?void 0:w.sent,f=b?Math.floor((Date.now()-Date.parse(b))/864e5):0,y=g==="sent"&&b&&f>=4;return t.jsxs("div",{className:"stg",onClick:m=>m.stopPropagation(),children:[t.jsx("span",{className:"stglb",children:a.stgLabel}),a.stg.map(([m,v])=>t.jsx("button",{type:"button",className:"stgb"+(g===m?" on":""),disabled:s,onClick:()=>{u(m)},children:v},m)),y&&t.jsx("span",{className:"stgj4",children:a.j4Badge(f)})]})}let Ur=0;const oa=8,Ct=360;function Hr({text:e}){const a=e.split(/\*\*(.+?)\*\*/g);return t.jsx(t.Fragment,{children:a.map((r,n)=>n%2?t.jsx("b",{children:r},n):t.jsx("span",{children:r},n))})}function Vr({text:e}){const a=(e||"").split(`
+`).map(n=>n.trim()).filter(Boolean),r=a.filter(n=>n.startsWith("·"));return t.jsxs(t.Fragment,{children:[a.filter(n=>!n.startsWith("·")).map((n,o)=>t.jsx("p",{children:t.jsx(Hr,{text:n})},"p"+o)),r.length>0&&t.jsx("ul",{className:"tour-ul",children:r.map((n,o)=>t.jsx("li",{children:t.jsx(Hr,{text:n.replace(/^·\s*/,"")})},"l"+o))})]})}function wd({steps:e,onClose:a}){const{t:r,dispatch:n,counts:o,st:i}=K(),[d,l]=p.useState(0),[s,h]=p.useState(null),[c,g]=p.useState([]),u=p.useRef(!1),b=p.useRef({ptab:i.ptab,dens:i.dens,modal:i.modal}),f=p.useRef(!1);p.useEffect(()=>{const A=b.current;return()=>{f.current||(n({type:"ptab",tab:A.ptab}),n({type:"dens",dens:A.dens}),n({type:"modal",modal:A.modal}))}},[]),p.useEffect(()=>{u.current||(u.current=!0,g(e.filter(A=>!!document.querySelector(A.need||A.sel))))},[e]);const y=c[d],w=d>=c.length;p.useEffect(()=>{if(y&&(y.ptab!==void 0&&i.ptab!==y.ptab&&n({type:"ptab",tab:y.ptab}),y.dens&&i.dens!==y.dens&&n({type:"dens",dens:y.dens}),i.modal!==(y.modal??null)&&n({type:"modal",modal:y.modal??null}),y.click)){const A=y.click,T=window.setTimeout(()=>{const F=document.querySelector(A);F&&F.getAttribute("aria-selected")!=="true"&&F.click()},60);return()=>window.clearTimeout(T)}},[d,y]);const m=p.useRef(-1),v=p.useCallback(()=>{if(!y){h(null);return}const A=O=>{if(!O)return null;for(const D of document.querySelectorAll(O)){const V=D.getBoundingClientRect();if(V.width>1&&V.height>1)return D}return null},T=A(y.sel)||A(y.need);if(!T){h(null);return}m.current!==d&&(m.current=d,T.scrollIntoView({block:"nearest",behavior:"smooth"}));const F=T.getBoundingClientRect();h(O=>O&&Math.abs(O.top-F.top)<1&&Math.abs(O.left-F.left)<1&&Math.abs(O.width-F.width)<1&&Math.abs(O.height-F.height)<1?O:F)},[y,d]);p.useLayoutEffect(()=>{v();const A=[90,300,700,1300].map(O=>window.setTimeout(v,O)),T=window.setInterval(v,400),F=()=>v();return window.addEventListener("scroll",F,!0),window.addEventListener("resize",F),()=>{A.forEach(O=>window.clearTimeout(O)),window.clearInterval(T),window.removeEventListener("scroll",F,!0),window.removeEventListener("resize",F)}},[v]);const k=p.useRef(a);if(k.current=a,p.useEffect(()=>{const A=T=>{T.key==="Escape"?(T.preventDefault(),T.stopPropagation(),k.current()):T.key==="ArrowRight"?l(F=>F+1):T.key==="ArrowLeft"&&l(F=>Math.max(0,F-1))};return document.addEventListener("keydown",A,!0),()=>document.removeEventListener("keydown",A,!0)},[]),!c.length)return null;let E=null;const S=A=>()=>{f.current=!0,n({type:"modal",modal:null}),A()};if(w){const A=o[3]||0;A>0?E={title:A===1?r.ahaATitle1:r.ahaATitleN(A),body:r.ahaABody,btn:r.ahaABtn,go:S(()=>{n({type:"ptab",tab:3}),a()})}:(o[1]||0)>0?E={title:r.ahaRetTitle(o[1]||0),body:r.ahaRetBody,btn:r.ahaRetBtn,go:S(()=>{n({type:"ptab",tab:1}),a()})}:(o[0]||0)>0?E={title:r.ahaEvalTitle(o[0]||0),body:r.ahaEvalBody,btn:r.ahaEvalBtn,go:S(()=>{n({type:"ptab",tab:0}),a()})}:E={title:r.ahaCTitle,body:r.ahaCBody,btn:r.ahaCBtn,go:S(()=>{n({type:"modal",modal:"crit"}),a()})}}let N={left:"50%",top:"50%",transform:"translate(-50%,-50%)",width:Ct};if(!w&&s){const A=s.bottom+14,T=window.innerHeight-A;let F=T>190?A:Math.max(12,s.top-200),O=Math.min(Math.max(12,s.left+s.width/2-Ct/2),window.innerWidth-Ct-12);T<=190&&s.top<212&&(window.innerWidth-s.right>=Ct+40?O=Math.min(s.right+26,window.innerWidth-Ct-12):s.left>=Ct+40&&(O=Math.max(12,s.left-Ct-26)),F=Math.max(12,s.top-oa)),N={left:O,top:F,width:Ct}}return ta.createPortal(t.jsx("div",{className:"atl2",children:t.jsxs("div",{className:"tour",role:"dialog","aria-modal":"true",children:[!w&&s&&t.jsx("div",{className:"tour-hole",style:{left:s.left-oa,top:s.top-oa,width:s.width+oa*2,height:s.height+oa*2}}),(w||!s)&&t.jsx("div",{className:"tour-veil"}),t.jsxs("div",{className:"tour-card"+(w?" fin":""),style:N,children:[w&&E?t.jsxs(t.Fragment,{children:[t.jsx("h3",{children:E.title}),t.jsx(Vr,{text:E.body}),t.jsxs("div",{className:"tour-nav",children:[t.jsx("button",{type:"button",className:"gh",onClick:()=>l(c.length-1),children:r.tourPrev}),t.jsx("button",{type:"button",className:"pri",onClick:E.go,children:E.btn})]})]}):t.jsxs(t.Fragment,{children:[t.jsxs("span",{className:"tour-n",children:[r.tourStep(d+1,c.length),t.jsx("span",{className:"tour-bar",children:t.jsx("i",{style:{width:(d+1)/c.length*100+"%"}})})]}),t.jsx("h3",{children:y==null?void 0:y.title}),t.jsx(Vr,{text:(y==null?void 0:y.body)||""}),t.jsxs("div",{className:"tour-nav",children:[t.jsx("button",{type:"button",className:"gh",disabled:d===0,onClick:()=>l(A=>Math.max(0,A-1)),children:r.tourPrev}),t.jsx("button",{type:"button",className:"pri",onClick:()=>l(A=>A+1),children:d===c.length-1?r.tourDone:r.tourNext})]})]}),t.jsx("button",{type:"button",className:"tour-x","aria-label":r.tourClose,title:r.tourClose,onClick:a,children:"×"})]})]})}),document.body)}function ri(e){let a="";for(const r of e){const n=(r.date||"").slice(0,10);n&&n>a&&(a=n)}return a}function oi(e,a){const r=/^(\d{4})-(\d{2})-(\d{2})/.exec(e||"");return r?a==="en"?`${r[2]}/${r[3]}`:`${r[3]}/${r[2]}`:""}function yd(){var T,F;const{dossiers:e,scopedAll:a,pipe:r,mode:n,t:o,st:i,lang:d,data:l,dispatch:s}=K(),h=r?a:e,c=p.useMemo(()=>h.filter(O=>gt(O.date)===0&&O.kind==="target"),[h]),g=p.useMemo(()=>r?a.filter(O=>O.kind==="target"&&Le(O)===0).slice().sort((O,D)=>(D.date||"").localeCompare(O.date||"")):[],[a,r]),u=p.useMemo(()=>c.filter(O=>r?Le(O)===0:!We(O)),[c,r]),b=r?g:u,f=r?a.length-g.length:c.length-u.length,y=r?a.length:c.length,w=y?Math.min(100,f/y*100):100,m=p.useMemo(()=>ri(h),[h]),v=!!m&&gt(m)>0,k=p.useMemo(()=>v?h.filter(O=>(O.date||"").slice(0,10)===m):[],[h,m,v]),E=typeof((T=l.stats)==null?void 0:T.kept_today)=="number"?l.stats.kept_today:null,S=typeof((F=l.stats)==null?void 0:F.screened_today)=="number"?l.stats.screened_today:c.length;let N;v?N=o.morningLast(k.length,g.length,oi(m,d)):r?N=o.morningThesis(S,g.length,E):c.length?f===0?N=o.goalSourced(c.length):f>=c.length?N=o.goalCleared:N=o.goalDone(f,c.length):N=o.goalSourced(0);const A=()=>{if(!r){s({type:"pile",on:!0});return}s({type:"ptab",tab:0}),n==="client"&&g.length&&s({type:"chainStart",queue:g.map(O=>O.id)})};return t.jsxs("div",{className:"goal",children:[t.jsx("span",{className:"gtxt",title:r?o.morningEnginesTitle:void 0,dangerouslySetInnerHTML:{__html:N}}),t.jsx("div",{className:"pbar",children:t.jsx("i",{style:{width:w+"%"}})}),b.length>0&&t.jsx("button",{type:"button",className:"pilebtn",onClick:A,children:r?o.morningEval(b.length):i.pileMode?o.goalContinue(b.length):o.goalTreat}),t.jsx("span",{className:"gspace"})]})}function kd(){const{t:e,st:a,dispatch:r,fund:n,data:o,mode:i,doSync:d,startTour:l}=K(),s=i==="client",[h,c]=p.useState(!1),[g,u]=p.useState(""),b=()=>{!s||h||!n||(c(!0),u(""),ws(n).then(w=>{if(c(!1),w.pending){u(e.refreshSlow);return}if(!w.ok){w.error&&console.warn("[republish]",w.error),u(e.refreshKo);return}const m=w.entered??0,v=w.left??0;u(w.unchanged||!m&&!v?e.refreshSame:e.refreshDone(m,v)),o.refresh()}))},f=(n||"P").split(/\s+/).map(w=>w[0]).join("").slice(0,2).toUpperCase(),y=(()=>{const w=Date.parse(o.generatedAt||"");if(Number.isNaN(w))return"";const m=new Date(w),v=k=>String(k).padStart(2,"0");return`${v(m.getDate())}/${v(m.getMonth()+1)} à ${v(m.getHours())}:${v(m.getMinutes())}`})();return t.jsx("div",{className:"ident",children:t.jsxs("div",{className:"idtop",children:[t.jsxs("span",{className:"brand",children:[t.jsx("b",{children:n?f:t.jsx("span",{className:"skt sk-ini"})}),t.jsx("i",{children:n||t.jsx("span",{className:"skt sk-nm"})})]}),t.jsx("h1",{children:n?e.identTitle(n):t.jsx("span",{className:"skt sk-h1","aria-label":e.loadingV2})}),t.jsx("span",{className:"idsp"}),y?t.jsx("span",{className:"idupd",children:e.identUpdatedAt(y)}):t.jsx("span",{className:"skt sk-upd"}),t.jsxs("span",{className:"icgrp",children:[t.jsx("button",{type:"button",className:"ic","data-tour":"export",title:e.identExport,onClick:()=>r({type:"modal",modal:"export"}),children:"📥"}),t.jsx("button",{type:"button",className:"ic","data-tour":"plug",title:e.identPlug,onClick:()=>r({type:"modal",modal:"plug"}),children:"🔌"}),t.jsx("button",{type:"button",className:"ic","data-tour":"alert",title:e.identBell,onClick:()=>r({type:"modal",modal:"alert"}),children:"🔔"}),t.jsx("button",{type:"button",className:"ic",title:e.identRepub,disabled:!s||h,onClick:b,children:h?"⏳":"📰"}),(h||!!g)&&t.jsxs("span",{className:"repubst",children:[h?e.refreshRun:g,!h&&t.jsx("button",{type:"button",onClick:()=>u(""),"aria-label":"×",children:"×"})]}),t.jsx("button",{type:"button",className:"ic",title:e.identSync,disabled:!s,onClick:d,children:"🔄"})]}),t.jsx("button",{type:"button",className:"ic",title:e.identHelp,onClick:()=>r({type:"modal",modal:"tuto"}),children:"?"}),t.jsx("button",{type:"button",className:"ic",title:e.tourPlayTitle,onClick:l,children:"▶"}),t.jsxs("span",{className:"isrch",children:["🔍",t.jsx("input",{placeholder:e.identSearch,value:a.filters.search,onChange:w=>r({type:"filters",patch:{search:w.target.value}})})]})]})})}class $t{constructor(){this._partials=new Float64Array(32),this._n=0}add(a){const r=this._partials;let n=0;for(let o=0;o<this._n&&o<32;o++){const i=r[o],d=a+i,l=Math.abs(a)<Math.abs(i)?a-(d-i):i-(d-a);l&&(r[n++]=l),a=d}return r[n]=a,this._n=n+1,this}valueOf(){const a=this._partials;let r=this._n,n,o,i,d=0;if(r>0){for(d=a[--r];r>0&&(n=d,o=a[--r],d=n+o,i=o-(d-n),!i););r>0&&(i<0&&a[r-1]<0||i>0&&a[r-1]>0)&&(o=i*2,n=d+o,o==n-d&&(d=n))}return d}}function*Ed(e){for(const a of e)yield*a}function ii(e){return Array.from(Ed(e))}var Te=1e-6,Ne=Math.PI,pt=Ne/2,Wr=Ne/4,ut=Ne*2,yt=180/Ne,nt=Ne/180,Fe=Math.abs,jd=Math.atan,ga=Math.atan2,De=Math.cos,Me=Math.sin,Nd=Math.sign||function(e){return e>0?1:e<0?-1:0},Wt=Math.sqrt;function Sd(e){return e>1?0:e<-1?Ne:Math.acos(e)}function xa(e){return e>1?pt:e<-1?-pt:Math.asin(e)}function ct(){}function Ya(e,a){e&&Yr.hasOwnProperty(e.type)&&Yr[e.type](e,a)}var Gr={Feature:function(e,a){Ya(e.geometry,a)},FeatureCollection:function(e,a){for(var r=e.features,n=-1,o=r.length;++n<o;)Ya(r[n].geometry,a)}},Yr={Sphere:function(e,a){a.sphere()},Point:function(e,a){e=e.coordinates,a.point(e[0],e[1],e[2])},MultiPoint:function(e,a){for(var r=e.coordinates,n=-1,o=r.length;++n<o;)e=r[n],a.point(e[0],e[1],e[2])},LineString:function(e,a){An(e.coordinates,a,0)},MultiLineString:function(e,a){for(var r=e.coordinates,n=-1,o=r.length;++n<o;)An(r[n],a,0)},Polygon:function(e,a){Qr(e.coordinates,a)},MultiPolygon:function(e,a){for(var r=e.coordinates,n=-1,o=r.length;++n<o;)Qr(r[n],a)},GeometryCollection:function(e,a){for(var r=e.geometries,n=-1,o=r.length;++n<o;)Ya(r[n],a)}};function An(e,a,r){var n=-1,o=e.length-r,i;for(a.lineStart();++n<o;)i=e[n],a.point(i[0],i[1],i[2]);a.lineEnd()}function Qr(e,a){var r=-1,n=e.length;for(a.polygonStart();++r<n;)An(e[r],a,1);a.polygonEnd()}function Qt(e,a){e&&Gr.hasOwnProperty(e.type)?Gr[e.type](e,a):Ya(e,a)}function qn(e){return[ga(e[1],e[0]),xa(e[2])]}function Xt(e){var a=e[0],r=e[1],n=De(r);return[n*De(a),n*Me(a),Me(r)]}function Ca(e,a){return e[0]*a[0]+e[1]*a[1]+e[2]*a[2]}function Qa(e,a){return[e[1]*a[2]-e[2]*a[1],e[2]*a[0]-e[0]*a[2],e[0]*a[1]-e[1]*a[0]]}function un(e,a){e[0]+=a[0],e[1]+=a[1],e[2]+=a[2]}function Aa(e,a){return[e[0]*a,e[1]*a,e[2]*a]}function Ln(e){var a=Wt(e[0]*e[0]+e[1]*e[1]+e[2]*e[2]);e[0]/=a,e[1]/=a,e[2]/=a}function Tn(e,a){function r(n,o){return n=e(n,o),a(n[0],n[1])}return e.invert&&a.invert&&(r.invert=function(n,o){return n=a.invert(n,o),n&&e.invert(n[0],n[1])}),r}function Fn(e,a){return Fe(e)>Ne&&(e-=Math.round(e/ut)*ut),[e,a]}Fn.invert=Fn;function zd(e,a,r){return(e%=ut)?a||r?Tn(Jr(e),Xr(a,r)):Jr(e):a||r?Xr(a,r):Fn}function Kr(e){return function(a,r){return a+=e,Fe(a)>Ne&&(a-=Math.round(a/ut)*ut),[a,r]}}function Jr(e){var a=Kr(e);return a.invert=Kr(-e),a}function Xr(e,a){var r=De(e),n=Me(e),o=De(a),i=Me(a);function d(l,s){var h=De(s),c=De(l)*h,g=Me(l)*h,u=Me(s),b=u*r+c*n;return[ga(g*o-b*i,c*r-u*n),xa(b*o+g*i)]}return d.invert=function(l,s){var h=De(s),c=De(l)*h,g=Me(l)*h,u=Me(s),b=u*o-g*i;return[ga(g*o+u*i,c*r+b*n),xa(b*r-c*n)]},d}function Cd(e,a,r,n,o,i){if(r){var d=De(a),l=Me(a),s=n*r;o==null?(o=a+n*ut,i=a-s/2):(o=Zr(d,o),i=Zr(d,i),(n>0?o<i:o>i)&&(o+=n*ut));for(var h,c=o;n>0?c>i:c<i;c-=s)h=qn([d,-l*De(c),-l*Me(c)]),e.point(h[0],h[1])}}function Zr(e,a){a=Xt(a),a[0]-=e,Ln(a);var r=Sd(-a[1]);return((-a[2]<0?-r:r)+ut-Te)%ut}function si(){var e=[],a;return{point:function(r,n,o){a.push([r,n,o])},lineStart:function(){e.push(a=[])},lineEnd:ct,rejoin:function(){e.length>1&&e.push(e.pop().concat(e.shift()))},result:function(){var r=e;return e=[],a=null,r}}}function Ia(e,a){return Fe(e[0]-a[0])<Te&&Fe(e[1]-a[1])<Te}function qa(e,a,r,n){this.x=e,this.z=a,this.o=r,this.e=n,this.v=!1,this.n=this.p=null}function li(e,a,r,n,o){var i=[],d=[],l,s;if(e.forEach(function(f){if(!((y=f.length-1)<=0)){var y,w=f[0],m=f[y],v;if(Ia(w,m)){if(!w[2]&&!m[2]){for(o.lineStart(),l=0;l<y;++l)o.point((w=f[l])[0],w[1]);o.lineEnd();return}m[0]+=2*Te}i.push(v=new qa(w,f,null,!0)),d.push(v.o=new qa(w,null,v,!1)),i.push(v=new qa(m,f,null,!1)),d.push(v.o=new qa(m,null,v,!0))}}),!!i.length){for(d.sort(a),eo(i),eo(d),l=0,s=d.length;l<s;++l)d[l].e=r=!r;for(var h=i[0],c,g;;){for(var u=h,b=!0;u.v;)if((u=u.n)===h)return;c=u.z,o.lineStart();do{if(u.v=u.o.v=!0,u.e){if(b)for(l=0,s=c.length;l<s;++l)o.point((g=c[l])[0],g[1]);else n(u.x,u.n.x,1,o);u=u.n}else{if(b)for(c=u.p.z,l=c.length-1;l>=0;--l)o.point((g=c[l])[0],g[1]);else n(u.x,u.p.x,-1,o);u=u.p}u=u.o,c=u.z,b=!b}while(!u.v);o.lineEnd()}}}function eo(e){if(a=e.length){for(var a,r=0,n=e[0],o;++r<a;)n.n=o=e[r],o.p=n,n=o;n.n=o=e[0],o.p=n}}function mn(e){return Fe(e[0])<=Ne?e[0]:Nd(e[0])*((Fe(e[0])+Ne)%ut-Ne)}function Ad(e,a){var r=mn(a),n=a[1],o=Me(n),i=[Me(r),-De(r),0],d=0,l=0,s=new $t;o===1?n=pt+Te:o===-1&&(n=-pt-Te);for(var h=0,c=e.length;h<c;++h)if(u=(g=e[h]).length)for(var g,u,b=g[u-1],f=mn(b),y=b[1]/2+Wr,w=Me(y),m=De(y),v=0;v<u;++v,f=E,w=N,m=A,b=k){var k=g[v],E=mn(k),S=k[1]/2+Wr,N=Me(S),A=De(S),T=E-f,F=T>=0?1:-1,O=F*T,D=O>Ne,V=w*N;if(s.add(ga(V*F*Me(O),m*A+V*De(O))),d+=D?T+F*ut:T,D^f>=r^E>=r){var Q=Qa(Xt(b),Xt(k));Ln(Q);var R=Qa(i,Q);Ln(R);var x=(D^T>=0?-1:1)*xa(R[2]);(n>x||n===x&&(Q[0]||Q[1]))&&(l+=D^T>=0?1:-1)}}return(d<-Te||d<Te&&s<-1e-12)^l&1}function di(e,a,r,n){return function(o){var i=a(o),d=si(),l=a(d),s=!1,h,c,g,u={point:b,lineStart:y,lineEnd:w,polygonStart:function(){u.point=m,u.lineStart=v,u.lineEnd=k,c=[],h=[]},polygonEnd:function(){u.point=b,u.lineStart=y,u.lineEnd=w,c=ii(c);var E=Ad(h,n);c.length?(s||(o.polygonStart(),s=!0),li(c,Ld,E,r,o)):E&&(s||(o.polygonStart(),s=!0),o.lineStart(),r(null,null,1,o),o.lineEnd()),s&&(o.polygonEnd(),s=!1),c=h=null},sphere:function(){o.polygonStart(),o.lineStart(),r(null,null,1,o),o.lineEnd(),o.polygonEnd()}};function b(E,S){e(E,S)&&o.point(E,S)}function f(E,S){i.point(E,S)}function y(){u.point=f,i.lineStart()}function w(){u.point=b,i.lineEnd()}function m(E,S){g.push([E,S]),l.point(E,S)}function v(){l.lineStart(),g=[]}function k(){m(g[0][0],g[0][1]),l.lineEnd();var E=l.clean(),S=d.result(),N,A=S.length,T,F,O;if(g.pop(),h.push(g),g=null,!!A){if(E&1){if(F=S[0],(T=F.length-1)>0){for(s||(o.polygonStart(),s=!0),o.lineStart(),N=0;N<T;++N)o.point((O=F[N])[0],O[1]);o.lineEnd()}return}A>1&&E&2&&S.push(S.pop().concat(S.shift())),c.push(S.filter(qd))}}return u}}function qd(e){return e.length>1}function Ld(e,a){return((e=e.x)[0]<0?e[1]-pt-Te:pt-e[1])-((a=a.x)[0]<0?a[1]-pt-Te:pt-a[1])}const to=di(function(){return!0},Td,Rd,[-Ne,-pt]);function Td(e){var a=NaN,r=NaN,n=NaN,o;return{lineStart:function(){e.lineStart(),o=1},point:function(i,d){var l=i>0?Ne:-Ne,s=Fe(i-a);Fe(s-Ne)<Te?(e.point(a,r=(r+d)/2>0?pt:-pt),e.point(n,r),e.lineEnd(),e.lineStart(),e.point(l,r),e.point(i,r),o=0):n!==l&&s>=Ne&&(Fe(a-n)<Te&&(a-=n*Te),Fe(i-l)<Te&&(i-=l*Te),r=Fd(a,r,i,d),e.point(n,r),e.lineEnd(),e.lineStart(),e.point(l,r),o=0),e.point(a=i,r=d),n=l},lineEnd:function(){e.lineEnd(),a=r=NaN},clean:function(){return 2-o}}}function Fd(e,a,r,n){var o,i,d=Me(e-r);return Fe(d)>Te?jd((Me(a)*(i=De(n))*Me(r)-Me(n)*(o=De(a))*Me(e))/(o*i*d)):(a+n)/2}function Rd(e,a,r,n){var o;if(e==null)o=r*pt,n.point(-Ne,o),n.point(0,o),n.point(Ne,o),n.point(Ne,0),n.point(Ne,-o),n.point(0,-o),n.point(-Ne,-o),n.point(-Ne,0),n.point(-Ne,o);else if(Fe(e[0]-a[0])>Te){var i=e[0]<a[0]?Ne:-Ne;o=r*i/2,n.point(-i,o),n.point(0,o),n.point(i,o)}else n.point(a[0],a[1])}function Od(e){var a=De(e),r=2*nt,n=a>0,o=Fe(a)>Te;function i(c,g,u,b){Cd(b,e,r,u,c,g)}function d(c,g){return De(c)*De(g)>a}function l(c){var g,u,b,f,y;return{lineStart:function(){f=b=!1,y=1},point:function(w,m){var v=[w,m],k,E=d(w,m),S=n?E?0:h(w,m):E?h(w+(w<0?Ne:-Ne),m):0;if(!g&&(f=b=E)&&c.lineStart(),E!==b&&(k=s(g,v),(!k||Ia(g,k)||Ia(v,k))&&(v[2]=1)),E!==b)y=0,E?(c.lineStart(),k=s(v,g),c.point(k[0],k[1])):(k=s(g,v),c.point(k[0],k[1],2),c.lineEnd()),g=k;else if(o&&g&&n^E){var N;!(S&u)&&(N=s(v,g,!0))&&(y=0,n?(c.lineStart(),c.point(N[0][0],N[0][1]),c.point(N[1][0],N[1][1]),c.lineEnd()):(c.point(N[1][0],N[1][1]),c.lineEnd(),c.lineStart(),c.point(N[0][0],N[0][1],3)))}E&&(!g||!Ia(g,v))&&c.point(v[0],v[1]),g=v,b=E,u=S},lineEnd:function(){b&&c.lineEnd(),g=null},clean:function(){return y|(f&&b)<<1}}}function s(c,g,u){var b=Xt(c),f=Xt(g),y=[1,0,0],w=Qa(b,f),m=Ca(w,w),v=w[0],k=m-v*v;if(!k)return!u&&c;var E=a*m/k,S=-a*v/k,N=Qa(y,w),A=Aa(y,E),T=Aa(w,S);un(A,T);var F=N,O=Ca(A,F),D=Ca(F,F),V=O*O-D*(Ca(A,A)-1);if(!(V<0)){var Q=Wt(V),R=Aa(F,(-O-Q)/D);if(un(R,A),R=qn(R),!u)return R;var x=c[0],q=g[0],C=c[1],P=g[1],H;q<x&&(H=x,x=q,q=H);var G=q-x,Z=Fe(G-Ne)<Te,z=Z||G<Te;if(!Z&&P<C&&(H=C,C=P,P=H),z?Z?C+P>0^R[1]<(Fe(R[0]-x)<Te?C:P):C<=R[1]&&R[1]<=P:G>Ne^(x<=R[0]&&R[0]<=q)){var $=Aa(F,(-O+Q)/D);return un($,A),[R,qn($)]}}}function h(c,g){var u=n?e:Ne-e,b=0;return c<-u?b|=1:c>u&&(b|=2),g<-u?b|=4:g>u&&(b|=8),b}return di(d,l,i,n?[0,-e]:[-Ne,e-Ne])}function Dd(e,a,r,n,o,i){var d=e[0],l=e[1],s=a[0],h=a[1],c=0,g=1,u=s-d,b=h-l,f;if(f=r-d,!(!u&&f>0)){if(f/=u,u<0){if(f<c)return;f<g&&(g=f)}else if(u>0){if(f>g)return;f>c&&(c=f)}if(f=o-d,!(!u&&f<0)){if(f/=u,u<0){if(f>g)return;f>c&&(c=f)}else if(u>0){if(f<c)return;f<g&&(g=f)}if(f=n-l,!(!b&&f>0)){if(f/=b,b<0){if(f<c)return;f<g&&(g=f)}else if(b>0){if(f>g)return;f>c&&(c=f)}if(f=i-l,!(!b&&f<0)){if(f/=b,b<0){if(f>g)return;f>c&&(c=f)}else if(b>0){if(f<c)return;f<g&&(g=f)}return c>0&&(e[0]=d+c*u,e[1]=l+c*b),g<1&&(a[0]=d+g*u,a[1]=l+g*b),!0}}}}}var la=1e9,La=-la;function Md(e,a,r,n){function o(h,c){return e<=h&&h<=r&&a<=c&&c<=n}function i(h,c,g,u){var b=0,f=0;if(h==null||(b=d(h,g))!==(f=d(c,g))||s(h,c)<0^g>0)do u.point(b===0||b===3?e:r,b>1?n:a);while((b=(b+g+4)%4)!==f);else u.point(c[0],c[1])}function d(h,c){return Fe(h[0]-e)<Te?c>0?0:3:Fe(h[0]-r)<Te?c>0?2:1:Fe(h[1]-a)<Te?c>0?1:0:c>0?3:2}function l(h,c){return s(h.x,c.x)}function s(h,c){var g=d(h,1),u=d(c,1);return g!==u?g-u:g===0?c[1]-h[1]:g===1?h[0]-c[0]:g===2?h[1]-c[1]:c[0]-h[0]}return function(h){var c=h,g=si(),u,b,f,y,w,m,v,k,E,S,N,A={point:T,lineStart:V,lineEnd:Q,polygonStart:O,polygonEnd:D};function T(x,q){o(x,q)&&c.point(x,q)}function F(){for(var x=0,q=0,C=b.length;q<C;++q)for(var P=b[q],H=1,G=P.length,Z=P[0],z,$,M=Z[0],X=Z[1];H<G;++H)z=M,$=X,Z=P[H],M=Z[0],X=Z[1],$<=n?X>n&&(M-z)*(n-$)>(X-$)*(e-z)&&++x:X<=n&&(M-z)*(n-$)<(X-$)*(e-z)&&--x;return x}function O(){c=g,u=[],b=[],N=!0}function D(){var x=F(),q=N&&x,C=(u=ii(u)).length;(q||C)&&(h.polygonStart(),q&&(h.lineStart(),i(null,null,1,h),h.lineEnd()),C&&li(u,l,x,i,h),h.polygonEnd()),c=h,u=b=f=null}function V(){A.point=R,b&&b.push(f=[]),S=!0,E=!1,v=k=NaN}function Q(){u&&(R(y,w),m&&E&&g.rejoin(),u.push(g.result())),A.point=T,E&&c.lineEnd()}function R(x,q){var C=o(x,q);if(b&&f.push([x,q]),S)y=x,w=q,m=C,S=!1,C&&(c.lineStart(),c.point(x,q));else if(C&&E)c.point(x,q);else{var P=[v=Math.max(La,Math.min(la,v)),k=Math.max(La,Math.min(la,k))],H=[x=Math.max(La,Math.min(la,x)),q=Math.max(La,Math.min(la,q))];Dd(P,H,e,a,r,n)?(E||(c.lineStart(),c.point(P[0],P[1])),c.point(H[0],H[1]),C||c.lineEnd(),N=!1):C&&(c.lineStart(),c.point(x,q),N=!1)}v=x,k=q,E=C}return A}}const Rn=e=>e;var fn=new $t,On=new $t,pi,ci,Dn,Mn,Et={point:ct,lineStart:ct,lineEnd:ct,polygonStart:function(){Et.lineStart=Id,Et.lineEnd=_d},polygonEnd:function(){Et.lineStart=Et.lineEnd=Et.point=ct,fn.add(Fe(On)),On=new $t},result:function(){var e=fn/2;return fn=new $t,e}};function Id(){Et.point=Pd}function Pd(e,a){Et.point=ui,pi=Dn=e,ci=Mn=a}function ui(e,a){On.add(Mn*e-Dn*a),Dn=e,Mn=a}function _d(){ui(pi,ci)}var Zt=1/0,Ka=Zt,ba=-Zt,Ja=ba,Xa={point:Bd,lineStart:ct,lineEnd:ct,polygonStart:ct,polygonEnd:ct,result:function(){var e=[[Zt,Ka],[ba,Ja]];return ba=Ja=-(Ka=Zt=1/0),e}};function Bd(e,a){e<Zt&&(Zt=e),e>ba&&(ba=e),a<Ka&&(Ka=a),a>Ja&&(Ja=a)}var In=0,Pn=0,da=0,Za=0,en=0,Kt=0,_n=0,Bn=0,pa=0,mi,fi,bt,vt,dt={point:Ut,lineStart:ao,lineEnd:no,polygonStart:function(){dt.lineStart=Hd,dt.lineEnd=Vd},polygonEnd:function(){dt.point=Ut,dt.lineStart=ao,dt.lineEnd=no},result:function(){var e=pa?[_n/pa,Bn/pa]:Kt?[Za/Kt,en/Kt]:da?[In/da,Pn/da]:[NaN,NaN];return In=Pn=da=Za=en=Kt=_n=Bn=pa=0,e}};function Ut(e,a){In+=e,Pn+=a,++da}function ao(){dt.point=$d}function $d(e,a){dt.point=Ud,Ut(bt=e,vt=a)}function Ud(e,a){var r=e-bt,n=a-vt,o=Wt(r*r+n*n);Za+=o*(bt+e)/2,en+=o*(vt+a)/2,Kt+=o,Ut(bt=e,vt=a)}function no(){dt.point=Ut}function Hd(){dt.point=Wd}function Vd(){hi(mi,fi)}function Wd(e,a){dt.point=hi,Ut(mi=bt=e,fi=vt=a)}function hi(e,a){var r=e-bt,n=a-vt,o=Wt(r*r+n*n);Za+=o*(bt+e)/2,en+=o*(vt+a)/2,Kt+=o,o=vt*e-bt*a,_n+=o*(bt+e),Bn+=o*(vt+a),pa+=o*3,Ut(bt=e,vt=a)}function gi(e){this._context=e}gi.prototype={_radius:4.5,pointRadius:function(e){return this._radius=e,this},polygonStart:function(){this._line=0},polygonEnd:function(){this._line=NaN},lineStart:function(){this._point=0},lineEnd:function(){this._line===0&&this._context.closePath(),this._point=NaN},point:function(e,a){switch(this._point){case 0:{this._context.moveTo(e,a),this._point=1;break}case 1:{this._context.lineTo(e,a);break}default:{this._context.moveTo(e+this._radius,a),this._context.arc(e,a,this._radius,0,ut);break}}},result:ct};var $n=new $t,hn,xi,bi,ca,ua,va={point:ct,lineStart:function(){va.point=Gd},lineEnd:function(){hn&&vi(xi,bi),va.point=ct},polygonStart:function(){hn=!0},polygonEnd:function(){hn=null},result:function(){var e=+$n;return $n=new $t,e}};function Gd(e,a){va.point=vi,xi=ca=e,bi=ua=a}function vi(e,a){ca-=e,ua-=a,$n.add(Wt(ca*ca+ua*ua)),ca=e,ua=a}let ro,tn,oo,io;class so{constructor(a){this._append=a==null?wi:Yd(a),this._radius=4.5,this._=""}pointRadius(a){return this._radius=+a,this}polygonStart(){this._line=0}polygonEnd(){this._line=NaN}lineStart(){this._point=0}lineEnd(){this._line===0&&(this._+="Z"),this._point=NaN}point(a,r){switch(this._point){case 0:{this._append`M${a},${r}`,this._point=1;break}case 1:{this._append`L${a},${r}`;break}default:{if(this._append`M${a},${r}`,this._radius!==oo||this._append!==tn){const n=this._radius,o=this._;this._="",this._append`m0,${n}a${n},${n} 0 1,1 0,${-2*n}a${n},${n} 0 1,1 0,${2*n}z`,oo=n,tn=this._append,io=this._,this._=o}this._+=io;break}}}result(){const a=this._;return this._="",a.length?a:null}}function wi(e){let a=1;this._+=e[0];for(const r=e.length;a<r;++a)this._+=arguments[a]+e[a]}function Yd(e){const a=Math.floor(e);if(!(a>=0))throw new RangeError(`invalid digits: ${e}`);if(a>15)return wi;if(a!==ro){const r=10**a;ro=a,tn=function(o){let i=1;this._+=o[0];for(const d=o.length;i<d;++i)this._+=Math.round(arguments[i]*r)/r+o[i]}}return tn}function Qd(e,a){let r=3,n=4.5,o,i;function d(l){return l&&(typeof n=="function"&&i.pointRadius(+n.apply(this,arguments)),Qt(l,o(i))),i.result()}return d.area=function(l){return Qt(l,o(Et)),Et.result()},d.measure=function(l){return Qt(l,o(va)),va.result()},d.bounds=function(l){return Qt(l,o(Xa)),Xa.result()},d.centroid=function(l){return Qt(l,o(dt)),dt.result()},d.projection=function(l){return arguments.length?(o=l==null?(e=null,Rn):(e=l).stream,d):e},d.context=function(l){return arguments.length?(i=l==null?(a=null,new so(r)):new gi(a=l),typeof n!="function"&&i.pointRadius(n),d):a},d.pointRadius=function(l){return arguments.length?(n=typeof l=="function"?l:(i.pointRadius(+l),+l),d):n},d.digits=function(l){if(!arguments.length)return r;if(l==null)r=null;else{const s=Math.floor(l);if(!(s>=0))throw new RangeError(`invalid digits: ${l}`);r=s}return a===null&&(i=new so(r)),d},d.projection(e).digits(r).context(a)}function er(e){return function(a){var r=new Un;for(var n in e)r[n]=e[n];return r.stream=a,r}}function Un(){}Un.prototype={constructor:Un,point:function(e,a){this.stream.point(e,a)},sphere:function(){this.stream.sphere()},lineStart:function(){this.stream.lineStart()},lineEnd:function(){this.stream.lineEnd()},polygonStart:function(){this.stream.polygonStart()},polygonEnd:function(){this.stream.polygonEnd()}};function tr(e,a,r){var n=e.clipExtent&&e.clipExtent();return e.scale(150).translate([0,0]),n!=null&&e.clipExtent(null),Qt(r,e.stream(Xa)),a(Xa.result()),n!=null&&e.clipExtent(n),e}function yi(e,a,r){return tr(e,function(n){var o=a[1][0]-a[0][0],i=a[1][1]-a[0][1],d=Math.min(o/(n[1][0]-n[0][0]),i/(n[1][1]-n[0][1])),l=+a[0][0]+(o-d*(n[1][0]+n[0][0]))/2,s=+a[0][1]+(i-d*(n[1][1]+n[0][1]))/2;e.scale(150*d).translate([l,s])},r)}function Kd(e,a,r){return yi(e,[[0,0],a],r)}function Jd(e,a,r){return tr(e,function(n){var o=+a,i=o/(n[1][0]-n[0][0]),d=(o-i*(n[1][0]+n[0][0]))/2,l=-i*n[0][1];e.scale(150*i).translate([d,l])},r)}function Xd(e,a,r){return tr(e,function(n){var o=+a,i=o/(n[1][1]-n[0][1]),d=-i*n[0][0],l=(o-i*(n[1][1]+n[0][1]))/2;e.scale(150*i).translate([d,l])},r)}var lo=16,Zd=De(30*nt);function po(e,a){return+a?tp(e,a):ep(e)}function ep(e){return er({point:function(a,r){a=e(a,r),this.stream.point(a[0],a[1])}})}function tp(e,a){function r(n,o,i,d,l,s,h,c,g,u,b,f,y,w){var m=h-n,v=c-o,k=m*m+v*v;if(k>4*a&&y--){var E=d+u,S=l+b,N=s+f,A=Wt(E*E+S*S+N*N),T=xa(N/=A),F=Fe(Fe(N)-1)<Te||Fe(i-g)<Te?(i+g)/2:ga(S,E),O=e(F,T),D=O[0],V=O[1],Q=D-n,R=V-o,x=v*Q-m*R;(x*x/k>a||Fe((m*Q+v*R)/k-.5)>.3||d*u+l*b+s*f<Zd)&&(r(n,o,i,d,l,s,D,V,F,E/=A,S/=A,N,y,w),w.point(D,V),r(D,V,F,E,S,N,h,c,g,u,b,f,y,w))}}return function(n){var o,i,d,l,s,h,c,g,u,b,f,y,w={point:m,lineStart:v,lineEnd:E,polygonStart:function(){n.polygonStart(),w.lineStart=S},polygonEnd:function(){n.polygonEnd(),w.lineStart=v}};function m(T,F){T=e(T,F),n.point(T[0],T[1])}function v(){g=NaN,w.point=k,n.lineStart()}function k(T,F){var O=Xt([T,F]),D=e(T,F);r(g,u,c,b,f,y,g=D[0],u=D[1],c=T,b=O[0],f=O[1],y=O[2],lo,n),n.point(g,u)}function E(){w.point=m,n.lineEnd()}function S(){v(),w.point=N,w.lineEnd=A}function N(T,F){k(o=T,F),i=g,d=u,l=b,s=f,h=y,w.point=k}function A(){r(g,u,c,b,f,y,i,d,o,l,s,h,lo,n),w.lineEnd=E,E()}return w}}var ap=er({point:function(e,a){this.stream.point(e*nt,a*nt)}});function np(e){return er({point:function(a,r){var n=e(a,r);return this.stream.point(n[0],n[1])}})}function rp(e,a,r,n,o){function i(d,l){return d*=n,l*=o,[a+e*d,r-e*l]}return i.invert=function(d,l){return[(d-a)/e*n,(r-l)/e*o]},i}function co(e,a,r,n,o,i){if(!i)return rp(e,a,r,n,o);var d=De(i),l=Me(i),s=d*e,h=l*e,c=d/e,g=l/e,u=(l*r-d*a)/e,b=(l*a+d*r)/e;function f(y,w){return y*=n,w*=o,[s*y-h*w+a,r-h*y-s*w]}return f.invert=function(y,w){return[n*(c*y-g*w+u),o*(b-g*y-c*w)]},f}function op(e){return ip(function(){return e})()}function ip(e){var a,r=150,n=480,o=250,i=0,d=0,l=0,s=0,h=0,c,g=0,u=1,b=1,f=null,y=to,w=null,m,v,k,E=Rn,S=.5,N,A,T,F,O;function D(x){return T(x[0]*nt,x[1]*nt)}function V(x){return x=T.invert(x[0],x[1]),x&&[x[0]*yt,x[1]*yt]}D.stream=function(x){return F&&O===x?F:F=ap(np(c)(y(N(E(O=x)))))},D.preclip=function(x){return arguments.length?(y=x,f=void 0,R()):y},D.postclip=function(x){return arguments.length?(E=x,w=m=v=k=null,R()):E},D.clipAngle=function(x){return arguments.length?(y=+x?Od(f=x*nt):(f=null,to),R()):f*yt},D.clipExtent=function(x){return arguments.length?(E=x==null?(w=m=v=k=null,Rn):Md(w=+x[0][0],m=+x[0][1],v=+x[1][0],k=+x[1][1]),R()):w==null?null:[[w,m],[v,k]]},D.scale=function(x){return arguments.length?(r=+x,Q()):r},D.translate=function(x){return arguments.length?(n=+x[0],o=+x[1],Q()):[n,o]},D.center=function(x){return arguments.length?(i=x[0]%360*nt,d=x[1]%360*nt,Q()):[i*yt,d*yt]},D.rotate=function(x){return arguments.length?(l=x[0]%360*nt,s=x[1]%360*nt,h=x.length>2?x[2]%360*nt:0,Q()):[l*yt,s*yt,h*yt]},D.angle=function(x){return arguments.length?(g=x%360*nt,Q()):g*yt},D.reflectX=function(x){return arguments.length?(u=x?-1:1,Q()):u<0},D.reflectY=function(x){return arguments.length?(b=x?-1:1,Q()):b<0},D.precision=function(x){return arguments.length?(N=po(A,S=x*x),R()):Wt(S)},D.fitExtent=function(x,q){return yi(D,x,q)},D.fitSize=function(x,q){return Kd(D,x,q)},D.fitWidth=function(x,q){return Jd(D,x,q)},D.fitHeight=function(x,q){return Xd(D,x,q)};function Q(){var x=co(r,0,0,u,b,g).apply(null,a(i,d)),q=co(r,n-x[0],o-x[1],u,b,g);return c=zd(l,s,h),A=Tn(a,q),T=Tn(c,A),N=po(A,S),R()}function R(){return F=O=null,D}return function(){return a=e.apply(this,arguments),D.invert=a.invert&&V,Q()}}function ki(e,a){var r=a*a,n=r*r;return[e*(.8707-.131979*r+n*(-.013791+n*(.003971*r-.001529*n))),a*(1.007226+r*(.015085+n*(-.044475+.028874*r-.005916*n)))]}ki.invert=function(e,a){var r=a,n=25,o;do{var i=r*r,d=i*i;r-=o=(r*(1.007226+i*(.015085+d*(-.044475+.028874*i-.005916*d)))-a)/(1.007226+i*(.015085*3+d*(-.044475*7+.028874*9*i-.005916*11*d)))}while(Fe(o)>Te&&--n>0);return[e/(.8707+(i=r*r)*(-.131979+i*(-.013791+i*i*i*(.003971-.001529*i)))),r]};function sp(){return op(ki).scale(175.295)}function lp(e){return e}function dp(e){if(e==null)return lp;var a,r,n=e.scale[0],o=e.scale[1],i=e.translate[0],d=e.translate[1];return function(l,s){s||(a=r=0);var h=2,c=l.length,g=new Array(c);for(g[0]=(a+=l[0])*n+i,g[1]=(r+=l[1])*o+d;h<c;)g[h]=l[h],++h;return g}}function pp(e,a){for(var r,n=e.length,o=n-a;o<--n;)r=e[o],e[o++]=e[n],e[n]=r}function cp(e,a){return typeof a=="string"&&(a=e.objects[a]),a.type==="GeometryCollection"?{type:"FeatureCollection",features:a.geometries.map(function(r){return uo(e,r)})}:uo(e,a)}function uo(e,a){var r=a.id,n=a.bbox,o=a.properties==null?{}:a.properties,i=up(e,a);return r==null&&n==null?{type:"Feature",properties:o,geometry:i}:n==null?{type:"Feature",id:r,properties:o,geometry:i}:{type:"Feature",id:r,bbox:n,properties:o,geometry:i}}function up(e,a){var r=dp(e.transform),n=e.arcs;function o(c,g){g.length&&g.pop();for(var u=n[c<0?~c:c],b=0,f=u.length;b<f;++b)g.push(r(u[b],b));c<0&&pp(g,f)}function i(c){return r(c)}function d(c){for(var g=[],u=0,b=c.length;u<b;++u)o(c[u],g);return g.length<2&&g.push(g[0]),g}function l(c){for(var g=d(c);g.length<4;)g.push(g[0]);return g}function s(c){return c.map(l)}function h(c){var g=c.type,u;switch(g){case"GeometryCollection":return{type:g,geometries:c.geometries.map(h)};case"Point":u=i(c.coordinates);break;case"MultiPoint":u=c.coordinates.map(i);break;case"LineString":u=d(c.arcs);break;case"MultiLineString":u=c.arcs.map(d);break;case"Polygon":u=s(c.arcs);break;case"MultiPolygon":u=c.arcs.map(s);break;default:return null}return{type:g,coordinates:u}}return h(a)}const Ei={US:[{k:["new york","nyc","brooklyn","manhattan"],ll:[-74,40.7]},{k:["san francisco","sf","palo alto","mountain view","menlo park","san jose","oakland"],ll:[-122.3,37.6]},{k:["los angeles","santa monica","irvine"],ll:[-118.2,34.1]},{k:["seattle","bellevue","redmond"],ll:[-122.3,47.6]},{k:["austin"],ll:[-97.7,30.3]},{k:["boston","cambridge"],ll:[-71.1,42.4]},{k:["chicago"],ll:[-87.6,41.9]},{k:["miami"],ll:[-80.2,25.8]},{k:["denver","boulder"],ll:[-105,39.7]},{k:["atlanta"],ll:[-84.4,33.7]},{k:["washington","arlington","dc"],ll:[-77,38.9]},{k:["dallas","houston"],ll:[-96.8,31.5]},{k:["salt lake","provo"],ll:[-111.9,40.8]},{k:["phoenix","tempe"],ll:[-112.1,33.4]}],CA:[{k:["toronto","waterloo"],ll:[-79.4,43.7]},{k:["montreal"],ll:[-73.6,45.5]},{k:["vancouver"],ll:[-123.1,49.3]},{k:["calgary"],ll:[-114.1,51]},{k:["ottawa"],ll:[-75.7,45.4]}],AU:[{k:["sydney"],ll:[151.2,-33.9]},{k:["melbourne"],ll:[145,-37.8]},{k:["brisbane"],ll:[153,-27.5]},{k:["perth"],ll:[115.9,-32]}],BR:[{k:["sao paulo"],ll:[-46.6,-23.5]},{k:["rio"],ll:[-43.2,-22.9]}],IN:[{k:["bengaluru","bangalore"],ll:[77.6,13]},{k:["mumbai"],ll:[72.9,19.1]},{k:["delhi","gurgaon","gurugram","noida"],ll:[77.2,28.6]},{k:["hyderabad"],ll:[78.5,17.4]},{k:["chennai"],ll:[80.3,13.1]}],CN:[{k:["beijing","pekin"],ll:[116.4,39.9]},{k:["shanghai"],ll:[121.5,31.2]},{k:["shenzhen","canton","guangzhou"],ll:[113.9,22.7]}],RU:[{k:["moscou","moscow"],ll:[37.6,55.8]},{k:["saint petersbourg","saint petersburg"],ll:[30.3,59.9]}]},mp=e=>e.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").trim();function fp(e,a,r){const n=Ei[e];if(!n||!n.length)return-1;const o=mp(a||"");if(o){for(let i=0;i<n.length;i++)if(n[i].k.some(d=>o.includes(d)))return i}return Math.floor(r*n.length)%n.length}let Ta=null;function hp(){return Ta||(Ta=(async()=>{var e;try{const a=await fetch("/world/countries-110m.json");if(!a.ok)return null;const r=await a.json(),n=(e=r==null?void 0:r.objects)==null?void 0:e.countries;if(!n)return null;const o=cp(r,n),i=sp().fitExtent([[8,8],[992,492]],{type:"Sphere"}),d=Qd(i),l=(o.features||[]).filter(c=>{var g;return(((g=c.properties)==null?void 0:g.name)||"")!=="Antarctica"}).map(c=>{var b;const g=((b=c.properties)==null?void 0:b.name)||"",u=d(c)||"";return u?{i2:ys(g)||null,n:g,d:u}:null}).filter(c=>!!c);if(!l.length)return null;const s={};for(const[c,g]of Object.entries(ks)){const u=i(g);u&&(s[c]={x:u[0],y:u[1]})}const h={};for(const[c,g]of Object.entries(Ei)){const u=g.map(b=>i(b.ll)).filter(b=>!!b).map(([b,f])=>({x:b,y:f}));u.length&&(h[c]=u)}return{key:"monde",viewBox:"40 48 920 360",fr:"Monde",en:"World",countries:l,anchors:s,metros:h}}catch{return null}})(),Ta)}function gp(e){const[a,r]=p.useState(null);return p.useEffect(()=>{if(!e||a)return;let n=!1;return hp().then(o=>{!n&&o&&r(o)}),()=>{n=!0}},[e,a]),a}const xp="8 40 984 210",bp={"northam:US":{fx:.64,fy:.68,sx:.44,sy:.28},"northam:CA":{fx:.58,fy:.86,sx:.34,sy:.1},"oceania:AU":{fx:.72,fy:.62,sx:.34,sy:.3},"europe:RU":{fx:.18,fy:.62,sx:.14,sy:.3}},mo=["#8FA0B8","#9BD1B4","#5FB98C","#2E9A66","#0E8A44","#E2A5A5"];function fo(e){let a=2166136261;for(let r=0;r<e.length;r++)a^=e.charCodeAt(r),a=Math.imul(a,16777619);return(a>>>0)/4294967295}function vp(e,a){const[r,n]=p.useState(1);return p.useEffect(()=>{let o=!0,i=0;const d=()=>{var h;if(!o)return;const s=(h=e.current)==null?void 0:h.getScreenCTM();s&&s.a>0?n(s.a):i=requestAnimationFrame(d)};d();const l=new ResizeObserver(()=>d());return e.current&&l.observe(e.current),window.addEventListener("resize",d),()=>{o=!1,cancelAnimationFrame(i),l.disconnect(),window.removeEventListener("resize",d)}},[e,a]),r}function ho({msgs:e}){const[a,r]=p.useState(0);p.useEffect(()=>{const o=window.setInterval(()=>r(i=>i+1),2400);return()=>window.clearInterval(o)},[]);const n=[[46,34],[52,41],[41,46],[57,30],[49,52],[36,38],[61,45],[44,27]];return t.jsxs("div",{className:"mapskel","aria-hidden":"true",children:[n.map(([o,i],d)=>t.jsx("i",{style:{left:o+"%",top:i+"%","--d":d*.18+"s"}},d)),t.jsx("span",{className:"mskm",children:e[a%e.length]})]})}function wp(){const{st:e,dispatch:a,scoped:r,pipe:n,markRow:o,markedId:i,byId:d,lang:l,t:s,data:h,dossiers:c,source:g}=K(),u=h.loading&&!c.length,b=p.useRef(null),f=p.useRef(null),y=gp(e.continent==="monde"),w=e.continent==="monde"?y:Qn.find(x=>x.key===e.continent)||null,m=vp(b,e.continent+":"+e.mapFolded+":"+!!w),[v,k]=p.useState(new Map),[E,S]=p.useState(null);p.useEffect(()=>{const x=b.current;if(!x)return;const q=new Map;x.querySelectorAll("path[data-i2]").forEach(C=>{const P=C.dataset.i2;if(P)try{const H=C.getBBox();H.width>0&&q.set(P,{x:H.x,y:H.y,w:H.width,h:H.height})}catch{}}),k(q)},[e.continent,m,w]);const N=p.useMemo(()=>r.filter(x=>x.cc),[r]),A=p.useMemo(()=>{const x=new Map;return N.forEach(q=>x.set(q.cc,(x.get(q.cc)||0)+1)),x},[N]),T=e.continent==="monde"&&y?y.anchors:null,F=e.continent==="monde"&&y?y.metros:null,O=p.useMemo(()=>N.map(x=>{const q=fo(x.name||x.id||""),C=fo((x.id||x.name||"")+"·y");if(T&&x.cc){const z=F?F[x.cc]:void 0;if(z&&z.length){const M=fp(x.cc,x.city,q);if(M>=0&&z[M])return{d:x,x:z[M].x+(q-.5)*5,y:z[M].y+(C-.5)*5}}const $=T[x.cc];if($)return{d:x,x:$.x+(q-.5)*10,y:$.y+(C-.5)*10}}const P=x.cc?v.get(x.cc):void 0;if(!P)return null;const H=bp[`${e.continent}:${x.cc||""}`];if(H)return{d:x,x:P.x+P.w*(H.fx+(q-.5)*H.sx),y:P.y+P.h*(H.fy+(C-.5)*H.sy)};const G=(q-.5)*Math.min(P.w*.55,60),Z=(C-.5)*Math.min(P.h*.55,60);return{d:x,x:P.x+P.w/2+G,y:P.y+P.h/2+Z}}).filter(x=>!!x),[N,v,T,F,e.continent]),D=x=>m>0?x/m:x,V=p.useMemo(()=>n?[0,1,2,3,4,5].map(x=>({c:mo[x],fr:s.plabels[x],en:s.plabels[x],n:r.filter(q=>q.kind==="target"&&Le(q)===x).length})).filter(x=>x.n>0):gr.map((x,q)=>({...x,n:r.filter(C=>xr(C)===q).length})),[r,n,s.plabels]),Q=i?d.get(i):null,R=Q?O.find(x=>x.d.id===Q.id):null;return w?t.jsxs("div",{className:"mapzone"+(u?" waiting":""),"data-cont":e.continent,ref:f,children:[u&&t.jsx(ho,{msgs:s.loadMsgs}),t.jsxs("svg",{ref:b,viewBox:e.continent==="monde"?xp:w.viewBox,preserveAspectRatio:e.continent==="monde"?"xMidYMin slice":"xMidYMid meet",role:"img","aria-label":l==="fr"?w.fr:w.en,onMouseLeave:()=>{S(null),o(null)},children:[t.jsx("g",{children:w.countries.map((x,q)=>t.jsx("g",{className:"ct"+(x.i2&&A.get(x.i2)?"":" empty"),children:t.jsx("path",{d:x.d,"data-i2":x.i2||void 0})},q))}),t.jsx("g",{children:O.map(x=>{const q=gr[xr(x.d)],C=!!$e(x.d),P=x.d.kind==="target",H=n&&P?mo[Le(x.d)]:q.c,G=!n&&We(x.d);return t.jsxs("g",{className:"co"+(G?" done":""),onMouseEnter:()=>{var $,M;const Z=($=f.current)==null?void 0:$.getBoundingClientRect(),z=(M=b.current)==null?void 0:M.createSVGPoint();if(z&&b.current&&Z){z.x=x.x,z.y=x.y;const X=z.matrixTransform(b.current.getScreenCTM());S({x:X.x-Z.left,y:X.y-Z.top,label:x.d.name+" · "+(aa(x.d.cc,l)||x.d.countryLabel||"")})}o(x.d.id)},onMouseLeave:()=>{S(null),o(null)},onClick:()=>{var $;if(g==="ops"){window.dispatchEvent(new CustomEvent("ppmap:reveal")),a({type:"focus",id:x.d.id}),(x.d.noCo||["media","nominations","recrutements"].includes(x.d.engine||""))&&(x.d.url||x.d.headline)?window.dispatchEvent(new CustomEvent("ppmap:research",{detail:{url:x.d.url||"",text:[x.d.headline,x.d.tagline].filter(Boolean).join(`
+`)}})):x.d.noCo||window.dispatchEvent(new CustomEvent("ppmap:prefill",{detail:{name:x.d.name,url:x.d.url||"",website:x.d.website||"",domain:x.d.domain||""}}));return}const Z=($=b.current)==null?void 0:$.createSVGPoint();let z=null;if(Z&&b.current){Z.x=x.x,Z.y=x.y;const M=Z.matrixTransform(b.current.getScreenCTM());z={x:M.x,y:M.y}}a({type:"popup",id:x.d.id,anchor:z})},children:[t.jsx("circle",{className:"h",cx:x.x,cy:x.y,r:D(Math.max(11,q.px+7))}),t.jsx("circle",{className:"v",cx:x.x,cy:x.y,r:D(q.px),fill:H,stroke:C?"#E5484D":"#ffffff",strokeWidth:D(C?2.2:1.3)})]},x.d.id||x.d.name)})}),R&&t.jsx("circle",{className:"ring on",cx:R.x,cy:R.y,r:D(13),fill:"none",stroke:"#16233A",strokeWidth:D(2)})]}),t.jsx("div",{className:"hov"+(E?" on":""),style:E?{left:E.x,top:E.y}:void 0,children:E==null?void 0:E.label}),t.jsx("div",{className:"legend",children:V.map((x,q)=>t.jsxs("span",{children:[t.jsx("i",{style:{"--c":x.c}}),l==="fr"?x.fr:x.en," ",t.jsx("b",{children:x.n})]},q))}),r.some(x=>!x.cc)&&t.jsx("div",{className:"legend",style:{left:"auto",right:10},children:t.jsxs("span",{children:["🌐 ",s.notLocated," ",t.jsx("b",{children:r.filter(x=>!x.cc).length})]})})]}):t.jsx("div",{className:"mapzone"+(u?" waiting":""),"data-cont":e.continent,ref:f,children:t.jsx(ho,{msgs:s.loadMsgs})})}function yp(e,a){const r=/^(\d{4})-(\d{2})-(\d{2})$/.exec(e);if(!r)return e;const o=(a==="en"?["January","February","March","April","May","June","July","August","September","October","November","December"]:["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"])[Number(r[2])-1]||r[2],i=Number(r[3]);return a==="en"?`${o} ${i}, ${r[1]}`:`${i} ${o} ${r[1]}`}function ji({compact:e=!1}){const{st:a,dispatch:r,dossiers:n,t:o,pipe:i,contName:d,lang:l}=K(),s=a.filters,[h,c]=p.useState(!1),[g,u]=p.useState(!1),b=p.useRef(null),f=p.useRef(null),y=p.useMemo(()=>a.continent==="monde"?n:n.filter(R=>R.continent===a.continent),[n,a.continent]),w=R=>y.filter(x=>R!=="country"&&s.country.length&&!s.country.includes(x.cc||"")?!1:Wa(x,s,i,R==="country"?void 0:R)),m=R=>!i||R.kind!=="op",v=p.useMemo(()=>{const R=w("win").filter(m),x=q=>R.filter(C=>(C.date?Math.max(0,Math.floor((Date.now()-Date.parse(C.date))/864e5)):9999)<=q).length;return[x(0),x(7),x(30),R.length]},[y,s,i]),k=p.useMemo(()=>s.day?w("win").filter(m).filter(R=>(R.date||"").slice(0,10)===s.day).length:0,[y,s,i]),E=(s.signalOnly?1:0)+s.sector.length+s.market.length+s.country.length+s.engine.length+s.stage.length+s.angle.length+s.memoLevel.length+s.crible.length,S=E+(s.acquirer.trim()?1:0)+(s.day||s.win!=="all"?1:0)+(s.search.trim()?1:0);p.useEffect(()=>{a.openFacet&&c(!1)},[a.openFacet]),p.useEffect(()=>{if(!h&&!g)return;const R=q=>{var P,H;const C=q.target;h&&!((P=b.current)!=null&&P.contains(C))&&c(!1),g&&!((H=f.current)!=null&&H.contains(C))&&u(!1)},x=q=>{q.key==="Escape"&&(c(!1),u(!1))};return document.addEventListener("mousedown",R),document.addEventListener("keydown",x),()=>{document.removeEventListener("mousedown",R),document.removeEventListener("keydown",x)}},[h,g]);const N=(R,x,q,C="fbtn")=>t.jsxs("button",{type:"button",className:C,"aria-expanded":a.openFacet===R,onClick:()=>r({type:"openFacet",facet:R}),children:[t.jsx("span",{className:"fl",children:x}),q>0&&t.jsx("span",{className:"n",children:q}),t.jsx("span",{className:"cv",children:"▾"})]},R),A=["1","7","30","all"],T=Math.max(0,A.indexOf(s.win||"all")),F=s.day?t.jsxs("div",{className:"seg",children:[t.jsxs("button",{type:"button","aria-pressed":!0,children:[t.jsx("span",{className:"sl",children:o.fDay(yp(s.day,l))}),t.jsx("b",{children:k})]}),t.jsx("button",{type:"button",onClick:()=>r({type:"filters",patch:{day:"",win:"all"}}),children:o.fDayOff})]}):e?t.jsxs("div",{className:"winpick",ref:f,children:[t.jsxs("button",{type:"button",className:"winpick-btn","aria-expanded":g,"aria-haspopup":"listbox",onClick:()=>u(R=>!R),children:[t.jsx("span",{className:"winpick-k",children:o.winMenu}),t.jsx("span",{className:"winpick-v",children:o.datesShort[T]}),t.jsx("b",{children:v[T]}),t.jsx("i",{children:g?"▴":"▾"})]}),g&&t.jsx("div",{className:"winpick-pop",role:"listbox",children:A.map((R,x)=>t.jsxs("button",{type:"button",role:"option","aria-selected":s.win===R,onClick:()=>{r({type:"filters",patch:{win:R}}),u(!1)},children:[o.datesShort[x],t.jsx("span",{className:"n",children:v[x]})]},R))})]}):t.jsx("div",{className:"seg",children:A.map((R,x)=>t.jsxs("button",{type:"button","aria-pressed":s.win===R,onClick:()=>r({type:"filters",patch:{win:R}}),children:[t.jsx("span",{className:"sl",children:o.dates[x]}),t.jsx("b",{children:v[x]})]},R))}),O=t.jsxs("span",{className:"fsrch",children:["🔍",t.jsx("input",{placeholder:o.identSearch,value:s.search,onChange:R=>r({type:"filters",patch:{search:R.target.value}})})]}),D=t.jsxs("div",{className:"facets",children:[t.jsxs("button",{type:"button",className:"fbtn fsig","aria-expanded":a.openFacet==="sig",onClick:()=>r({type:"openFacet",facet:"sig"}),children:[t.jsx("span",{className:"fl",children:o.fSignal}),s.signalOnly&&t.jsx("span",{className:"n",children:s.signalEngines.length||"✓"}),t.jsx("span",{className:"cv",children:"▾"})]}),s.sector.length===1?t.jsxs("button",{type:"button",className:"fbtn on","aria-expanded":a.openFacet==="sec",onClick:()=>r({type:"openFacet",facet:"sec"}),title:s.sector[0],children:[t.jsx("span",{className:"fl",children:o.fSector}),t.jsx("span",{className:"n",style:{maxWidth:"16ch",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"},children:s.sector[0]}),t.jsx("span",{className:"cv",children:"▾"})]}):N("sec",o.fSector,s.sector.length),(n.some(R=>!!R.market)||s.market.length>0)&&N("mar",o.fMarket,s.market.length),N("pay",o.fCountry,s.country.length),N("det",o.fEngine,s.engine.length),N("sta",o.fStage,s.stage.length),i&&N("crib",o.fVerdict,s.crible.length),i&&N("ang","Angle",s.angle.length),i&&N("mem","Mémo",s.memoLevel.length)]}),V=(R=!1)=>t.jsxs("div",{className:"frow2",children:[S>0&&t.jsxs("button",{type:"button",className:"resetbtn on",title:o.clearTitle(y.length,d),onClick:()=>r({type:"reset"}),children:[t.jsx("span",{className:"rot",children:"↺"}),t.jsx("span",{children:o.clear(S)})]}),t.jsx("button",{type:"button",className:"alertbtn",onClick:()=>r({type:"modal",modal:"alert"}),children:o.alertBtn}),R&&t.jsx("button",{type:"button",className:"mapbtn",onClick:()=>r({type:"mapFold",folded:!1}),children:o.showMap})]}),Q=t.jsxs("div",{className:"fmenu",ref:b,children:[t.jsxs("button",{type:"button",className:"fbtn fmenu-btn"+(E?" on":""),"aria-expanded":h,"aria-haspopup":"true",onClick:()=>{c(R=>!R),a.openFacet&&r({type:"openFacet",facet:null})},children:[t.jsx("span",{className:"fl",children:o.fMenu}),E>0&&t.jsx("span",{className:"n",children:E}),t.jsx("span",{className:"cv",children:h?"▴":"▾"})]}),h&&t.jsx("div",{className:"fmenu-pop",role:"menu",children:D})]});return e?t.jsxs(t.Fragment,{children:[t.jsxs("div",{className:"fstrip"+(s.day?" noday":""),children:[t.jsx("div",{className:"fstrip-a",children:F}),t.jsxs("div",{className:"fstrip-b",children:[O,Q,V(!1)]})]}),a.openFacet&&t.jsx(go,{poolFor:w})]}):t.jsxs(t.Fragment,{children:[t.jsxs("aside",{className:"fbar",children:[F,O,D,t.jsx("span",{className:"fgrow"}),V()]}),a.openFacet&&t.jsx(go,{poolFor:w})]})}function go({poolFor:e}){const{st:a,dispatch:r,t:n,lang:o,pipe:i,data:d}=K(),l=a.filters,s=a.openFacet,{title:h,cols:c,options:g}=p.useMemo(()=>{if(s==="sig"){const w=e("signal").filter(k=>$e(k)),m=new Map;w.forEach(k=>{const E=k.engine||"";m.set(E,(m.get(E)||0)+1)});const v=[{v:"*",label:n.fpSigAll,n:w.length,html:!0,on:l.signalOnly&&!l.signalEngines.length},...Sn([...m.keys()],o).map(k=>({v:k,label:Bt(k)+" "+rt(k,o),n:m.get(k)||0,html:!1,on:l.signalOnly&&l.signalEngines.includes(k)}))];return{title:n.fpSigTitle,cols:2,options:v}}if(s==="crib"){const w=e("crible").filter(v=>!i||To(v,a.ptab,d.favIds)),m=new Map;return w.forEach(v=>{const k=Fo(v);k&&k!=="NEW"&&m.set(k,(m.get(k)||0)+1)}),{title:n.fVerdict.toUpperCase(),cols:2,options:[...m.entries()].sort((v,k)=>(br[v[0]]??9)-(br[k[0]]??9)||k[1]-v[1]).map(([v,k])=>({v,label:'<span class="fdot" style="background:'+(Es[v]||"#94A3B8")+'"></span>'+v,n:k,html:!0,on:l.crible.includes(v)}))}}if(s==="sec"){const w=e("sector"),m=new Map;return w.forEach(v=>{v.sector&&m.set(v.sector,(m.get(v.sector)||0)+1)}),{title:n.fSector,cols:3,options:[...m.entries()].sort((v,k)=>k[1]-v[1]).map(([v,k])=>({v,label:v,n:k,html:!1,on:l.sector.includes(v)}))}}if(s==="mar"){const w=e("market"),m=new Map;return w.forEach(v=>{v.market&&m.set(v.market,(m.get(v.market)||0)+1)}),{title:n.fMarket,cols:3,options:[...m.entries()].sort((v,k)=>k[1]-v[1]).map(([v,k])=>({v,label:v,n:k,html:!1,on:l.market.includes(v)}))}}if(s==="pay"){const w=e("country"),m=new Map;return w.forEach(v=>{v.cc&&m.set(v.cc,(m.get(v.cc)||0)+1)}),{title:n.fCountry,cols:3,options:[...m.entries()].sort((v,k)=>k[1]-v[1]).map(([v,k])=>({v,label:aa(v,o)||v,n:k,html:!1,on:l.country.includes(v)}))}}if(s==="det"){const w=e("engine"),m=new Map;return w.forEach(v=>{v.engine&&m.set(v.engine,(m.get(v.engine)||0)+1)}),{title:n.fEngine,cols:2,options:Sn([...m.keys()],o).map(v=>({v,label:Bt(v)+" "+rt(v,o)+' <span style="color:var(--dim);font-size:10px">· '+js(Ns(v),o)+"</span>",n:m.get(v)||0,html:!0,on:l.engine.includes(v)}))}}if(s==="ang"){const w=e("angle"),m=new Map;return w.forEach(v=>{v.angle&&m.set(v.angle,(m.get(v.angle)||0)+1)}),{title:"ANGLE",cols:2,options:[...m.entries()].sort((v,k)=>k[1]-v[1]).map(([v,k])=>({v,label:v.replace(/[_-]+/g," "),n:k,html:!1,on:l.angle.includes(v)}))}}if(s==="mem"){const w=e("memoLevel"),m=new Map;w.forEach(k=>{if(k.kind==="target"){const E=Yn(k);m.set(E,(m.get(E)||0)+1)}});const v=["Aucun mémo","Mémo instantané","Mémo détaillé"];return{title:"MÉMO",cols:2,options:[0,1,2].map(k=>({v:String(k),label:v[k],n:m.get(k)||0,html:!1,on:l.memoLevel.includes(k)}))}}const f=e("stage"),y=new Map;return f.forEach(w=>{w.stage&&y.set(w.stage,(y.get(w.stage)||0)+1)}),{title:n.fStage,cols:2,options:[...y.entries()].sort((w,m)=>m[1]-w[1]).map(([w,m])=>({v:w,label:w,n:m,html:!1,on:l.stage.includes(w)}))}},[s,a,o]),u=f=>{if(s==="sig"){if(f==="*")r({type:"filters",patch:{signalOnly:!(l.signalOnly&&!l.signalEngines.length),signalEngines:[]}});else{const w=l.signalEngines.includes(f)?l.signalEngines.filter(m=>m!==f):[...l.signalEngines,f];r({type:"filters",patch:{signalOnly:!0,signalEngines:w}})}return}if(s==="mem"){r({type:"toggleMemoLevel",value:Number(f)});return}r({type:"toggleFacet",facet:s==="sec"?"sector":s==="mar"?"market":s==="pay"?"country":s==="det"?"engine":s==="ang"?"angle":s==="crib"?"crible":"stage",value:f})},b=()=>{r(s==="sig"?{type:"filters",patch:{signalOnly:!1,signalEngines:[]}}:s==="mem"?{type:"clearFacet",facet:"memoLevel"}:{type:"clearFacet",facet:s==="sec"?"sector":s==="mar"?"market":s==="pay"?"country":s==="det"?"engine":s==="ang"?"angle":s==="crib"?"crible":"stage"})};return t.jsxs("div",{className:"fpanel on",children:[t.jsxs("div",{className:"ph",children:[t.jsx("b",{children:h}),t.jsx("span",{className:"sp"}),t.jsx("button",{type:"button",onClick:b,children:n.fpNone}),t.jsx("button",{type:"button",onClick:()=>r({type:"openFacet",facet:null}),children:n.fpClose})]}),t.jsx("div",{className:"fcols"+(c===2?" two":""),children:g.map(f=>t.jsxs("button",{type:"button",className:"opt","aria-pressed":f.on,onClick:()=>u(f.v),children:[t.jsx("span",{className:"bx"}),f.html?t.jsx("span",{className:"l",dangerouslySetInnerHTML:{__html:f.label}}):t.jsx("span",{className:"l",children:f.label}),t.jsx("span",{className:"n",children:f.n})]},f.v))}),t.jsxs("div",{className:"pf",children:[t.jsx("span",{className:"t",children:n.alertReady}),t.jsx("button",{type:"button",className:"alertbtn",onClick:()=>r({type:"modal",modal:"alert"}),children:n.alertCreate})]})]})}function Ni({mapToggle:e=!0,variant:a="tabs"}){const{dossiers:r,st:n,dispatch:o,pipe:i,lang:d,t:l}=K(),s=p.useMemo(()=>{const b={};return r.forEach(f=>{Wa(f,n.filters,i)&&(b.monde=(b.monde||0)+1,f.continent&&(b[f.continent]=(b[f.continent]||0)+1))}),b},[r,n.filters,i]),[h,c]=p.useState(!1),g=p.useRef(null);p.useEffect(()=>{if(!h)return;const b=y=>{var w;(w=g.current)!=null&&w.contains(y.target)||c(!1)},f=y=>{y.key==="Escape"&&c(!1)};return document.addEventListener("mousedown",b),document.addEventListener("keydown",f),()=>{document.removeEventListener("mousedown",b),document.removeEventListener("keydown",f)}},[h]);const u=b=>{const f=Qn.find(y=>y.key===b);return b==="monde"?l.contWorld:d==="fr"?f.fr:f.en};return a==="compact"?t.jsxs("div",{className:"contpick",ref:g,children:[t.jsxs("button",{type:"button",className:"contpick-btn","aria-expanded":h,"aria-haspopup":"listbox",onClick:()=>c(b=>!b),children:[u(n.continent),t.jsx("span",{className:"n",children:s[n.continent]||0}),t.jsx("i",{children:h?"▴":"▾"})]}),h&&t.jsx("div",{className:"contpick-pop",role:"listbox",children:vr.map(b=>t.jsxs("button",{type:"button",role:"option","aria-selected":n.continent===b,onClick:()=>{o({type:"continent",key:b}),c(!1)},children:[u(b),t.jsx("span",{className:"n",children:s[b]||0})]},b))}),t.jsx("button",{type:"button",className:"resetmap",title:l.toolReset,onClick:()=>{o({type:"reset"}),o({type:"ptab",tab:1}),o({type:"continent",key:i?"europe":"monde"}),o({type:"dens",dens:"liste"});try{window.dispatchEvent(new CustomEvent("ppmap:tunnel"))}catch{}},children:l.toolReset}),e&&t.jsx("button",{type:"button",className:"mapbtn",onClick:()=>o({type:"mapFold",folded:!n.mapFolded}),children:n.mapFolded?l.showMap:l.hideMap})]}):t.jsxs("div",{className:"conts",children:[vr.map(b=>t.jsxs("button",{type:"button",className:"cbtn","aria-selected":n.continent===b,onClick:()=>o({type:"continent",key:b}),children:[u(b),t.jsx("span",{className:"n",children:s[b]||0})]},b)),t.jsxs("span",{className:"side",children:[t.jsx("button",{type:"button",className:"resetmap",title:l.toolReset,onClick:()=>{o({type:"reset"}),o({type:"ptab",tab:1}),o({type:"continent",key:i?"europe":"monde"}),o({type:"dens",dens:"liste"});try{window.dispatchEvent(new CustomEvent("ppmap:tunnel"))}catch{}},children:l.toolReset}),e&&t.jsx("button",{type:"button",className:"mapbtn",onClick:()=>o({type:"mapFold",folded:!n.mapFolded}),children:n.mapFolded?l.showMap:l.hideMap})]})]})}function Hn(e){try{return JSON.parse(localStorage.getItem(e)||"[]")}catch{return[]}}function Si(e){return"atl2:evalq:"+(e||"anon")}function kp(e,a){const r=Si(e),n=Hn(r),o=new Set(n.map(l=>(l.name||"").trim().toLowerCase())),i=a.map(l=>(l||"").trim()).filter(l=>l&&!o.has(l.toLowerCase())).map(l=>({name:l,site:"",status:"",auto:!0}));if(!i.length)return 0;const d=[...n,...i].slice(0,30);try{localStorage.setItem(r,JSON.stringify(d)),window.dispatchEvent(new CustomEvent("atl2:evalq"))}catch{}return i.length}let Vn=null;function Ep(e){Vn=e;try{window.dispatchEvent(new CustomEvent("atl2:extract-note",{detail:e}))}catch{}}function jp(){const{t:e,lang:a,data:r,dossiers:n}=K(),o=r.session.token||"",i=Si(o),[d,l]=p.useState(()=>Hn(i)),s=p.useRef(!1),[h,c]=p.useState(!1);p.useEffect(()=>{try{const z=d.slice(0,30).map(({descBusy:$,evalBusy:M,...X})=>X);localStorage.setItem(i,JSON.stringify(z)),s.current=!0,window.dispatchEvent(new CustomEvent("atl2:evalq")),s.current=!1}catch{}},[d,i]),p.useEffect(()=>{const z=()=>{if(s.current)return;const $=Hn(i);l(M=>JSON.stringify(M.map(({descBusy:X,evalBusy:U,...ee})=>ee))===JSON.stringify($)?M:$)};return window.addEventListener("atl2:evalq",z),window.addEventListener("storage",z),()=>{window.removeEventListener("atl2:evalq",z),window.removeEventListener("storage",z)}},[i]);const[g,u]=p.useState([]),[b,f]=p.useState(""),[y,w]=p.useState(!1),[m,v]=p.useState(!1),[k,E]=p.useState(""),[S,N]=p.useState(()=>Vn);p.useEffect(()=>{const z=$=>{var X,U;const M=$.detail;M&&((X=M.cited)!=null&&X.length||(U=M.match)!=null&&U.length||M.title)&&N(M)};return window.addEventListener("atl2:extract-note",z),()=>window.removeEventListener("atl2:extract-note",z)},[]);const A=p.useCallback((z,$)=>l(M=>M.map((X,U)=>U===z?{...X,...$}:X)),[]),T=p.useCallback((z,$)=>{const M=$.trim();M&&(A(z,{name:M,status:"resolving",site:"",candidates:void 0,auto:!1,desc:"",descDone:!1}),Kn(M).then(X=>{const U=X.candidates||[];X.website?A(z,{site:X.website,status:"ready"}):U.length===1?A(z,{site:U[0].url,status:"ready"}):U.length>1?A(z,{status:"pick",candidates:U.slice(0,6)}):A(z,{status:"ready"})}).catch(()=>A(z,{status:"ready"})))},[A]),F=p.useCallback((z,$,M)=>{A(z,{descBusy:!0}),Oo(o,$,M).then(X=>{if(X.quota){c(!0),A(z,{descBusy:!1,descDone:!0});return}const U=X.blocs||{},ee=(U.synthese||U.value_prop||U.produit||U.modele||"").trim();A(z,{descBusy:!1,descDone:!0,desc:ee})}).catch(()=>A(z,{descBusy:!1,descDone:!0}))},[A,o]);p.useEffect(()=>{const z=d.findIndex(M=>M.auto&&M.name.trim()&&M.status==="");if(z>=0){T(z,d[z].name);return}if(h)return;const $=d.findIndex(M=>M.status==="ready"&&M.site&&!M.descDone&&!M.descBusy);$>=0&&F($,d[$].name,d[$].site)},[d,T,F,h]);const[O,D]=p.useState(!1),V=p.useCallback(async(z,$)=>{A(z,{evalBusy:!0});const M=($.site||$.name).trim(),X=await Do(o,M,"atelier2");return X.verdict==="quota"?(A(z,{evalBusy:!1}),window.dispatchEvent(new CustomEvent("ppmap:evalcard",{detail:{name:"",verdict:"quota",reason:X.reason||"",remaining:0}})),!1):(A(z,{evalBusy:!1,status:X.verdict==="kept"?"kept":"out",reason:X.reason||""}),window.dispatchEvent(new CustomEvent("ppmap:evalcard",{detail:{name:X.company||$.name,verdict:X.verdict,reason:X.reason||"",remaining:X.remaining??null}})),!0)},[A,o]),Q=async()=>{if(O)return;const z=d.map(($,M)=>({r:$,i:M})).filter(({r:$})=>$.name.trim()&&$.status!=="kept"&&$.status!=="out"&&$.status!=="resolving");if(z.length){D(!0);for(const{r:$,i:M}of z)if(!await V(M,$))break;D(!1)}},R=p.useMemo(()=>{const z=new Set,$=[];return d.filter(M=>M.status==="kept").forEach(M=>{const X=M.name.trim().toLowerCase();X&&!z.has(X)&&(z.add(X),$.push(M.name.trim()))}),n.filter(M=>Le(M)>=1&&Le(M)<=4&&(M.website||M.domain)).forEach(M=>{const X=(M.name||"").trim().toLowerCase();X&&!z.has(X)&&(z.add(X),$.push((M.name||"").trim()))}),$},[d,n]),x=p.useMemo(()=>{const z=new Set;return n.forEach($=>{const M=($.name||"").trim().toLowerCase();M&&z.add(M)}),d.forEach($=>{const M=$.name.trim().toLowerCase();M&&z.add(M)}),z},[n,d]),q=async()=>{if(b||!R.length)return;v(!1);const z=[];for(const $ of R.slice(0,2)){f($);const M=await Mo(o,$);if(M){if(M.verdict==="quota"){w(!0);break}(M.results||[]).forEach(X=>{const U=(X.company||"").trim().toLowerCase();!U||x.has(U)||z.some(ee=>ee.name.toLowerCase()===U)||z.push({name:(X.company||"").trim(),verdict:X.verdict||"",reason:X.reason,from:$})})}}f(""),v(!0),u($=>[...z,...$].slice(0,24))},C=async(z,$)=>{if(b)return;v(!1),f(z==="thesis"?e.pxThesis:$);const M=await zs(o,z,$,6);if(f(""),v(!0),!M)return;if(M.verdict==="quota"){w(!0);return}const X=[];(M.results||[]).forEach(U=>{const ee=(U.company||"").trim().toLowerCase();!ee||x.has(ee)||X.some(ue=>ue.name.toLowerCase()===ee)||X.push({name:(U.company||"").trim(),verdict:U.verdict||"",reason:U.reason,from:z==="thesis"?e.pxThesis:$})}),u(U=>[...X,...U].slice(0,24))},P=()=>{const z=k.trim();z.length<3||C(/^\d{2}\.?\d{2}[A-Za-z]?$/.test(z)?"registry":"keyword",z)},H=z=>{l($=>[...$,{name:z.name,site:"",status:"",auto:!0}].slice(0,30)),u($=>$.filter(M=>M.name!==z.name))},G=d.filter(z=>z.name.trim()&&z.status!=="kept"&&z.status!=="out").length,Z=z=>z.name.trim()&&z.status!=="kept"&&z.status!=="out"&&z.status!=="resolving"&&!z.evalBusy;return t.jsxs("div",{className:"bulk on evalq",children:[t.jsxs("div",{className:"eq-rows",children:[S&&t.jsxs("div",{className:"eq-note"+(S.fallback?" fb":""),children:[t.jsxs("b",{children:[S.fallback?e.rsNoteFallback:e.rsNoteRead,S.title?` « ${S.title.length>90?S.title.slice(0,89)+"…":S.title} »`:""]}),!!S.cited.length&&t.jsxs("p",{className:"eq-nl",children:[e.rsNoteCited," ",t.jsx("i",{children:S.cited.join(" · ")})]}),!!S.match.length&&t.jsxs("p",{className:"eq-nl",children:[e.rsNoteMatch," ",t.jsx("i",{children:S.match.join(" · ")})]}),!S.match.length&&!!S.cited.length&&t.jsx("p",{className:"eq-nl",children:e.rsNoteNoMatch}),t.jsx("p",{className:"eq-nl",children:e.rsNoteAdded(S.added)}),t.jsx("button",{type:"button",className:"eq-note-x",onClick:()=>{Vn=null,N(null)},title:e.rsClose,children:"×"})]}),t.jsxs("div",{className:"eq-head",children:[t.jsx("span",{children:e.eqColName}),t.jsx("span",{children:e.eqColSite}),t.jsx("span",{children:e.eqColDesc}),t.jsx("span",{children:e.eqColState}),t.jsx("span",{}),t.jsx("span",{className:"eq-h-go",children:e.eqRunOneShort})]}),d.map((z,$)=>{const M=z.name.trim(),X=M.length>18?M.slice(0,17)+"…":M,U=M?e.eqRunOn(X):e.eqRunOneShort;return t.jsxs("div",{className:"eq-item eq-card"+(z.status==="kept"?" r-kept":z.status==="out"?" r-out":""),style:{border:"none",borderRadius:10,padding:"10px 12px 8px",background:z.status==="kept"?"#F3FBF6":z.status==="out"?"#FDF6F6":"#F4F6F9"},children:[t.jsxs("div",{className:"eq-row"+(z.status==="kept"?" r-kept":z.status==="out"?" r-out":""),children:[t.jsx("input",{value:z.name,placeholder:e.eqNamePh,onChange:ee=>{const ue=ee.target.value.split(`
+`).map(fe=>fe.trim()).filter(Boolean);ue.length>1?l(fe=>{const ve=[...fe];return ve.splice($,1,...ue.map(me=>({name:me,site:"",status:"",auto:!0}))),ve.slice(0,30)}):A($,{name:ee.target.value})},onBlur:()=>{z.name.trim()&&!z.site&&z.status!=="resolving"&&z.status!=="pick"&&T($,z.name)},onKeyDown:ee=>{ee.key==="Enter"&&T($,z.name)}}),t.jsxs("span",{className:"eq-site",children:[z.status==="resolving"&&t.jsx("i",{className:"eq-spin",children:e.eqLookup}),z.status==="pick"&&t.jsxs("select",{className:"eq-pick",defaultValue:"",onChange:ee=>{const ue=ee.target.value;ue&&A($,{site:ue,status:"ready",candidates:void 0})},children:[t.jsx("option",{value:"",disabled:!0,children:e.eqPick}),(z.candidates||[]).map(ee=>t.jsx("option",{value:ee.url,children:(ee.url||"").replace(/^https?:\/\/(www\.)?/,"").slice(0,40)},ee.url))]}),z.status!=="resolving"&&z.status!=="pick"&&(z.site?t.jsxs("a",{href:z.site.startsWith("http")?z.site:"https://"+z.site,target:"_blank",rel:"nofollow noopener",children:[z.site.replace(/^https?:\/\/(www\.)?/,"").slice(0,28)," ↗"]}):t.jsx("em",{children:z.name.trim()&&z.status==="ready"?e.eqNoSite:""}))]}),t.jsx("span",{className:"eq-desc",title:z.desc||"",children:z.descBusy?t.jsx("i",{children:e.eqDescBusy}):z.desc?z.desc:t.jsx("em",{children:z.descDone?h?e.eqDescQuota:e.eqDescNone:""})}),t.jsx("span",{className:"eq-st s-"+(z.status||"vide"),title:z.reason||"",children:z.status==="kept"?"✓ "+e.kept:z.status==="out"?"✗ "+e.dropped:z.status==="ready"?e.eqReady:z.status==="pick"?e.eqPick:""}),t.jsx("button",{type:"button",className:"eq-x",title:"×",onClick:()=>l(ee=>ee.filter((ue,fe)=>fe!==$)),children:"×"}),(M||z.site)&&z.status!=="kept"&&z.status!=="out"?t.jsxs(qt,{lang:a,storeKey:(z.site||z.name).trim(),className:"eq-go",title:U,disabled:!Z(z)||O,confirmLabel:"⚡ "+U,onConfirm:()=>{V($,z)},children:[z.evalBusy?"⏳":"⚡",t.jsx("b",{children:U})]}):t.jsxs("button",{type:"button",className:"eq-go",title:U,disabled:!Z(z)||O,onClick:()=>{V($,z)},children:[z.evalBusy?"⏳":"⚡",t.jsx("b",{children:U})]})]}),(z.name.trim()||z.site)&&z.status!=="kept"&&z.status!=="out"&&t.jsx(Ss,{lang:a,variant:"row",storeKey:(z.site||z.name).trim()})]},$)}),t.jsxs("button",{type:"button",className:"eq-add",onClick:()=>l(z=>[...z,{name:"",site:"",status:""}].slice(0,30)),children:["+ ",e.eqAdd]})]}),t.jsxs("div",{className:"eq-foot",children:[t.jsxs("div",{className:"eq-sugg",children:[t.jsx("button",{type:"button",className:"eq-sugg-go",disabled:!!b,onClick:()=>{C("thesis","")},children:b===e.pxThesis?e.sgBusy(b):e.pxGoThesis}),t.jsx("input",{className:"eq-sugg-in",value:k,placeholder:e.pxPlace,onChange:z=>E(z.target.value),onKeyDown:z=>{z.key==="Enter"&&P()}}),t.jsx("button",{type:"button",className:"eq-sugg-go2",disabled:!!b||k.trim().length<3,onClick:P,children:e.pxGoFree}),!!R.length&&t.jsx("button",{type:"button",className:"eq-sugg-go2",disabled:!!b,onClick:()=>{q()},children:b&&b!==e.pxThesis&&b!==k?e.sgBusy(b):e.sgGo}),!!R.length&&t.jsx("span",{className:"eq-sugg-note",children:e.sgFrom(R[0],R.length)}),y&&t.jsx("span",{className:"eq-sugg-q",children:e.sgQuota}),m&&!g.length&&!y&&t.jsx("span",{className:"eq-sugg-q",children:e.sgNone}),g.map(z=>t.jsxs("span",{className:"eq-sc"+(z.verdict==="kept"?" ok":""),title:(z.reason||"")+" — "+e.sgVia(z.from),children:[t.jsx("b",{children:z.name}),z.verdict==="kept"&&t.jsx("i",{children:"✓"}),t.jsx("button",{type:"button",onClick:()=>H(z),children:"+"})]},z.name))]}),t.jsxs("div",{className:"side",children:[t.jsx("span",{className:"hint",children:e.eqHint}),d.some(z=>z.status==="kept"||z.status==="out")&&t.jsx("button",{type:"button",className:"dmulti",onClick:()=>l(z=>z.filter($=>$.status!=="kept"&&$.status!=="out")),children:e.eqClearDone}),t.jsxs("button",{type:"button",className:"evalbtn"+(O?" loading":""),style:{justifyContent:"center"},disabled:O||!G,onClick:()=>{Q()},children:[t.jsx("span",{className:"fill"}),O?e.eqRunning:e.eqGo(G)]})]})]})]})}const Np={deals:"ma-deals",news:"veille"},zi=/^(deals?|news|breaking|live|update|analysis|markets?|opinion|icymi)$/i,Sp=/^(this|that|these|those|why|what|what'?s|how|when|where|who|which|is|are|do|does|did|can|could|should|would|will|a|an|the|les?|la|des?|une?|un)\b/i,zp=/\b(labor day|workers?|toast|monday|tuesday|wednesday|thursday|friday|saturday|sunday|assessment|volunteer)\b/i,Cp=/\b(?:buys?|buying|to\s+buy|acquired?|acquires?|to\s+acquire|acquiert|rachet(?:e|é|ée)?|raises?|raised|l[èe]ve|merges?\s+with)\b/i;function Ci(e){const a=(e||"").trim();return!(!a||a.length<2||a.length>48||zi.test(a)||Sp.test(a)||zp.test(a)||Jt(a)||!an(a))}function xo(e){return(e.url||e.title||"").trim()}function gn(e){const a=(e.kind||"").toLowerCase(),r=(e.ingest_kind||"").toLowerCase();if(a==="article"||a==="news"||a==="media"||r==="url"||r==="youtube")return!0;const n=(e.title||"").replace(/\s+/g," ").trim();return n?Jt(n)||Cp.test(n)?!0:!an(n):!!(e.url||"").trim()}function ar(e){let a=(e||"").replace(/\s+/g," ").trim();a=a.replace(/^\s*(?:deals?|news|breaking|live|update|analysis)\s*[:–—|]\s*/i,"");const r=[],n=d=>{let l=(d||"").replace(/[\u2018\u2019\u201c\u201d'"«»]/g,"").trim();l=l.replace(/^(the|le|la|les|l['’])\s+/i,"").trim(),l=l.replace(/\s+(?:'s|retirement|business|unit|division|arm|operations?)\b.*$/i,"").trim(),Ci(l)&&(r.some(s=>s.toLowerCase()===l.toLowerCase())||r.push(l))},o=a.match(/^(.{2,48}?)\s+(?:buys?|buying|to\s+buy|acquired?|acquires?|to\s+acquire|acquiert|rachet(?:e|é|ée)?|raises?|raised|l[èe]ve|merges?\s+with)\s+(.{2,60}?)(?:\s+(?:for|pour|en|in|at|à|from|de)\b|$)/i);if(o&&(n(o[1]),n(o[2]),r.length))return r;const i=a.match(/^(.{2,48}?)\s*[:–—]/);return i&&n(i[1]),r}function bo(e){const a=ar(e.title||"");if(a.length)return a[0];const r=(e.title||"").replace(/\s+/g," ").trim();if(!r)return(e.url||"").replace(/^https?:\/\/(www\.)?/,"").slice(0,40);const n=/^(.{2,72}?)[:–—|]/.exec(r);return n&&!zi.test(n[1].trim())?n[1].trim():(r.split(/ (?:in talks|acquiert|acquires|raises|lève|reports)\b/i)[0]||r).slice(0,72).trim()}function Ap({pageToken:e,onAddNames:a,onPanel:r}){const{t:n,lang:o,token:i,canWrite:d,flash:l}=K(),[s,h]=p.useState(null),[c,g]=p.useState(!1),[u,b]=p.useState({deals:[],news:[]}),[f,y]=p.useState({deals:!1,news:!1}),[w,m]=p.useState(null),[v,k]=p.useState(""),E=p.useCallback(async R=>{if(!i)return[];if(f[R])return u[R];m(R),k("");const x=Date.now(),q=await Cs(Np[R],i,o),C=700-(Date.now()-x);return C>0&&await new Promise(P=>window.setTimeout(P,C)),m(null),!q.ok&&q.error?(k(q.error),[]):(b(P=>({...P,[R]:q.items})),y(P=>({...P,[R]:!0})),q.items)},[i,o,f,u]);p.useEffect(()=>{s&&E(s)},[s,E]);const S=p.useCallback(R=>u[R].map(xo).filter(Boolean),[u]),N=p.useMemo(()=>{var q,C;if(!i)return{deals:[],news:[]};const R={deals:S("deals"),news:S("news")},x=Qo("feed:"+i,R);return{deals:((q=x.deals)==null?void 0:q.noms)||[],news:((C=x.news)==null?void 0:C.noms)||[]}},[i,S]),A=p.useRef(null);p.useEffect(()=>{A.current&&!s&&i&&Ko("feed:"+i,{deals:S("deals"),news:S("news")}),A.current=s},[s,i,S]);const T=()=>{h(null),g(!1),r==null||r(!1)},F=R=>{const x=[],q=new Set,C=P=>{const H=P.trim();!H||q.has(H.toLowerCase())||(q.add(H.toLowerCase()),x.push(H))};R.forEach(P=>{gn(P)?ar(P.title||"").forEach(C):C(bo(P))}),x.length&&(a(x),T(),l(n.feedSent(x.length)))},O=R=>{const x=bo(R);x&&(window.dispatchEvent(new CustomEvent("ppmap:prefill",{detail:{name:x,url:(R.url||"").trim()}})),T(),l(n.feedPasted(x)),requestAnimationFrame(()=>{var q;(q=document.querySelector(".atl2 .eval-stick, .atl2 .demand"))==null||q.scrollIntoView({block:"center",behavior:"smooth"})}))},D=R=>{if(gn(R)){const x=(R.url||"").trim(),q=(R.title||"").trim();if(!x&&!q)return;window.dispatchEvent(new CustomEvent("ppmap:research",{detail:{url:x,text:q,auto:!0}})),T(),l(n.feedExtracting);return}O(R)},V=R=>{h(x=>{const q=x===R?null:R;return q&&g(!1),r==null||r(!!q),q})},Q=R=>{const x=u[R],q=new Set(N[R].map(P=>P.toLowerCase())),C=w===R||s===R&&!f[R]&&!v;return t.jsxs("div",{className:"dfpane"+(s===R?" on":"")+(c?" tall":""),hidden:s!==R,children:[t.jsxs("div",{className:"dfhow",children:[t.jsxs("div",{className:"dfhow-h",children:[t.jsx("p",{className:"dfh",children:R==="deals"?n.feedDealsH:n.feedNewsH}),t.jsxs("span",{className:"dfhow-acts",children:[t.jsx("button",{type:"button",className:"dffold",onClick:()=>g(P=>!P),children:c?n.feedShrink:n.feedExpand}),t.jsx("button",{type:"button",className:"dffold",onClick:T,children:n.feedFold})]})]}),t.jsx("p",{className:"dfh2",children:R==="deals"?n.feedDealsHow:n.feedNewsHow})]}),C&&t.jsxs("div",{className:"dfwait",role:"status","aria-live":"polite",children:[t.jsx("i",{className:"dfspin","aria-hidden":"true"}),t.jsxs("div",{children:[t.jsx("b",{children:R==="deals"?n.feedWaitDeals:n.feedWaitNews}),t.jsx("span",{className:"dfbar",children:t.jsx("i",{})})]})]}),s===R&&!!v&&t.jsx("p",{className:"dferr",children:v}),f[R]&&!x.length&&!w&&t.jsx("p",{className:"dfempty",children:R==="deals"?n.feedEmptyDeals:n.feedEmptyNews}),!!x.length&&!C&&t.jsxs(t.Fragment,{children:[R==="deals"&&d&&x.length>1&&t.jsxs("button",{type:"button",className:"dfall",onClick:()=>F(x),children:[n.feedPutAll," (",x.length,")"]}),t.jsx("ul",{className:"dflist",children:x.map((P,H)=>{const G=xo(P),Z=q.has(G.toLowerCase()),z=(P.url||"").trim();return t.jsxs("li",{className:Z?"new":void 0,children:[t.jsxs("div",{children:[t.jsx("b",{children:P.title||z}),t.jsx("span",{children:[P.source,P.sector_fr,(P.published_at||"").slice(0,10)].filter(Boolean).join(" · ")})]}),t.jsxs("span",{className:"dfacts",children:[z&&t.jsx("a",{href:z,target:"_blank",rel:"noopener noreferrer",children:n.feedOpen}),d&&t.jsx("button",{type:"button",className:"dfan",onClick:()=>D(P),children:gn(P)?n.rowExtract:n.feedPutEval})]})]},G||H)})})]})]})};return t.jsxs(t.Fragment,{children:[["deals","news"].map(R=>{const x=N[R].length;return t.jsxs("button",{type:"button",className:"dmulti dfbtn "+(R==="deals"?"ddeals":"dnews")+(s===R?" on":"")+(w===R?" busy":""),title:R==="deals"?n.feedDealsH:n.feedNewsH,"aria-expanded":s===R,"aria-busy":w===R||void 0,onClick:()=>V(R),children:[w===R?o==="en"?"Loading…":"Chargement…":R==="deals"?n.feedDeals:n.feedNews,x>0&&w!==R&&t.jsx("em",{title:n.feedHint,children:n.feedNew(x)})]},R)}),s&&Q(s)]})}function qp(e){return String(e||"").split(`
+`).map(a=>a.replace(/^#{1,6}\s*/,"").replace(/[*_`>]/g,"").trimEnd()).filter(a=>a.trim().length>0)}function vo(e){return(e||"").replace(/\*\*|__/g,"").replace(/`/g,"").trim()}function Lp(e){const a=[],r=[];for(const n of String(e||"").split(`
+`)){const o=n.replace(/\s+$/,"");if(!o.trim()||o.trim()==="---"||/^\s*markmap:/.test(o)||/^\s+\w+:/.test(o))continue;const i=/^(#+)\s+(.*)/.exec(o);if(i){const c={title:vo(i[2]),kids:[]};a.push(c),r.length=0,r.push({indent:-1,node:c});continue}const d=/^(\s*)[-*+]\s+(.*)/.exec(o);if(!d)continue;const l=d[1].replace(/\t/g,"  ").length,s={title:vo(d[2]),kids:[]};for(;r.length&&r[r.length-1].indent>=l;)r.pop();const h=r.length?r[r.length-1].node:null;h?h.kids.push(s):a.push(s),r.push({indent:l,node:s})}return a}function Ai({nodes:e,depth:a=0}){return e.length?t.jsx("ul",{className:"rscats"+(a?" nested":""),children:e.map((r,n)=>t.jsx("li",{children:r.kids.length?t.jsxs("details",{open:a<1,children:[t.jsx("summary",{children:r.title}),t.jsx(Ai,{nodes:r.kids,depth:a+1})]}):t.jsx("span",{children:r.title})},n))}):null}function Tp(e){return`<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  html,body{margin:0;height:100%;background:#fff;overflow:hidden}
+  .markmap{width:100%;height:100%;overflow:hidden}
+  svg.markmap{width:100%;height:100%;display:block}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@0.18"><\/script>
+</head><body>
+<div class="markmap">
+<script type="text/template">
+---
+markmap:
+  colorFreezeLevel: 2
+  initialExpandLevel: 2
+  maxWidth: 320
+---
+${String(e||"").replace(/<\/script/gi,"<\\/script")}
+<\/script>
+</div>
+</body></html>`}function Fp({md:e,png:a,alt:r}){const{t:n}=K(),o=(e||"").trim(),i=Lp(o);return!o&&!a&&!i.length?null:t.jsxs("section",{className:"rslive",children:[t.jsxs("div",{className:"rslive-h",children:[t.jsxs("b",{children:["🗺 ",n.rsMindmap]}),t.jsx("span",{children:n.rsMmTip})]}),t.jsxs("div",{className:"rslive-grid",children:[t.jsx("div",{className:"rslive-map",children:o?t.jsx("iframe",{className:"rs-mm-frame",title:r,sandbox:"allow-scripts",srcDoc:Tp(o)}):a?t.jsx("img",{className:"rslive-png",src:`data:image/png;base64,${a}`,alt:r}):null}),i.length>0&&t.jsxs("nav",{className:"rslive-cats","aria-label":n.rsMmCats,children:[t.jsx("b",{children:n.rsMmCats}),t.jsx("p",{className:"rslive-cat-hint",children:n.rsMmTip}),t.jsx(Ai,{nodes:i})]})]})]})}function Rp(e){var o;const a=[],r=new Set,n=i=>{const d=(i||"").trim();!d||r.has(d.toLowerCase())||(r.add(d.toLowerCase()),a.push(d))};return((e==null?void 0:e.companies_cited)||[]).forEach(i=>n(i==null?void 0:i.name)),(((o=e==null?void 0:e.prospective)==null?void 0:o.companies_to_evaluate)||[]).forEach(i=>n(i==null?void 0:i.name)),a}function wo({icon:e,title:a,hint:r,rows:n,addLabel:o,onEvaluate:i,onAddAll:d}){const{t:l}=K();return n.length?t.jsxs("section",{className:"rsblk",children:[t.jsxs("div",{className:"rsblk-h",children:[t.jsxs("b",{children:[e," ",a]}),t.jsx("span",{className:"n",children:n.length}),d&&t.jsx("button",{type:"button",className:"rsblk-all",onClick:()=>d(n.map(s=>s.name)),children:o})]}),t.jsx("p",{className:"rsblk-hint",children:r}),t.jsx("div",{className:"rsblk-rows",children:n.map(s=>t.jsxs("div",{className:"rsrow",children:[t.jsxs("div",{className:"rsrow-t",children:[t.jsxs("div",{className:"rsrow-h",children:[t.jsx("span",{className:"nm",children:s.name}),s.chips.map(h=>t.jsx("span",{className:"ch",children:h},h))]}),s.line1&&t.jsx("p",{className:"w",children:s.line1}),s.line2&&t.jsx("p",{className:"r",children:s.line2})]}),t.jsx("button",{type:"button",className:"rsrow-go",onClick:()=>i(s.name),children:l.rsEvalOne})]},s.name))})]}):null}function Op({card:e,onEvaluate:a,onAddAll:r}){var d;const{t:n}=K(),o=((e==null?void 0:e.companies_cited)||[]).filter(l=>l&&(l.name||"").trim()).map(l=>({name:(l.name||"").trim(),line1:(l.what||"").trim(),line2:(l.role||"").trim(),chips:[(l.country||"").trim()].filter(Boolean)})),i=(((d=e==null?void 0:e.prospective)==null?void 0:d.companies_to_evaluate)||[]).filter(l=>l&&(l.name||"").trim()).map(l=>({name:(l.name||"").trim(),line1:(l.why||"").trim(),chips:[(l.country||"").trim(),(l.stage||"").trim()].filter(Boolean)}));return!o.length&&!i.length?t.jsx("p",{className:"rsblk-none",children:n.rsNoCompanies}):t.jsxs(t.Fragment,{children:[t.jsx(wo,{icon:"🏷",title:n.rsCited,hint:n.rsCitedHint,rows:o,addLabel:n.rsAddAll(o.length),onEvaluate:a,onAddAll:r}),t.jsx(wo,{icon:"🎯",title:n.rsMatch,hint:n.rsMatchHint,rows:i,addLabel:n.rsAddAll(i.length),onEvaluate:a,onAddAll:r})]})}function qi({card:e,onEvaluate:a,onAddAll:r}){var s,h,c;const{t:n}=K(),o=[e.industry,...e.market_tags||[],e.author].map(g=>(g||"").trim()).filter(Boolean),i=(((s=e.prospective)==null?void 0:s.criteria)||[]).filter(Boolean),d=(e.sources||[]).filter(g=>g&&g.url),l=qp(e.summary_md||"");return t.jsxs("div",{className:"rsdet",children:[e.market&&t.jsx("p",{className:"rsmk",children:e.market}),o.length>0&&t.jsxs("div",{className:"rstags",children:[t.jsx("em",{children:n.rsTags}),o.map(g=>t.jsx("span",{children:g},g))]}),t.jsx(Fp,{md:e.mindmap_md,png:e.mindmap_png_b64,alt:n.rsMindmap}),l.length>0&&t.jsxs("article",{className:"rsart",children:[t.jsx("b",{children:n.rsArticle}),l.map((g,u)=>t.jsx("p",{children:g},u))]}),t.jsx(Op,{card:e,onEvaluate:a,onAddAll:r}),(((h=e.prospective)==null?void 0:h.conclusion)||i.length>0)&&t.jsxs("section",{className:"rsblk rspro",children:[t.jsx("div",{className:"rsblk-h",children:t.jsxs("b",{children:["🔮 ",n.rsConclusion]})}),((c=e.prospective)==null?void 0:c.conclusion)&&t.jsx("p",{className:"rspro-c",children:e.prospective.conclusion}),i.length>0&&t.jsxs(t.Fragment,{children:[t.jsx("p",{className:"rsblk-hint",children:n.rsCriteria}),t.jsx("ul",{className:"rspro-l",children:i.map(g=>t.jsx("li",{children:g},g))})]})]}),d.length>0&&t.jsxs("section",{className:"rsblk",children:[t.jsxs("div",{className:"rsblk-h",children:[t.jsxs("b",{children:["🔗 ",n.rsSources]}),t.jsx("span",{className:"n",children:d.length})]}),t.jsx("div",{className:"rssrc",children:d.map(g=>t.jsx("a",{href:g.url,target:"_blank",rel:"noopener noreferrer",children:g.label||g.url},g.url))})]})]})}function Dp(e){if(!e)return"";const a=new Date(e);return Number.isNaN(a.getTime())?"":a.toLocaleDateString(void 0,{day:"2-digit",month:"short"})}function Mp({onClose:e,onEvaluate:a,onAddAll:r,bump:n,cbToken:o}){const{t:i,email:d}=K(),l=o,[s,h]=p.useState(null),[c,g]=p.useState(null),[u,b]=p.useState(null),[f,y]=p.useState(!1);p.useEffect(()=>{let m=!0;return(async()=>{const v=await Io({email:d,cbToken:l});m&&h(v)})(),()=>{m=!1}},[d,l,n]);const w=m=>{g(m),b(null),y(!0),(async()=>{const v=await As(m.id);b(v),y(!1)})()};return t.jsxs("div",{className:"rsarch",children:[t.jsxs("div",{className:"rsarch-h",children:[c?t.jsx("button",{type:"button",className:"rsarch-back",onClick:()=>{g(null),b(null)},children:i.rsArchBack}):t.jsxs("b",{children:["🗂 ",i.rsArchTitle]}),c&&t.jsx("span",{className:"ti",children:c.title}),!c&&s&&t.jsx("span",{className:"n",children:s.length}),t.jsx("button",{type:"button",className:"rsx",title:i.rsClose,onClick:e,children:"×"})]}),!c&&t.jsxs("div",{className:"rsarch-list",children:[s===null&&t.jsx("p",{className:"rsarch-msg",children:i.rsArchLoading}),s!==null&&s.length===0&&t.jsx("p",{className:"rsarch-msg",children:i.rsArchEmpty}),(s||[]).map(m=>t.jsxs("button",{type:"button",className:"rsarch-row",onClick:()=>w(m),children:[t.jsx("span",{className:"ti",children:m.title}),t.jsxs("span",{className:"me",children:[Dp(m.created_at),m.industry?` · ${m.industry}`:"",m.author?` · ${m.author}`:""]}),t.jsx("span",{className:"cn",children:i.rsRowCounts(m.cited_n||0,m.evaluate_n||0)}),t.jsx("span",{className:"st"+(m.published?" on":""),children:m.published?i.rsPub:i.rsPriv})]},m.id))]}),c&&t.jsxs("div",{className:"rsarch-one",children:[t.jsxs("div",{className:"rsarch-sub",children:[c.source_url&&t.jsx("a",{href:c.source_url,target:"_blank",rel:"noopener noreferrer",children:i.rsSource}),c.published&&c.page_url&&t.jsx("a",{href:c.page_url,target:"_blank",rel:"noopener noreferrer",children:i.rsLink}),t.jsx("span",{className:"st"+(c.published?" on":""),children:c.published?i.rsPub:i.rsPriv})]}),f&&t.jsx("p",{className:"rsarch-msg",children:i.rsArchLoading}),!f&&!u&&t.jsx("p",{className:"rsarch-msg",children:i.rsArchGone}),!f&&u&&t.jsx(qi,{card:u,onEvaluate:a,onAddAll:r})]})]})}const Pa=/^(https?:\/\/)?([\w-]+\.)+[a-z]{2,}(\/\S*)?$/i;function ma(e){return/^https?:\/\//i.test((e||"").trim())}function ht(e){const a=(e||"").trim();return a?ma(a)?a:Pa.test(a)&&!/\s/.test(a)?"https://"+a.replace(/^\/+/,""):"":""}function Ip(){return t.jsxs("svg",{className:"extico",width:"13",height:"13",viewBox:"0 0 16 16","aria-hidden":"true",children:[t.jsx("path",{fill:"currentColor",d:"M6.2 3H3.8A1.8 1.8 0 0 0 2 4.8v7.4C2 13.2 2.8 14 3.8 14h7.4c1 0 1.8-.8 1.8-1.8V9.2h-1.5v3a.3.3 0 0 1-.3.3H3.8a.3.3 0 0 1-.3-.3V4.8a.3.3 0 0 1 .3-.3h2.4V3Z"}),t.jsx("path",{fill:"currentColor",d:"M9 2h5v5h-1.5V4.56L7.78 9.28 6.72 8.22 11.44 3.5H9V2Z"})]})}function Pp(){const{t:e,lang:a,mode:r,token:n,email:o,askEvaluate:i,sessTally:d,dispatch:l,evalBusy:s,evalCards:h,caps:c,data:g,canWrite:u,source:b,dossiers:f,doAnalyse:y,liveMemos:w,pipe:m}=K(),v=r==="client",k=p.useMemo(()=>n||(b!=="default"?qs():""),[n,b]),[E,S]=p.useState(""),[N,A]=p.useState(!1),[T,F]=p.useState(""),[O,D]=p.useState(""),[V,Q]=p.useState(""),[R,x]=p.useState(!1),[q,C]=p.useState(!1),[P,H]=p.useState([]);p.useEffect(()=>{const j=_=>{const B=_.detail;B&&H(Y=>[B,...Y].slice(0,8))};return window.addEventListener("ppmap:evalcard",j),()=>window.removeEventListener("ppmap:evalcard",j)},[]);const[G,Z]=p.useState(!1),[z,$]=p.useState(!1),[M,X]=p.useState(!1),U=p.useRef(!1),[ee,ue]=p.useState(""),[fe,ve]=p.useState(""),[me,we]=p.useState(!1),[ze,he]=p.useState(!1),[ke,ge]=p.useState(0),[ie,I]=p.useState(""),[ae,pe]=p.useState(null),[se,ne]=p.useState(null),[te,de]=p.useState(!1),[je,re]=p.useState(null),[Ae,ye]=p.useState(0),Be=p.useRef(!1),Ie=p.useRef(()=>{}),Ue=E.trim()?Pa.test(E.trim())?e.evalUrl:e.evalName:e.evalWaiting;p.useEffect(()=>{if(typeof window>"u")return;const j=new URLSearchParams(window.location.search),_=(j.get("rs")||"").trim(),B=(j.get("rstext")||"").trim();_&&/^https?:\/\//i.test(_)&&ue(_),B&&ve(B),(_&&/^https?:\/\//i.test(_)||B)&&Z(!0)},[]),p.useEffect(()=>{const j=_=>{const B=_.detail||{},Y=String(B.url||"").trim(),ce=String(B.text||"").trim(),le=Y&&/^https?:\/\//i.test(Y)?Y:"";le&&ue(le),ce&&ve(ce),(le||ce)&&(Z(!0),S(""),F(""),I(""),$(!1),we(!0),window.setTimeout(()=>we(!1),900),B.auto&&window.setTimeout(()=>{Ie.current({url:le,text:ce})},0))};return window.addEventListener("ppmap:research",j),()=>window.removeEventListener("ppmap:research",j)},[]),p.useEffect(()=>{const j=_=>{const B=_.detail||{},Y=String(B.name||"").trim();if(!Y)return;Z(!1),S(Y),F(Y);const ce=ht(String(B.website||B.domain||""));D(ce),Q(ht(String(B.url||""))),x(!ce),A(!0),window.setTimeout(()=>A(!1),900)};return window.addEventListener("ppmap:prefill",j),()=>window.removeEventListener("ppmap:prefill",j)},[]),p.useEffect(()=>{const j=(T||"").trim();if(!j||G||O){(O||!j||G)&&x(!1);return}const _=Ve(j),B=f.find(xe=>Ve(xe.name)===_)||f.find(xe=>{const Se=Ve(xe.name);return Se.length>=3&&(_.includes(Se)||Se.includes(_))}),Y=ht((B==null?void 0:B.website)||"")||ht((B==null?void 0:B.domain)||""),ce=ht((B==null?void 0:B.url)||"");if(ce&&Q(xe=>xe||ce),Y){D(Y),x(!1);return}let le=!0;return x(!0),Kn(j).then(xe=>{var Ee,at;if(!le)return;const Se=ht(xe.website||"")||ht(((at=(Ee=xe.candidates)==null?void 0:Ee[0])==null?void 0:at.url)||"");Se&&D(Se)}).catch(()=>{}).finally(()=>{le&&x(!1)}),()=>{le=!1}},[T,G,O,f]),p.useEffect(()=>{const j=_=>{var Y;const B=String(((Y=_.detail)==null?void 0:Y.url)||"").trim();ma(B)&&window.open(B,"_blank","noopener,noreferrer")};return window.addEventListener("ppmap:view",j),()=>window.removeEventListener("ppmap:view",j)},[]),p.useEffect(()=>{if(U.current===G)return;U.current=G,X(!0);const j=window.setTimeout(()=>X(!1),560);return()=>window.clearTimeout(j)},[G]),p.useEffect(()=>{if(typeof window>"u")return;const j=document.querySelector(".atl2 .eval-stick")||document.querySelector(".atl2 .demand"),_=document.querySelector(".atl2.ops, .atl2.cibles");if(!j||!_)return;const B=document.querySelector(".atl2 .live-stack"),Y=()=>{const le=parseFloat(window.getComputedStyle(j).top)||0,xe=j.getBoundingClientRect().top<=le+1;j.classList.toggle("is-stuck",xe),_.classList.toggle("url-stuck",xe);const Se=Math.round(j.getBoundingClientRect().height);_.style.setProperty("--demand-h",`${Se}px`);const Ee=window.matchMedia("(min-width: 861px)").matches;B&&Ee?_.style.setProperty("--pp-live-h",`${Math.round(B.getBoundingClientRect().height)}px`):_.classList.contains("cibles")?_.style.setProperty("--pp-live-h","0px"):_.style.removeProperty("--pp-live-h")};Y();const ce=new ResizeObserver(Y);return ce.observe(j),B&&ce.observe(B),window.addEventListener("scroll",Y,!0),window.addEventListener("resize",Y),()=>{ce.disconnect(),j.classList.remove("is-stuck"),_.classList.remove("url-stuck"),window.removeEventListener("scroll",Y,!0),window.removeEventListener("resize",Y)}},[b,N,me,q,G,M,R]),p.useEffect(()=>{if(!u&&!k){re(null);return}let j=!0;return(async()=>{const _=await Io({email:o,cbToken:k});j&&re(_.length)})(),()=>{j=!1}},[u,k,o,Ae]);const Gt=P.length?P:h,Re=g.credits,ot=p.useCallback(j=>{const _=kp(n,j);return C(!1),l({type:"ptab",tab:0}),requestAnimationFrame(()=>{const B=document.querySelector(".atl2 .desk-list .evalq, .atl2.cibles .desk-list");if(!B)return;const Y=window.scrollY+B.getBoundingClientRect().top-120;window.scrollTo({top:Math.max(0,Y),behavior:"smooth"})}),_},[n,l]);p.useEffect(()=>{if(!ze)return;ge(0);const j=window.setInterval(()=>ge(_=>_+1),1e3);return()=>window.clearInterval(j)},[ze]);const Ce=p.useMemo(()=>{const j=E.trim().toLowerCase();return!j||!m?null:f.find(_=>Ve(_.name)===j&&Le(_)===1)||null},[E,f,m]),it=()=>{const j=E.trim();if(j){if(Ce){y(Ce);return}i(null,j),v&&S("")}},Rt=(j,_,B,Y)=>{const ce=B.length?B:_,le=ot(ce)||0;Ep({title:(j.title||"").trim(),url:(j.source_url||"").trim(),cited:_,match:B,added:le,fallback:Y})},Qe=async j=>{var Y,ce,le;if(Be.current)return;const _=((j==null?void 0:j.url)??ee).trim().replace(/\s+/g,""),B=((j==null?void 0:j.text)??fe).trim();if(!_&&!B){I(e.rsNeed);return}if(!v&&!k){i(null,_||B.slice(0,80));return}Be.current=!0,I(""),pe(null),ne(null),he(!0);try{const xe=await Ts({url:_,text:B,email:o,cbToken:k});he(!1);const Se=Ke=>(Ke||[]).map(mt=>((mt==null?void 0:mt.name)||"").trim()).filter(Ci);if(!xe||xe.status!=="success"){const Ke=ar(B||(xe==null?void 0:xe.title)||"");if(Ke.length){const mt={status:"success",title:B||_,source_url:_,summary_md:e.rsNoteFallback,companies_cited:Ke.map(et=>({name:et})),prospective:{companies_to_evaluate:Ke.map(et=>({name:et}))}};I(""),pe(mt),Z(!1),Rt(mt,Ke,Ke,!0);return}pe(null),$(!0),I((xe!=null&&xe.message?xe.message+" — ":"")+e.rsNoteNone);return}pe(xe),Z(!1);const Ee=Se(xe.companies_cited),at=Se((Y=xe.prospective)==null?void 0:Y.companies_to_evaluate);Rt(xe,Ee,at,!1),ne({state:"pending"});const lt=await Fs(xe,{email:o,cbToken:k});ne(lt.ok?{state:"ok",scopeLabel:((ce=lt.summary)==null?void 0:ce.scope_label)||"",scope:((le=lt.summary)==null?void 0:le.scope)||""}:{state:"fail",msg:lt.error||""}),lt.ok&&ye(Ke=>Ke+1)}finally{Be.current=!1,he(!1)}};Ie.current=j=>{Qe(j)};const Nt=(se==null?void 0:se.state)==="pending",Ot=()=>{de(!0),requestAnimationFrame(()=>{var j;(j=document.querySelector(".atl2 .rsarch"))==null||j.scrollIntoView({block:"nearest",behavior:"smooth"})})},Dt=se&&(Nt?t.jsx("span",{className:"rslink pend",children:e.rsSaving}):se.state==="ok"?t.jsxs("button",{type:"button",className:"rslink ok",onClick:Ot,children:[se.scope&&se.scope!=="public"?e.rsSavedIn(se.scopeLabel||se.scope.replace(/^fund:/,"")):e.rsSaved," ",e.rsSavedOpen]}):t.jsx("span",{className:"rslink fail",title:se.msg,children:e.rsSaveFail})),wt=Rp(ae).length,Pe=G,st=(T||E).trim(),Ze=f.find(j=>Ve(j.name)===Ve(st)),St=ht(E)||O||ht((Ze==null?void 0:Ze.website)||"")||ht((Ze==null?void 0:Ze.domain)||""),zt=V||ht((Ze==null?void 0:Ze.url)||""),Mt=Ce?e.actAnalyse:st?e.evalGoOn(st.length>22?st.slice(0,21)+"…":st):e.evalGo,Yt=ze?`${Ls(ee.trim())==="youtube"&&ee.trim()?e.rsRunningVid:e.rsRunning} ${e.rsElapsed(ke)}`:Nt?e.rsSaving:e.rowExtract;return t.jsxs("div",{className:"demand"+(Pe?" rs-mode":"")+(T&&E.trim()===T||N||me?" pair":"")+(N||me||M?" echo":"")+(M?" swap":""),children:[t.jsxs("div",{className:"dhead",children:[t.jsx("h2",{children:Pe?a==="en"?"Extract companies from an article":"Extraire les sociétés d’un article":a==="en"?"Paste a URL and screen it":"Coller une URL et évaluer"}),t.jsx("span",{className:"dhint",children:Pe?a==="en"?"Paste an article or video URL — Stan lists the companies, then you pick which ones to screen.":"Collez l’URL d’un article ou d’une vidéo — Stan en sort les sociétés, vous choisissez lesquelles évaluer.":a==="en"?"A name is enough — Stan fills in the domain, the country and the sector, then runs the screen.":"Un nom suffit — Stan complète le domaine, le pays et le secteur, puis lance le crible."})]}),t.jsxs("div",{className:"drow"+((Pe?me:N)||M?" flash":"")+((Pe?ee.trim():Pa.test(E.trim()))?" has-url":""),children:[t.jsxs("span",{className:"dfield",children:[t.jsx("input",{value:Pe?ee:E,placeholder:Pe?e.rsUrlPh:e.evalPh,autoComplete:"off",maxLength:Pe?600:200,spellCheck:Pe?!1:void 0,inputMode:Pe?"url":void 0,onChange:j=>{if(Pe){ue(j.target.value);return}S(j.target.value),T&&j.target.value.trim()!==T&&(F(""),D(""),Q(""),x(!1))},onKeyDown:j=>{j.key==="Enter"&&(Pe?Qe():it())}}),t.jsx("span",{className:"detect"+(Pe?" off":"")+(Pa.test(E.trim())?" url":""),children:Ue})]}),t.jsx("span",{className:"dacts",children:Pe?t.jsxs(t.Fragment,{children:[t.jsxs("button",{type:"button",className:"evalbtn"+(ze?" loading":""),disabled:ze||Nt||!ee.trim()&&!fe.trim(),onClick:()=>{Qe()},children:[t.jsx("span",{className:"fill"}),t.jsx("span",{className:"elab",children:Yt})]}),t.jsxs("a",{className:"viewbtn"+(ma(ee)?"":" off"),href:ma(ee)?ee.trim():void 0,target:"_blank",rel:"noopener noreferrer",title:e.viewLinkHint,onClick:j=>{ma(ee)||j.preventDefault()},children:[t.jsx(Ip,{}),e.viewLink]})]}):t.jsxs(t.Fragment,{children:[t.jsxs(qt,{lang:a,storeKey:((Ce==null?void 0:Ce.name)||E).trim(),className:"evalbtn"+(Ce?" analyse":"")+(s?" loading":""),disabled:s,confirmLabel:Mt,onConfirm:it,children:[t.jsx("span",{className:"fill"}),t.jsx("span",{className:"elab",children:Mt})]}),t.jsxs("span",{className:"sitepair",children:[t.jsxs("a",{className:"viewbtn sm"+(R?" searching":St?"":" off"),href:St||void 0,target:"_blank",rel:"noopener noreferrer","aria-busy":R||void 0,title:R?e.viewSiteBusyHint:e.viewSiteHint,onClick:j=>{St||j.preventDefault()},children:[R&&t.jsx("span",{className:"sitespin","aria-hidden":"true"}),R?e.viewSiteBusy:e.viewSite,!R&&t.jsx("span",{className:"xwin","aria-hidden":"true",children:"↗"})]}),t.jsxs("a",{className:"viewbtn sm"+(zt?"":" off"),href:zt||void 0,target:"_blank",rel:"noopener noreferrer",title:e.viewSrcHint,onClick:j=>{zt||j.preventDefault()},children:[e.viewSrc,t.jsx("span",{className:"xwin","aria-hidden":"true",children:"↗"})]})]})]})}),c.showCredits&&Re&&b==="ops"&&t.jsxs("button",{type:"button",className:"credits"+(Re.total_available<=0&&!Re.unlimited?" empty":""),onClick:()=>l({type:"modal",modal:"recharge"}),children:[t.jsx("span",{className:"cl",children:e.creditsCap}),t.jsx("b",{children:Re.unlimited?"∞":Re.total_available}),!Re.unlimited&&t.jsxs("span",{className:"cm",children:["/ ",Re.daily_grant+Re.purchased]}),Re.total_available<=0&&!Re.unlimited?t.jsx("span",{className:"rc",children:e.creditsRecharge}):t.jsx("span",{className:"cd",children:e.creditsToday})]})]}),t.jsxs("div",{className:"dunder",children:[t.jsx("button",{type:"button",className:"dmulti",onClick:()=>{l({type:"ptab",tab:0}),C(!1),requestAnimationFrame(()=>{const j=document.querySelector(".atl2.cibles .desk-list");if(!j)return;const _=window.scrollY+j.getBoundingClientRect().top-110;window.scrollTo({top:Math.max(0,_),behavior:"smooth"})})},children:e.evalMulti}),t.jsx("button",{type:"button",className:"dmulti dsearch"+(G?" on":""),title:e.rsOpenHint,onClick:()=>Z(!G),children:e.rsOpen}),je!==null&&je>0&&t.jsx("button",{type:"button",className:"dmulti darch"+(te?" on":""),onClick:()=>{te?de(!1):Ot()},children:e.rsArchOpen(je)}),c.pipe&&!!n&&t.jsx(Ap,{pageToken:k,onAddNames:ot,onPanel:()=>{$(!1)}})]}),te&&t.jsx(Mp,{bump:Ae,cbToken:k,onClose:()=>de(!1),onEvaluate:j=>i(null,j),onAddAll:ot}),t.jsx("div",{className:"rsp slim"+(G?" on":" off"),"aria-hidden":!G,children:t.jsxs("div",{className:"rsp-in",children:[t.jsxs("button",{type:"button",className:"rspaste",tabIndex:G?void 0:-1,onClick:()=>$(j=>!j),children:[e.rsOr," · ",e.rsTextPh,t.jsx("i",{children:z?"▴":"▾"})]}),t.jsx("button",{type:"button",className:"dffold",tabIndex:G?void 0:-1,onClick:()=>{Z(!1),$(!1),I("")},children:e.feedFold}),z&&t.jsx("textarea",{className:"rstext",value:fe,placeholder:e.rsTextPh,tabIndex:G?void 0:-1,onChange:j=>ve(j.target.value)})]})}),ie&&t.jsxs("div",{className:"rserr",children:[ie,t.jsx("button",{type:"button",className:"eq-note-x",title:e.rsClose,onClick:()=>I(""),children:"×"})]}),ae&&t.jsxs("div",{className:"rscard",children:[t.jsxs("div",{className:"rsh",children:[t.jsx("b",{children:ae.title}),ae.source_url&&t.jsx("a",{href:ae.source_url,target:"_blank",rel:"noopener noreferrer",children:e.rsSource}),t.jsx("button",{type:"button",className:"rsx",title:e.rsClose,onClick:()=>{pe(null),ne(null)},children:"×"})]}),t.jsx(qi,{card:ae,onEvaluate:j=>i(null,j),onAddAll:ot}),t.jsxs("div",{className:"rsfoot",children:[t.jsx("span",{children:e.rsFound(wt)}),Dt]})]}),Gt.slice(0,1).map((j,_)=>{const B=j.verdict==="kept",Y=j.verdict==="quota",ce=j.verdict==="unresolved",le=B?"var(--brand)":Y?"var(--bolt)":ce?"var(--blue)":"var(--red)",xe=B?"var(--brand-l)":Y?"#FFF3D6":ce?"#EEF4FF":"#FDECEC";return t.jsxs("div",{className:"result on",style:{"--c":le,"--bgc":xe},children:[t.jsx("span",{className:"vv",children:t.jsx("span",{className:"vp",children:B?"✓ "+e.kept:Y?"⏳":ce?"❓ "+e.evalPickChip:"✗ "+e.dropped})}),j.name&&t.jsx("span",{className:"rn",children:j.name}),t.jsx("span",{className:"rr",children:j.reason?t.jsxs(t.Fragment,{children:[t.jsx("b",{children:e.why})," ",j.reason]}):null}),!!(j.candidates&&j.candidates.length)&&t.jsx("span",{className:"sitepick",children:j.candidates.map(Se=>t.jsxs("span",{className:"sp1",children:[t.jsxs("a",{href:Se.url.startsWith("http")?Se.url:`https://${Se.url}`,target:"_blank",rel:"nofollow noopener",children:[(Se.url||"").replace(/^https?:\/\/(www\.)?/,"").slice(0,34)," ↗"]}),t.jsx("button",{type:"button",onClick:()=>i(null,Se.url,j.name),children:e.evalPickGo})]},Se.url))}),!Y&&!ce&&t.jsx("button",{type:"button",className:"go",onClick:()=>{l({type:"ptab",tab:B?1:5});const Se=(j.name||"").trim().toLowerCase();window.setTimeout(()=>{const Ee=[...document.querySelectorAll(".atl2 .list .row")].find(at=>{var lt;return(((lt=at.querySelector(".rnm"))==null?void 0:lt.textContent)||"").trim().toLowerCase().includes(Se)});Ee&&(Ee.scrollIntoView({behavior:"smooth",block:"center"}),Ee.classList.add("flashrow"),window.setTimeout(()=>Ee.classList.remove("flashrow"),2200))},260)},children:e.seeSpace(B?e.statusKeep.replace("✅ ",""):e.statusDrop.replace("❌ ",""))})]},_)}),v&&(d.kept+d.dropped>0||Gt.length>0)&&t.jsxs("div",{className:"tally",children:[t.jsx("span",{dangerouslySetInnerHTML:{__html:e.session(d.kept,d.dropped)}})," ","·"," ",t.jsx("a",{onClick:()=>l({type:"modal",modal:"space"}),children:e.seeMySpace})]})]})}function _p(e){return e.replace(/<style[\s\S]*?<\/style>/gi,"").replace(/<[^>]+>/g," ").replace(/\s{2,}/g," ").trim()}function Bp(){const{st:e,dispatch:a,byId:r,t:n,lang:o,doDeep:i}=K(),d=e.memoConsole?r.get(e.memoConsole):null,l=p.useMemo(()=>d?[d.reasoning||"",_p(d.summary||"")].filter(Boolean).join(`
+
+`):"",[d]);if(!d)return null;const s=Ft(d),h=Yn(d);return t.jsx("div",{className:"demand",style:{paddingTop:0},children:t.jsxs("div",{className:"memo",style:{marginTop:0},children:[t.jsxs("div",{className:"mh",children:[t.jsx("span",{className:"nm",children:d.name}),s&&t.jsx("span",{className:"vv",children:s}),typeof d.score=="number"&&t.jsxs("span",{className:"vv",style:{background:"var(--panel3)",color:"var(--muted)"},children:[d.score,"/100"]}),t.jsx("span",{className:"sp"}),t.jsx("button",{type:"button",className:"x",onClick:()=>a({type:"memoConsole",id:null}),children:"×"})]}),t.jsx("div",{className:"tabs2",children:t.jsx("button",{type:"button","aria-selected":"true",children:n.memoSynth})}),t.jsx("div",{className:"mb2",children:l?l.split(`
+
+`).map((c,g)=>t.jsx("p",{style:{margin:"0 0 10px"},children:c},g)):t.jsx("p",{children:n.memoNone})}),t.jsxs("div",{className:"mf",children:[Lt(d)?t.jsxs(t.Fragment,{children:[t.jsx("span",{className:"t",children:n.memoDeepHint}),t.jsx(qt,{lang:o,storeKey:d.name,className:"deep",title:n.memoDeepHint,confirmLabel:n.memoDeep,onConfirm:()=>i(d),children:n.memoDeep})]}):t.jsx("span",{className:"t",children:h===2?n.critMemoKinds:""}),d.memoUrl&&t.jsx("a",{className:"go",href:d.memoUrl,target:"_blank",rel:"noopener noreferrer",style:{textDecoration:"none",display:"inline-flex",alignItems:"center"},children:n.memoOpenFull})]})]})})}function nr({name:e}){const{t:a,token:r,caps:n,mode:o,flashErr:i}=K(),[d,l]=p.useState(!1),[s,h]=p.useState(null),c=n.pipe&&o==="client"&&!n.lockActions,g=async()=>{if(!c||d)return;l(!0);const u=await Mo(r,e);if(l(!1),!u){i(a.actErr);return}h(u.results||[])};return p.useEffect(()=>{if(!c)return;const u=b=>{var y;const f=String(((y=b.detail)==null?void 0:y.name)||"").trim();f&&f.toLowerCase()===e.toLowerCase()&&g()};return window.addEventListener("ppmap:similar",u),()=>window.removeEventListener("ppmap:similar",u)},[e,c]),p.useEffect(()=>{if(c)try{const u=(sessionStorage.getItem("pp:similar")||"").trim();u&&u.toLowerCase()===e.toLowerCase()&&(sessionStorage.removeItem("pp:similar"),g())}catch{}},[e,c]),c?t.jsxs("div",{className:"simb",onClick:u=>u.stopPropagation(),children:[t.jsx("button",{type:"button",className:"abtn",disabled:d,onClick:()=>{g()},children:d?a.similarBusy:a.similar}),s&&(s.length===0?t.jsx("p",{className:"mnote",children:a.similarNone}):t.jsxs(t.Fragment,{children:[t.jsx("ul",{className:"siml",children:s.map(u=>t.jsxs("li",{children:[t.jsx("b",{className:u.verdict==="kept"?"ok":"ko",children:u.company}),u.reason&&t.jsx("span",{children:u.reason})]},u.company))}),t.jsx("p",{className:"mnote dim",children:a.similarNote})]}))]}):null}const $p=new Set(["b","strong","i","em","u","br","p","ul","ol","li","h4","h5"]),Fa=e=>e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");function wa(e){const a=(e||"").trim();return a?/^https?:\/\//i.test(a)?a:/^[a-z][a-z0-9+.-]*:/i.test(a)?"":`https://${a.replace(/^\/+/,"")}`:""}function Wn(e){const a=wa(e);if(!a)return"";try{return new URL(a).hostname.replace(/^www\./,"")}catch{return""}}function Up(e){const a=String(e||"");if(!a)return"";let r="",n=0;for(;n<a.length;){const o=a.indexOf("<",n);if(o<0){r+=Fa(a.slice(n));break}r+=Fa(a.slice(n,o));const i=a.indexOf(">",o);if(i<0){r+=Fa(a.slice(o));break}const d=a.slice(o+1,i).trim(),l=/^(\/?)([a-zA-Z0-9]+)/.exec(d),s=l?l[2].toLowerCase():"";l&&$p.has(s)?r+=`<${l[1]}${s}>`:r+=Fa(a.slice(o,i+1)),n=i+1}return r}const Hp=new Set(["script","noscript","style","link","iframe","object","embed","form","input","select","textarea","button","meta","base","dialog","svg","math","template","video","audio","source"]),yo={"*":new Set(["class","style","title","colspan","rowspan"]),img:new Set(["src","alt","width","height"]),a:new Set(["href"])};function Li(e){var r;const a=Array.from(e.children);for(const n of a){const o=n.tagName.toLowerCase();if(Hp.has(o)){n.remove();continue}for(const d of Array.from(n.attributes)){const l=d.name.toLowerCase();(!(yo["*"].has(l)||((r=yo[o])==null?void 0:r.has(l)))||l.startsWith("on"))&&n.removeAttribute(d.name)}const i=n.getAttribute("style")||"";if(i&&/position\s*:\s*(fixed|sticky)/i.test(i))n.removeAttribute("style");else if(i){const d=i.split(";").filter(l=>l.trim()&&!/^\s*(font-size|font-family|line-height|font)\s*:/i.test(l)).join(";");d!==i&&(d?n.setAttribute("style",d):n.removeAttribute("style"))}if(o==="a"){const d=(n.getAttribute("href")||"").trim();/^(https?:|mailto:)/i.test(d)?(n.setAttribute("target","_blank"),n.setAttribute("rel","noopener noreferrer")):n.removeAttribute("href")}if(o==="img"){const d=(n.getAttribute("src")||"").trim();if(!/^https?:/i.test(d)){n.remove();continue}n.setAttribute("loading","lazy")}Li(n)}}function _a(e){const a=e.cloneNode(!0);return Li(a),a.querySelectorAll("[id]").forEach(r=>r.removeAttribute("id")),a.removeAttribute("id"),a.innerHTML}const Vp={swot:null,summary:"",syn:"",pnl:"",cf:"",roi:"",reco:"",plan:"",pruned:[]},Wp=/chiffre|revenu|revenue|\barr\b|ebitda|marge|gross|fcf|free cash|net|total|r[ée]sultat|cash|capex|nopat|moic|irr|\btri\b|roi|entry|\bev\b|invested|synerg/i,Gp=[["syn",/synerg/i],["pnl",/compte de r[ée]sultat|p\s*&\s*l|profit\s*(?:and|&)\s*loss|income statement/i],["cf",/flux de tr[ée]sorerie|cash\s*-?\s*flow/i],["roi",/\broi\b|return on investment|retour sur investissement/i],["reco",/verdict post|post[- ]model verdict|conviction quantitative/i]];function Ht(e){return String(e||"").replace(/<script[\s\S]*?<\/script>/gi," ").replace(/<style[\s\S]*?<\/style>/gi," ").replace(/<[^>]+>/g," ").replace(/&nbsp;/gi," ").replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&#39;|&apos;/g,"'").replace(/&quot;/g,'"').replace(/\s+/g," ").trim()}function Ti(e,a){const r=e.slice(a),n=/<div\b|<\/div\s*>/gi;let o=0,i;for(;i=n.exec(r);)if(i[0][1]!=="/")o+=1;else if(o-=1,o===0)return e.slice(a,a+i.index+i[0].length);return""}function xn(e,a){const n=new RegExp(`<div\\b[^>]*\\bid="${a.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}"`,"i").exec(e);return n?Ti(e,n.index):""}function Yp(e,a=14){const r=e.match(/<tr\b[\s\S]*?<\/tr\s*>/gi)||[];if(r.length<=a)return{html:e,pruned:!1};const n=[];for(let d=0;d<r.length-1;d+=1){const l=r[d],s=/<t[dh]\b[^>]*>([\s\S]*?)<\/t[dh]\s*>/i.exec(l),h=s?Ht(s[1]):"";if((d<2||/<th/i.test(l)||Wp.test(h))&&n.push(l),n.length>=a-1)break}n.push(r[r.length-1]);const o=n.length<3?r.slice(0,a):n;return{html:(/^\s*<table\b[^>]*>/i.exec(e)||["<table>"])[0]+o.join("")+"</table>",pruned:!0}}function Qp(e,a=14){let r=!1;return{html:e.replace(/<table\b[\s\S]*?<\/table\s*>/gi,o=>{const i=Yp(o,a);return r=r||i.pruned,i.html}),pruned:r}}function Kp(e){const a={s:[],w:[],o:[],t:[]},r=[["s","s-green"],["w","s-red"],["o","s-blue"],["t","s-orange"]];for(const[n,o]of r){const i=new RegExp(`<div\\b[^>]*class="[^"]*swot-item[^"]*\\b${o}\\b[^"]*"`,"i").exec(e);if(!i)return null;const d=Ti(e,i.index);let l=(d.match(/<li\b[^>]*>([\s\S]*?)<\/li\s*>/gi)||[]).map(s=>Ht(s));if(!l.length){const s=/<p\b[^>]*>([\s\S]*?)<\/p\s*>/i.exec(d);s&&(l=[Ht(s[1])])}if(l=l.filter(s=>s&&!/not available/i.test(s)&&!/non disponible/i.test(s)).map(s=>s.slice(0,260)).slice(0,4),!l.length)return null;a[n]=l}return a}function Jp(e){const a=e.search(/id=["']company-summary["']/i);if(a<0)return"";const r=e.slice(a,a+9e3),n=/(?:EN R[ÉE]SUM[ÉE]|EN QUELQUES MOTS|IN SUMMARY|IN A FEW WORDS|IN A NUTSHELL|TL;DR)[\s:]*(?:<\/?span[^>]*>[\s:]*)*([\s\S]+?)(?=<br|<hr|<\/div|<h[23]|⚠|✅|🚀|❓|$)/i.exec(r);return n?Ht(n[1]).slice(0,600):""}function Xp(e,a,r){if(r<0)return"";const n=/<h3\b[^>]*>([\s\S]*?)<\/h3\s*>/gi;n.lastIndex=r;let o;for(;o=n.exec(e);){if(!a.test(Ht(o[1])))continue;const i=/<h3\b[^>]*>/i.exec(e.slice(o.index+o[0].length));return i?e.slice(o.index,o.index+o[0].length+i.index):e.slice(o.index,Math.min(e.length,o.index+o[0].length+6e4))}return""}function ko(e){let a=e.replace(/^\s*<div\b[^>]*>/i,"").replace(/<\/div\s*>\s*$/i,"");return a=a.replace(/<h2\b[^>]*class="[^"]*section-title[^"]*"[^>]*>[\s\S]*?<\/h2\s*>/gi,""),a=a.replace(/<details\b[\s\S]*?<\/details\s*>/gi,""),a.trim()}function bn(e,a){if(e.length<=a)return e;const r=e.slice(0,a),n=r.lastIndexOf(">");return n>=0?r.slice(0,n+1):r}function Zp(e){const a={...Vp,pruned:[]};if(!e)return a;try{const n=xn(e,"swot");n&&(a.swot=Kp(n))}catch{}try{a.summary=Jp(e)}catch{}try{const n=xn(e,"action-plan");if(n){const o=ko(n);a.plan=bn(o,12e3)}}catch{}const r=e.search(/id=["']financial-forecast["']/i);for(const[n,o]of Gp)try{let i=Xp(e,o,r);if(!i)continue;const d=Qp(i);i=bn(d.html,45e3),Ht(i)&&(a[n]=i,d.pruned&&a.pruned.push(n))}catch{}if(!a.reco)try{const n=xn(e,"conviction");if(n){const o=bn(ko(n),8e3);Ht(o)&&(a.reco=o)}}catch{}return a}function ec(e){return e?!!(e.swot||e.summary||e.syn||e.pnl||e.cf||e.roi||e.reco||e.plan):!1}const vn=new Map;function Fi(e){const a=(e||"").trim();if(!/^https?:/i.test(a))return Promise.resolve(null);let r=vn.get(a);return r||(r=tc(a).catch(()=>null),r.then(n=>{n||vn.delete(a)}),vn.set(a,r)),r}async function tc(e){var u,b;const a=await fetch(e,{credentials:"omit"});if(!a.ok)return null;const r=await a.text(),n=new DOMParser().parseFromString(r,"text/html"),o=f=>{var y;return(((y=n.querySelector(f))==null?void 0:y.textContent)||"").trim()},i=n.querySelector(".sb-score"),d=((u=Array.from((i==null?void 0:i.classList)||[]).find(f=>f.startsWith("sb-score-")))==null?void 0:u.slice(9))||"",l=[];let s=null;const h=Array.from(n.querySelectorAll(".sidebar .sb-nav-heading, .sidebar a.nav-item"));for(const f of h){if(f.classList.contains("sb-nav-heading")){s={label:(f.textContent||"").trim(),items:[]},l.push(s);continue}const y=f.getAttribute("href")||"";if(!y.startsWith("#"))continue;const w=y.slice(1),m=nc(n,w);m&&(s||(s={label:"",items:[]},l.push(s)),s.items.push({id:w,title:(f.textContent||"").trim(),html:m,poids:m.length}))}const c=((b=/\/([a-z0-9-]+)-v2(?:\.html)?\/?$/i.exec(e))==null?void 0:b[1])||"",g={score:o(".sb-score"),scoreTone:d,tags:Array.from(n.querySelectorAll(".sb-tag")).map(f=>(f.textContent||"").trim()).filter(Boolean),name:o(".sidebar-company-name"),tagline:o(".sidebar-tagline"),desc:o(".meta-desc"),groups:l.filter(f=>f.items.length),mindmapSlug:n.querySelector(".cm-mindmap-png")?c:"",comite:ac(n,Zp(r))};return g.groups.length?g:null}function ac(e,a){const r=n=>{if(!n)return"";const o=e.createElement("div");return o.innerHTML=n,_a(o)};return{...a,syn:r(a.syn),pnl:r(a.pnl),cf:r(a.cf),roi:r(a.roi),reco:r(a.reco),plan:r(a.plan)}}const Eo={"fiche-contact":"[data-ct-card]","fiche-attaque":"[data-ct-card]"};function nc(e,a){const r=e.getElementById(a),n=r?jo(e,r):"";if(n)return n;const o=Eo[a]?e.querySelector(Eo[a]):null;return o&&o!==r?jo(e,o):""}function jo(e,a){var r,n;if(a.classList.contains("section-container")){const o=a.cloneNode(!0);return(r=o.querySelector("h2.section-title"))==null||r.remove(),_a(o)}if(/^h\d$/i.test(a.tagName)){const o=e.createElement("div"),i=Array.from(((n=a.parentElement)==null?void 0:n.children)||[]);if(i.filter(s=>/^h3$/i.test(s.tagName))[0]===a)for(const s of i){if(s===a)break;/^h2$/i.test(s.tagName)||o.appendChild(s.cloneNode(!0))}let l=a.nextElementSibling;for(;l&&!/^h3$/i.test(l.tagName);)o.appendChild(l.cloneNode(!0)),l=l.nextElementSibling;return o.children.length?_a(o):""}return _a(a)}const wn=(e,a)=>{const r=String(e||"").slice(0,10);return/^\d{4}-\d{2}-\d{2}$/.test(r)?a==="en"?r:`${r.slice(8,10)}/${r.slice(5,7)}/${r.slice(0,4)}`:""};function Ye({k:e,v:a,href:r,wide:n}){return a==null||a===""?null:t.jsxs("div",{className:"cdl"+(n?" cdw":""),children:[t.jsx("span",{className:"cdk",children:e}),r?t.jsx("a",{className:"cdv",href:r,target:"_blank",rel:"noopener noreferrer",children:String(a)}):t.jsx("span",{className:"cdv",children:String(a)})]})}function rc({k:e,vals:a}){const r=(a||[]).filter(Boolean);return r.length?t.jsxs("div",{className:"cdl cdw",children:[t.jsx("span",{className:"cdk",children:e}),t.jsx("span",{className:"cdtags",children:r.map(n=>t.jsx("span",{className:"cdtag",children:n},n))})]}):null}function No(e){return e.replace(/<style[\s\S]*?<\/style>/gi,"").replace(/<[^>]+>/g," ").replace(/\s{2,}/g," ").trim()}function So({v:e,sur:a,k:r}){const n=e>=80?"green":e>=55?"blue":e>=35?"amber":"red";return t.jsxs("span",{className:`md-score md-${n}`,title:r,children:[Math.round(e*10)/10,a?`/${a}`:""]})}const yn=new Map;function oc(e,a){const{token:r}=K(),[n,o]=p.useState(null);return p.useEffect(()=>{if(!a||!r||!e.name)return;const i=`${r}:${e.id}:${e.checkId||""}`;let d=yn.get(i);d||(d=Rs(r,e.name,e.checkId),yn.set(i,d),d.then(s=>{(!s||!s.reasoning&&!s.summaryHtml)&&yn.delete(i)}));let l=!0;return d.then(s=>{l&&s&&o({id:e.id,d:s})}),()=>{l=!1}},[a,r,e.id,e.name,e.checkId]),n&&n.id===e.id?n.d:null}const ic=6e4;function sc({o:e}){const{t:a,lang:r,doDeep:n}=K(),[o,i]=p.useState(null),[d,l]=p.useState(e.memoUrl?"load":"off"),[s,h]=p.useState(()=>new Set),[c,g]=p.useState(!1),u=p.useRef(new Map);p.useEffect(()=>{let m=!0;if(h(new Set),g(!1),u.current=new Map,!e.memoUrl){l("off"),i(null);return}return l("load"),i(null),Fi(e.memoUrl).then(v=>{m&&(i(v),l(v?"ok":"err"))}),()=>{m=!1}},[e.memoUrl]);const b=Ft(e),f=m=>{var v;return(v=u.current.get(m))==null?void 0:v.scrollIntoView({behavior:"smooth",block:"start"})},y=t.jsxs("div",{className:"cdacts",children:[Lt(e)&&t.jsx(qt,{lang:r,storeKey:e.name,className:"md-deep-txt",title:a.memoDeepHint,confirmLabel:a.memoDeep,onConfirm:()=>n(e),children:a.memoDeep}),e.memoPdfUrl&&t.jsx("a",{className:"btn d",href:e.memoPdfUrl,target:"_blank",rel:"noopener noreferrer",onClick:m=>m.stopPropagation(),children:"PDF ↗"})]}),w=e.memoUrl?t.jsx("a",{className:"btn p mdfull",href:e.memoUrl,target:"_blank",rel:"noopener noreferrer",onClick:m=>m.stopPropagation(),children:a.memoOpenFull}):null;if(d==="off"){const m=[e.reasoning||"",No(e.summary||"")].filter(Boolean);return t.jsxs("div",{className:"cdmemo",children:[m.length?m.join(`
+
+`).split(`
+
+`).map((v,k)=>t.jsx("p",{className:"cdtxt",children:v},k)):t.jsx("p",{className:"cdtxt",children:a.memoNone}),y,w]})}if(d!=="ok"){const m=[e.reasoning||"",No(e.summary||"")].filter(Boolean);return t.jsxs("div",{className:"cdmemo",children:[b&&t.jsxs("div",{className:"cdv1 memo",children:[t.jsx("b",{children:b}),t.jsx("span",{className:"cdw",children:a.cdMemo(e.memoType||"")})]}),t.jsx("p",{className:"mnote dim",children:d==="load"?a.memoLoading:a.memoLoadErr}),m.length>0&&m.join(`
+
+`).split(`
+
+`).map((v,k)=>t.jsx("p",{className:"cdtxt",children:v},k)),d==="err"&&e.memoUrl&&t.jsx("div",{className:"cdacts",children:t.jsx("button",{type:"button",className:"btn b",onClick:v=>{v.stopPropagation(),g(k=>!k)},children:c?a.memoHideHere:a.memoReadHere})}),c&&e.memoUrl&&t.jsx("iframe",{className:"cdembed",src:e.memoUrl,loading:"lazy",title:a.cdMemoTab,referrerPolicy:"no-referrer-when-downgrade",onClick:v=>v.stopPropagation()}),y,w]})}return t.jsxs("div",{className:"cdmemo memodoc",children:[b&&t.jsxs("div",{className:"cdv1 memo",children:[t.jsx("b",{children:b}),t.jsx("span",{className:"cdw",children:a.cdMemo(e.memoType||"")})]}),t.jsxs("div",{className:"md-head",children:[o.score&&t.jsx("span",{className:"md-score"+(o.scoreTone?` md-${o.scoreTone}`:""),children:o.score}),o.tags.map(m=>t.jsx("span",{className:"md-tag",children:m},m)),o.tagline&&t.jsx("p",{className:"md-tagline",children:o.tagline})]}),t.jsx("div",{className:"md-toc",children:o.groups.map(m=>m.items.map(v=>t.jsx("button",{type:"button",className:"md-jump",onClick:k=>{k.stopPropagation(),f(v.id)},children:v.title},v.id)))}),o.groups.map((m,v)=>t.jsxs("div",{className:"md-grp",children:[m.label&&t.jsx("div",{className:"md-grp-h",children:m.label}),m.items.map(k=>{const E=k.poids>ic&&!s.has(k.id),S=k.id==="fiche-contact"||k.id==="fiche-attaque";return t.jsxs("section",{className:"md-sec",ref:N=>{N&&u.current.set(k.id,N)},children:[t.jsx("h4",{className:"md-h",children:k.title}),S&&(e.contactName||e.contactEmail||e.contactLinkedin)&&t.jsxs("div",{className:"md-ctc",children:[t.jsx("span",{className:"cdk",children:a.mdContactKnown}),e.contactName&&t.jsx("b",{children:e.contactName}),e.contactEmail&&t.jsx("a",{href:`mailto:${e.contactEmail}`,onClick:N=>N.stopPropagation(),children:e.contactEmail}),e.contactLinkedin&&t.jsx("a",{href:e.contactLinkedin,target:"_blank",rel:"noopener noreferrer",onClick:N=>N.stopPropagation(),children:"LinkedIn"})]}),E?t.jsx("button",{type:"button",className:"abtn md-more",onClick:N=>{N.stopPropagation(),h(A=>new Set(A).add(k.id))},children:a.memoUnfold(Math.round(k.poids/1024))}):t.jsx("div",{className:"md-body",dangerouslySetInnerHTML:{__html:S?k.html.replace(/>\s*unavailable(\s+unavailable)*\s*</gi,"><"):k.html}}),!E&&o.mindmapSlug&&k.html.includes("cm-mindmap-png")&&t.jsxs(t.Fragment,{children:[t.jsx("h4",{className:"md-h md-mm-h",children:a.mdMindmap(o.name||e.name)}),t.jsx("iframe",{className:"md-mm",loading:"lazy",title:a.mdMindmap(o.name||e.name),src:`${ka}/cibles/mindmap-view?slug=${encodeURIComponent(o.mindmapSlug)}`,onClick:N=>N.stopPropagation()})]})]},k.id)})]},m.label||v)),y,w]})}function lc({o:e}){const{t:a,token:r,caps:n,canWrite:o,flash:i,flashErr:d,lang:l}=K(),[s,h]=p.useState(!1),[c,g]=p.useState(!1),[u,b]=p.useState(!1),[f,y]=p.useState(null),[w,m]=p.useState(""),[v,k]=p.useState(null),[E,S]=p.useState(""),N={airtableId:e.airtableId,checkId:e.checkId},A=!!(e.airtableId||e.checkId),T=f&&f.id===e.id?f.entries:[],F=!!f&&f.id===e.id;if(p.useEffect(()=>{m(""),k(null),b(!1)},[e.id]),p.useEffect(()=>{if(!s||F||!A||!o)return;let D=!0;g(!0),b(!1);const V=e.id;return wr(r,"list",N).then(Q=>{if(!(!D||V!==e.id)){if(g(!1),!Q.ok){b(!0);return}y({id:V,entries:Q.entries})}}),()=>{D=!1}},[s,F,A,r,e.id,o]),!n.pipe||!o||!A)return null;const O=(D,V)=>{g(!0);const Q=e.id;wr(r,D,N,V).then(R=>{if(Q===e.id){if(g(!1),!R.ok){d(a.notesErr);return}y({id:Q,entries:R.entries}),b(!1),D==="add"&&(m(""),i(a.notesAdded)),D==="edit"&&k(null)}})};return t.jsxs("div",{className:"dnotes",children:[t.jsxs("button",{type:"button",className:"dn-h","aria-expanded":s,onClick:D=>{D.stopPropagation(),h(V=>!V)},children:[t.jsx("b",{children:a.notesT}),T.length>0&&t.jsx("span",{className:"dn-n",children:a.notesCount(T.length)}),t.jsx("i",{children:s?"▾":"▸"})]}),s&&t.jsxs("div",{className:"dn-b",onClick:D=>D.stopPropagation(),children:[t.jsx("p",{className:"mnote dim",children:a.notesHint}),c&&!T.length&&t.jsx("p",{className:"mnote",children:a.notesLoading}),u&&t.jsx("p",{className:"mnote warn",children:a.notesErr}),!c&&!u&&F&&!T.length&&t.jsx("p",{className:"mnote dim",children:a.notesEmpty}),T.map(D=>t.jsxs("div",{className:"dn-e",children:[t.jsx("span",{className:"dn-d",children:l==="fr"?D.date.split("-").reverse().join("/"):D.date}),v===D.id?t.jsxs(t.Fragment,{children:[t.jsx("textarea",{maxLength:4e3,value:E,rows:3,onChange:V=>S(V.target.value)}),t.jsxs("div",{className:"dn-a",children:[t.jsx("button",{type:"button",className:"abtn",disabled:c||!E.trim(),onClick:()=>O("edit",{entryId:D.id,text:E.trim()}),children:a.notesSave}),t.jsx("button",{type:"button",className:"lk",onClick:()=>k(null),children:a.notesCancel})]})]}):t.jsxs(t.Fragment,{children:[t.jsx("p",{className:"dn-t",children:D.text}),o&&t.jsxs("div",{className:"dn-a",children:[t.jsx("button",{type:"button",className:"lk",onClick:()=>{k(D.id),S(D.text)},children:a.notesEdit}),t.jsx("button",{type:"button",className:"lk",disabled:c,onClick:()=>{window.confirm(a.notesDelAsk)&&O("delete",{entryId:D.id})},children:a.notesDel})]})]})]},D.id)),o&&t.jsxs("div",{className:"dn-new",children:[t.jsx("textarea",{maxLength:4e3,rows:2,placeholder:a.notesPh,value:w,onChange:D=>m(D.target.value)}),t.jsx("button",{type:"button",className:"abtn",disabled:c||!w.trim(),onClick:()=>O("add",{text:w.trim()}),children:a.notesAdd})]})]})]})}function rr({o:e}){var S;const{t:a,lang:r,dispatch:n,caps:o,canWrite:i,doRegen:d}=K(),l=Ea(e),s=Ft(e),h=(e.cribleStatus||"").trim().toUpperCase()||(l==="NO MATCH"?"NO MATCH":l==="MATCH"?"MATCH":""),c=[e.sector,e.market,(e.tags||[]).filter(Boolean).length?"1":"",e.stage,e.countryLabel,e.city,e.website,e.domain,e.linkedinCompany,e.angle,e.provQuery,Wn(e.provUrl||""),$a(e),e.date].filter(Boolean).length,g=[e.contactName,e.contactEmail,e.contactLinkedin,e.contactPhone].filter(Boolean).length,u=[e.ceoStatus,e.ceoNote,o.pipe?e.memoUrl:"",o.pipe?e.memoPdfUrl:""].filter(Boolean).length+(typeof e.engagement=="number"&&e.engagement>0?1:0)+(i&&o.pipe&&(e.airtableId||e.checkId)?1:0),b=p.useMemo(()=>[{k:"eval",lib:a.cdEvaluation,n:(h?1:0)+(e.reasoning?1:0)+(o.pipe&&!o.lockActions&&!e.memoUrl?1:0)+(typeof e.engagement=="number"&&e.engagement>0?1:0)},{k:"conv",lib:a.cdConviction,n:(s?1:0)+(e.summary?1:0)+(typeof e.convictionScore=="number"?1:0)},{k:"memo",lib:a.cdMemoTab,n:e.memoUrl||e.summary||Lt(e)?1:0},{k:"soc",lib:a.cdSociete,n:c},{k:"ctc",lib:a.cdContact,n:g},{k:"suivi",lib:a.cdSuivi,n:u}].filter(N=>N.n>0),[e,a,o,h,s,c,g,u]),[f,y]=p.useState(""),w=b.some(N=>N.k===f)?f:((S=b[0])==null?void 0:S.k)||"";p.useEffect(()=>{const N=A=>{var F;const T=String(((F=A.detail)==null?void 0:F.tab)||"");T&&b.some(O=>O.k===T)&&y(T)};return window.addEventListener("ppmap:card-tab",N),()=>window.removeEventListener("ppmap:card-tab",N)},[b]);const m=oc(e,w==="eval"||w==="conv");if(!b.length)return null;const v=((m==null?void 0:m.reasoning)||"").length>(e.reasoning||"").length?m.reasoning:e.reasoning||"",k=((m==null?void 0:m.summaryHtml)||"").length>(e.summary||"").length?m.summaryHtml:e.summary||"",E=(m==null?void 0:m.convictionScore)??e.convictionScore;return t.jsxs("div",{className:"cdtabs",children:[t.jsx("div",{className:"cdnav",role:"tablist",children:b.map(N=>t.jsx("button",{type:"button",role:"tab","aria-selected":w===N.k,"data-tour":"tab-"+N.k,className:w===N.k?"on":"",onClick:A=>{A.stopPropagation(),y(N.k)},children:N.lib},N.k))}),t.jsxs("div",{className:"cdbody",onClick:N=>N.stopPropagation(),children:[w==="eval"&&t.jsxs(t.Fragment,{children:[h&&t.jsxs("div",{className:"cdv1"+(h==="NO MATCH"?" out":""),children:[t.jsx("b",{children:h==="NO MATCH"?a.vOut:a.vKept}),t.jsx("span",{className:"cdw",children:a.cdCrible})]}),t.jsxs("div",{className:"md-head evalhead",children:[typeof e.score=="number"&&t.jsx(So,{v:e.score,sur:100,k:a.cdScore}),typeof e.engagement=="number"&&e.engagement>0&&t.jsxs("span",{className:"md-score md-amber",title:a.cdEngagementHint,children:[e.engagement>=20?"🔥 ":"",a.cdEngagement," ",Math.round(e.engagement*10)/10]}),e.angle&&t.jsx("span",{className:"md-tag",children:e.angle})]}),v&&v.split(`
+
+`).map((N,A)=>t.jsx("p",{className:"cdtxt",children:N},A)),typeof e.engagement=="number"&&e.engagement>0&&t.jsx("p",{className:"mnote dim",children:a.cdEngagementHint}),o.pipe&&!o.lockActions&&!e.memoUrl&&t.jsx(dc,{o:e})]}),w==="conv"&&t.jsxs(t.Fragment,{children:[s&&t.jsxs("div",{className:"cdv1 memo",children:[t.jsx("b",{children:s}),t.jsx("span",{className:"cdw",children:a.cdMemo(e.memoType||"")})]}),t.jsxs("div",{className:"md-head evalhead",children:[typeof E=="number"&&t.jsx(So,{v:E,sur:100,k:a.cdConvScore}),wn(e.verdictDate,r)&&t.jsxs("span",{className:"md-tag",children:[a.cdVerdictDate," ",wn(e.verdictDate,r)]})]}),k&&t.jsx("div",{className:"cdrich convrich",dangerouslySetInnerHTML:{__html:Up(k)}})]}),w==="memo"&&t.jsx(sc,{o:e}),w==="soc"&&t.jsxs("div",{className:"cdgrid",children:[t.jsx(Ye,{k:a.cdSector,v:e.sector}),t.jsx(Ye,{k:a.cdMarket,v:e.market,wide:!0}),t.jsx(rc,{k:a.cdTags,vals:e.tags}),t.jsx(Ye,{k:a.cdStage,v:e.stage}),t.jsx(Ye,{k:a.cdCountry,v:[e.city,e.countryLabel].filter(Boolean).join(", ")}),t.jsx(Ye,{k:a.cdSite,v:e.domain||e.website,href:e.website||void 0}),t.jsx(Ye,{k:a.cdLinkedin,v:e.linkedinCompany?"LinkedIn":"",href:e.linkedinCompany}),t.jsx(Ye,{k:a.cdAngle,v:e.angle}),t.jsx(Ye,{k:a.cdDetected,v:wn(e.date,r)}),t.jsx(Ye,{k:a.cdQuery,v:e.provQuery,wide:!0}),t.jsx(Ye,{k:a.cdSrc,v:Wn(e.provUrl||""),href:wa(e.provUrl||"")}),t.jsx(Ye,{k:a.cdAngleSrc,v:$a(e)})]}),w==="ctc"&&t.jsxs("div",{className:"cdgrid",children:[t.jsx(Ye,{k:a.cdName,v:e.contactName}),t.jsx(Ye,{k:a.cdEmail,v:e.contactEmail,href:e.contactEmail?`mailto:${e.contactEmail}`:void 0}),t.jsx(Ye,{k:a.cdLinkedin,v:e.contactLinkedin?"LinkedIn":"",href:e.contactLinkedin}),t.jsx(Ye,{k:a.cdPhone,v:e.contactPhone,href:e.contactPhone?`tel:${e.contactPhone.replace(/[^+0-9]/g,"")}`:void 0})]}),w==="suivi"&&t.jsxs(t.Fragment,{children:[t.jsx("div",{className:"cdgrid",children:t.jsx(Ye,{k:a.cdCeoStatus,v:e.ceoStatus})}),typeof e.engagement=="number"&&e.engagement>0&&t.jsxs(t.Fragment,{children:[t.jsx("div",{className:"md-head evalhead",children:t.jsxs("span",{className:"md-score md-amber",children:[e.engagement>=20?"🔥 ":"",a.cdEngagement," ",Math.round(e.engagement*10)/10]})}),t.jsx("p",{className:"mnote dim",children:a.cdEngagementHint})]}),e.ceoNote&&t.jsxs("p",{className:"cdtxt",children:["💬 ",e.ceoNote]}),t.jsx(lc,{o:e}),o.pipe&&(e.memoUrl||e.memoPdfUrl)&&t.jsxs("div",{className:"cdacts",children:[e.memoUrl&&t.jsxs("button",{type:"button",className:"abtn",onClick:()=>n({type:"memoConsole",id:e.id}),children:[a.actMemoOf(e.memoType)," →"]}),e.memoPdfUrl&&t.jsx("a",{className:"abtn",href:e.memoPdfUrl,target:"_blank",rel:"noopener noreferrer",children:"PDF ↗"}),i&&e.memoUrl&&t.jsx("button",{type:"button",className:"abtn",onClick:()=>d(e),children:a.actRegen})]})]})]})]})}const Ra=new Map;function dc({o:e}){const{t:a,token:r}=K(),[n,o]=p.useState(!1),[i,d]=p.useState(null);p.useEffect(()=>{if(!r||!e.name)return;const g=`${r}:${e.name.toLowerCase()}`;let u=Ra.get(g);u||(u=Po(r,[e.name]).then(f=>f[e.name]||Object.values(f)[0]||null).catch(()=>null),Ra.set(g,u),u.then(f=>{(!f||!f.ok)&&Ra.delete(g)}));let b=!0;return u.then(f=>{b&&f&&f.ok&&d(f)}),()=>{b=!1}},[r,e.id,e.name]);const l=async()=>{if(n)return;o(!0);const g=await Oo(r,e.name,e.website||e.domain||"");d(g),g.ok&&Ra.set(`${r}:${e.name.toLowerCase()}`,Promise.resolve(g)),o(!1)},s=(i==null?void 0:i.blocs)||{},h=[[a.qaVP,s.value_prop],[a.qaProduct,s.produit],[a.qaModel,s.modele],[a.qaSummary,s.synthese]],c=h.some(([,g])=>g);return t.jsxs("div",{className:"qab",children:[!i&&t.jsxs(t.Fragment,{children:[t.jsx("p",{className:"mnote dim",children:a.qaHint}),t.jsx("button",{type:"button",className:"abtn",disabled:n,onClick:()=>{l()},children:n?a.qaBusy:a.qaRun})]}),i&&c&&t.jsxs(t.Fragment,{children:[h.filter(([,g])=>g).map(([g,u])=>t.jsxs("div",{className:"qal",children:[t.jsx("span",{className:"qak",children:g}),t.jsx("p",{children:u})]},g)),!!(i.pages||[]).length&&t.jsx("p",{className:"mnote dim",children:a.qaSources((i.pages||[]).length)})]}),i&&!c&&t.jsx("p",{className:"mnote warn",children:i.quota?a.qaQuota:a.qaEmpty})]})}const pc=1200,cc=675;function uc(e){return e.classList.contains("f-li")?{w:1080,h:1350}:{w:pc,h:cc}}function Oa(e){const a=e.firstElementChild;if(!a)return;a.style.maxWidth="none";const r=e.clientWidth;if(!r)return;const{w:n,h:o}=uc(a),i=r/n;a.style.transformOrigin="top left",a.style.transform=`scale(${i})`,e.style.height=`${Math.round(o*i)}px`,e.style.overflow="hidden"}let kn=null;const En="pp-article-style";let ia=null;function mc(){if(typeof document>"u"||document.getElementById(En))return Promise.resolve();if(ia)return ia;const e=r=>fetch(r).then(n=>n.ok?n.text():""),a=r=>Promise.all([e(`${r}/article.css`).catch(()=>""),e(`${r}/social-card.css`).catch(()=>"")]).then(([n,o])=>n||o?`${o}
+${n}`:"");return ia=a("").then(r=>r||a("https://proplace.co")).then(r=>{if(!r||document.getElementById(En))return;const n=document.createElement("style");n.id=En,n.textContent=r,document.head.appendChild(n)}).catch(()=>{ia=null}),ia}function fc(e){if(typeof document>"u")return;const a=e instanceof Element?e:e.body;if(!a)return;const r=a.querySelector("details.ed-plus");r&&r.parentElement&&(r.open=!0,r.parentElement.insertBefore(r,r.parentElement.firstChild)),a.querySelectorAll(".art-allops li").forEach(n=>{if(n.dataset.edPretty==="1")return;n.dataset.edPretty="1",n.classList.add("ed-op"),Array.from(n.childNodes).forEach(u=>{u.nodeType===3&&/[—–]/.test(u.textContent||"")&&(u.textContent="")});const o=n.querySelector(".aa-n"),i=n.querySelector(".aa-d");if(o&&!o.closest(".aa-head")){const u=document.createElement("div");u.className="aa-head",o.replaceWith(u),u.appendChild(o),i&&u.appendChild(i)}const d=n.querySelector(".aa-meta");if(!d||d.querySelector(".aa-tag"))return;const l=!!n.querySelector(".ed-decrypt"),s=d.querySelector("a"),h=((s==null?void 0:s.textContent)||"").replace(/[→\s]+$/g,"").trim().toLowerCase(),c=(d.textContent||"").split("·").map(u=>u.replace(/→/g,"").trim()).filter(Boolean),g=document.createElement("div");g.className="aa-tags",c.forEach(u=>{const b=u.toLowerCase();if(h&&(b===h||b.endsWith(h)))return;const f=document.createElement("span");f.className="aa-tag",f.textContent=u,g.appendChild(f)}),d.replaceWith(g),s&&!l&&(s.className="aa-src",s.textContent=(s.textContent||"").replace(/\s*→\s*$/,"").trim(),g.after(s))})}function Ri(e=document){if(typeof window>"u")return;const a=Array.from(e.querySelectorAll(".ppcard-fit"));if(a.length){if(typeof ResizeObserver>"u"){a.forEach(Oa),window.addEventListener("resize",()=>a.forEach(Oa));return}kn||(kn=new ResizeObserver(r=>r.forEach(n=>Oa(n.target)))),a.forEach(r=>{Oa(r),r.dataset.fit!=="1"&&(r.dataset.fit="1",kn.observe(r))})}}const Gn=Object.freeze(Object.defineProperty({__proto__:null,beautifyEditoRows:fc,ensureEditoCss:mc,mountCardFits:Ri},Symbol.toStringTag,{value:"Module"}));function na({spec:e}){const a=p.useRef(null),r=p.useRef(null),[n,o]=p.useState(!1);return p.useEffect(()=>{const i=a.current;if(!i)return;let d=!1;return yr({kind:"op",card:e},1200).then(l=>{if(d||!l||!i.isConnected)return;const s=l.querySelector(".ppcard");s?(s.style.transform="",i.replaceChildren(s)):i.replaceChildren(l),i.parentElement&&Ri(i.parentElement)}),()=>{d=!0,i.replaceChildren()}},[e]),p.useEffect(()=>{if(!n)return;const i=r.current;if(!i)return;let d=!1;yr({kind:"op",card:e},Math.min(1100,Math.floor(window.innerWidth*.92))).then(s=>{!d&&s&&i.isConnected&&i.replaceChildren(s)});const l=s=>{s.key==="Escape"&&o(!1)};return document.addEventListener("keydown",l),()=>{d=!0,document.removeEventListener("keydown",l)}},[n,e]),t.jsxs(t.Fragment,{children:[t.jsx("div",{ref:a,className:"zoom-card-host ppcard-fit",title:"Agrandir",onClick:()=>o(!0)}),n&&ta.createPortal(t.jsx("div",{className:"atl2",children:t.jsxs("div",{className:"atl2-lb",onClick:()=>o(!1),children:[t.jsx("div",{ref:r,style:{lineHeight:0}}),t.jsx("button",{type:"button",className:"atl2-lb-x","aria-label":"Fermer",onClick:()=>o(!1),children:"×"})]})}),document.body)]})}const hc=`
+.atl2-pop-veil{position:fixed;inset:0;z-index:59;background:transparent}
+.atl2 .pop.atl2-pop-fix{position:fixed;z-index:60;width:min(352px,calc(100vw - 24px))}
+.atl2 .pop.atl2-pop-center{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:60;width:min(352px,calc(100vw - 24px))}
+`;function gc(e,a=!1){if(!e||typeof window>"u")return;const r=352,n=a?620:430,o=window.innerWidth,i=window.innerHeight,d=Math.min(Math.max(e.x-r/2,8),Math.max(8,o-r-8));let l=e.y+10;return l+n>i-8&&(l=Math.max(8,e.y-n-14)),l<8&&(l=8),{left:d,top:l}}function xc(){const{st:e,dispatch:a,byId:r,t:n,lang:o,caps:i,mode:d,askEvaluate:l,doAnalyse:s,doDecide:h,doPromote:c,doRepeche:g,doApproach:u,doDeep:b,doOnboard:f,outbound:y,evalBusy:w}=K(),m=e.popupId?r.get(e.popupId):null;if(!m)return null;const v=$e(m),k=Le(m),E=Ft(m),S=Ea(m),N=m.kind==="target",A=T=>{a({type:"filters",patch:T}),a({type:"popup",id:null})};return ta.createPortal(t.jsxs("div",{className:"atl2",children:[t.jsx("style",{children:hc}),t.jsx("div",{className:"atl2-pop-veil",onClick:()=>a({type:"popup",id:null})}),t.jsxs("div",{className:"pop on "+(e.popupAnchor?"atl2-pop-fix":"atl2-pop-center"),style:gc(e.popupAnchor,!!m.card),onClick:T=>T.stopPropagation(),children:[t.jsxs("div",{className:"ph",children:[t.jsxs("div",{style:{flex:1},children:[t.jsx("h3",{children:m.name}),t.jsx("span",{className:"id",children:n.detected(n.daysAgo(gt(m.date)),rt(m.engine,o))})]}),t.jsx("button",{type:"button",className:"x",onClick:()=>a({type:"popup",id:null}),children:"×"})]}),t.jsxs("div",{className:"pb",children:[t.jsxs("div",{className:"tags",children:[m.cc&&t.jsx("button",{type:"button",className:"hi",onClick:()=>A({country:[m.cc]}),children:(aa(m.cc,o)||m.countryLabel||"").toUpperCase()}),m.sector&&t.jsx("button",{type:"button",onClick:()=>A({sector:[m.sector]}),children:m.sector.toUpperCase()}),m.stage&&t.jsx("button",{type:"button",onClick:()=>A({stage:[m.stage]}),children:m.stage.toUpperCase()}),typeof m.amountEur=="number"&&m.amountEur>0&&t.jsx("span",{className:"am2",children:Vt(m.amountEur,o)})]}),i.pipe&&N&&t.jsxs("div",{className:"pstat",children:[S&&t.jsx("span",{className:"vd "+(S==="MATCH"?"v-ok":"v-no"),title:n.vt[S],children:S}),E&&t.jsx("span",{className:"vd v-cons",title:n.vt[E],children:E}),t.jsx("span",{className:"pstep",children:n.plabels[k]}),m.ceoStatus&&t.jsx("span",{className:"pstep own",children:m.ceoStatus})]}),(m.tagline||m.headline)&&t.jsxs("div",{className:"fld",children:[t.jsx("span",{className:"l",children:n.desc}),t.jsx("p",{children:m.tagline||m.headline})]}),t.jsxs("div",{className:"fld",children:[t.jsx("span",{className:"l",children:n.how}),t.jsxs("p",{children:[Bt(m.engine)," ",t.jsx("b",{children:rt(m.engine,o)})," — ",Os(m.engine,o),m.noteTitle&&t.jsxs(t.Fragment,{children:[" · ",m.noteTitle]})]}),v?t.jsxs("p",{className:"psig",style:{marginTop:9},children:[t.jsx(Tt,{o:m,lg:!0})," ",t.jsx(nn,{o:m,src:!0}),t.jsxs("span",{className:"pdate",style:{display:"block",marginTop:5},children:[n.signaledOn(_o(v,o))," · ",n.win7(Bo(v,o))]})]}):t.jsx("p",{className:"pnos",style:{marginTop:5},children:n.noSignal})]}),m.card?t.jsx(na,{spec:m.card}):null,m.reasoning&&t.jsxs("div",{className:"fld",children:[t.jsx("span",{className:"l",children:i.pipe&&k>=1?n.verdictCap:n.memo}),t.jsx("p",{className:"memo",children:m.reasoning})]}),i.pipe&&N&&E&&t.jsx("div",{className:"fld",children:t.jsxs("p",{style:{fontWeight:700},children:[E,typeof m.score=="number"&&m.score>0?" · "+n.score(m.score):""]})}),i.pipe&&N&&t.jsx(rr,{o:m})]}),t.jsx(nr,{name:m.name}),t.jsxs("div",{className:"pf",children:[i.lockActions||d!=="client"&&i.pipe?t.jsxs("button",{type:"button",className:"evalbtn",style:{flex:1,justifyContent:"center"},onClick:()=>a({type:"modal",modal:"rdv"}),children:[t.jsx("span",{className:"fill"}),"🔒 ",n.lockbarCta]}):i.pipe?t.jsxs(t.Fragment,{children:[k===0&&t.jsxs("button",{type:"button",className:"evalbtn",style:{flex:1,justifyContent:"center"},disabled:w,onClick:()=>l(m),children:[t.jsx("span",{className:"fill"}),n.evalGoOn(m.name.length>22?m.name.slice(0,21)+"…":m.name)]}),k===1&&t.jsxs(qt,{lang:o,storeKey:m.name,className:"evalbtn memo",style:{flex:1,justifyContent:"center"},confirmLabel:n.actAnalyse,onConfirm:()=>{s(m),a({type:"popup",id:null})},children:[t.jsx("span",{className:"fill"}),n.actAnalyse]}),k===2&&t.jsxs("button",{type:"button",className:"evalbtn",style:{flex:1,justifyContent:"center"},onClick:()=>{c(m),a({type:"popup",id:null})},children:[t.jsx("span",{className:"fill"}),n.actPromote]}),k===3&&t.jsxs(t.Fragment,{children:[t.jsxs("button",{type:"button",className:"evalbtn",style:{flex:1,justifyContent:"center"},onClick:()=>{h(m,!0),a({type:"popup",id:null})},children:[t.jsx("span",{className:"fill"}),n.actYes]}),t.jsx("button",{type:"button",className:"abtn",onClick:()=>{h(m,!1),a({type:"popup",id:null})},children:n.actNo}),Lt(m)&&t.jsx(qt,{lang:o,storeKey:m.name,className:"abtn",title:n.memoDeepHint,confirmLabel:n.memoDeep,onConfirm:()=>{b(m),a({type:"popup",id:null})},children:n.memoDeep})]}),k===4&&t.jsxs("button",{type:"button",className:"evalbtn",style:{flex:1,justifyContent:"center"},onClick:()=>{u(m),a({type:"popup",id:null})},children:[t.jsx("span",{className:"fill"}),n.actApproach]}),k===5&&t.jsxs("button",{type:"button",className:"evalbtn",style:{flex:1,justifyContent:"center"},onClick:()=>{g(m),a({type:"popup",id:null})},children:[t.jsx("span",{className:"fill"}),n.actRepeche]}),m.memoUrl&&t.jsx("button",{type:"button",className:"abtn",onClick:()=>{a({type:"memoConsole",id:m.id}),a({type:"popup",id:null})},children:"📄"}),y&&t.jsx("button",{type:"button",className:"abtn",title:n.actOnboardTitle,onClick:()=>{f(m),a({type:"popup",id:null})},children:"🚀"})]}):m.engine==="media"&&m.url&&i.showDemand?t.jsxs(t.Fragment,{children:[t.jsxs("button",{type:"button",className:"evalbtn",style:{flex:1,justifyContent:"center"},onClick:()=>{var T;try{window.dispatchEvent(new CustomEvent("ppmap:research",{detail:{url:m.url}}))}catch{}a({type:"popup",id:null}),(T=document.querySelector(".atl2 .demand"))==null||T.scrollIntoView({behavior:"smooth",block:"center"})},children:[t.jsx("span",{className:"fill"}),n.rsOpen]}),t.jsx("button",{type:"button",className:"abtn",disabled:w,title:n.evalGoOn(m.name),onClick:()=>l(m),children:"⚡"})]}):t.jsxs("button",{type:"button",className:"evalbtn",style:{flex:1,justifyContent:"center"},disabled:w,onClick:()=>l(m),children:[t.jsx("span",{className:"fill"}),n.evalGoOn(m.name.length>22?m.name.slice(0,21)+"…":m.name)," →"]}),m.website&&t.jsx("a",{className:"psite",href:m.website.startsWith("http")?m.website:"https://"+m.website,target:"_blank",rel:"noopener noreferrer",title:m.website,children:"🌐"})]})]})]}),document.body)}function bc(){const{lang:e,token:a,dossiers:r,caps:n}=K(),o=a||"home",{names:i,verdicts:d}=p.useMemo(()=>{const s=[],h={};return r.forEach(c=>{c.kind!=="target"||!c.name||(s.push(c.name),h[c.name]=Ds(c)||"")}),{names:s,verdicts:h}},[r]);return{diff:p.useMemo(()=>i.length?Ms(o,i,d,e):null,[o,i.length]),names:i,verdicts:d,scope:o,caps:n}}function vc(){const{st:e,dispatch:a,counts:r,t:n,doUndo:o,data:i,dossiers:d,caps:l}=K(),[s,h]=p.useState(!1),[c,g]=p.useState(!1),u=p.useRef(null);p.useEffect(()=>{if(!s)return;const k=E=>{u.current&&!u.current.contains(E.target)&&h(!1)};return document.addEventListener("click",k,!0),()=>document.removeEventListener("click",k,!0)},[s]);const b=[["signal",n.sortSig],["amount",n.sortAmount],["age",n.sortAge],["name",n.sortName],["country",n.sortCountry],["stage",n.sortStage],["sector",n.sortSector],...l.pipe?[["crible",n.sortCrible],["memo",n.sortMemo],["score",n.sortScore]]:[]],f=i.loading&&!d.length,y=p.useRef({});p.useEffect(()=>{y.current={...r}},[r]);const w=k=>{const E=y.current[k],S=E!==void 0?r[k]-E:0;return t.jsxs("button",{type:"button",className:"step"+(k===3&&r[3]>0?" wait":""),style:{"--c":`var(${ha[k]})`,"--tc":k<=3?"var(--ink)":"#fff"},"aria-selected":e.ptab===k,title:n.phelp[k],onClick:()=>{try{window.dispatchEvent(new CustomEvent("ppmap:tunnel"))}catch{}a({type:"ptab",tab:k})},children:[t.jsxs("span",{className:"l",children:[n.plabels[k],k===3&&r[3]>0&&t.jsx("i",{className:"wd"})]}),t.jsxs("span",{className:"n"+(S>0?" up":S<0?" down":""),children:[r[k],S!==0&&t.jsxs("em",{className:"delta",children:[S>0?"+":"−",Math.abs(S)]})]})]},k)},m=(k,E,S)=>t.jsxs("button",{type:"button",className:"off"+(E?" view":""),"data-off":k,style:{"--c":`var(${ha[k]})`},"aria-selected":e.ptab===k,title:n.phelp[k],onClick:()=>{try{window.dispatchEvent(new CustomEvent("ppmap:tunnel"))}catch{}a({type:"ptab",tab:k})},children:[t.jsx("span",{className:"l",children:S}),t.jsx("span",{className:"n",children:r[k]})]},k),v=(k,E,S,N=!1)=>t.jsx("button",{type:"button",className:"tool",title:E,disabled:N,onClick:S,children:k},E);return t.jsxs("div",{className:"funnel"+(f?" waiting":""),children:[t.jsx("div",{className:"chain2",children:[0,1,2,3,4].map(w)}),t.jsxs("div",{className:"offtrack",children:[m(5,!1,n.plabels[5]),m(7,!0,n.plabels[7]),m(6,!0,"★ "+n.plabels[6])]}),t.jsxs("span",{className:"ftools",style:{marginLeft:"auto"},children:[v("↩",n.toolUndo,o,e.undo.length===0),t.jsx("button",{type:"button",className:"tool"+(c?" spin":""),title:n.toolReset,onClick:()=>{a({type:"reset"}),a({type:"ptab",tab:1}),a({type:"continent",key:l.pipe?"europe":"monde"}),a({type:"dens",dens:"liste"});try{window.dispatchEvent(new CustomEvent("ppmap:tunnel"))}catch{}g(!0),window.setTimeout(()=>g(!1),600)},children:"↺"}),t.jsxs("span",{className:"fsort",ref:u,children:[t.jsx("button",{type:"button",className:"tool","aria-pressed":s,title:n.toolSort,onClick:()=>h(k=>!k),children:"⇅"}),s&&t.jsx("span",{className:"sortmenu",role:"listbox",children:b.map(([k,E])=>t.jsxs("button",{type:"button",role:"option","aria-selected":e.sort.key===k,className:"sortopt"+(e.sort.key===k?" on":""),onClick:()=>a({type:"sort",key:k}),children:[E,t.jsx("i",{children:e.sort.key===k?e.sort.dir===1?"↑":"↓":""})]},k))})]}),v("▶",n.toolTuto,()=>a({type:"modal",modal:"tuto"})),v("⚙",n.toolCrit,()=>a({type:"modal",modal:"crit"}))]})]})}function wc(){const{st:e,dispatch:a,t:r,lang:n,counts:o,scoped:i,memoQueued:d,mode:l,data:s}=K(),h=p.useRef(null),[c,g]=p.useState(60);p.useEffect(()=>{let A=0;const T=()=>{var Q;const F=h.current;if(!F)return;const O=(Q=F.parentElement)==null?void 0:Q.querySelector('.funnel [aria-selected="true"]');if(!O)return;const D=O.getBoundingClientRect(),V=F.getBoundingClientRect();g(Math.max(20,Math.min(D.left+D.width/2-V.left,V.width-30)))};return A=requestAnimationFrame(T),window.addEventListener("resize",T),()=>{cancelAnimationFrame(A),window.removeEventListener("resize",T)}},[e.ptab]);const u=e.ptab;let b=r.tuto[u].p;if(u===3){const A=i.filter(O=>O.kind==="target"&&Le(O)===3),T=A.filter(O=>zn(O)==="auto").length,F=A.filter(O=>zn(O)==="cd").length;b=r.tutoPending(T,F,A.length)}const f=(()=>{var A;if(l!=="client")return null;if(u===0&&i.length)return{label:r.tuto[0].a,locked:!1,run:()=>a({type:"chainStart",queue:i.map(T=>T.id)})};if(u===1){const T=i.filter(F=>F.kind==="target"&&Le(F)===1&&!d.has(F.id)).slice(0,10);if(T.length){const F=String(((A=s.credits)==null?void 0:A.plan)||"").toLowerCase(),O=F==="enterprise"||F==="entreprise";return{label:r.tuto[1].a,locked:!O,run:()=>{O&&a({type:"chainStart",queue:T.map(D=>D.id)})}}}}return null})(),y=Is(u),w=u===1||u===2,m=u===5,v=u===7,k=u===6,E=y||m||v,S=r.plabels[u]+" · "+(o[u]??0),N=n==="en"?"Back to Kept ✕":"Revenir aux retenues ✕";return t.jsxs("div",{ref:h,className:"tuto mini"+(E?"":" on-dark")+(w?" etape-on":"")+(m?" etape-out":"")+(v?" etape-view":"")+(k?" etape-fav":""),style:{"--bg":`var(${ha[u]})`,"--ax":c+"px","--stc":E?"var(--ink)":"#fff","--stt":E?"#fff":"var(--ink)","--tc":E?"var(--ink)":"#fff"},children:[t.jsx("span",{className:"txt",children:t.jsxs("p",{children:[t.jsx("b",{className:"tstep",children:S}),t.jsx("span",{className:"tbody",dangerouslySetInnerHTML:{__html:b}})]})}),f&&t.jsx("button",{type:"button",className:"tprim"+(f.locked?" lock":""),disabled:!!f.locked,title:f.locked?r.analyseLockHint:void 0,onClick:f.run,children:f.locked?"🔒 "+r.analyseLock:f.label}),u!==1&&t.jsx("button",{type:"button",className:"treset",onClick:()=>a({type:"ptab",tab:1}),children:N})]})}const jn=600,At=62,zo="atl2:fstats";function yc(){const{t:e,lang:a,data:r,caps:n,st:o,dispatch:i}=K(),[d,l]=p.useState(()=>{if(typeof window>"u")return!1;try{return localStorage.getItem(zo)==="on"}catch{return!1}}),s=r.stats,h=p.useMemo(()=>((s==null?void 0:s.by_day)||[]).slice(-30),[s]),c=(s==null?void 0:s.since)||"";if(!n.showFunnel||!s||typeof s.screened!="number")return null;const g=S=>a==="en"?S.slice(5,10):`${S.slice(8,10)}/${S.slice(5,7)}`,u=S=>S.toLocaleString(a==="en"?"en-US":"fr-FR"),b=h.reduce((S,N)=>Math.max(S,N.s||0),0),f=h.length?jn/h.length:0,y=Math.max(4,f-4),w=h.length>=5&&b>0,m=r.marketEstimate||0,v=g(new Date().toISOString().slice(0,10)),k=S=>[...typeof S=="number"?[[S,e.funScreened("","")]]:[],...typeof s.kept=="number"?[[s.kept,e.funKept]]:[],...typeof s.analyzed=="number"?[[s.analyzed,e.funAnalyzed]]:[],...typeof s.shown=="number"?[[s.shown,e.funShown]]:[]],E=[];return typeof s.screened_window=="number"&&c&&E.push({cle:"fenetre",periode:e.funPerWindow(g(c),v),etapes:[[s.screened_window,e.funScreened("","")]]}),typeof s.screened=="number"&&E.push({cle:"total",periode:e.funPerAll,etapes:k(s.screened)}),t.jsxs("div",{className:"fstats"+(d?" on":""),children:[E.map(S=>t.jsxs("div",{className:"fst-row fst-lab",title:e.funScope,children:[t.jsx("span",{className:"fst-per",children:S.periode}),S.etapes.map(([N,A],T)=>t.jsxs("span",{className:"fst-t",children:[T>0&&t.jsx("span",{className:"fst-ar",children:"→"}),t.jsx("b",{children:u(N)}),t.jsx("i",{children:A})]},S.cle+A)),S.cle==="total"&&m>0&&t.jsxs("span",{className:"fst-t fst-mkt",children:[t.jsx("span",{className:"fst-ar",children:"·"}),t.jsx("i",{children:e.funOfMarket(u(m),Math.min(100,Math.round((s.screened||0)/m*100)))})]}),S.cle==="total"&&(s.screened||0)>=50&&t.jsx("span",{className:"fst-t fst-roi",children:t.jsx("i",{children:e.funAnalyst})}),S.cle===E[E.length-1].cle&&w&&t.jsx("button",{type:"button",className:"fst-x","aria-expanded":d,title:d?e.fstatsHide:e.fstatsShow,onClick:()=>{const N=!d;l(N),N&&!o.mapFolded&&i({type:"mapFold",folded:!0});try{localStorage.setItem(zo,N?"on":"off")}catch{}},children:d?"⌃":"⌄"})]},S.cle)),d&&w&&t.jsxs("div",{className:"fst-act",children:[t.jsxs("div",{className:"fst-ah",children:[t.jsx("span",{children:e.actTitle}),t.jsxs("span",{className:"fst-lg",children:[t.jsx("i",{style:{background:"#0E7F3F"}}),e.actKept]}),t.jsxs("span",{className:"fst-lg",children:[t.jsx("i",{style:{background:"#cfe0d6"}}),e.actScreened]})]}),t.jsxs("svg",{viewBox:`0 0 ${jn} ${At}`,preserveAspectRatio:"none",role:"img","aria-label":e.actTitle,children:[h.map((S,N)=>{const A=(S.s||0)/b*(At-4),T=(S.m||0)/b*(At-4),F=N*f+(f-y)/2;return t.jsxs("g",{className:"fst-day"+(o.filters.day===S.d?" on":""),role:"button",tabIndex:0,onClick:()=>i({type:"filters",patch:o.filters.day===S.d?{day:"",win:"all"}:{day:S.d,win:"all"}}),onKeyDown:O=>{O.key!=="Enter"&&O.key!==" "||(O.preventDefault(),i({type:"filters",patch:o.filters.day===S.d?{day:"",win:"all"}:{day:S.d,win:"all"}}))},children:[t.jsx("title",{children:`${g(S.d)} — ${S.s} ${e.actScreened} · ${S.m} ${e.actKept}`}),t.jsx("rect",{x:F-1,y:0,width:y+2,height:At,fill:"transparent"}),t.jsx("rect",{x:F,y:At-2-A,width:y,height:A,fill:"#cfe0d6"}),t.jsx("rect",{x:F,y:At-2-T,width:y,height:T,fill:"#0E7F3F"})]},S.d)}),t.jsx("line",{x1:0,y1:At-1.5,x2:jn,y2:At-1.5,stroke:"#dbe5df",strokeWidth:1})]}),t.jsxs("div",{className:"fst-ax",children:[t.jsx("span",{children:g(h[0].d)}),t.jsx("span",{children:e.actToday})]})]})]})}const Oi={"CALL PENDING":"call","CALL YES":"v-yes","CALL NO":"v-no2",CONSIDER:"v-cons",MONITOR:"v-mon",PASS:"v-pass"};function or({o:e,locked:a=!1}){const{t:r}=K(),n=Ea(e),o=Ft(e),i=Le(e),d=zn(e),l=Ps(e);return t.jsxs("span",{className:"c-vd",children:[n?t.jsx("span",{className:"vd "+(n==="MATCH"?"v-ok":"v-no"),title:r.vt[n],children:n}):t.jsx("span",{className:"vd wait",children:r.actToEval}),o?t.jsx("span",{className:"vd "+(Oi[o]||"v-cons"),title:r.vt[o],children:o}):i===1?t.jsx("span",{className:"vd wait",children:r.actMemoQueue}):null,i===3&&d==="auto"&&t.jsx("span",{className:"org au",title:r.orgAutoTitle,children:r.orgAuto}),i===3&&d==="cd"&&t.jsx("span",{className:"org cd",title:r.orgCdTitle,children:r.orgCd}),i===3&&l!==null&&t.jsx("span",{className:"wait2 "+(l>10?"hot":l>=5?"warm":""),title:r.waitTitle(l),children:r.waitChip(l)}),!a&&t.jsx(gd,{o:e})]})}const ea=e=>e.length>22?e.slice(0,21)+"…":e;function ya(e){const a=(e.url||"").trim(),r=[e.headline,e.tagline].filter(n=>n&&n!==e.name).join(`
+`);if(!(!a&&!r))try{window.dispatchEvent(new CustomEvent("ppmap:research",{detail:{url:a,text:r}}))}catch{}}function Di(){let e=0;return document.querySelectorAll("body.pp-desk .pph, body.pp-desk .pp-nav, body.pp-desk .pp-band, .atl2.ops .eval-stick, .atl2.ops .fzone:has(.stage.folded), .atl2.ops .listhead, .atl2.cibles .eval-stick, .atl2.cibles .fzone:has(.stage.folded), .atl2.cibles .listhead").forEach(a=>{const r=a.getBoundingClientRect();r.height<4||r.top<window.innerHeight*.55&&r.bottom>e&&(e=r.bottom)}),e}function kc({on:e,rev:a}){const[r,n]=p.useState(null),[o,i]=p.useState({top:0,left:0,width:0});return p.useEffect(()=>{if(!e){n(null);return}const d=()=>{var f,y,w;const l=document.querySelector(".atl2.ops .desk-list"),s=document.querySelector(".atl2.ops .listhead");if(!l){n(null);return}const h=l.getBoundingClientRect(),c=s?s.getBoundingClientRect().bottom:h.top;i({top:Math.round(c),left:Math.round(h.left),width:Math.round(h.width)});const g=[...l.querySelectorAll(":scope .grp")];let u=null;for(const m of g){const v=m.querySelector(".grp-h");v&&v.getBoundingClientRect().bottom<=c+2&&(u=m)}if(!u){n(null);return}const b=u.querySelector(".grp-h");if(!b){n(null);return}n({ic:(((f=b.querySelector(".ic"))==null?void 0:f.textContent)||"").trim(),t:(((y=b.querySelector(".t"))==null?void 0:y.textContent)||"").trim(),s:(((w=b.querySelector(".s"))==null?void 0:w.textContent)||"").trim()})};return d(),window.addEventListener("scroll",d,{passive:!0}),window.addEventListener("resize",d),()=>{window.removeEventListener("scroll",d),window.removeEventListener("resize",d)}},[e,a]),!e||!r||o.width<80?null:t.jsxs("div",{className:"grp-pin",style:{top:o.top,left:o.left,width:o.width},children:[t.jsx("span",{className:"ic",children:r.ic}),t.jsxs("span",{children:[t.jsx("span",{className:"t",children:r.t}),t.jsx("div",{className:"s",children:r.s})]})]})}function Ec(e){const r=()=>{const n=Di(),o=e.getBoundingClientRect().top-n-8;Math.abs(o)<2||window.scrollBy({top:o,left:0,behavior:"auto"})};r(),requestAnimationFrame(()=>requestAnimationFrame(r))}function Co({o:e}){const{t:a,askEvaluate:r,evalBusy:n,lang:o}=K(),[i,d]=p.useState(!1);if(p.useEffect(()=>{n||d(!1)},[n]),We(e)){const h=(e.verdict||"").toUpperCase()!=="NO MATCH";return t.jsxs("span",{className:"verdict",style:{"--c":h?"var(--brand)":"var(--red)"},title:e.reasoning||"",children:[h?"✓":"✗"," ",t.jsx("b",{children:h?a.kept:a.dropped}),typeof e.score=="number"&&e.score>0?" "+e.score:""]})}const s=i&&n;return t.jsxs("button",{type:"button",className:"rev"+(s?" loading":""),disabled:n,title:a.evalGoOn(e.name),onClick:h=>{h.stopPropagation(),d(!0),r(e)},children:[t.jsx("span",{className:"fill"}),t.jsx("span",{className:"lbl",children:a.evalGoOn(ea(e.name))})]})}function fa(e,a){e({type:"focus",id:a.id}),window.setTimeout(()=>{var r;window.dispatchEvent(new CustomEvent("ppmap:card-tab",{detail:{tab:"memo"}})),(r=document.querySelector(".atl2 .readpane"))==null||r.scrollIntoView({block:"nearest"})},40)}function ir({o:e}){const{t:a,lang:r,caps:n,memoQueued:o,approachDone:i,doAnalyse:d,doDecide:l,doPromote:s,doRepeche:h,doApproach:c,dispatch:g,liveMemos:u}=K(),b=y=>w=>{w.stopPropagation(),y()};if(n.lockActions){const y=b(()=>g({type:"modal",modal:"rdv"}));if(e.noCo)return e.url?t.jsx("span",{className:"cell",children:t.jsxs("button",{type:"button",className:"rev",onClick:y,children:[t.jsx("span",{className:"fill"}),t.jsx("span",{className:"lbl",children:a.rowExtract})]})}):t.jsx("span",{className:"cell"});const w=Le(e);return w===0?t.jsx("span",{className:"cell",children:t.jsxs("button",{type:"button",className:"rev",onClick:y,children:[t.jsx("span",{className:"fill"}),t.jsx("span",{className:"lbl",children:a.evalGoOn(ea(e.name))})]})}):w===1?t.jsx("span",{className:"cell",children:t.jsx("button",{type:"button",className:"memobtn",onClick:y,children:a.actAnalyse})}):w===3?t.jsx("span",{className:"cell",children:t.jsxs("span",{className:"yn",children:[t.jsx("button",{type:"button",className:"ynb oui",onClick:y,children:a.actYes}),t.jsx("button",{type:"button",className:"ynb non",onClick:y,children:a.actNo})]})}):w===2?t.jsx("span",{className:"cell",children:t.jsx("button",{type:"button",className:"promo",onClick:y,children:a.actPromote})}):w===4?t.jsx("span",{className:"cell",children:t.jsx("button",{type:"button",className:"approach",onClick:y,children:a.actApproach})}):w===5?t.jsx("span",{className:"cell",children:t.jsx("button",{type:"button",className:"promo",onClick:y,children:a.actRepeche})}):t.jsx("span",{className:"cell",children:t.jsx("button",{type:"button",className:"memobtn read",onClick:y,children:a.actMemoOf(e.memoType)})})}if(e.noCo)return e.url?t.jsx("span",{className:"cell",children:t.jsxs("button",{type:"button",className:"rev",title:a.rsOpen,onClick:y=>{y.stopPropagation(),ya(e)},children:[t.jsx("span",{className:"fill"}),t.jsx("span",{className:"lbl",children:a.rowExtract})]})}):t.jsx("span",{className:"cell"});if(Va(e)&&e.url)return t.jsx("span",{className:"cell",children:t.jsxs("button",{type:"button",className:"rev",title:a.rsOpen,onClick:y=>{y.stopPropagation(),ya(e)},children:[t.jsx("span",{className:"fill"}),t.jsx("span",{className:"lbl",children:a.rowExtract})]})});if(!n.pipe)return e.noCo?t.jsx("span",{className:"cell"}):t.jsx("span",{className:"cell",children:t.jsx(Co,{o:e})});const f=Le(e);if(f===0)return t.jsx("span",{className:"cell",children:t.jsx(Co,{o:e})});if(f===1){const y=u.liveOf(e.name);if(y&&(y.status==="boot"||y.status==="running"))return t.jsx("span",{className:"cell",children:t.jsx(Ha,{item:y,serverOff:u.serverOff,bootLbl:a.liveBoot,endLabel:a.liveEnd})});const w=o.has(e.id);return t.jsx("span",{className:"cell cell-an",children:t.jsx(qt,{lang:r,storeKey:e.name,className:"memobtn",disabled:w,confirmLabel:a.actAnalyse,onConfirm:()=>d(e),children:w?a.actAnalyseQueued:a.actAnalyse})})}if(f===3)return t.jsx("span",{className:"cell",children:t.jsxs("span",{className:"yn",children:[t.jsx("button",{type:"button",className:"ynb oui",title:a.actYesTitle,onClick:b(()=>l(e,!0)),children:a.actYes}),t.jsx("button",{type:"button",className:"ynb non",title:a.actNoTitle,onClick:b(()=>l(e,!1)),children:a.actNo}),e.memoUrl&&t.jsxs("button",{type:"button",className:"memobtn read sm",title:a.actMemoOf(e.memoType),onClick:b(()=>fa(g,e)),children:["📄",t.jsx("span",{className:"mlbl",children:a.actMemoOf(e.memoType).replace("📖 "," ")})]})]})});if(f===4){const y=i.has(e.id);return t.jsxs("span",{className:"cell",children:[t.jsx("button",{type:"button",className:"approach",disabled:y,onClick:b(()=>c(e)),children:y?a.actApproachSent:a.actApproach}),t.jsx("button",{type:"button",className:"lk sm",title:a.actConnHint,onClick:b(()=>g({type:"modal",modal:"plug"})),children:a.actConn}),t.jsx("button",{type:"button",className:"lk sm dsrow",title:a.dsBtn,onClick:b(()=>g({type:"dossierOpen",id:e.id})),children:a.dsBtn})]})}return f===2?t.jsx("span",{className:"cell",children:t.jsxs("span",{className:"yn",children:[t.jsx("button",{type:"button",className:"promo",onClick:b(()=>s(e)),children:a.actPromote}),e.memoUrl&&t.jsxs("button",{type:"button",className:"memobtn read sm",title:a.actMemoOf(e.memoType),onClick:b(()=>fa(g,e)),children:["📄",t.jsx("span",{className:"mlbl",children:a.actMemoOf(e.memoType).replace("📖 "," ")})]})]})}):f===5?t.jsx("span",{className:"cell",children:t.jsxs("span",{className:"yn",children:[t.jsx("button",{type:"button",className:"promo",onClick:b(()=>h(e)),children:a.actRepeche}),e.memoUrl&&t.jsxs("button",{type:"button",className:"memobtn read sm",title:a.actMemoOf(e.memoType),onClick:b(()=>fa(g,e)),children:["📄",t.jsx("span",{className:"mlbl",children:a.actMemoOf(e.memoType).replace("📖 "," ")})]})]})}):t.jsx("span",{className:"cell",children:e.memoUrl?t.jsx("button",{type:"button",className:"memobtn read",onClick:b(()=>fa(g,e)),children:a.actMemoOf(e.memoType)}):t.jsx("span",{className:"rc",children:"—"})})}function jc({o:e}){const{t:a,doThumb:r,thumbOf:n}=K(),o=n(e);return t.jsxs("span",{className:"thu",children:[t.jsx("button",{type:"button",className:"tb up"+(o==="yes"?" on":""),title:a.thumbUp,onClick:i=>{i.stopPropagation(),r(e,!0)},children:"👍"}),t.jsx("button",{type:"button",className:"tb dn"+(o==="no"?" on":""),title:a.thumbDn,onClick:i=>{i.stopPropagation(),r(e,!1)},children:"👎"})]})}function Nc({o:e}){const{lang:a}=K();return $e(e)?t.jsxs("span",{className:"c-sig",children:[t.jsx(Tt,{o:e}),t.jsx(nn,{o:e,src:!0})]}):t.jsx("span",{className:"c-sig",children:t.jsxs("span",{className:"mo",children:[Bt(e.engine||"")," ",rt(e.engine||"",a)]})})}function Sc({o:e,locked:a,open:r,onToggle:n,selected:o,echo:i,onSelect:d,fresh:l}){const{dispatch:s,caps:h,markRow:c,markedId:g,favIds:u,toggleFav:b,t:f}=K(),y=Le(e),w=["#16233A","#475C6E","#8798A8","#B9C6D2"],m=e.date?Math.max(0,Math.floor((Date.now()-Date.parse(e.date))/864e5)):9999,v=m<=0?0:m<=7?1:m<=30?2:3,k=h.pipe&&e.kind==="target"?["#8FA0B8","#9BD1B4","#5FB98C","#2E9A66","#0E8A44","#E2A5A5"][y]:w[v],E=u.has(e.id),S=N=>{if(a)return;if(d){d(e.id);return}if(h.pipe||e.kind==="op"){n();return}const A=N.currentTarget.getBoundingClientRect();s({type:"popup",id:e.id,anchor:{x:A.left+Math.min(280,A.width/3),y:A.bottom}})};return t.jsxs(p.Fragment,{children:[t.jsxs("div",{className:"row"+(g===e.id||r||o?" on":"")+(r?" open":"")+(o?" sel":"")+(i?" echo":"")+(h.pipe&&e.kind==="target"?" p"+y:"")+(E?" fav":"")+(a?" tzr":""),"aria-selected":o||void 0,onMouseEnter:()=>c(e.id),onMouseLeave:()=>c(null),onClick:S,children:[t.jsx("span",{className:"pt",style:{"--c":k}}),t.jsx($i,{o:e}),t.jsxs("span",{className:"nd",children:[l&&t.jsx("span",{className:"rfresh",children:"✨"}),typeof e.engagement=="number"&&e.engagement>=20&&t.jsx("span",{className:"rhot",title:`${f.cdEngagement} ${Math.round(e.engagement*10)/10} · ${f.cdEngagementHint}`,children:"🔥"}),$e(e)&&t.jsx(Tt,{o:e}),t.jsxs("span",{className:"rnm"+(a?" nmx":""),title:a?void 0:e.name,children:[h.pipe&&t.jsx("button",{type:"button",className:"tb",title:"★",style:{border:0,background:"none",cursor:"pointer",opacity:E?1:.35,padding:0,marginRight:4},onClick:N=>{N.stopPropagation(),b(e)},children:E?"★":"☆"}),e.name]}),t.jsxs("span",{className:"rds",title:e.tagline||e.headline||"",children:[tt(e)&&(e.date||"").slice(0,10)&&t.jsx("b",{className:"rdate",children:(e.date||"").slice(0,10).split("-").reverse().slice(0,2).join("/")}),[e.tagline,e.headline,e.reasoning].find(N=>N&&N!==e.name)||""]}),h.pipe&&!h.lockActions&&!a&&(e.website||e.contactLinkedin||e.contactEmail||e.contactPhone)&&t.jsxs("span",{className:"rlnk",onClick:N=>N.stopPropagation(),children:[e.website&&t.jsx("a",{href:wa(e.website),target:"_blank",rel:"noopener noreferrer","aria-label":f.rowSite,title:f.rowSite,children:"🌐"}),e.contactLinkedin&&t.jsx("a",{href:wa(e.contactLinkedin),target:"_blank",rel:"noopener noreferrer","aria-label":f.rowLi,title:f.rowLi,children:"in"}),e.contactEmail&&t.jsx("a",{href:`mailto:${e.contactEmail}`,"aria-label":f.rowMail,title:f.rowMail,children:"✉"}),e.contactPhone&&t.jsx("a",{href:`tel:${e.contactPhone.replace(/[^+0-9]/g,"")}`,"aria-label":f.rowTel,title:f.rowTel,children:"☎"})]}),e.acquirer&&t.jsxs("button",{type:"button",className:"racq",title:f.acqSee(e.acquirer),onClick:N=>{N.stopPropagation(),s({type:"acquirer",value:e.acquirer||""})},children:["← ",ea(e.acquirer)]}),He(e)?t.jsx("span",{className:"rdec",title:f.doEdito,children:"📖"}):e.decryptHtml?t.jsx("span",{className:"rdec",title:f.zoomNewsMark,children:"📰"}):null]}),t.jsx(zc,{o:e}),t.jsx("span",{className:"c-stade",children:e.stage||""}),t.jsx(Nc,{o:e}),h.pipe&&t.jsx(or,{o:e,locked:a}),h.pipe&&t.jsxs("span",{className:"c-sc",children:[typeof e.score=="number"?e.score:"",typeof e.score=="number"&&t.jsx("s",{children:"/100"})]}),t.jsx(ir,{o:e}),h.showThumbs&&t.jsx(jc,{o:e})]}),r&&!a&&!d&&t.jsx(qc,{o:e})]})}function zc({o:e}){const{lang:a,caps:r}=K();if(r.pipe&&e.kind==="target")return t.jsx("span",{className:"c-amt none",children:"—"});const n=Vt(e.amountEur,a);return t.jsx("span",{className:"c-amt"+(n?"":" none"),children:n||"—"})}function Cc({o:e}){const{t:a,lang:r,askEvaluate:n,evalBusy:o,dispatch:i}=K(),d=(u,b=!1)=>f=>{f.stopPropagation(),b&&i({type:"continent",key:"monde"}),i({type:"filters",patch:u})},l=(()=>{const u=/https?:\/\/(?:www\.)?([^/]+)/.exec(e.url||"");return u?u[1].slice(0,40):""})(),s=Vt(e.amountEur,r),h=(e.date||"").slice(0,10).split("-").reverse().join("/"),c=We(e),g=c&&(e.verdict||"").toUpperCase()!=="NO MATCH";return t.jsxs("div",{className:"card ops-open",children:[t.jsxs("div",{className:"oc-main",children:[e.decryptHtml?t.jsx("div",{className:"ed-decrypt-b",dangerouslySetInnerHTML:{__html:e.decryptHtml}}):t.jsx("p",{className:"oc-head",children:e.headline||e.tagline||e.name}),t.jsxs("div",{className:"oc-meta",children:[e.sector&&t.jsx("button",{type:"button",onClick:d({sector:[e.sector]}),children:e.sector}),e.countryLabel&&e.countryLabel!=="Europe"&&(e.cc?t.jsx("button",{type:"button",onClick:d({country:[e.cc]},!0),children:e.countryLabel}):t.jsx("span",{children:e.countryLabel})),e.stage&&t.jsx("button",{type:"button",onClick:d({stage:[e.stage]}),children:e.stage}),s&&t.jsx("span",{className:"oc-amt",children:s}),h&&t.jsx("span",{children:h})]}),t.jsxs("div",{className:"oc-acts",children:[c?t.jsxs("span",{className:"verdict",style:{"--c":g?"var(--brand)":"var(--red)"},children:[g?"✓":"✗"," ",t.jsx("b",{children:g?a.kept:a.dropped})]}):tt(e)?e.url&&t.jsx("button",{type:"button",className:"oc-cta",onClick:u=>{u.stopPropagation(),ya(e)},children:a.rowExtract}):t.jsx("button",{type:"button",className:"oc-cta",disabled:o,onClick:u=>{u.stopPropagation(),n(e)},children:a.evalGoOn(ea(e.name))}),e.url&&t.jsxs("a",{className:"oc-src",href:e.url,target:"_blank",rel:"nofollow noopener",onClick:u=>u.stopPropagation(),children:[(r==="fr"?"lire la source":"read the source")+(l?` · ${l}`:"")," ↗"]})]})]}),e.card&&t.jsx("div",{className:"oc-side",children:t.jsx(na,{spec:e.card})})]})}function Ac({o:e}){const{t:a,lang:r,caps:n,dispatch:o,doDeep:i}=K();if(!e)return t.jsx("p",{className:"readpane-empty",children:r==="fr"?"Cliquez une ligne — le dossier s’ouvre ici, sans quitter la liste.":"Click a row — the file opens here, without leaving the list."});const d=(e.date||"").slice(0,10).split("-").reverse().join("/"),l=[e.tagline,e.headline,e.reasoning].find(c=>c&&c!==e.name)||"",s=Vt(e.amountEur,r),h=(()=>{const c=/https?:\/\/(?:www\.)?([^/]+)/.exec(e.url||"");return c?c[1].replace(/^www\./,"").slice(0,40):""})();return t.jsxs("div",{className:"zoom zoom-pipe",children:[t.jsxs("div",{className:"zoom-k",children:[rt(e.engine||"",r),d?` · ${d}`:"",s?` · ${s}`:""]}),t.jsxs("div",{className:"zoom-hd",children:[t.jsx("h3",{className:"zoom-h",children:e.name}),t.jsx("div",{className:"zoom-cta",children:n.lockActions?t.jsx("button",{type:"button",className:"oc-cta",onClick:()=>o({type:"modal",modal:"rdv"}),children:a.lockbarCta}):t.jsx(ir,{o:e})})]}),(e.sector||e.countryLabel||e.stage||e.acquirer)&&t.jsxs("div",{className:"zoom-meta",children:[e.sector?t.jsx("span",{children:e.sector}):null,e.countryLabel?t.jsx("span",{children:e.countryLabel}):null,e.stage?t.jsx("span",{children:e.stage}):null,e.acquirer?t.jsxs("span",{children:["← ",e.acquirer]}):null]}),(e.memoUrl||Lt(e))&&t.jsxs("div",{className:"zoom-memo-acts",children:[e.memoUrl&&t.jsx("a",{className:"btn p mdfull",href:e.memoUrl,target:"_blank",rel:"noopener noreferrer",onClick:c=>c.stopPropagation(),children:a.memoOpenFull}),Lt(e)&&t.jsx(qt,{lang:r,storeKey:e.name,className:"md-deep-txt",title:a.memoDeepHint,confirmLabel:a.memoDeep,onConfirm:()=>i(e),children:a.memoDeep})]}),(l||e.decryptHtml||e.url||e.card)&&t.jsxs("div",{className:"zoom-news",children:[l?t.jsx("p",{className:"zoom-lead",children:l}):null,e.decryptHtml?t.jsx("div",{className:"ed-decrypt-b",dangerouslySetInnerHTML:{__html:e.decryptHtml}}):null,e.card?t.jsx("div",{className:"zoom-card",children:t.jsx(na,{spec:e.card})}):null,e.url?t.jsxs("a",{className:"zoom-src",href:e.url,target:"_blank",rel:"nofollow noopener",children:[a.zoomSrc,h?` · ${h}`:""," ↗"]}):null]}),t.jsx(rr,{o:e})]})}function Mi({o:e,extra:a}){const{t:r,lang:n,askEvaluate:o,evalBusy:i,dispatch:d,caps:l,dossiers:s}=K(),h=p.useRef(null),c=He(e);if(p.useEffect(()=>{if(!c||!(e!=null&&e.decryptHtml))return;const x=h.current;if(!x)return;let q=!1;return Nn(()=>Promise.resolve().then(()=>Gn),void 0).then(async C=>{await C.ensureEditoCss(),!(q||!x.isConnected)&&(C.beautifyEditoRows(x),C.mountCardFits(x))}),()=>{q=!0}},[c,e==null?void 0:e.decryptHtml]),!e&&!a){const x=s.find(He);if(x)return t.jsx(Mi,{o:x})}const g=((e==null?void 0:e.name)||(a==null?void 0:a.name)||"").trim(),u=((e==null?void 0:e.url)||(a==null?void 0:a.url)||"").trim(),b=(e==null?void 0:e.headline)||(e==null?void 0:e.tagline)||(a==null?void 0:a.headline)||g,f=(e==null?void 0:e.card)||(a==null?void 0:a.card),y=e?!!e.noCo:!g||Jt(g),w=(e==null?void 0:e.engine)||"",m=He(e),v=e?Vt(e.amountEur,n):"",k=((e==null?void 0:e.date)||"").slice(0,10).split("-").reverse().join("/"),E=(()=>{const x=/https?:\/\/(?:www\.)?([^/]+)/.exec(u);return x?x[1].replace(/^www\./,"").slice(0,40):""})(),S=s.find(He),N=((S==null?void 0:S.url)||"").trim(),A=!!u&&!!N&&(u===N||u.endsWith(N)||N.endsWith(u)),T=(x,q=!1)=>C=>{C.stopPropagation(),q&&d({type:"continent",key:"monde"}),d({type:"filters",patch:x})};if(!e&&!a)return t.jsx("p",{className:"readpane-empty",children:n==="fr"?"Cliquez une ligne, un pin ou le ticker — le dossier s’ouvre ici.":"Click a row, a pin or the ticker — the file opens here."});const F=()=>{g&&(d({type:"continent",key:"monde"}),d({type:"filters",patch:{search:g}}))},O=()=>{e!=null&&e.sector&&d({type:"filters",patch:{sector:[e.sector]}})},D=()=>{ya({url:u,headline:b,tagline:e==null?void 0:e.tagline,name:g})},V=e?We(e):!1,Q=V&&e&&(e.verdict||"").toUpperCase()!=="NO MATCH",R=m?r.doEdito.replace(/^📖\s*/,""):w?rt(w,n):n==="fr"?"Dossier":"File";return t.jsxs("div",{className:"zoom",children:[t.jsxs("div",{className:"zoom-k",children:[R,k?` · ${k}`:""]}),t.jsx("h3",{className:"zoom-h",children:b}),u&&!m&&(y||Va({engine:w}))&&t.jsxs("a",{className:"zoom-ext",href:u,target:"_blank",rel:"noopener noreferrer",title:r.viewLinkHint,onClick:x=>x.stopPropagation(),children:[t.jsxs("svg",{className:"extico",width:"13",height:"13",viewBox:"0 0 16 16","aria-hidden":"true",children:[t.jsx("path",{fill:"currentColor",d:"M6.2 3H3.8A1.8 1.8 0 0 0 2 4.8v7.4C2 13.2 2.8 14 3.8 14h7.4c1 0 1.8-.8 1.8-1.8V9.2h-1.5v3a.3.3 0 0 1-.3.3H3.8a.3.3 0 0 1-.3-.3V4.8a.3.3 0 0 1 .3-.3h2.4V3Z"}),t.jsx("path",{fill:"currentColor",d:"M9 2h5v5h-1.5V4.56L7.78 9.28 6.72 8.22 11.44 3.5H9V2Z"})]}),r.viewLink,E?t.jsx("em",{children:E}):null]}),(e==null?void 0:e.decryptHtml)&&t.jsx("div",{ref:h,className:"ed-decrypt-b zoom-body"+(m?" ppart":""),dangerouslySetInnerHTML:{__html:e.decryptHtml}}),t.jsxs("div",{className:"zoom-meta",children:[(e==null?void 0:e.sector)&&t.jsx("button",{type:"button",onClick:T({sector:[e.sector]}),children:e.sector}),(e==null?void 0:e.countryLabel)&&e.countryLabel!=="Europe"&&(e.cc?t.jsx("button",{type:"button",onClick:T({country:[e.cc]},!0),children:e.countryLabel}):e!=null&&e.countryLabel?t.jsx("span",{children:e.countryLabel}):null),(e==null?void 0:e.stage)&&t.jsx("button",{type:"button",onClick:T({stage:[e.stage]}),children:e.stage}),v&&t.jsx("span",{className:"oc-amt",children:v})]}),f&&t.jsx("div",{className:"zoom-card",children:t.jsx(na,{spec:f})}),(u&&!A&&!m||S&&!m)&&t.jsxs("div",{className:"zoom-srcbox",children:[u&&!A&&!m&&t.jsxs("a",{className:"zoom-src",href:u,target:"_blank",rel:"nofollow noopener",onClick:x=>x.stopPropagation(),children:[r.zoomSrc,E?` · ${E}`:""," ↗"]}),S&&!m&&t.jsxs("button",{type:"button",className:"zoom-src zoom-src-art",onClick:x=>{x.stopPropagation(),d({type:"focus",id:S.id})},children:[r.doEdito," →"]})]}),t.jsxs("div",{className:"zoom-acts",children:[V?t.jsxs("span",{className:"verdict",style:{"--c":Q?"var(--brand)":"var(--red)"},children:[Q?"✓":"✗"," ",t.jsx("b",{children:Q?r.kept:r.dropped})]}):!y&&g?t.jsxs("button",{type:"button",className:"zp-go",disabled:i,onClick:x=>{x.stopPropagation(),o(e,g)},children:[t.jsx("span",{className:"zp-ico",children:"⚡"}),t.jsxs("span",{className:"zp-txt",children:[t.jsx("b",{children:r.evalGoOn(ea(g))}),t.jsx("em",{children:r.zoomEvalHint})]})]}):null,u&&!m&&(y||Va({engine:w}))&&t.jsxs("button",{type:"button",className:"zp-go"+(!y&&g?" ghost":""),onClick:x=>{x.stopPropagation(),D()},children:[t.jsx("span",{className:"zp-ico",children:"🔎"}),t.jsxs("span",{className:"zp-txt",children:[t.jsx("b",{children:r.rowExtract}),t.jsx("em",{children:r.rsOpen})]})]}),!y&&g&&t.jsxs("div",{className:"zp-row",children:[(e==null?void 0:e.sector)&&!l.pipe&&t.jsxs("button",{type:"button",className:"zp-sec",onClick:x=>{x.stopPropagation(),O()},children:[t.jsx("span",{className:"zp-k",children:r.zoomSimilar}),t.jsx("span",{className:"zp-v",children:e.sector}),t.jsx("em",{children:r.zoomSimilarHint})]}),t.jsxs("button",{type:"button",className:"zp-sec",onClick:x=>{x.stopPropagation(),F()},children:[t.jsx("span",{className:"zp-k",children:r.zoomInCockpit}),t.jsx("span",{className:"zp-v",children:ea(g)}),t.jsx("em",{children:r.zoomIsolateHint})]})]}),!y&&g&&l.pipe&&t.jsx(nr,{name:g})]})]})}function qc({o:e}){const{t:a,lang:r,dispatch:n,caps:o,outbound:i,doOnboard:d}=K();return!o.pipe&&e.kind==="op"?t.jsx(Cc,{o:e}):t.jsxs("div",{className:"card",style:{display:"grid"},children:[t.jsxs("div",{children:[e.tagline&&t.jsx("p",{className:"lead",children:e.tagline}),e.decryptHtml&&t.jsx("div",{className:"ed-decrypt-b",dangerouslySetInnerHTML:{__html:e.decryptHtml}}),t.jsx(rr,{o:e}),t.jsx(xd,{o:e}),t.jsx(vd,{o:e}),t.jsx(nr,{name:e.name}),t.jsxs("div",{className:"tg",children:[e.sector&&t.jsx("button",{type:"button",onClick:l=>{l.stopPropagation(),n({type:"filters",patch:{sector:[e.sector]}})},children:e.sector}),e.stage&&t.jsx("button",{type:"button",onClick:l=>{l.stopPropagation(),n({type:"filters",patch:{stage:[e.stage]}})},children:e.stage}),e.countryLabel&&(e.cc?t.jsx("button",{type:"button",onClick:l=>{l.stopPropagation(),n({type:"continent",key:"monde"}),n({type:"filters",patch:{country:[e.cc]}})},children:e.countryLabel}):t.jsx("span",{children:e.countryLabel})),e.city&&t.jsx("span",{children:e.city})]})]}),t.jsxs("div",{className:"cside",children:[t.jsxs("div",{className:"top",children:[typeof e.score=="number"&&t.jsx("span",{className:"sc3",children:e.score}),t.jsx("span",{className:"vv",children:t.jsx(or,{o:e})})]}),e.card&&t.jsx(na,{spec:e.card}),t.jsxs("div",{className:"sec2",children:[t.jsxs("div",{className:"k2",children:[Bt(e.engine||"")," ",rt(e.engine||"",r)]}),$e(e)&&t.jsx("div",{style:{marginTop:8},children:t.jsx(Tt,{o:e})})]}),o.pipe&&(e.memoUrl||i)&&t.jsx("div",{className:"sec2 acts2",children:i&&t.jsx("button",{type:"button",className:"btn d",title:a.actOnboardTitle,onClick:()=>d(e),children:a.actOnboard})})]})]})}function Lc({o:e,locked:a,selected:r,onSelect:n}){const{t:o,dispatch:i,caps:d,doDecide:l,lang:s}=K();if(!d.pipe&&e.kind==="op"){const g=Vt(e.amountEur,s),u=(()=>{const f=/https?:\/\/(?:www\.)?([^/]+)/.exec(e.url||"");return f?f[1].slice(0,32):""})(),b=(f,y=!1)=>w=>{w.stopPropagation(),y&&i({type:"continent",key:"monde"}),i({type:"filters",patch:f})};return t.jsxs("div",{className:"dcard dops"+(a?" tzr":"")+(r?" sel":""),onClick:()=>{!a&&n&&n(e.id)},children:[e.card&&t.jsx("div",{className:"dimg",children:t.jsx(na,{spec:e.card})}),t.jsxs("div",{className:"dh",children:[t.jsx("span",{className:"dnm",title:e.name,children:e.name}),e.decryptHtml&&t.jsx("span",{className:"rdec",title:"Décryptage éditorial",children:"📖"})]}),e.headline&&e.headline!==e.name&&t.jsx("div",{className:"ddesc",children:e.headline}),t.jsxs("div",{className:"dtags",children:[e.sector&&t.jsx("button",{type:"button",onClick:b({sector:[e.sector]}),children:e.sector}),e.countryLabel&&(e.cc?t.jsx("button",{type:"button",onClick:b({country:[e.cc]},!0),children:e.countryLabel}):t.jsx("span",{children:e.countryLabel})),e.stage&&t.jsx("button",{type:"button",onClick:b({stage:[e.stage]}),children:e.stage}),g&&t.jsx("span",{className:"damt",children:g})]}),t.jsxs("div",{className:"dsig",children:[t.jsxs("span",{className:"dmo",children:[Bt(e.engine||"")," ",rt(e.engine||"",s)]}),$e(e)&&t.jsx(Tt,{o:e})]}),e.url&&t.jsxs("a",{className:"dsrc",href:e.url,target:"_blank",rel:"nofollow noopener",onClick:f=>f.stopPropagation(),children:[(s==="fr"?"lire la source":"read the source")+(u?` · ${u}`:"")," ↗"]}),!a&&t.jsx("div",{className:"dact",children:t.jsx(ir,{o:e})})]})}const h=Le(e),c=["#E3E8F0","#E7F3EC","#C4E0D0","#7FC0A0","#12A150","#E5484D"][h];return t.jsxs("div",{className:"dcard"+(a?" tzr":"")+(r?" sel":""),style:{"--c":c},onClick:()=>{!a&&n&&n(e.id)},children:[t.jsxs("div",{className:"dh",children:[typeof e.score=="number"&&t.jsx("span",{className:"dsc",children:e.score}),t.jsx("span",{className:"dnm",title:e.name,children:e.name})]}),t.jsxs("div",{className:"dv",children:[t.jsx(or,{o:e}),$e(e)&&t.jsx(Tt,{o:e})]}),t.jsx("div",{className:"dmeta",children:[e.countryLabel,e.stage,e.sector].filter(Boolean).join(" · ")}),(e.tagline||e.reasoning)&&t.jsx("div",{className:"ddesc",children:e.tagline||e.reasoning}),!a&&d.pipe&&h===3&&t.jsxs("div",{className:"dyn",children:[t.jsx("button",{type:"button",style:{"--c3":"#0E8A44"},onClick:()=>l(e,!0),children:o.actYes}),t.jsx("button",{type:"button",style:{"--c3":"var(--red)"},onClick:()=>l(e,!1),children:o.actNo})]}),!a&&e.memoUrl&&t.jsxs("button",{type:"button",className:"dmemo",onClick:()=>fa(i,e),children:[o.actMemoOf(e.memoType)," →"]})]})}function Tc(){const{t:e}=K(),[a,r]=p.useState(0);return p.useEffect(()=>{const n=window.setInterval(()=>r(o=>o+1),2400);return()=>window.clearInterval(n)},[]),t.jsxs("div",{className:"loadwait","aria-live":"polite",children:[t.jsxs("div",{className:"lw-top",children:[t.jsx("span",{className:"lw-dot"}),t.jsx("span",{className:"lw-msg",children:e.loadMsgs[a%e.loadMsgs.length]})]}),[0,1,2,3,4,5].map(n=>t.jsxs("div",{className:"lw-row",style:{"--d":`${n*.12}s`},children:[t.jsx("span",{className:"lw-c lw-c1"}),t.jsx("span",{className:"lw-c lw-c2"}),t.jsx("span",{className:"lw-c lw-c3"})]},n))]})}function Fc({counts:e}){const{st:a,dispatch:r,t:n,lang:o}=K(),i=o==="en",d=c=>n.plabels[c]||"",l=[0,1,2,3,4,5,6,7].filter(c=>c!==a.ptab&&(e[c]||0)>0),s=l.includes(0)?0:l.sort((c,g)=>(e[g]||0)-(e[c]||0))[0];if(s===void 0)return t.jsx("div",{className:"void",children:n.emptyTab});const h=e[s]||0;return t.jsxs("div",{className:"void void-empty",children:[t.jsx("b",{children:i?`No “${d(a.ptab)}” for now.`:`0 ${d(a.ptab).toLowerCase().replace(/s$/,"")} pour l’instant.`}),t.jsx("span",{children:s===0?i?`${h} ${h>1?"files are":"file is"} waiting for your screening`:`${h} dossier${h>1?"s":""} attende${h>1?"nt":""} votre évaluation`:i?`${h} ${h>1?"files":"file"} in “${d(s)}”`:`${h} dossier${h>1?"s":""} dans « ${d(s)} »`}),t.jsxs("button",{type:"button",className:"abtn",onClick:()=>r({type:"ptab",tab:s}),children:[(i?"Open ":"Ouvrir ")+d(s)," →"]})]})}function Rc(){var St,zt,Mt,Yt;const e=K(),{st:a,dispatch:r,t:n,caps:o,counts:i,scoped:d,scopedAll:l,markRow:s,lang:h,sessTally:c,data:g,dossiers:u,source:b,focusExtra:f,byId:y,token:w}=e,m=Zo(),v=p.useMemo(()=>{var B,Y,ce,le;if(!w||b==="ops")return null;const j=(((B=m==null?void 0:m.ed)==null?void 0:B.date)||(m==null?void 0:m.day)||"").slice(0,10),_=[(Y=m==null?void 0:m.ed)==null?void 0:Y.html,(ce=m==null?void 0:m.ed)==null?void 0:ce.acquirers_html].filter(Boolean).join("");return{id:"edito:brief",kind:"op",name:h==="en"?"Today's brief":"Brief du jour",headline:h==="en"?"Operations relevant to your thesis":"Opérations pertinentes pour votre thèse",tagline:((le=m==null?void 0:m.ed)==null?void 0:le.date)||j,decryptHtml:_||void 0,date:j,engine:"edito",dealKind:"other",noCo:!0,cc:null,continent:null}},[w,b,h,(St=m==null?void 0:m.ed)==null?void 0:St.html,(zt=m==null?void 0:m.ed)==null?void 0:zt.acquirers_html,(Mt=m==null?void 0:m.ed)==null?void 0:Mt.date,m==null?void 0:m.day]),k=j=>o.lockRowsAfter!==null||b==="ops"||o.pipe?Number.MAX_SAFE_INTEGER:Xo,[E,S]=p.useState(new Set);p.useEffect(()=>{S(new Set)},[a.ptab,a.continent]);const[N,A]=p.useState(null);p.useEffect(()=>{A(null)},[a.ptab,a.continent]);const[T,F]=p.useState(!a.mapFolded);p.useEffect(()=>{if(a.mapFolded){F(!1);return}const j=document.getElementById("atl2-stage");if(!j){F(!1);return}const _=new IntersectionObserver(([B])=>F(!!B&&B.isIntersecting),{root:null,rootMargin:"-120px 0px 0px 0px",threshold:0});return _.observe(j),()=>_.disconnect()},[a.mapFolded]);const O=a.mapFolded||!T,D=j=>S(_=>{const B=new Set(_);return B.has(j)?B.delete(j):B.add(j),B}),V=b==="ops"||o.pipe,[Q,R]=p.useState("all"),[x,q]=p.useState(!1),[C,P]=p.useState(null),[H,G]=p.useState(!1),Z=p.useRef(!0);p.useEffect(()=>{if(Z.current){Z.current=!1;return}R("all"),G(!1)},[a.ptab,a.continent]),p.useEffect(()=>{if(!H)return;const j=_=>{var B,Y;(Y=(B=_.target)==null?void 0:B.closest)!=null&&Y.call(B,".atl2 .doable")||G(!1)};return document.addEventListener("click",j,!0),()=>document.removeEventListener("click",j,!0)},[H]);const z=p.useMemo(()=>{var _;const j=new Map;for(const B of nd(((_=m==null?void 0:m.ed)==null?void 0:_.html)||""))j.has(B.t)||j.set(B.t,B.html);return j},[(Yt=m==null?void 0:m.ed)==null?void 0:Yt.html]),$=p.useCallback(j=>{if(j.decryptHtml)return j.decryptHtml;if(!z.size)return;const _=(j.name||"").trim().toLowerCase();if(_.length<3)return;const B=z.get(_);if(B)return B;for(const[Y,ce]of z)if(Y.includes(_)||_.includes(Y))return ce},[z]),{diff:M}=bc(),[X,U]=p.useState(!1),ee=a.filters.win==="1"&&!a.filters.day,[ue,fe]=p.useState(!1),[ve,me]=p.useState(!1),[we,ze]=p.useState(!1),he=j=>!He(j)&&(!o.pipe||j.kind!=="op"),ke=p.useMemo(()=>{const j={...a,filters:{...a.filters,win:"all",day:"",signalOnly:!1,signalEngines:[]}};return u.filter(_=>he(_)&&gt(_.date)===0&&_t(_,j,o.pipe)).length},[u,a,o.pipe]),ge=p.useMemo(()=>new Set(((M==null?void 0:M.added)||[]).map(j=>j.trim().toLowerCase()).filter(Boolean)),[M]),ie=p.useMemo(()=>{if(!ge.size)return 0;const j={...a,filters:{...a.filters,win:"all",day:"",signalOnly:!1,signalEngines:[]}};return u.filter(_=>!He(_)&&ge.has((_.name||"").trim().toLowerCase())&&_t(_,j,o.pipe)).length},[u,ge,a,o.pipe]);p.useEffect(()=>{const j=()=>{me(!1),q(!1),fe(!1),ze(!1),R("all"),G(!1),r({type:"filters",patch:{signalOnly:!1,signalEngines:[]}})};return window.addEventListener("ppmap:tunnel",j),()=>window.removeEventListener("ppmap:tunnel",j)},[]),p.useEffect(()=>{me(!1),q(!1),fe(!1),ze(!1),a.filters.signalOnly&&r({type:"filters",patch:{signalOnly:!1,signalEngines:[]}})},[a.ptab]);const I=p.useMemo(()=>{const j=l.filter(B=>!He(B)&&tt(B));let _="";for(const B of j){const Y=(B.date||"").slice(0,10);Y&&(!_||Y<_)&&(_=Y)}return{n:j.length,since:_?_.split("-").reverse().slice(0,2).join("/"):""}},[l]),ae=I.n,pe=p.useMemo(()=>o.pipe?u.filter(j=>j.kind==="target"&&!He(j)&&$e(j)&&(a.continent==="monde"||j.continent===a.continent)):u.filter(j=>$e(j)&&!We(j)),[o.pipe,u,a.continent]),se=pe.length,ne=p.useMemo(()=>{if(we)return Ga(pe,a.sort);const _=ve&&ge.size>0||a.filters.signalOnly||Q!=="all"||x||ue?l:d;let B=Ga(_,a.sort);return B=B.filter(Y=>!He(Y)),ue&&(B=B.filter(Y=>gt(Y.date)===0&&he(Y))),ve&&ge.size&&(B=B.filter(Y=>ge.has((Y.name||"").trim().toLowerCase()))),x||Q==="explore"?B=B.filter(tt):Q==="eval"?B=B.filter(Y=>!tt(Y)&&!Y.noCo&&(Y.kind==="op"||!We(Y))):o.pipe&&(B=B.filter(Y=>!tt(Y))),B},[d,l,a.sort,Q,ve,ge,x,ue,we,pe,o.pipe,a.filters.signalOnly]),te=p.useMemo(()=>o.pipe?ne:ne.filter(j=>!We(j)&&!j.noCo&&!tt(j)),[ne,o.pipe]),de=b==="ops"?ne.filter(tt).length:0,je=ue?n.morningList:we?n.sigList:ve?n.sinceList:o.pipe?n.plabels[a.ptab].toLowerCase():b==="ops"?n.edLabel:a.filters.status==="retenu"?n.keptByStan:a.filters.status==="ecarte"?n.droppedByStan:n.toSend,re=a.filters,Ae=re.sector.length+re.market.length+re.country.length+re.engine.length+re.stage.length+re.crible.length+re.angle.length+re.memoLevel.length+re.dealKind.length+(re.signalOnly?1:0)+(re.acquirer.trim()?1:0)+(re.search.trim()?1:0),ye=[];if(re.day)ye.push({k:"day",lib:n.fDay(re.day.slice(8,10)+"/"+re.day.slice(5,7)),off:()=>r({type:"filters",patch:{day:"",win:"all"}})});else if(re.win&&re.win!=="all"){const j=["1","7","30"].indexOf(re.win);j>=0&&ye.push({k:"win",lib:n.dates[j],off:()=>r({type:"filters",patch:{win:"all"}})})}const Be=j=>j.length<=2?j.join(", "):`${j.length} ${n.fSelected}`;for(const j of["sector","market","country","engine","crible"]){const _=re[j];_&&_.length&&ye.push({k:j,lib:Be(_),off:()=>r({type:"clearFacet",facet:j})})}re.search&&ye.push({k:"search",lib:"🔍 "+re.search,off:()=>r({type:"filters",patch:{search:""}})}),ve&&ge.size&&ye.push({k:"since",lib:"✨ "+n.sinceChip,off:()=>me(!1)}),we?ye.push({k:"sig",lib:"🔴 "+n.sigDock(se),off:()=>ze(!1)}):re.signalOnly&&ye.push({k:"sig",lib:"🔴 "+n.sigDock(se||re.signalEngines.length||0),off:()=>r({type:"filters",patch:{signalOnly:!1,signalEngines:[]}})});const Ie=(j,_,B="",Y=!1)=>t.jsxs("button",{type:"button","data-s":j,className:B,"aria-sort":a.sort.key===j?a.sort.dir===1?"ascending":"descending":"none",style:Y?{justifyContent:"flex-end"}:void 0,onClick:()=>r({type:"sort",key:j}),children:[_,t.jsx("span",{className:"ar",children:a.sort.key===j&&a.sort.dir===1?"▴":"▾"})]},j),Ue=p.useMemo(()=>{if(o.pipe||a.groupBy==="none")return null;const j=new Map;ne.forEach(Y=>{const ce=Y.engine||"?";j.has(ce)||j.set(ce,[]),j.get(ce).push(Y)});const _={ma:0,fundraising:1,partenariats:2,produits:3,regul:4,marche:5,nominations:6,recrutements:7,evenements:8,listes:9,tribunes:10,media:11,edito:12},B=Sn([...j.keys()],h);return[...j.entries()].sort((Y,ce)=>{const le=_[Y[0]]??10+B.indexOf(Y[0]),xe=_[ce[0]]??10+B.indexOf(ce[0]);return le-xe})},[ne,o.pipe,a.groupBy,h]),Gt=Ue?Ue.filter(([j])=>Ma.has(j)).length:0,Re=(()=>{var _;return((_=(Ue?Ue.flatMap(([,B])=>B):ne)[0])==null?void 0:_.id)??null})(),ot=p.useRef(!1),Ce=p.useMemo(()=>u.find(He)||v,[u,v]),[it,Rt]=p.useState(!1);p.useEffect(()=>{const j=()=>{ot.current=!0,me(!1)};return window.addEventListener("ppmap:reveal",j),window.addEventListener("ppmap:focus",j),()=>{window.removeEventListener("ppmap:reveal",j),window.removeEventListener("ppmap:focus",j)}},[]),p.useEffect(()=>{const j=()=>{Ce&&r({type:"focus",id:Ce.id})};return window.addEventListener("ppmap:edito",j),()=>window.removeEventListener("ppmap:edito",j)},[Ce,r]),p.useEffect(()=>{if(!a.focusId)return;P(a.focusId);const j=window.setTimeout(()=>P(null),900);return()=>window.clearTimeout(j)},[a.focusId]),p.useEffect(()=>{if(V&&!(a.focusId&&(ne.some(j=>j.id===a.focusId)||u.some(j=>j.id===a.focusId)||a.focusId===(Ce==null?void 0:Ce.id)))&&!f){if(Ce){r({type:"focus",id:Ce.id});return}Re&&r({type:"focus",id:Re})}},[V,a.focusId,ne,Re,f,r,u,b,Ce]),p.useEffect(()=>{if(!V||!a.focusId||Ce&&a.focusId===Ce.id||ne.some(_=>_.id===a.focusId))return;const j=u.find(_=>_.id===a.focusId);if(j){if(ot.current){j.kind==="op"?R(tt(j)?"explore":"eval"):Q!=="all"&&R("all");return}Q!=="all"&&Re&&r({type:"focus",id:Re})}},[V,a.focusId,Q,ne,u,Re,r,Ce]),p.useEffect(()=>{if(!V||!a.focusId||!ot.current)return;const j=document.querySelector(".atl2.ops .row.sel, .atl2.ops .dcard.sel, .atl2.cibles .row.sel, .atl2.cibles .dcard.sel");if(!j){const ce=ne.findIndex(le=>le.id===a.focusId);if(ce>=0){const le=Ue?"":"pt"+a.ptab;if(le){const xe=a.shown[le]||k();ce>=xe&&r({type:"more",group:le,by:ce-xe+8})}}return}ot.current=!1;const _=Di(),B=j.getBoundingClientRect();B.top>=_-2&&B.bottom<=window.innerHeight-4||Ec(j)},[V,a.focusId,a.ptab,ne,a.shown,Ue,r]),p.useEffect(()=>{if(typeof window>"u")return;const j=document.querySelector(".atl2.ops .listhead, .atl2.cibles .listhead"),_=document.querySelector(".atl2.ops, .atl2.cibles");if(!j||!_)return;const B=document.querySelector(".atl2 .fzone"),Y=()=>{_.style.setProperty("--listhead-h",`${j.offsetHeight}px`);const le=!!(B&&B.querySelector(".stage.folded"));_.style.setProperty("--fold-h",le&&B?`${B.offsetHeight}px`:"0px")};Y();const ce=new ResizeObserver(Y);return ce.observe(j),B&&ce.observe(B),()=>ce.disconnect()},[O,a.dens,a.mapFolded]);const Qe=p.useMemo(()=>{if(!V||!a.focusId)return null;if(v&&a.focusId===v.id)return v;const j=ne.find(B=>B.id===a.focusId)||u.find(B=>B.id===a.focusId)||null;if(!j)return null;const _=$(j);return _&&_!==j.decryptHtml?{...j,decryptHtml:_}:j},[V,a.focusId,ne,u,$,v]),Nt=o.lockRowsAfter;let Ot=0;const Dt=(j,_)=>{let B=a.shown[_]||k();return j.length-B<=4&&(B=j.length),j.slice(0,B).map(le=>{const xe=Nt!==null&&Ot>=Nt;Ot++;const Se=$(le),Ee=Se&&Se!==le.decryptHtml?{...le,decryptHtml:Se}:le,at=!V&&a.dens!=="maxi"&&(a.dens==="deplie"||(N?N==="open":!!Se)),lt=E.has(le.id)?!at:at,Ke=V?mt=>{ot.current=!0,r({type:"focus",id:mt});const et=y.get(mt);et&&(tt(et)?ya(et):et.noCo||window.dispatchEvent(new CustomEvent("ppmap:prefill",{detail:{name:et.name,url:et.url||"",website:et.website||"",domain:et.domain||""}})))}:void 0;return a.dens==="maxi"?t.jsx(Lc,{o:Ee,locked:xe,selected:V&&a.focusId===le.id,onSelect:Ke},le.id):t.jsx(Sc,{o:Ee,locked:xe,open:lt,onToggle:()=>D(le.id),selected:V&&a.focusId===le.id,echo:C===le.id,fresh:ge.has((le.name||"").trim().toLowerCase()),onSelect:Ke},le.id)})},wt="list"+(a.dens==="maxi"?" maxi":a.dens==="ligne"||a.dens==="deplie"?" ligne":"")+(b==="ops"?" opsl":"")+(ne.length?"":" list-empty"),Pe=t.jsxs(t.Fragment,{children:[Ue?Ue.map(([j,_])=>t.jsxs("div",{className:"grp",children:[t.jsxs("div",{className:"grp-h",children:[t.jsx("span",{className:"ic",children:Bt(j)}),t.jsxs("span",{children:[t.jsx("span",{className:"t",children:j==="ma"?n.grpMa:j==="fundraising"?n.grpLev:Ma.has(j)&&Gt<=1?n.grpNews:j==="nominations"?n.grpNom:j==="media"?n.grpNewsOther:j==="recrutements"?n.grpHire:Ma.has(j)?n.grpNews+" · "+rt(j,h):rt(j,h)}),t.jsx("div",{className:"s",children:n.grpCount(_.filter(B=>!We(B)).length,_.length)})]})]}),Dt(_,j)]},j)):Dt(ne,"pt"+a.ptab),g.loading&&!u.length&&t.jsx(Tc,{}),o.pipe&&a.ptab===0&&!x&&!ve&&!ue&&!we&&Q==="all"&&!a.filters.signalOnly&&!g.loading&&t.jsx(jp,{}),!ne.length&&!(g.loading&&!u.length)&&(o.pipe&&Q==="all"?t.jsx(Fc,{counts:i}):t.jsxs("div",{className:"void",children:[n.emptyScope,(re.win!=="all"||!!re.day)&&t.jsxs("p",{className:"voidb",children:[n.emptyWin," ",t.jsx("button",{type:"button",className:"lk",onClick:()=>r({type:"filters",patch:{win:"all",day:""}}),children:n.emptyWinBtn})]}),Ae>0&&t.jsxs("p",{className:"voidb",children:[n.emptyFilters(Ae)," ",t.jsx("button",{type:"button",className:"lk",onClick:()=>r({type:"reset"}),children:n.emptyFiltersBtn})]})]}))]}),st=t.jsxs(t.Fragment,{children:[!x&&t.jsxs("span",{className:"main",children:[t.jsx("b",{className:"tn",style:{"--c":"var("+ha[a.ptab]+")"},children:ne.length})," ",je]}),x&&t.jsxs("span",{className:"main",children:[t.jsx("b",{className:"tn",style:{"--c":"var("+ha[a.ptab]+")"},children:ne.length})," ",n.newsWord]}),t.jsx("span",{className:"dot",children:"·"}),O&&!a.mapFolded&&t.jsx(Ni,{variant:"compact",mapToggle:!1}),t.jsxs("span",{className:"ctx",children:[O?o.pipe&&e.fund?e.fund:null:t.jsxs(t.Fragment,{children:[e.contName,o.pipe&&e.fund?" · "+e.fund:""]}),ye.map(j=>t.jsxs("button",{type:"button",className:"fpuce",title:n.filterOff,onClick:_=>{_.stopPropagation(),j.off()},children:[j.lib,t.jsx("i",{children:"×"})]},j.k)),b==="ops"&&ne.length>0&&!O&&t.jsxs("span",{className:"edsplit",children:[" — ","⚡ ",ne.length-de," ",n.zoomPulseEval,de>0?t.jsxs(t.Fragment,{children:[" · 🔎 ",de," ",n.zoomPulseExplore]}):null]})]}),a.filters.acquirer.trim()&&t.jsxs("span",{className:"acqchip",children:["🏢 ",n.acqOn(a.filters.acquirer),t.jsx("button",{type:"button",title:n.acqClear,onClick:()=>r({type:"acquirer",value:""}),children:"✕"})]})]}),Ze=t.jsxs("div",{className:"listhead"+(O?" mapoff":""),children:[O&&t.jsx("div",{className:"lh-tools",children:t.jsx(ji,{compact:!0})}),o.showFunnel&&X&&ee&&t.jsxs("div",{className:"lh-stats",children:[t.jsx(yd,{}),t.jsx(yc,{})]}),o.showFunnel&&t.jsx("div",{className:"lh-title",children:st}),o.showFunnel&&t.jsxs("div",{className:"lh-funnel",children:[t.jsx(vc,{}),t.jsx(wc,{})]}),t.jsxs("div",{className:"lh-top",children:[o.showFunnel&&t.jsxs("div",{className:"lh-dock",children:[t.jsxs("button",{type:"button",className:"dockbtn"+(ue?" on":""),"aria-pressed":ue,title:n.morningDockTitle,onClick:()=>{if(ue){fe(!1),U(!1);return}me(!1),q(!1),ze(!1),R("all"),fe(!0),r({type:"filters",patch:{signalOnly:!1,signalEngines:[]}}),U(!1)},children:["📊 ",n.morningDock(ke)]}),M&&!M.firstVisit&&(M.added.length>0||M.gone.length>0)&&t.jsxs("button",{type:"button",className:"dockbtn since"+(ve?" on":""),"aria-pressed":ve,title:n.sinceSub,onClick:()=>{const j=!ve;me(j),q(!1),fe(!1),ze(!1),U(!1),R("all"),j&&r({type:"filters",patch:{win:"all",day:"",signalOnly:!1,signalEngines:[]}})},children:["✨ ",n.sinceDock(ie),M!=null&&M.lastDate?` · ${n.sinceSince(M.lastDate)}`:""]}),se>0&&t.jsxs("button",{type:"button",className:"dockbtn sig"+(we?" on":""),"aria-pressed":we,onClick:()=>{ze(!we),me(!1),q(!1),fe(!1),U(!1),R("all"),r({type:"filters",patch:{signalOnly:!1,signalEngines:[]}})},children:["🔴 ",n.sigDock(se)]}),o.pipe&&ae>0&&t.jsxs("button",{type:"button",className:"dockbtn news"+(x?" on":""),"aria-pressed":x,title:n.newsDockHint,onClick:()=>{const j=!x;q(j),me(!1),fe(!1),ze(!1),U(!1),R("all"),j&&r({type:"filters",patch:{win:"all",day:"",signalOnly:!1,signalEngines:[]}})},children:["📰 ",n.newsDock(ae),I.since?` · ${n.newsSince(I.since)}`:""]})]}),!o.showFunnel&&st,o.showGroupBar&&t.jsxs("span",{className:"groupbar",children:[t.jsx("span",{className:"gl",children:n.groupBy}),t.jsx("button",{type:"button","aria-pressed":a.groupBy==="engine",onClick:()=>r({type:"groupBy",groupBy:"engine"}),children:n.groupEngine}),t.jsx("button",{type:"button","aria-pressed":a.groupBy==="none",onClick:()=>r({type:"groupBy",groupBy:"none"}),children:n.groupNone})]}),a.pileMode&&t.jsx("button",{type:"button",className:"exitpile",onClick:()=>r({type:"pile",on:!1}),children:n.exitPile}),t.jsxs("span",{className:"lh-acts",children:[(o.showFunnel||b==="ops")&&t.jsx("span",{className:"dens",children:[["liste",n.densList],["ligne",n.densLigne],["maxi",n.densMaxi]].map(([j,_])=>t.jsxs("button",{type:"button","data-d":j,"aria-pressed":a.dens===j||j==="ligne"&&a.dens==="deplie",onClick:()=>r({type:"dens",dens:j}),children:[t.jsx("i",{children:t.jsx("em",{})}),t.jsx("b",{children:_})]},j))}),!V&&o.showFunnel&&a.dens!=="maxi"&&t.jsxs("span",{className:"foldall",children:[t.jsx("button",{type:"button","aria-pressed":N==="open",onClick:()=>{A("open"),S(new Set)},children:n.unfoldAll}),t.jsx("button",{type:"button","aria-pressed":N==="closed",onClick:()=>{A("closed"),S(new Set)},children:n.foldAllLbl})]}),(o.showFunnel||b==="ops")&&(()=>{var Se;const j={...a,filters:{...a.filters,signalOnly:!1,signalEngines:[],...o.pipe?{win:"all",day:""}:{}}},_=u.filter(Ee=>_t(Ee,j,o.pipe)&&!He(Ee)),B=_.filter(Ee=>!tt(Ee)&&!Ee.noCo&&(Ee.kind==="op"||!We(Ee))).length,Y=_.filter(tt).length,ce=o.pipe?_.filter(Ee=>Ee.kind!=="op"&&Le(Ee)===1).length:0,le=[["all",n.doAll],...o.pipe?[["analyser",`${n.doAna}${ce?` ${ce}`:""}`]]:[],["eval",`${n.doEval}${B?` ${B}`:""}`],["explore",`${n.doExplore}${Y?` ${Y}`:""}`]],xe=((Se=le.find(([Ee])=>Ee===Q))==null?void 0:Se[1])||n.doAll;return t.jsxs("span",{className:"doable",children:[t.jsxs("button",{type:"button",className:"dobtn","aria-expanded":H,onClick:()=>G(Ee=>!Ee),children:[xe,t.jsx("i",{children:"▾"})]}),H&&t.jsx("div",{className:"dolist",children:le.map(([Ee,at])=>t.jsx("button",{type:"button","aria-pressed":Q===Ee,onClick:()=>{if(G(!1),Ee==="analyser"){window.dispatchEvent(new CustomEvent("ppmap:tunnel")),r({type:"ptab",tab:1});return}R(Ee),Ee!=="all"&&(me(!1),q(!1),U(!1),r({type:"filters",patch:{signalOnly:!1,signalEngines:[],...o.pipe?{win:"all",day:""}:{}}}))},children:at},Ee))})]})})(),a.dens==="maxi"&&t.jsxs("label",{className:"sortsel",children:[t.jsx("span",{children:n.sortBy}),t.jsx("select",{value:a.sort.key,onChange:j=>r({type:"sort",key:j.target.value}),children:[["signal",n.sortSig],["amount",n.sortAmount],["age",n.sortAge],["name",n.sortName],["country",n.sortCountry],["stage",n.sortStage],["sector",n.sortSector],...o.pipe?[["crible",n.sortCrible],["memo",n.sortMemo],["score",n.sortScore]]:[]].map(([j,_])=>t.jsx("option",{value:j,children:_},j))})]}),o.showChain&&t.jsxs("span",{className:"chainwrap"+(te.length===0?" empty":""),children:[t.jsxs("button",{type:"button",className:"chain",disabled:te.length===0,title:n.chainHint,onClick:()=>{te.length&&r({type:"chainStart",queue:te.map(j=>j.id)})},children:[t.jsx("span",{className:"b",children:"▶"})," ",o.pipe?n.browse(te.length):n.chainAll(te.length)]}),!o.pipe&&t.jsx("em",{className:"chainhint",children:n.chainHint})]})]})]})]});return t.jsxs(t.Fragment,{children:[!V&&Ze,a.dens!=="maxi"&&!V&&t.jsxs("div",{className:"cols",children:[t.jsx("span",{}),Ie("country",n.colCountry),Ie("name",n.colCompany),Ie("amount",n.colAmount,"h-amt",!0),Ie("stage",n.colStage,"h-stade"),Ie("signal",n.colSignal,"h-sig"),o.pipe&&t.jsxs("span",{className:"h-vd h-vd-sort",children:[Ie("crible",n.colCrible),t.jsx("i",{"aria-hidden":"true",children:"·"}),Ie("memo",n.colMemo)]}),o.pipe&&Ie("score",n.colScore,"h-sc",!0),t.jsx("span",{}),o.showThumbs&&t.jsx("span",{className:"h-thu",children:n.colThumbs})]}),V?t.jsxs("div",{className:"desk",children:[t.jsxs("div",{className:"desk-list",children:[Ze,a.dens==="liste"&&t.jsxs("div",{className:"cols",children:[t.jsx("span",{}),Ie("country",n.colCountry),Ie("name",n.colCompany),o.pipe&&t.jsxs("span",{className:"h-vd h-vd-sort",children:[Ie("crible",n.colCrible),t.jsx("i",{"aria-hidden":"true",children:"·"}),Ie("memo",n.colMemo)]}),t.jsx("span",{})]}),t.jsx("div",{className:wt,children:Pe})]}),t.jsxs("aside",{className:"readpane"+((Qe?He(Qe):!f&&Ce)?" is-edito":""),"aria-label":h==="fr"?"Dossier":"File",children:[Ce&&(()=>{const j=a.focusId===Ce.id&&!it,_=(Ce.headline||Ce.tagline||"").trim();return t.jsxs("button",{type:"button",className:"edito-go pane-edito","aria-pressed":j,onClick:()=>{if(j){Rt(!0);return}Rt(!1),r({type:"focus",id:Ce.id})},children:[t.jsx("span",{className:"eg-t",children:h==="en"?"Today’s editorial":"Édito du jour"}),_&&t.jsx("span",{className:"eg-sub",children:_}),t.jsx("span",{className:"eg-chev",children:j?h==="en"?"Collapse ▴":"Replier ▴":h==="en"?"Read ▾":"Lire ▾"})]})})(),!!(Ce&&(Qe?He(Qe):!f))&&it?null:v&&a.focusId===v.id?t.jsx("div",{className:"zoom",children:t.jsx(ld,{})}):Qe&&o.pipe?t.jsx(Ac,{o:Qe}):t.jsx(Mi,{o:Qe,extra:Qe?null:f})]})]}):t.jsx("div",{className:wt,children:Pe}),(()=>{const j=Ue||[["pt"+a.ptab,ne]];let _=0,B=0;for(const[ce,le]of j){B+=le.length;let xe=a.shown[ce]||k();le.length-xe<=4&&(xe=le.length),_+=Math.min(le.length,xe)}const Y=B-_;return Y<=0?null:t.jsxs("button",{type:"button",className:"moregrp",onClick:()=>j.forEach(([ce,le])=>r({type:"more",group:ce,by:le.length,base:k()})),children:[t.jsx("span",{className:"more-label",children:n.more(Y,Y)}),t.jsx("span",{className:"more-meta",children:n.moreMeta(_,B)})]})})(),o.showThumbs&&t.jsxs("p",{className:"learn",children:[n.learnLine,t.jsx("button",{type:"button",onClick:()=>r({type:"modal",modal:"crit"}),children:n.learnLink})]}),(c.kept>0||c.dropped>0)&&t.jsx("div",{className:"tally",style:{padding:"6px 14px"},dangerouslySetInnerHTML:{__html:n.session(c.kept,c.dropped)}}),V&&b==="ops"&&a.dens!=="maxi"&&t.jsx(kc,{on:!!Ue,rev:(Ue||[]).map(([j,_])=>j+_.length).join("|")})]})}function Ao(e){let a=e==null?"":String(e);return/^[=+\-@\t]/.test(a)&&(a=`'${a}`),/[";\n\r]/.test(a)?`"${a.replace(/"/g,'""')}"`:a}function Oc(e,a){const r=_s(e);return a[{retenu:1,ana:2,pending:3,valide:4,ecarte:5}[r]??1]||""}function Dc(e,a){const n=[a.head.split("|").map(Ao).join(";")];for(const o of e){const i=a.stageOf(o);n.push([o.name||"",Oc(o,a.plabels),Ea(o)||o.verdict||"",typeof o.score=="number"?o.score:"",o.countryLabel||o.cc||"",o.sector||"",i?a.stageLabel(i.stage):"",o.contactName||"",o.contactEmail||"",o.memoUrl||"",(o.date||"").slice(0,10),(o.reasoning||"").replace(/\s+/g," ").trim().slice(0,280)].map(Ao).join(";"))}return`\uFEFF${n.join(`\r
+`)}`}function Mc(e){const a=new Blob([e],{type:"text/csv;charset=utf-8"}),r=URL.createObjectURL(a),n=document.createElement("a");n.href=r,n.download=`cibles_vue_${new Date().toISOString().slice(0,10)}.csv`,document.body.appendChild(n),n.click(),window.setTimeout(()=>{URL.revokeObjectURL(r);try{document.body.removeChild(n)}catch{}},400)}const Ic=(e,a)=>{const r=String(e||"").slice(0,10);return/^\d{4}-\d{2}-\d{2}$/.test(r)?a==="en"?r:`${r.slice(8,10)}/${r.slice(5,7)}/${r.slice(0,4)}`:""};function Je({k:e,v:a,href:r,title:n,wide:o}){return a==null||a===""?null:t.jsxs("div",{className:"dsl"+(o?" dsw":""),children:[t.jsx("span",{children:e}),r?t.jsx("b",{children:t.jsx("a",{href:r,target:"_blank",rel:"noopener noreferrer",title:n,children:String(a)})}):t.jsx("b",{title:n,children:String(a)})]})}function sa({titre:e,html:a,note:r}){return a?t.jsxs("section",{className:"dsfin",children:[t.jsx("h3",{children:e}),t.jsx("div",{className:"dstbl",dangerouslySetInnerHTML:{__html:a}}),r&&t.jsx("p",{className:"dsnote",children:r})]}):null}function Pc({o:e,qa:a,comite:r}){const{t:n,lang:o,fund:i}=K(),d=(e.cribleStatus||"").trim().toUpperCase()||(Ea(e)==="NO MATCH"?"NO MATCH":"MATCH"),l=Ft(e),s=(a==null?void 0:a.blocs)||{},h=[[n.qaVP,s.value_prop],[n.qaProduct,s.produit],[n.qaModel,s.modele],[n.qaSummary,s.synthese]];return t.jsxs("article",{className:"dspage",children:[t.jsxs("header",{className:"dsh",children:[t.jsxs("div",{children:[t.jsx("b",{children:e.name}),e.tagline&&t.jsx("p",{children:e.tagline})]}),t.jsxs("span",{className:"dsv"+(d==="NO MATCH"?" out":""),children:[d==="NO MATCH"?n.vOut:n.vKept,l&&t.jsx("em",{children:l})]})]}),e.reasoning&&t.jsxs("section",{children:[t.jsx("h3",{children:n.dsWhy}),t.jsx("p",{className:"dstxt",children:e.reasoning})]}),t.jsxs("section",{className:"dsgrid",children:[t.jsx(Je,{k:n.cdSector,v:e.sector}),t.jsx(Je,{k:n.cdMarket,v:e.market,wide:!0}),t.jsx(Je,{k:n.cdTags,v:(e.tags||[]).join(" · "),wide:!0}),t.jsx(Je,{k:n.cdStage,v:e.stage}),t.jsx(Je,{k:n.cdCountry,v:[e.city,e.countryLabel].filter(Boolean).join(", ")}),t.jsx(Je,{k:n.cdSite,v:e.domain||e.website}),t.jsx(Je,{k:n.cdName,v:e.contactName}),t.jsx(Je,{k:n.cdEmail,v:e.contactEmail}),t.jsx(Je,{k:n.cdScore,v:typeof e.score=="number"?`${e.score}/100`:""}),t.jsx(Je,{k:n.cdConvScore,v:typeof e.convictionScore=="number"?Math.round(e.convictionScore):""}),t.jsx(Je,{k:n.cdAngle,v:e.angle}),t.jsx(Je,{k:n.cdDetected,v:Ic(e.date,o)})]}),!!(e.provQuery||e.provUrl||$a(e))&&t.jsxs("section",{children:[t.jsx("h3",{children:n.dsFound}),t.jsxs("div",{className:"dsgrid",children:[t.jsx(Je,{k:n.cdQuery,v:e.provQuery,title:e.provQuery,wide:!0}),t.jsx(Je,{k:n.cdSrc,v:Wn(e.provUrl||""),href:wa(e.provUrl||"")||void 0,title:e.provUrl}),t.jsx(Je,{k:n.cdAngleSrc,v:$a(e)})]})]}),h.some(([,c])=>c)&&t.jsxs("section",{children:[t.jsx("h3",{children:n.dsAnalysis}),h.filter(([,c])=>c).map(([c,g])=>t.jsxs("div",{className:"dsb",children:[t.jsx("span",{children:c}),t.jsx("p",{children:g})]},c))]}),(r==null?void 0:r.summary)&&t.jsxs("section",{children:[t.jsx("h3",{children:n.dsExec}),t.jsx("p",{className:"dstxt",children:r.summary})]}),(r==null?void 0:r.swot)&&t.jsxs("section",{className:"dsswot-wrap",children:[t.jsx("h3",{children:n.dsSwot}),t.jsx("div",{className:"dsswot",children:[["s",n.dsSwotS,r.swot.s],["w",n.dsSwotW,r.swot.w],["o",n.dsSwotO,r.swot.o],["t",n.dsSwotT,r.swot.t]].map(([c,g,u])=>t.jsxs("div",{className:"dssq "+c,children:[t.jsx("b",{children:g}),t.jsx("ul",{children:u.map(b=>t.jsx("li",{children:b},b))})]},c))})]}),t.jsx(sa,{titre:n.dsSyn,html:r==null?void 0:r.syn,note:r!=null&&r.pruned.includes("syn")?n.dsTableNote:""}),t.jsx(sa,{titre:n.dsPnl,html:r==null?void 0:r.pnl,note:r!=null&&r.pruned.includes("pnl")?n.dsTableNote:""}),t.jsx(sa,{titre:n.dsCf,html:r==null?void 0:r.cf,note:r!=null&&r.pruned.includes("cf")?n.dsTableNote:""}),t.jsx(sa,{titre:n.dsRoi,html:r==null?void 0:r.roi,note:r!=null&&r.pruned.includes("roi")?n.dsTableNote:""}),t.jsx(sa,{titre:n.dsReco,html:r==null?void 0:r.reco}),(r==null?void 0:r.plan)&&t.jsxs("section",{className:"dsfin",children:[t.jsx("h3",{children:n.dsPlan}),t.jsx("div",{className:"dstbl",dangerouslySetInnerHTML:{__html:r.plan}})]}),e.memoUrl&&t.jsxs("p",{className:"dsannex",children:[n.dsAnnex," ",t.jsx("a",{href:e.memoUrl,target:"_blank",rel:"noopener noreferrer",children:e.memoUrl})]}),(e.ceoStatus||e.ceoNote)&&t.jsxs("section",{children:[t.jsx("h3",{children:n.dsDecision}),e.ceoStatus&&t.jsx("p",{className:"dstxt",children:t.jsx("b",{children:e.ceoStatus})}),e.ceoNote&&t.jsxs("p",{className:"dstxt",children:["« ",e.ceoNote," »"]})]}),t.jsx("footer",{className:"dsf",children:n.dsFoot(i)})]})}function _c(){const{t:e,lang:a,token:r,scoped:n,fund:o,data:i,dispatch:d,st:l}=K(),[s,h]=p.useState({}),[c,g]=p.useState({}),u=25,b=12,f=p.useMemo(()=>{if(l.dossierId){const m=n.find(v=>v.id===l.dossierId)||i.dossiers.find(v=>v.id===l.dossierId);return m?[m]:n.slice(0,u)}return n.slice(0,u)},[n,l.dossierId,i.dossiers]);p.useEffect(()=>{f.length&&Po(r,f.map(m=>m.name)).then(h)},[r,f]),p.useEffect(()=>{const m=f.filter(E=>!!E.memoUrl).slice(0,b);if(!m.length){g({});return}let v=!1;const k={};return(async()=>{for(const E of m){if(v)return;try{const S=await Fi(E.memoUrl||"");if(v)return;S&&ec(S.comite)&&(k[E.id]=S.comite,g({...k}))}catch{}}})(),()=>{v=!0}},[f]);const y=i.stats,w=m=>m.toLocaleString(a==="en"?"en-US":"fr-FR");return t.jsxs("div",{className:"dossier",children:[t.jsxs("div",{className:"dsbar",children:[t.jsx("b",{children:e.dsTitle(f.length)}),!l.dossierId&&n.length>u&&t.jsx("span",{className:"mnote dim",children:e.dsCap(u,n.length)}),t.jsx("span",{className:"dssp"}),t.jsx("button",{type:"button",className:"abtn",onClick:()=>{d({type:"modal",modal:null}),setTimeout(()=>{try{window.print()}catch{}},120)},children:e.printBtn})]}),t.jsxs("div",{className:"dscover",children:[t.jsx("b",{children:o}),y&&typeof y.screened=="number"&&t.jsxs("p",{children:[w(y.screened)," ",e.funScreened(""),typeof y.kept=="number"&&t.jsxs(t.Fragment,{children:[" · ",w(y.kept)," ",e.covKept]}),typeof i.marketEstimate=="number"&&i.marketEstimate>0&&t.jsxs(t.Fragment,{children:[" · ",e.covOf(w(i.marketEstimate)),", ",Math.round(y.screened/i.marketEstimate*100)," %"]})]})]}),f.map(m=>t.jsx(Pc,{o:m,qa:s[m.name],comite:c[m.id]},m.id)),!f.length&&t.jsx("p",{className:"mnote",children:e.dsEmpty})]})}const Bc=50;function sr({label:e,onPreview:a,onTest:r,readOnly:n}){const{t:o}=K(),[i,d]=p.useState(null),[l,s]=p.useState(!1),[h,c]=p.useState(""),[g,u]=p.useState(0),[b,f]=p.useState(""),[y,w]=p.useState(!1),[m,v]=p.useState(0),k=p.useRef(null),E=p.useRef(null),S=()=>{v(0),E.current&&window.clearInterval(E.current),E.current=window.setInterval(()=>v(F=>F+1),1e3)},N=()=>{E.current&&(window.clearInterval(E.current),E.current=null)};p.useEffect(()=>()=>{k.current&&window.clearInterval(k.current),E.current&&window.clearInterval(E.current)},[]);const A=async F=>{s(!0),c(""),S();const O=await a();if(s(!1),N(),O.ok){d(O);return}if(O.busy){c(o.alertPreviewBusy);return}if(!F){c(o.alertPreviewFail);return}u(Bc),N(),k.current=window.setInterval(()=>{u(D=>D>1?D-1:(k.current&&window.clearInterval(k.current),A(!1),0))},1e3)},T=async()=>{if(n||y||l)return;w(!0),f(""),S();const F=await r();w(!1),N(),f(F.ok?o.alertTestOk(F.sentTo||""):F.error||o.actErr)};return t.jsxs("div",{className:"mailp",children:[t.jsxs("div",{className:"mailp-row",children:[t.jsx("button",{type:"button",className:"abtn",disabled:l||y||g>0,onClick:()=>{A(!0)},children:l?o.alertBtnPrevBusy:e}),t.jsx("button",{type:"button",className:"abtn",disabled:n||y||l,onClick:()=>{T()},children:y?o.alertBtnTestBusy:o.alertTest})]}),l&&t.jsxs("p",{className:"mnote qwait",children:[t.jsx("i",{className:"qwd"}),o.alertPreviewWait(m)]}),y&&t.jsxs("p",{className:"mnote qwait",children:[t.jsx("i",{className:"qwd"}),o.alertTestWait(m)]}),g>0&&t.jsx("p",{className:"mnote",children:o.alertPreviewRetry(g)}),h&&t.jsx("p",{className:"mnote warn",children:h}),b&&t.jsx("p",{className:"mnote",children:b}),!b&&t.jsx("p",{className:"mnote dim",children:o.alertTestHint}),(i==null?void 0:i.ok)&&t.jsxs(t.Fragment,{children:[t.jsxs("p",{className:"mnote",children:[t.jsx("b",{children:o.alertSubject})," ",i.subject]}),i.pending===0&&t.jsx("p",{className:"mnote warn",children:o.alertPreviewEmpty}),t.jsx("iframe",{className:"mailp-frame",sandbox:"",srcDoc:i.html,title:e})]})]})}const jt="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run";function Xe({title:e,icon:a,children:r,wide:n,kind:o,lead:i}){const{dispatch:d}=K(),l=o==="plug"?"min(720px,100%)":"min(760px,100%)";return ta.createPortal(t.jsx("div",{className:"atl2",children:t.jsx("div",{className:"modal on",onClick:s=>{s.target===s.currentTarget&&d({type:"modal",modal:null})},children:t.jsxs("div",{className:"mcard"+(o?" m-"+o:""),style:n?{width:l}:void 0,children:[t.jsxs("div",{className:"mh",children:[a&&t.jsx("span",{className:"no g",children:a}),t.jsxs("div",{className:"mh-txt",children:[t.jsx("h2",{children:e}),i&&t.jsx("p",{className:"mh-lead",children:i})]}),t.jsx("button",{type:"button",className:"x",onClick:()=>d({type:"modal",modal:null}),children:"×"})]}),t.jsx("div",{className:"mb",children:r})]})})}),document.body)}function $c(){const{st:e}=K();switch(e.modal){case"chain":return t.jsx(Hc,{});case"space":return t.jsx(Vc,{});case"alert":return t.jsx(Wc,{});case"queue":return t.jsx(Jc,{});case"export":return t.jsx(Xc,{});case"plug":return t.jsx(tu,{});case"approach":return t.jsx(au,{});case"recharge":return t.jsx(ou,{});case"cover":return t.jsx(su,{});case"dossier":return t.jsx(iu,{});case"crit":return t.jsx(cu,{});case"tuto":return t.jsx(uu,{});case"rdv":return t.jsx(Uc,{});case"memoalert":return t.jsx(Zc,{});default:return null}}function Uc(){const{dispatch:e,fund:a,t:r}=K(),n=a||r.rdvCoFallback;return ta.createPortal(t.jsx("div",{className:"atl2",children:t.jsx("div",{className:"modal on",onClick:()=>e({type:"modal",modal:null}),children:t.jsxs("div",{className:"mcard rdvcard",onClick:o=>o.stopPropagation(),children:[t.jsxs("div",{className:"mh",children:[t.jsx("span",{className:"no g",children:"📅"}),t.jsx("h2",{children:r.rdvHeading}),t.jsx("button",{type:"button",className:"x",onClick:()=>e({type:"modal",modal:null}),children:"×"})]}),t.jsxs("div",{className:"mb",children:[t.jsxs("p",{className:"mnote",children:[r.rdvSubBefore,t.jsx("a",{href:Uo,children:$o}),r.rdvSubMid,t.jsx("a",{href:`mailto:${Ua}`,children:Ua})]}),t.jsx("div",{className:"rdv-unlocks",children:r.rdvUnlocks(n).map(([o,i],d)=>t.jsxs("div",{className:"rdv-u",children:[t.jsx("em",{children:r.rdvUnlockLabel(d+1)}),t.jsx("b",{children:o}),t.jsx("span",{children:i})]},o))}),t.jsx("div",{className:"rdv-emb",children:t.jsx(hl,{filloutId:"aDx8z7Hzksus",parameters:a?{company_name:a}:void 0})})]})]})})}),document.body)}function Hc(){const{st:e,dispatch:a,byId:r,t:n,lang:o,mode:i,askEvaluate:d,evalBusy:l,caps:s,memoQueued:h,doAnalyse:c}=K(),g=i==="client",u=e.chain.queue.map(w=>r.get(w)).filter(w=>!!w),b=e.chain.idx,f=u[b],y=b>=u.length;return ta.createPortal(t.jsx("div",{className:"atl2",children:t.jsx("div",{className:"modal on",children:t.jsxs("div",{className:"fcard",children:[t.jsxs("div",{className:"fh",children:[t.jsx("span",{className:"c",children:y?n.finished:`${b+1} / ${u.length}`}),t.jsx("span",{className:"p",children:t.jsx("i",{style:{width:(y?100:b/Math.max(1,u.length)*100)+"%"}})}),t.jsx("button",{type:"button",className:"x",onClick:()=>a({type:"modal",modal:null}),children:"×"})]}),t.jsx("div",{className:"fb",children:y||!f?t.jsxs("div",{className:"fin",children:[t.jsx("div",{className:"em",children:"🏁"}),t.jsx("div",{className:"t",children:n.chainDone}),t.jsx("div",{className:"s",children:n.chainDoneSub(u.length)})]}):t.jsxs(t.Fragment,{children:[t.jsx("h2",{children:f.name}),t.jsx("div",{className:"sub",children:[aa(f.cc,o)||f.countryLabel,f.sector,f.stage,n.daysAgo(gt(f.date))].filter(Boolean).map(w=>String(w)).join(" · ")}),t.jsxs("div",{className:"tags",children:[t.jsx("span",{className:"hi",children:rt(f.engine,o)}),typeof f.amountEur=="number"&&f.amountEur>0&&t.jsx("span",{children:Vt(f.amountEur,o)})]}),$e(f)&&t.jsxs("div",{style:{marginBottom:12},children:[t.jsx(Tt,{o:f,lg:!0})," ",t.jsx(nn,{o:f,src:!0})]}),(f.tagline||f.headline)&&t.jsxs("div",{className:"fld",children:[t.jsx("span",{className:"l",children:n.desc}),t.jsx("p",{children:f.tagline||f.headline})]}),f.reasoning&&!(g&&We(f))&&t.jsxs("div",{className:"fld",children:[t.jsx("span",{className:"l",children:n.memo}),t.jsx("p",{className:"memo",children:f.reasoning})]}),g&&We(f)&&t.jsxs("div",{className:"vbox vfull",style:{"--c":Pt(f)==="retenu"?"var(--brand)":Pt(f)==="pending"?"var(--bolt)":"var(--red)",marginTop:12},children:[t.jsx("span",{className:"vt",children:Pt(f)==="retenu"?"✓ "+n.kept:Pt(f)==="pending"?"📞 "+n.pending:"✗ "+n.dropped}),t.jsx("span",{className:"vd",children:f.reasoning||""})]})]})}),t.jsxs("div",{className:"ff",children:[!y&&f&&s.pipe&&Le(f)===1&&!h.has(f.id)?t.jsxs("button",{type:"button",className:"evalbtn",style:{flex:1,justifyContent:"center",padding:15,fontSize:15},onClick:()=>{c(f),a({type:"chainNext"})},children:[t.jsx("span",{className:"fill"}),n.chainMemoGo]}):!y&&f&&!(g&&We(f))&&(f.noCo&&f.url?t.jsxs("button",{type:"button",className:"evalbtn",style:{flex:1,justifyContent:"center",padding:15,fontSize:15},onClick:()=>{var w;try{window.dispatchEvent(new CustomEvent("ppmap:research",{detail:{url:f.url}}))}catch{}a({type:"modal",modal:null}),(w=document.querySelector(".atl2 .demand"))==null||w.scrollIntoView({behavior:"smooth",block:"center"})},children:[t.jsx("span",{className:"fill"}),n.rowExtract]}):t.jsxs("button",{type:"button",className:"evalbtn"+(l?" loading":""),style:{flex:1,justifyContent:"center",padding:15,fontSize:15},disabled:l,onClick:()=>{d(f)},children:[t.jsx("span",{className:"fill"}),n.launchEval]})),t.jsx("button",{type:"button",className:"abtn",style:{flex:"0 0 130px"},onClick:()=>a(y?{type:"modal",modal:null}:{type:"chainNext"}),children:y?n.closeBtn:n.skip})]})]})})}),document.body)}function Vc(){const{st:e,dispatch:a,dossiers:r,t:n,mode:o}=K(),i=o==="client",d=p.useMemo(()=>i?r.filter(g=>We(g)):[],[r,i]),l=p.useMemo(()=>Ga(d.filter(g=>Pt(g)==="retenu"),{key:"signal",dir:-1}),[d]),s=p.useMemo(()=>d.filter(g=>Pt(g)==="ecarte"),[d]),h=e.spaceTab==="retenu"?l:s,c=e.spaceTab==="retenu"?"var(--brand)":"var(--red)";return t.jsxs(Xe,{title:n.spaceTitle,children:[t.jsxs("div",{className:"sp-tabs",children:[t.jsxs("button",{type:"button",className:"sp-tab",style:{"--c":"var(--brand)"},"aria-selected":e.spaceTab==="retenu",onClick:()=>a({type:"spaceTab",tab:"retenu"}),children:["✓ ",n.statusKeep.replace("✅ ","")," ",t.jsx("b",{children:l.length})]}),t.jsxs("button",{type:"button",className:"sp-tab",style:{"--c":"var(--red)"},"aria-selected":e.spaceTab==="ecarte",onClick:()=>a({type:"spaceTab",tab:"ecarte"}),children:["✗ ",n.statusDrop.replace("❌ ","")," ",t.jsx("b",{children:s.length})]})]}),h.length===0&&t.jsx("div",{className:"sp-empty",children:n.spEmpty}),h.slice(0,40).map(g=>t.jsxs("div",{className:"sp-row",children:[t.jsx("span",{className:"sc",style:{"--c":c},children:typeof g.score=="number"&&g.score>0?g.score:"—"}),t.jsxs("span",{children:[t.jsx("div",{className:"nm",children:g.name}),t.jsx("div",{className:"rr",children:g.reasoning||g.tagline||""})]})]},g.id)),t.jsx("p",{className:"mnote",dangerouslySetInnerHTML:{__html:n.spNote}})]})}function Wc(){const{mode:e}=K();return e==="client"||e==="apercu"?t.jsx(Gc,{}):t.jsx(Kc,{})}function Gc(){const{t:e,token:a,flash:r,flashErr:n,mode:o}=K(),[i,d]=p.useState("d"),l=o!=="client";return t.jsxs(Xe,{title:e.alertTitle,icon:"🔔",children:[t.jsxs("div",{className:"ntabs",role:"tablist",children:[t.jsx("button",{type:"button",role:"tab","aria-selected":i==="d",className:i==="d"?"on":"",onClick:()=>d("d"),children:e.alertTabDaily}),t.jsx("button",{type:"button",role:"tab","aria-selected":i==="w",className:i==="w"?"on":"",onClick:()=>d("w"),children:e.alertTabWeekly}),t.jsx("button",{type:"button",role:"tab","aria-selected":i==="m",className:i==="m"?"on":"",onClick:()=>d("m"),children:e.alertTabMarket})]}),i==="d"&&t.jsx(Yc,{t:e,token:a,readOnly:l,flash:r,flashErr:n}),i==="w"&&t.jsx(Qc,{t:e,token:a,readOnly:l,flash:r,flashErr:n}),i==="m"&&t.jsx(Ii,{})]})}function Yc({t:e,token:a,readOnly:r,flash:n,flashErr:o}){const[i,d]=p.useState(null),[l,s]=p.useState(!1),[h,c]=p.useState(0);p.useEffect(()=>{let T=!0;return s(!1),Sr(a).then(F=>{T&&(F?d(F):s(!0))}),()=>{T=!1}},[a,h]);const g=p.useRef({}),[u,b]=p.useState({}),[f,y]=p.useState(!1),[w,m]=p.useState(!1),v=p.useRef(null);p.useEffect(()=>()=>{v.current&&window.clearTimeout(v.current)},[]);const k=T=>{const F=g.current;Object.keys(F).length&&(y(!0),Sr(a,F).then(O=>{if(!O){y(!1),o(e.actErr);return}if(O.throttled&&T<3){v.current=window.setTimeout(()=>k(T+1),5400);return}if(g.current={},b({}),d(O),y(!1),O.throttled){o(e.alertThrottled);return}m(!0),window.setTimeout(()=>m(!1),2e3),n(e.alertSaved)}))},E=T=>{r||(g.current={...g.current,...T},b(F=>({...F,...T})),v.current&&window.clearTimeout(v.current),v.current=window.setTimeout(()=>k(1),700))};if(l)return t.jsxs("div",{className:"sp-empty",children:[e.alertLoadError," ",t.jsx("button",{type:"button",className:"abtn",onClick:()=>c(T=>T+1),children:e.retry})]});if(!i)return t.jsx("div",{className:"sp-empty",children:"…"});const S={...i,...u},N=T=>!S.sections||S.sections.includes(T),A=T=>{const F=S.sections||e.alertSec.map(([O])=>O);E({sections:N(T)?F.filter(O=>O!==T):[...F,T]})};return t.jsxs(t.Fragment,{children:[r&&t.jsx("p",{className:"mnote warn",children:e.alertReadOnly}),t.jsxs("div",{className:"qrow",children:[t.jsxs("span",{children:[t.jsx("b",{children:e.alertDaily}),t.jsx("div",{style:{fontSize:12,color:"var(--muted)"},children:e.alertDailyHint})]}),t.jsx("span",{className:"qset",children:t.jsx("button",{type:"button",className:"abtn onoff","aria-pressed":S.enabled===!0,disabled:r,style:S.enabled?{background:"var(--brand)",color:"#fff",borderColor:"var(--brand)"}:void 0,onClick:()=>E({enabled:!S.enabled}),children:S.enabled?"ON":"OFF"})})]}),t.jsxs("div",{className:"qrow",children:[t.jsx("span",{children:e.alertHour}),t.jsxs("span",{className:"qset",children:[t.jsx("button",{type:"button",onClick:()=>E({hour:Math.max(6,(S.hour??7)-1)}),disabled:r,children:"−"}),t.jsxs("b",{children:[S.hour??7," h"]}),t.jsx("button",{type:"button",onClick:()=>E({hour:Math.min(21,(S.hour??7)+1)}),disabled:r,children:"+"})]})]}),t.jsxs("div",{className:"qrow",children:[t.jsx("span",{children:e.alertDays}),t.jsxs("span",{className:"qset",style:{gap:6},children:[t.jsx("button",{type:"button",className:"abtn",disabled:r,style:S.days!=="daily"?{background:"var(--ink)",color:"#fff"}:void 0,onClick:()=>E({days:"weekdays"}),children:e.alertWeekdays}),t.jsx("button",{type:"button",className:"abtn",disabled:r,style:S.days==="daily"?{background:"var(--ink)",color:"#fff"}:void 0,onClick:()=>E({days:"daily"}),children:e.alertEveryday})]})]}),t.jsx("p",{className:"mnote dim",children:e.alertRules}),t.jsxs("div",{className:"qsec ok",children:[e.alertSections,f&&t.jsx("span",{className:"secsave",children:e.alertSaving}),!f&&w&&t.jsx("span",{className:"secsave done",children:e.alertSavedShort})]}),t.jsx("div",{className:"secl",children:e.alertSec.map(([T,F])=>t.jsxs("label",{className:"secli",children:[t.jsx("input",{type:"checkbox",checked:N(T),disabled:r,onChange:()=>A(T)}),t.jsxs("span",{children:[F,T==="market"&&t.jsxs("i",{children:[" ",e.alertSecSlow]})]})]},T))}),t.jsx("p",{className:"mnote dim",children:e.alertSecNote}),t.jsx(sr,{label:e.alertPreview,readOnly:r,onPreview:()=>Zs(a),onTest:()=>Xs(a)}),S.active===!1&&t.jsx("p",{className:"mnote warn",children:e.alertInactive}),S.email_lead?t.jsxs("p",{className:"mnote",children:["→ ",S.email_lead,S.last_sent?` · ${e.updatedAt(S.last_sent.slice(0,10))}`:""]}):t.jsx("p",{className:"mnote",children:e.alertNoLead})]})}function Qc({t:e,token:a,readOnly:r,flash:n,flashErr:o}){const[i,d]=p.useState(null),[l,s]=p.useState(!1),[h,c]=p.useState(0);p.useEffect(()=>{let f=!0;return s(!1),zr(a).then(y=>{f&&(y?d(y):s(!0))}),()=>{f=!1}},[a,h]);const g=f=>{r||zr(a,f).then(y=>{if(!y){o(e.actErr);return}d(y),n(e.alertSaved)})};if(l)return t.jsxs("div",{className:"sp-empty",children:[e.alertLoadError," ",t.jsx("button",{type:"button",className:"abtn",onClick:()=>c(f=>f+1),children:e.retry})]});if(!i)return t.jsx("div",{className:"sp-empty",children:"…"});const u=i.dow??0,b=i.hour??16;return t.jsxs(t.Fragment,{children:[r&&t.jsx("p",{className:"mnote warn",children:e.alertReadOnly}),t.jsx("p",{className:"lead2",children:e.alertWeeklySub}),t.jsxs("div",{className:"qrow",children:[t.jsx("span",{children:t.jsx("b",{children:e.alertWeeklyOn})}),t.jsx("span",{className:"qset",children:t.jsx("button",{type:"button",className:"abtn onoff","aria-pressed":i.enabled===!0,disabled:r,style:i.enabled?{background:"var(--brand)",color:"#fff",borderColor:"var(--brand)"}:void 0,onClick:()=>g({enabled:!i.enabled}),children:i.enabled?"ON":"OFF"})})]}),t.jsxs("div",{className:"qrow",children:[t.jsx("span",{children:e.alertWeeklyWhen}),t.jsxs("span",{className:"qset",style:{gap:6},children:[t.jsx("select",{value:u,disabled:r,onChange:f=>g({dow:Number(f.target.value)}),children:e.alertDow.map((f,y)=>t.jsx("option",{value:y,children:f},f))}),t.jsx("button",{type:"button",onClick:()=>g({hour:Math.max(6,b-1)}),disabled:r,children:"−"}),t.jsxs("b",{children:[b," h"]}),t.jsx("button",{type:"button",onClick:()=>g({hour:Math.min(21,b+1)}),disabled:r,children:"+"})]})]}),t.jsx(sr,{label:e.alertPreviewWeekly,readOnly:r,onPreview:()=>tl(a),onTest:()=>el(a)}),i.active===!1&&t.jsx("p",{className:"mnote warn",children:e.alertInactive}),i.email_lead?t.jsxs("p",{className:"mnote",children:["→ ",i.email_lead,i.last_sent?` · ${e.updatedAt(i.last_sent.slice(0,10))}`:""]}):t.jsx("p",{className:"mnote",children:e.alertNoLead})]})}function Ii(){const{st:e,t:a,lang:r,scoped:n,contName:o,email:i}=K(),[d,l]=p.useState(i||""),[s,h]=p.useState(!1),[c,g]=p.useState(!1);p.useEffect(()=>{i&&l(i)},[i]);const u=e.filters,b=p.useMemo(()=>n.filter(m=>$e(m)).length,[n]),f=u.win==="1"?0:u.win==="7"?1:u.win==="30"?2:3,y=async()=>{if(!(!/.+@.+\..+/.test(d)||c)){g(!0);try{await fetch(`${ka}/mes-secteurs/subscribe`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:d.trim(),sectors:u.sector,countries:u.country,source:i?"atelier2-client":"atelier2",website:""})}),h(!0)}finally{g(!1)}}},w=[[a.amRows.continent,o],[a.amRows.since,a.amSince[f]],[a.amRows.signal,u.signalOnly?a.amOnlyOpen:a.amAnySignal],[a.amRows.engines,u.engine.length?u.engine.map(m=>rt(m,r)).join(", "):a.amAllEngines],[a.amRows.sectors,u.sector.length?u.sector.join(", "):a.amAllSectors],[a.amRows.countries,u.country.length?u.country.map(m=>aa(m,r)||m).join(", "):a.amAllCountries],[a.amRows.stages,u.stage.length?u.stage.join(", "):a.amAllStages]];return s?t.jsxs("div",{className:"fin",children:[t.jsx("div",{className:"em",children:"🔔"}),t.jsx("div",{className:"t",children:a.amOk}),t.jsx("div",{className:"s",dangerouslySetInnerHTML:{__html:a.amOkSub(d)}})]}):t.jsxs(t.Fragment,{children:[t.jsx("div",{className:"crit",children:w.map(([m,v])=>t.jsxs("div",{className:"r",children:[t.jsx("span",{className:"k",children:m}),t.jsx("span",{className:"v",dangerouslySetInnerHTML:{__html:v}})]},m))}),t.jsxs("div",{className:"mfield",children:[t.jsx("input",{type:"email",placeholder:a.amMail,autoComplete:"email",value:d,readOnly:!!i,onChange:m=>l(m.target.value),onKeyDown:m=>{m.key==="Enter"&&y()}}),t.jsxs("button",{type:"button",className:"evalbtn"+(c?" loading":""),style:{padding:"12px 18px"},onClick:()=>void y(),children:[t.jsx("span",{className:"fill"}),a.amActivate]})]}),t.jsx("p",{className:"mnote",dangerouslySetInnerHTML:{__html:a.amNote(n.length,b)}}),t.jsx("p",{className:"mnote",children:a.amHonest})]})}function Kc(){const{t:e}=K();return t.jsx(Xe,{title:e.alertTitle,icon:"🔔",children:t.jsx(Ii,{})})}function Jc(){var x,q;const{t:e,token:a,fund:r,mode:n,dossiers:o,doAnalyse:i,memoQueued:d,caps:l,dispatch:s,liveMemos:h,data:c,flash:g}=K(),[u,b]=p.useState(()=>sn(r)),[f,y]=p.useState(()=>!sn(r)),[w,m]=p.useState([]),[v,k]=p.useState(0),[E,S]=p.useState(!1),N=n==="client",A=p.useMemo(()=>{const C=new Map;return o.forEach(P=>{const H=(P.name||"").trim().toLowerCase();H&&!C.has(H)&&C.set(H,P)}),C},[o]);p.useEffect(()=>{let C=!0;return(!sn(r)||v>0)&&y(!0),(async()=>{const[P,H]=await Promise.all([Jn(r,v>0),Ho(a)]);C&&(P&&b(P),y(!1),m(H))})(),()=>{C=!1}},[a,r,v]);const T=f&&!u,F=(u==null?void 0:u.per_day)??0,O=((x=u==null?void 0:u.analyzed_today)==null?void 0:x.length)??0,D=u==null?void 0:u.offre,V=(u==null?void 0:u.pool_meta)||[],Q=p.useMemo(()=>{const C=new Map;for(const P of(u==null?void 0:u.scheduled)||[])for(const H of P.names||[])C.has(H)||C.set(H,{label:P.day_label,date:P.date});return C},[u==null?void 0:u.scheduled]),R=(u==null?void 0:u.in_progress)||[];return t.jsxs(Xe,{title:e.queueTitle,wide:!0,children:[D&&t.jsxs("div",{className:"qoffre"+(D.en_retard?" late":""),children:[t.jsx("span",{className:"ol",children:e.qOffer}),t.jsx("b",{children:D.libelle}),t.jsxs("span",{className:"od",children:[e.qDelay," ",t.jsx("b",{children:D.delai})]}),t.jsx("span",{className:"osp"}),D.rythme>0?t.jsx("span",{className:"or",children:e.qRate(D.rythme)}):D.manuel_par_jour?t.jsx("span",{className:"or",children:e.qManual(D.manuel_par_jour)}):t.jsx("span",{className:"or dim",children:e.qPaused})]}),t.jsxs("div",{className:"qbox",children:[t.jsx("div",{className:"qhead",children:T?t.jsxs("span",{className:"qwait",children:[t.jsx("i",{className:"qwd"}),e.qFileWait]}):t.jsx("b",{dangerouslySetInnerHTML:{__html:e.queueDone(O,O+(((q=u==null?void 0:u.pool_order)==null?void 0:q.length)??0))}})}),D&&t.jsxs("div",{className:"qeta",children:[D.file===0?e.qEtaDone:D.rythme<=0?e.qEtaPaused:e.qEta(D.file,D.rythme,D.jours_restants),D.en_retard&&t.jsxs("em",{children:[" ",e.qLate(D.delai,D.plafond)]})]}),!T&&t.jsxs("div",{className:"qrate",children:[t.jsxs("div",{className:"covrh",children:[t.jsx("span",{children:e.covRate})," — ",t.jsx("b",{children:e.covRateNow(F)}),(D==null?void 0:D.reglage_manuel)&&t.jsxs("span",{className:"dim",children:[" · ",e.qManualSet]})]}),N&&t.jsx("div",{className:"covrb",role:"group","aria-label":e.covRate,children:[0,1,2,3,5,10].map(C=>t.jsx("button",{type:"button",className:F===C?"on":"",disabled:E,title:C===0?e.identPauseTitle:e.covRateNow(C),onClick:()=>{E||!a||(S(!0),Vo(a,C).then(P=>{S(!1),P!==null&&(b(H=>H&&{...H,per_day:P}),g(e.alertSaved))}))},children:C===0?"⏸":C},C))}),t.jsx("p",{className:"mnote dim",children:e.covRateHint}),!!c.credits&&!c.credits.unlimited&&!!(c.credits.packs||[]).length&&t.jsxs("div",{className:"qpacks-mini",children:[t.jsxs("span",{children:[e.creditsCap," ",c.credits.total_available,"/",c.credits.daily_grant+c.credits.purchased," · ",e.creditsPacksLbl]}),t.jsx("div",{children:c.credits.packs.map(C=>t.jsxs("button",{type:"button",className:"qpack-mini",onClick:()=>{const P=c.email;if(!P)return;const H=window.location.href.split("?")[0];fetch(`${ka}/inbound/credits/checkout`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:P,lookup_key:C.lookup_key,success_url:H+"?credits=ok",cancel_url:H+"?credits=cancel"})}).then(G=>G.json()).then(G=>{G.url&&(window.location.href=G.url)}).catch(()=>{})},children:[C.credits," · ",C.price_eur," €"]},C.lookup_key))})]})]})]}),(R.length>0||h.items.some(C=>C.status==="boot"||C.status==="running"))&&t.jsxs(t.Fragment,{children:[t.jsxs("div",{className:"qsec run",children:["⌛ ",e.qRunning]}),t.jsxs("div",{className:"qrows",children:[h.items.filter(C=>C.status==="boot"||C.status==="running"||C.status==="error").map(C=>t.jsxs("div",{className:"qr2 qfl",children:[t.jsx("b",{children:C.name}),t.jsx("span",{className:"qd",children:C.memoType||""}),t.jsx(Ha,{item:C,serverOff:h.serverOff,bootLbl:e.liveBoot,endLabel:e.liveEnd})]},"live-"+C.name)),R.filter(C=>!h.liveOf(C.name)).map(C=>t.jsxs("div",{className:"qr2",children:[t.jsx("b",{children:C.name}),t.jsxs("span",{className:"qd",children:[C.memo_type||"",C.age_min?` · ${Math.round(C.age_min)} min`:""]}),t.jsx("span",{className:"qt",children:C.state||""})]},"ip-"+C.name))]})]}),w.length>0&&t.jsxs(t.Fragment,{children:[t.jsxs("div",{className:"qsec ok",children:["⏳ ",e.queueToday]}),t.jsx("div",{className:"qrows",children:w.map(C=>t.jsxs("div",{className:"qr2",children:[t.jsx("b",{children:C.company}),t.jsxs("span",{className:"qd",children:[C.memo_type,typeof C.est_min=="number"?` · ~${C.est_min} min`:""]}),t.jsx("span",{className:"qt",children:C.status}),C.url&&t.jsx("a",{className:"qgo",href:C.url,target:"_blank",rel:"noopener noreferrer",style:{textDecoration:"none"},children:e.actMemoOf(C.memo_type)}),N&&C.status==="error"&&t.jsx("button",{type:"button",className:"qgo an",onClick:()=>{jr(a,C.company,"retry").then(()=>k(P=>P+1))},children:e.queueRetry}),N&&C.status!=="done"&&t.jsx("button",{type:"button",className:"abtn",onClick:()=>{jr(a,C.company,"delete").then(()=>k(P=>P+1))},children:e.queueDelete})]},C.company))})]}),t.jsxs("div",{className:"qsec todo",children:["⚡ ",T?e.qUpNextWait:e.qUpNext(V.length)]}),t.jsx("div",{className:"qhedge",children:e.qHedge}),t.jsxs("div",{className:"qrows qfile",children:[T&&t.jsxs("div",{className:"qwait qwrow",children:[t.jsx("i",{className:"qwd"}),e.qFileWait]}),!T&&V.length===0&&t.jsx("div",{className:"sp-empty",children:e.queueEmpty}),V.map((C,P)=>{const H=Q.get(C.name),G=A.get((C.name||"").trim().toLowerCase()),Z=h.liveOf(C.name),z=!!(G&&d.has(G.id))||!!(Z&&(Z.status==="boot"||Z.status==="running")),$=!!(G&&Le(G)===1&&!G.memoUrl)&&!Z;return t.jsxs("div",{className:"qr2 qfl",children:[t.jsxs("span",{className:"qn2",children:["#",P+1]}),H?t.jsx("span",{className:"qwhen"+(H.label==="demain"?" soon":""),children:H.label}):t.jsx("span",{className:"qwhen later",children:e.qLater}),t.jsx("b",{children:C.name}),C.fresh&&t.jsx("span",{className:"qfresh",children:e.qFresh}),typeof C.score=="number"&&t.jsx("span",{className:"qs2",children:C.score}),Z&&(Z.status==="boot"||Z.status==="running")&&t.jsx(Ha,{item:Z,serverOff:h.serverOff,bootLbl:e.liveBoot,endLabel:e.liveEnd}),$&&(l.lockActions||!N?t.jsx("button",{type:"button",className:"qgo an",onClick:()=>s({type:"modal",modal:"rdv"}),children:e.actLocked}):t.jsx("button",{type:"button",className:"qgo an",disabled:z,onClick:()=>{i(G),k(M=>M+1)},children:z?e.actAnalyseQueued:e.actAnalyse})),C.excerpt&&t.jsx("span",{className:"qex",children:C.excerpt})]},C.name+":"+P)})]}),t.jsxs("div",{className:"qsec",children:["🧭 ",e.qVerdictsT]}),t.jsx("ul",{className:"qverd",children:e.qVerdicts.map(([C,P])=>t.jsxs("li",{children:[t.jsx("b",{children:C})," — ",P]},C))})]})}function Xc(){const{t:e,token:a,flash:r,scoped:n,caps:o,stageOf:i,dispatch:d}=K(),l=`${jt}/cibles/list.csv?token=${a}`,s=`${jt}/cibles/list.json?token=${a}`,h=`${jt}/cibles/export.xlsx?token=${a}&scope=full`,c=`=IMPORTDATA("${l}")`,g=w=>{var m;(m=navigator.clipboard)==null||m.writeText(w).then(()=>r(e.exportCopied))},u=[{def:e.exportCsv,value:l,href:l},{def:e.exportSheet,value:c},{def:e.exportLive,value:s,href:s},{def:e.exportXlsx,value:h,href:h}],b=!o.lockActions&&n.length>0,f=()=>{Mc(Dc(n,{plabels:e.plabels,head:e.exportViewHead,stageOf:i,stageLabel:w=>(e.stg.find(([m])=>m===w)||["",""])[1]})),r(e.exportViewDone(n.length))},y=()=>{d({type:"modal",modal:null}),setTimeout(()=>{try{window.print()}catch{}},120)};return t.jsxs(Xe,{title:e.exportTitle,icon:"📥",children:[t.jsx("p",{className:"lead2",children:e.exportLead}),b&&t.jsx("div",{className:"expl",style:{marginBottom:10},children:t.jsxs("div",{className:"exi",children:[t.jsx("span",{className:"exic",children:"🖨️"}),t.jsxs("div",{children:[t.jsx("b",{children:e.printTitle}),t.jsx("p",{children:e.printDesc(n.length)})]}),t.jsx("button",{type:"button",className:"exb",onClick:y,children:e.printBtn})]})}),b&&t.jsx("div",{className:"expl",style:{marginBottom:10},children:t.jsxs("div",{className:"exi",children:[t.jsx("span",{className:"exic",children:"🗂"}),t.jsxs("div",{children:[t.jsx("b",{children:e.dsBtn}),t.jsx("p",{children:e.dsHint})]}),t.jsx("button",{type:"button",className:"exb",onClick:()=>d({type:"modal",modal:"dossier"}),children:e.exportViewBtn})]})}),b&&t.jsx("div",{className:"expl",style:{marginBottom:10},children:t.jsxs("div",{className:"exi",children:[t.jsx("span",{className:"exic",children:"📄"}),t.jsxs("div",{children:[t.jsx("b",{children:e.exportViewTitle}),t.jsx("p",{children:e.exportViewDesc(n.length)})]}),t.jsx("button",{type:"button",className:"exb pri",onClick:f,children:e.exportViewBtn})]})}),t.jsx("div",{className:"expl",children:u.map(({def:w,value:m,href:v})=>t.jsxs("div",{className:"exi",children:[t.jsx("span",{className:"exic",children:w[0]}),t.jsxs("div",{children:[t.jsx("b",{children:w[1]}),t.jsx("p",{children:w[2]})]}),t.jsx("button",{type:"button",className:"exb",onClick:()=>g(m),children:e.exportCopy}),v&&t.jsx("a",{className:"exb",href:v,target:"_blank",rel:"noopener noreferrer",style:{textDecoration:"none"},children:e.exportOpen})]},w[1]))}),t.jsx("p",{className:"hint",style:{fontSize:12,color:"var(--muted)"},children:e.exportKeyWarning})]})}function Zc(){const{t:e,token:a,flash:r,flashErr:n,mode:o}=K(),i=o!=="client",[d,l]=p.useState(null),[s,h]=p.useState(!1),[c,g]=p.useState(0),[u,b]=p.useState(!1);p.useEffect(()=>{let m=!0;return h(!1),kr(a).then(v=>{m&&(v?l(v):h(!0))}),()=>{m=!1}},[a,c]);const f=()=>(d==null?void 0:d.sections)||{swot:!0,action:!0,synergies:!0,quadrant:!0,verdict:!0},y=m=>{if(i||!d)return;const v={enabled:m.enabled??!!d.enabled,email:m.email??(d.email||""),sections:m.sections??f()};b(!0),kr(a,v).then(k=>{if(b(!1),!k){n(e.memoAlertErr);return}l(k),r(e.memoAlertSaved)})};if(s)return t.jsx(Xe,{title:e.memoAlertTitle,icon:"🔔",children:t.jsxs("div",{className:"sp-empty",children:[e.alertLoadError," ",t.jsx("button",{type:"button",className:"abtn",onClick:()=>g(m=>m+1),children:e.retry})]})});if(!d)return t.jsx(Xe,{title:e.memoAlertTitle,icon:"🔔",children:t.jsx("div",{className:"sp-empty",children:"…"})});const w=f();return t.jsxs(Xe,{title:e.memoAlertTitle,icon:"🔔",children:[t.jsx("p",{className:"lead2",children:e.memoAlertSub}),t.jsxs("div",{className:"qrow",children:[t.jsx("span",{children:t.jsx("b",{children:e.memoAlertToggle})}),t.jsx("span",{className:"qset",children:t.jsx("button",{type:"button",className:"abtn","aria-pressed":d.enabled===!0,disabled:i||u,style:d.enabled?{background:"var(--brand)",color:"#fff",borderColor:"var(--brand)"}:void 0,onClick:()=>y({enabled:!d.enabled}),children:d.enabled?"ON":"OFF"})})]}),t.jsx(eu,{value:d.email||"",readOnly:i||u,label:e.memoAlertEmail,okLabel:e.csNoteOk,onSave:m=>y({email:m})}),t.jsx("div",{className:"qsec ok",children:e.memoAlertSections}),t.jsx("div",{className:"secl",children:e.memoAlertSec.map(([m,v])=>t.jsxs("label",{className:"secli",children:[t.jsx("input",{type:"checkbox",checked:!!w[m],disabled:i||u,onChange:()=>y({sections:{...w,[m]:!w[m]}})}),t.jsx("span",{children:v})]},m))}),t.jsx(sr,{label:e.memoAlertPreview,readOnly:i,onPreview:()=>$s(a,w),onTest:()=>Bs(a,w)})]})}function eu({value:e,readOnly:a,label:r,okLabel:n,onSave:o}){const[i,d]=p.useState(e);p.useEffect(()=>{d(e)},[e]);const l=i.trim()!==e.trim(),s=!i.trim()||/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(i.trim());return t.jsxs("div",{className:"qrow",children:[t.jsx("span",{children:r}),t.jsxs("span",{className:"qset",style:{gap:6},children:[t.jsx("input",{type:"email",className:"mailin",value:i,disabled:a,onChange:h=>d(h.target.value),onKeyDown:h=>{h.key==="Enter"&&l&&s&&o(i.trim())}}),t.jsx("button",{type:"button",className:"abtn",disabled:a||!l||!s,onClick:()=>o(i.trim()),children:n})]})]})}function tu(){const{t:e,token:a,flash:r,flashErr:n,canWrite:o}=K(),[i,d]=p.useState(null),[l,s]=p.useState(!1),[h,c]=p.useState(null),[g,u]=p.useState(!1),[b,f]=p.useState(""),[y,w]=p.useState(0),[m,v]=p.useState("webhook"),[k,E]=p.useState("webhook"),[S,N]=p.useState(""),A=p.useRef(!1);p.useEffect(()=>{let C=!0;return s(!1),Er(a).then(P=>{C&&(P?d({configured:P.configured,url_hint:P.url_hint}):s(!0))}),Ws(a).then(P=>{if(C){if(!P){u(!0);return}u(!1),c(P),A.current||(A.current=!0,P.destination==="instantly"&&(v(H=>H==="webhook"?"instantly":H),E(H=>H==="webhook"?"instantly":H)),P.campaign_id&&N(H=>H||P.campaign_id||""))}}),()=>{C=!1}},[a,y]);const T=(C,P)=>{o&&Er(a,C).then(H=>{if(!H||H.ok===!1){n(e.actErr);return}C.test&&H.sent===!1?n(e.plugTestThrottled):r(P),w(G=>G+1)})},F='{"mcpServers":{"proplace":{"url":"https://api.proplace.co/mcp"}}}',O=JSON.stringify({event:"status",company:"Aitona",status:"Validée",note:"très bon fit — introduction chaude possible",score:90,website:"https://aitona.com",memo_url:"https://analysis.proplace.co/…"},null,2),D=`curl -X POST ${jt}/cibles/evaluate \\
+  -H "Content-Type: application/json" \\
+  -d '{"token":"${a}","q":"nom ou URL de la société"}'`,V=`curl -X POST ${jt}/cibles/react \\
+  -H "Content-Type: application/json" \\
+  -d '{"token":"${a}","kind":"fast_request","target":"Acme Group"}'`,Q=[{k:"webhook",t:e.plugDestCrm,s:e.plugDestCrmS},{k:"instantly",t:e.plugDestInst,s:e.plugDestInstS},{k:"script",t:e.plugDestScript,s:e.plugDestScriptS}],R=k==="instantly"?e.plugStep2Inst:k==="script"?e.plugStep2Script:e.plugStep2Wh,x=k==="instantly"?e.plugAideInst:k==="script"?e.plugAideScript:e.plugAideWh,q=C=>{E(C),C!=="script"&&v(C)};return t.jsxs(Xe,{title:e.plugTitle,icon:"🔌",wide:!0,kind:"plug",lead:e.plugLead,children:[h&&t.jsxs("div",{className:"plugetat"+(h.enabled?" on":""),children:[t.jsx("i",{}),t.jsx("b",{children:h.enabled?e.plugEtatOn:e.plugEtatOff})]}),l?t.jsxs("div",{className:"sp-empty",children:[e.alertLoadError," ",t.jsx("button",{type:"button",className:"abtn",onClick:()=>w(C=>C+1),children:e.retry})]}):t.jsxs(t.Fragment,{children:[t.jsxs("div",{className:"plugstep",children:[t.jsx("span",{className:"pnum",children:"1"}),t.jsx("h4",{children:e.plugStep1})]}),t.jsx("div",{className:"plugdests",children:Q.map(C=>{const P=k===C.k;return t.jsxs("button",{type:"button",className:"plugdest"+(P?" on":""),onClick:()=>q(C.k),children:[t.jsx("span",{className:"pradio","aria-hidden":"true"}),t.jsx("b",{children:C.t}),t.jsx("em",{children:C.s})]},C.k)})}),t.jsxs("div",{className:"plugstep",children:[t.jsx("span",{className:"pnum",children:"2"}),t.jsx("h4",{children:R})]}),k==="script"?t.jsxs(t.Fragment,{children:[t.jsxs("div",{className:"cpy",children:[t.jsx("code",{children:D}),t.jsx("button",{type:"button",className:"abtn",onClick:()=>{var C;(C=navigator.clipboard)==null||C.writeText(D).then(()=>r(e.exportCopied))},children:e.exportCopy})]}),t.jsx("p",{className:"mnote dim",children:e.plugQuota})]}):k==="instantly"?t.jsx("div",{className:"mfield pill",children:t.jsx("input",{type:"text",maxLength:80,placeholder:e.plugCampPh,value:S,disabled:!o,onChange:C=>N(C.target.value)})}):t.jsxs(t.Fragment,{children:[t.jsxs("div",{className:"mfield pill",children:[t.jsx("input",{type:"url",maxLength:500,placeholder:e.plugUrlPh,value:b,disabled:!o,onChange:C=>f(C.target.value)}),t.jsx("button",{type:"button",className:"abtn",disabled:!o||!b.trim(),onClick:()=>T({url:b.trim()},e.plugSaved),children:e.plugSave})]}),(i==null?void 0:i.configured)&&t.jsxs("p",{className:"mnote",children:["✓ ",i.url_hint||""," ",t.jsx("button",{type:"button",className:"lk",disabled:!o,onClick:()=>T({test:!0},e.plugTested),children:e.plugTest})," · ",t.jsx("button",{type:"button",className:"lk",disabled:!o,onClick:()=>T({remove:!0},e.plugRemoved),children:e.plugRemove})]})]}),t.jsx("p",{className:"mnote dim",children:x}),t.jsxs("div",{className:"plugstep",children:[t.jsx("span",{className:"pnum",children:"3"}),t.jsx("h4",{children:e.plugStep3})]}),t.jsx(nu,{auto:h,autoKo:g,destKind:m,camp:S,onRetry:()=>w(C=>C+1),onDone:C=>{c(C),u(!1)}}),t.jsx("p",{className:"mnote dim",children:e.plugHow3}),t.jsxs("details",{className:"plugex plugpay",children:[t.jsxs("summary",{children:[t.jsx("b",{children:e.plugExT}),t.jsx("span",{children:e.plugPayloadSub})]}),t.jsxs("div",{className:"cpy",children:[t.jsx("code",{children:O}),t.jsx("button",{type:"button",className:"abtn",onClick:()=>{var C;(C=navigator.clipboard)==null||C.writeText(O).then(()=>r(e.exportCopied))},children:e.exportCopy})]}),t.jsx("p",{className:"mnote",children:e.plugExResult}),t.jsx("p",{className:"mnote dim",children:e.plugVars})]}),t.jsx("div",{"data-tour":"plug-bulk",children:t.jsx(ru,{destKind:m,setDestKind:C=>{v(C),E(C)},camp:S,setCamp:N,whHint:i!=null&&i.configured?i.url_hint||"webhook":null})}),k!=="script"&&t.jsxs(t.Fragment,{children:[t.jsx("div",{className:"qsec ok",children:e.plugApiT}),t.jsxs("div",{className:"cpy",children:[t.jsx("code",{children:D}),t.jsx("button",{type:"button",className:"abtn",onClick:()=>{var C;(C=navigator.clipboard)==null||C.writeText(D).then(()=>r(e.exportCopied))},children:e.exportCopy})]}),t.jsx("p",{className:"mnote dim",children:e.plugQuota})]}),t.jsx("div",{className:"qsec ok",children:e.plugMcp}),t.jsxs("div",{className:"cpy",children:[t.jsx("code",{children:F}),t.jsx("button",{type:"button",className:"abtn",onClick:()=>{var C;(C=navigator.clipboard)==null||C.writeText(F).then(()=>r(e.exportCopied))},children:e.exportCopy})]}),t.jsxs("div",{className:"plugcrm","data-tour":"plug-crm",children:[t.jsx("p",{className:"mnote",children:e.plugCrmRecipeT}),t.jsxs("details",{className:"plugex",children:[t.jsx("summary",{children:e.plugCrmRecipeOpen}),t.jsx("p",{className:"mnote",children:e.plugCrmR1}),t.jsx("p",{className:"mnote",children:e.plugCrmR2}),t.jsx("p",{className:"mnote",children:e.plugCrmR3}),t.jsx("p",{className:"mnote",children:e.plugCrmR4}),t.jsx("p",{className:"mnote dim",children:e.plugCrmRNote})]}),t.jsxs("details",{className:"plugex",children:[t.jsx("summary",{children:e.plugRefT}),t.jsx("p",{className:"mnote",children:e.plugOpt}),t.jsx("p",{className:"mnote dim",children:e.plugCols})]})]}),t.jsxs("div",{className:"plugcrmq",children:[t.jsx("p",{className:"mnote",children:t.jsx("b",{children:e.plugCrmQT})}),t.jsx("p",{className:"mnote",children:e.plugCrmQ1}),t.jsx("p",{className:"mnote",children:e.plugCrmQ2}),t.jsx("p",{className:"mnote",children:e.plugCrmQ3}),t.jsxs("details",{className:"plugex",children:[t.jsx("summary",{children:e.plugApiMemoLbl}),t.jsxs("div",{className:"cpy",children:[t.jsx("code",{children:V}),t.jsx("button",{type:"button",className:"abtn",onClick:()=>{var C;(C=navigator.clipboard)==null||C.writeText(V).then(()=>r(e.exportCopied))},children:e.exportCopy})]})]})]}),t.jsxs("div",{className:"plugcrm",children:[t.jsx("p",{className:"mnote",children:t.jsx("b",{children:e.plugEnrichT})}),t.jsx("p",{className:"mnote",children:e.plugEnrich}),t.jsxs("details",{className:"plugex",children:[t.jsx("summary",{children:e.plugEnrich1}),t.jsx("p",{className:"mnote",children:e.plugEnrich2}),t.jsx("p",{className:"mnote",children:e.plugEnrich3}),t.jsx("p",{className:"mnote dim",children:e.plugAirtable}),t.jsx("p",{className:"mnote dim",children:e.plugExcel})]})]}),t.jsxs("div",{className:"plugcrm",children:[t.jsx("p",{className:"mnote",children:t.jsx("b",{children:e.plugScoreT})}),t.jsx("p",{className:"mnote",children:e.plugScore})]}),t.jsx("p",{className:"mnote",children:e.plugFeeds}),t.jsx("p",{className:"mnote warn",children:e.plugTokenNote}),t.jsx("p",{className:"mnote dim",children:t.jsx("a",{href:"https://proplace.co/api/",target:"_blank",rel:"noopener noreferrer",children:e.plugDoc})})]})]})}function au(){const{t:e,token:a,dossiers:r,st:n,dispatch:o,flash:i,flashErr:d,lang:l}=K(),s=p.useMemo(()=>r.find(x=>x.id===n.approachId)||null,[r,n.approachId]),[h,c]=p.useState("email"),[g,u]=p.useState(0),[b,f]=p.useState({}),[y,w]=p.useState(!1),[m,v]=p.useState(""),[k,E]=p.useState({});if(p.useEffect(()=>{!s||b[h]||y||(w(!0),v(""),Vs(a,s.name,h).then(x=>{if(w(!1),!x||x.ok===!1){v((x==null?void 0:x.error)||e.apprFail);return}f(q=>({...q,[h]:x}))}))},[s,h,a]),!s)return null;const S=b[h],N=(S==null?void 0:S.sequence)||[],A=N[g],T=x=>`${h}|${g}|${x}`,F=x=>{const q=T(x);return q in k?k[q]:String(((A==null?void 0:A[x])??"")||"")},O=(x,q)=>E(C=>({...C,[T(x)]:q})),D=T("subject")in k||T("body")in k||T("message")in k,V=F(h==="email"?"body":"message"),Q=F("subject"),R=h==="email"&&Q?`${Q}
+
+${V}`:V;return t.jsxs(Xe,{title:e.apprT(s.name),icon:"✉",wide:!0,children:[t.jsxs("div",{className:"apnav",children:[["email","linkedin"].map(x=>t.jsx("button",{type:"button",className:"apch"+(h===x?" on":""),"aria-pressed":h===x,onClick:()=>{c(x),u(0)},children:x==="email"?e.apprChEmail:e.apprChLi},x)),t.jsx("span",{className:"sp"}),N.map((x,q)=>t.jsxs("button",{type:"button",className:"apday"+(g===q?" on":""),"aria-pressed":g===q,onClick:()=>u(q),children:[x.day||`J${q}`,[`${h}|${q}|subject`,`${h}|${q}|body`,`${h}|${q}|message`].some(C=>C in k)&&t.jsx("i",{children:"✎"})]},x.day||q))]}),t.jsxs("p",{className:"mnote dim",children:[e.apprSeqHint,S!=null&&S.sender?" · "+e.apprSender(S.sender):""]}),y&&t.jsx("p",{className:"mnote",children:e.apprWait}),!!m&&!y&&t.jsxs("p",{className:"mnote warn",children:[m," ",t.jsx("button",{type:"button",className:"lk",onClick:()=>{f(x=>{const q={...x};return delete q[h],q}),v("")},children:e.retry})]}),!y&&!m&&!A&&t.jsx("p",{className:"mnote dim",children:e.apprFail}),A&&t.jsxs(t.Fragment,{children:[h==="email"&&t.jsxs("div",{className:"apfield",children:[t.jsx("label",{children:e.apprSubj}),t.jsx("input",{type:"text",maxLength:160,value:Q,onChange:x=>O("subject",x.target.value)})]}),h==="linkedin"&&g===0&&(S==null?void 0:S.connection_request)&&t.jsx("p",{className:"mnote dim",children:e.apprLiNote}),t.jsx("textarea",{className:"apta",maxLength:4e3,rows:12,value:V,onChange:x=>O(h==="email"?"body":"message",x.target.value)}),t.jsxs("div",{className:"apacts",children:[t.jsx("button",{type:"button",className:"abtn",onClick:()=>{var x;(x=navigator.clipboard)==null||x.writeText(R).then(()=>i(e.exportCopied)).catch(()=>d(e.actErr))},children:e.apprCopy}),h==="email"&&t.jsx("a",{className:"abtn",href:`mailto:${encodeURIComponent(s.contactEmail||"")}?subject=${encodeURIComponent(Q)}&body=${encodeURIComponent(V)}`,children:e.apprMailto}),D&&t.jsx("span",{className:"apedit",children:e.apprEdited})]}),t.jsx("p",{className:"mnote warn",children:e.apprLocal})]}),t.jsx("p",{className:"mnote dim",children:""})]})}function nu({auto:e,autoKo:a,destKind:r,camp:n,onDone:o,onRetry:i}){const{t:d,token:l,flash:s,flashErr:h,canWrite:c}=K(),[g,u]=p.useState(!1);if(!e)return a?t.jsxs("div",{className:"plugauto",children:[t.jsx("p",{className:"mnote",children:t.jsx("b",{children:d.plugAutoT})}),t.jsxs("p",{className:"mnote warn",children:[d.alertLoadError," ",t.jsx("button",{type:"button",className:"lk",onClick:i,children:d.retry})]})]}):null;const b=!!e.enabled,f=!b&&(r==="webhook"?e.webhook_ready===!1?d.plugAutoNeed:"":n.trim()?"":d.plugCampNeed),y=b&&(e.destination||"webhook")==="webhook"&&e.webhook_ready===!1,w=()=>{if(g||!c||f)return;u(!0),(b?Nr(l,!1):Nr(l,!0,r,n.trim()||void 0)).then(v=>{if(u(!1),!v){h(d.actErr);return}o(v),s(v.enabled?d.plugAutoSavedOn:d.plugAutoSavedOff)})};return t.jsxs("div",{className:"plugauto",children:[t.jsx("p",{className:"mnote",children:t.jsx("b",{children:d.plugAutoT})}),t.jsx("p",{className:"mnote dim",children:d.plugAutoSub}),t.jsxs("button",{type:"button",role:"switch","aria-checked":b,className:"apsw"+(b?" on":""),disabled:g||!c||!!f,title:f||void 0,onClick:w,children:[t.jsx("span",{className:"apr","aria-hidden":"true"}),t.jsx("span",{children:d.plugAutoOnLbl})]}),f===d.plugAutoNeed&&t.jsx("p",{className:"mnote warn",children:f}),y&&t.jsx("p",{className:"mnote warn",children:d.plugAutoBroken})]})}function ru({destKind:e,setDestKind:a,camp:r,setCamp:n,whHint:o}){const{t:i,token:d,lang:l,canWrite:s}=K(),[h,c]=p.useState("valides"),[g,u]=p.useState(!1),[b,f]=p.useState(null),[y,w]=p.useState(null),[m,v]=p.useState(!1),[k,E]=p.useState(!1),[S,N]=p.useState(null),[A,T]=p.useState(null),F=`atl2:bulk:${d}:${h}:${e}`;p.useEffect(()=>{f(null),w(null),v(!1),N(null);try{const G=localStorage.getItem(F)||localStorage.getItem(`atl2:bulk:${d}:${h}`),Z=JSON.parse(G||"null");T(Z&&Date.now()-Date.parse(Z.t)<24*3600*1e3?Z:null)}catch{T(null)}},[F,h,d]);const O=e==="instantly"&&!r.trim(),D=`${h}|${e}|${r.trim()}`,V=async()=>{if(O||!s)return;u(!0),v(!1),N(null);const G=await Ks(d,h,e,r.trim()||void 0);f(G),w(G.ok?D:null),u(!1)},Q=p.useRef(!1);if(!s)return null;const R=async()=>{if(Q.current||!s)return;Q.current=!0,E(!0);const G=`${d}:${h}:${Date.now()}:${Math.random().toString(36).slice(2,10)}`;let Z;try{Z=await Js(d,h,e,r.trim()||void 0,G)}finally{Q.current=!1}if(E(!1),v(!1),N(Z),Z.ok&&(Z.pushed||0)>0){const z={t:new Date().toISOString(),n:Z.pushed||0};T(z);try{localStorage.setItem(F,JSON.stringify(z))}catch{}}};m&&y!==null&&y!==D&&v(!1);const x=o,q=b!=null&&b.ok&&b.ready||0,C=e==="instantly"?r.trim()?i.plugDestInstOn(r.trim()):"":x||"",P=!!(b!=null&&b.ok)&&y===D&&q>0&&!!C&&!A,H=A?new Date(A.t).toLocaleString(l==="en"?"en-US":"fr-FR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"";return t.jsxs(t.Fragment,{children:[t.jsx("div",{className:"qsec ok",children:i.plugBulk}),t.jsx("p",{className:"mnote",children:i.plugBulkHint}),t.jsxs("div",{className:"mfield",children:[t.jsx("select",{value:h,onChange:G=>c(G.target.value),children:i.plugBulkTabs.map(([G,Z])=>t.jsx("option",{value:G,children:Z},G))}),t.jsxs("select",{value:e,"aria-label":i.plugDestLbl,onChange:G=>a(G.target.value),children:[t.jsx("option",{value:"webhook",children:i.plugDestWh}),t.jsx("option",{value:"instantly",children:i.plugDestInst})]}),e==="instantly"&&t.jsx("input",{type:"text",maxLength:80,placeholder:i.plugCampPh,value:r,onChange:G=>n(G.target.value)}),t.jsx("button",{type:"button",className:"abtn",disabled:g||O,onClick:()=>{V()},children:g?"…":i.plugBulkPreview})]}),O&&t.jsx("p",{className:"mnote warn",children:i.plugCampNeed}),b&&(b.ok?t.jsx("p",{className:"mnote",children:i.plugBulkResult(b.ready||0,b.linkedinReady||0,(b.noContact||[]).length)}):t.jsx("p",{className:"mnote warn",children:i.actErr})),!!(b!=null&&b.ok)&&t.jsx("p",{className:"mnote dim",children:i.bulkScope}),A&&t.jsx("p",{className:"mnote",children:i.bulkLocked(H,A.n)}),!A&&!!(b!=null&&b.ok)&&!C&&e==="webhook"&&t.jsx("p",{className:"mnote warn",children:i.bulkNoDest}),!A&&!b&&t.jsx("p",{className:"mnote dim",children:i.bulkPreviewFirst}),P&&!m&&t.jsx("button",{type:"button",className:"abtn dgr",onClick:()=>v(!0),children:i.bulkArm}),P&&m&&t.jsxs("div",{className:"bulkc",children:[t.jsx("p",{className:"mnote warn",children:i.bulkWarn(q,C)}),t.jsx("button",{type:"button",className:"abtn dgr",disabled:k,onClick:()=>{R()},children:k?i.bulkSending:i.bulkConfirm(C)}),t.jsx("button",{type:"button",className:"abtn",disabled:k,onClick:()=>v(!1),children:i.bulkCancel})]}),S&&(S.ok?S.replayed?t.jsx("p",{className:"mnote",children:S.pending?i.bulkPending:i.bulkReplayed}):(S.pushed||0)>0?t.jsx("p",{className:"mnote",children:i.bulkDone(S.pushed||0,S.linkedinReady||0,S.skippedNoEmail||0)}):t.jsx("p",{className:"mnote warn",children:i.bulkNone}):t.jsx("p",{className:"mnote warn",children:S.error||i.actErr}))]})}function ou(){const{t:e,data:a,lang:r}=K(),n=a.credits,o=a.email,i=async d=>{if(!o)return;const l=window.location.href.split("?")[0];try{const h=await(await fetch(`${ka}/inbound/credits/checkout`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:o,lookup_key:d,success_url:l+"?credits=ok",cancel_url:l+"?credits=cancel"})})).json();h.url&&(window.location.href=h.url)}catch{}};return t.jsxs(Xe,{title:e.rechargeTitle,icon:"⚡",children:[n&&t.jsxs(t.Fragment,{children:[t.jsx("p",{className:"hint",style:{marginTop:0},dangerouslySetInnerHTML:{__html:e.rechargeHint(n.daily_grant)}}),n.costs&&t.jsxs("p",{className:"mnote",children:["① ",e.creditsCost(n.costs.instant)," · ② ",e.creditsCost(n.costs.detailed)]}),t.jsx("div",{className:"packs",children:(n.packs||[]).map(d=>t.jsxs("div",{className:"pack",children:[t.jsx("b",{className:"pk-n",children:d.credits}),t.jsx("span",{className:"pk-u",children:e.creditsUnit}),t.jsxs("span",{className:"pk-p",children:[d.price_eur," €"]}),t.jsx("button",{type:"button",onClick:()=>{i(d.lookup_key)},children:e.rechargeBuy})]},d.lookup_key))}),t.jsx("p",{className:"hint",style:{fontSize:12,color:"var(--muted)"},children:e.rechargeNote})]}),!n&&t.jsx("div",{className:"sp-empty",children:e.creditsNone})]})}function iu(){const{t:e}=K();return t.jsx(Xe,{title:e.dsBtn,icon:"🗂",wide:!0,children:t.jsx(_c,{})})}function su(){const{t:e,lang:a,data:r,dossiers:n,token:o,fund:i,canWrite:d,flash:l}=K(),[s,h]=p.useState(null),[c,g]=p.useState(!1);p.useEffect(()=>{let F=!0;if(i)return Jn(i).then(O=>{F&&O&&typeof O.per_day=="number"&&h(O.per_day)}),()=>{F=!1}},[i]);const[u,b]=p.useState(null);p.useEffect(()=>{if(!o)return;let F=!0;return Hs(o).then(O=>{F&&b(O)}),()=>{F=!1}},[o]);const f=r.stats,y=typeof(f==null?void 0:f.screened)=="number"?f.screened:n.filter(F=>F.kind==="target"&&We(F)).length,w=r.marketEstimate||0,m=w>0?Math.min(100,Math.round(y/w*100)):null,v=(f==null?void 0:f.window_days)||30,k=y>0?y/v:0,E=w>0?Math.max(0,w-y):0,N=w>0&&k>0&&y>=100?Math.round(E/k):null,A=F=>Math.round(F).toLocaleString(a==="en"?"en-US":"fr-FR"),T=F=>{c||!d||(g(!0),Vo(o,F).then(O=>{if(g(!1),O===null){l(e.actErr);return}h(O),l(e.alertSaved)}))};return t.jsxs(Xe,{title:e.coverTitle,icon:"🌍",children:[t.jsxs("div",{className:"covg",children:[t.jsx("b",{children:e.covScreened(A(y))}),w>0&&t.jsx("span",{children:e.covOf(A(w))})]}),m!==null?t.jsxs(t.Fragment,{children:[t.jsxs("div",{className:"covbar",children:[t.jsx("i",{style:{width:m+"%"}}),t.jsxs("em",{children:[m," %"]})]}),N!==null&&t.jsx("p",{className:"mnote",children:e.covEta(N)})]}):t.jsx("p",{className:"mnote dim",children:e.covNoEst}),k>=1&&t.jsx("p",{className:"mnote",children:e.covPace(A(k))}),f&&t.jsxs("div",{className:"covf",children:[typeof f.kept=="number"&&t.jsxs("span",{children:[t.jsx("b",{children:A(f.kept)})," ",e.covKept]}),typeof f.analyzed=="number"&&t.jsxs("span",{children:[t.jsx("b",{children:A(f.analyzed)})," ",e.covAna]}),typeof f.shown=="number"&&f.shown!==f.kept&&t.jsxs("span",{children:[t.jsx("b",{children:A(f.shown)})," ",e.funShown]})]}),(u==null?void 0:u.ok)&&(u.detail||[]).length>0&&t.jsxs("details",{className:"covcalc",children:[t.jsx("summary",{children:e.covHowT}),u.perimetre&&t.jsx("p",{className:"mnote",children:u.perimetre}),t.jsxs("table",{children:[t.jsx("thead",{children:t.jsxs("tr",{children:[t.jsx("th",{className:"mkc",children:e.covColCode}),t.jsx("th",{className:"mkn",children:e.covColN}),t.jsx("th",{className:"mks",children:e.covColSource})]})}),t.jsxs("tbody",{children:[(u.detail||[]).map((F,O)=>t.jsxs("tr",{className:F.n?"":"zero",children:[t.jsxs("td",{className:"mkc",children:[F.code,F.geo?` · ${F.geo}`:" · FR"]}),t.jsx("td",{className:"mkn",children:typeof F.n=="number"?A(F.n):"—"}),t.jsxs("td",{className:"mks",children:[t.jsx("span",{children:F.source}),F.elargi&&t.jsx("em",{children:e.covWide(String(F.demande||""))}),F.erreur&&t.jsx("em",{children:e.covMissing})]})]},O)),t.jsxs("tr",{className:"tot",children:[t.jsx("td",{className:"mkc",children:e.covTotal}),t.jsx("td",{className:"mkn",children:t.jsx("b",{children:A(u.total||w)})}),t.jsx("td",{className:"mks"})]})]})]}),(u.rejetes||[]).length>0&&t.jsx("p",{className:"mnote dim",children:e.covRejected((u.rejetes||[]).join(", "))}),t.jsxs("p",{className:"mnote dim",children:[(u.sources||[]).join(" · "),u.calcule_le?` — ${e.covComputedAt(u.calcule_le.slice(0,10).split("-").reverse().join("/"))}`:""]})]}),d&&s!==null&&t.jsxs("div",{className:"covr",children:[t.jsxs("div",{className:"covrh",children:[t.jsx("span",{children:e.covRate}),t.jsx("b",{children:e.covRateNow(s)})]}),t.jsx("div",{className:"covrb",children:[0,1,2,3,5,10].map(F=>t.jsx("button",{type:"button",className:s===F?"on":"",disabled:c,onClick:()=>T(F),children:F===0?"⏸":F},F))}),t.jsx("p",{className:"mnote dim",children:e.covRateHint})]})]})}async function Pi(e,a,r){const n=await fetch(`${jt}/cibles/thesis-chat`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({token:e,message:a,who:r})}).then(o=>o.json().catch(()=>({}))).catch(()=>null);if(!n)return{applied:!1,reply:""};if(n.applied===!0)return{applied:!0,reply:String(n.reply||"")};if(!n.job_id)return{applied:!1,reply:String(n.reply||n.clarification||"")};for(let o=0;o<60;o++){await new Promise(d=>window.setTimeout(d,5e3));const i=await fetch(`${jt}/cibles/thesis-chat-status`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({token:e,job_id:n.job_id})}).then(d=>d.json().catch(()=>({}))).catch(()=>null);if(i){if(i.applied===!0)return{applied:!0,reply:String(i.reply||"")};if(i.done===!0||i.status==="done"||i.status==="error"||i.clarification||i.error)return{applied:!1,reply:String(i.reply||i.clarification||i.error||"")}}}return{applied:!1,reply:"",encours:!0}}function lu(){const{t:e,token:a,canWrite:r}=K(),[n,o]=p.useState(null),[i,d]=p.useState(""),[l,s]=p.useState(""),[h,c]=p.useState(!1),g=`atl2:avis:${a}:${((n==null?void 0:n.sector)||(n==null?void 0:n.pattern)||"").toLowerCase()}`,u=p.useMemo(()=>{if(!(n!=null&&n.pattern))return!1;try{const f=JSON.parse(localStorage.getItem(g)||"null");return!!f&&Date.now()-(f.t||0)<14*24*3600*1e3}catch{return!1}},[g,n==null?void 0:n.pattern]);if(p.useEffect(()=>{if(!r)return;let f=!0;return Ys(a).then(y=>{f&&o(y)}),()=>{f=!1}},[a,r]),!r||h||u||!n||!n.pattern||!n.instruction)return null;if(i==="ok")return t.jsx("p",{className:"mnote",children:e.avisDone});const b=()=>{d("run"),Pi(a,n.instruction||"","atelier2-avis").then(f=>{if(d(f.applied?"ok":"ko"),f.applied||s(f.encours?e.propSlow:f.reply),f.applied)try{localStorage.setItem(g,JSON.stringify({t:Date.now(),fait:!0}))}catch{}})};return t.jsxs("div",{className:"avisp",children:[t.jsx("p",{className:"mnote",children:t.jsx("b",{children:e.avisIntro(n.sector||n.pattern||"",n.no||0)})}),t.jsx("p",{className:"mnote dim",children:e.avisAsk}),i==="run"&&t.jsx("p",{className:"mnote",children:e.avisRunning}),i==="ko"&&t.jsx("p",{className:"mnote warn",children:l||e.avisFail}),i!=="run"&&t.jsxs("div",{className:"avisa",children:[t.jsx("button",{type:"button",className:"abtn",onClick:b,children:e.avisYes}),t.jsx("button",{type:"button",className:"lk",onClick:()=>{c(!0);try{localStorage.setItem(g,JSON.stringify({t:Date.now()}))}catch{}},children:e.avisNo})]})]})}function du(){var S;const{t:e,token:a,canWrite:r,flash:n,flashErr:o}=K(),[i,d]=p.useState(!1),[l,s]=p.useState(null),[h,c]=p.useState(!1),[g,u]=p.useState([]),[b,f]=p.useState(null),[y,w]=p.useState([]);if(!r)return null;const m=()=>{d(!0),c(!1),u([]),w([]),Qs(a).then(N=>{if(d(!1),!N){c(!0),s(null);return}s(N)})},v=N=>{b||(f(N.title),Pi(a,N.instruction,"atelier2-prop").then(A=>{f(null),A.applied?(w(T=>[...T,N.title]),n(e.propApplied)):A.encours?n(e.propSlow):o(A.reply||e.propApplyFail)}))},k=((l==null?void 0:l.proposals)||[]).filter(N=>!g.includes(N.title)&&!y.includes(N.title)),E=((S=l==null?void 0:l.counts)==null?void 0:S.judged)??0;return t.jsxs("div",{className:"rule",children:[t.jsx("b",{children:e.propT}),t.jsx("p",{children:e.propSub}),t.jsx("button",{type:"button",className:"abtn"+(i?" loading":""),disabled:i,style:{marginTop:8},onClick:m,children:i?e.propWait:e.propBtn}),!i&&h&&t.jsx("p",{className:"mnote warn",style:{marginTop:10},children:e.propKo}),!i&&!h&&l&&!(l.proposals||[]).length&&t.jsx("p",{className:"mnote",style:{marginTop:10},children:l.reason==="not_enough_signals"?e.propFew(E):e.propNone}),k.map(N=>t.jsxs("div",{className:"propc",children:[t.jsx("span",{className:"props",children:e.propSections[N.section]||N.section}),t.jsx("p",{className:"propt",children:N.title}),N.why&&t.jsx("p",{className:"mnote dim",children:N.why}),N.evidence.length>0&&t.jsxs("p",{className:"mnote dim",children:[e.propFrom," ",N.evidence.join(" · ")]}),t.jsxs("div",{className:"avisa",children:[t.jsx("button",{type:"button",className:"abtn",disabled:!!b,onClick:()=>v(N),children:b===N.title?e.propApplying:e.propApply}),t.jsx("button",{type:"button",className:"lk",onClick:()=>u(A=>[...A,N.title]),children:e.propSkip})]})]},N.title))]})}function pu(){const{t:e,token:a,canWrite:r,flash:n,flashErr:o,lang:i,data:d}=K(),[l,s]=p.useState(null),[h,c]=p.useState(!1),[g,u]=p.useState(!1),[b,f]=p.useState(""),[y,w]=p.useState(""),[m,v]=p.useState(!1),k=p.useRef(!1);if(p.useEffect(()=>{if(!a||!r)return;let N=!0;return Gs(a).then(A=>{N&&(c(!0),!(!A||k.current)&&(s(A),f(A.fit),w(A.note)))}),()=>{N=!1}},[a,r]),!r)return null;const E=()=>{if(!(!b||m)){if(l&&l.fit===b&&l.note===y.trim()){u(!1);return}v(!0),kt(a,"thesis_fit",b,y.trim(),"",d.email||"").then(N=>{if(v(!1),!N.ok){o(e.fitKo);return}s({fit:b,note:y.trim(),ts:new Date().toISOString()}),u(!1),n(e.fitSaved)})}},S=N=>N==="yes"?e.fitYes:N==="partial"?e.fitPartial:e.fitNo;if(l&&!g){const N=new Date(String(l.ts||"")),A=Number.isNaN(N.getTime())?"":N.toLocaleDateString(i==="en"?"en-US":"fr-FR",{day:"2-digit",month:"2-digit"});return t.jsxs("div",{className:"rule fitbox",children:[t.jsx("b",{children:e.fitDone}),t.jsxs("p",{className:"fitrep",children:[t.jsx("b",{children:S(l.fit)}),l.note?` — ${l.note}`:""]}),!!A&&t.jsx("p",{className:"mnote dim",children:A}),t.jsx("button",{type:"button",className:"lk",onClick:()=>u(!0),children:e.fitEdit})]})}return t.jsxs("div",{className:"rule fitbox",children:[t.jsx("b",{children:e.fitTitle}),t.jsx("p",{children:e.fitSub}),t.jsx("div",{className:"fitopts",children:["yes","partial","no"].map(N=>t.jsx("button",{type:"button","aria-pressed":b===N,className:"fitopt"+(b===N?" on":""),onClick:()=>{k.current=!0,f(N)},children:S(N)},N))}),t.jsxs("div",{className:"mfield",style:{marginTop:10},children:[t.jsx("input",{type:"text",maxLength:400,placeholder:e.fitPh,value:y,onChange:N=>{k.current=!0,w(N.target.value)},onKeyDown:N=>{N.key==="Enter"&&E()}}),t.jsx("button",{type:"button",className:"abtn",disabled:!b||m,onClick:E,children:m?"…":e.fitSend})]}),t.jsx("p",{className:"mnote dim",children:e.fitSeen}),!h&&t.jsx("p",{className:"mnote dim",children:"…"})]})}function cu(){var m,v,k;const{t:e,dossiers:a,token:r,mode:n,flash:o,criteria:i,fund:d,lang:l}=K(),s=n==="client",h=p.useMemo(()=>{const E=new Set;return a.forEach(S=>{S.angle&&E.add(S.angle)}),[...E]},[a]),[c,g]=p.useState(""),[u,b]=p.useState(""),[f,y]=p.useState(!1),w=async()=>{const E=c.trim();if(!(!E||f||!s)){y(!0),b("");try{const N=await(await fetch(`${jt}/cibles/thesis-chat`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({token:r,message:E,who:"atelier2"})})).json().catch(()=>({}));if(N.reply&&b(String(N.reply)),N.job_id){b(e.critChatRunning);const A=async()=>{const T=await fetch(`${jt}/cibles/thesis-chat-status`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({job_id:N.job_id})}).then(F=>F.json()).catch(()=>null);if(T&&T.done){b(String(T.reply||T.clarification||T.summary||"✓")),y(!1),T.applied&&o(e.alertSaved);return}setTimeout(()=>{A()},8e3)};setTimeout(()=>{A()},8e3),g("");return}g("")}finally{u.startsWith("⏳")||y(!1)}}};return t.jsxs(Xe,{title:e.critTitle,icon:"⚙",wide:!0,children:[(i==null?void 0:i.lead)&&t.jsxs(t.Fragment,{children:[t.jsx("div",{className:"qsec ok","data-tour":"crit-hyp",children:e.critHypTitle}),t.jsx("p",{className:"mnote",style:{marginTop:0},children:i.lead}),!!((m=i.points)!=null&&m.length)&&t.jsx("ul",{className:"critpts",children:i.points.map(E=>t.jsx("li",{children:E},E))}),t.jsx("p",{className:"mnote",children:e.critHypSub})]}),!!((v=i==null?void 0:i.angles)!=null&&v.length)&&t.jsxs(t.Fragment,{children:[t.jsx("div",{className:"qsec ok","data-tour":"crit-prof",children:e.critProfilsTitle}),t.jsx("p",{className:"mnote",style:{marginTop:0},children:i.method||e.critProfilsSub}),i.angles.map(E=>{var S,N;return t.jsxs("details",{className:"prof",children:[t.jsx("summary",{children:E.title}),E.why&&t.jsx("p",{className:"why",children:E.why}),t.jsxs("div",{className:"lo",children:[!!((S=E.look)!=null&&S.length)&&t.jsxs("div",{children:[t.jsx("em",{children:e.critLookFor}),t.jsx("ul",{children:E.look.map(A=>t.jsx("li",{children:A},A))})]}),!!((N=E.out)!=null&&N.length)&&t.jsxs("div",{className:"ko",children:[t.jsx("em",{children:e.critRuleOut}),t.jsx("ul",{children:E.out.map(A=>t.jsx("li",{children:A},A))})]})]})]},E.title)})]}),!!((k=i==null?void 0:i.gate)!=null&&k.length)&&t.jsxs(t.Fragment,{children:[t.jsx("div",{className:"qsec ok","data-tour":"crit-gate",children:e.critGateTitle}),t.jsx("p",{className:"mnote",style:{marginTop:0},children:e.critGateSub}),i.gate.length===1&&!i.gate[0].k?t.jsx("p",{className:"gate1",children:i.gate[0].t}):t.jsx("ol",{className:"gatesteps",children:i.gate.map(E=>t.jsxs("li",{children:[E.k&&t.jsx("b",{children:E.k}),E.t]},E.t))})]}),h.length>0&&t.jsxs(t.Fragment,{children:[t.jsx("div",{className:"qsec ok",children:e.critAngles}),t.jsx("ul",{style:{margin:"0 0 16px",paddingLeft:18},children:h.map(E=>t.jsx("li",{style:{marginBottom:5},children:E.replace(/[_-]+/g," ")},E))})]}),t.jsx(pu,{}),t.jsx(lu,{}),t.jsxs("div",{className:"rule",children:[t.jsx("b",{children:e.critChatTitle}),t.jsx("p",{children:e.critChatHint}),t.jsxs("div",{className:"mfield",style:{marginTop:10},children:[t.jsx("input",{placeholder:e.critChatPh,value:c,disabled:!s||f,onChange:E=>g(E.target.value),onKeyDown:E=>{E.key==="Enter"&&w()}}),t.jsxs("button",{type:"button",className:"evalbtn"+(f?" loading":""),style:{padding:"12px 18px"},disabled:!s||f||!c.trim(),onClick:()=>void w(),children:[t.jsx("span",{className:"fill"}),e.critChatSend]})]}),u&&t.jsx("p",{className:"mnote",style:{marginTop:10},children:u})]}),t.jsx(du,{}),t.jsx("div",{style:{marginBottom:14},children:t.jsx(Us,{fund:d,lang:l,limit:30,compact:!0})}),t.jsx("div",{className:"qsec ok",children:e.qvTitle}),t.jsx("div",{className:"vlist",children:e.qv.map(([E,S])=>t.jsxs("div",{className:"vrow",children:[t.jsx("span",{className:"vd "+(Oi[E]||"v-cons"),children:E}),t.jsx("span",{children:S})]},E))}),t.jsx("div",{className:"qsec ok",children:e.brTitle}),t.jsx("div",{className:"vlist",children:e.br.map(([E,S])=>t.jsxs("div",{className:"vrow",children:[t.jsx("span",{className:"vtag",children:E}),t.jsxs("span",{children:["← ",S]})]},E))}),t.jsx("p",{className:"mnote",children:e.brNote}),t.jsx("p",{className:"mnote",children:e.critMemoKinds})]})}function uu(){const{t:e,dispatch:a,startTour:r}=K(),n=o=>{var i,d;a({type:"modal",modal:null}),o==="crit"||o==="plug"||o==="alert"?a({type:"modal",modal:o}):o.startsWith("tab")?a({type:"ptab",tab:Number(o.slice(3))}):o==="eval"&&((i=document.querySelector(".atl2 .demand input"))==null||i.scrollIntoView({block:"center",behavior:"smooth"}),(d=document.querySelector(".atl2 .demand input"))==null||d.focus())};return t.jsxs(Xe,{title:e.tutoTitle,icon:"▶",children:[t.jsxs("div",{className:"howto-go",children:[t.jsx("p",{children:e.tourIntro}),t.jsxs("button",{type:"button",onClick:()=>{a({type:"modal",modal:null}),r()},children:["▶ ",e.tourStart]})]}),t.jsx("ul",{className:"howto",children:e.howto.map(([o,i],d)=>t.jsxs("li",{role:"button",tabIndex:0,onClick:()=>n(i),onKeyDown:l=>{(l.key==="Enter"||l.key===" ")&&(l.preventDefault(),n(i))},children:[t.jsx("span",{className:"n",children:d+1}),t.jsx("span",{dangerouslySetInnerHTML:{__html:o.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>")}})]},i+d))})]})}const _i="atl2:mapfold",mu=()=>{if(typeof window>"u")return!1;try{const e=localStorage.getItem(_i);if(e==="on")return!0;if(e==="off")return!1}catch{}try{const e=new URLSearchParams(window.location.search);if(e.get("embed")==="1"&&(e.get("source")||"").toLowerCase()==="ops")return!0}catch{}return window.innerHeight<1e3},fu=()=>{if(typeof window>"u")return!1;try{if(new URLSearchParams(window.location.search).get("embed")==="1")return!0}catch{}return window.innerWidth<=760},Bi=p.createContext(null),K=()=>{const e=p.useContext(Bi);if(!e)throw new Error("AtelierV2Ctx manquant");return e};function Tt({o:e,lg:a}){const{lang:r}=K(),n=$e(e);return n?t.jsxs("span",{className:"sig"+(a?" sig-lg":""),title:Cr(n,r),children:[n.emoji," ",Cr(n,r)]}):null}function nn({o:e,src:a}){const{lang:r,t:n}=K(),o=$e(e);if(!o)return null;const i=ll(o),d=dl(o);return t.jsxs("em",{className:"sigwin"+(d?" hot":""),title:n.signaledOn(_o(o,r))+" · "+n.win7(Bo(o,r)),children:[t.jsx("span",{className:"gg",children:Array.from({length:7},(l,s)=>t.jsx("i",{className:s<i?"on":""},s))}),t.jsx("span",{className:"lb",children:d?n.lastDay:n.daysLeft(Math.max(0,o.left??0))}),a&&o.url&&t.jsx("a",{href:o.url,target:"_blank",rel:"noopener noreferrer",title:n.seeSource,onClick:l=>l.stopPropagation(),children:"↗"})]})}function hu(e,a,r){const n=(r||"").trim();if(n){const i=e.find(d=>(d.url||"")===n);if(i)return i}const o=Ve(a);if(o)return e.find(i=>Ve(i.name)===o)||e.find(i=>{const d=Ve(i.name);return d.length>=3&&(o.includes(d)||d.includes(o))})}function gu(){const{scoped:e,t:a,st:r,dispatch:n}=K(),o=p.useRef(r.filters.day);r.filters.day&&(o.current=r.filters.day);const i=!!r.filters.day,d=e.filter(g=>!He(g)),l=d.length,s=d.filter(g=>!g.noCo).length,h=d.filter(g=>!!g.noCo).length,c=(r.filters.sector||[]).length>0;return t.jsxs("button",{type:"button",className:"map-pulse"+(i?" on":""),"aria-pressed":i,title:i?a.zoomPulseBtn:a.zoomPulseWeek,onClick:()=>{if(i)n({type:"filters",patch:{day:"",win:c?"7":"all"}});else{const g=o.current||new Date().toISOString().slice(0,10);n({type:"filters",patch:{day:g,win:"all"}})}},children:[t.jsx("em",{children:i?a.zoomPulseBtn:a.zoomPulseWeek}),t.jsx("b",{children:l}),t.jsx("span",{children:i?a.zoomPulseEd:a.zoomPulseWeekEd}),t.jsxs("ul",{children:[t.jsxs("li",{children:["⚡ ",s," ",a.zoomPulseEval]}),t.jsxs("li",{children:["🔎 ",h," ",a.zoomPulseExplore]})]})]})}function xu(){var y;const{t:e,lang:a,data:r,dispatch:n,dossiers:o,st:i,caps:d}=K(),l=w=>w.toLocaleString(a==="en"?"en-US":"fr-FR"),s={...i,filters:{...i.filters,win:"all",day:"",signalOnly:!1,signalEngines:[]}},h=o.filter(w=>!He(w)&&_t(w,s,d.pipe)),c=h.length,g=h.filter(w=>Le(w)===1).length,u=h.filter(w=>Le(w)===2).length,b=typeof((y=r.stats)==null?void 0:y.screened)=="number"?r.stats.screened:0;if(c<=0&&b<=0)return null;const f=r.marketEstimate||0;return t.jsxs("button",{type:"button",className:"map-pulse",title:e.coverTitle,onClick:()=>n({type:"modal",modal:"cover"}),children:[t.jsx("em",{children:e.identCoverage}),t.jsx("b",{children:l(c)}),t.jsx("span",{children:f>0?e.covOf(l(f)):e.covScreened("").trim()}),t.jsxs("ul",{children:[t.jsxs("li",{children:["✅ ",l(g)," ",e.covKept]}),t.jsxs("li",{children:["⚡ ",l(u)," ",e.covAna]})]})]})}function bu(){var w;const{t:e,token:a,fund:r,dispatch:n,data:o}=K(),[i,d]=p.useState(null),[l,s]=p.useState(!0),[h,c]=p.useState([]),g=o.credits,u=!!g&&!g.unlimited;p.useEffect(()=>{if(!a||!r)return;let m=!0;return s(!0),(async()=>{const[v,k]=await Promise.all([Jn(r),Ho(a)]);m&&(v&&d(v),s(!1),c(k))})(),()=>{m=!1}},[a,r]);const b=(i==null?void 0:i.per_day)??null,f=((w=i==null?void 0:i.pool_order)==null?void 0:w.length)??0,y=h.filter(m=>m.status==="running").length;return t.jsxs("div",{className:"map-pulse map-engine",children:[t.jsxs("button",{type:"button",className:"map-engine-hit",title:e.queueTitle,onClick:()=>n({type:"modal",modal:"queue"}),children:[t.jsx("em",{children:e.identEngine}),t.jsx("b",{children:b===null?"—":b}),t.jsx("span",{children:e.identPerDay}),t.jsxs("ul",{children:[b===0&&t.jsx("li",{children:t.jsx("span",{className:"epause",title:e.identPauseTitle,children:e.identPause})}),y>0&&t.jsxs("li",{children:["⏳ ",y]}),t.jsx("li",{children:l?e.identPendingWait:e.identPending(f)})]})]}),t.jsxs("button",{type:"button",className:"map-engine-alert",title:e.memoAlertSub,onClick:()=>n({type:"modal",modal:"memoalert"}),children:["🔔 ",e.memoAlertBtn]}),u&&g&&t.jsxs("div",{className:"map-engine-credits",children:[t.jsx("em",{children:e.creditsCap}),t.jsxs("b",{children:[g.total_available,t.jsxs("span",{children:[" / ",g.daily_grant+g.purchased]})]}),t.jsx("span",{children:e.creditsToday})]})]})}function $i({o:e}){const{lang:a}=K(),r=sl(e.cc),n=e.cc?aa(e.cc,a)||e.countryLabel||e.cc:e.countryLabel||"—";return t.jsx("span",{className:"c-flag",title:n||void 0,children:r?t.jsx("img",{src:r,width:16,height:16,alt:n||""}):t.jsx("span",{className:"em",children:"🌐"})})}const vu=!1;function wu(){const[e,a]=p.useState(!1);return p.useEffect(()=>{const r=document.scrollingElement||document.documentElement,n=()=>a((r.scrollTop||0)>600);return n(),window.addEventListener("scroll",n,!0),()=>window.removeEventListener("scroll",n,!0)},[]),e?t.jsx("button",{type:"button",className:"totop",title:"Remonter en haut",onClick:()=>{(document.scrollingElement||document.documentElement).scrollTo({top:0,behavior:"smooth"})},children:"↑"}):null}const Ui=e=>`atl2:tour:${e||"anon"}`;function yu(e){try{return localStorage.getItem(Ui(e))==="1"}catch{return!0}}function qo(e){try{localStorage.setItem(Ui(e),"1")}catch{}}function ku(e,a,r,n,o,i,d,l){const s=e.tourT,h=e.howto;return[{sel:".atl2 .ident",title:s.ident,body:e.fhintIdent},o?{sel:".atl2 .map-pulse",title:s.cover,body:e.fhintCover,need:".atl2 .map-hud"}:null,{sel:".atl2 .map-engine",title:s.engine,body:`${e.fhintEngine}
+${e.fhintMemoDepths}`},{sel:".atl2 .ticker",title:s.live,body:e.fhintLive},{sel:".atl2 .goal",title:s.goal,body:e.fhintGoalAt(a)},{sel:".atl2 .srceng",click:".atl2 .srceng:not(.on) .se-head",title:s.engines,body:e.fhintSrcEng},{sel:".atl2 .funnel",title:s.funnel,body:e.fhintFunnel,ptab:n},i>0?{sel:".atl2 .tuto",title:s.tuto,body:h[3][0],ptab:3,need:".atl2 .tuto"}:null,{sel:".atl2 .demand",title:s.demand,body:h[1][0]},{sel:".atl2 .dmulti.ddeals",title:s.deals,body:e.fhintDeals},{sel:".atl2 .dmulti.dnews",title:s.news,body:e.fhintNews},{sel:".atl2 .c-vd",need:".atl2 .list",title:s.chips,body:e.fhintChips,ptab:n,dens:"liste"},{sel:".atl2 .card .cdbody",need:".atl2 .list",title:s.dec,body:e.fhintDec,ptab:n,dens:"deplie"},r?{sel:".atl2 .card .cdtabs",need:".atl2 .list",click:'.atl2 [data-tour="tab-memo"]',title:s.memo,body:e.fhintMemo,ptab:n,dens:"deplie"}:null,{sel:".atl2 .csp",need:".atl2 .list",title:s.status,body:e.fhintStatus,ptab:n,dens:"deplie"},i>0?{sel:".atl2 .rst2",need:".atl2 .list",title:s.decide,body:e.fhintDecide,ptab:3,dens:"liste"}:null,i>0?{sel:".atl2 .memobtn",need:".atl2 .list",title:s.memoDeep,body:e.fhintMemoDeep,ptab:3,dens:"liste"}:null,d>0?{sel:".atl2 .stg",need:".atl2 .list",title:s.stage,body:e.fhintStage,ptab:4,dens:"liste"}:null,d>0?{sel:".atl2 .approach",need:".atl2 .list",title:s.appr,body:e.fhintAppr,ptab:4,dens:"liste"}:null,d>0?{sel:'.atl2 .modal.on [data-tour="plug-bulk"]',need:".atl2 .ic[data-tour=plug]",title:s.campout,body:e.fhintCampout,modal:"plug"}:null,d>0?{sel:'.atl2 .modal.on [data-tour="plug-crm"]',need:".atl2 .ic[data-tour=plug]",title:s.addcrm,body:e.fhintAddcrm,modal:"plug"}:null,...[2,4,5].filter(c=>(l[c]||0)>0).map(c=>({sel:'.atl2 .listhead .step[aria-selected="true"], .atl2 .listhead .off[aria-selected="true"]',need:".atl2 .funnel",title:c===2?s.tabAna:c===4?s.tabValid:s.tabRej,body:c===2?e.fhintTabAna:c===4?e.fhintTabValid:e.fhintTabRej,ptab:c})),{sel:".atl2 .listhead .lh-title .main",need:".atl2 .listhead",title:s.rank,body:e.fhintRank},{sel:".atl2 .learn",title:s.learn,body:e.learnLine},{sel:".atl2 .modal.on .mcard",title:s.improve,body:e.fhintImprove,modal:"crit"},{sel:".atl2 .modal.on .mcard",need:".atl2 .ic[data-tour=export]",title:s.exportT,body:e.fhintExport,modal:"export"},{sel:".atl2 .modal.on .mcard",need:".atl2 .ic[data-tour=plug]",title:s.tools,body:h[6][0],modal:"plug"},{sel:".atl2 .modal.on .mcard",need:".atl2 .ic[data-tour=alert]",title:s.alerts,body:e.fhintAlerts,modal:"alert"},{sel:".atl2 .modal.on .mcard",title:s.crit,body:h[0][0],modal:"crit"},{sel:'.atl2 [data-tour="crit-hyp"]',title:s.mHyp,body:e.fhintMHyp,modal:"crit"},{sel:'.atl2 [data-tour="crit-prof"]',title:s.mProf,body:e.fhintMProf,modal:"crit"},{sel:'.atl2 [data-tour="crit-gate"]',title:s.mGate,body:e.fhintMGate,modal:"crit"}].filter(Boolean)}function zu({demo:e=!1,source:a="default",initialFilters:r,initialUi:n,capsOverride:o,onFiltersChange:i}){var lr;const{lang:d}=al(),l=Xl(e,d,a),s=p.useMemo(()=>({...Pl[d],...Il(d,l.thesisMode)}),[d,l.thesisMode]),[h,c]=p.useReducer(td,void 0,()=>Zl((n==null?void 0:n.continent)??(a==="ops"?"monde":"europe"),e||(a==="ops"?fu():mu()),{ptab:n==null?void 0:n.ptab,dens:(n==null?void 0:n.dens)??"liste",filters:r,modal:n==null?void 0:n.modal})),g=p.useRef(!0);p.useEffect(()=>{if(g.current){g.current=!1;return}if(!(e||a==="ops"))try{localStorage.setItem(_i,h.mapFolded?"on":"off")}catch{}},[h.mapFolded,e,a]),p.useEffect(()=>{if(a!=="ops"||typeof window>"u")return;const L=()=>{window.innerWidth<=760&&c({type:"mapFold",folded:!0})};return L(),window.addEventListener("resize",L),()=>window.removeEventListener("resize",L)},[a]);const u=p.useRef(i);u.current=i,p.useEffect(()=>{var L;(L=u.current)==null||L.call(u,h.filters)},[h.filters]);const[b,f]=p.useState(()=>{if(typeof window>"u")return"both";try{const L=localStorage.getItem("atl2:chrome-mode");if(L==="eval"||L==="filt"||L==="both")return L;if(localStorage.getItem("atl2:chrome-min")==="1")return"eval"}catch{}return"both"}),[y,w]=p.useState(null),[m,v]=p.useState(null),[k,E]=p.useState(null),[S,N]=p.useState({kept:0,dropped:0}),[A,T]=p.useState(!1),[F,O]=p.useState(""),[D,V]=p.useState(!1),[Q,R]=p.useState(null),[x,q]=p.useState(null),[C,P]=p.useState(!1),[H,G]=p.useState(!1),[,Z]=p.useState(0),z=()=>Z(L=>L+1),$=p.useRef([]),M=p.useRef(new Set),X=p.useRef(new Set),[U,ee]=p.useState([]),[ue,fe]=p.useState([]),[ve,me]=p.useState(0),we=p.useRef(new Map),ze=p.useRef(null),{mode:he}=l,ke=p.useMemo(()=>({...l.caps,...a==="ops"?{showMorning:!1}:null,...o||null}),[l.caps,o,a]),ge=ke.pipe,ie=l.session.token||"",I=he==="client"&&!e;p.useEffect(()=>{if(!ie||!ge)return;let L=!0;const J=async()=>{const be=await pl(ie);!L||!be||(fe(be.runs),me(Date.now()/1e3-be.now),ee(Oe=>Oe.filter(qe=>!be.runs.some(Ge=>Ve(Ge.company)===Ve(qe.name)))))};J();const W=U.length>0||ue.some(be=>be.status==="running"),oe=window.setInterval(()=>{J()},W?8e3:25e3);return()=>{L=!1,window.clearInterval(oe)}},[ie,ge,U.length,ue.some(L=>L.status==="running")]),p.useEffect(()=>{if(!ie||!ge||!I)return;let L=!0;const J=async()=>{const oe=await cl(ie);if(!L||!oe.length)return;const be=new Map;oe.forEach(Oe=>{const qe=String(Oe.ceo_status||"").trim();qe&&Oe.check_id&&be.set(String(Oe.check_id),qe)}),l.patchStatuses(be,Oe=>Date.now()-(B.current.get(Oe)||0)>9e4)};J();const W=window.setInterval(()=>{J()},6e4);return()=>{L=!1,window.clearInterval(W)}},[ie,ge,I]);const ae=p.useMemo(()=>{const L=[],J=new Set;for(const W of U){const oe=Ve(W.name);!oe||J.has(oe)||(J.add(oe),L.push({name:W.name,id:W.id,status:"boot",started:W.started,estMin:W.estMin,memoType:"instant"}))}for(const W of ue){const oe=Ve(W.company);if(!oe||J.has(oe))continue;J.add(oe);const be=W.status==="error"?"error":W.status==="done"?"done":"running";L.push({name:W.company,status:be,started:W.started||0,estMin:W.est_min||(W.memo_type==="detailed"?40:15),url:W.url,error:W.error,memoType:W.memo_type,note:W.note})}return L},[U,ue]),pe=L=>ae.find(J=>Ve(J.name)===Ve(L))||null,se=(L,J)=>{ee(W=>W.some(oe=>Ve(oe.name)===Ve(L.name))?W:[...W,{name:L.name,id:L.id,started:Date.now()/1e3,estMin:J==="detailed"?40:15}]),M.current.add(L.id),z()},ne=(L,J=!1)=>{O(L),V(J),ze.current&&clearTimeout(ze.current),ze.current=setTimeout(()=>O(""),J?4200:2400)},te=L=>ne(L,!0),de=p.useMemo(()=>{const L=new Map;return l.dossiers.forEach(J=>{J.id&&L.set(J.id,J)}),L},[l.dossiers]),je=p.useMemo(()=>l.dossiers.filter(L=>_t(L,h,ge)),[l.dossiers,h,ge]),re=p.useRef(!1);p.useEffect(()=>{if(re.current||l.loading||!l.dossiers.length)return;if(e&&!l.session.token){re.current=!0;return}if(!ke.showFunnel||yu(l.session.token||"")){re.current=!0;return}re.current=!0;const L=window.setTimeout(()=>{qo(l.session.token||""),P(!0)},700);return()=>window.clearTimeout(L)},[e,l.loading,l.dossiers.length,ke.showFunnel,l.session.token]);const Ae=p.useMemo(()=>l.dossiers.filter(L=>ad(L,h,ge,l.favIds)),[l.dossiers,h,ge,l.favIds]),ye=p.useMemo(()=>nl(je.filter(L=>!tt(L)),l.favIds),[je,l.favIds]),Be=p.useRef(!1);p.useEffect(()=>{if(Be.current)return;if(!ge||a==="ops"){Be.current=!0;return}if((n==null?void 0:n.ptab)!==void 0){Be.current=!0;return}if(l.loading)return;Be.current=!0;const L=rl(ye);L!==h.ptab&&c({type:"ptab",tab:L})},[ge,a,n==null?void 0:n.ptab,l.loading,ye,h.ptab]);const Ie=p.useMemo(()=>{const L=ri(l.dossiers);return L?gt(L)===0?s.tourToday:oi(L,d):s.tourNoRun},[l.dossiers,s,d]),Ue=p.useMemo(()=>l.dossiers.some(L=>!!L.memoUrl||!!L.summary||Lt(L)),[l.dossiers]),[Gt,Re]=p.useState(!1);p.useEffect(()=>{if(l.loading){Re(!1);return}if(l.dossiers.length>0||l.error){Re(!0);return}const L=window.setTimeout(()=>Re(!0),6e3);return()=>window.clearTimeout(L)},[l.loading,l.dossiers.length,l.error]);const ot=(l.marketEstimate||0)>0||typeof((lr=l.stats)==null?void 0:lr.screened)=="number"&&l.stats.screened>0,Ce=p.useMemo(()=>[1,0,2,4,5,3].find(L=>(ye[L]||0)>0)??0,[ye]),it=Qn.find(L=>L.key===h.continent),Rt=h.continent==="monde"?s.contWorld:(d==="fr"?it==null?void 0:it.fr:it==null?void 0:it.en)||"";p.useEffect(()=>{const L=J=>{var oe;const W=(((oe=J.detail)==null?void 0:oe.name)||"").trim();W&&Qe(null,W)};return window.addEventListener("ppmap:evaluate",L),()=>window.removeEventListener("ppmap:evaluate",L)}),p.useEffect(()=>{const L=J=>{const W=J.detail||{},oe=String(W.id||"").trim(),be=String(W.name||"").trim(),Oe=String(W.url||"").trim(),qe=oe&&de.get(oe)||hu(l.dossiers,be,Oe);if(qe){if(v(null),_t(qe,h,ge)||(h.continent!=="monde"&&qe.continent!==h.continent&&c({type:"continent",key:qe.continent||"monde"}),c({type:"reset"})),ge&&qe.kind!=="op"){const xt=Le(qe);typeof xt=="number"&&xt!==h.ptab&&c({type:"ptab",tab:xt})}window.dispatchEvent(new CustomEvent("ppmap:reveal")),c({type:"focus",id:qe.id}),(qe.noCo||["media","nominations","recrutements"].includes(qe.engine||""))&&(qe.url||qe.headline)?window.dispatchEvent(new CustomEvent("ppmap:research",{detail:{url:qe.url||"",text:[qe.headline,qe.tagline].filter(Boolean).join(`
+`)}})):qe.noCo||window.dispatchEvent(new CustomEvent("ppmap:prefill",{detail:{name:qe.name,url:qe.url||"",website:qe.website||"",domain:qe.domain||""}}));return}!be&&!Oe||(c({type:"focus",id:oe||null}),v({name:be,headline:String(W.text||"").trim()||be,url:Oe,card:W.card}),Oe&&(Jt(be)||!be)?window.dispatchEvent(new CustomEvent("ppmap:research",{detail:{url:Oe,text:String(W.text||"").trim()}})):be&&!Jt(be)&&window.dispatchEvent(new CustomEvent("ppmap:prefill",{detail:{name:be}})))};return window.addEventListener("ppmap:focus",L),()=>window.removeEventListener("ppmap:focus",L)}),p.useEffect(()=>{const L=oe=>{const be={},Oe=String((oe==null?void 0:oe.sector)||"").trim();Oe&&(be.sector=[Oe]);const qe=String((oe==null?void 0:oe.day)||"").slice(0,10);/^\d{4}-\d{2}-\d{2}$/.test(qe)&&(be.day=qe);const Ge=String((oe==null?void 0:oe.search)||"").trim();Ge&&(be.search=Ge);const xt=String((oe==null?void 0:oe.dealKind)||"").trim();(xt==="ma"||xt==="levee"||xt==="other")&&(be.dealKind=[xt]),Object.keys(be).length&&c({type:"filters",patch:be})},J=oe=>L(oe.detail),W=oe=>{oe.data&&oe.data.type==="pp-filter"&&L(oe.data)};return window.addEventListener("ppmap:filter",J),window.addEventListener("message",W),()=>{window.removeEventListener("ppmap:filter",J),window.removeEventListener("message",W)}},[]),p.useEffect(()=>{const L=J=>{var be;const W=(((be=J.detail)==null?void 0:be.name)||"").trim().toLowerCase();if(!W)return;const oe=l.dossiers.find(Oe=>(Oe.name||"").trim().toLowerCase()===W);oe&&c(a==="ops"?{type:"focus",id:oe.id}:{type:"popup",id:oe.id})};return window.addEventListener("ppmap:similar",L),()=>window.removeEventListener("ppmap:similar",L)});const Qe=(L,J,W)=>{const oe=(W||(L==null?void 0:L.name)||J||"").trim();if(!I){E({kicker:oe});return}!oe||A||(T(!0),(async()=>{try{let be=(J||oe).trim();const Oe=((L==null?void 0:L.website)||(L==null?void 0:L.domain)||"").trim();if(!(/^https?:\/\//i.test(be)||/^[a-z0-9.-]+\.[a-z]{2,}(\/|$)/i.test(be)&&!/\s/.test(be)))if(Oe)be=Oe;else try{const _e=await Kn(oe);if(_e!=null&&_e.website)be=_e.website;else if(((_e==null?void 0:_e.candidates)||[]).length===1)be=_e.candidates[0].url;else if(((_e==null?void 0:_e.candidates)||[]).length>1){$.current=[{name:oe,verdict:"unresolved",remaining:null,reason:s.evalPickSite,candidates:(_e.candidates||[]).slice(0,5)},...$.current].slice(0,8),z();return}}catch{}const Ge=await Do(ie,be,"atelier2"),xt={name:Ge.company||oe,verdict:Ge.verdict,reason:Ge.reason||"",remaining:Ge.remaining??null};$.current=[xt,...$.current].slice(0,8),Ge.verdict==="kept"&&N(_e=>({..._e,kept:_e.kept+1})),Ge.verdict==="ruled_out"&&N(_e=>({..._e,dropped:_e.dropped+1}));const ra=L||l.dossiers.find(_e=>(_e.name||"").toLowerCase()===oe.toLowerCase());ra&&(Ge.verdict==="kept"?ra.verdict=ra.verdict||"MATCH":Ge.verdict==="ruled_out"&&(ra.verdict="NO MATCH"),Ge.reason&&(ra.reasoning=Ge.reason)),z()}finally{T(!1)}})())},Nt=L=>{if(!I){E({kicker:L.name});return}se(L,"instant"),kt(ie,"fast_request",L.name||"",""),ne(s.memoInstantSent(L.name))},Ot=L=>we.current.get(L.id)??l.thumbs.get((L.name||"").trim().toLowerCase()),Dt=(L,J)=>c({type:"undoPush",entry:{id:L.id,name:L.name,prevCeoStatus:J}}),wt=async(L,J,W)=>{const oe=L.ceoStatus||"";B.current.set(L.id,Date.now()),L.ceoStatus=J,z();const be=await ln(ie,{status:J,airtable_id:L.airtableId,check_id:L.checkId,company:L.name,...(W==null?void 0:W.note)!==void 0?{note:W.note}:{},...W!=null&&W.via?{via:W.via}:{}});return be.ok?be.skipped?(L.ceoStatus=oe,z(),te(s.actNotPersisted),!1):((W==null?void 0:W.undo)!==!1&&Dt(L,oe),W!=null&&W.msg&&ne(W.msg),(J==="Validé"||J==="Écarté")&&!L.ceoNote&&(W==null?void 0:W.note)===void 0&&R({o:L,yes:J==="Validé"}),!0):(L.ceoStatus=oe,z(),te(s.actErr),!1)},Pe=async(L,J)=>{const W=await ln(ie,{status:L.ceoStatus||"Retenu",airtable_id:L.airtableId,check_id:L.checkId,company:L.name,note:J,via:"note"});return!W.ok||W.skipped?(te(W.skipped?s.actNotPersisted:s.actErr),!1):(L.ceoNote=J,z(),!0)},st=p.useRef(new Map),Ze=L=>st.current.has(L.id)?st.current.get(L.id):l.stages.get((L.name||"").trim().toLowerCase()),St=(L,J)=>{st.current.set(L.id,J),z()},zt=(L,J)=>{I&&wt(L,J?"Validé":"Écarté",{msg:J?s.decidedYes(L.name):s.decidedNo(L.name)})},Mt=L=>{I&&wt(L,"À trancher",{msg:s.promoted(L.name)})},Yt=L=>{I&&(async()=>{const J=L.ceoStatus||"";L.ceoStatus="Retenu",z();const W=await ln(ie,{status:"Retenu",check_id:L.checkId,company:L.name});if(!W.ok||W.skipped){L.ceoStatus=J,z(),te(W.skipped?s.actNotPersisted:s.actErr);return}Dt(L,J),ne(s.repeched(L.name))})()},j=()=>{const L=h.undo[h.undo.length-1];if(!L){ne(s.undoNone);return}const J=de.get(L.id);if(!J){c({type:"undoPop"}),ne(s.undoNone);return}let W=L.prevCeoStatus;if(!W)if((J.verdict||"").toUpperCase().includes("CALL"))W="À trancher";else{ne(s.undoLockedTitle);return}(async()=>await wt(J,W,{undo:!1})&&(c({type:"undoPop"}),J.ceoStatus=L.prevCeoStatus,z(),ne(s.undoDone(J.name))))()},_=L=>{I&&(X.current.add(L.id),z(),c({type:"approachOpen",id:L.id}),kt(ie,"approach",L.name||"","","",l.email||""))},B=p.useRef(new Map),Y=p.useRef(!1),[ce,le]=p.useState(0);p.useEffect(()=>{if(!ie||e||!I||Y.current)return;Y.current=!0;const L=new Date().toISOString().slice(0,10),J=l.email||"",W=`cbv_${ie}_${J}_${L}`,oe=`atl2:vue:${ie}:${L}`;try{if(localStorage.getItem(W)||localStorage.getItem(oe))return}catch{}kt(ie,"view","","","",J).then(be=>{if(!be.ok){Y.current=!1;return}try{localStorage.setItem(W,"1")}catch{}})},[ie,e,I,l.email]),p.useEffect(()=>{if(!ie||!ge||e||!I||!l.generatedAt)return;let L=!0;const J=()=>{document.hidden||ul(ie,l.generatedAt||"").then(oe=>{L&&le(oe)})};J();const W=window.setInterval(J,6e4);return()=>{L=!1,window.clearInterval(W)}},[ie,ge,e,l.generatedAt]);const xe=(L,J)=>{I&&(async()=>{if(!(await kt(ie,J?"yes":"no",L.name||"",(L.ceoNote||"").slice(0,400),L.sector||"",l.email||"")).ok){te(s.actErr);return}we.current.set(L.id,J?"yes":"no"),z(),ne(J?s.thumbUpDone:s.thumbDnDone),q({o:L,up:J})})()},Se=L=>{!I||!Lt(L)||(se(L,"detailed"),kt(ie,"detailed_request",L.name||"","","",l.email||""),ne(s.memoDeepSent(L.name)))},Ee=L=>{!I||!L.memoUrl||window.confirm(s.memoRegenAsk(L.name))&&(se(L,"detailed"),kt(ie,"detailed_regen",L.name||"","","",l.email||""),ne(s.memoDeepSent(L.name)))},at=L=>{const J=new Set(l.favIds),W=J.has(L.id);W?J.delete(L.id):J.add(L.id),l.setFavIds(J),I&&ml(ie,{id:L.id,co:L.name},W)},lt=()=>{!I||H||window.confirm(s.identSyncConfirm)&&(G(!0),(async()=>{const L=await fl(ie);G(!1),L?ne(s.identSyncDone):te(s.actErr)})())},Ke=/proplace/i.test(l.fund||""),mt=L=>{!I||!Ke||(kt(ie,"onboard_request",L.name||"",""),ne(s.onboardSent(L.name)))},et={st:h,dispatch:c,t:s,lang:d,mode:he,caps:ke,pipe:ge,token:ie,fund:l.fund,email:l.email,criteria:l.criteria,source:a||"default",data:l,doRepeche:Yt,thumbOf:Ot,canWrite:I,commitStatus:wt,saveNote:Pe,stageOf:Ze,setStage:St,flashErr:te,startTour:()=>P(!0),dossiers:l.dossiers,scopedAll:je,scoped:Ae,counts:ye,byId:de,contName:Rt,favIds:l.favIds,toggleFav:at,askEvaluate:Qe,doAnalyse:Nt,doDecide:zt,doPromote:Mt,doApproach:_,doThumb:xe,doDeep:Se,doRegen:Ee,doUndo:j,doSync:lt,doOnboard:mt,outbound:Ke,memoQueued:M.current,liveMemos:{items:ae,serverOff:ve,liveOf:pe},approachDone:X.current,sessTally:S,evalCards:$.current,evalBusy:A,markRow:w,markedId:y,flash:ne,focusExtra:m};p.useEffect(()=>{const L=J=>{J.key==="Escape"&&(c({type:"popup",id:null}),c({type:"modal",modal:null}),c({type:"openFacet",facet:null}))};return window.addEventListener("keydown",L),()=>window.removeEventListener("keydown",L)},[]);const Hi=L=>ie?t.jsx(od,{token:ie,children:L}):t.jsx(t.Fragment,{children:L});return t.jsx(Bi.Provider,{value:et,children:t.jsxs("div",{className:"atl2"+(a==="ops"?" ops":"")+(ie?" cibles":"")+" chrome-"+b,children:[t.jsx("style",{children:Hl}),Hi(t.jsxs("div",{className:"app"+(ge?" pipe":"")+(ie?" has-thesis":""),children:[ke.showTicker&&t.jsx(ft,{name:"live",children:t.jsxs("div",{className:"live-stack"+(ie?" live-stack--cibles":""),children:[t.jsx(ud,{}),!!ie&&t.jsx(id,{})]})}),ke.showIdent&&t.jsx(ft,{name:"identite",children:t.jsx(kd,{})}),!1,vu,ke.showFunnel&&t.jsx(ft,{name:"entonnoir",children:t.jsx(Eu,{})}),t.jsx(ft,{name:"carte",fallback:t.jsx("div",{className:"void",children:s.loadError}),children:t.jsxs("div",{className:"fzone",children:[t.jsx(Ni,{variant:"tabs"}),!h.mapFolded&&t.jsxs("div",{className:"stage",id:"atl2-stage",children:[a==="ops"&&t.jsx(gu,{}),a!=="ops"&&(ke.showFunnel||ke.showIdent)&&t.jsxs("div",{className:"map-hud",children:[ke.showFunnel&&t.jsx(xu,{}),ke.showIdent&&t.jsx(bu,{})]}),t.jsx(wp,{}),t.jsx(ji,{})]})]})}),ke.showDemand&&ge&&t.jsx(ft,{name:"direct",children:t.jsx(vl,{items:ae,serverOff:ve,labels:{strip:s.liveStrip,boot:s.liveBoot,end:s.liveEnd,open:s.liveOpenQueue,memo:s.actMemo},onOpen:()=>c({type:"modal",modal:"queue"})})}),a==="ops"&&t.jsx("div",{className:"chrome-tog",role:"tablist","aria-label":s.chromeBoth,children:[["eval",s.chromeEval],["filt",s.chromeFilt],["both",s.chromeBoth]].map(([L,J])=>t.jsx("button",{type:"button",role:"tab","aria-selected":b===L,onClick:()=>{f(L);try{localStorage.setItem("atl2:chrome-mode",L)}catch{}},children:J},L))}),ke.showDemand&&t.jsx(ft,{name:"evaluation",children:t.jsx("div",{className:"eval-stick",children:t.jsx(Pp,{})})}),ke.showDemand&&h.memoConsole&&t.jsx(ft,{name:"console",children:t.jsx(Bp,{})}),ke.pipe&&!!ie&&t.jsx(ft,{name:"moteurs",children:t.jsx(Tl,{})}),ce>0&&t.jsxs("div",{className:"freshban",children:[t.jsx("span",{children:s.freshBan}),t.jsx("button",{type:"button",className:"abtn",onClick:()=>{le(0),l.refresh()},children:s.freshGo})]}),t.jsx(ft,{name:"liste",fallback:t.jsxs("div",{className:"void",children:[s.loadError," ",t.jsx("button",{type:"button",className:"abtn",onClick:()=>window.location.reload(),children:s.retry})]}),children:t.jsx(Rc,{})}),ke.pipe&&!!ie&&t.jsx("p",{className:"privnote",children:s.privLink}),l.loading&&t.jsx("div",{className:"void",children:s.loadingV2}),l.error&&!l.loading&&t.jsxs("div",{className:"void",children:[s.loadError," ",t.jsx("button",{type:"button",className:"abtn",onClick:l.refresh,children:s.retry})]})]})),h.popupId&&h.dens!=="liste"&&a!=="ops"&&t.jsx(ft,{name:"fiche",children:t.jsx(xc,{})}),t.jsx(ft,{name:"modales",children:t.jsx($c,{})}),t.jsx(ol,{}),x&&t.jsxs("div",{className:"whydock",children:[t.jsx("b",{children:x.o.name}),t.jsx($r,{placeholder:x.up?s.thumbWhyUpPh:s.thumbWhyDnPh,onDone:L=>{const J=x.o;q(null),L&&kt(ie,"note",J.name||"",L,J.sector||"",l.email||"").then(W=>{W.ok&&ne(s.csNoteSaved)})}})]}),Q&&t.jsxs("div",{className:"whydock",children:[t.jsx("b",{children:Q.o.name}),t.jsx($r,{placeholder:Q.yes?s.whyYesPh:s.whyNoPh,onDone:L=>{const J=Q.o;R(null),L&&Pe(J,L).then(W=>{W&&ne(s.csNoteSaved)})}})]}),C&&Gt&&t.jsx(wd,{steps:ku(s,Ie,Ue,Ce,ot,ye[3]||0,ye[4]||0,ye),onClose:()=>{P(!1),qo(ie)}}),t.jsx(wu,{}),ke.showOnb&&t.jsxs("div",{className:"lockbar on",children:[t.jsx("b",{children:s.lockbarText}),t.jsxs("span",{className:"lb-c",children:[s.lockbarContactBefore,t.jsx("a",{href:Uo,children:$o}),s.lockbarContactMid,t.jsx("a",{href:`mailto:${Ua}`,children:Ua})]}),t.jsx("button",{type:"button",onClick:()=>c({type:"modal",modal:"rdv"}),children:s.lockbarCta})]}),F&&t.jsx("div",{className:"flash on"+(D?" err":""),children:F}),k&&t.jsx(il,{variant:"acquirer",initialCompany:Lo().co,initialWebsite:Lo().site,onClose:()=>E(null)})]})})}function Eu(){const{t:e}=K(),[a,r]=p.useState(()=>{if(typeof window>"u")return!1;try{return localStorage.getItem("atl2:fhint")==="off"}catch{return!1}});return a?null:t.jsxs("p",{className:"fhint",children:[t.jsx("svg",{width:"12",height:"12",viewBox:"0 0 12 12","aria-hidden":"true",children:t.jsx("path",{d:"M1 2h10M2.5 5.5h7M4.5 9h3",stroke:"currentColor",strokeWidth:"1.4",strokeLinecap:"round",fill:"none"})}),t.jsx("span",{dangerouslySetInnerHTML:{__html:e.funnelHint}}),t.jsx("button",{type:"button","aria-label":"Fermer",title:e.fhintClose,onClick:()=>{r(!0);try{localStorage.setItem("atl2:fhint","off")}catch{}},children:"✕"})]})}function Lo(){try{return{co:localStorage.getItem("ppmap:acquirer")||"",site:localStorage.getItem("ppmap:acquirerSite")||""}}catch{return{co:"",site:""}}}function ju(e){return e>=1e9?(e/1e9).toFixed(1).replace(".0","").replace(".",",")+" Md€":e>=1e6?Math.round(e/1e6)+" M€":Math.round(e/1e3)+" k€"}export{$i as FlagCell,Tt as SigBadge,nn as SigWin,zu as default,ju as fmtShort,K as useV2};
