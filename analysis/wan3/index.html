@@ -1,0 +1,1242 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wan3 — analyse Media &amp; Entertainment | Proplace</title><meta name="description" content="Media &amp; Entertainment · Generative AI Video Production Software · Pre-Seed"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/wan3/"><meta property="og:type" content="article"><meta property="og:title" content="Wan3 — analyse Media &amp; Entertainment | Proplace"><meta property="og:description" content="Media &amp; Entertainment · Generative AI Video Production Software · Pre-Seed"><meta property="og:url" content="https://proplace.co/analysis/wan3/"><meta property="og:image" content="https://proplace.co/analysis/radars/wan3.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://proplace.co/analysis/radars/wan3.png"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #E3E8F0;
+font-family:var(--pp-body)}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#16233A;text-decoration:none}.ppx-bar nav a:hover{color:#16233A}
+.ppx-crumb{font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);font-size:13px;color:#61708A;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#61708A;text-decoration:none}
+.ppx-cta{font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);background:#0F1D33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#C9D6E6;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#B4C2D4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#12A150;color:#0A6432;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0F1D33}
+.ppx-disc{font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);font-size:12px;color:#B4C2D4;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#B4C2D4}
+.ppx-ft{font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);border-top:1px solid #E3E8F0;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#61708A;text-align:center}
+.ppx-ft a{color:#61708A;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif)}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#0E7F3F;text-decoration:underline}
+.bcrumb .sep{color:#E3E8F0}
+.bcrumb .cur{color:#16233A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E3E8F0;
+font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif)}
+/* Gabarit IDENTIQUE a la nav de la page d'accueil (.pp-nav-inner : 1200 / 32) —
+   le bandeau LIVE et la bande des jours se calent dessus, donc tout demarre
+   exactement sous le logo. Miroir React : components/SiteHeader.tsx. */
+.pph .in{max-width:1200px;margin:0 auto;padding:0 32px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+/* Le bandeau LIVE tient la largeur DE LA PAGE, pas celle de l'ecran (retour
+   Antoine 10/08). Regle MIROIR de src/live/core.ts — elle est repetee ici pour
+   etre dans le <head> : sans elle la barre s'afficherait pleine largeur puis
+   sauterait au chargement du bundle. */
+.pp-livewrap{max-width:1200px;margin:0 auto;padding:0 32px}
+/* UNE SEULE SURFACE : la barre LIVE et la bande des dates dans le meme cadre
+   d'encre, angles droits (miroir de src/live/core.ts). */
+.pp-band{background:#0F1D33;border:1px solid #1B2F4E}
+.pp-band .pp-live{border-bottom:1px solid #1B2F4E}
+/* Le bandeau, la bande des jours et le contenu partagent la MEME gouttiere a
+   toutes les largeurs — sinon les trois blocs demarrent a trois x differents. */
+@media(max-width:760px){.pp-livewrap{padding:0 18px}.wrap.tm-wrap{padding:0 18px}}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#16233A}
+/* (retour CEO 20/07) — mobile : « Mon compte » s'affichait À LA VERTICALE (un mot,
+   voire une lettre, par ligne). Cause : dans .pph nav (flex), .pph-sect et .pph-lang
+   sont en flex:0 0 auto mais PAS .pph-auth → c'était le SEUL enfant compressible, il
+   absorbait tout le débordement et rétrécissait à ~0, forçant le texte du bouton à
+   passer à la ligne. Il devient incompressible : c'est le défileur horizontal du nav
+   (v74) qui prend le relais, comme prévu. */
+.pph .pph-auth{flex:0 0 auto;display:inline-flex;align-items:center;white-space:nowrap}
+.pph .pph-auth button,.pph .pph-acct,.pph .pph-acct-btn{flex:0 0 auto;white-space:nowrap}
+/* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
+   « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
+   couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
+.pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{color:#fff;background:#12A150;padding:8px 14px;
+border-radius:9px;font-weight:600;border:none;cursor:pointer;font-family:inherit;line-height:1.2}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover,.pph button.cta:hover,.pph .pph-auth button.cta:hover{background:#0E8A44}
+/* Les trois surfaces editoriales — MEME rendu que la nav React (Nav.tsx, 10/08) :
+   liens sobres colles a la marque (order:-1 + margin-right:auto), filet de separation,
+   souligne vert au survol. L'ancienne pastille verte segmentee est retiree. */
+.pph .pph-sect{display:inline-flex;align-items:center;gap:22px;white-space:nowrap;flex:0 0 auto;
+order:-1;margin-right:auto;padding-left:20px;position:relative;
+border:0;background:none;border-radius:0;overflow:visible}
+.pph .pph-sect::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+width:1px;height:16px;background:rgba(15,29,51,.12)}
+.pph .pph-sect a{position:relative;padding:6px 0;color:#4B5E78;font-weight:500;font-size:13.5px;
+letter-spacing:.005em;text-decoration:none;transition:color .2s ease}
+.pph .pph-sect a::after{content:"";position:absolute;left:0;right:0;bottom:1px;height:1.5px;
+border-radius:2px;background:#12A150;transform:scaleX(0);transform-origin:left center;
+transition:transform .22s ease}
+.pph .pph-sect a:hover{color:#16233A;background:none}
+.pph .pph-sect a.on{color:#16233A;font-weight:600;background:none}
+.pph .pph-sect a:hover::after,.pph .pph-sect a.on::after{transform:scaleX(1)}
+/* « Accueil » fait doublon avec le logo, qui pointe deja la home (parite React). */
+.pph .pph-home{display:none}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#16233A}
+.pph-lang button.on{background:#0F1D33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ /* v74 (R5) — le SEUL débordeur réel mesuré à 390px est CETTE nav (Connexion +
+    pastille News|Analysis + EN|FR ≈ 309px pour ~264px disponibles) : elle devient
+    son PROPRE défileur horizontal (règle « wide content » : overflow-x:auto sur la
+    pièce INTERNE — jamais sur un ancêtre d'une barre sticky). Alignée à gauche en
+    mobile : un débordement côté start (flex-end) serait inatteignable au scroll. */
+ .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pph nav::-webkit-scrollbar{display:none}
+ /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
+    (même piège que la couleur du CTA, retour CEO 19/07). */
+ .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
+ .pph .pph-sect{gap:14px;padding-left:12px}
+ .pph .pph-sect a{padding:6px 0;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+ /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
+    défileur (order:-1) → les 3 boutons sont TOUJOURS visibles à gauche, c'est
+    « Connexion » qui déborde/scrolle si l'écran est trop étroit (demande CEO). */
+ .pph nav .pph-sect{flex:0 0 auto}
+ /* v75 (bug #7) — la pastille EN|FR est hors du <nav> (défileur) : collée à droite du
+    header, toujours atteignable même quand le <nav> déborde/scrolle. */
+ .pph-lang{margin-left:auto;flex:0 0 auto}
+}
+/* ≤430px : les 3 pastilles + Connexion tiennent ensemble (resserrage police/padding). */
+@media(max-width:430px){
+ .pph nav{gap:7px}
+ .pph .pph-sect{gap:11px;padding-left:10px}
+ .pph .pph-sect a{padding:6px 0;font-size:11.5px;letter-spacing:-.01em}
+}
+
+html,body{min-height:100%}
+body{min-height:100vh;display:flex;flex-direction:column}
+body>main{flex:1 0 auto}
+.ppf{background:#0F1D33;color:#c7d0db;font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);margin-top:auto;width:100%;flex:none;
+font-size:13.5px;line-height:1.3;letter-spacing:0;text-transform:none}
+.ppf-in{max-width:1180px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;
+justify-content:space-between;gap:16px 28px;flex-wrap:wrap}
+.ppf-brand{display:flex;align-items:center;gap:12px;min-width:0}
+.ppf-brand a{display:inline-block}
+.ppf-brand img{height:22px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:13px;color:#9fb0c4;margin:0;line-height:1.3;white-space:nowrap}
+.ppf-nav,.ppf-acct,#ppf-auth{display:flex;align-items:center;flex-wrap:wrap;gap:6px 18px}
+.ppf-nav a,.ppf-acct a,.ppf-acct button,#ppf-auth a,#ppf-auth button{font-size:13.5px;color:#c7d0db;
+text-decoration:none;background:none;border:none;padding:0;cursor:pointer;font-family:inherit;margin:0}
+.ppf-nav a:hover,.ppf-acct a:hover,.ppf-acct button:hover,#ppf-auth a:hover,#ppf-auth button:hover{color:#fff}
+.ppf-copy,.ppf-bottom{font-size:12.5px;color:#7d93ab;margin:0;padding:0;border:0}
+.ppf-api{display:none}
+.ppf-api.on{display:inline}
+@media(max-width:760px){.ppf-in{padding:14px 18px}.ppf-brand p{display:none}
+.ppf-copy,.ppf-bottom{width:100%;text-align:center}}
+/* AskBand bas de page (secteurs / actualites statiques) — miroir React AskBand.tsx */
+.pp-ask{padding:56px 24px;border-top:1px solid #E3E8F0;text-align:center;background:#F9FBFD;
+font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);color:#0F1D33}
+.pp-ask h2{margin:0 auto 16px;font-size:clamp(21px,2.4vw,30px);font-weight:600;
+letter-spacing:-.035em;line-height:1.14;max-width:34ch}
+.pp-ask-body{font-size:15px;color:#4B5E78;margin:0 auto 22px;max-width:62ch;line-height:1.65}
+.pp-ask .ur{display:flex;gap:9px;max-width:600px;margin:0 auto;justify-content:center;flex-wrap:wrap}
+.pp-ask .uf{display:flex;align-items:center;gap:9px;flex:1;min-width:220px;height:50px;padding:0 15px;
+background:#fff;border:1px solid #C9D6E6;border-radius:8px;font-size:15px}
+.pp-ask .uf input{flex:1;border:0;outline:none;font-size:15px;background:none;
+font-family:inherit;min-width:0}
+.pp-ask .ub{flex:none;height:50px;padding:0 24px;border:0;border-radius:8px;background:#12A150;
+color:#fff;font-size:14.5px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit}
+.pp-ask .ub:hover{background:#0E8A44}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0F1D33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#96690E;background:#FFFBEB;border:1px solid #F0E3BC;border-left:4px solid #E0A81E;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #E3E8F0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#E7F6EE;border:1px solid #BFE6CF;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0F1D33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#12A150;--accent-dk:#0E7F3F;--line:#E3E8F0;--bg:#fff;--ink:#0F1D33;--mute:#B4C2D4;--sub:#4B5E78;--mid:#61708A}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Wan3 — Media & Entertainment", "description": "Media & Entertainment · Generative AI Video Production Software · Pre-Seed", "inLanguage": "fr", "url": "https://proplace.co/analysis/wan3/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/wan3/"}, "image": ["https://proplace.co/analysis/radars/wan3.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}, "about": {"@type": "Organization", "name": "Wan3"}, "datePublished": "2026-09-10", "dateModified": "2026-09-10"}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="direct">Live</a><a class="pph-mkt" href="/actualites/operations/secteurs/" data-i18n="marches">Veille sectorielle</a></span><span class="pph-auth" id="pph-auth"><a class="cta" href="https://proplace.co/#login" data-i18n="login">Log in</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><div class="pp-livewrap"><div class="pp-band"><div id="pp-live"></div></div></div><script defer src="/live-banner.js"></script><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#16233A}.pph-lang button.on{background:#0F1D33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E3E8F0;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#0E7F3F}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#FDECEC;color:#C0353A}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",direct:"Live",marches:"Sector watch",marchesFooter:"Live by sector",dealflow:"My deal flow",analysis:"Analysis",research:"Research",mindmaps:"Mindmaps",dashboard:"Open dashboard",acct:"Connected",mSettings:"Settings",mPipeline:"My deal flow",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Explore",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"© 2026 Proplace",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Se connecter",news:"Actualités",direct:"Live",directFooter:"En direct",marches:"Veille sectorielle",marchesFooter:"En direct par secteur",dealflow:"Mon deal flow",analysis:"Analyses",research:"La recherche",mindmaps:"Mindmaps",dashboard:"Ouvrir le dashboard",acct:"Connecté",mSettings:"Paramètres",mPipeline:"Mon deal flow",mDashboard:"Tableau de bord",logout:"Se déconnecter",tagline:"Votre AI Corporate Developer",insights:"Explorer",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"© 2026 Proplace",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){
+// Header loggé : Connecté ▾ → Mon deal flow (/cibles) · Paramètres (/compte).
+// La déconnexion vit uniquement dans le footer.
+var compte=(lang==="fr"?"/fr/compte":"/compte");
+var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"");
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+pipeline+'">'+t.dealflow+"</a>"+
+'<a role="menuitem" href="'+compte+'">'+t.mSettings+"</a>"+
+"</div></div>";
+return {i:1,h:h,pipeline:pipeline,compte:compte};}
+return {i:0,h:'<a class="cta" href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200;
+// Toujours SOUS le bouton (menu court = Mon compte + Déco) — plus de flip au-dessus.
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Historique Research → Mon compte (onglet Recherches). Enregistre chaque fiche consultée
+   dans localStorage (même clé que ComptePage). No-op hors /research/<slug>/. */
+(function recordResearchVisit(){
+try{
+ var p=(location.pathname||"").replace(/\/+$/,"")+"/";
+ if(!/\/(en\/)?research\/[^/]+\//.test(p))return;
+ if(/\/(en\/)?research\/?$/.test((location.pathname||"").replace(/\/+$/,"")))return;
+ var title="";
+ var h1=document.querySelector("main h1, .rp-head h1, h1");
+ if(h1&&h1.textContent)title=h1.textContent.trim();
+ if(!title)title=(document.title||"").split("|")[0].trim();
+ var url=location.pathname;
+ var key="proplace_research_history";
+ var arr=[];
+ try{arr=JSON.parse(localStorage.getItem(key)||"[]")||[];}catch(e){arr=[];}
+ if(!Array.isArray(arr))arr=[];
+ arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});
+ arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});
+ if(arr.length>40)arr=arr.slice(0,40);
+ localStorage.setItem(key,JSON.stringify(arr));
+}catch(e){}
+})();
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){
+ if(a.i){pf.innerHTML='<a href="'+(a.pipeline||"/cibles")+'">'+t.dealflow+'</a>'
+  +'<a href="'+(a.compte||"/compte")+'">'+t.mSettings+"</a>"
+  +'<button type="button" id="ppf-logout">'+t.logout+"</button>";
+  var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+ else{pf.innerHTML='<a href="/#login">'+t.login+"</a>";}}
+Array.prototype.forEach.call(document.querySelectorAll(".ppf-api"),function(x){
+ if(a.i)x.classList.add("on");else x.classList.remove("on");});
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Wan3</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Wan3"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">Unknown</span>
+<span class="sb-tag">Pre-Seed</span>
+<span class="sb-tag">Media &amp; Entertainment</span>
+<span class="sb-tag">B2B2C</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Wan3</h1>
+<span class="sidebar-tagline">Media &amp; Entertainment · Generative AI Video Production Software · Pre-Seed</span>
+<p class="meta-desc" style="margin-bottom: 15px;">SaaS-based collaborative AI video generation and rendering workspaces for digital marketing and performance ad creative.</p>
+<a href="https://wan3.io" target="_blank"><i class="fas fa-globe"></i> Website</a>
+</div>
+</div>
+<span class="sb-nav-heading">Contact</span>
+<a class="nav-item bg-yellow" href="#fiche-contact">Comment contacter Wan3</a>
+<span class="sb-nav-heading">Market</span>
+<a class="nav-item bg-yellow" href="#market-summary">Market Summary</a>
+<span class="sb-nav-heading">Company</span>
+<a class="nav-item bg-green" href="#value-proposition">Value Proposition</a>
+<a class="nav-item bg-green" href="#product">Product</a>
+<a class="nav-item bg-green" href="#business-model">Business Model</a>
+<a class="nav-item bg-green" href="#team">Team</a>
+<a class="nav-item bg-green" href="#ceo">CEO</a>
+<a class="nav-item bg-green" href="#swot">SWOT Analysis</a>
+<a class="nav-item bg-grey" href="#sources">Sources &amp; Methodology</a>
+</div>
+<div class="content-area">
+<div style="margin-bottom: 8px;">
+<span style="font-family: var(--pp-body,'Instrument Sans',system-ui,sans-serif); font-size:12px; color: #8FA0B8;">Mémo d'investissement · instant · Investment Criteria</span>
+</div>
+<h1 style="font-family: var(--pp-body,'Instrument Sans',system-ui,sans-serif); font-size: 2.6rem; font-weight: 600; color: #0F1D33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Wan3</h1>
+<h2 class="subtitle-category">Media &amp; Entertainment ➜ Generative AI Video Production Software ➜ Turn text prompts and still images into cinematic masterclasses instantly.</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div data-ct-card="" style="border:1px solid #E3E8F0;border-radius:12px;overflow:hidden;margin:0 0 22px;background:#fff;box-shadow:none"><div style="background:#fff;color:#16233A;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid #E3E8F0"><div style="font-size:15px;font-weight:700"><h2 id="fiche-contact" style="font-size:15px;font-weight:700;margin:0;padding:0;color:#16233A;display:inline;letter-spacing:-.01em">Comment contacter Wan3</h2></div><div style="display:flex;align-items:center;gap:9px"><span style="background:#E5484D;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.04em"></span><button onclick="var c=this.closest('div[data-ct-card]'),b=c.querySelector('div[data-ct-body]'),h=b.style.display==='none';b.style.display=h?'block':'none';this.innerHTML=h?'▾ Replier':'▸ Déplier'" style="font:inherit;font-size:12px;font-weight:600;color:#4B5E78;background:#fff;border:1px solid #E3E8F0;border-radius:8px;padding:4px 10px;cursor:pointer;line-height:1.4;white-space:nowrap" type="button">▾ Replier</button></div></div><div data-ct-body="" style="padding:16px 18px;background:#fff"><div style="font-size:12px;font-weight:700;letter-spacing:.05em;color:#4B5E78;margin:0 0 7px">Contact details</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px"><a href="https://wan3.io" rel="noopener nofollow" style="display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:#4B5E78;text-decoration:none;background:#fff;border:1px solid #E3E8F0;border-radius:7px;padding:4px 10px;font-weight:600" target="_blank">🌐 Website</a></div><div style="font-size:11px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:#8FA0B8;margin:16px 0 8px;padding-top:14px;border-top:1px solid #E3E8F0">Logique du deal</div><div style="font-size:13px;color:#0F1D33;line-height:1.5">First, the product fails the moat test at its most fundamental level: Analyst 2 confirmed that a well-funded incumbent can replicate the entire workspace interface in a three-month development sprint, meaning no durable competitive asset is being created.</div><div style="font-size:11px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:#8FA0B8;margin:16px 0 8px;padding-top:14px;border-top:1px solid #E3E8F0">Séquence d'approche CEO</div><div data-ch="email" id="ap1"><div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:9px"><button data-ap-ch="email" style="border:1px solid #12A150;background:#12A150;color:#fff;font-size:12.5px;font-weight:700;padding:5px 14px;border-radius:7px;cursor:pointer;margin-right:6px" type="button">Email</button><button data-ap-ch="linkedin" style="border:1px solid #E3E8F0;background:#fff;color:#4B5E78;font-size:12.5px;font-weight:700;padding:5px 14px;border-radius:7px;cursor:pointer;margin-right:6px" type="button">LinkedIn</button><span style="width:9px"></span><button data-ap-day="0" style="border:1px solid #12A150;background:#12A150;color:#fff;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J0</button><button data-ap-day="1" style="border:1px solid #E3E8F0;background:#fff;color:#4B5E78;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J2</button><button data-ap-day="2" style="border:1px solid #E3E8F0;background:#fff;color:#4B5E78;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J4</button><button data-ap-day="3" style="border:1px solid #E3E8F0;background:#fff;color:#4B5E78;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:999px;cursor:pointer;margin-right:4px" type="button">J6</button><span data-ap-note="" style="font-size:11.5px;color:#61708A;margin-left:auto">4 messages, spaced — D0, D2, D4, D6</span></div><div data-ap-msg="" data-ap-pane="email:0" style="display:block"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#16233A">J0</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#0E7F3F;background:#F5F7FA;border:1px solid #E3E8F0;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><div style="font-size:12px;color:#4B5E78;margin-bottom:6px"><b>Subject:</b> Wan3 — a word on timing</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0F1D33;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #E3E8F0;border-radius:8px">Bonjour unavailable,
+
+Generative AI video is one of the few spaces where the category is still unnamed and the price still reflects uncertainty rather than proof.
+
+That window is short.
+
+I back pre-seed companies where the founding insight was earned from the inside — not assembled from the outside. I'd like to understand how Wan3 was born.
+
+Would you have 20 minutes this week?
+
+Bien à vous,
+Investment Criteria</pre></div><div data-ap-msg="" data-ap-pane="email:1" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#16233A">J2</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#0E7F3F;background:#F5F7FA;border:1px solid #E3E8F0;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><div style="font-size:12px;color:#4B5E78;margin-bottom:6px"><b>Subject:</b> The question I ask every pre-seed founder</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0F1D33;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #E3E8F0;border-radius:8px">Bonjour unavailable,
+
+One question drives everything I do at pre-seed: does the moat start on day one, or does it require 100 customers to matter?
+
+In generative video, most architectures need scale to differentiate. The rare ones are structurally defensible from the first user.
+
+I'd like to know which side Wan3 sits on — and why.
+
+Qu'en dites-vous?
+
+Cordialement,
+Investment Criteria</pre></div><div data-ap-msg="" data-ap-pane="email:2" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#16233A">J4</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#0E7F3F;background:#F5F7FA;border:1px solid #E3E8F0;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><div style="font-size:12px;color:#4B5E78;margin-bottom:6px"><b>Subject:</b> What I look for beyond the product</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0F1D33;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #E3E8F0;border-radius:8px">Bonjour unavailable,
+
+Product architecture matters. But the variable I weight most at pre-seed is simpler: did the founding team spend years inside this exact problem, or did they arrive at it from adjacent ground?
+
+The answer changes everything — the insight, the roadmap, the defensibility.
+
+I'd genuinely like to hear Wan3's origin story before the market catches up to what you're building.
+
+Bien à vous,
+Investment Criteria</pre></div><div data-ap-msg="" data-ap-pane="email:3" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#16233A">J6</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#0E7F3F;background:#F5F7FA;border:1px solid #E3E8F0;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><div style="font-size:12px;color:#4B5E78;margin-bottom:6px"><b>Subject:</b> Leaving the door open</div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0F1D33;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #E3E8F0;border-radius:8px">Bonjour unavailable,
+
+I won't follow up after this — I imagine the timing simply isn't right.
+
+If Wan3's story is one worth telling, I'm here.
+
+Cordialement,
+Investment Criteria</pre></div><div data-ap-msg="" data-ap-pane="linkedin:0" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#16233A">J0</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#0E7F3F;background:#F5F7FA;border:1px solid #E3E8F0;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0F1D33;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #E3E8F0;border-radius:8px">Wan3 caught my attention — generative AI video production at pre-seed is exactly the window where the founding team's prior proximity to the problem either makes the thesis unassailable or fragile.
+
+One question: did the team build this because they spent years inside video production workflows, or did the insight come from the outside looking in?
+
+Bien à vous,
+Investment Criteria</pre></div><div data-ap-msg="" data-ap-pane="linkedin:1" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#16233A">J2</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#0E7F3F;background:#F5F7FA;border:1px solid #E3E8F0;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0F1D33;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #E3E8F0;border-radius:8px">The reason I ask is structural, not casual.
+
+At pre-seed, the only variable that genuinely separates a category-defining company from a well-funded experiment is whether the founding insight was earned from the inside — not assembled from adjacent experience.
+
+For a generative video play, that distinction determines whether the moat starts compounding on day one or requires scale to matter.
+
+Is that a conversation worth having?
+
+Cordialement,
+Investment Criteria</pre></div><div data-ap-msg="" data-ap-pane="linkedin:2" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#16233A">J4</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#0E7F3F;background:#F5F7FA;border:1px solid #E3E8F0;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0F1D33;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #E3E8F0;border-radius:8px">One angle I keep coming back to with Wan3: the buyer question.
+
+Generative video tools either sell into an existing production budget — where the decision is fast and the expansion is natural — or they require the buyer to create a new budget line, which adds 18 to 24 months to every sales cycle regardless of how strong the product is.
+
+Which side of that line does Wan3 sit on?
+
+Bien à vous,
+Investment Criteria</pre></div><div data-ap-msg="" data-ap-pane="linkedin:3" style="display:none"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:#16233A">J6</span><button onclick="navigator.clipboard.writeText(this.closest('[data-ap-msg]').querySelector('pre').innerText);this.textContent='✓ Copied'" style="font-size:11px;font-weight:600;color:#0E7F3F;background:#F5F7FA;border:1px solid #E3E8F0;border-radius:6px;padding:2px 8px;cursor:pointer;white-space:nowrap" type="button">Copy</button></div><pre style="white-space:pre-wrap;font-family:inherit;font-size:12.5px;color:#0F1D33;line-height:1.55;margin:0;padding:10px 12px;background:#fff;border:1px solid #E3E8F0;border-radius:8px">I'll leave it here — no response likely means the timing is off, or the right person hasn't seen this yet.
+
+If Wan3 is raising and the founding team has deep operating history inside video production, I'd genuinely like to hear the story.
+
+The door stays open.
+
+Cordialement,
+Investment Criteria</pre></div></div><script>(function(){var r=document.getElementById("ap1");if(!r)return;var ch=r.getAttribute("data-ch"),dy="0";function paint(){r.setAttribute("data-ch",ch);var i,b,ps=r.querySelectorAll("[data-ap-pane]");for(i=0;i<ps.length;i++){ps[i].style.display=(ps[i].getAttribute("data-ap-pane")===ch+":"+dy)?"block":"none";}var cb=r.querySelectorAll("[data-ap-ch]");for(i=0;i<cb.length;i++){b=cb[i];var onc=b.getAttribute("data-ap-ch")===ch;b.style.background=onc?"#12A150":"#fff";b.style.color=onc?"#fff":"#4B5E78";b.style.borderColor=onc?"#12A150":"#E3E8F0";}var db=r.querySelectorAll("[data-ap-day]");for(i=0;i<db.length;i++){b=db[i];var ond=b.getAttribute("data-ap-day")===dy;b.style.background=ond?"#12A150":"#fff";b.style.color=ond?"#fff":"#4B5E78";b.style.borderColor=ond?"#12A150":"#E3E8F0";}var n=r.querySelector("[data-ap-note]");if(n)n.textContent=(ch==="linkedin")?"Connection request: no note":"4 messages, spaced \u2014 D0, D2, D4, D6";}r.addEventListener("click",function(e){var t=e.target&&e.target.closest?e.target.closest("[data-ap-ch],[data-ap-day]"):null;if(!t)return;e.preventDefault();if(t.hasAttribute("data-ap-ch"))ch=t.getAttribute("data-ap-ch");else dy=t.getAttribute("data-ap-day");paint();});paint();})();</script></div></div><div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Wan3" data-h="" data-i="Media &amp; Entertainment" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/wan3/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title">Market Summary</h2>
+<div class="split-container">
+<div class="text-col">
+<h4 class="kicker">MARKET OPPORTUNITY SCORE</h4>
+<p>Media &amp; Entertainment &gt; Generative AI Video Production Software<br/>B2B2C &gt; Freemium</p>
+<div class="score-row sr-green"><span class="sr-label">IS IT AN ATTRACTIVE MARKET ?</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span><span class="sr-note">× 25% = 21.25 pts</span></div><div class="score-row sr-red"><span class="sr-label">IS IT A WINNABLE MARKET ?</span><span class="sr-bar"><span class="sr-fill" style="width:40%"></span></span><span class="sr-val">40/100</span><span class="sr-note">× 25% = 10.00 pts</span></div><div class="score-row sr-blue"><span class="sr-label">IS IT A PENETRABLE MARKET ?</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span><span class="sr-note">× 25% = 18.75 pts</span></div><div class="score-row sr-blue"><span class="sr-label">IS IT A REWARDING MARKET ?</span><span class="sr-bar"><span class="sr-fill" style="width:60%"></span></span><span class="sr-val">60/100</span><span class="sr-note">× 25% = 15.00 pts</span></div>
+<div class="score-row sr-blue"><span class="sr-label">TOTAL MARKET ATTRACTIVITY SCORE</span><span class="sr-bar"><span class="sr-fill" style="width:65%"></span></span><span class="sr-val">65/100</span></div>
+<p>This composite score confirms that while underlying market interest and growth curves are phenomenally strong, structural competition and fragile wrapper moats represent significant hazards for any non-proprietary model layers.</p>
+<h4>Market DEFINITION</h4>
+<p>SaaS-based collaborative AI video generation and rendering workspaces for digital marketing and performance ad creative. ➜ The market serves brand marketers and growth agencies purchasing collaborative cloud software to turn standard copy vectors into high-converting digital platform video assets.</p>
+<p>High production friction today forces designers to navigate complex, non-integrated engines for upscale parameters and motion curves. This sector positions itself as a middleware layer, capturing value by shielding corporate teams from raw developer environments and directly feeding downstream visual advertising engines.</p>
+<h4>Our Market THESIS</h4>
+<p>In generative video, the foundational layer has rapidly reached open-source commoditization, enabling clean application structures to emerge across digital ad offices globally. Because dominant enterprise software houses cannot quickly shift their internal development metrics to match open-source model optimization without disrupting their legacy license models, a unique window has opened for flexible middleware operators.</p>
+<p>New players exploit this gap by building advanced localized collaborative design suites that integrate with performance ad networks. This window will remain accessible for approximately eighteen months before modern design consolidators permanently introduce deep AI capabilities directly inside existing corporate assets.</p>
+<h4>Our CONVICTION &amp; WAGER on this Market:</h4>
+<p><span class="conv-badge sr-amber">MEDIUM CONVICTION</span></p>
+<p>While the current tooling landscape is exceptionally noisy, the demand from agencies to bypass standard creative bottlenecks is an undeniable structural shift. We wager that performance marketing houses will shift creative spend from third-party design firms to internal automated optimization workspaces over the next twelve months. Our conviction moves higher if deep developer logs showcase automated frame rendering consistency exceeding ninety-five percent across custom agency projects.</p>
+<div class="score-row sr-green sr-head"><span class="sr-label">ATTRACTIVE MARKET (Market Dynamics)</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<p>This score highlights an outstanding overall market tailwind where customer demand is growing far faster than underlying software availability.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Market Size</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Global Generative AI video tooling represents a fast-expanding multi-billion dollar frontier, riding on the back of modern digital marketing budgets.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Growth Drivers</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Micro-video requirements on modern social feeds demand continuous daily design variation shifts that legacy content shops cannot economically supply.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Why Now</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">The emergence of open-source video weights like Wan2.1 and subsequent model architectures drastically drops the software barrier for rich multi-modal tool development.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Market Risks</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Rapidly shifting open-source models may force application layers to perpetually rewrite back-end processing pipelines to maintain absolute parity.</div></li></ul>
+<div class="score-row sr-red sr-head"><span class="sr-label">WINNABLE MARKET (Competitive Landscape)</span><span class="sr-bar"><span class="sr-fill" style="width:40%"></span></span><span class="sr-val">40/100</span></div>
+<p>This score reveals a hyper-competitive, congested coliseum where traditional software margins are threatened by model-level advancements.</p>
+<ul><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Incumbents</span><span class="sr-val">30/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Elite multi-billion dollar platforms like Runway and OpenAI possess massive proprietary data clusters and global strategic corporate reserves.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Challengers</span><span class="sr-val">40/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Highly agile international units like Kling, Luma, and Hailuo continuously push compute boundaries, compressing basic software workspace differentiators.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">White Space</span><span class="sr-val">55/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">The clear opportunity lies in collaborative workspace flows that allow corporate design pods to work simultaneously on a single timeline.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Defensibility</span><span class="sr-val">35/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Moats are fundamentally shallow across basic design wrappers, as they depend entirely on transient third-party infrastructure components.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">PENETRABLE MARKET (Go-to-Market &amp; Unit Economics)</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div>
+<p>This score indicates that while gaining early user attention is relatively straightforward, sustaining profitable enterprise retention demands massive commercial discipline.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">GTM Model</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Freemium systems powered by direct community media sharing dominate, lowering customer onboarding friction to zero.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Pricing Model</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Tiered micro-subscriptions paired with high-volume usage parameters serve as the primary commercial payment infrastructure.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Unit Economics</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Early customer acquisition costs are low due to high viral loops, though expensive rendering processes keep standard gross margins tight.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Scalability</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Standard cloud architecture scaling facilitates fast user adoption, though actual computing access requires constant infrastructure agreements.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">REWARDING MARKET (Funding &amp; Exit)</span><span class="sr-bar"><span class="sr-fill" style="width:60%"></span></span><span class="sr-val">60/100</span></div>
+<p>This score means that exit pathways remain heavily tied to strategic M&amp;A acquisitions rather than clear public listing routes.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Funding Activity</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Venture investment into generative video platforms remains active, particularly for teams with verified foundational engineering capability.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Exit Multiples</span><span class="sr-val">55/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Public software multiples have normalized, indicating strategic acquirers look for deep technical differentiation rather than general workflow wrappers.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Strategic Buyers</span><span class="sr-val">65/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Large graphic systems design hubs and marketing cloud platforms look to buy modular video layers to expand existing content creations.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Return Profile</span><span class="sr-val">50/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Meeting our target return expectations requires an application layer to successfully convert basic utility tools into deep workflow platforms before resources are depleted.</div></li></ul>
+<h4 class="kicker">CROSS-SECTION SYNTHESIS</h4>
+<p>A highly attractive market value combined with a complex competitive environment requires a founder with high GTM velocity who can quickly translate early traffic into sticky team-level integrations before larger engines capture the space.</p>
+<h4 class="kicker">DATA CONFIDENCE</h4>
+<p>Market sizing statistics and foundational venture reports are highly reliable, while actual private wrapper unit economics remain thin across the board.</p>
+</div>
+<div class="img-col">
+<img class="sticky-img" src="https://quickchart.io/chart?v=3&amp;c=%7B%22type%22%3A%20%22radar%22%2C%20%22data%22%3A%20%7B%22labels%22%3A%20%5B%22ATTRACTIVE%20MARKET%20%3F%22%2C%20%22WINNABLE%20MARKET%20%3F%22%2C%20%22PENETRABLE%20MARKET%20%3F%22%2C%20%22REWARDING%20MARKET%20%3F%22%5D%2C%20%22datasets%22%3A%20%5B%7B%22label%22%3A%20%22Wan3%22%2C%20%22backgroundColor%22%3A%20%22rgba%28240%2C%20227%2C%20188%2C%200.2%29%22%2C%20%22borderColor%22%3A%20%22rgb%28240%2C%20227%2C%20188%29%22%2C%20%22pointBackgroundColor%22%3A%20%22rgb%28240%2C%20227%2C%20188%29%22%2C%20%22data%22%3A%20%5B85%2C%2040%2C%2075%2C%2060%5D%7D%5D%7D%2C%20%22options%22%3A%20%7B%22scale%22%3A%20%7B%22ticks%22%3A%20%7B%22beginAtZero%22%3A%20false%2C%20%22suggestedMin%22%3A%2070%2C%20%22suggestedMax%22%3A%20100%2C%20%22stepSize%22%3A%205%2C%20%22display%22%3A%20false%7D%7D%7D%7D"/>
+</div>
+</div>
+</div>
+<div class="section-container" id="company">
+<h2 class="section-title">Company Deep Dive</h2><div id="company-mindmap"><h3 id="company-mindmap-title">Mind map — what Wan3 does</h3><div class="cm-mindmap-wrap"><div class="markmap" style="width:100%;height:600px"><script type="text/template">
+---
+markmap:
+  colorFreezeLevel: 2
+  initialExpandLevel: 5
+  maxWidth: 340
+---
+# Wan3
+- **Offre & Produit**
+  - Générateur vidéo IA en ligne **gratuit** pour transformer texte/images en vidéos cinématographiques
+    - Permet de créer des vidéos avec des **mouvements naturels**, une **continuité fluide** de la caméra et un **rendu lumineux cinématographique**.
+    - Offre un **espace de travail intégré** pour générer, corriger et exporter des vidéos sans changer d'onglet.
+  - Diverses **capacités de transformation** pour la création vidéo
+    - Inclut le **texte vers vidéo**, l'**image vers vidéo**, les **frames vers vidéo**, la **référence vers vidéo**, l'**URL vers vidéo** et le **fichier vers vidéo**.
+    - Propose des **ratios d'aspect adaptés** pour Reels, Shorts et LinkedIn, facilitant la publication sur les réseaux sociaux.
+- **Clients & Cas d'usage**
+  - Cible les **créateurs de contenu** et **marketeurs numériques** souhaitant produire des vidéos rapidement
+    - Idéal pour les **influenceurs**, les **créateurs de vidéos sans visage** et les **propriétaires de petites entreprises** sans équipe vidéo dédiée.
+    - Convient aux **directeurs créatifs** pour le prototypage rapide de concepts vidéo.
+  - Multiples **applications concrètes** pour la création de contenu
+    - Création d'**ouvertures vidéo sans visage**, de **tests créatifs d'annonces** rapides et de **références de concepts de storyboards**.
+    - Utilisé pour les **clips de transition de tutoriels** et les **arrière-plans animés de sites web**.
+- **Modèle Économique**
+  - Stratégie **Freemium** avec une offre de base gratuite
+    - La plateforme est annoncée comme un outil **gratuit en ligne** (Free Online Text to Video).
+    - Des **niveaux d'utilisation supérieurs** ou professionnels sont implicites pour des volumes plus importants ou des fonctionnalités avancées (ex: Workspaces).
+  - Absence de **détails tarifaires** pour les offres payantes
+    - Les prix pour les usages professionnels ou à volume élevé ne sont **pas listés** dans les informations disponibles.
+    - Des **coûts cachés** potentiels pour l'API ou la génération à haut volume pour les agences sont envisagés.
+- **Traction & Positionnement**
+  - **Satisfaction client élevée** avec une note de **4.7/5 étoiles**
+    - Les utilisateurs louent sa **rapidité** pour trouver une direction visuelle et générer des variantes publicitaires.
+    - Notamment apprécié par les **créateurs de vidéos sans visage**, les **annonceurs de produits** et les **créateurs de tutoriels**.
+  - **Forte opportunité de marché** dans l'IA générative vidéo
+    - Le marché des espaces de travail d'IA vidéo collaboratifs et SaaS est en **croissance exponentielle**.
+    - Le **timing est excellent**, car les modèles open source texte-vers-vidéo atteignent une parité avec les moteurs commerciaux.
+  - **Innovation produit** axée sur l'intégration et la personnalisation
+    - Différenciation par un **espace de travail multi-onglets intégré** et la **personnalisation des ratios d'aspect**.
+    - Offre un **contrôle cinématographique de la caméra** pour des prototypes de qualité supérieure.
+- **Défis & Risques**
+  - **Faible solidité du fossé concurrentiel** (Moat)
+    - La couche produit est un **simple enrobage** de réseaux vidéo tiers, sans verrouillage propriétaire.
+    - Vulnérabilité au **clonage rapide de fonctionnalités** par des concurrents et à la **détérioration des marges** due à la saturation du marché.
+  - **Coûts de calcul élevés** et modèle économique opaque
+    - Les coûts de rendu vidéo sur le cloud avec des GPU sont **énormes**, posant des risques de survie sans tarification transparente.
+    - Le modèle freemium est vulnérable aux **utilisateurs gourmands en ressources** qui ne passent pas aux niveaux payants.
+  - **Manque d'informations sur l'équipe** et la structure de l'entreprise
+    - **Aucun profil d'équipe exécutive** ou présence LinkedIn, suggérant une équipe anonyme ou une structure légère.
+    - **Absence de données** sur le financement, la croissance des revenus ou les accords API, rendant l'évaluation difficile.
+</script><img alt="Mind map — what Wan3 does" class="cm-mindmap-png" loading="lazy" src="https://analysis.proplace.co/mindmaps/wan3.png"/></div></div><div class="cm-summary"><p>Wan3 propose un générateur vidéo en ligne gratuit, alimenté par l'IA, transformant du texte ou des images statiques en récits cinématographiques avec des mouvements naturels et une continuité fluide. La plateforme vise à résoudre le problème des créateurs de contenu et des marketeurs numériques qui perdent du temps à jongler entre divers outils pour produire des vidéos de courte durée.</p><p>La solution offre un espace de travail intégré pour générer, affiner et exporter des vidéos créées par IA, prenant en charge diverses entrées (texte, image, URL) et des formats adaptés aux réseaux sociaux (Reels, Shorts, LinkedIn). Elle se distingue par son rendu lumineux cinématographique, le mouvement naturel des personnages et la fluidité des mouvements de caméra.</p><p>Son modèle économique est basé sur le freemium, offrant un accès gratuit à l'outil, bien que des niveaux supérieurs pour un usage professionnel ou des volumes plus importants soient implicites. Wan3 s'adresse à un large public allant des influenceurs et créateurs de contenu aux marketeurs numériques et petites entreprises, cherchant à produire rapidement des vidéos publicitaires, des teasers ou des tutoriels.</p></div><div class="cm-prospective"><h4>Prospective synthesis</h4><p>Wan3 révèle une forte demande pour des outils d'IA vidéo intégrés et faciles d'accès, mais souligne les défis économiques liés aux coûts de calcul et la nécessité d'une différenciation technologique profonde dans un marché en évolution rapide. Pour un investisseur ou acquéreur, il est crucial d'évaluer la capacité de l'entreprise à transformer sa base d'utilisateurs freemium en revenus durables et à développer une propriété intellectuelle robuste face à la commoditisation des modèles IA.</p><p class="cm-sub">Criteria to watch</p><ul><li>Capacité à monétiser un modèle freemium dans un marché à coûts de calcul élevés</li><li>Preuve de différenciation technologique (IP propriétaire, optimisation des coûts de calcul)</li><li>Existence d'une équipe fondatrice vérifiable et expérimentée</li><li>Stratégie de croissance et d'acquisition client au-delà du PLG viral initial</li></ul><p class="cm-sub">Companies to evaluate</p><ul class="cm-comps"><li><strong>RunwayML</strong> <span class="cm-stage">Series C</span> — Leader établi dans la génération vidéo par IA, offrant une suite complète d'outils créatifs.</li><li><strong>Luma AI</strong> <span class="cm-stage">Series B</span> — Acteur émergent avec des capacités de génération vidéo par IA, souvent comparé pour ses fonctionnalités.</li><li><strong>HeyGen</strong> <span class="cm-stage">Series A</span> — Spécialisé dans la création de vidéos avec avatars IA et voix off, pertinent pour les créateurs de contenu sans visage.</li><li><strong>Pika Labs</strong> <span class="cm-stage">Seed</span> — Un autre acteur jeune dans la génération vidéo par IA, avec une forte traction communautaire.</li></ul></div></div><script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.18.12/dist/browser/index.iife.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script>(function(){function boot(){try{var host=document.querySelector('#company-mindmap .markmap');if(!host||host.__mmDone)return;var tpl=host.querySelector('script[type="text/template"]');if(!tpl)return;var md=tpl.textContent.replace(/^\s*---[\s\S]*?---\s*/,'');var M=window.markmap;if(!M||!M.Transformer||!M.Markmap)return;var r=(new M.Transformer()).transform(md);host.innerHTML='<svg style="width:100%;height:600px;display:block"></svg>';var inst=M.Markmap.create(host.querySelector('svg'),{initialExpandLevel:5,maxWidth:340,colorFreezeLevel:2},r.root);host.__mmDone=1;var refit=function(){try{inst.fit()}catch(e){}};window.addEventListener('resize',refit);setTimeout(refit,300);setTimeout(refit,1200);setTimeout(refit,3000);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(refit);}catch(e){}}if(document.readyState==='complete')boot();else window.addEventListener('load',boot);setTimeout(boot,1500);setTimeout(boot,4000);})();</script>
+<h3 id="value-proposition">Value Proposition</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Value Proposition</h4>
+<p>Wan 3.0 provides a free online AI-powered text-to-video generator designed to turn text prompts or still images into cinematic stories with natural motion and smooth continuity.</p>
+<h4 class="kicker">Ideal Customer Profile (ICP)</h4>
+<p>Influencers, content creators, digital marketers, small business owners without dedicated video teams, and creative directors needing rapid prototyping.</p>
+<h4 class="kicker">B2B or B2C</h4>
+<p>B2B and B2C; caters to professional video production workflows and individual creator hobbies.</p>
+<h4 class="kicker">Industry</h4>
+<p>Generative AI / Video Production Software.</p>
+<h4 class="kicker">Contact &amp; Legal</h4>
+<p>Data not available in source.</p>
+<h4 class="kicker">Key Client Examples &amp; Testimonials</h4>
+<p>Rated 4.7/5 stars by various users including faceless video creators, product advertisers, and tutorial makers who praise its speed in finding visual direction and generating ad variants.</p></div>
+<h3 id="product">Product</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Core Solution</h4>
+<p>An integrated workspace to generate, fix, and export AI-generated video in a single tab.</p>
+<h4 class="kicker">Feature Encyclopedia</h4>
+<p>Text to Video | Image to Video | Frames to Video | Reference to Video | URL to Video | File to Video | Tailored Aspect Ratios for Reels, Shorts, and LinkedIn.</p>
+<h4 class="kicker">Technical Capabilities</h4>
+<p>Cinematic light rendering | Natural character motion | Smooth camera continuity (Push-in, etc.) | Motion concepts from product images | Diverse biome direction generation.</p>
+<h4 class="kicker">Use Cases</h4>
+<p>Creating faceless video openings | Rapid ad creative testing | Storyboard concept referencing | Tutorial bridging clips | Launch teasers and website motion backgrounds.</p></div>
+<h3 id="business-model">Business Model</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Business Model Analysis</h4>
+<p>Freemium - The platform is advertised as a 'Free Online Text to Video' tool.</p>
+<h4 class="kicker">Revenue Streams &amp; Pricing Tiers</h4>
+<p>Free tier available; higher volume or professional usage tiers implied by 'Workspaces' and 'influencer' workflows but prices are not listed. Data not available in source.</p>
+<h4 class="kicker">Plan Features</h4>
+<p>Free Online Generation | Multiple transformation types | Multi-tab workspace.</p>
+<h4 class="kicker">Hidden Costs &amp; Terms</h4>
+<p>None mentioned; potential costs for API or high-volume generation for agencies.</p></div>
+<h3 id="team">Team</h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Company Culture</h4>
+<p>Focused on efficiency, allowing creators to post daily without burnout and helping teams ship faster concepts without full agency bookings.</p>
+<h4 class="kicker">Team Analysis</h4>
+<p>Not explicitly mentioned (No specific C-level names found).</p>
+<h4 class="kicker">Job Offers &amp; Titles</h4>
+<p>Data not available in source.</p>
+<h4 class="kicker">Estimated Headcount</h4>
+<p>Unknown; categorized as a tech-heavy AI development and product design team.</p>
+<h4 class="kicker">Department Breakdown</h4>
+<p>Product &amp; Engineering: Unknown | Marketing: Unknown | Sales: Unknown | Support &amp; IT: Unknown | General &amp; Admin (G&amp;A): Unknown</p></div>
+<h3 id="ceo">CEO</h3>
+<div class="text-block"></div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title"><span class="i18n-fr">Résumé de l'entreprise</span><span class="i18n-en">Company overview</span></h2><div class="cs-disc">ⓘ <span class="i18n-fr">Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</span><span class="i18n-en">These scores often reflect how much public information we could find online (web presence), not the company's objective reality. A low score — e.g. on team excellence — usually means little information was found, not that the company is weak.</span></div><div class="split-container"><div class="text-col cs-body text-block" data-mn-p=""><ul><li>Media &amp; Entertainment &gt; Generative AI Video Production Software</li><li>B2B2C &gt; Freemium</li></ul>
+<br/>
+<strong>PRE-SCREENING SCORE</strong><br/>
+Thesis : Investment Criteria<hr/><div class="score-row sr-red sr-head"><span class="sr-label">TEAM EXCELLENCE</span><span class="sr-bar"><span class="sr-fill" style="width:20%"></span></span><span class="sr-val">20/100</span></div>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARKET OPPORTUNITY</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<div class="score-row sr-blue sr-head"><span class="sr-label">PRODUCT INNOVATION</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<div class="score-row sr-red sr-head"><span class="sr-label">BUSINESS MODEL</span><span class="sr-bar"><span class="sr-fill" style="width:40%"></span></span><span class="sr-val">40/100</span></div>
+<div class="score-row sr-amber sr-head"><span class="sr-label">TRACTION &amp; GROWTH</span><span class="sr-bar"><span class="sr-fill" style="width:45%"></span></span><span class="sr-val">45/100</span></div><hr/><div class="score-row sr-red sr-total"><span class="sr-label">PRE-SCREENING SCORE</span><span class="sr-bar"><span class="sr-fill" style="width:51%"></span></span><span class="sr-val">51/100</span><span class="sr-note">🔴 POOR SIGNAL (&lt;60)</span></div><hr/>❓ In a NUTSHELL : Wan3 is a Generative AI Video Production space tool that enables performance marketers and content creators to turn flat visual assets or text ideas into continuous, high-fidelity moving pictures by wrapping advanced generative inference into a unified workspace.
+<p>⚠️ The PROBLEM : Digital marketers and social video creators lose hours daily shifting between disjointed open-source tools, model outputs, upscalers, and editors just to generate a single usable, high-motion five-second social transition.</p>
+<p>✅ The SOLUTION : Wan3 provides an integrated single-tab workspace combining text, image, camera direction, and frame-continuity tools directly connected to premium cloud-rendered video pipelines.</p>
+🚀 The GTM : Utilizing a high-viral PLG loop offering free trial credits to solo creators who organically share watermarked generated videos on Reels and TikTok to hook premium prosumer subscriptions.<hr/><div class="score-row sr-red sr-head"><span class="sr-label">👨🏻 TEAM EXCELLENCE (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:20%"></span></span><span class="sr-val">20/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Founder-Market Fit</span><span class="sr-val">20/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">No executive team profiles or LinkedIn presence could be isolated, suggesting a highly anonymous developer or shell operating team with zero public tracks.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Track Record</span><span class="sr-val">10/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">The past successes or operational background of the core founders remain completely unverifiable at this screening step.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">15/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Broader organizational structure exhibits zero footprint, casting extreme doubt on executive complexity or advisory depth.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Completeness</span><span class="sr-val">35/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Commercial, operational, and institutional compliance roles are entirely unrepresented on public domains.</div></li></ul>
+<br/>
+<div class="score-row sr-green sr-head"><span class="sr-label">🌊 MARKET OPPORTUNITY (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Size &amp; Growth</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">The market for collaborative, SaaS-based AI video generation workspaces is growing exponentially as brands swap analog studio shoots for rapid, algorithmic content scaling.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Why Now</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Open-source text-to-video foundation models have hit parity with closed commercial engines, allowing lean teams to ship enterprise-grade interfaces in months.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Competition</span><span class="sr-val">60/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Runway dominates institutional memory, while emerging engines like Luma and Kling crowd lower margins through rapid feature additions.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">The product vector easily broadens from basic social ad variants into full programmatic multi-screen localization and ad optimization pipelines.</div></li></ul>
+<br/>
+<div class="score-row sr-blue sr-head"><span class="sr-label">💡 PRODUCT INNOVATION (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:70%"></span></span><span class="sr-val">70/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Differentiation</span><span class="sr-val">65/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">The core platform combines multiple transformations like URL-to-video and reference-to-video under a basic unified workspace, though much of its back-end remains standard model wrappers.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Product-Market Fit</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Early review feedback indicates high satisfaction with cinematic lighting outputs and aspect-ratio tailoring for quick social publishing.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Scalability</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Modern cloud architectures scale smoothly by shifting variable inference loads onto third-party API networks or regional data providers.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">IP &amp; Barriers</span><span class="sr-val">65/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">There is no evidence of proprietary architectural mechanisms or IP protections, exposing the product to fast feature cloning by rival wrappers.</div></li></ul>
+<br/>
+<div class="score-row sr-red sr-head"><span class="sr-label">💼 BUSINESS MODEL (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:40%"></span></span><span class="sr-val">40/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Unit Economics</span><span class="sr-val">45/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Cloud-rendered video scales with enormous GPU billing metrics, raising extreme survival risks without transparent tier thresholds or premium pricing structures.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Revenue Model</span><span class="sr-val">40/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Relying predominantly on a basic freemium strategy leaves the firm vulnerable to compute vanity users who drain resource quotas without buying paid tiers.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">Monetization</span><span class="sr-val">45/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Premium user pricing, team seat expansions, and enterprise bulk API rates are unlisted, limiting clarity on structural customer lifetime value.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Capital Efficiency</span><span class="sr-val">30/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">The lack of transparent funding data, combined with heavy GPU compute requirements, implies severe operational burn rates under the hood.</div></li></ul>
+<br/>
+<div class="score-row sr-amber sr-head"><span class="sr-label">📈 TRACTION &amp; GROWTH (20%) | Score</span><span class="sr-bar"><span class="sr-fill" style="width:45%"></span></span><span class="sr-val">45/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Revenue Growth</span><span class="sr-val">20/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Commercial top-line acceleration is completely obscured behind private performance metrics and silent operating models.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Customer Validation</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Positive 4.7-star consumer sentiment is present on social creator hubs, highlighted by functional performance ad testing praise.</div></li><li class="sr-item"><div class="score-row sr-amber sr-sub"><span class="sr-label">KPI Progression</span><span class="sr-val">50/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">The product shows solid visual workflow iteration pace, yet actual headcount evolution and company scaling metrics are entirely unmeasured.</div></li><li class="sr-item"><div class="score-row sr-red sr-sub"><span class="sr-label">Market Penetration</span><span class="sr-val">40/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Operations remain locked on high-level internet creator spaces with zero evidence of native corporate integrations or agency platform treaties.</div></li></ul>
+<hr/><strong>🔍 RISK TO UNDERWRITE :</strong><br/>
+Wan3 relies entirely on the premise that a lightweight interface layer can run sustainable economics on top of fast-evolving third-party video models without getting squeezed by fundamental compute pricing structures or crushed when native model repositories build identical interfaces. This structural risk is entirely unresolvable from the outside, requiring full architectural lookups during deeper diligence to prove the existence of proprietary back-end pipeline modifications.
+<h4 class="kicker">KEY COMPETITIVE ADVANTAGES</h4>
+<ul><li>Integrated Multi-Tab Workspace: Bundles disparate features like URL-to-video and reference-to-video into a single window, creating a cohesive staging environment for creative designers.</li><li>Aspect Ratio Tailoring: Native customization for Reels, Shorts, and LinkedIn feeds significantly cuts down formatting latency for fast ad variants.</li><li>Cinematic Camera Control: Provides precise push-in options and lighting overrides, elevating consumer-grade outputs to functional asset-level prototypes.</li></ul>
+<p><strong>🧱 MOAT :</strong> WEAK</p>
+<p>Wan3 does not possess a deep defensibility mechanism, as its product layer serves as a workflow wrapper on top of third-party video networks that lack proprietary lock-in. Defensibility is highly transient and scales linearly with simple GTM distribution rather than compound structural flywheels, suggesting early market saturation will quickly lead to margin deterioration. The secondary defenses are non-existent, leaving the team exposed to structural cost-compression vectors from underlying GPU APIs.</p>
+<h4 class="kicker">ASYMMETRIC WAGER</h4>
+<ul><li>The Bull Case:</li></ul>
+Wan3 rapidly scales its collaborative team-workspace layer, integrating directly with enterprise digital ad cabinets to become the default programmatic video iteration system of record before primary model networks close their direct interfaces.
+<ul><li>The Bear Case:</li></ul>
+Computing inference costs spiral upward while larger players launch native free workspaces, rapidly converting Wan3 into a commoditized, cash-negative wrapper with high customer churn.
+<h4 class="kicker">RED FLAGS</h4>
+<ul><li>Universal Risks: Extravagant cloud compute costs paired with opaque freemium frameworks threaten to run dry basic seed allocations prior to product stability.</li><li>Thesis-Specific Mismatches: The absolute visual absence of verified founding history violates our fund requirements for deep institutional leadership and technical IP ownership.</li></ul>
+<p><strong>📝 FIRST MEETING PREP KIT</strong></p>
+<p>While the market timing is exceptional given the open-source video surge, the total lack of team metrics and foundational differentiation means this discussion must focus intensely on verifying back-end proprietary technology.</p>
+<ul><li>The Investment Angle: A tactical play on immediate workflow aggregation, banking on a hyper-efficient PLG acquisition loop to secure enterprise design teams before incumbents optimize corporate interfaces.</li><li>Killer Questions for First Call :</li></ul>
+- Question 1 — GTM MECHANICS : If Runway or Luma cuts API margin parameters or limits workspace integration features, how does your customer acquisition engine survive the cost increase?
+<p>- Question 2 — THE CORE ASSUMPTION : Can you detail the proprietary modifications or local server-side weight adjustments that prevent a competitor from launching a replica of your entire toolset over a weekend?</p>
+<p>- Question 3 — UNIT ECONOMICS STRESS TEST : What is your current fully-burdened cost-per-second of generated high-definition video, and how many paying monthly users do you need to cover baseline GPU infrastructure?</p>
+<ul><li>First Meeting Go/No-Go Signal:</li></ul>
+De deeper diligence is warranted if they present documented custom model fine-tunes that reduce computing inference costs by over 40 percent compared to basic APIs; a pivot or pass is indicated if they admit to relying purely on standard public APIs without cost-saving proprietary pipelines.
+<h4 class="kicker">DATA CONFIDENCE</h4>
+<p>LOW</p>
+<ul><li>Data is thinnest across corporate ownership registries, core operating finances, and the actual origin of the engineering systems.</li><li><strong>DATA GAPS :</strong> Founder identity documents • Monthly active user churn data • Back-end API agreements and processing costs.</li></ul></div><div class="img-col"><img alt="Analyse — radar entreprise" loading="lazy" src="https://v5.airtableusercontent.com/v3/u/57/57/1789034400000/CHcXDHrf3yp2JA8wNb2iGA/9BMEO-sFOaME4S5Bh67eXtZup-lTvC7vUoABx-ENNp82oqbWDvrtABY1s49kR72ACWdTWPWR4Sbrb6XFNdJyFrJlulg0zu7niFUnP9pO7q0CSJ2uNciIs2E7Ldb7We5U83JB-iDRhIP0t7L9xcwcww/9LIpdH0WD5rsVFjAsSAnPvs80aU_I1nB2qQzEytAOGw"/></div></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title">SWOT Analysis</h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3>Strengths</h3><ul><li>The integrated workspace lets users generate, edit, and export video without switching tools.</li><li>Support for text, image, reference, URL, and file inputs covers the full range of creator workflows.</li><li>Cinematic rendering and camera continuity features produce usable motion from static product shots.</li><li>Freemium access removes sign-up friction for individual creators and small teams testing concepts.</li><li>Built-in aspect ratios match Reels, Shorts, and LinkedIn formats without additional reformatting.</li></ul></div>
+<div class="swot-item s-red"><h3>Weaknesses</h3><ul><li>No identifiable leadership or technical team is disclosed, reducing credibility for enterprise adoption.</li><li>Revenue model lacks published pricing tiers, leaving monetization path undefined beyond free usage.</li><li>All capabilities depend on unspecified third-party models with no claimed technical differentiation.</li><li>Product remains limited to a browser workspace with no API or integration options listed.</li><li>User testimonials are anonymous and do not include named enterprise or high-volume accounts.</li></ul></div>
+<div class="swot-item s-blue"><h3>Opportunities</h3><ul><li>Daily content creators need faster iteration than traditional agencies can deliver.</li><li>Small brands running frequent ad tests can shift spend from agencies to this self-serve tool.</li><li>E-commerce brands can generate motion assets directly from product images at scale.</li><li>Short-form platforms continue to increase demand for native video formats.</li><li>Workspace features can upsell teams once free-tier usage demonstrates consistent output quality.</li></ul></div>
+<div class="swot-item s-orange"><h3>Threats</h3><ul><li>Larger generative video platforms have already secured funding and distribution partnerships.</li><li>Model quality improvements by competitors can erase current continuity advantages within months.</li><li>Heavy free-tier usage without clear conversion mechanics risks low or negative revenue per user.</li><li>Platform policy changes on AI content labeling can restrict distribution channels for users.</li><li>Absence of disclosed data practices creates compliance risk for professional marketing workflows.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title">Sources &amp; Methodology</h2>
+<div class="source-list"><p style="font-style:italic;color:#4B5E78;margin:0 0 0.8em;">1 deep links found to build this memo — official site, Tavily &amp; Exa web research.</p>
+<h4 class="kicker" style="margin:0.9em 0 0.3em;">Site officiel</h4>
+<ul style="margin:0.2em 0 0.9em 1.1em;padding:0;"><li style="margin:0.15em 0;"><a href="https://wan3.io" rel="noopener nofollow" target="_blank">Wan3</a> <span style="color:#0F1D33;font-size:0.85em;">— wan3.io</span></li></ul></div>
+</div>
+<div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Wan3 ?</span><span class="i18n-en">Explore Wan3 further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://forms.proplace.co/meet">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc"><span class="i18n-fr">Généré par Proplace.co — une IA qui peut se tromper. Contact : <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span><span class="i18n-en">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p></div><nav class="ppf-nav"><a href="/actualites/" data-i18n="direct">Live</a><a href="/actualites/operations/secteurs/" data-i18n="marches">Veille sectorielle</a><a href="/newsletter">Newsletter</a><a class="ppf-api" href="https://proplace.co/api/" target="_blank" rel="noopener">API</a></nav><div class="ppf-acct" id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></div><span class="ppf-copy">© 2026 Proplace</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#16233A}.pph-lang button.on{background:#0F1D33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E3E8F0;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#0E7F3F}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#FDECEC;color:#C0353A}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",direct:"Live",marches:"Sector watch",marchesFooter:"Live by sector",dealflow:"My deal flow",analysis:"Analysis",research:"Research",mindmaps:"Mindmaps",dashboard:"Open dashboard",acct:"Connected",mSettings:"Settings",mPipeline:"My deal flow",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Explore",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"© 2026 Proplace",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Se connecter",news:"Actualités",direct:"Live",directFooter:"En direct",marches:"Veille sectorielle",marchesFooter:"En direct par secteur",dealflow:"Mon deal flow",analysis:"Analyses",research:"La recherche",mindmaps:"Mindmaps",dashboard:"Ouvrir le dashboard",acct:"Connecté",mSettings:"Paramètres",mPipeline:"Mon deal flow",mDashboard:"Tableau de bord",logout:"Se déconnecter",tagline:"Votre AI Corporate Developer",insights:"Explorer",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"© 2026 Proplace",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return (navigator.language||"").toLowerCase().indexOf("fr")===0?"fr":"en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){
+// Header loggé : Connecté ▾ → Mon deal flow (/cibles) · Paramètres (/compte).
+// La déconnexion vit uniquement dans le footer.
+var compte=(lang==="fr"?"/fr/compte":"/compte");
+var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"");
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false">'+t.acct+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+pipeline+'">'+t.dealflow+"</a>"+
+'<a role="menuitem" href="'+compte+'">'+t.mSettings+"</a>"+
+"</div></div>";
+return {i:1,h:h,pipeline:pipeline,compte:compte};}
+return {i:0,h:'<a class="cta" href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200;
+// Toujours SOUS le bouton (menu court = Mon compte + Déco) — plus de flip au-dessus.
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Historique Research → Mon compte (onglet Recherches). Enregistre chaque fiche consultée
+   dans localStorage (même clé que ComptePage). No-op hors /research/<slug>/. */
+(function recordResearchVisit(){
+try{
+ var p=(location.pathname||"").replace(/\/+$/,"")+"/";
+ if(!/\/(en\/)?research\/[^/]+\//.test(p))return;
+ if(/\/(en\/)?research\/?$/.test((location.pathname||"").replace(/\/+$/,"")))return;
+ var title="";
+ var h1=document.querySelector("main h1, .rp-head h1, h1");
+ if(h1&&h1.textContent)title=h1.textContent.trim();
+ if(!title)title=(document.title||"").split("|")[0].trim();
+ var url=location.pathname;
+ var key="proplace_research_history";
+ var arr=[];
+ try{arr=JSON.parse(localStorage.getItem(key)||"[]")||[];}catch(e){arr=[];}
+ if(!Array.isArray(arr))arr=[];
+ arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});
+ arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});
+ if(arr.length>40)arr=arr.slice(0,40);
+ localStorage.setItem(key,JSON.stringify(arr));
+}catch(e){}
+})();
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){
+ if(a.i){pf.innerHTML='<a href="'+(a.pipeline||"/cibles")+'">'+t.dealflow+'</a>'
+  +'<a href="'+(a.compte||"/compte")+'">'+t.mSettings+"</a>"
+  +'<button type="button" id="ppf-logout">'+t.logout+"</button>";
+  var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+ else{pf.innerHTML='<a href="/#login">'+t.login+"</a>";}}
+Array.prototype.forEach.call(document.querySelectorAll(".ppf-api"),function(x){
+ if(a.i)x.classList.add("on");else x.classList.remove("on");});
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(18,161,80,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:12px;font-weight:600;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#C0353A}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+/* #5 — bouton (pas lien) : lancer le mémo instant + ouvrir /cibles. */
+button.ev-cta{border:1px solid var(--ink);cursor:pointer;font-family:inherit}
+.ev-cta2{background:transparent;color:var(--accent-dk);border:1px solid var(--accent)}
+.ev-cta2:hover{background:var(--bg);color:var(--ink);opacity:1}
+/* #4 — domaine d'un candidat rendu cliquable (vérifier le site avant de choisir). */
+.ev-cand-lnk{color:var(--accent-dk);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--accent)}
+.ev-cand-lnk:hover{color:var(--ink);border-bottom-color:var(--ink)}
+/* #3 — override d'un verdict NO MATCH → MATCH. */
+.ev-force-wrap{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ev-force{font-size:12px;font-weight:700;color:var(--ink);background:transparent;border:1px solid var(--line);
+border-radius:8px;padding:6px 12px;cursor:pointer;transition:all .15s;font-family:inherit}
+.ev-force:hover{border-color:var(--ink);background:var(--bg)}
+.ev-err{color:#C0353A}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://forms.proplace.co/t/aDx8z7Hzksus",ES="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound/evaluate-and-signup",MST="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v3/instant-memo/status/";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+// Bilingue (2026-07-16) : mêmes clé/priorités que le chrome partagé — le flux d'évaluation
+// était le dernier gros composant JS 100% FR quel que soit le choix de langue du visiteur.
+function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}
+ return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}
+function T(fr,en){return EN()?en:fr;}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function ctaCal(){return '<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">'
+ +T("📅 Un deal flow personnalisé ? Planifiez un appel stratégique","📅 Want a tailored deal flow? Book a strategy call")+'</a>';}
+// Extraction souple (le résultat porte tantôt company/company_name/name, tantôt un
+// sous-objet lead) — partagé par le rendu MATCH, l'override (#3) et le lancement (#5).
+function coOf(res){return (res&&(res.company_name||res.company||res.name||(res.lead&&res.lead.company_name)))||"";}
+function webOf(res){return (res&&((res.lead&&(res.lead.website||res.lead.url))||res.url||res.website))||"";}
+function recOf(res){return (res&&((res.lead&&res.lead.airtable_id)||res.lead_record_id))||"";}
+// #5 — bouton (pas lien) : lance le mémo INSTANT (code, pas Make) puis ouvre la page
+// /cibles « À analyser ». Rendu sur un MATCH (verdict ou override).
+function matchCta(res,fund){
+ var co=coOf(res),web=webOf(res),rec=recOf(res);
+ return '<button type="button" class="ev-cta ev-launch" data-fund="'+esc(fund)+'" data-co="'+esc(co)
+  +'" data-web="'+esc(web)+'" data-rec="'+esc(rec)+'">'
+  +T("⚡ Lancer le mémo + voir mes cibles","⚡ Launch the memo + see my targets")+'</button>';
+}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">'+T("Évaluation indisponible.","Evaluation unavailable.")+'</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var raw=(c.url||c.website||"");
+   var dom=raw.replace(/^https?:\/\//,"").replace(/\/$/,"");
+   var href=raw?(raw.indexOf("http")===0?raw:"https://"+raw):"";
+   // #4 — domaine CLIQUABLE (nouvel onglet) pour vérifier le site AVANT de choisir.
+   var domHtml=dom?(' · '+(href?'<a class="ev-cand-lnk" href="'+esc(href)+'" target="_blank" rel="noopener">'+esc(dom.slice(0,42))+' ↗</a>':esc(dom.slice(0,42)))):'';
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+domHtml+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">'+T("Choisir →","Choose →")+'</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||T("Plusieurs sociétés correspondent — choisissez la bonne :","Several companies match — pick the right one:"))+'</div>'+(cs||'<div class="ev-fine">'+T("Aucun candidat — précisez l’URL exacte.","No candidate — provide the exact URL.")+'</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">'+T("📊 Analyse","📊 Analysis")+'</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){
+  if(m){o+=matchCta(res,fund);}
+  else if(res.check_id){
+   // #3 — override : le dirigeant est sûr du contraire → force le check en MATCH,
+   // la justification est tracée dans le champ reasoning (endpoint force-match dédié).
+   o+='<div class="ev-force-wrap"><button type="button" class="ev-force" data-check="'+esc(res.check_id)
+     +'" data-fund="'+esc(fund)+'" data-co="'+esc(coOf(res))+'" data-web="'+esc(webOf(res))
+     +'" data-rec="'+esc(recOf(res))+'" data-orig="'+esc((res.reasoning||"").slice(0,600))+'">'
+     +T("↺ Je ne suis pas d’accord — forcer en MATCH","↺ I disagree — force to MATCH")+'</button>'
+     +'<span class="ev-fine">'+T("La décision est enregistrée (justification tracée).","The decision is saved (justification recorded).")+'</span></div>';
+  }
+ }
+ else{ o+=ctaCal(); }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">'+T("⏳ Évaluation de "+esc(company)+" selon votre thèse "+esc(fund)+"…","⏳ Evaluating "+esc(company)+" against your "+esc(fund)+" thesis…")+'</div>';
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function setAuth(email,fund){
+ try{
+  var s={email:(email||"").toLowerCase(),fund_type:fund||"",ts:Date.now()};
+  var v=encodeURIComponent(btoa(JSON.stringify(s)));
+  document.cookie="proplace_auth="+v+"; domain=.proplace.co; path=/; max-age="+(60*60*24*365)+"; secure; samesite=lax";
+ }catch(e){}
+}
+function pollMemo(panel,jobId,memoUrl,email){
+ var started=Date.now(),n=0;
+ function tick(){
+  n++;
+  var elapsed=Math.round((Date.now()-started)/1000);
+  var pct=Math.min(92,8+Math.round(elapsed/720*84));
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Mémo fast en cours…","⏳ Fast memo running…")
+   +' · '+pct+'% · '+elapsed+'s</div>'
+   +'<div class="ev-r">'+T("Vous recevrez le mémo par email même si vous fermez cette page.","You will get the memo by email even if you close this page.")+'</div>';
+  fetch(MST+encodeURIComponent(jobId)).then(function(r){return r.json();}).then(function(st){
+   if(st&&st.done){
+    var ok=st.result&&(st.result.status==="ok"||st.result.url);
+    var url=(st.result&&st.result.url)||memoUrl||"";
+    if(ok){
+     panel.innerHTML='<div class="ev-ok">✅ '+T("Mémo prêt","Memo ready")+'</div>'
+      +(url?'<a class="ev-cta" target="_blank" rel="noopener" href="'+esc(url)+'">'+T("→ Ouvrir le mémo","→ Open the memo")+'</a>':'')
+      +'<a class="ev-cta ev-cta2" href="https://proplace.co/'+(EN()?'':'fr/')+'compte">'+T("→ Mon compte","→ My account")+'</a>'
+      +ctaCal();
+    }else{
+     panel.innerHTML='<div class="ev-err">⚠ '+esc((st.result&&st.result.error)||T("Échec de l’analyse","Analysis failed"))+'</div>';
+    }
+    return;
+   }
+   if(n<90)setTimeout(tick,8000);
+   else panel.innerHTML='<div class="ev-r">'+T("L’analyse continue en arrière-plan — regardez votre boîte mail.","Analysis continues in the background — check your inbox.")+'</div>'
+    +(memoUrl?'<a class="ev-cta ev-cta2" target="_blank" rel="noopener" href="'+esc(memoUrl)+'">'+T("→ Lien mémo (dispo sous peu)","→ Memo link (soon)")+'</a>':'')
+    +ctaCal();
+  }).catch(function(){if(n<90)setTimeout(tick,10000);});
+ }
+ setTimeout(tick,6000);
+}
+function leadForm(panel,b){
+ // Formulaire natif evaluate-and-signup (remplace Fillout first-look + simple capture).
+ var co=b.dataset.c||b.dataset.u||"";
+ var web=b.dataset.u||"";
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">'+T("Mémo fast de","Fast memo for")+' <b>'+esc(co)+'</b></p>'
+ +'<input name="email" type="email" placeholder="'+T("Email professionnel (first look ici)","Work email (first look here)")+'" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn CEO (URL)"><input name="phone" placeholder="'+T("Téléphone (optionnel)","Phone (optional)")+'"></div>'
+ +'<input name="website" placeholder="'+T("Site web (si connu)","Website (if known)")+'" value="'+esc(web)+'">'
+ +'<p class="ev-fine">'+T("Analyse selon des critères investisseur standards · mémo Fast.","Analyzed against standard investor criteria · Fast memo.")+'</p>'
+ +'<button type="submit" class="ev-submit">'+T("Lancer l’analyse →","Start analysis →")+'</button>'
+ +'<p class="ev-fine">'+T("Déjà client ? <a href=\"https://proplace.co/#login\">Connectez-vous</a> pour évaluer selon VOTRE thèse.","Already a client? <a href=\"https://proplace.co/#login\">Log in</a> to evaluate against YOUR thesis.")+'</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target;
+  var d={email:(f.email&&f.email.value||"").trim(),linkedin:(f.linkedin&&f.linkedin.value||"").trim(),
+   phone:(f.phone&&f.phone.value||"").trim(),website:(f.website&&f.website.value||"").trim()||web};
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Création du compte + lancement du mémo…","⏳ Creating account + launching memo…")+'</div>';
+  fetch(ES,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:co,website:d.website,email:d.email,linkedin:d.linkedin,phone:d.phone,
+   lang:EN()?"en":"fr"})})
+  .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+  .then(function(x){
+   if(!x.ok||!x.j||!x.j.job_id)throw new Error((x.j&&(x.j.detail||x.j.error))||"launch failed");
+   if(x.j.email&&x.j.fund_type)setAuth(x.j.email,x.j.fund_type);
+   pollMemo(panel,x.j.job_id,x.j.memo_url||"",d.email);
+  }).catch(function(err){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(err.message||err))+'</div>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">'+T("⚡ Évaluation express —","⚡ Express evaluation —")+' <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ // #5 — MATCH → lancer le mémo INSTANT (code) puis ouvrir /cibles « À analyser ».
+ var lb=(ev.target&&ev.target.closest)?ev.target.closest(".ev-launch"):null;
+ if(lb){
+  var lp=lb.closest(".op-eval-panel");if(!lp)return;
+  var lfund=lb.dataset.fund||"",lco=lb.dataset.co||"",lweb=lb.dataset.web||"";
+  // Onglet ouvert SYNCHRONE (dans le geste de clic) pour ne pas être bloqué ; on le
+  // redirige ensuite vers la page /cibles résolue (repli : le dashboard chat).
+  var win=null;try{win=window.open("","_blank");}catch(e){}
+  lp.innerHTML='<div class="ev-load">'+T("⚡ Lancement du mémo instant…","⚡ Launching instant memo…")+'</div>';
+  var memoUrl="";
+  fetch("https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v3/instant-memo",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({company_name:lco,website:lweb,fund_type:lfund,memo:"instant"})})
+   .then(function(r){return r.json();}).catch(function(){return {};})
+   .then(function(j){memoUrl=(j&&j.url)||"";
+    return fetch("https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/last",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({fund_slug:lfund,source:"sourced"})}).then(function(r){return r.json();}).catch(function(){return {};});})
+   .then(function(d){
+    // Page publique /cibles (liste vivante = les retenues) si publiée, sinon le cockpit.
+    var cibles=(d&&d.found&&d.url)?d.url:("https://analysis.proplace.co/chat/?fund="+encodeURIComponent(lfund));
+    if(win){try{win.location=cibles;}catch(e){}}
+    lp.innerHTML='<div class="ev-v ev-yes">✅ '+T("Mémo instant lancé","Instant memo launched")+'</div>'
+      +'<div class="ev-r">'+T("Le mémo (code, ~15 min) se prépare. Votre page cibles s’ouvre sur « À analyser ».","The memo (code, ~15 min) is preparing. Your targets page opens on the To-analyse tab.")+'</div>'
+      +'<a class="ev-cta" target="_blank" rel="noopener" href="'+esc(cibles)+'">'+T("→ Voir mes cibles (À analyser)","→ See my targets (To analyse)")+'</a>'
+      +(memoUrl?'<a class="ev-cta ev-cta2" target="_blank" rel="noopener" href="'+esc(memoUrl)+'">'+T("→ Ouvrir le mémo","→ Open the memo")+'</a>':'');
+   }).catch(function(e){lp.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+  return;
+ }
+ // #3 — override d'un NO MATCH (justification tracée, décision enregistrée).
+ var fb=(ev.target&&ev.target.closest)?ev.target.closest(".ev-force"):null;
+ if(fb){
+  var fp=fb.closest(".op-eval-panel");if(!fp)return;
+  var reason=window.prompt(T("Pourquoi cette société est-elle un MATCH selon vous ? (enregistré)","Why is this company a MATCH in your view? (recorded)"),T("Override manuel — connaissance directe de la société.","Manual override — direct knowledge of the company."));
+  if(reason===null)return;
+  reason=(reason||"").trim();if(!reason)reason=T("Override manuel.","Manual override.");
+  var fcheck=fb.dataset.check||"",ffund=fb.dataset.fund||"",fco=fb.dataset.co||"",fweb=fb.dataset.web||"",frec=fb.dataset.rec||"",forig=fb.dataset.orig||"";
+  fp.innerHTML='<div class="ev-load">'+T("⏳ Enregistrement de l’override…","⏳ Saving the override…")+'</div>';
+  fetch("https://alexandre-79537--airtable-bridge-fastapi-app.modal.run/sourcing-check/force-match",{method:"PATCH",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({check_id:fcheck,justification:reason,original_reasoning:forig})})
+   .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
+   .then(function(){
+    fp.innerHTML='<div class="ev-v ev-yes">✅ '+T("Forcé en MATCH","Forced to MATCH")+'</div>'
+      +'<div class="ev-r">'+T("Décision enregistrée.","Decision saved.")+'</div>'
+      +matchCta({company_name:fco,url:fweb,lead:{airtable_id:frec,company_name:fco,website:fweb},check_id:fcheck},ffund);
+   }).catch(function(e){fp.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+  return;
+ }
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><script>(function(){try{var p=(location.pathname||'').replace(/\/+$/,'')+'/';if(!/\/(en\/)?research\/[^/]+\//.test(p))return;if(/\/(en\/)?research\/?$/.test((location.pathname||'').replace(/\/+$/,'')))return;var title='';var h1=document.querySelector('main h1,.rp-head h1,h1');if(h1&&h1.textContent)title=h1.textContent.trim();if(!title)title=(document.title||'').split('|')[0].trim();var url=location.pathname,key='proplace_research_history',arr=[];try{arr=JSON.parse(localStorage.getItem(key)||'[]')||[];}catch(e){arr=[];}if(!Array.isArray(arr))arr=[];arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});if(arr.length>40)arr=arr.slice(0,40);localStorage.setItem(key,JSON.stringify(arr));}catch(e){}})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+var _lbEN=false;try{var _l=localStorage.getItem('proplace_lang');
+_lbEN=_l==='en'||(!_l&&(navigator.language||'').toLowerCase().indexOf('fr')!==0);}catch(e){}
+ov.innerHTML='<button class="lb-x" aria-label="'+(_lbEN?'Close':'Fermer')+'">×</button><img alt=""><a class="lb-dl" download>'+(_lbEN?'⬇ Download':'⬇ Télécharger')+'</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><style>
+/* Étoile favori (★) en tête de la cellule Société — dorée dès l'état INACTIF (☆) pour être
+   repérable comme « à cliquer », pleine et vive à l'état actif (★). */
+.op-fav{display:inline-block;vertical-align:baseline;margin:0 7px 0 0;padding:0;font-size:17px;
+line-height:1;color:#d9b64a;background:none;border:none;cursor:pointer;
+transition:color .12s,transform .12s}
+.op-fav:hover{color:#e5a91c;transform:scale(1.2)}
+.op-fav.on{color:#e5a91c}
+.fav-count{font-variant-numeric:tabular-nums;font-weight:800}
+/* Page /actualites/favoris/ : état vide + encart « créez votre thèse ». */
+.fav-empty-box{margin:26px 0;padding:24px 20px;border:1px dashed var(--line);border-radius:12px;
+background:var(--bg);text-align:center;color:var(--sub);font-size:14px;line-height:1.55}
+.fav-empty-box a{color:var(--accent-dk);font-weight:700;text-decoration:none}
+.fav-empty-box a:hover{text-decoration:underline}
+.fav-tease{margin:22px 0 6px;padding:16px 18px;border:1px solid var(--accent);border-radius:12px;
+background:var(--bg)}
+.fav-tease-h{font-size:15px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.fav-tease-p{font-size:13.5px;color:var(--sub);line-height:1.5;margin:0 0 10px}
+.fav-tease .tm-read{margin:0}
+/* Composeur de thèse in-browser + évaluation groupée (Phase B). */
+.fav-th-text{width:100%;min-height:64px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+font-family:inherit;font-size:13.5px;line-height:1.5;color:var(--ink);resize:vertical;margin:0 0 8px}
+.fav-th-text:focus{outline:none;border-color:var(--accent)}
+.fav-btn{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:9px;padding:9px 15px;cursor:pointer;transition:opacity .15s}
+.fav-btn:hover{opacity:.85}
+.fav-btn:disabled{opacity:.5;cursor:default}
+.fav-th-edit{margin-left:10px;font-size:12.5px;font-weight:600;color:var(--accent-dk);background:none;
+border:none;cursor:pointer;text-decoration:underline}
+.fav-th-label{font-size:13px;color:var(--sub);font-style:italic;margin:0 0 8px}
+.fav-th-hint{font-size:12px;color:#C0353A;margin:6px 0 0}
+/* Verdict d'un favori (plein largeur sous la ligne, comme .op-eval-panel). */
+.fav-verdict{grid-column:1/-1;margin-top:2px}
+.fav-verdict:empty{margin:0}
+.fav-v{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;padding:3px 10px;margin-top:6px}
+.fav-v-yes{color:#047857;background:rgba(4,120,87,.10)}
+.fav-v-no{color:#C0353A;background:rgba(185,28,28,.08)}
+.fav-v-err{color:var(--mid);background:var(--bg)}
+.fav-v-load{color:var(--mid);font-size:12.5px;font-weight:600;margin-top:6px;display:inline-block}
+.fav-vr{display:block;font-size:12.5px;color:var(--sub);line-height:1.45;margin-top:4px}
+</style><script>(function(){
+var K="proplace_favoris";
+// Bridge « certain » vers /cibles/ : un ?cb=<token> dans l'URL (posé par le lien du /cibles/ du
+// client, ou un email Proplace) lie ce navigateur à CE client → chaque ★ est aussi reflétée dans
+// un store SERVEUR scopé au token, retrouvée ensuite dans son onglet Favoris même sur un autre
+// appareil. Sans token (visiteur anonyme), sync() est un no-op → comportement inchangé.
+var TKK="proplace_cb_token",SYNC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/fav-sync";
+function readTok(){try{return localStorage.getItem(TKK)||"";}catch(e){return "";}}
+function writeTok(t){try{localStorage.setItem(TKK,t);}catch(e){}}
+function captureTok(){var t="";try{t=((new URL(window.location.href)).searchParams.get("cb")||"").trim();}catch(e){}
+ if(/^[A-Za-z0-9]{16}$/.test(t)){writeTok(t);return t;}return readTok();}
+var TOK=captureTok();
+function sync(op,removed){if(!TOK)return;try{
+ fetch(SYNC,{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
+  body:JSON.stringify({token:TOK,remove:!!removed,op:op})}).catch(function(){});
+}catch(e){}}
+function EN(){try{var l=localStorage.getItem("proplace_lang");if(l)return l==="en";}catch(e){}
+ return (navigator.language||"").slice(0,2).toLowerCase()==="en";}
+function read(){try{return JSON.parse(localStorage.getItem(K)||"[]")||[];}catch(e){return [];}}
+function write(a){try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}}
+function normU(u){return (u||"").toLowerCase().trim().replace(/[#?].*$/,"").replace(/\/+$/,"");}
+function normN(n){return (n||"").toLowerCase().replace(/\s+/g," ").trim();}
+function keyOf(u,c){return normU(u)||normN(c);}
+function opFromBtn(b){var d=b.dataset,u=d.u||"",c=d.co||"";
+ // Le bouton ne porte plus que co+url (régime data-*) : le reste est DÉRIVÉ de la ligne
+ // .trow (data-v/date/t/amt/pays + cellules affichées). Les anciens data-* du bouton restent
+ // lus en PRIORITÉ (compat : lignes de la page /favoris reconstruites depuis localStorage).
+ var r=b.closest?b.closest(".trow"):null,rd=(r&&r.dataset)||{};
+ // Cellules Type/Date en dual-span depuis 2026-07-16 : lire le span .i18n-fr (libellé
+ // canonique FR stocké dans le favori), sinon le textContent brut (cellules mono-langue).
+ function cell(s){if(!r)return "";var e=r.querySelector(s+" .i18n-fr")||r.querySelector(s);
+  var v=e?e.textContent.trim():"";return v==="—"?"":v;}
+ // Headline : sous-ligne .th (co présent) SINON le titre-lien du strong (op sans société).
+ var hd=r?(r.querySelector(".tco .th a:not(.tm-mem)")||r.querySelector(".tco strong a")):null;
+ var pe=r?r.querySelector(".tpays"):null;
+ var vert=d.v||rd.v||"";
+ return {id:keyOf(u,c),co:c,url:u,
+  disp:d.disp||(hd?hd.textContent.trim().slice(0,200):""),
+  ind:d.i||vert,vert:vert,
+  amtD:d.amtd||cell(".tamt"),
+  amt:parseInt(d.amt||rd.amt||"0",10)||0,
+  pays:d.pays||rd.pays||"",
+  paysFull:d.paysfull||(pe?(pe.getAttribute("title")||""):""),
+  date:d.date||(rd.date||"").slice(0,10),
+  typeK:d.typek||rd.t||"",
+  typeFr:d.typefr||cell(".ttype"),
+  ts:Date.now()};}
+function idx(a,id){for(var i=0;i<a.length;i++)if(a[i].id===id)return i;return -1;}
+function paint(){var a=read(),ids={};a.forEach(function(o){ids[o.id]=1;});
+ [].slice.call(document.querySelectorAll(".op-fav")).forEach(function(b){
+  var id=keyOf(b.dataset.u||"",b.dataset.co||""),on=!!ids[id];
+  b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false");
+  b.textContent=on?"★":"☆";
+  var t=on?(EN()?"Remove from favourites":"Retirer des favoris"):(EN()?"Add to favourites":"Mettre en favori");
+  b.title=t;b.setAttribute("aria-label",t);});
+ var n=a.length;[].slice.call(document.querySelectorAll(".fav-count")).forEach(function(e){e.textContent=String(n);});}
+window.__favPaint=paint;
+document.addEventListener("click",function(ev){
+ var b=ev.target&&ev.target.closest?ev.target.closest(".op-fav"):null;if(!b)return;
+ ev.preventDefault();ev.stopPropagation();
+ var a=read(),op=opFromBtn(b),k=idx(a,op.id),removed=k>=0;
+ if(k>=0)a.splice(k,1);else a.unshift(op);
+ write(a);paint();sync(op,removed);if(window.__favRender)window.__favRender();});
+window.addEventListener("storage",function(e){if(e.key===K){paint();if(window.__favRender)window.__favRender();}});
+if(document.readyState!=="loading")paint();else document.addEventListener("DOMContentLoaded",paint);
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
