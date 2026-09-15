@@ -384,3 +384,12 @@
    ANALYTICS devrait être aligné à gauche », 15/08 soir). f-li n'a pas ce
    rebasage : chacun garde ses 44 px, on n'y touche pas. */
 .ppcard.f-x .who-meta { padding-left: 0; padding-right: 0; }
+
+/* Daily M&A / funding rankings only. The renderer bounds rows for the format
+   using the existing two-line title height; the flex band must also be allowed
+   to shrink so its intrinsic list never pushes the full footer off-canvas.
+   No font, title clamp, tint or other card template is changed. */
+.ppcard.market-top.crowded .band { min-height: 0; margin-top: 8px; }
+.ppcard.market-top .band .top { min-height: 0; }
+.ppcard.market-top .band .tr { flex: none; }
+.ppcard.market-top .ft { flex-shrink: 0; }
