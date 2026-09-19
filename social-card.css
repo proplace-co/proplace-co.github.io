@@ -315,12 +315,14 @@
    La hauteur est posée par le script ; `aspect-ratio` sert de valeur d'attente
    pour que la page ne saute pas avant que le bundle n'arrive. */
 .ppcard-fit { width: 100%; aspect-ratio: 1200 / 675; overflow: hidden; }
+.ppcard-fit:has(> .ppcard.f-li) { aspect-ratio: 1080 / 1350; }
 /* L'ÉCHELLE PAR DÉFAUT, EN CSS. Sans elle, une page dont le bundle tarde ou
    échoue montrait la carte à ses 1200 px réels dans une boîte de 780 : coupée
    aux deux tiers, pied de page et bande invisibles (constaté à l'écran).
    0.65 = 780/1200, la colonne de lecture de l'article — juste avant même que
    le script n'arrive, et le script affine ensuite au pixel. */
 .ppcard-fit > .ppcard { transform-origin: top left; transform: scale(.65); }
+.ppcard-fit > .ppcard.f-li { transform: scale(.72); }
 
 /* ── LA CARTE SANS BANDE ──────────────────────────────────────────────────
    Un rachat étayé mais sans acquéreur extractible ni montant corroboré donne
@@ -393,3 +395,14 @@
 .ppcard.market-top .band .top { min-height: 0; }
 .ppcard.market-top .band .tr { flex: none; }
 .ppcard.market-top .ft { flex-shrink: 0; }
+/* Landscape: 8 one-line rows in 675 px. Portrait: 12 two-line rows in 1350 px. */
+.ppcard.market-top.f-x .band .tr { padding: 8px 34px; }
+.ppcard.market-top.f-x .band .tl { font-size: 20px; -webkit-line-clamp: 1; }
+.ppcard.market-top.f-x .band .tn,
+.ppcard.market-top.f-x .band .ta { font-size: 22px; }
+.ppcard.market-top.crowded.f-li .word { font-size: 64px; }
+.ppcard.market-top.crowded.f-li .who { font-size: 26px; }
+.ppcard.market-top.f-li .band .tr { padding: 10px 44px; }
+.ppcard.market-top.f-li .band .tl { font-size: 24px; }
+.ppcard.market-top.f-li .band .tn,
+.ppcard.market-top.f-li .band .ta { font-size: 28px; }
