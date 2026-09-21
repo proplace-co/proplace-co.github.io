@@ -406,3 +406,46 @@
 .ppcard.market-top.f-li .band .tl { font-size: 24px; }
 .ppcard.market-top.f-li .band .tn,
 .ppcard.market-top.f-li .band .ta { font-size: 28px; }
+
+/* -- LA BANDE NE FABRIQUE PLUS DE VIDE ENTRE LES LIGNES -------------------
+   Retour du 21/09 : « l'image VC a beaucoup trop d'espaces entre les lignes,
+   il faut les resserrer comme avant ».
+
+   MESURE sur les PNG reellement postes (le portrait -li est celui que LinkedIn
+   recoit) :  18/09, 8 entrees -> pas 130 px · 19/09, 8 entrees -> 108-142 px ·
+   20/09, 10 entrees -> 83-113 px · 21/09, 4 entrees -> 206-236 px.
+   Le pas naturel d'une ligne est de 52 px (titre sur 1 ligne) a 83 px (2 lignes).
+   Le defaut etait donc deja la tous les jours : il n'y a pas d'« avant » propre
+   a restaurer, il y a un pas a rendre CONSTANT.
+
+   CAUSE : `.band .top` est `flex: 1` + `justify-content: space-evenly`, et
+   `.band` est `flex: 1`. `.hd` etant en absolu et `.main`/`.ft` en `flex: none`,
+   la bande est le SEUL enfant elastique de la carte : elle avale toute la
+   hauteur restante quel que soit le nombre d'entrees, et `space-evenly`
+   redistribue le surplus en N+1 blancs egaux. Moins il y a d'entrees, plus les
+   trous sont gros. Le `min-height: 0` pose plus haut autorise la bande a
+   RETRECIR mais ne lui interdit pas de GRANDIR : il ne desamorce pas
+   `space-evenly`. On surcharge donc ici, propriete par propriete.
+
+   CORRECTIF : la liste se colle en haut de la bande, la bande epouse sa hauteur
+   reelle, et le surplus remonte dans le bloc vert — ou il ne se voit pas. Le
+   gros mot reprend sa taille en dessous de 6 entrees et RESTE CALE EN HAUT
+   comme les jours charges : il ne doit pas changer de place selon le nombre
+   d'operations. Pas vertical mesure apres correctif, CONSTANT de 3 a 14
+   entrees : 59 et 88 px en f-li, 47 px en f-x.
+   Portee strictement limitee a `market-top`. NE PAS fusionner ces regles dans
+   la ligne `min-height: 0` : un test compare sa chaine exacte. */
+.ppcard.market-top .band .top { flex: 0 1 auto; justify-content: flex-start; }
+.ppcard.market-top.crowded .band { flex: 0 1 auto; }
+.ppcard.market-top.crowded .main { flex: 1 1 auto; }
+/* Peu d'entrees : le gros mot reprend sa taille et remplit le vert — meme geste
+   que celui deja retenu pour data-n="3", etendu a 4 et 5. */
+.ppcard.market-top.crowded.f-li[data-n="3"] .word,
+.ppcard.market-top.crowded.f-li[data-n="4"] .word,
+.ppcard.market-top.crowded.f-li[data-n="5"] .word { font-size: 112px; }
+.ppcard.market-top.crowded.f-li[data-n="3"] .who,
+.ppcard.market-top.crowded.f-li[data-n="4"] .who,
+.ppcard.market-top.crowded.f-li[data-n="5"] .who { font-size: 38px; }
+.ppcard.market-top.crowded.f-x[data-n="3"] .word,
+.ppcard.market-top.crowded.f-x[data-n="4"] .word,
+.ppcard.market-top.crowded.f-x[data-n="5"] .word { font-size: 72px; }
