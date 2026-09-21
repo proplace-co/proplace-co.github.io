@@ -263,7 +263,9 @@
   line-height: 1.4; letter-spacing: 0; font-family: inherit; }
 .ppart .aa-src { display: inline-block; margin: 8px 0 0; font-size: 13px;
   color: #0E8A44; text-decoration: none; font-family: inherit; }
-.ppart .aa-src:hover { text-decoration: underline; }
+/* Pas de `text-decoration: underline` au survol de .aa-src : `.ppart a` pose
+   DEJA un filet sous chaque lien de l'article et `.ppart a:hover` le fonce.
+   Les deux se superposaient — deux traits sous « Source : ... ». */
 .ppart .aa-meta { display: none; }
 .ppart .aa-seen { display: inline-block; margin: 8px 0 0; font-size: 12px; color: #8FA0B8; }
 .ppart .art-allops li .pros-inline { margin: 10px 0 0; }
@@ -372,3 +374,20 @@
   vertical-align: top; }
 .ppart tbody tr:hover td { background: #F9FBFD; }
 .ppart td:last-child, .ppart th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* -- LE CTA NEWSLETTER DE LA LIGNE DE SOURCE : un bouton, pas un lien nu ----
+   Retour du 21/09 : « mets-moi un leger bouton pour que ce soit style ».
+   Le lien n'avait aucune classe : il portait le filet de `.ppart a`, repeint en
+   gris par `.ppart .art-srcline a` — donc DEUX passages soulignes dans la meme
+   phrase. Le raccourci `border:` annule le filet herite.
+   `font-size: inherit` et NON une valeur figee : le cockpit impose
+   `.atl2 .readpane .ppart .art-srcline{font-size:12px!important}`, et une
+   pastille figee a 12.5px y sortirait plus grosse que sa ligne. */
+.ppart .art-srcline .nl-btn {
+  display: inline-block; margin: 0 0 0 2px; padding: 2px 11px 3px;
+  border: 1px solid #E3E8F0; border-radius: 9px; background: #F9FBFD;
+  color: #4B5E78; font-size: inherit; line-height: 1.6; font-weight: 500;
+  text-decoration: none; max-width: 100%;
+  transition: background-color .16s, border-color .16s, color .16s; }
+.ppart .art-srcline .nl-btn:hover {
+  background: #F1F6FB; border-color: #C9D6E6; color: #16233A; }
