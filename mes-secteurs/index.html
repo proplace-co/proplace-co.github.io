@@ -613,7 +613,7 @@ if(s&&s.fund_type){
 // Header loggé : {fund} ▾ → {fund} deal flow (/cibles) · Paramètres (/compte).
 // La déconnexion vit uniquement dans le footer.
 var compte=(lang==="fr"?"/fr/compte":"/compte");
-var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"");
+var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"")+(s.member_session?"&session="+encodeURIComponent(s.member_session):"");
 var who=String(s.fund_type||"").replace(/^member-/i,"").replace(/[-_]+/g," ").replace(/^\s+|\s+$/g,"");
 function escH(x){return String(x||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 var flowLbl=who?who+" deal flow":t.dealflow;
@@ -783,7 +783,7 @@ if(s&&s.fund_type){
 // Header loggé : {fund} ▾ → {fund} deal flow (/cibles) · Paramètres (/compte).
 // La déconnexion vit uniquement dans le footer.
 var compte=(lang==="fr"?"/fr/compte":"/compte");
-var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"");
+var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"")+(s.member_session?"&session="+encodeURIComponent(s.member_session):"");
 var who=String(s.fund_type||"").replace(/^member-/i,"").replace(/[-_]+/g," ").replace(/^\s+|\s+$/g,"");
 function escH(x){return String(x||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 var flowLbl=who?who+" deal flow":t.dealflow;
