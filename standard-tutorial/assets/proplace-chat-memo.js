@@ -83,7 +83,7 @@
 
     // skills
     var s2 = document.createElement("script");
-    s2.src = base + "stan-skills.js";
+    s2.src = base + "stan-skills.js?v=standard-en-20260930";
     s2.onload = tick;
     s2.onerror = tick;
     document.head.appendChild(s2);

@@ -579,3 +579,142 @@ window.DIRECTIVES = {
   }
 };
 
+/* Public Standard walkthrough: translate display data only; keep native IDs,
+   task flags, skill functions, injection targets and renderer unchanged. */
+if (window.STAN_LANG === "en") (function () {
+  var names = {
+    market: "Verified market sizing", competitive: "Competitive analysis", redflag: "Red flag audit",
+    techaudit: "Technical audit", techdd: "Technical DD questions", loi: "Generate the full LOI",
+    callprep: "Founder call preparation", email: "Founder outreach email", refcheck: "Founder reference checks",
+    custref: "Customer reference calls", lp: "Board-ready LP version", exec: "One-page executive summary",
+    slides: "Five-page committee slides", excel: "Update financial model", kpi: "Update portfolio KPIs",
+    fairvalue: "Calculate fair value", board: "Board meeting notes", "100days": "Post-closing 100-day plan",
+    "lp-update": "Quarterly LP update", dir07: "Thesis-aware financial model", dir08: "Universal Sourcing Agent"
+  };
+  var descriptions = {
+    market: "Checks B2B hospitality market sizing using 2024 data, TAM/SAM/SOM and recent sources.",
+    competitive: "Produces a full analysis of 8–10 competitors, positioning and defensibility.",
+    redflag: "Systematically identifies weak points and produces a risk register.",
+    techaudit: "Audits architecture, technical debt, scalability and IP, with technical DD questions.",
+    techdd: "Prepares technical questions to ask the CTO during due diligence.",
+    loi: "Drafts a full LOI covering EV, acquisition structure, earn-out and conditions precedent.",
+    callprep: "Prepares the CEO call brief: three key questions, two pitfalls and an objective.",
+    email: "Drafts a natural CEO outreach email without mentioning an acquisition.",
+    refcheck: "Prepares ten questions for founder reference checks.",
+    custref: "Five questions for current customers: adoption, satisfaction and dependence.",
+    lp: "Produces a formal English board-ready LP version without sensitive information.",
+    exec: "Produces a one-page executive summary for the investment committee.",
+    slides: "Produces five deal-brief slides for the committee.",
+    excel: "Runs the Excel financial model update via Modal.",
+    kpi: "Updates the portfolio dashboard with the latest KPIs.",
+    fairvalue: "Calculates fair value using the thesis multiple.",
+    board: "Organises board notes into decisions, actions and next steps.",
+    "100days": "Produces a post-closing 100-day plan covering integration, governance and synergies.",
+    "lp-update": "Produces the quarterly LP update: performance, highlights and outlook."
+  };
+  Object.assign(window.SKILL_NAMES, names);
+  Object.assign(window.SKILLS, descriptions);
+  var phases = {
+    analyse: "Analysis & Qualification", approche: "Founder Outreach", decouverte: "Discovery & Qualification",
+    termsheet: "Term Sheet & Exclusivity", ic: "Investment Committee", dd: "Due Diligence", portfolio: "Portfolio Management"
+  };
+  var tasks = {
+    t1: "AI-generated Proplace memo", t2: "Validate or override the GP decision (CALL/CONSIDER/MONITOR/PASS)",
+    t3: "Check thesis fit and active angles", t4: "Verify market sizing with recent sources", t5: "Initial competitive analysis",
+    t6: "Personalised outreach email sent", t7: "LinkedIn profile and active website verified", t8: "30-minute meeting scheduled",
+    t9: "Shared references identified", t11: "Call preparation completed before the meeting", t12: "Call notes recorded in the memo",
+    t13: "ARR verified with bank statements or screenshots", t14: "Post-call red flag audit", t15: "Three founder reference calls",
+    t17: "LOI drafted and reviewed by counsel", t18: "Financial model updated (IRR, MOIC)",
+    t19: "45-day exclusivity negotiated and signed", t20: "Co-investors informed",
+    t_dir07: "Thesis-aware M&A financial model (Directive 07)", t22: "Board brief prepared 48 hours in advance",
+    t23: "Five-page committee slides", t24: "Risk register presented", t25: "Investment committee decision documented",
+    t27: "Legal DD commissioned (counsel and timeline)", t28: "Financial DD: ARR and contracts validated",
+    t29: "Technical DD: architecture and security", t30: "Cap table verified (shareholders and employee options)",
+    t31: "Three customer reference calls", t32: "Final DD report consolidated", t35: "Post-closing 100-day plan shared",
+    t36: "Monthly reporting set up (template sent)", t37: "First board meeting at day 30",
+    t38: "Systems integration (Trevium · API)", t39: "Fair value calculated and documented", t40: "Quarterly LP update sent"
+  };
+  Object.keys(window.PHASES_BY_STATUS).forEach(function (status) {
+    window.PHASES_BY_STATUS[status].forEach(function (phase) {
+      phase.name = phases[phase.id] || phase.name;
+      phase.tasks.forEach(function (task) {
+        task.label = tasks[task.id] || task.label;
+        if (task.skill) task.skillName = names[task.skill] || task.skillName;
+      });
+    });
+  });
+  window.SKILLS_TAB_LAYOUT.forEach(function (group, i) {
+    var order = ["analyse", "approche", "decouverte", "termsheet", "ic", "dd", "portfolio"];
+    group.phase = group.phase.split(" ")[0] + " " + phases[order[i]];
+    group.items.forEach(function (item) {
+      if (names[item.key]) item.name = names[item.key];
+      if (descriptions[item.key]) item.desc = descriptions[item.key];
+    });
+  });
+  var directives = {
+    dir_market_intel: ["In-depth Market Intelligence", "Verified TAM/SAM/SOM from 2024 sources; assumptions made explicit and challenged."],
+    dir_thesis_fit: ["Thesis Fit Scorer", "Scores thesis fit against twelve criteria, active angles and blocking signals."],
+    dir_outreach: ["Personalised Outreach Email", "A short, natural email personalised to the founder's profile."],
+    dir07: [names.dir07, "A complete strategic-acquirer model: five-year P&L, cash flows, IRR/MOIC, cap table, sensitivities and synergies."],
+    dir_ic_memo: ["Full Investment Committee Memo", "An 8–10-page committee memo with the deal context filled in."],
+    dir_slides_ic: ["Investment Committee PowerPoint Slides", "Eight committee deal-brief slides generated via python-pptx on Modal."],
+    dir_tech_dd: ["Full Technical Audit", "BuiltWith, GitHub and Claude: technology stack, technical debt and CTO DD questions."],
+    dir_legal_dd: ["Legal DD Checklist", "Contracts, IP, GDPR, cap table and litigation checks."],
+    dir_founder_refs: ["Founder LinkedIn References", "Identify ten founder contacts and prepare questions tailored to their role."],
+    dir08: [names.dir08, "Finds similar targets in the European B2B travel technology ecosystem."],
+    dir_100days: ["Post-closing 100-day Plan", "A complete operational plan for integration, governance and synergies."],
+    dir_lp_report: ["Quarterly LP Report", "An English quarterly report with KPI data and no sensitive information."]
+  };
+  Object.keys(directives).forEach(function (key) {
+    window.DIRECTIVES[key].name = directives[key][0];
+    window.DIRECTIVES[key].description = directives[key][1];
+  });
+  window.SKILLS_TAB_LAYOUT.forEach(function (group) {
+    group.items.forEach(function (item) {
+      if (item.type === "directive" && directives[item.key]) {
+        item.name = "⚡ " + directives[item.key][0]; item.desc = directives[item.key][1];
+      }
+    });
+  });
+  var followups = {
+    market: ["View analysis", "Insert into Executive Summary"], competitive: ["Insert into Market", "Run red flag audit"],
+    redflag: ["View full audit", "Insert into Due Diligence"], techaudit: ["Insert into Product", "Generate technical DD questions"],
+    techdd: ["Run full technical audit", "Insert into Product"], loi: ["View LOI", "Share with counsel"],
+    callprep: ["View Phase 2 in Roadmap", "Run founder reference checks"], email: ["View email", "Share by URL"],
+    refcheck: ["View ten questions", "Insert into Due Diligence", "Prepare founder call"],
+    custref: ["View questions", "Insert into Due Diligence"], lp: ["View LP document", "Share by URL"],
+    exec: ["View document", "Share with committee"], slides: ["View slides", "Share with committee"],
+    excel: ["View financial model"], kpi: ["Calculate fair value", "Generate LP update"],
+    fairvalue: ["Insert fair value into Portfolio"], board: ["Dictate notes in chat"],
+    "100days": ["Insert into Portfolio", "Share with founder"], "lp-update": ["View update", "Share with LPs"],
+    dir07: ["Configure and run"], dir08: ["Configure and run"]
+  };
+  Object.keys(followups).forEach(function (key) {
+    window.SKILL_DIRECT[key].f.forEach(function (button, i) { button.label = followups[key][i]; });
+  });
+  var sections = [
+    ["GP Verdict", "Score, CALL/PASS decision and GP comments"], ["Executive Summary", "Company description, key figures and market context"],
+    ["Due Diligence", "Received documents, risk register and DD analysis"], ["DD — Product & Technology", "Technology stack, architecture and debt"],
+    ["DD — Team", "Founder references and background"], ["DD — Market", "Market sizing, competitors and positioning"],
+    ["DD — Business & Traction", "ARR, KPIs, contracts and customers"], ["Portfolio Management", "Portfolio KPIs, 100-day plan and fair value"],
+    ["New section", "Add a custom section at the bottom of the memo"]
+  ];
+  window.INJECT_SECTIONS.forEach(function (section, i) { section.label = sections[i][0]; section.desc = sections[i][1]; });
+  var targets = { market: "Executive Summary", competitive: "Executive Summary — Competitors", redflag: "Due Diligence — Risk Register",
+    loi: "Due Diligence — LOI", exec: "GP Verdict — Executive Summary", fairvalue: "Portfolio — Fair Value", portfolio: "Portfolio Management",
+    techaudit: "DD · Product", refcheck: "DD · Team", custref: "DD · Business" };
+  Object.keys(targets).forEach(function (key) { window.INJECT_TARGET[key].label = targets[key]; });
+  Object.assign(window.STATUS_LABELS, { MEETING_SCHEDULED: "📅 Meeting scheduled", MEETING_DONE: "✓ Meeting completed", TERMSHEET_SENT: "📋 Term sheet sent", IC_APPROVED: "✅ IC approved" });
+  Object.assign(window.OUT_CONTEXT, {
+    market: "Market analysis based on 2024 sources. Check the figures, then insert it into the memo's Executive Summary.",
+    redflag: "Audit of the full memo. Address risks before the LOI; insert the output into Due Diligence.",
+    loi: "A non-binding document for your counsel to review. Insert it into Due Diligence.",
+    email: "Copy into your mail client. This document is not inserted into the memo.",
+    exec: "Committee format. Distribute 48 hours before the meeting; insert into the GP Verdict.",
+    refcheck: "Ten reference questions. Insert into Due Diligence or share with your team.",
+    lp: "An English LP version with sensitive data filtered. It does not change the main memo.",
+    slides: "Five investment committee deal-brief slides.", excel: "An Excel financial model with IRR, MOIC and synergies.",
+    custref: "Five customer reference questions.", "lp-update": "A quarterly LP update with KPIs and outlook."
+  });
+})();
+
