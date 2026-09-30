@@ -1040,7 +1040,7 @@ if(s&&s.fund_type){
 // Header loggé : {fund} ▾ → {fund} deal flow (/cibles) · Paramètres (/compte).
 // La déconnexion vit uniquement dans le footer.
 var compte=(lang==="fr"?"/fr/compte":"/compte");
-var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"");
+var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"")+(s.member_session?"&session="+encodeURIComponent(s.member_session):"");
 var who=String(s.fund_type||"").replace(/^member-/i,"").replace(/[-_]+/g," ").replace(/^\s+|\s+$/g,"");
 function escH(x){return String(x||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 var flowLbl=who?who+" deal flow":t.dealflow;
@@ -1210,7 +1210,7 @@ if(s&&s.fund_type){
 // Header loggé : {fund} ▾ → {fund} deal flow (/cibles) · Paramètres (/compte).
 // La déconnexion vit uniquement dans le footer.
 var compte=(lang==="fr"?"/fr/compte":"/compte");
-var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"");
+var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"")+(s.member_session?"&session="+encodeURIComponent(s.member_session):"");
 var who=String(s.fund_type||"").replace(/^member-/i,"").replace(/[-_]+/g," ").replace(/^\s+|\s+$/g,"");
 function escH(x){return String(x||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 var flowLbl=who?who+" deal flow":t.dealflow;
@@ -1560,7 +1560,7 @@ border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
 .ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
 .ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
 .ev-deeplink .op-eval-panel{margin-top:0}
-</style><script>(function(){
+</style><script>(function(){/* pp-eval-credit-safe-v2 */
 var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://calendar.app.google/yL2nSRV974Jqaybd8",ES="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound/evaluate-and-signup",MST="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v3/instant-memo/status/";
 function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
 // Bilingue (2026-07-16) : mêmes clé/priorités que le chrome partagé — le flux d'évaluation
@@ -1582,7 +1582,7 @@ function matchCta(res,fund){
  var co=coOf(res),web=webOf(res),rec=recOf(res);
  return '<button type="button" class="ev-cta ev-launch" data-fund="'+esc(fund)+'" data-co="'+esc(co)
   +'" data-web="'+esc(web)+'" data-rec="'+esc(rec)+'">'
-  +T("⚡ Lancer le mémo + voir mes cibles","⚡ Launch the memo + see my targets")+'</button>';
+  +T("⚡ Lancer le mémo","⚡ Launch the memo")+'</button>';
 }
 function verdict(res,fund){
  if(!res)return '<div class="ev-err">'+T("Évaluation indisponible.","Evaluation unavailable.")+'</div>';
@@ -1714,31 +1714,24 @@ if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("
 document.addEventListener("click",function(ev){
  var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
  if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
- // #5 — MATCH → lancer le mémo INSTANT (code) puis ouvrir /cibles « À analyser ».
+ // #5 — MATCH → funnel inbound. Une session ppin1 signée débite le
+ // membre ; le vieux cookie base64 seul reste au quota public, jamais au ledger.
  var lb=(ev.target&&ev.target.closest)?ev.target.closest(".ev-launch"):null;
  if(lb){
   var lp=lb.closest(".op-eval-panel");if(!lp)return;
-  var lfund=lb.dataset.fund||"",lco=lb.dataset.co||"",lweb=lb.dataset.web||"";
-  // Onglet ouvert SYNCHRONE (dans le geste de clic) pour ne pas être bloqué ; on le
-  // redirige ensuite vers la page /cibles résolue (repli : le dashboard chat).
-  var win=null;try{win=window.open("","_blank");}catch(e){}
+  var lco=lb.dataset.co||"",lweb=lb.dataset.web||"";
+  var la=auth();
+  if(!la||!la.email){leadForm(lp,{dataset:{c:lco,u:lweb,h:"",i:""}});return;}
   lp.innerHTML='<div class="ev-load">'+T("⚡ Lancement du mémo instant…","⚡ Launching instant memo…")+'</div>';
-  var memoUrl="";
-  fetch("https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v3/instant-memo",{method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({company_name:lco,website:lweb,fund_type:lfund,memo:"instant"})})
-   .then(function(r){return r.json();}).catch(function(){return {};})
-   .then(function(j){memoUrl=(j&&j.url)||"";
-    return fetch("https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/last",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({fund_slug:lfund,source:"sourced"})}).then(function(r){return r.json();}).catch(function(){return {};});})
-   .then(function(d){
-    // Page publique /cibles (liste vivante = les retenues) si publiée, sinon le cockpit.
-    var cibles=(d&&d.found&&d.url)?d.url:("https://analysis.proplace.co/chat/?fund="+encodeURIComponent(lfund));
-    if(win){try{win.location=cibles;}catch(e){}}
-    lp.innerHTML='<div class="ev-v ev-yes">✅ '+T("Mémo instant lancé","Instant memo launched")+'</div>'
-      +'<div class="ev-r">'+T("Le mémo (code, ~15 min) se prépare. Votre page cibles s’ouvre sur « À analyser ».","The memo (code, ~15 min) is preparing. Your targets page opens on the To-analyse tab.")+'</div>'
-      +'<a class="ev-cta" target="_blank" rel="noopener" href="'+esc(cibles)+'">'+T("→ Voir mes cibles (À analyser)","→ See my targets (To analyse)")+'</a>'
-      +(memoUrl?'<a class="ev-cta ev-cta2" target="_blank" rel="noopener" href="'+esc(memoUrl)+'">'+T("→ Ouvrir le mémo","→ Open the memo")+'</a>':'');
-   }).catch(function(e){lp.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+  var pay={company_name:lco,website:lweb,email:String(la.email||"").toLowerCase(),
+   lang:EN()?"en":"fr"};
+  if(la.member_session)pay.session=la.member_session;
+  fetch(ES,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(pay)})
+   .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+   .then(function(x){
+    if(!x.ok||!x.j||!x.j.job_id)throw new Error((x.j&&(x.j.detail||x.j.error))||"launch failed");
+    pollMemo(lp,x.j.job_id,x.j.memo_url||"",pay.email);
+   }).catch(function(e){lp.innerHTML='<div class="ev-err">⚠ '+esc(String(e.message||e))+'</div>';});
   return;
  }
  // #3 — override d'un NO MATCH (justification tracée, décision enregistrée).
