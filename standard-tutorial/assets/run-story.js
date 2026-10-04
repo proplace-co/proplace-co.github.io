@@ -26,6 +26,17 @@
  *   open       présent (avec collapsible) → déplié d'emblée
  *   maxh       hauteur max (px) de la chronologie, défilement interne (défaut 440 ;
  *              0 = illimitée)
+ *   maxh-narrow même chose sur écran étroit (≤ 640 px) ; prioritaire sur maxh. « 0 » :
+ *              le film se déroule dans la page, sans second ascenseur (Mon compte sur
+ *              mobile). Absent : maxh s'applique partout (popups, fenêtres de mémo).
+ *
+ * Étapes : une étape « error » suivie d'autres étapes (le run a continué) ou d'un run
+ * qui n'a pas échoué est un AVERTISSEMENT (pastille ambre cochée, repliée sur sa
+ * phrase) — le rouge est réservé à l'étape où un run s'est réellement arrêté. Ex. :
+ * « Réveil » avec un réservoir presque vide, « le run part quand même ».
+ *
+ * Défilement interne : la chronologie suit l'étape en cours tant que le visiteur ne
+ * fait pas défiler lui-même ; s'il remonte lire, on ne le ramène plus de force.
  *
  * Look : celui de proplace.co (Instrument Sans, vert #12A150, encres navy, filets
  * #E3E8F0) — lu dans les tokens --pp-* de la page hôte quand ils existent.
@@ -68,10 +79,10 @@
     '--bg:var(--pp-bg,#ffffff);--ink:var(--pp-ink,#16233A);--ink2:var(--pp-ink-2,#4B5E78);--mute:var(--pp-ink-3,#61708A);' +
     '--faint:var(--pp-ink-4,#8FA0B8);--line:var(--pp-line,#E3E8F0);--wash:var(--pp-bg-zone,#F9FBFD);' +
     '--acc:var(--pp-green,#12A150);--run:var(--pp-navy,#0F1D33);--ok:var(--pp-green-tx,#0E7F3F);' +
-    '--ok-wash:var(--pp-green-bg,#E7F6EE);--ok-bd:var(--pp-green-bd,#BFE6CF);--warn:#96690E;--err:#C0353A;' +
+    '--ok-wash:var(--pp-green-bg,#E7F6EE);--ok-bd:var(--pp-green-bd,#BFE6CF);--warn:#96690E;--warn-dot:var(--pp-amber,#E0A81E);--err:#C0353A;' +
     '--mono:var(--pp-body,"Instrument Sans",system-ui,sans-serif)}' +
     ':host([theme=dark]){--bg:#0F1D33;--ink:#EEF2F7;--ink2:#C9D6E6;--mute:#8FA0B8;--faint:#61708A;--line:#1B2F4E;' +
-    '--wash:#13243F;--acc:#3FCB7E;--run:#C9D6E6;--ok:#6EDCA2;--ok-wash:#0E3424;--ok-bd:#1E5A3C;--warn:#F0C25A;--err:#FF8A8F}' +
+    '--wash:#13243F;--acc:#3FCB7E;--run:#C9D6E6;--ok:#6EDCA2;--ok-wash:#0E3424;--ok-bd:#1E5A3C;--warn:#F0C25A;--warn-dot:#F0C25A;--err:#FF8A8F}' +
     '*{box-sizing:border-box}' +
     '.box{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:22px 24px 18px;' +
     'box-shadow:0 6px 18px rgba(15,29,51,.05)}' +
@@ -100,10 +111,12 @@
     '.st{position:relative;padding:0 0 12px 26px}' +
     '.st:before{content:"";position:absolute;left:6px;top:16px;bottom:-2px;width:1px;background:var(--line)}' +
     '.st:last-child:before{display:none}' +
-    '.st.done:before{background:color-mix(in srgb,var(--ok) 45%,var(--line))}' +
+    '.st.done:before,.st.warn:before{background:color-mix(in srgb,var(--ok) 45%,var(--line))}' +
     '.dot{position:absolute;left:0;top:4px;width:13px;height:13px;border-radius:50%;border:1.5px solid var(--faint);background:var(--bg);display:grid;place-items:center}' +
     '.st.done .dot{border-color:var(--ok);background:var(--ok)}' +
-    '.st.done .dot:after{content:"";width:3px;height:6px;border:solid #fff;border-width:0 1.6px 1.6px 0;transform:translateY(-1px) rotate(45deg)}' +
+    '.st.done .dot:after,.st.warn .dot:after{content:"";width:3px;height:6px;border:solid #fff;border-width:0 1.6px 1.6px 0;transform:translateY(-1px) rotate(45deg)}' +
+    '.st.warn .dot{border-color:var(--warn-dot);background:var(--warn-dot)}' +
+    '.st.warn .sd{color:var(--warn)}' +
     '.st.running .dot{border-color:var(--run)}' +
     '.st.running .dot:after{content:"";width:5px;height:5px;border-radius:50%;background:var(--run);animation:breathe 1.4s ease-in-out infinite}' +
     '.st.error .dot{border-color:var(--err);background:var(--err)}' +
@@ -168,6 +181,29 @@
     'mask-image:linear-gradient(180deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%);padding-top:8px;padding-bottom:8px}' +
     '.more{all:unset;cursor:pointer;font-size:12px;font-weight:600;color:var(--mute);padding:2px 0 2px 21px}' +
     '.more:hover{color:var(--ok)}' +
+    // Écran étroit (téléphone) : moins de marge perdue (le film vit souvent dans une
+    // carte), lignes plus longues, et le résumé d'une étape repliée passe SOUS son
+    // libellé sur deux lignes au lieu d'être coupé à 3 mots par une ellipse.
+    '@media (max-width:640px){' +
+    '.box{padding:16px 14px 14px;border-radius:12px}' +
+    ':host([compact]) .box{padding:14px 12px 12px}' +
+    ':host([collapsible]) .box,:host([collapsible]) .box.open{padding:12px 14px}' +
+    '.hd{gap:10px}.ttl{font-size:17px}' +
+    '.pill{padding:4px 9px 4px 8px;font-size:11.5px}' +
+    '.bar{margin-top:14px}.cnt{gap:14px}' +
+    '.st{padding-left:22px}' +
+    '.sh{flex-wrap:wrap;row-gap:2px}' +
+    '.tm{order:2;margin-left:auto}' +
+    '.sd{order:3;flex:1 0 100%;white-space:normal;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}' +
+    '.sd:empty{display:none}' +
+    '.ln,.think{gap:7px}.mk,.think .sp{flex-basis:10px}' +
+    '.more{padding-left:17px}' +
+    '.end{padding:12px 13px}' +
+    // version repliée : titre · heure · résultat sur deux lignes, l'activité en dessous
+    '.sum{flex-wrap:wrap;row-gap:3px}' +
+    '.stxt{flex:1 1 0;white-space:normal;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}' +
+    '.tick{order:3;flex:1 0 100%;padding-left:28px}.tick:empty{display:none}' +
+    '}' +
     '@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}';
 
   function esc(s) {
@@ -210,6 +246,7 @@
       this._more = {};          // étapes dont on montre TOUTES les lignes
       this._expanded = null;    // mode collapsible : déplié ?
       this._lastTick = '';
+      this._autoTop = null;     // dernière position de défilement posée par le suivi automatique
       this._wasRunning = false;
       this._timer = null;
       this._anim = null;
@@ -267,6 +304,15 @@
     }
 
     _live() { var s = this._state; return !!(s && s.status === 'running' && !s.stale); }
+
+    /* Hauteur max de la chronologie (0 = illimitée) : `maxh-narrow` sur écran étroit,
+       sinon `maxh` (défaut 440). */
+    _maxh() {
+      var narrow = false;
+      try { narrow = !!(window.matchMedia && window.matchMedia('(max-width: 640px)').matches); } catch (e) { /* noop */ }
+      if (narrow && this.hasAttribute('maxh-narrow')) return parseInt(this.getAttribute('maxh-narrow'), 10) || 0;
+      return this.hasAttribute('maxh') ? (parseInt(this.getAttribute('maxh'), 10) || 0) : 440;
+    }
 
     _tick() {
       var st = this._state;
@@ -385,14 +431,20 @@
       var steps = st.steps || [];
       var self = this;
       var LAST = 4;
-      var tl = steps.map(function (s) {
+      // Dernière étape entamée : seule elle peut porter l'arrêt d'un run échoué.
+      var lastStarted = -1;
+      steps.forEach(function (s, i) { if (s.started_at || (s.status && s.status !== 'pending')) lastStarted = i; });
+      var tl = steps.map(function (s, i) {
         var all = byStep[s.key] || [];
         var hidden = (!self._more[s.key] && all.length > LAST + 1) ? all.length - LAST : 0;
         var lines = hidden ? all.slice(hidden) : all;
         var status = s.status || 'pending';
+        // « error » sans arrêt du run (il a continué, ou il n'a pas échoué) = avertissement :
+        // ex. Réveil « un réservoir presque vide, le run part quand même ».
+        if (status === 'error' && !(failed && i >= lastStarted)) status = 'warn';
         var auto = status === 'running' || status === 'error';
         var open = self._open[s.key] !== undefined ? self._open[s.key] : auto;
-        var finished = status === 'done' || status === 'skipped' || status === 'error';
+        var finished = status === 'done' || status === 'skipped' || status === 'error' || status === 'warn';
         var detail = finished ? (s.detail || (all.length ? all[all.length - 1][0].text : '')) : '';
         var tm = s.started_at ? (s.ended_at ? dur(s.started_at, s.ended_at) : hhmm(s.started_at)) : '';
         var body = lines.map(function (p) {
@@ -432,8 +484,16 @@
         ? '<div class="ft"><span>' + n + ' événements racontés</span><button class="btn" data-replay type="button">▶ Revoir le film</button></div>' : '';
 
       var pct = Math.max(2, Math.min(100, st.pct || (raw.status === 'done' ? 100 : 0)));
-      var mh = this.hasAttribute('maxh') ? parseInt(this.getAttribute('maxh'), 10) : 440;
+      var mh = this._maxh();
       var tlAttr = mh > 0 ? ' class="tl scroll" style="max-height:' + mh + 'px"' : ' class="tl"';
+      // Défilement interne : le visiteur a-t-il quitté la position posée par le suivi ?
+      // (alors on garde SA position au lieu de le ramener de force à chaque ligne)
+      var prevSc = box.querySelector('.tl.scroll'), keepTop = null;
+      if (prevSc && this._autoTop !== null) {
+        var atAuto = Math.abs(prevSc.scrollTop - this._autoTop) <= 24;
+        var atEnd = prevSc.scrollTop + prevSc.clientHeight >= prevSc.scrollHeight - 24;
+        if (!atAuto && !(atEnd && (live || vw.replay))) keepTop = prevSc.scrollTop;
+      }
       var body = '<div class="bar' + ((live || vw.replay) ? ' run' : '') + '"><i style="width:' + pct + '%"></i></div>' +
         cnt + '<ol' + tlAttr + '>' + (tl || '<li class="empty">Le moteur se prépare…</li>') + '</ol>' + end + foot;
       if (collapsible) {
@@ -459,11 +519,17 @@
         box.innerHTML = '<div class="hd"><div><div class="eb">' + esc(eyebrow) + '</div><div class="ttl">' + esc(heading) + '</div>' +
           '<div class="meta">' + esc(meta) + '</div></div>' + pill + '</div>' + body;
       }
-      // la chronologie bornée suit l'étape en cours
+      // la chronologie bornée suit l'étape en cours — sauf si le visiteur a défilé lui-même
       var sc = box.querySelector('.tl.scroll');
-      if (sc && (live || vw.replay)) {
-        var cur = sc.querySelector('.st.running');
-        if (cur) sc.scrollTop = Math.max(0, cur.offsetTop - 12 + cur.offsetHeight - sc.clientHeight + 40);
+      if (sc) {
+        if (keepTop !== null) sc.scrollTop = keepTop;
+        else {
+          var cur = (live || vw.replay) ? sc.querySelector('.st.running') : null;
+          sc.scrollTop = cur ? Math.max(0, cur.offsetTop - 12 + cur.offsetHeight - sc.clientHeight + 40) : 0;
+          this._autoTop = sc.scrollTop;
+        }
+      } else {
+        this._autoTop = null;
       }
       this._renderedN = story.length;
       this._renderThink();
@@ -483,6 +549,7 @@
       var rb = box.querySelector('[data-replay]');
       if (rb) rb.addEventListener('click', function () {
         self._shown = 0; self._renderedN = 0; self._open = {}; self._more = {}; self._acc = 0;
+        self._autoTop = null;
         if (self.hasAttribute('collapsible')) self._expanded = true;
         self._render();
       });
