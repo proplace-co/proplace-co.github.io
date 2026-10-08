@@ -47,3 +47,13 @@ Demande : transmettre le paiement de 500 € ou l’avoir CL002, la période cou
 Source : Factures — exemple CSV — « contract_id,period,currency,amount
 CL001,2026-09,EUR,10000
 CL002,2026-09,EUR,5000 »
+
+## Pièces et réponses encore nécessaires
+
+- Justification documentée de l’écart CL002
+- Comptes et relevés complets : aucun audit annuel exhaustif sur cet échantillon
+
+## Prochaines actions
+
+- Direction financière — justifier les 500 EUR non encaissés sur CL002 : paiement restant, avoir ou décalage de période ; avant comité
+- Fondatrice — transmettre les relevés bancaires et le rapprochement complet pour étendre le contrôle au-delà de deux contrats

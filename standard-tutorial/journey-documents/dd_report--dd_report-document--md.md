@@ -37,3 +37,15 @@ Source : Mémo détaillé — Novalis — « Société fictive de cybersécurit�
 Index : mémo, thèse, factures septembre, encaissements, contrats, compte rendu fictif et modèle. Rattacher chaque conclusion à ces pièces.
 
 Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+
+## Pièces et réponses encore nécessaires
+
+- Audit juridique, fiscal et social à compléter
+- Cap table et droits IP à confirmer
+- Trois comptes rendus de références clients et audit technique encore attendus
+
+## Prochaines actions
+
+- Finance — justifier CL002 et étendre le rapprochement ; avant comité
+- Fondatrice et avocat — confirmer cap table, droits IP et périmètre fiscal/social ; avant accords définitifs
+- Investisseur et CTO — recevoir trois références clients et compléter la revue technique ; avant décision de closing
