@@ -1,0 +1,1234 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pliant — analyse FinTech | Proplace</title><meta name="description" content="FinTech · Solutions de cartes de paiement professionnelles et gestion des dépenses (Spend Management) pour entreprises en Allemagne · série B"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/pliant/"><meta property="og:type" content="article"><meta property="og:title" content="Pliant — analyse FinTech | Proplace"><meta property="og:description" content="FinTech · Solutions de cartes de paiement professionnelles et gestion des dépenses (Spend Management) pour entreprises en Allemagne · série B"><meta property="og:url" content="https://proplace.co/analysis/pliant/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://proplace.co/logo.png"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #E3E8F0;
+font-family:var(--pp-body)}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#16233A;text-decoration:none}.ppx-bar nav a:hover{color:#16233A}
+.ppx-crumb{font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);font-size:13px;color:#61708A;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#61708A;text-decoration:none}
+.ppx-cta{font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);background:#0F1D33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#C9D6E6;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#B4C2D4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#12A150;color:#0A6432;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0F1D33}
+.ppx-disc{font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);font-size:12px;color:#B4C2D4;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#B4C2D4}
+.ppx-ft{font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);border-top:1px solid #E3E8F0;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#61708A;text-align:center}
+.ppx-ft a{color:#61708A;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif)}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#0E7F3F;text-decoration:underline}
+.bcrumb .sep{color:#E3E8F0}
+.bcrumb .cur{color:#16233A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E3E8F0;
+font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif)}
+/* Gabarit IDENTIQUE a la nav de la page d'accueil (.pp-nav-inner : 1200 / 32) —
+   le bandeau LIVE et la bande des jours se calent dessus, donc tout demarre
+   exactement sous le logo. Miroir React : components/SiteHeader.tsx. */
+.pph .in{max-width:1200px;margin:0 auto;padding:0 32px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+/* Le bandeau LIVE tient la largeur DE LA PAGE, pas celle de l'ecran (retour
+   Antoine 10/08). Regle MIROIR de src/live/core.ts — elle est repetee ici pour
+   etre dans le <head> : sans elle la barre s'afficherait pleine largeur puis
+   sauterait au chargement du bundle. */
+.pp-livewrap{max-width:1200px;margin:0 auto;padding:0 32px}
+/* UNE SEULE SURFACE : la barre LIVE et la bande des dates dans le meme cadre
+   d'encre, angles droits (miroir de src/live/core.ts). */
+.pp-band{background:#0F1D33;border:1px solid #1B2F4E}
+.pp-band .pp-live{border-bottom:1px solid #1B2F4E}
+/* Le bandeau, la bande des jours et le contenu partagent la MEME gouttiere a
+   toutes les largeurs — sinon les trois blocs demarrent a trois x differents. */
+@media(max-width:760px){.pp-livewrap{padding:0 18px}.wrap.tm-wrap{padding:0 18px}}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#16233A}
+/* (retour CEO 20/07) — mobile : « Mon compte » s'affichait À LA VERTICALE (un mot,
+   voire une lettre, par ligne). Cause : dans .pph nav (flex), .pph-sect et .pph-lang
+   sont en flex:0 0 auto mais PAS .pph-auth → c'était le SEUL enfant compressible, il
+   absorbait tout le débordement et rétrécissait à ~0, forçant le texte du bouton à
+   passer à la ligne. Il devient incompressible : c'est le défileur horizontal du nav
+   (v74) qui prend le relais, comme prévu. */
+.pph .pph-auth{flex:0 0 auto;display:inline-flex;align-items:center;white-space:nowrap}
+.pph .pph-auth button,.pph .pph-acct,.pph .pph-acct-btn{flex:0 0 auto;white-space:nowrap}
+/* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
+   « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
+   couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
+.pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{color:#fff;background:#12A150;padding:8px 14px;
+border-radius:9px;font-weight:600;border:none;cursor:pointer;font-family:inherit;line-height:1.2}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover,.pph button.cta:hover,.pph .pph-auth button.cta:hover{background:#0E8A44}
+/* Les trois surfaces editoriales — MEME rendu que la nav React (Nav.tsx, 10/08) :
+   liens sobres colles a la marque (order:-1 + margin-right:auto), filet de separation,
+   souligne vert au survol. L'ancienne pastille verte segmentee est retiree. */
+.pph .pph-sect{display:inline-flex;align-items:center;gap:22px;white-space:nowrap;flex:0 0 auto;
+order:-1;margin-right:auto;padding-left:20px;position:relative;
+border:0;background:none;border-radius:0;overflow:visible}
+.pph .pph-sect::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+width:1px;height:16px;background:rgba(15,29,51,.12)}
+.pph .pph-sect a{position:relative;padding:6px 0;color:#4B5E78;font-weight:500;font-size:13.5px;
+letter-spacing:.005em;text-decoration:none;transition:color .2s ease}
+.pph .pph-sect a::after{content:"";position:absolute;left:0;right:0;bottom:1px;height:1.5px;
+border-radius:2px;background:#12A150;transform:scaleX(0);transform-origin:left center;
+transition:transform .22s ease}
+.pph .pph-sect a:hover{color:#16233A;background:none}
+.pph .pph-sect a.on{color:#16233A;font-weight:600;background:none}
+.pph .pph-sect a:hover::after,.pph .pph-sect a.on::after{transform:scaleX(1)}
+/* « Accueil » fait doublon avec le logo, qui pointe deja la home (parite React). */
+.pph .pph-home{display:none}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#16233A}
+.pph-lang button.on{background:#0F1D33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ /* v74 (R5) — le SEUL débordeur réel mesuré à 390px est CETTE nav (Connexion +
+    pastille News|Analysis + EN|FR ≈ 309px pour ~264px disponibles) : elle devient
+    son PROPRE défileur horizontal (règle « wide content » : overflow-x:auto sur la
+    pièce INTERNE — jamais sur un ancêtre d'une barre sticky). Alignée à gauche en
+    mobile : un débordement côté start (flex-end) serait inatteignable au scroll. */
+ .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pph nav::-webkit-scrollbar{display:none}
+ /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
+    (même piège que la couleur du CTA, retour CEO 19/07). */
+ .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
+ .pph .pph-sect{gap:14px;padding-left:12px}
+ .pph .pph-sect a{padding:6px 0;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+ /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
+    défileur (order:-1) → les 3 boutons sont TOUJOURS visibles à gauche, c'est
+    « Connexion » qui déborde/scrolle si l'écran est trop étroit (demande CEO). */
+ .pph nav .pph-sect{flex:0 0 auto}
+ /* v75 (bug #7) — la pastille EN|FR est hors du <nav> (défileur) : collée à droite du
+    header, toujours atteignable même quand le <nav> déborde/scrolle. */
+ .pph-lang{margin-left:auto;flex:0 0 auto}
+}
+/* ≤430px : les 3 pastilles + Connexion tiennent ensemble (resserrage police/padding). */
+@media(max-width:430px){
+ .pph nav{gap:7px}
+ .pph .pph-sect{gap:11px;padding-left:10px}
+ .pph .pph-sect a{padding:6px 0;font-size:11.5px;letter-spacing:-.01em}
+}
+
+html,body{min-height:100%}
+body{min-height:100vh;display:flex;flex-direction:column}
+body>main{flex:1 0 auto}
+.ppf{background:#0F1D33;color:#c7d0db;font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);margin-top:auto;width:100%;flex:none;
+font-size:13.5px;line-height:1.3;letter-spacing:0;text-transform:none}
+.ppf-in{max-width:1180px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;
+justify-content:space-between;gap:16px 28px;flex-wrap:wrap}
+.ppf-brand{display:flex;align-items:center;gap:12px;min-width:0}
+.ppf-brand a{display:inline-block}
+.ppf-brand img{height:22px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:13px;color:#9fb0c4;margin:0;line-height:1.3;white-space:nowrap}
+.ppf-nav,.ppf-acct,#ppf-auth{display:flex;align-items:center;flex-wrap:wrap;gap:6px 18px}
+.ppf-nav a,.ppf-acct a,.ppf-acct button,#ppf-auth a,#ppf-auth button{font-size:13.5px;color:#c7d0db;
+text-decoration:none;background:none;border:none;padding:0;cursor:pointer;font-family:inherit;margin:0}
+.ppf-nav a:hover,.ppf-acct a:hover,.ppf-acct button:hover,#ppf-auth a:hover,#ppf-auth button:hover{color:#fff}
+.ppf-copy,.ppf-bottom{font-size:12.5px;color:#7d93ab;margin:0;padding:0;border:0}
+.ppf-api{display:none}
+.ppf-api.on{display:inline}
+@media(max-width:760px){.ppf-in{padding:14px 18px}.ppf-brand p{display:none}
+.ppf-copy,.ppf-bottom{width:100%;text-align:center}}
+/* AskBand bas de page (secteurs / actualites statiques) — miroir React AskBand.tsx */
+.pp-ask{padding:56px 24px;border-top:1px solid #E3E8F0;text-align:center;background:#F9FBFD;
+font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);color:#0F1D33}
+.pp-ask h2{margin:0 auto 16px;font-size:clamp(21px,2.4vw,30px);font-weight:600;
+letter-spacing:-.035em;line-height:1.14;max-width:34ch}
+.pp-ask-body{font-size:15px;color:#4B5E78;margin:0 auto 22px;max-width:62ch;line-height:1.65}
+.pp-ask .ur{display:flex;gap:9px;max-width:600px;margin:0 auto;justify-content:center;flex-wrap:wrap}
+.pp-ask .uf{display:flex;align-items:center;gap:9px;flex:1;min-width:220px;height:50px;padding:0 15px;
+background:#fff;border:1px solid #C9D6E6;border-radius:8px;font-size:15px}
+.pp-ask .uf input{flex:1;border:0;outline:none;font-size:15px;background:none;
+font-family:inherit;min-width:0}
+.pp-ask .ub{flex:none;height:50px;padding:0 24px;border:0;border-radius:8px;background:#12A150;
+color:#fff;font-size:14.5px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit}
+.pp-ask .ub:hover{background:#0E8A44}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0F1D33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#96690E;background:#FFFBEB;border:1px solid #F0E3BC;border-left:4px solid #E0A81E;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #E3E8F0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#E7F6EE;border:1px solid #BFE6CF;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0F1D33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#12A150;--accent-dk:#0E7F3F;--line:#E3E8F0;--bg:#fff;--ink:#0F1D33;--mute:#B4C2D4;--sub:#4B5E78;--mid:#61708A}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Pliant — FinTech", "description": "FinTech · Solutions de cartes de paiement professionnelles et gestion des dépenses (Spend Management) pour entreprises en Allemagne · série B", "inLanguage": "fr", "url": "https://proplace.co/analysis/pliant/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/pliant/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}, "about": {"@type": "Organization", "name": "Pliant"}, "datePublished": "2026-10-15", "dateModified": "2026-10-15"}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="direct">Live</a><a class="pph-mkt" href="/actualites/operations/secteurs/" data-i18n="marches">Veille sectorielle</a></span><span class="pph-auth" id="pph-auth"><a class="cta" href="https://proplace.co/#login" data-i18n="login">Log in</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><div class="pp-livewrap"><div class="pp-band"><div id="pp-live"></div></div></div><script defer src="/live-banner.js"></script><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#16233A}.pph-lang button.on{background:#0F1D33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap;max-width:min(220px,46vw);overflow:hidden;text-overflow:ellipsis}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E3E8F0;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#0E7F3F}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#FDECEC;color:#C0353A}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",direct:"Live",marches:"Sector watch",marchesFooter:"Live by sector",dealflow:"My deal flow",analysis:"Analysis",research:"Research",mindmaps:"Mindmaps",dashboard:"Open dashboard",acct:"Connected",mSettings:"Settings",mPipeline:"My deal flow",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Explore",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"© 2026 Proplace",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Se connecter",news:"Actualités",direct:"Live",directFooter:"En direct",marches:"Veille sectorielle",marchesFooter:"En direct par secteur",dealflow:"Mon deal flow",analysis:"Analyses",research:"La recherche",mindmaps:"Mindmaps",dashboard:"Ouvrir le dashboard",acct:"Connecté",mSettings:"Paramètres",mPipeline:"Mon deal flow",mDashboard:"Tableau de bord",logout:"Se déconnecter",tagline:"Votre AI Corporate Developer",insights:"Explorer",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"© 2026 Proplace",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){if(/^[/]en(?:[/]|$)/.test(location.pathname))return "en";
+if(/^[/]fr(?:[/]|$)/.test(location.pathname))return "fr";
+try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return "en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){
+// Header loggé : {fund} ▾ → {fund} deal flow (/cibles) · Paramètres (/compte).
+// La déconnexion vit uniquement dans le footer.
+var compte=(lang==="fr"?"/fr/compte":"/compte");
+var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"")+(s.member_session?"&session="+encodeURIComponent(s.member_session):"");
+var who=String(s.fund_type||"").replace(/^member-/i,"").replace(/[-_]+/g," ").replace(/^\s+|\s+$/g,"");
+function escH(x){return String(x||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+var flowLbl=who?who+" deal flow":t.dealflow;
+var btnLbl=who||t.acct;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false" aria-label="'+escH(btnLbl)+'">'+escH(btnLbl)+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+pipeline+'">'+escH(flowLbl)+"</a>"+
+'<a role="menuitem" href="'+compte+'">'+t.mSettings+"</a>"+
+"</div></div>";
+return {i:1,h:h,pipeline:pipeline,compte:compte,flowLbl:flowLbl};}
+return {i:0,h:'<a class="cta" href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200;
+// Toujours SOUS le bouton (menu court = Mon compte + Déco) — plus de flip au-dessus.
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Historique Research → Mon compte (onglet Recherches). Enregistre chaque fiche consultée
+   dans localStorage (même clé que ComptePage). No-op hors /research/<slug>/. */
+(function recordResearchVisit(){
+try{
+ var p=(location.pathname||"").replace(/\/+$/,"")+"/";
+ if(!/\/(en\/)?research\/[^/]+\//.test(p))return;
+ if(/\/(en\/)?research\/?$/.test((location.pathname||"").replace(/\/+$/,"")))return;
+ var title="";
+ var h1=document.querySelector("main h1, .rp-head h1, h1");
+ if(h1&&h1.textContent)title=h1.textContent.trim();
+ if(!title)title=(document.title||"").split("|")[0].trim();
+ var url=location.pathname;
+ var key="proplace_research_history";
+ var arr=[];
+ try{arr=JSON.parse(localStorage.getItem(key)||"[]")||[];}catch(e){arr=[];}
+ if(!Array.isArray(arr))arr=[];
+ arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});
+ arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});
+ if(arr.length>40)arr=arr.slice(0,40);
+ localStorage.setItem(key,JSON.stringify(arr));
+}catch(e){}
+})();
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{localStorage.setItem("proplace_lang",lang);}catch(e){}
+/* Keep shared navigation in the language of the article, including breadcrumbs. */
+Array.prototype.forEach.call(document.querySelectorAll('.pph a[href],.ppf a[href],.bcrumb a[href]'),function(a){
+try{var u=new URL(a.getAttribute('href'),location.href);if(u.origin!==location.origin)return;
+var p=u.pathname.replace(/^[/](?:en|fr)(?=[/]|$)/,'')||'/';
+if(/^[/](?:actualites|research)(?:[/]|$)/.test(p))p=(lang==='en'?'/en':'')+p;
+else if(p==='/'||/^[/](?:documentation|compte|terms|privacy)(?:[/]|$)/.test(p))p=(lang==='fr'?'/fr':'')+(p==='/'&&lang==='fr'?'':p);
+else return;
+a.setAttribute('href',p+u.search+u.hash);}catch(e){} });
+Array.prototype.forEach.call(document.querySelectorAll('.ppf-nav a[href*="newsletter"]'),function(a){
+a.setAttribute('href','/'+lang+'/newsletter');});
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){
+ if(a.i){pf.innerHTML='<a href="'+(a.pipeline||"/cibles")+'">'+(a.flowLbl||t.dealflow)+'</a>'
+  +'<a href="'+(a.compte||"/compte")+'">'+t.mSettings+"</a>"
+  +'<button type="button" id="ppf-logout">'+t.logout+"</button>";
+  var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+ else{pf.innerHTML='<a href="/#login">'+t.login+"</a>";}}
+Array.prototype.forEach.call(document.querySelectorAll(".ppf-api"),function(x){
+ if(a.i)x.classList.add("on");else x.classList.remove("on");});
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Pliant</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Pliant"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag" data-pp-prescreen="1" title="Note de présélection, antérieure à l'analyse de Stan">présélection 83/100</span>
+<span class="sb-tag">Allemagne</span>
+<span class="sb-tag">série B</span>
+<span class="sb-tag">FinTech</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Pliant</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/de.png" srcset="https://flagcdn.com/32x24/de.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>Allemagne ·</span> FinTech · Solutions de cartes de paiement professionnelles et gestion des dépenses (Spend Management) pour entreprises en Allemagne · série B</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Le marché visé est celui des solutions de cartes de paiement professionnelles et de la gestion des dépenses (Spend Management) pour les entreprises en Allemagne.</p>
+<a href="https://www.getpliant.com/en-us?set-country=us" target="_blank"><i class="fas fa-globe"></i> Site web</a>
+<a href="https://linkedin.com/in/malterau" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<a href="mailto:malte.rau@getpliant.com"><i class="fas fa-envelope"></i> malte.rau@getpliant.com</a>
+</div>
+</div>
+<a class="nav-item bg-green" href="#identity">🪪 Identité et propriété</a>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du marché</a>
+<a class="nav-item bg-green" href="#market-sourced">📊 Marché et concurrence (sourcé)</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#value-proposition">Proposition de valeur</a>
+<a class="nav-item bg-green" href="#product">Produit</a>
+<a class="nav-item bg-green" href="#business-model">Modèle économique</a>
+<a class="nav-item bg-green" href="#team">Équipe</a>
+<a class="nav-item bg-green" href="#ceo">PDG</a>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-grey" href="#sources">Sources et méthodologie</a>
+<div class="sb-rdv" style="margin:18px 0 8px"><a class="btn btn-primary" data-pp-rdv="1" href="https://calendar.app.google/yL2nSRV974Jqaybd8" rel="noopener" style="display:block;text-align:center;white-space:normal" target="_blank">📅 Discuter de Pliant avec Alexandre</a></div></div>
+<div class="content-area"><!--pp-preview--><style>
+.pp-preview{margin:0 0 22px;padding:22px;border:1px solid #e8d6ae;border-left:4px solid #c88824;
+border-radius:14px;background:#fffbf3;color:#17263d;font:14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+.pp-preview .pp-preview-tag{font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.08em;color:#93651b}
+.pp-preview h2{margin:7px 0;font-size:20px;line-height:1.3;color:#17263d}
+.pp-preview p{margin:0;max-width:76ch}.pp-preview .pp-preview-action{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:17px}
+.pp-preview .pp-preview-cta{display:inline-block;padding:11px 16px;background:#0f5132;color:white;border-radius:8px;
+font-weight:700;text-decoration:none}.pp-preview .pp-preview-cta:focus-visible{outline:3px solid #367fc2;outline-offset:3px}
+.pp-preview .pp-preview-help{color:#637083;font-size:12px;max-width:48ch}
+.pp-preview details{margin-top:17px;border-top:1px solid #ebdfc7;padding-top:11px}
+.pp-preview summary{cursor:pointer;color:#586275;font-size:12px;font-weight:650}
+.pp-preview .pp-preview-detail{margin-top:9px;color:#586275;font-size:12px;overflow-wrap:anywhere}
+@media(max-width:600px){.pp-preview{padding:16px}.pp-preview h2{font-size:18px}.pp-preview .pp-preview-cta{width:100%;text-align:center;box-sizing:border-box}}
+</style><aside class="pp-preview ppme-ui" contenteditable="false" data-recovery-ready="1" role="note"><div class="pp-preview-tag">Publié en aperçu · qualité à compléter</div><h2>4 questions clés restent sans réponse étayée par des sources.</h2><p>Réutiliser les recherches enregistrées pour réécrire le mémo, puis repasser le contrôle qualité.</p><div class="pp-preview-action"><a class="pp-preview-cta" href="https://proplace.co/cibles/go/?fund=&amp;company_name=Pliant&amp;memo_recovery=resume" rel="noopener noreferrer" target="_blank">Reprendre le mémo →</a><span class="pp-preview-help">Choisissez et confirmez la suite dans votre espace. L’ouverture ne lance aucune analyse.</span></div><details><summary>Voir le détail du contrôle qualité</summary><p class="pp-preview-detail">Contrôle qualité : 4 questions de la thèse n'ont pas de réponse étayée (Q9, Q10, Q14, Q17) ; le juge final n'a pas pu appuyer 4 de ses avis sur une citation vérifiable : une relance suffit en général.</p></details><p class="pp-preview-detail">Une version validée le remplacera à cette même adresse.</p></aside><script>(function(){
+var script=document.currentScript,box=script&&script.previousElementSibling;
+if(!box)return;var a=box.querySelector('.pp-preview-cta');if(!a)return;var base=a.href;
+a.addEventListener('click',function(e){
+a.href=base;
+// A private preview already has a checked cockpit token in its own URL.
+// Reuse it only in this reader's navigation; never store it in public HTML.
+if(location.pathname==='/cibles/memo-held-preview'){
+var token=new URLSearchParams(location.search).get('token')||'';
+if(/^[A-Za-z0-9]{16}$/.test(token)){
+var source=new URL(base),dest=new URL('https://proplace.co/cibles/'+token+'/');
+['company_name','memo_recovery'].forEach(function(k){var v=source.searchParams.get(k);if(v)dest.searchParams.set(k,v);});
+var company=source.searchParams.get('company_name');if(company){dest.searchParams.set('sel',company);dest.searchParams.set('only',company);}
+a.href=dest.href;return;}}
+var s='',sj=window.StanJourney;
+try{if(sj&&typeof sj.session==='function')s=String(sj.session()||'');
+if(!s){var c=document.cookie.split('; ').find(function(v){return v.indexOf('proplace_auth=')===0;});
+if(c){var auth=JSON.parse(atob(decodeURIComponent(c.slice(14))));s=String(auth.member_session||'');}}}catch(_){}
+if(s){var u=new URL(a.href);u.searchParams.set('session',s);a.href=u.href;return;}
+if(sj&&typeof sj.login==='function'){e.preventDefault();sj.login();
+var note=box.querySelector('.pp-preview-help');if(note)note.textContent=document.documentElement.lang.indexOf('en')===0?
+'Sign in, then select this button again to continue.':'Connectez-vous, puis cliquez à nouveau sur ce bouton pour continuer.';}
+});})();</script><!--/pp-preview-->
+<div style="margin-bottom: 8px;">
+<span style="font-family: var(--pp-body,'Instrument Sans',system-ui,sans-serif); font-size:12px; color: #8FA0B8;"></span>
+</div>
+<h1 style="font-family: var(--pp-body,'Instrument Sans',system-ui,sans-serif); font-size: 2.6rem; font-weight: 600; color: #0F1D33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Pliant</h1>
+<h2 class="subtitle-category">FinTech ➜ Solutions de cartes de paiement professionnelles et gestion des dépenses (Spend Management) pour entreprises en Allemagne ➜ Pliant | The business credit card solution that moves you forward</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Pliant" data-h="" data-i="FinTech" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/pliant/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="identity"><h2 class="section-title">Identité et propriété</h2>
+<div class="table-container"><table class="synergies-table"><tbody><tr><td><strong>Fondation (selon la société)</strong></td><td>2020</td></tr><tr><td><strong>Site officiel</strong></td><td>https://www.getpliant.com/en-us?set-country=us</td></tr></tbody></table></div><p class="note">Source : site officiel<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-1" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant | The business credit card solution that moves you forward">[1]</a></sup></p>
+<div class="identity-feasibility" data-feasibility="unknown" data-holding="unknown" data-months="" data-owner-kind="" data-ratio="" data-seller=""><h3>Propriété et faisabilité</h3><div class="table-container"><table class="synergies-table"><tbody><tr><td><strong>Acquisitions de la société (presse)</strong></td><td>hi.health<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-2" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Presse">[2]</a></sup></td></tr><tr><td><strong>Interlocuteur opérationnel</strong></td><td>Malte Rau (profil LinkedIn vérifié)</td></tr></tbody></table></div></div>
+<p class="note">Identité vérifiée — site officiel (aucun registre consultable) · résolue (85 %)</p></div>
+<div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title"><span class="i18n-fr">Résumé du marché</span><span class="i18n-en">Market summary</span></h2>
+<div class="split-container">
+<div class="text-col">
+<h4 class="kicker">SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>FinTech &gt; Solutions de cartes de paiement professionnelles et gestion des dépenses (Spend Management) pour entreprises en Allemagne<br/>B2B &gt; SaaS</p>
+<div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span><span class="sr-note">× 25% = 18.75 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:72%"></span></span><span class="sr-val">72/100</span><span class="sr-note">× 25% = 18.00 pts</span></div><div class="score-row sr-green"><span class="sr-label">LE MARCHÉ EST-IL PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">× 25% = 20.00 pts</span></div><div class="score-row sr-green"><span class="sr-label">LE MARCHÉ EST-IL RENTABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span><span class="sr-note">× 25% = 21.25 pts</span></div>
+<div class="score-row sr-blue sr-total"><span class="sr-label">SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div>
+<p>Ce score indique que le marché allemand du Spend Management offre un excellent potentiel de sortie et de monétisation, mais reste freiné par une intensité concurrentielle élevée qui exige une différenciation produit forte pour s'imposer.</p>
+<h4 class="kicker">DÉFINITION DU MARCHÉ</h4>
+<p>Le marché visé est celui des solutions de cartes de paiement professionnelles et de la gestion des dépenses (Spend Management) pour les entreprises en Allemagne. Ce marché s'adresse aux directeurs financiers d'entreprises de taille moyenne à grande cherchant à décentraliser les dépenses opérationnelles tout en conservant un contrôle strict et automatisé.</p>
+<p>La friction majeure réside dans l'inefficacité des processus comptables traditionnels et le manque d'intégration en temps réel des flux financiers. Dans la chaîne de valeur, ces solutions se situent entre les réseaux d'émission de cartes (Visa/Mastercard) et les systèmes comptables d'entreprise (ERP), capturant une marge significative sur les flux de transaction et les abonnements logiciels.</p>
+<h4 class="kicker">NOTRE THÈSE DE MARCHÉ</h4>
+<p>Le marché allemand du paiement B2B connaît une transition irréversible vers la numérisation des flux de trésorerie, poussé par l'exigence d'automatisation des processus comptables. Les acteurs bancaires traditionnels ne peuvent pas répondre efficacement à cette demande en raison de leurs infrastructures technologiques rigides et de leur incapacité à proposer des intégrations API fluides.</p>
+<p>Les nouveaux entrants exploitent cette faiblesse en proposant des plateformes agiles combinant cartes de crédit et logiciel de gestion des dépenses. La fenêtre d'opportunité est actuellement grande ouverte en Allemagne.</p>
+<h4 class="kicker">NOTRE CONVICTION &amp; NOTRE PARI SUR CE MARCHÉ</h4>
+<p><span class="conv-badge sr-amber">CONVICTION MODÉRÉE</span></p>
+<p>Bien que le marché du Spend Management soit encombré, nous sommes convaincus que la différenciation par l'infrastructure (Cards-as-a-Service) permettra à Pliant de contourner la guerre d'acquisition directe des PME. Notre pari est que les institutions financières traditionnelles préféreront intégrer la technologie de Pliant en marque blanche plutôt que de développer leurs propres solutions en interne d'ici les 24 prochains mois. Le signal décisif lors du premier appel sera le taux de croissance du volume de transactions généré spécifiquement par les partenaires CaaS.</p>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ ATTRACTIF (Dynamiques de marché)</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span></div>
+<p>Ce score reflète un marché de grande taille avec des moteurs de croissance solides, mais tempéré par l'absence de données publiques précises sur le volume total des transactions par carte corporate en Allemagne.</p>
+<ul><li class="sr-item"><div class="score-row sr-na sr-sub"><span class="sr-label">Taille du marché</span><span class="sr-val">—</span><span class="sr-note">non noté — justification non vérifiée</span></div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Moteurs de croissance</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La recherche d'efficacité opérationnelle et la numérisation des justificatifs comptables (GoBD en Allemagne) sont les principaux moteurs de la demande.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Timing Why Now</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'adoption croissante des outils SaaS et la nécessité de contrôler les coûts en temps réel accélèrent la transition vers ces plateformes.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Risques de marché</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le principal risque réside dans la dépendance aux taux d'interchange réglementés et à la sensibilité des entreprises allemandes concernant la sécurité des données financières.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">MARCHÉ GAGNABLE (Paysage concurrentiel)</span><span class="sr-bar"><span class="sr-fill" style="width:72%"></span></span><span class="sr-val">72/100</span></div>
+<p>Le paysage concurrentiel est dense, ce qui rend l'acquisition directe difficile et nécessite un positionnement technologique distinctif.</p>
+<ul><li class="sr-item"><div class="score-row sr-na sr-sub"><span class="sr-label">Acteurs établis</span><span class="sr-val">—</span><span class="sr-note">non noté — justification non vérifiée</span></div></li><li class="sr-item"><div class="score-row sr-na sr-sub"><span class="sr-label">Challengers</span><span class="sr-val">—</span><span class="sr-note">non noté — justification non vérifiée</span></div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Espace libre</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le segment des grandes entreprises (ETI) et l'intégration profonde via API Pro représentent des opportunités encore sous-exploitées.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Défendabilité</span><span class="sr-val">70/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La défendabilité repose sur l'intégration technique dans les ERP des clients et sur les partenariats d'émission en marque blanche.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ PÉNÉTRABLE (Go-to-Market &amp; Économie unitaire)</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<p>La pénétration du marché est facilitée par des modèles de vente indirecte (B2B2B) qui réduisent la dépendance aux canaux d'acquisition marketing saturés.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle GTM</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pliant combine une approche directe pour les PME à fort volume et un modèle indirect via son offre de Cards-as-a-Service pour les banques.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Modèle de tarification</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La tarification est basée sur des abonnements mensuels récurrents combinés à un modèle de partage des revenus de transaction (interchange).</div></li><li class="sr-item"><div class="score-row sr-na sr-sub"><span class="sr-label">Économie unitaire</span><span class="sr-val">—</span><span class="sr-note">non noté — donnée absente</span></div><div class="sr-desc">Les ratios LTV/CAC précis et les coûts d'acquisition ne sont pas divulgués publiquement.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'infrastructure API-first permet une expansion géographique et sectorielle rapide sans investissement lourd en infrastructure physique.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">MARCHÉ RENTABLE (Financement &amp; Sortie)</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<p>Le secteur de la fintech B2B et du paiement reste l'un des plus attractifs pour les investisseurs et les acquéreurs stratégiques en Europe.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Activité de financement</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pliant a démontré une excellente capacité de levée de fonds, totalisant 116M$ avec une série B récente de 40M$ en 2025.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-3" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant Funding, Investors &amp; Competitors">[3]</a><a href="#src-4" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="pliant - 2026 Company Profile &amp; Team">[4]</a></sup></div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Multiples de sortie</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les multiples de valorisation dans le secteur du paiement B2B restent élevés par rapport au SaaS traditionnel en raison des volumes transactionnels.</div></li><li class="sr-item"><div class="score-row sr-na sr-sub"><span class="sr-label">Acquéreurs stratégiques</span><span class="sr-val">—</span><span class="sr-note">non noté — justification non vérifiée</span></div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Profil de rendement</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc"></div></li></ul>
+<h4 class="kicker">SYNTHÈSE DES SECTIONS</h4>
+<p>La combinaison d'une forte attractivité financière et d'une concurrence intense indique que le succès dépendra de l'exécution rapide du modèle CaaS, nécessitant une équipe dotée d'une forte expertise réglementaire et de vente complexe auprès des institutions financières.</p>
+<h4 class="kicker">CONFIANCE DANS LES DONNÉES</h4>
+<p>Les données de marché concernant la concurrence et les financements sont solides, mais l'analyse des économies unitaires nécessite une validation approfondie lors de la diligence. Total de 10 URL sources utilisées.</p>
+</div>
+<div class="img-col">
+<a aria-label="Agrandir : Résumé du marché" class="memo-image-link" data-memo-image-zoom="" href="https://quickchart.io/chart?v=3&amp;c=%7B%22type%22%3A%20%22radar%22%2C%20%22data%22%3A%20%7B%22labels%22%3A%20%5B%22ATTRACTIVE%20MARKET%20%3F%22%2C%20%22WINNABLE%20MARKET%20%3F%22%2C%20%22PENETRABLE%20MARKET%20%3F%22%2C%20%22REWARDING%20MARKET%20%3F%22%5D%2C%20%22datasets%22%3A%20%5B%7B%22label%22%3A%20%22Pliant%22%2C%20%22backgroundColor%22%3A%20%22rgba%28240%2C%20227%2C%20188%2C%200.2%29%22%2C%20%22borderColor%22%3A%20%22rgb%28240%2C%20227%2C%20188%29%22%2C%20%22pointBackgroundColor%22%3A%20%22rgb%28240%2C%20227%2C%20188%29%22%2C%20%22data%22%3A%20%5B75%2C%2072%2C%2080%2C%2085%5D%7D%5D%7D%2C%20%22options%22%3A%20%7B%22scale%22%3A%20%7B%22ticks%22%3A%20%7B%22beginAtZero%22%3A%20false%2C%20%22suggestedMin%22%3A%2070%2C%20%22suggestedMax%22%3A%20100%2C%20%22stepSize%22%3A%205%2C%20%22display%22%3A%20false%7D%7D%7D%7D" rel="noopener" target="_blank"><img alt="Résumé du marché" class="sticky-img" src="https://quickchart.io/chart?v=3&amp;c=%7B%22type%22%3A%20%22radar%22%2C%20%22data%22%3A%20%7B%22labels%22%3A%20%5B%22ATTRACTIVE%20MARKET%20%3F%22%2C%20%22WINNABLE%20MARKET%20%3F%22%2C%20%22PENETRABLE%20MARKET%20%3F%22%2C%20%22REWARDING%20MARKET%20%3F%22%5D%2C%20%22datasets%22%3A%20%5B%7B%22label%22%3A%20%22Pliant%22%2C%20%22backgroundColor%22%3A%20%22rgba%28240%2C%20227%2C%20188%2C%200.2%29%22%2C%20%22borderColor%22%3A%20%22rgb%28240%2C%20227%2C%20188%29%22%2C%20%22pointBackgroundColor%22%3A%20%22rgb%28240%2C%20227%2C%20188%29%22%2C%20%22data%22%3A%20%5B75%2C%2072%2C%2080%2C%2085%5D%7D%5D%7D%2C%20%22options%22%3A%20%7B%22scale%22%3A%20%7B%22ticks%22%3A%20%7B%22beginAtZero%22%3A%20false%2C%20%22suggestedMin%22%3A%2070%2C%20%22suggestedMax%22%3A%20100%2C%20%22stepSize%22%3A%205%2C%20%22display%22%3A%20false%7D%7D%7D%7D"/></a>
+</div>
+</div>
+</div>
+<div class="section-container" id="market-sourced"><h2 class="section-title">Marché et concurrence — faits sourcés</h2>
+<p><strong>Périmètre :</strong> Le marché visé est celui des solutions de cartes de paiement professionnelles et de la gestion des dépenses (Spend Management) pour les entreprises en Allemagne.</p>
+<h3>Données de contexte (autre zone ou périmètre plus large)</h3><p class="note">Ces chiffres situent le marché ; ils ne mesurent pas celui de la société.</p><div class="table-container"><table class="synergies-table"><thead><tr><th>Indicateur</th><th>Valeur</th><th>Périmètre</th><th>Année de la donnée</th></tr></thead><tbody><tr><td>Nombre de paiements par carte</td><td><strong>environ 14,5 milliards</strong> <em>(d'après l'extrait cité par la source)</em><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-5" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Kartenzahlungen stark nachgefragt">[5]</a></sup></td><td>Allemagne, toutes cartes</td><td>année non précisée</td></tr><tr><td>Croissance du nombre de paiements par carte</td><td><strong>11 % de plus que l'année précédente</strong> <em>(d'après l'extrait cité par la source)</em><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-5" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Kartenzahlungen stark nachgefragt">[5]</a></sup></td><td>Allemagne, toutes cartes</td><td>année non précisée</td></tr><tr><td>Part des paiements par carte dans l'ensemble des paiements</td><td><strong>environ 43 %</strong> <em>(d'après l'extrait cité par la source)</em><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-5" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Kartenzahlungen stark nachgefragt">[5]</a></sup></td><td>Allemagne, tous paiements</td><td>année non précisée</td></tr><tr><td>Volume de transactions avec cartes de débit</td><td><strong>de knapp 206 Mrd € à fast 420 Mrd €</strong><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-6" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Zahlungsverkehr im Wandel - Bundesbank publications">[6]</a></sup></td><td>Allemagne, cartes de débit</td><td>2024</td></tr><tr><td>Nombre de cartes de débit en circulation</td><td><strong>162 Millionen</strong><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-6" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Zahlungsverkehr im Wandel - Bundesbank publications">[6]</a></sup></td><td>Allemagne, cartes de débit</td><td>2024</td></tr><tr><td>Nombre de clients utilisant des cartes Visa-Debit</td><td><strong>17 Millionen</strong> <em>(d'après l'extrait cité par la source)</em><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-7" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="In Deutschland nutzen 17 Millionen Kunden Visa-Debitkarten">[7]</a></sup></td><td>Allemagne, clients Visa-Debit</td><td>année non précisée</td></tr><tr><td>Nombre total de cartes de crédit</td><td><strong>rund 34 Mio.</strong> <em>(d'après l'extrait cité par la source)</em><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-8" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Kreditkarten Statistik Deutschland 2026: Alle Zahlen">[8]</a></sup></td><td>Allemagne, cartes de crédit</td><td>2026</td></tr><tr><td>Nombre d'entreprises artisanales (Handwerksunternehmen)</td><td><strong>rund 564 000</strong><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-9" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Handwerk Strukturdaten 2024">[9]</a></sup></td><td>Allemagne, secteur artisanal</td><td>2024</td></tr><tr><td>Chiffre d'affaires des entreprises artisanales</td><td><strong>rund 762 Milliarden Euro</strong><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-9" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Handwerk Strukturdaten 2024">[9]</a></sup></td><td>Allemagne, secteur artisanal</td><td>2024</td></tr></tbody></table></div>
+<h3>Ce qui structure le marché</h3><ul><li>La carte de débit domine largement le marché des cartes de paiement en Allemagne avec une part de marché de 83 % fin 2024, contre 111 millions de cartes en 2018. <em>(contexte : Allemagne, marché des cartes)</em><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-6" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Zahlungsverkehr im Wandel - Bundesbank publications">[6]</a></sup></li><li>La part de marché de la Girocard représentait près de 72 % de tous les paiements par carte de débit fin 2024, bien que sa part globale diminue face à la montée de Visa et Mastercard Debit. <em>(contexte : Allemagne, cartes de débit)</em><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-6" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Zahlungsverkehr im Wandel - Bundesbank publications">[6]</a></sup></li><li>Les banques directes (Direktbanken) ont vu leur part de marché sur les paiements par carte passer de 11 % en 2018 à 17 % en 2024. <em>(contexte : Allemagne, marché des cartes)</em><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-6" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Zahlungsverkehr im Wandel - Bundesbank publications">[6]</a></sup></li></ul>
+<h3>Concurrents et consolidateurs</h3><div class="table-container"><table class="synergies-table"><thead><tr><th>Acteur</th><th>Type</th><th>Groupe / actionnaire</th><th>Taille (source)</th><th>Pourquoi il compte</th></tr></thead><tbody><tr><td><strong>Moss</strong></td><td>Direct</td><td>—</td><td>—</td><td>—</td></tr><tr><td><strong>Pleo</strong></td><td>Direct</td><td>—</td><td>—</td><td>Propose des cartes de crédit d'entreprise et des solutions de gestion des dépenses, cité dans les comparatifs de cartes professionnelles.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-13" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Die sieben besten Geschäftskreditkarten für 2025">[13]</a><a href="#src-12" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Firmenkreditkarten-Vergleich: Die 9 besten Karten 2026">[12]</a><a href="#src-14" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Firmenkreditkarte: 10 Anbieter im Vergleich">[14]</a></sup></td></tr><tr><td><a href="https://payhawk.com/de/blog/die-sieben-besten-geschaeftskreditkarten-fuer-2025" rel="noopener" target="_blank"><strong>Payhawk</strong></a><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-13" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Die sieben besten Geschäftskreditkarten für 2025">[13]</a></sup></td><td>Direct</td><td>—</td><td>—</td><td>Fournisseur de cartes d'entreprise et de logiciels de gestion des dépenses avec intégrations API.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-13" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Die sieben besten Geschäftskreditkarten für 2025">[13]</a><a href="#src-12" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Firmenkreditkarten-Vergleich: Die 9 besten Karten 2026">[12]</a><a href="#src-15" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="APIs für fortgeschrittene Spend Management Integrationen">[15]</a></sup></td></tr><tr><td><strong>Spendesk</strong></td><td>Direct</td><td>—</td><td>—</td><td>—</td></tr><tr><td><a href="https://www.holvi.com/de-en/corporate-cards/" rel="noopener" target="_blank"><strong>Holvi</strong></a><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-17" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Corporate cards for self-employed and companies">[17]</a></sup></td><td>Direct</td><td>—</td><td>—</td><td>Propose des cartes professionnelles Mastercard physiques et virtuelles pour les indépendants et les entreprises.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-12" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Firmenkreditkarten-Vergleich: Die 9 besten Karten 2026">[12]</a><a href="#src-17" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Corporate cards for self-employed and companies">[17]</a></sup></td></tr><tr><td><strong>Revolut</strong></td><td>Direct</td><td>—</td><td>—</td><td>Propose des cartes professionnelles particulièrement attractives pour les transactions en devises étrangères.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-11" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Business Kreditkarten Vergleich 2026">[11]</a><a href="#src-14" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Firmenkreditkarte: 10 Anbieter im Vergleich">[14]</a></sup></td></tr><tr><td><strong>Qonto</strong></td><td>Direct</td><td>—</td><td>4,7 ⭐️ bei 60 160 Bewertungen (année non précisée)<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-12" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Firmenkreditkarten-Vergleich: Die 9 besten Karten 2026">[12]</a></sup></td><td>—</td></tr><tr><td><a href="https://amnistreasury.com/de/blog/business-kreditkarten-vergleich/" rel="noopener" target="_blank"><strong>amnis</strong></a><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-11" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Business Kreditkarten Vergleich 2026">[11]</a></sup></td><td>Direct</td><td>—</td><td>—</td><td>D'après son site : Fintech suisse proposant des cartes de débit/crédit professionnelles pour les PME et grandes entreprises actives à l'international.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-11" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Business Kreditkarten Vergleich 2026">[11]</a></sup></td></tr></tbody></table></div>
+<h3>Opérations du secteur (24 derniers mois)</h3><div class="table-container"><table class="synergies-table"><thead><tr><th>Date</th><th>Acquéreur</th><th>Cible</th><th>Détail</th></tr></thead><tbody><tr><td>6 octobre 2026</td><td>Personio</td><td>Circula</td><td>Acquisition de la fintech Circula (cartes de crédit d'entreprise, frais de voyage et avantages collaborateurs) par Personio pour créer une plateforme unifiée.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-18" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Mega-Exit von Circular: „Wir hatten ein halbes Dutzend ...">[18]</a><a href="#src-19" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Personio übernimmt Fintech Circula / Die Übernahme ...">[19]</a></sup></td></tr></tbody></table></div>
+<h3>Données manquantes</h3><ul><li>Aucun chiffre récent et sourcé sur le marché exact de la société (métier et zone).</li><li>Le volume total des transactions spécifiquement réalisées avec des cartes de crédit professionnelles (Corporate / Business Cards) en Allemagne.</li><li>Le chiffre d'affaires annuel de Pliant ou de ses concurrents directs comme Moss et Pleo.</li><li>Le nombre exact d'entreprises clientes de Pliant en Allemagne.</li></ul>
+<p class="note">Sources : voir la bibliographie. L'année indiquée est celle de la donnée, lue dans la phrase de la source qui porte le chiffre ; « année non précisée » signale une source qui ne la donne pas. Les données de plus de cinq ans, les estimations de cabinets d'études et les chiffres pris sur le site d'un acteur sont signalés comme tels. Un acteur « d'après son site » n'est désigné par aucune source tierce.</p></div>
+<div class="section-container" id="company">
+<h2 class="section-title"><span class="i18n-fr">Analyse approfondie de l'entreprise</span><span class="i18n-en">Company deep dive</span></h2><div id="company-mindmap"><h3 id="company-mindmap-title">Carte mentale — ce que fait Pliant</h3><div class="cm-mindmap-wrap"><div class="markmap" style="width:100%;height:600px"><script type="text/template">
+---
+markmap:
+  colorFreezeLevel: 2
+  initialExpandLevel: 5
+  maxWidth: 340
+---
+# Pliant : Solution Fintech B2B de Cartes d'Entreprise
+
+- **Proposition de Valeur**
+  - Pliant simplifie les paiements et la gestion des dépenses pour les entreprises en croissance.
+    - La plateforme combine cartes de crédit (physiques/virtuelles), comptes de paiement, FX et gestion des dépenses.
+    - Elle vise à résoudre la perte de temps due à la réconciliation manuelle et au manque de visibilité financière.
+  - La solution est modulaire et API-first, permettant une automatisation comptable et financière.
+    - Sa tagline est "The business credit card solution that moves you forward", soulignant son rôle d'accélérateur.
+  - Le métier principal est l'émission de cartes de crédit d'entreprise et la gestion des dépenses.
+    - Une niche complémentaire en **marque blanche (Cards-as-a-Service)** est proposée aux banques et partenaires.
+
+- **Clientèle et Marché**
+  - Le profil de client idéal (ICP) inclut les **PME et grandes entreprises en croissance**, ainsi que les agences marketing, e-commerce et acteurs du voyage.
+    - Les décideurs ciblés sont les **directeurs financiers (CFO)** et leurs équipes.
+    - Un seuil de dépenses minimal de **10 000 euros par mois** est recommandé, excluant freelances et micro-entreprises.
+  - Pliant opère exclusivement en **B2B**, avec une dimension B2B2B via son offre CaaS pour les banques.
+    - La société est une fintech spécialisée dans les paiements B2B et la gestion des dépenses, agréée **EMI**.
+  - Géographiquement, Pliant est basée en **Allemagne**, avec une filiale aux **États-Unis** et des recrutements au Royaume-Uni et dans la région DACH.
+
+- **Produit et Fonctionnalités**
+  - La solution principale est une plateforme intégrée de **cartes de crédit d'entreprise**, physiques et virtuelles.
+    - Elle offre des cartes **Visa Platinum/Infinite** physiques et des cartes virtuelles instantanées, y compris à usage unique.
+  - Les fonctionnalités clés incluent le **suivi des dépenses en temps réel**, le contrôle des limites et la gestion des reçus.
+    - L'automatisation comptable, les rapports personnalisables et le **cashback illimité** sont des atouts majeurs.
+  - Pliant propose également des **comptes de paiement, FX et gestion des dépenses** complète.
+    - L'offre **Cards-as-a-Service (CaaS)** et **Banking-as-a-Service (BaaS)** permet aux partenaires d'émettre des cartes en marque blanche.
+
+- **Capacités Techniques et Usages**
+  - La plateforme est construite sur une **architecture API-first et modulaire**, facilitant les intégrations personnalisées.
+    - Des **API Pro** sont disponibles pour des connexions avancées avec les systèmes existants des entreprises.
+  - Pliant s'intègre avec les **ERP, outils de comptabilité et outils RH** pour une automatisation complète.
+    - La sécurité est assurée par **OTP** et des tableaux de bord analytiques fournissent une visibilité approfondie.
+  - Les cas d'usage couvrent la **centralisation des dépenses de voyage**, les paiements fournisseurs automatisés et la gestion des abonnements SaaS.
+    - La solution est idéale pour les **achats marketing à grande échelle** et les programmes de cartes en marque blanche pour les banques.
+
+- **Modèle Économique et Société**
+  - Le modèle économique est **hybride**, combinant un abonnement SaaS (plans Light, Standard, Custom) et des revenus transactionnels (interchange et partage de cashback).
+    - L'offre CaaS/BaaS pour les banques partenaires représente une source de revenus B2B2B additionnelle.
+  - Pliant GmbH a été fondée en **2020** à Berlin, avec une filiale Pliant Payments, Inc. à New York.
+    - La société a levé entre **116 M$ et 122 M$** en plusieurs tours de financement, atteignant le stade de la **Série B**.
+  - Parmi ses clients clés figurent **BMW, Decathlon, Deutsche Telekom et Commerzbank**, avec plus de **3 500 entreprises clientes**.
+    - La plateforme compte également plus de **20 partenaires** dans le monde, attestant de son adoption croissante.
+</script><img alt="Carte mentale — ce que fait Pliant" class="cm-mindmap-png" loading="lazy" src="https://analysis.proplace.co/mindmaps/pliant.png"/></div></div><div class="cm-summary"><p>Pliant est une plateforme fintech B2B qui offre une solution complète de cartes de crédit d'entreprise (physiques et virtuelles)</p></div></div><script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.18.12/dist/browser/index.iife.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script>(function(){function boot(){try{var host=document.querySelector('#company-mindmap .markmap');if(!host||host.__mmDone)return;var tpl=host.querySelector('script[type="text/template"]');if(!tpl)return;var md=tpl.textContent.replace(/^\s*---[\s\S]*?---\s*/,'');var M=window.markmap;if(!M||!M.Transformer||!M.Markmap)return;var r=(new M.Transformer()).transform(md);host.innerHTML='<svg style="width:100%;height:600px;display:block"></svg>';var inst=M.Markmap.create(host.querySelector('svg'),{initialExpandLevel:5,maxWidth:340,colorFreezeLevel:2},r.root);host.__mmDone=1;var refit=function(){try{inst.fit()}catch(e){}};window.addEventListener('resize',refit);setTimeout(refit,300);setTimeout(refit,1200);setTimeout(refit,3000);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(refit);}catch(e){}}if(document.readyState==='complete')boot();else window.addEventListener('load',boot);setTimeout(boot,1500);setTimeout(boot,4000);})();</script>
+<h3 id="value-proposition"><span class="i18n-fr">Proposition de valeur</span><span class="i18n-en">Value proposition</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker"><span class="i18n-fr">Proposition de valeur</span><span class="i18n-en">Value proposition</span></h4>
+<p>Pliant est une plateforme B2B de paiement qui combine émission de cartes de crédit d'entreprise (physiques et virtuelles), comptes de paiement, FX et gestion des dépenses dans un système modulaire et API-first.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-20" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant">[20]</a></sup> La solution vise à simplifier les paiements, offrir un contrôle granulaire des dépenses et automatiser la comptabilité pour les directions financières. Tagline : Pliant | The business credit card solution that moves you forward.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-21" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant | The business credit card solution that moves you forward">[21]</a><a href="#src-1" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant | The business credit card solution that moves you forward">[1]</a></sup></p>
+<p>La cible secondaire inclut les banques et partenaires financiers via l'offre de cartes en marque blanche (Cards-as-a-Service).<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-20" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant">[20]</a></sup> Zone géographique principale : Allemagne et expansion internationale.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-20" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant">[20]</a><a href="#src-22" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant Partners with Coastal to Power US Expansion">[22]</a></sup></p>
+<h4 class="kicker">B2B ou B2C</h4>
+<p>Positionnement B2B.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-20" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant">[20]</a></sup> La plateforme est conçue pour répondre aux besoins organisationnels en matière de gestion financière et comptable. Une dimension B2B2B est présente via le modèle de service pour les banques.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-20" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant">[20]</a></sup></p>
+<h4 class="kicker">Secteur</h4>
+<p>Fintech, spécialisée dans les paiements B2B, les cartes de crédit d'entreprise et le Spend Management.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-20" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant">[20]</a></sup> Établissement de monnaie électronique agréé.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-20" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant">[20]</a></sup></p>
+<h4 class="kicker">Contact et mentions légales</h4>
+<p>Entité parente : Pliant GmbH, Berlin, Allemagne.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-23" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Imprint | Pliant">[23]</a></sup> Filiale américaine : Pliant Payments, Inc., New York.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-23" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Imprint | Pliant">[23]</a></sup> Année de fondation retenue : 2020.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-24" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant - Crunchbase Company Profile &amp; Funding">[24]</a><a href="#src-20" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant">[20]</a></sup> Financements totaux : série B atteinte.</p></div>
+<h3 id="product"><span class="i18n-fr">Produit</span><span class="i18n-en">Product</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Solution principale</h4>
+<p>Plateforme centralisée de gestion de cartes de crédit d'entreprise (physiques et virtuelles) et outils de gestion des dépenses (Spend Management).<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-20" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant">[20]</a><a href="#src-21" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant | The business credit card solution that moves you forward">[21]</a></sup></p>
+<h4 class="kicker">Encyclopédie des fonctionnalités</h4>
+<p>Cartes Visa Platinum / Infinite | Cartes virtuelles instantanées et à usage | Suivi des dépenses et limites en temps réel | Automatisation de la collecte des justificatifs et de la comptabilité | Cashback illimité | Assurance voyage | Gestion FX | Reporting analytique.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-25" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="FAQs">[25]</a><a href="#src-20" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant">[20]</a></sup></p>
+<h4 class="kicker">Cas d'usage</h4>
+<p>Centralisation des frais de déplacement (Lodge Cards) | Paiements fournisseurs | Gestion optimisée des abonnements SaaS | Optimisation des achats marketing | Déploiement de programmes de cartes en marque blanche pour les banques.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-26" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Lodge Card | Pliant">[26]</a><a href="#src-20" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant">[20]</a></sup></p></div>
+<h3 id="business-model"><span class="i18n-fr">Modèle économique</span><span class="i18n-en">Business model</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Sources de revenus et paliers de tarification</h4>
+<p>Trois niveaux d'offre : Light (basique), Standard (recommandé) et Custom (entreprise).<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-27" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pricing">[27]</a></sup></p>
+<h4 class="kicker">Fonctionnalités des plans</h4>
+<p>Le plan Light limite le nombre de cartes et d'intégrations.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-27" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pricing">[27]</a></sup> Le plan Standard inclut le cashback, des cartes virtuelles illimitées et des assurances, tandis que le plan Custom offre un support dédié, l'accès complet à l'API et des intégrations sur mesure.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-27" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pricing">[27]</a></sup></p>
+<h4 class="kicker">Coûts cachés et conditions</h4>
+<p>Aucun détail sur les frais de mise en place ou les engagements minimums n'est disponible. Les tarifs évoluent en fonction du volume de dépenses et du niveau de service choisi.</p></div>
+<h3 id="team"><span class="i18n-fr">Équipe</span><span class="i18n-en">Team</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Culture d'entreprise</h4>
+<p>La culture repose sur l'agilité, l'ambition et la transparence, au sein d'un environnement international regroupant plus de 35 nationalités.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-28" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Careers | Pliant">[28]</a></sup> La mission centrale est de fluidifier l'usage des cartes de crédit d'entreprise tout en corrigeant les incitations financières au profit de solutions responsables.</p>
+<h4 class="kicker">Analyse de l'équipe</h4>
+<p>Malte Rau est le co-fondateur et CEO, interlocuteur principal identifié.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-29" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant Surpasses $100 Million in Annual Recurring Revenue">[29]</a><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a></sup> L'effectif est estimé à plus de 250 collaborateurs répartis dans diverses fonctions clés incluant l'ingénierie, les ventes, la gestion des risques et le succès client.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-28" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Careers | Pliant">[28]</a></sup></p></div>
+<h3 id="ceo"><span class="i18n-fr">PDG</span><span class="i18n-en">CEO</span></h3>
+<div class="text-block" data-mn-p=""><h4 class="kicker">Évaluation synthétique</h4>
+<ul><li> Fondateur axé sur le produit avec une forte expertise en gestion des risques et en finance.</li><li><strong></strong> Solide expérience dans des cabinets de conseil de premier plan (KPMG, zeb consulting) et des fintechs établies (auxmoney, Lendico), indiquant une exposition à des environnements rigoureux et à des pratiques de pointe.</li><li>Avant cela, des rôles plus courts (1 à 2 ans) mais avec une progression constante et des responsabilités croissantes, suggérant une recherche d'opportunités d'impact.</li><li><strong>Adéquation commerciale :</strong> Son expérience passée dans la gestion des risques, le financement des PME et les investissements fintech de-risque directement Pliant, une entreprise de cartes de crédit d'entreprise. Il a une compréhension approfondie des complexités du paiement et du prêt, ainsi que des défis réglementaires.</li></ul>
+<h4 class="kicker">Parcours professionnel</h4>
+<p>Malte Rau a passé la dernière décennie à combler le fossé entre la gestion des risques et le développement commercial dans le secteur bancaire et fintech, en Allemagne et à l'étranger.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a></sup> Il a commencé sa carrière dans le conseil chez KPMG et zeb consulting, acquérant une base solide en finance et en gestion des risques, avant de passer à des rôles de gestion des risques et de projet chez auxmoney et Lendico Global Services.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a></sup> Cette expérience l'a mené à des postes de direction, notamment en tant que CRO par intérim chez FinCompare et Head of Fintech Investments chez Global Growth Cap, où il a affiné son expertise en matière de financement des PME et d'investissement.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a></sup> En 2020, il a cofondé Pliant, tirant parti de son parcours pour simplifier les cartes de crédit d'entreprise et résoudre les complexités du paiement et du prêt, tout en intégrant des considérations environnementales.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a><a href="#src-24" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant - Crunchbase Company Profile &amp; Funding">[24]</a></sup></p>
+<h4 class="kicker">Chronologie détaillée de carrière</h4>
+<ul><li><strong>Fonction :</strong> CEO / Co-Founder<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a></sup></li><li><strong>Mission :</strong> Diriger la stratégie et les opérations d'une entreprise de cartes de crédit d'entreprise, en se concentrant sur la simplification des paiements, la gestion des risques et l'intégration de pratiques durables.</li><li><strong>Fonction :</strong> CEO / Founder<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a></sup></li><li><strong>Analyse :</strong> Une initiative entrepreneuriale courte mais significative, indiquant une volonté de créer et de diriger.</li><li><strong>Fonction :</strong> interim Chief Risk Officer<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a></sup></li><li><strong>Analyse :</strong> Rôle de direction intérimaire, démontrant la capacité à intervenir rapidement et à gérer des fonctions critiques dans une fintech en croissance.</li><li><strong>Fonction :</strong> Portfolio Manager / Head of Fintech Investments<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a></sup></li><li><strong>Analyse :</strong> Transition vers l'investissement et la stratégie, avec un accent sur les fintechs, élargissant son expertise au-delà de la gestion des risques opérationnels.</li><li><strong>Fonction :</strong> Vice President Risk Management<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a></sup></li><li><strong>Analyse :</strong> Progression rapide vers un rôle de VP, soulignant une reconnaissance de ses compétences en gestion des risques dans un environnement fintech.</li><li><strong>Fonction :</strong> Senior Project-/Riskmanager<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a></sup></li><li><strong>Analyse :</strong> Rôle combinant la gestion de projet et des risques, indiquant une capacité à gérer des initiatives complexes avec une perspective de risque.</li><li><strong>Fonction :</strong> Senior Consultant<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a></sup></li><li><strong>Analyse :</strong> Progression vers un rôle de consultant senior, consolidant son expérience en conseil.</li><li><strong>Analyse :</strong> Début de carrière dans un cabinet de conseil de premier plan, fournissant une base solide en finance et en conseil.</li></ul>
+<ul><li><strong>Établissement :</strong> Ruhr-Universität Bochum<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a></sup></li><li><strong>Diplôme :</strong> Bachelor of Science (B.Sc.) — Management and Economics<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a></sup></li><li><strong>Signal :</strong> Une formation universitaire solide en économie et gestion, pertinente pour sa carrière dans la finance et la fintech.</li></ul>
+<ul><li><strong></strong>Sa description de "résoudre la complexité des paiements et des prêts" et de "réparer les incitations des cartes nuisibles au climat" indique une approche à long terme de problèmes difficiles, plutôt que de chercher des solutions rapides. Le fait qu'il ait traversé diverses entreprises et rôles, accumulant une expertise spécifique avant de se lancer dans une entreprise aussi ambitieuse, suggère une détermination profonde à construire quelque chose de significatif, même face à l'incertitude inhérente à une startup.</li></ul>
+<ul><li><strong>Discipline:</strong>La description de son rôle chez Pliant, "rendre les cartes de crédit d'entreprise aussi faciles à utiliser qu'elles devraient l'être", implique une approche méthodique et axée sur l'exécution pour résoudre des problèmes complexes. Le fait qu'il ait passé plus de six ans à construire Pliant témoigne d'une discipline soutenue et d'un engagement envers des objectifs à long terme.</li></ul>
+<ul><li><strong>Confiance en soi :</strong>Le fait de s'attaquer à un marché concurrentiel comme celui des cartes de crédit d'entreprise, avec l'ambition de "réparer les incitations des cartes nuisibles au climat", montre une conviction profonde dans sa vision et sa capacité à la réaliser, même si cela implique de défier le statu quo et de prendre des risques non linéaires.</li></ul>
+<ul><li><strong>Exécution :</strong>Son rôle de "Senior Project-/Riskmanager" chez auxmoney et sa capacité à diriger Pliant pendant plus de six ans, en s'attaquant à la "complexité des paiements et des prêts", démontrent une forte capacité à transformer des idées en réalité et à s'adapter aux défis. L'accent mis sur la résolution de problèmes complexes et la simplification des processus indique une approche itérative et axée sur l'apprentissage.</li></ul>
+<ul><li><strong>Leadership:</strong>Son auto-description mentionne "j'ai cofondé Pliant", ce qui suggère une reconnaissance de l'effort collectif. Cependant, le texte fourni ne contient pas suffisamment de langage axé sur l'équipe ("nous avons construit", "j'ai embauché") pour évaluer pleinement sa capacité à multiplier la production des autres. Son parcours indique une forte capacité à diriger des fonctions (gestion des risques, projets) et des entreprises, mais l'accent est davantage mis sur son expertise individuelle et sa vision.</li></ul>
+<ul><li><strong>Vision et raison d'être :</strong>Sa mission chez Pliant, "rendre les cartes de crédit d'entreprise aussi faciles à utiliser qu'elles devraient l'être et réparer les incitations des cartes nuisibles au climat", est une déclaration de mission forte et spécifique qui va au-delà de la simple recherche de profit. Cela démontre un "pourquoi" profondément ancré, avec une flexibilité dans le "comment" (passant du conseil à la gestion des risques, à l'investissement, puis à la fondation d'une entreprise).</li></ul>
+</div>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title"><span class="i18n-fr">Résumé de l'entreprise</span><span class="i18n-en">Company overview</span></h2><div class="cs-disc">ⓘ <span class="i18n-fr">Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</span><span class="i18n-en">These scores often reflect how much public information we could find online (web presence), not the company's objective reality. A low score — e.g. on team excellence — usually means little information was found, not that the company is weak.</span></div><div class="cs-body text-block" data-mn-p=""><ul><li>FinTech &gt; Solutions de cartes de paiement professionnelles et gestion des dépenses (Spend Management) pour entreprises en Allemagne</li><li>B2B &gt; SaaS</li><li>40M$ raised from PayPal Ventures and other investors (April 28, 2025)</li></ul>
+<br/>
+<strong>SCORE DE PRÉSÉLECTION</strong><br/>
+Thèse :
+<p>NOTE: Il s'agit d'un score de présélection brut. Les pondérations de la thèse sont appliquées en aval.<hr/></p><div class="score-row sr-green sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span></div><div class="score-row sr-blue sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">MODÈLE D'AFFAIRES</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">TRACTION &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div><p><hr/></p><div class="score-row sr-amber sr-head"><span class="sr-label">SCORE DE PRÉSÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:83%"></span></span><span class="sr-val">83/100</span><span class="sr-note">🟡 SIGNAL POSITIF (80-84)</span></div><p><hr/><strong>❓ EN QUELQUES MOTS :</strong> Pliant est une plateforme de cartes de crédit d'entreprise et de gestion des dépenses qui permet aux PME et ETI en croissance d'optimiser leurs flux de paiement et d'automatiser leur comptabilité grâce à une solution de cartes hautement intégrable et évolutive.</p>
+<h4 class="kicker">LE PROBLÈME</h4>
+<p>Les directeurs financiers d'entreprises en croissance perdent des dizaines d'heures chaque mois à réconcilier manuellement les reçus de cartes de crédit traditionnelles, tout en subissant des limites de dépenses rigides et un manque de visibilité en temps réel sur les abonnements SaaS et les frais de déplacement.</p>
+<h4 class="kicker">LA SOLUTION</h4>
+<p>Pliant résout cette friction en émettant des cartes physiques et virtuelles instantanées directement connectées aux outils comptables et ERP de l'entreprise, automatisant la collecte des justificatifs et le contrôle des limites à la source.</p>
+<h4 class="kicker">LE GTM</h4>
+<p>Le mouvement GTM repose sur une approche directe ciblant les directeurs financiers d'entreprises dépensant au moins 10 000 euros par mois, combinée à une offre de cartes en marque blanche (Cards-as-a-Service) pour les banques partenaires afin de capter le marché de manière indirecte.<hr/></p><div class="score-row sr-green sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (20%)</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Adéquation Fondateur-Marché</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Malte Rau possède plus de 10 ans d'expérience en gestion des risques et fintech (ex-KPMG, auxmoney, Lendico), lui conférant une expertise rare et indispensable pour piloter une activité de crédit d'entreprise.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Historique des Fondateurs</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Malte Rau a un parcours solide de progression rapide vers des rôles de direction (CRO par intérim chez FinCompare, Head of Fintech Investments chez Global Growth Cap) avant de cofonder Pliant.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'équipe de direction est structurée avec des profils expérimentés comme Fabian Terner (CPO) et Friedrich Hubel (COO), encadrant plus de 250 employés répartis en 11 équipes.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Complétude de l'Équipe</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'équipe présente un excellent équilibre entre l'expertise technique (CTO Alex Korotkikh), la gestion des risques de crédit et le développement commercial international.</div></li></ul>
+<div class="score-row sr-blue sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (20%)</span><span class="sr-bar"><span class="sr-fill" style="width:78%"></span></span><span class="sr-val">78/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Taille &amp; Croissance</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché visé est celui des solutions de cartes de paiement professionnelles et de la gestion des dépenses (Spend Management) pour les entreprises en Allemagne, un segment vaste mais dont le volume exact de transactions par carte corporate reste non documenté.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Timing Why Now</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La numérisation accélérée des processus comptables et la recherche d'efficacité opérationnelle par les CFO en période de rationalisation des coûts poussent à l'adoption de solutions intégrées.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Concurrence</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché allemand est extrêmement concurrentiel avec la présence d'acteurs directs bien établis tels que Moss, Pleo, Payhawk et Spendesk.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Expansion</span><span class="sr-val">82/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pliant se développe activement à l'international, notamment avec une filiale aux États-Unis et des recrutements en cours au Royaume-Uni.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (20%)</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pliant se distingue par son offre de Cards-as-a-Service (CaaS) et son API Pro permettant aux partenaires d'intégrer des programmes de cartes en marque blanche.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Product-Market Fit</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La plateforme bénéficie de la confiance de clients de premier plan tels que BMW, Decathlon, Deutsche Telekom et Commerzbank.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'architecture API-first et les intégrations natives avec les principaux ERP et outils RH assurent une forte scalabilité technique.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Propriété Intellectuelle &amp; Barrières</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">En tant qu'établissement de monnaie électronique (EMI) agréé, Pliant dispose d'une barrière réglementaire solide par rapport aux simples intermédiaires.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">💼 MODÈLE D'AFFAIRES (20%)</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le modèle combine des abonnements SaaS (plans Light, Standard, Custom) et des revenus transactionnels via l'interchange et le partage de cashback.</div></li><li class="sr-item"><div class="score-row sr-na sr-sub"><span class="sr-label">Modèle de Revenus</span><span class="sr-val">—</span><span class="sr-note">non noté — donnée absente</span></div><div class="sr-desc">Le chiffre d'affaires annuel exact et la répartition précise entre SaaS et interchange ne sont pas rendus publics.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les paliers de tarification sont clairs, incitant à la mise à niveau vers le plan Custom pour accéder à l'API Pro et à des fonctionnalités avancées.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Avec 116M$ levés au total (dont une Series B de 40M$ en avril 2025) pour un effectif d'environ 250 personnes, la gestion du capital apparaît maîtrisée pour cette phase d'expansion.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">📈 TRACTION &amp; CROISSANCE (20%)</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<ul><li class="sr-item"><div class="score-row sr-na sr-sub"><span class="sr-label">Croissance des Revenus</span><span class="sr-val">—</span><span class="sr-note">non noté — donnée absente</span></div><div class="sr-desc">Les chiffres de croissance du chiffre d'affaires ne sont pas divulgués publiquement.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Plus de 3 500 entreprises et 20 partenaires mondiaux utilisent activement la plateforme Pliant.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Progression des KPI</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'entreprise montre une forte dynamique de recrutement et d'expansion géographique, soutenue par des levées de fonds successives importantes.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Pliant a réussi à s'imposer comme un acteur clé en Allemagne tout en ouvrant des corridors de croissance en Europe et aux États-Unis.</div></li></ul>
+<hr/><strong>🔍 RISQUE À ASSURER :</strong>
+<p>L'hypothèse critique réside dans la capacité de Pliant à maintenir des marges d'interchange viables face à la pression réglementaire européenne et à la concurrence féroce d'acteurs géants comme Pleo ou Qonto, sous peine de voir son modèle transactionnel s'effondrer si la monétisation SaaS ne prend pas le relais rapidement. Ce risque est partiellement résoluble par la diligence approfondie de la structure des revenus (SaaS vs Interchange) et de la fidélité des grands comptes.</p>
+<h4 class="kicker">AVANTAGES CONCURRENTIELS CLÉS</h4>
+<ul><li>L'offre Cards-as-a-Service (CaaS) permet aux banques et partenaires d'émettre leurs propres cartes, créant un canal d'acquisition B2B2B unique.</li><li>L'agrément d'établissement de monnaie électronique (EMI) offre une indépendance réglementaire et opérationnelle forte face aux concurrents non agréés.</li><li>L'intégration API Pro hautement personnalisable permet de cibler les grandes entreprises (ETI/Corporations) aux besoins complexes.</li><li>Le programme de cashback illimité et d'avantages premium (Visa Platinum/Infinite) attire les entreprises à fort volume de dépenses.</li></ul>
+<p><strong>🧱 BARRIÈRE À L'ENTRÉE :</strong> MODÉRÉE</p>
+<p>Le véritable rempart de Pliant repose sur son infrastructure d'émission de cartes en marque blanche (CaaS) intégrée directement dans les systèmes de ses partenaires bancaires, créant des coûts de substitution extrêmement élevés. Cette dynamique d'intégration technique et réglementaire s'intensifie à mesure que le réseau de partenaires s'élargit, rendant la solution difficile à déloger. Cependant, l'absence d'effets de réseau directs entre les utilisateurs finaux limite ce rempart à une barrière de commutation technique et de distribution.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le scénario haussier : Pliant devient l'infrastructure d'émission de cartes de référence pour les banques traditionnelles européennes en marque blanche, capturant ainsi indirectement la majorité des flux de dépenses des PME sans supporter les coûts d'acquisition directs.</li><li>Le scénario baissier : La compression des taux d'interchange en Europe et la guerre des prix sur le cashback érodent la rentabilité des transactions, forçant Pliant à dépendre uniquement d'un modèle SaaS hautement concurrentiel face à des acteurs mieux capitalisés.</li></ul>
+<p><strong>🚩 SIGNAUX D'ALERTE</strong></p>
+<ul><li>Risques universels : Le secteur du Spend Management en Europe est saturé, ce qui entraîne une hausse constante des coûts d'acquisition clients (CAC) et une pression sur les marges de cashback.</li><li>Incohérences avec la thèse : L'exposition importante aux revenus transactionnels (interchange) peut introduire une volatilité contraire à la recherche de revenus SaaS purement récurrents prônée par la thèse .</li></ul></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title"><span class="i18n-fr">Analyse SWOT</span><span class="i18n-en">SWOT analysis</span></h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3><span class="i18n-fr">Forces</span><span class="i18n-en">Strengths</span></h3><ul><li>Pliant dispose du statut d'établissement de monnaie électronique agréé, ce qui lui permet d'émettre ses cartes sans dépendre d'un tiers pour l'essentiel de la chaîne.</li><li>La plateforme modulaire et API-first couvre cartes, comptes de paiement, change et gestion des dépenses dans un seul système.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-20" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant">[20]</a></sup></li><li>Le portefeuille clients comprend BMW, Decathlon, Deutsche Telekom et Commerzbank, ce qui apporte une crédibilité que peu de challengers atteignent.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-1" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant | The business credit card solution that moves you forward">[1]</a></sup></li><li>Le CEO Malte Rau vient de la gestion du risque de crédit, un atout décisif pour un émetteur qui porte lui-même le risque de ses clients.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-30" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Malte Rau — CEO / Co-Founder at Pliant">[30]</a></sup></li></ul></div>
+<div class="swot-item s-red"><h3><span class="i18n-fr">Faiblesses</span><span class="i18n-en">Weaknesses</span></h3><ul><li><strong>Le chiffre d'affaires de Pliant n'est pas publié:</strong> donnée non vérifiée, ce qui empêche d'évaluer l'efficience du capital déployé.</li><li>L'offre est complexe à lire, avec trois plans, un package d'assurance variable et des coûts annexes selon le nombre d'utilisateurs.</li><li>Les sources relatives à la direction sont incohérentes, avec des dirigeants différents cités sur le site, ce qui nuit à la lisibilité de la gouvernance.</li></ul></div>
+<div class="swot-item s-blue"><h3><span class="i18n-fr">Opportunités</span><span class="i18n-en">Opportunities</span></h3><ul><li>Le Cards-as-a-Service en marque blanche permet de faire distribuer les cartes Pliant par des banques, avec une acquisition de clients à moindre coût.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-23" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Imprint | Pliant">[23]</a></sup></li><li>Les grandes entreprises européennes, plus exigeantes en intégrations ERP et en contrôle des paiements, sont moins bien servies par les outils conçus pour les PME.</li><li>La filiale new-yorkaise ouvre un marché américain où les cartes professionnelles sont massives, mais le recrutement commercial n'y est encore qu'à ses débuts.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-22" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Pliant Partners with Coastal to Power US Expansion">[22]</a></sup></li><li>L'extension vers les paiements fournisseurs et le change augmente le revenu par client au-delà de la seule carte.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-23" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Imprint | Pliant">[23]</a></sup></li></ul></div>
+<div class="swot-item s-orange"><h3><span class="i18n-fr">Menaces</span><span class="i18n-en">Threats</span></h3><ul><li>Qonto et Revolut peuvent proposer des cartes professionnelles à très bas coût à des clients qu'ils détiennent déjà.</li><li>Moss, Pleo, Payhawk et Spendesk se battent sur la même proposition de gestion des dépenses, avec des produits très proches.</li><li>Les éditeurs RH et comptables qui intègrent la gestion des dépenses, comme Personio avec Circula, peuvent capter le client avant Pliant.</li><li>Une hausse des défauts de paiement des clients pèserait directement sur la rentabilité d'un émetteur qui porte le risque de crédit.</li><li>Toute évolution réglementaire de l'interchange ou des exigences applicables aux établissements de monnaie électronique fragiliserait le modèle économique.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="sources">
+<h2 class="section-title"><span class="i18n-fr">Sources et méthodologie</span><span class="i18n-en">Sources &amp; methodology</span></h2>
+<div class="source-list"><p style="font-style:italic;color:#4B5E78;margin:0 0 0.8em;">30 sources citées dans le texte. 86 affirmations que les sources ne confirmaient pas ont été retirées avant publication. Sources : registres officiels, site de la société, presse et études sectorielles (recherche Google).</p>
+<ol style="margin:0.2em 0 0.9em 1.4em;padding:0;"><li id="src-1" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en-us?set-country=us" rel="noopener nofollow" target="_blank">Pliant | The business credit card solution that moves you forward</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com · site de la société</span></li><li id="src-2" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/de/presse" rel="noopener nofollow" target="_blank">Presse</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com</span></li><li id="src-3" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://multiples.vc/private-comps/pliant" rel="noopener nofollow" target="_blank">Pliant Funding, Investors &amp; Competitors</a> <span style="color:#8FA0B8;font-size:0.85em;">— multiples.vc · 18.09.2026</span></li><li id="src-4" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://tracxn.com/d/companies/pliant/__ciGetbyLiT9IUYxgEcjRWjRi_YO9lImlozdND3EwgJ0" rel="noopener nofollow" target="_blank">pliant - 2026 Company Profile &amp; Team</a> <span style="color:#8FA0B8;font-size:0.85em;">— tracxn.com · 25.08.2026 · base de données</span></li><li id="src-5" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.bundesbank.de/de/presse/pressemitteilungen/kartenzahlungen-stark-nachgefragt-964616" rel="noopener nofollow" target="_blank">Kartenzahlungen stark nachgefragt</a> <span style="color:#8FA0B8;font-size:0.85em;">— bundesbank.de</span></li><li id="src-6" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://publikationen.bundesbank.de/publikationen-de/berichte-studien/monatsberichte/zahlungsverkehr-im-wandel-aktuelle-entwicklung-des-kartenmarkts-in-deutschland-972188" rel="noopener nofollow" target="_blank">Zahlungsverkehr im Wandel - Bundesbank publications</a> <span style="color:#8FA0B8;font-size:0.85em;">— publikationen.bundesbank.de · 16.12.2025</span></li><li id="src-7" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.handelsblatt.com/finanzen/banken-versicherungen/banken/bezahlkarte-in-deutschland-nutzen-17-millionen-kunden-visa-debitkarten/100111419.html" rel="noopener nofollow" target="_blank">In Deutschland nutzen 17 Millionen Kunden Visa-Debitkarten</a> <span style="color:#8FA0B8;font-size:0.85em;">— handelsblatt.com · 11.03.2025</span></li><li id="src-8" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.finalarm.de/kreditkarte/kreditkarten-statistiken-deutschland/" rel="noopener nofollow" target="_blank">Kreditkarten Statistik Deutschland 2026: Alle Zahlen</a> <span style="color:#8FA0B8;font-size:0.85em;">— finalarm.de</span></li><li id="src-9" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.destatis.de/DE/Themen/Branchen-Unternehmen/Handwerk/aktuell-struktur-handwerk.html" rel="noopener nofollow" target="_blank">Handwerk Strukturdaten 2024</a> <span style="color:#8FA0B8;font-size:0.85em;">— destatis.de</span></li><li id="src-10" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.destatis.de/DE/Themen/Branchen-Unternehmen/Unternehmen/Kleine-Unternehmen-Mittlere-Unternehmen/_inhalt.html" rel="noopener nofollow" target="_blank">Kleine und mittlere Unternehmen</a> <span style="color:#8FA0B8;font-size:0.85em;">— destatis.de</span></li><li id="src-11" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://amnistreasury.com/de/blog/business-kreditkarten-vergleich/" rel="noopener nofollow" target="_blank">Business Kreditkarten Vergleich 2026</a> <span style="color:#8FA0B8;font-size:0.85em;">— amnistreasury.com · 16.12.2025</span></li><li id="src-12" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://qonto.com/de/blog/bezahlmethoden/karte/firmenkreditkarte" rel="noopener nofollow" target="_blank">Firmenkreditkarten-Vergleich: Die 9 besten Karten 2026</a> <span style="color:#8FA0B8;font-size:0.85em;">— qonto.com · 09.09.2026</span></li><li id="src-13" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://payhawk.com/de/blog/die-sieben-besten-geschaeftskreditkarten-fuer-2025" rel="noopener nofollow" target="_blank">Die sieben besten Geschäftskreditkarten für 2025</a> <span style="color:#8FA0B8;font-size:0.85em;">— payhawk.com · 03.11.2025</span></li><li id="src-14" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://agicap.com/de/artikel/firmenkreditkarte-vergleich/" rel="noopener nofollow" target="_blank">Firmenkreditkarte: 10 Anbieter im Vergleich</a> <span style="color:#8FA0B8;font-size:0.85em;">— agicap.com · 23.07.2026</span></li><li id="src-15" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://payhawk.com/de/integration/api" rel="noopener nofollow" target="_blank">APIs für fortgeschrittene Spend Management Integrationen</a> <span style="color:#8FA0B8;font-size:0.85em;">— payhawk.com</span></li><li id="src-16" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.digital-affin.de/blog/fintech-banken" rel="noopener nofollow" target="_blank">FinTech Banken – moderne Banking-Alternativen</a> <span style="color:#8FA0B8;font-size:0.85em;">— digital-affin.de · 10.02.2026</span></li><li id="src-17" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.holvi.com/de-en/corporate-cards/" rel="noopener nofollow" target="_blank">Corporate cards for self-employed and companies</a> <span style="color:#8FA0B8;font-size:0.85em;">— holvi.com</span></li><li id="src-18" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://paymentandbanking.com/mega-exit-von-circular-wir-hatten-ein-halbes-dutzend-angebote/" rel="noopener nofollow" target="_blank">Mega-Exit von Circular: „Wir hatten ein halbes Dutzend ...</a> <span style="color:#8FA0B8;font-size:0.85em;">— paymentandbanking.com · vor 6 Tagen</span></li><li id="src-19" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://live.deutsche-boerse.com/nachrichten/OTS-Personio---Personio-uebernimmt-Fintech-Circula---Die-Uebernahme-macht--fa096f4b-27b8-4518-80bf-b8717866e1f9" rel="noopener nofollow" target="_blank">Personio übernimmt Fintech Circula / Die Übernahme ...</a> <span style="color:#8FA0B8;font-size:0.85em;">— live.deutsche-boerse.com · 06.10.2026</span></li><li id="src-20" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.linkedin.com/company/getpliant" rel="noopener nofollow" target="_blank">Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— linkedin.com · page LinkedIn</span></li><li id="src-21" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/" rel="noopener nofollow" target="_blank">Pliant | The business credit card solution that moves you forward</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com</span></li><li id="src-22" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en/press/pliant-coastal" rel="noopener nofollow" target="_blank">Pliant Partners with Coastal to Power US Expansion</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com</span></li><li id="src-23" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en-us/imprint" rel="noopener nofollow" target="_blank">Imprint | Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com · site de la société</span></li><li id="src-24" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.crunchbase.com/organization/pliant-275b" rel="noopener nofollow" target="_blank">Pliant - Crunchbase Company Profile &amp; Financement</a> <span style="color:#8FA0B8;font-size:0.85em;">— crunchbase.com · base de données</span></li><li id="src-25" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en/faq" rel="noopener nofollow" target="_blank">FAQs</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com</span></li><li id="src-26" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en/business-credit-card/lodge" rel="noopener nofollow" target="_blank">Lodge Card | Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com · site de la société</span></li><li id="src-27" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en/pricing" rel="noopener nofollow" target="_blank">Pricing</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com</span></li><li id="src-28" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en-us/careers" rel="noopener nofollow" target="_blank">Careers | Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com · site de la société</span></li><li id="src-29" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en/press/100m-arr" rel="noopener nofollow" target="_blank">Pliant Surpasses $100 Million in Annual Recurring Revenue</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com</span></li><li id="src-30" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://linkedin.com/in/malterau" rel="noopener nofollow" target="_blank">Malte Rau — CEO / Co-Founder at Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— linkedin.com · profil LinkedIn</span></li></ol>
+<details style="margin:0.6em 0 0"><summary style="cursor:pointer;color:#4B5E78;font-size:0.92em">Autres sources consultées (28)</summary><ul style="margin:0.4em 0 0.6em 1.1em;padding:0;"><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en/press" rel="noopener nofollow" target="_blank">Press</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en/contact" rel="noopener nofollow" target="_blank">Contact</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.trustpilot.com/review/getpliant.com" rel="noopener nofollow" target="_blank">Pliant Reviews | Read Customer Service ...</a> <span style="color:#8FA0B8;font-size:0.85em;">— trustpilot.com</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://transactpay.com/news/pliant-helps-businesses-operate-more-efficiently-in-an-increasingly-digital-world/" rel="noopener nofollow" target="_blank">Pliant helps businesses operate efficiently</a> <span style="color:#8FA0B8;font-size:0.85em;">— transactpay.com</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en-us/about-pliant" rel="noopener nofollow" target="_blank">About | Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com · site de la société</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en-us/contact" rel="noopener nofollow" target="_blank">Contact | Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com · site de la société</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en-us/case-study/salabam-solutions" rel="noopener nofollow" target="_blank">Salabam Solutions | Success Story | Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com · site de la société</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en/about-pliant" rel="noopener nofollow" target="_blank">About</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en/press/pliant-closes-seed-round-with-18-million-euros" rel="noopener nofollow" target="_blank">Pliant closes its seed round with 18 million euros</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://de.linkedin.com/in/swantje-hornemann-a36576117" rel="noopener nofollow" target="_blank">Swantje Hornemann – Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— de.linkedin.com · profil LinkedIn</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://de.linkedin.com/in/tamaraperry" rel="noopener nofollow" target="_blank">Tamara Perry – Senior Tech Talent Acquisition Leader</a> <span style="color:#8FA0B8;font-size:0.85em;">— de.linkedin.com · profil LinkedIn</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://de.linkedin.com/in/anumita-ghosh-7a154782" rel="noopener nofollow" target="_blank">Anumita Ghosh – Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— de.linkedin.com · profil LinkedIn</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://de.linkedin.com/in/jen-white-b05a5a249" rel="noopener nofollow" target="_blank">Jen White – Candidate Experience Associate at Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— de.linkedin.com · profil LinkedIn</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://de.linkedin.com/in/thanh-huyen-nguyen-998512172" rel="noopener nofollow" target="_blank">Thanh Huyen Nguyen - Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— de.linkedin.com · profil LinkedIn</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://de.linkedin.com/in/adaobiufondu" rel="noopener nofollow" target="_blank">Adaobi Ufondu Oki – People and Culture ...</a> <span style="color:#8FA0B8;font-size:0.85em;">— de.linkedin.com · profil LinkedIn</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://de.linkedin.com/in/stefanopavese00" rel="noopener nofollow" target="_blank">Stefano Pavese – Partnerships at Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— de.linkedin.com · profil LinkedIn</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://de.linkedin.com/in/leonfaulstroh" rel="noopener nofollow" target="_blank">Leon Faulstroh – VP Growth @ Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— de.linkedin.com · profil LinkedIn</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en/press/pliant-raises-28-million-in-series-a-funding-round" rel="noopener nofollow" target="_blank">Pliant raises $28 million in série A funding round</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com · 17.02.2023</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en/press/pliant-concludes-a-successful-2023" rel="noopener nofollow" target="_blank">Pliant concludes a successful 2023 with a €33 million ...</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.getpliant.com/en/press/series-b" rel="noopener nofollow" target="_blank">Pliant Closes $40m série B Financement</a> <span style="color:#8FA0B8;font-size:0.85em;">— getpliant.com · 28.04.2025</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.eu-startups.com/directory/pliant/" rel="noopener nofollow" target="_blank">Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— eu-startups.com</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.fintechfutures.com/paytech/credit-card-fintech-pliant-lands-18m-series-a-extension-led-by-paypal-ventures" rel="noopener nofollow" target="_blank">Credit card fintech Pliant lands €18m série A extension ...</a> <span style="color:#8FA0B8;font-size:0.85em;">— fintechfutures.com</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://fr.linkedin.com/in/julienbellaiche" rel="noopener nofollow" target="_blank">Julien Bellaiche - Payment Expert l Biz Dev @Pliant</a> <span style="color:#8FA0B8;font-size:0.85em;">— fr.linkedin.com · profil LinkedIn</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://annuaire-entreprises.data.gouv.fr/entreprise/880718499" rel="noopener nofollow" target="_blank"></a> <span style="color:#8FA0B8;font-size:0.85em;">— annuaire-entreprises.data.gouv.fr · registre officiel</span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://.com/" rel="noopener nofollow" target="_blank"></a> <span style="color:#8FA0B8;font-size:0.85em;"></span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://.com/legal-notices/" rel="noopener nofollow" target="_blank"></a> <span style="color:#8FA0B8;font-size:0.85em;"></span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://.com/contact/" rel="noopener nofollow" target="_blank"></a> <span style="color:#8FA0B8;font-size:0.85em;"></span></li><li style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://.com/privacy-policy/" rel="noopener nofollow" target="_blank"></a> <span style="color:#8FA0B8;font-size:0.85em;"></span></li></ul></details></div>
+</div><div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Pliant ?</span><span class="i18n-en">Explore Pliant further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://calendar.app.google/yL2nSRV974Jqaybd8">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc"><span class="i18n-fr">Généré par Proplace.co — une IA qui peut se tromper. Contact : <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span><span class="i18n-en">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p></div><nav class="ppf-nav"><a href="/actualites/" data-i18n="direct">Live</a><a href="/actualites/operations/secteurs/" data-i18n="marches">Veille sectorielle</a><a href="/fr/newsletter">Newsletter</a><a class="ppf-api" href="https://proplace.co/api/" target="_blank" rel="noopener">API</a></nav><div class="ppf-acct" id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></div><span class="ppf-copy">© 2026 Proplace</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#16233A}.pph-lang button.on{background:#0F1D33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap;max-width:min(220px,46vw);overflow:hidden;text-overflow:ellipsis}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E3E8F0;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#0E7F3F}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#FDECEC;color:#C0353A}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",direct:"Live",marches:"Sector watch",marchesFooter:"Live by sector",dealflow:"My deal flow",analysis:"Analysis",research:"Research",mindmaps:"Mindmaps",dashboard:"Open dashboard",acct:"Connected",mSettings:"Settings",mPipeline:"My deal flow",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Explore",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"© 2026 Proplace",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Se connecter",news:"Actualités",direct:"Live",directFooter:"En direct",marches:"Veille sectorielle",marchesFooter:"En direct par secteur",dealflow:"Mon deal flow",analysis:"Analyses",research:"La recherche",mindmaps:"Mindmaps",dashboard:"Ouvrir le dashboard",acct:"Connecté",mSettings:"Paramètres",mPipeline:"Mon deal flow",mDashboard:"Tableau de bord",logout:"Se déconnecter",tagline:"Votre AI Corporate Developer",insights:"Explorer",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"© 2026 Proplace",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){if(/^[/]en(?:[/]|$)/.test(location.pathname))return "en";
+if(/^[/]fr(?:[/]|$)/.test(location.pathname))return "fr";
+try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return "en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){
+// Header loggé : {fund} ▾ → {fund} deal flow (/cibles) · Paramètres (/compte).
+// La déconnexion vit uniquement dans le footer.
+var compte=(lang==="fr"?"/fr/compte":"/compte");
+var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"")+(s.member_session?"&session="+encodeURIComponent(s.member_session):"");
+var who=String(s.fund_type||"").replace(/^member-/i,"").replace(/[-_]+/g," ").replace(/^\s+|\s+$/g,"");
+function escH(x){return String(x||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+var flowLbl=who?who+" deal flow":t.dealflow;
+var btnLbl=who||t.acct;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false" aria-label="'+escH(btnLbl)+'">'+escH(btnLbl)+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+pipeline+'">'+escH(flowLbl)+"</a>"+
+'<a role="menuitem" href="'+compte+'">'+t.mSettings+"</a>"+
+"</div></div>";
+return {i:1,h:h,pipeline:pipeline,compte:compte,flowLbl:flowLbl};}
+return {i:0,h:'<a class="cta" href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200;
+// Toujours SOUS le bouton (menu court = Mon compte + Déco) — plus de flip au-dessus.
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Historique Research → Mon compte (onglet Recherches). Enregistre chaque fiche consultée
+   dans localStorage (même clé que ComptePage). No-op hors /research/<slug>/. */
+(function recordResearchVisit(){
+try{
+ var p=(location.pathname||"").replace(/\/+$/,"")+"/";
+ if(!/\/(en\/)?research\/[^/]+\//.test(p))return;
+ if(/\/(en\/)?research\/?$/.test((location.pathname||"").replace(/\/+$/,"")))return;
+ var title="";
+ var h1=document.querySelector("main h1, .rp-head h1, h1");
+ if(h1&&h1.textContent)title=h1.textContent.trim();
+ if(!title)title=(document.title||"").split("|")[0].trim();
+ var url=location.pathname;
+ var key="proplace_research_history";
+ var arr=[];
+ try{arr=JSON.parse(localStorage.getItem(key)||"[]")||[];}catch(e){arr=[];}
+ if(!Array.isArray(arr))arr=[];
+ arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});
+ arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});
+ if(arr.length>40)arr=arr.slice(0,40);
+ localStorage.setItem(key,JSON.stringify(arr));
+}catch(e){}
+})();
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{localStorage.setItem("proplace_lang",lang);}catch(e){}
+/* Keep shared navigation in the language of the article, including breadcrumbs. */
+Array.prototype.forEach.call(document.querySelectorAll('.pph a[href],.ppf a[href],.bcrumb a[href]'),function(a){
+try{var u=new URL(a.getAttribute('href'),location.href);if(u.origin!==location.origin)return;
+var p=u.pathname.replace(/^[/](?:en|fr)(?=[/]|$)/,'')||'/';
+if(/^[/](?:actualites|research)(?:[/]|$)/.test(p))p=(lang==='en'?'/en':'')+p;
+else if(p==='/'||/^[/](?:documentation|compte|terms|privacy)(?:[/]|$)/.test(p))p=(lang==='fr'?'/fr':'')+(p==='/'&&lang==='fr'?'':p);
+else return;
+a.setAttribute('href',p+u.search+u.hash);}catch(e){} });
+Array.prototype.forEach.call(document.querySelectorAll('.ppf-nav a[href*="newsletter"]'),function(a){
+a.setAttribute('href','/'+lang+'/newsletter');});
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){
+ if(a.i){pf.innerHTML='<a href="'+(a.pipeline||"/cibles")+'">'+(a.flowLbl||t.dealflow)+'</a>'
+  +'<a href="'+(a.compte||"/compte")+'">'+t.mSettings+"</a>"
+  +'<button type="button" id="ppf-logout">'+t.logout+"</button>";
+  var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+ else{pf.innerHTML='<a href="/#login">'+t.login+"</a>";}}
+Array.prototype.forEach.call(document.querySelectorAll(".ppf-api"),function(x){
+ if(a.i)x.classList.add("on");else x.classList.remove("on");});
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(18,161,80,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:12px;font-weight:600;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#C0353A}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+/* #5 — bouton (pas lien) : lancer le mémo instant + ouvrir /cibles. */
+button.ev-cta{border:1px solid var(--ink);cursor:pointer;font-family:inherit}
+.ev-cta2{background:transparent;color:var(--accent-dk);border:1px solid var(--accent)}
+.ev-cta2:hover{background:var(--bg);color:var(--ink);opacity:1}
+/* #4 — domaine d'un candidat rendu cliquable (vérifier le site avant de choisir). */
+.ev-cand-lnk{color:var(--accent-dk);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--accent)}
+.ev-cand-lnk:hover{color:var(--ink);border-bottom-color:var(--ink)}
+/* #3 — override d'un verdict NO MATCH → MATCH. */
+.ev-force-wrap{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ev-force{font-size:12px;font-weight:700;color:var(--ink);background:transparent;border:1px solid var(--line);
+border-radius:8px;padding:6px 12px;cursor:pointer;transition:all .15s;font-family:inherit}
+.ev-force:hover{border-color:var(--ink);background:var(--bg)}
+.ev-err{color:#C0353A}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){/* pp-eval-credit-safe-v2 */
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://calendar.app.google/yL2nSRV974Jqaybd8",ES="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound/evaluate-and-signup",MST="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v3/instant-memo/status/";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+// Bilingue (2026-07-16) : mêmes clé/priorités que le chrome partagé — le flux d'évaluation
+// était le dernier gros composant JS 100% FR quel que soit le choix de langue du visiteur.
+function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}
+ return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}
+function T(fr,en){return EN()?en:fr;}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function ctaCal(){return '<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">'
+ +T("📅 Un deal flow personnalisé ? Planifiez un appel stratégique","📅 Want a tailored deal flow? Book a strategy call")+'</a>';}
+// Extraction souple (le résultat porte tantôt company/company_name/name, tantôt un
+// sous-objet lead) — partagé par le rendu MATCH, l'override (#3) et le lancement (#5).
+function coOf(res){return (res&&(res.company_name||res.company||res.name||(res.lead&&res.lead.company_name)))||"";}
+function webOf(res){return (res&&((res.lead&&(res.lead.website||res.lead.url))||res.url||res.website))||"";}
+function recOf(res){return (res&&((res.lead&&res.lead.airtable_id)||res.lead_record_id))||"";}
+// #5 — bouton (pas lien) : lance le mémo INSTANT (code, pas Make) puis ouvre la page
+// /cibles « À analyser ». Rendu sur un MATCH (verdict ou override).
+function matchCta(res,fund){
+ var co=coOf(res),web=webOf(res),rec=recOf(res);
+ return '<button type="button" class="ev-cta ev-launch" data-fund="'+esc(fund)+'" data-co="'+esc(co)
+  +'" data-web="'+esc(web)+'" data-rec="'+esc(rec)+'">'
+  +T("⚡ Lancer le mémo","⚡ Launch the memo")+'</button>';
+}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">'+T("Évaluation indisponible.","Evaluation unavailable.")+'</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var raw=(c.url||c.website||"");
+   var dom=raw.replace(/^https?:\/\//,"").replace(/\/$/,"");
+   var href=raw?(raw.indexOf("http")===0?raw:"https://"+raw):"";
+   // #4 — domaine CLIQUABLE (nouvel onglet) pour vérifier le site AVANT de choisir.
+   var domHtml=dom?(' · '+(href?'<a class="ev-cand-lnk" href="'+esc(href)+'" target="_blank" rel="noopener">'+esc(dom.slice(0,42))+' ↗</a>':esc(dom.slice(0,42)))):'';
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+domHtml+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">'+T("Choisir →","Choose →")+'</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||T("Plusieurs sociétés correspondent — choisissez la bonne :","Several companies match — pick the right one:"))+'</div>'+(cs||'<div class="ev-fine">'+T("Aucun candidat — précisez l’URL exacte.","No candidate — provide the exact URL.")+'</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">'+T("📊 Analyse","📊 Analysis")+'</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){
+  if(m){o+=matchCta(res,fund);}
+  else if(res.check_id){
+   // #3 — override : le dirigeant est sûr du contraire → force le check en MATCH,
+   // la justification est tracée dans le champ reasoning (endpoint force-match dédié).
+   o+='<div class="ev-force-wrap"><button type="button" class="ev-force" data-check="'+esc(res.check_id)
+     +'" data-fund="'+esc(fund)+'" data-co="'+esc(coOf(res))+'" data-web="'+esc(webOf(res))
+     +'" data-rec="'+esc(recOf(res))+'" data-orig="'+esc((res.reasoning||"").slice(0,600))+'">'
+     +T("↺ Je ne suis pas d’accord — forcer en MATCH","↺ I disagree — force to MATCH")+'</button>'
+     +'<span class="ev-fine">'+T("La décision est enregistrée (justification tracée).","The decision is saved (justification recorded).")+'</span></div>';
+  }
+ }
+ else{ o+=ctaCal(); }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">'+T("⏳ Évaluation de "+esc(company)+" selon votre thèse "+esc(fund)+"…","⏳ Evaluating "+esc(company)+" against your "+esc(fund)+" thesis…")+'</div>';
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function setAuth(email,fund){
+ try{
+  var s={email:(email||"").toLowerCase(),fund_type:fund||"",ts:Date.now()};
+  var v=encodeURIComponent(btoa(JSON.stringify(s)));
+  document.cookie="proplace_auth="+v+"; domain=.proplace.co; path=/; max-age="+(60*60*24*365)+"; secure; samesite=lax";
+ }catch(e){}
+}
+function pollMemo(panel,jobId,memoUrl,email){
+ var started=Date.now(),n=0;
+ function tick(){
+  n++;
+  var elapsed=Math.round((Date.now()-started)/1000);
+  var pct=Math.min(92,8+Math.round(elapsed/720*84));
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Mémo fast en cours…","⏳ Fast memo running…")
+   +' · '+pct+'% · '+elapsed+'s</div>'
+   +'<div class="ev-r">'+T("Vous recevrez le mémo par email même si vous fermez cette page.","You will get the memo by email even if you close this page.")+'</div>';
+  fetch(MST+encodeURIComponent(jobId)).then(function(r){return r.json();}).then(function(st){
+   if(st&&st.done){
+    var ok=st.result&&(st.result.status==="ok"||st.result.url);
+    var url=(st.result&&st.result.url)||memoUrl||"";
+    if(ok){
+     panel.innerHTML='<div class="ev-ok">✅ '+T("Mémo prêt","Memo ready")+'</div>'
+      +(url?'<a class="ev-cta" target="_blank" rel="noopener" href="'+esc(url)+'">'+T("→ Ouvrir le mémo","→ Open the memo")+'</a>':'')
+      +'<a class="ev-cta ev-cta2" href="https://proplace.co/'+(EN()?'':'fr/')+'compte">'+T("→ Mon compte","→ My account")+'</a>'
+      +ctaCal();
+    }else{
+     panel.innerHTML='<div class="ev-err">⚠ '+esc((st.result&&st.result.error)||T("Échec de l’analyse","Analysis failed"))+'</div>';
+    }
+    return;
+   }
+   if(n<90)setTimeout(tick,8000);
+   else panel.innerHTML='<div class="ev-r">'+T("L’analyse continue en arrière-plan — regardez votre boîte mail.","Analysis continues in the background — check your inbox.")+'</div>'
+    +(memoUrl?'<a class="ev-cta ev-cta2" target="_blank" rel="noopener" href="'+esc(memoUrl)+'">'+T("→ Lien mémo (dispo sous peu)","→ Memo link (soon)")+'</a>':'')
+    +ctaCal();
+  }).catch(function(){if(n<90)setTimeout(tick,10000);});
+ }
+ setTimeout(tick,6000);
+}
+function leadForm(panel,b){
+ // Formulaire natif evaluate-and-signup (remplace Fillout first-look + simple capture).
+ var co=b.dataset.c||b.dataset.u||"";
+ var web=b.dataset.u||"";
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">'+T("Mémo fast de","Fast memo for")+' <b>'+esc(co)+'</b></p>'
+ +'<input name="email" type="email" placeholder="'+T("Email professionnel (first look ici)","Work email (first look here)")+'" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn CEO (URL)"><input name="phone" placeholder="'+T("Téléphone (optionnel)","Phone (optional)")+'"></div>'
+ +'<input name="website" placeholder="'+T("Site web (si connu)","Website (if known)")+'" value="'+esc(web)+'">'
+ +'<p class="ev-fine">'+T("Analyse selon des critères investisseur standards · mémo Fast.","Analyzed against standard investor criteria · Fast memo.")+'</p>'
+ +'<button type="submit" class="ev-submit">'+T("Lancer l’analyse →","Start analysis →")+'</button>'
+ +'<p class="ev-fine">'+T("Déjà client ? <a href=\"https://proplace.co/#login\">Connectez-vous</a> pour évaluer selon VOTRE thèse.","Already a client? <a href=\"https://proplace.co/#login\">Log in</a> to evaluate against YOUR thesis.")+'</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target;
+  var d={email:(f.email&&f.email.value||"").trim(),linkedin:(f.linkedin&&f.linkedin.value||"").trim(),
+   phone:(f.phone&&f.phone.value||"").trim(),website:(f.website&&f.website.value||"").trim()||web};
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Création du compte + lancement du mémo…","⏳ Creating account + launching memo…")+'</div>';
+  fetch(ES,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:co,website:d.website,email:d.email,linkedin:d.linkedin,phone:d.phone,
+   lang:EN()?"en":"fr"})})
+  .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+  .then(function(x){
+   if(!x.ok||!x.j||!x.j.job_id)throw new Error((x.j&&(x.j.detail||x.j.error))||"launch failed");
+   if(x.j.email&&x.j.fund_type)setAuth(x.j.email,x.j.fund_type);
+   pollMemo(panel,x.j.job_id,x.j.memo_url||"",d.email);
+  }).catch(function(err){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(err.message||err))+'</div>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">'+T("⚡ Évaluation express —","⚡ Express evaluation —")+' <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ // #5 — MATCH → funnel inbound. Une session ppin1 signée débite le
+ // membre ; le vieux cookie base64 seul reste au quota public, jamais au ledger.
+ var lb=(ev.target&&ev.target.closest)?ev.target.closest(".ev-launch"):null;
+ if(lb){
+  var lp=lb.closest(".op-eval-panel");if(!lp)return;
+  var lco=lb.dataset.co||"",lweb=lb.dataset.web||"";
+  var la=auth();
+  if(!la||!la.email){leadForm(lp,{dataset:{c:lco,u:lweb,h:"",i:""}});return;}
+  lp.innerHTML='<div class="ev-load">'+T("⚡ Lancement du mémo instant…","⚡ Launching instant memo…")+'</div>';
+  var pay={company_name:lco,website:lweb,email:String(la.email||"").toLowerCase(),
+   lang:EN()?"en":"fr"};
+  if(la.member_session)pay.session=la.member_session;
+  fetch(ES,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(pay)})
+   .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+   .then(function(x){
+    if(!x.ok||!x.j||!x.j.job_id)throw new Error((x.j&&(x.j.detail||x.j.error))||"launch failed");
+    pollMemo(lp,x.j.job_id,x.j.memo_url||"",pay.email);
+   }).catch(function(e){lp.innerHTML='<div class="ev-err">⚠ '+esc(String(e.message||e))+'</div>';});
+  return;
+ }
+ // #3 — override d'un NO MATCH (justification tracée, décision enregistrée).
+ var fb=(ev.target&&ev.target.closest)?ev.target.closest(".ev-force"):null;
+ if(fb){
+  var fp=fb.closest(".op-eval-panel");if(!fp)return;
+  var reason=window.prompt(T("Pourquoi cette société est-elle un MATCH selon vous ? (enregistré)","Why is this company a MATCH in your view? (recorded)"),T("Override manuel — connaissance directe de la société.","Manual override — direct knowledge of the company."));
+  if(reason===null)return;
+  reason=(reason||"").trim();if(!reason)reason=T("Override manuel.","Manual override.");
+  var fcheck=fb.dataset.check||"",ffund=fb.dataset.fund||"",fco=fb.dataset.co||"",fweb=fb.dataset.web||"",frec=fb.dataset.rec||"",forig=fb.dataset.orig||"";
+  fp.innerHTML='<div class="ev-load">'+T("⏳ Enregistrement de l’override…","⏳ Saving the override…")+'</div>';
+  fetch("https://alexandre-79537--airtable-bridge-fastapi-app.modal.run/sourcing-check/force-match",{method:"PATCH",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({check_id:fcheck,justification:reason,original_reasoning:forig})})
+   .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
+   .then(function(){
+    fp.innerHTML='<div class="ev-v ev-yes">✅ '+T("Forcé en MATCH","Forced to MATCH")+'</div>'
+      +'<div class="ev-r">'+T("Décision enregistrée.","Decision saved.")+'</div>'
+      +matchCta({company_name:fco,url:fweb,lead:{airtable_id:frec,company_name:fco,website:fweb},check_id:fcheck},ffund);
+   }).catch(function(e){fp.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+  return;
+ }
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><script>(function(){try{var p=(location.pathname||'').replace(/\/+$/,'')+'/';if(!/\/(en\/)?research\/[^/]+\//.test(p))return;if(/\/(en\/)?research\/?$/.test((location.pathname||'').replace(/\/+$/,'')))return;var title='';var h1=document.querySelector('main h1,.rp-head h1,h1');if(h1&&h1.textContent)title=h1.textContent.trim();if(!title)title=(document.title||'').split('|')[0].trim();var url=location.pathname,key='proplace_research_history',arr=[];try{arr=JSON.parse(localStorage.getItem(key)||'[]')||[];}catch(e){arr=[];}if(!Array.isArray(arr))arr=[];arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});if(arr.length>40)arr=arr.slice(0,40);localStorage.setItem(key,JSON.stringify(arr));}catch(e){}})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+var _lbEN=false;try{var _l=localStorage.getItem('proplace_lang');
+_lbEN=_l==='en'||(!_l&&(navigator.language||'').toLowerCase().indexOf('fr')!==0);}catch(e){}
+ov.innerHTML='<button class="lb-x" aria-label="'+(_lbEN?'Close':'Fermer')+'">×</button><img alt=""><a class="lb-dl" download>'+(_lbEN?'⬇ Download':'⬇ Télécharger')+'</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><style>
+/* Étoile favori (★) en tête de la cellule Société — dorée dès l'état INACTIF (☆) pour être
+   repérable comme « à cliquer », pleine et vive à l'état actif (★). */
+.op-fav{display:inline-block;vertical-align:baseline;margin:0 7px 0 0;padding:0;font-size:17px;
+line-height:1;color:#d9b64a;background:none;border:none;cursor:pointer;
+transition:color .12s,transform .12s}
+.op-fav:hover{color:#e5a91c;transform:scale(1.2)}
+.op-fav.on{color:#e5a91c}
+.fav-count{font-variant-numeric:tabular-nums;font-weight:800}
+/* Page /actualites/favoris/ : état vide + encart « créez votre thèse ». */
+.fav-empty-box{margin:26px 0;padding:24px 20px;border:1px dashed var(--line);border-radius:12px;
+background:var(--bg);text-align:center;color:var(--sub);font-size:14px;line-height:1.55}
+.fav-empty-box a{color:var(--accent-dk);font-weight:700;text-decoration:none}
+.fav-empty-box a:hover{text-decoration:underline}
+.fav-tease{margin:22px 0 6px;padding:16px 18px;border:1px solid var(--accent);border-radius:12px;
+background:var(--bg)}
+.fav-tease-h{font-size:15px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.fav-tease-p{font-size:13.5px;color:var(--sub);line-height:1.5;margin:0 0 10px}
+.fav-tease .tm-read{margin:0}
+/* Composeur de thèse in-browser + évaluation groupée (Phase B). */
+.fav-th-text{width:100%;min-height:64px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+font-family:inherit;font-size:13.5px;line-height:1.5;color:var(--ink);resize:vertical;margin:0 0 8px}
+.fav-th-text:focus{outline:none;border-color:var(--accent)}
+.fav-btn{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:9px;padding:9px 15px;cursor:pointer;transition:opacity .15s}
+.fav-btn:hover{opacity:.85}
+.fav-btn:disabled{opacity:.5;cursor:default}
+.fav-th-edit{margin-left:10px;font-size:12.5px;font-weight:600;color:var(--accent-dk);background:none;
+border:none;cursor:pointer;text-decoration:underline}
+.fav-th-label{font-size:13px;color:var(--sub);font-style:italic;margin:0 0 8px}
+.fav-th-hint{font-size:12px;color:#C0353A;margin:6px 0 0}
+/* Verdict d'un favori (plein largeur sous la ligne, comme .op-eval-panel). */
+.fav-verdict{grid-column:1/-1;margin-top:2px}
+.fav-verdict:empty{margin:0}
+.fav-v{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;padding:3px 10px;margin-top:6px}
+.fav-v-yes{color:#047857;background:rgba(4,120,87,.10)}
+.fav-v-no{color:#C0353A;background:rgba(185,28,28,.08)}
+.fav-v-err{color:var(--mid);background:var(--bg)}
+.fav-v-load{color:var(--mid);font-size:12.5px;font-weight:600;margin-top:6px;display:inline-block}
+.fav-vr{display:block;font-size:12.5px;color:var(--sub);line-height:1.45;margin-top:4px}
+</style><script>(function(){
+var K="proplace_favoris";
+// Bridge « certain » vers /cibles/ : un ?cb=<token> dans l'URL (posé par le lien du /cibles/ du
+// client, ou un email Proplace) lie ce navigateur à CE client → chaque ★ est aussi reflétée dans
+// un store SERVEUR scopé au token, retrouvée ensuite dans son onglet Favoris même sur un autre
+// appareil. Sans token (visiteur anonyme), sync() est un no-op → comportement inchangé.
+var TKK="proplace_cb_token",SYNC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/fav-sync";
+function readTok(){try{return localStorage.getItem(TKK)||"";}catch(e){return "";}}
+function writeTok(t){try{localStorage.setItem(TKK,t);}catch(e){}}
+function captureTok(){var t="";try{t=((new URL(window.location.href)).searchParams.get("cb")||"").trim();}catch(e){}
+ if(/^[A-Za-z0-9]{16}$/.test(t)){writeTok(t);return t;}return readTok();}
+var TOK=captureTok();
+function sync(op,removed){if(!TOK)return;try{
+ fetch(SYNC,{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
+  body:JSON.stringify({token:TOK,remove:!!removed,op:op})}).catch(function(){});
+}catch(e){}}
+function EN(){try{var l=localStorage.getItem("proplace_lang");if(l)return l==="en";}catch(e){}
+ return (navigator.language||"").slice(0,2).toLowerCase()==="en";}
+function read(){try{return JSON.parse(localStorage.getItem(K)||"[]")||[];}catch(e){return [];}}
+function write(a){try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}}
+function normU(u){return (u||"").toLowerCase().trim().replace(/[#?].*$/,"").replace(/\/+$/,"");}
+function normN(n){return (n||"").toLowerCase().replace(/\s+/g," ").trim();}
+function keyOf(u,c){return normU(u)||normN(c);}
+function opFromBtn(b){var d=b.dataset,u=d.u||"",c=d.co||"";
+ // Le bouton ne porte plus que co+url (régime data-*) : le reste est DÉRIVÉ de la ligne
+ // .trow (data-v/date/t/amt/pays + cellules affichées). Les anciens data-* du bouton restent
+ // lus en PRIORITÉ (compat : lignes de la page /favoris reconstruites depuis localStorage).
+ var r=b.closest?b.closest(".trow"):null,rd=(r&&r.dataset)||{};
+ // Cellules Type/Date en dual-span depuis 2026-07-16 : lire le span .i18n-fr (libellé
+ // canonique FR stocké dans le favori), sinon le textContent brut (cellules mono-langue).
+ function cell(s){if(!r)return "";var e=r.querySelector(s+" .i18n-fr")||r.querySelector(s);
+  var v=e?e.textContent.trim():"";return v==="—"?"":v;}
+ // Headline : sous-ligne .th (co présent) SINON le titre-lien du strong (op sans société).
+ var hd=r?(r.querySelector(".tco .th a:not(.tm-mem)")||r.querySelector(".tco strong a")):null;
+ var pe=r?r.querySelector(".tpays"):null;
+ var vert=d.v||rd.v||"";
+ return {id:keyOf(u,c),co:c,url:u,
+  disp:d.disp||(hd?hd.textContent.trim().slice(0,200):""),
+  ind:d.i||vert,vert:vert,
+  amtD:d.amtd||cell(".tamt"),
+  amt:parseInt(d.amt||rd.amt||"0",10)||0,
+  pays:d.pays||rd.pays||"",
+  paysFull:d.paysfull||(pe?(pe.getAttribute("title")||""):""),
+  date:d.date||(rd.date||"").slice(0,10),
+  typeK:d.typek||rd.t||"",
+  typeFr:d.typefr||cell(".ttype"),
+  ts:Date.now()};}
+function idx(a,id){for(var i=0;i<a.length;i++)if(a[i].id===id)return i;return -1;}
+function paint(){var a=read(),ids={};a.forEach(function(o){ids[o.id]=1;});
+ [].slice.call(document.querySelectorAll(".op-fav")).forEach(function(b){
+  var id=keyOf(b.dataset.u||"",b.dataset.co||""),on=!!ids[id];
+  b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false");
+  b.textContent=on?"★":"☆";
+  var t=on?(EN()?"Remove from favourites":"Retirer des favoris"):(EN()?"Add to favourites":"Mettre en favori");
+  b.title=t;b.setAttribute("aria-label",t);});
+ var n=a.length;[].slice.call(document.querySelectorAll(".fav-count")).forEach(function(e){e.textContent=String(n);});}
+window.__favPaint=paint;
+document.addEventListener("click",function(ev){
+ var b=ev.target&&ev.target.closest?ev.target.closest(".op-fav"):null;if(!b)return;
+ ev.preventDefault();ev.stopPropagation();
+ var a=read(),op=opFromBtn(b),k=idx(a,op.id),removed=k>=0;
+ if(k>=0)a.splice(k,1);else a.unshift(op);
+ write(a);paint();sync(op,removed);if(window.__favRender)window.__favRender();});
+window.addEventListener("storage",function(e){if(e.key===K){paint();if(window.__favRender)window.__favRender();}});
+if(document.readyState!=="loading")paint();else document.addEventListener("DOMContentLoaded",paint);
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
