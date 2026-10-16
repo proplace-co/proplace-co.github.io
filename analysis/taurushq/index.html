@@ -1,0 +1,1181 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Taurushq — analyse FinTech | Proplace</title><meta name="description" content="FinTech · Infrastructure logicielle de conservation, tokenisation et trading d&#x27;actifs numériques pour institutions financières en Suisse · Société inscrite"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/analysis/taurushq/"><meta property="og:type" content="article"><meta property="og:title" content="Taurushq — analyse FinTech | Proplace"><meta property="og:description" content="FinTech · Infrastructure logicielle de conservation, tokenisation et trading d&#x27;actifs numériques pour institutions financières en Suisse · Société inscrite"><meta property="og:url" content="https://proplace.co/analysis/taurushq/"><meta property="og:image" content="https://proplace.co/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://proplace.co/logo.png"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://proplace.co/_base.css"><style>
+/* Header public AU-DESSUS de la sidebar (comme /actualites et /analysis) :
+   sur la fiche memo, la sidebar demarre SOUS le header (60px) et passe sous
+   lui en z-index — uniquement ici, les memos interactifs n'ont pas de header. */
+.sidebar{top:60px;height:calc(100vh - 60px);z-index:40}
+@media (max-width:1000px){.sidebar{top:0;height:auto}}
+.ppx-bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #E3E8F0;
+font-family:var(--pp-body)}
+.ppx-bar .in{max-width:1180px;margin:0 auto;padding:0 24px;height:58px;display:flex;
+align-items:center;justify-content:space-between}
+.ppx-bar img{height:22px;display:block}
+.ppx-bar nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+.ppx-bar nav a{color:#16233A;text-decoration:none}.ppx-bar nav a:hover{color:#16233A}
+.ppx-crumb{font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);font-size:13px;color:#61708A;max-width:1180px;
+margin:16px auto 0;padding:0 24px}.ppx-crumb a{color:#61708A;text-decoration:none}
+.ppx-cta{font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);background:#0F1D33;color:#fff;border-radius:12px;
+padding:28px;margin:32px 0;max-width:none;text-align:center}
+.ppx-cta h3{font-size:1.45rem;margin:0 0 8px;color:#fff;font-weight:700}
+.ppx-cta p{color:#C9D6E6;margin:0 0 18px}
+.ppx-cta .ppx-cta-sub{color:#B4C2D4;margin:12px 0 0;font-size:.92rem}
+.ppx-cta a.b{display:inline-block;background:#12A150;color:#0A6432;font-weight:700;
+font-size:.92rem;padding:12px 22px;border-radius:8px;margin:4px;text-decoration:none}
+.ppx-cta a.b.g{background:#fff;color:#0F1D33}
+.ppx-disc{font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);font-size:12px;color:#B4C2D4;text-align:center;
+margin:22px 0 0;max-width:none;padding:0;line-height:1.6}
+.ppx-disc a{color:#B4C2D4}
+.ppx-ft{font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);border-top:1px solid #E3E8F0;margin-top:30px;
+padding:22px 24px 50px;font-size:13px;color:#61708A;text-align:center}
+.ppx-ft a{color:#61708A;margin:0 8px;text-decoration:none}
+
+.bcrumb{font-size:12.5px;color:#777;margin:18px 0 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif)}
+.bcrumb a{color:#777;text-decoration:none}
+.bcrumb a:hover{color:#0E7F3F;text-decoration:underline}
+.bcrumb .sep{color:#E3E8F0}
+.bcrumb .cur{color:#16233A;font-weight:600}
+.pph{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #E3E8F0;
+font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif)}
+/* Gabarit IDENTIQUE a la nav de la page d'accueil (.pp-nav-inner : 1200 / 32) —
+   le bandeau LIVE et la bande des jours se calent dessus, donc tout demarre
+   exactement sous le logo. Miroir React : components/SiteHeader.tsx. */
+.pph .in{max-width:1200px;margin:0 auto;padding:0 32px;min-height:60px;display:flex;
+align-items:center;gap:18px;flex-wrap:nowrap}
+/* Le bandeau LIVE tient la largeur DE LA PAGE, pas celle de l'ecran (retour
+   Antoine 10/08). Regle MIROIR de src/live/core.ts — elle est repetee ici pour
+   etre dans le <head> : sans elle la barre s'afficherait pleine largeur puis
+   sauterait au chargement du bundle. */
+.pp-livewrap{max-width:1200px;margin:0 auto;padding:0 32px}
+/* UNE SEULE SURFACE : la barre LIVE et la bande des dates dans le meme cadre
+   d'encre, angles droits (miroir de src/live/core.ts). */
+.pp-band{background:#0F1D33;border:1px solid #1B2F4E}
+.pp-band .pp-live{border-bottom:1px solid #1B2F4E}
+/* Le bandeau, la bande des jours et le contenu partagent la MEME gouttiere a
+   toutes les largeurs — sinon les trois blocs demarrent a trois x differents. */
+@media(max-width:760px){.pp-livewrap{padding:0 18px}.wrap.tm-wrap{padding:0 18px}}
+.pph .brand{flex:0 0 auto}.pph .brand img{height:24px;display:block}
+.pph nav{flex:1 1 auto;display:flex;align-items:center;justify-content:flex-end;
+gap:16px;font-size:14px;font-weight:500;flex-wrap:nowrap}
+.pph nav>a,.pph .pph-auth a{color:#444;text-decoration:none;white-space:nowrap}
+.pph nav>a:hover{color:#16233A}
+/* (retour CEO 20/07) — mobile : « Mon compte » s'affichait À LA VERTICALE (un mot,
+   voire une lettre, par ligne). Cause : dans .pph nav (flex), .pph-sect et .pph-lang
+   sont en flex:0 0 auto mais PAS .pph-auth → c'était le SEUL enfant compressible, il
+   absorbait tout le débordement et rétrécissait à ~0, forçant le texte du bouton à
+   passer à la ligne. Il devient incompressible : c'est le défileur horizontal du nav
+   (v74) qui prend le relais, comme prévu. */
+.pph .pph-auth{flex:0 0 auto;display:inline-flex;align-items:center;white-space:nowrap}
+.pph .pph-auth button,.pph .pph-acct,.pph .pph-acct-btn{flex:0 0 auto;white-space:nowrap}
+/* (retour CEO 19/07) — le style CTA vert doit AUSSI cibler les <button> : le menu
+   « Mon compte » est un <button class="cta pph-acct-btn"> et n'héritait d'aucune
+   couleur (le sélecteur ne visait que a.cta) → il apparaissait nu. */
+.pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{color:#fff;background:#12A150;padding:8px 14px;
+border-radius:9px;font-weight:600;border:none;cursor:pointer;font-family:inherit;line-height:1.2}
+.pph a.cta:hover,.pph .pph-auth a.cta:hover,.pph button.cta:hover,.pph .pph-auth button.cta:hover{background:#0E8A44}
+/* Les trois surfaces editoriales — MEME rendu que la nav React (Nav.tsx, 10/08) :
+   liens sobres colles a la marque (order:-1 + margin-right:auto), filet de separation,
+   souligne vert au survol. L'ancienne pastille verte segmentee est retiree. */
+.pph .pph-sect{display:inline-flex;align-items:center;gap:22px;white-space:nowrap;flex:0 0 auto;
+order:-1;margin-right:auto;padding-left:20px;position:relative;
+border:0;background:none;border-radius:0;overflow:visible}
+.pph .pph-sect::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+width:1px;height:16px;background:rgba(15,29,51,.12)}
+.pph .pph-sect a{position:relative;padding:6px 0;color:#4B5E78;font-weight:500;font-size:13.5px;
+letter-spacing:.005em;text-decoration:none;transition:color .2s ease}
+.pph .pph-sect a::after{content:"";position:absolute;left:0;right:0;bottom:1px;height:1.5px;
+border-radius:2px;background:#12A150;transform:scaleX(0);transform-origin:left center;
+transition:transform .22s ease}
+.pph .pph-sect a:hover{color:#16233A;background:none}
+.pph .pph-sect a.on{color:#16233A;font-weight:600;background:none}
+.pph .pph-sect a:hover::after,.pph .pph-sect a.on::after{transform:scaleX(1)}
+/* « Accueil » fait doublon avec le logo, qui pointe deja la home (parite React). */
+.pph .pph-home{display:none}
+/* Bouton de langue EN|FR — partage le choix (localStorage proplace_lang) avec le site React */
+.pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;
+overflow:hidden;flex:0 0 auto}
+.pph-lang button{font:inherit;font-size:12px;font-weight:600;padding:5px 9px;background:none;
+border:none;color:#888;cursor:pointer;line-height:1;transition:.15s}
+.pph-lang button:hover{color:#16233A}
+.pph-lang button.on{background:#0F1D33;color:#fff}
+/* Dual-span i18n (textes avec interpolation, ex. nom de société) : le serveur rend les
+   2 langues, le choix visiteur (data-pplang posé par le chrome JS) montre la bonne.
+   Défaut sans JS = français. */
+.i18n-en{display:none}
+html[data-pplang=en] .i18n-en{display:inline}
+html[data-pplang=en] .i18n-fr{display:none}
+@media(max-width:760px){
+ .pph .in{gap:9px;padding:0 13px}.pph nav{gap:9px;font-size:13px}
+ .pph .pph-home{display:none}
+ /* v74 (R5) — le SEUL débordeur réel mesuré à 390px est CETTE nav (Connexion +
+    pastille News|Analysis + EN|FR ≈ 309px pour ~264px disponibles) : elle devient
+    son PROPRE défileur horizontal (règle « wide content » : overflow-x:auto sur la
+    pièce INTERNE — jamais sur un ancêtre d'une barre sticky). Alignée à gauche en
+    mobile : un débordement côté start (flex-end) serait inatteignable au scroll. */
+ .pph nav{min-width:0;justify-content:flex-start;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pph nav::-webkit-scrollbar{display:none}
+ /* le resserrage mobile doit AUSSI viser les <button> : « Mon compte » en est un
+    (même piège que la couleur du CTA, retour CEO 19/07). */
+ .pph a.cta,.pph .pph-auth a.cta,.pph button.cta,.pph .pph-auth button.cta{padding:6px 10px;font-size:12px}
+ .pph .pph-sect{gap:14px;padding-left:12px}
+ .pph .pph-sect a{padding:6px 0;font-size:12px}
+ .pph-lang button{padding:5px 7px;font-size:11px}
+ /* v99 — 3 sections (News|Analysis|Research) : la pastille est ÉPINGLÉE EN TÊTE du
+    défileur (order:-1) → les 3 boutons sont TOUJOURS visibles à gauche, c'est
+    « Connexion » qui déborde/scrolle si l'écran est trop étroit (demande CEO). */
+ .pph nav .pph-sect{flex:0 0 auto}
+ /* v75 (bug #7) — la pastille EN|FR est hors du <nav> (défileur) : collée à droite du
+    header, toujours atteignable même quand le <nav> déborde/scrolle. */
+ .pph-lang{margin-left:auto;flex:0 0 auto}
+}
+/* ≤430px : les 3 pastilles + Connexion tiennent ensemble (resserrage police/padding). */
+@media(max-width:430px){
+ .pph nav{gap:7px}
+ .pph .pph-sect{gap:11px;padding-left:10px}
+ .pph .pph-sect a{padding:6px 0;font-size:11.5px;letter-spacing:-.01em}
+}
+
+html,body{min-height:100%}
+body{min-height:100vh;display:flex;flex-direction:column}
+body>main{flex:1 0 auto}
+.ppf{background:#0F1D33;color:#c7d0db;font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);margin-top:auto;width:100%;flex:none;
+font-size:13.5px;line-height:1.3;letter-spacing:0;text-transform:none}
+.ppf-in{max-width:1180px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;
+justify-content:space-between;gap:16px 28px;flex-wrap:wrap}
+.ppf-brand{display:flex;align-items:center;gap:12px;min-width:0}
+.ppf-brand a{display:inline-block}
+.ppf-brand img{height:22px;display:block;filter:brightness(0) invert(1);opacity:.92}
+.ppf-brand p{font-size:13px;color:#9fb0c4;margin:0;line-height:1.3;white-space:nowrap}
+.ppf-nav,.ppf-acct,#ppf-auth{display:flex;align-items:center;flex-wrap:wrap;gap:6px 18px}
+.ppf-nav a,.ppf-acct a,.ppf-acct button,#ppf-auth a,#ppf-auth button{font-size:13.5px;color:#c7d0db;
+text-decoration:none;background:none;border:none;padding:0;cursor:pointer;font-family:inherit;margin:0}
+.ppf-nav a:hover,.ppf-acct a:hover,.ppf-acct button:hover,#ppf-auth a:hover,#ppf-auth button:hover{color:#fff}
+.ppf-copy,.ppf-bottom{font-size:12.5px;color:#7d93ab;margin:0;padding:0;border:0}
+.ppf-api{display:none}
+.ppf-api.on{display:inline}
+@media(max-width:760px){.ppf-in{padding:14px 18px}.ppf-brand p{display:none}
+.ppf-copy,.ppf-bottom{width:100%;text-align:center}}
+/* AskBand bas de page (secteurs / actualites statiques) — miroir React AskBand.tsx */
+.pp-ask{padding:56px 24px;border-top:1px solid #E3E8F0;text-align:center;background:#F9FBFD;
+font-family:var(--pp-body,"Instrument Sans",system-ui,-apple-system,sans-serif);color:#0F1D33}
+.pp-ask h2{margin:0 auto 16px;font-size:clamp(21px,2.4vw,30px);font-weight:600;
+letter-spacing:-.035em;line-height:1.14;max-width:34ch}
+.pp-ask-body{font-size:15px;color:#4B5E78;margin:0 auto 22px;max-width:62ch;line-height:1.65}
+.pp-ask .ur{display:flex;gap:9px;max-width:600px;margin:0 auto;justify-content:center;flex-wrap:wrap}
+.pp-ask .uf{display:flex;align-items:center;gap:9px;flex:1;min-width:220px;height:50px;padding:0 15px;
+background:#fff;border:1px solid #C9D6E6;border-radius:8px;font-size:15px}
+.pp-ask .uf input{flex:1;border:0;outline:none;font-size:15px;background:none;
+font-family:inherit;min-width:0}
+.pp-ask .ub{flex:none;height:50px;padding:0 24px;border:0;border-radius:8px;background:#12A150;
+color:#fff;font-size:14.5px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit}
+.pp-ask .ub:hover{background:#0E8A44}
+.cs-public{margin:0 0 10px}.cs-public>.section-title{font-size:1.5rem;color:#0F1D33;font-weight:600;margin:0 0 10px}.cs-public .cs-disc{font-size:.82rem;line-height:1.5;color:#96690E;background:#FFFBEB;border:1px solid #F0E3BC;border-left:4px solid #E0A81E;border-radius:8px;padding:10px 14px;margin:0 0 14px}.cs-public .split-container{align-items:flex-start}.cs-public .img-col img{width:100%;height:auto;cursor:zoom-in;border:1px solid #E3E8F0;border-radius:8px}.cs-public .cs-body{font-size:1rem;line-height:1.55}.cs-eval{margin:8px 0 28px;padding:14px 16px;background:#E7F6EE;border:1px solid #BFE6CF;border-radius:10px}.cs-eval .cs-eval-h{margin:0 0 8px;font-weight:700;color:#0F1D33;font-size:1rem}.op-eval,.op-eval-panel{--accent:#12A150;--accent-dk:#0E7F3F;--line:#E3E8F0;--bg:#fff;--ink:#0F1D33;--mute:#B4C2D4;--sub:#4B5E78;--mid:#61708A}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Taurushq — FinTech", "description": "FinTech · Infrastructure logicielle de conservation, tokenisation et trading d'actifs numériques pour institutions financières en Suisse · Société inscrite", "inLanguage": "fr", "url": "https://proplace.co/analysis/taurushq/", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://proplace.co/analysis/taurushq/"}, "image": ["https://proplace.co/logo.png"], "author": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co"}, "publisher": {"@type": "Organization", "name": "Proplace", "url": "https://proplace.co", "logo": {"@type": "ImageObject", "url": "https://proplace.co/logo.png"}, "sameAs": ["https://www.linkedin.com/in/alexandre-proplace/"]}, "about": {"@type": "Organization", "name": "Taurushq"}, "datePublished": "2026-10-16", "dateModified": "2026-10-16"}</script></head><body><header class="pph"><div class="in"><a class="brand" href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><nav><span class="pph-sect" aria-label="Sections Proplace"><a class="pph-news" href="/actualites/" data-i18n="direct">Live</a><a class="pph-mkt" href="/actualites/operations/secteurs/" data-i18n="marches">Veille sectorielle</a></span><span class="pph-auth" id="pph-auth"><a class="cta" href="https://proplace.co/#login" data-i18n="login">Log in</a></span></nav><span class="pph-lang" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></span></div></header><div class="pp-livewrap"><div class="pp-band"><div id="pp-live"></div></div></div><script defer src="/live-banner.js"></script><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#16233A}.pph-lang button.on{background:#0F1D33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap;max-width:min(220px,46vw);overflow:hidden;text-overflow:ellipsis}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E3E8F0;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#0E7F3F}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#FDECEC;color:#C0353A}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",direct:"Live",marches:"Sector watch",marchesFooter:"Live by sector",dealflow:"My deal flow",analysis:"Analysis",research:"Research",mindmaps:"Mindmaps",dashboard:"Open dashboard",acct:"Connected",mSettings:"Settings",mPipeline:"My deal flow",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Explore",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"© 2026 Proplace",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Se connecter",news:"Actualités",direct:"Live",directFooter:"En direct",marches:"Veille sectorielle",marchesFooter:"En direct par secteur",dealflow:"Mon deal flow",analysis:"Analyses",research:"La recherche",mindmaps:"Mindmaps",dashboard:"Ouvrir le dashboard",acct:"Connecté",mSettings:"Paramètres",mPipeline:"Mon deal flow",mDashboard:"Tableau de bord",logout:"Se déconnecter",tagline:"Votre AI Corporate Developer",insights:"Explorer",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"© 2026 Proplace",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){if(/^[/]en(?:[/]|$)/.test(location.pathname))return "en";
+if(/^[/]fr(?:[/]|$)/.test(location.pathname))return "fr";
+try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return "en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){
+// Header loggé : {fund} ▾ → {fund} deal flow (/cibles) · Paramètres (/compte).
+// La déconnexion vit uniquement dans le footer.
+var compte=(lang==="fr"?"/fr/compte":"/compte");
+var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"")+(s.member_session?"&session="+encodeURIComponent(s.member_session):"");
+var who=String(s.fund_type||"").replace(/^member-/i,"").replace(/[-_]+/g," ").replace(/^\s+|\s+$/g,"");
+function escH(x){return String(x||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+var flowLbl=who?who+" deal flow":t.dealflow;
+var btnLbl=who||t.acct;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false" aria-label="'+escH(btnLbl)+'">'+escH(btnLbl)+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+pipeline+'">'+escH(flowLbl)+"</a>"+
+'<a role="menuitem" href="'+compte+'">'+t.mSettings+"</a>"+
+"</div></div>";
+return {i:1,h:h,pipeline:pipeline,compte:compte,flowLbl:flowLbl};}
+return {i:0,h:'<a class="cta" href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200;
+// Toujours SOUS le bouton (menu court = Mon compte + Déco) — plus de flip au-dessus.
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Historique Research → Mon compte (onglet Recherches). Enregistre chaque fiche consultée
+   dans localStorage (même clé que ComptePage). No-op hors /research/<slug>/. */
+(function recordResearchVisit(){
+try{
+ var p=(location.pathname||"").replace(/\/+$/,"")+"/";
+ if(!/\/(en\/)?research\/[^/]+\//.test(p))return;
+ if(/\/(en\/)?research\/?$/.test((location.pathname||"").replace(/\/+$/,"")))return;
+ var title="";
+ var h1=document.querySelector("main h1, .rp-head h1, h1");
+ if(h1&&h1.textContent)title=h1.textContent.trim();
+ if(!title)title=(document.title||"").split("|")[0].trim();
+ var url=location.pathname;
+ var key="proplace_research_history";
+ var arr=[];
+ try{arr=JSON.parse(localStorage.getItem(key)||"[]")||[];}catch(e){arr=[];}
+ if(!Array.isArray(arr))arr=[];
+ arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});
+ arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});
+ if(arr.length>40)arr=arr.slice(0,40);
+ localStorage.setItem(key,JSON.stringify(arr));
+}catch(e){}
+})();
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{localStorage.setItem("proplace_lang",lang);}catch(e){}
+/* Keep shared navigation in the language of the article, including breadcrumbs. */
+Array.prototype.forEach.call(document.querySelectorAll('.pph a[href],.ppf a[href],.bcrumb a[href]'),function(a){
+try{var u=new URL(a.getAttribute('href'),location.href);if(u.origin!==location.origin)return;
+var p=u.pathname.replace(/^[/](?:en|fr)(?=[/]|$)/,'')||'/';
+if(/^[/](?:actualites|research)(?:[/]|$)/.test(p))p=(lang==='en'?'/en':'')+p;
+else if(p==='/'||/^[/](?:documentation|compte|terms|privacy)(?:[/]|$)/.test(p))p=(lang==='fr'?'/fr':'')+(p==='/'&&lang==='fr'?'':p);
+else return;
+a.setAttribute('href',p+u.search+u.hash);}catch(e){} });
+Array.prototype.forEach.call(document.querySelectorAll('.ppf-nav a[href*="newsletter"]'),function(a){
+a.setAttribute('href','/'+lang+'/newsletter');});
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){
+ if(a.i){pf.innerHTML='<a href="'+(a.pipeline||"/cibles")+'">'+(a.flowLbl||t.dealflow)+'</a>'
+  +'<a href="'+(a.compte||"/compte")+'">'+t.mSettings+"</a>"
+  +'<button type="button" id="ppf-logout">'+t.logout+"</button>";
+  var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+ else{pf.innerHTML='<a href="/#login">'+t.login+"</a>";}}
+Array.prototype.forEach.call(document.querySelectorAll(".ppf-api"),function(x){
+ if(a.i)x.classList.add("on");else x.classList.remove("on");});
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><div class="ppx-crumb"><nav class="bcrumb" aria-label="Fil d'Ariane"><a href="https://proplace.co/" data-i18n="home">Home</a><span class="sep">›</span><a href="/analysis/" data-i18n="analysis">Analysis</a><span class="sep">›</span><span class="cur">Taurushq</span></nav><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://proplace.co/"}, {"@type": "ListItem", "position": 2, "name": "Analysis", "item": "https://proplace.co/analysis/"}, {"@type": "ListItem", "position": 3, "name": "Taurushq"}]}</script></div><div class="main-wrapper">
+<div class="sidebar notranslate" translate="no">
+<div class="meta-block">
+<div class="sb-top-data" style="display:flex;flex-wrap:wrap;gap:6px;width:100%;margin-bottom:12px">
+<span class="sb-tag">Suisse</span>
+<span class="sb-tag">Société inscrite en 2018 (aucune levée documentée)</span>
+<span class="sb-tag">FinTech</span>
+<span class="sb-tag">B2B</span>
+<h1 class="sidebar-company-name" style="display:block;width:100%;clear:both;margin-top:14px">Taurushq</h1>
+<span class="sidebar-tagline"><span style="white-space:nowrap"><img alt="" height="12" loading="lazy" src="https://flagcdn.com/16x12/ch.png" srcset="https://flagcdn.com/32x24/ch.png 2x" style="display:inline-block;vertical-align:-1px;border-radius:2px;margin-right:6px" width="16"/>Suisse ·</span> FinTech · Infrastructure logicielle de conservation, tokenisation et trading d'actifs numériques pour institutions financières en Suisse · Société inscrite en 2018 (aucune levée documentée)</span>
+<p class="meta-desc" style="margin-bottom: 15px;">Le marché de l'infrastructure logicielle de conservation, tokenisation et trading d'actifs numériques pour les institutions financières en Suisse.</p>
+<a href="https://www.taurushq.com/" target="_blank"><i class="fas fa-globe"></i> Site web</a>
+</div>
+</div>
+<a class="nav-item bg-green" href="#identity">🪪 Identité et propriété</a>
+<span class="sb-nav-heading">Marché</span>
+<a class="nav-item bg-yellow" href="#market-summary">Résumé du marché</a>
+<a class="nav-item bg-green" href="#market-sourced">📊 Marché et concurrence (sourcé)</a>
+<span class="sb-nav-heading">Société</span>
+<a class="nav-item bg-green" href="#swot">Analyse SWOT</a>
+<a class="nav-item bg-blue" href="#strategie-croissance">🧭 Votre stratégie de croissance externe</a>
+<span class="sb-nav-heading">Sources</span>
+<a class="nav-item bg-grey" href="#sources">Sources et méthodologie</a>
+<div class="sb-rdv" style="margin:18px 0 8px"><a class="btn btn-primary" data-pp-rdv="1" href="https://calendar.app.google/yL2nSRV974Jqaybd8" rel="noopener" style="display:block;text-align:center;white-space:normal" target="_blank">📅 Échanger avec Alexandre sur votre croissance externe</a></div></div>
+<div class="content-area"><!--pp-preview--><style>
+.pp-preview{margin:0 0 22px;padding:22px;border:1px solid #e8d6ae;border-left:4px solid #c88824;
+border-radius:14px;background:#fffbf3;color:#17263d;font:14px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+.pp-preview .pp-preview-tag{font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.08em;color:#93651b}
+.pp-preview h2{margin:7px 0;font-size:20px;line-height:1.3;color:#17263d}
+.pp-preview p{margin:0;max-width:76ch}.pp-preview .pp-preview-action{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:17px}
+.pp-preview .pp-preview-cta{display:inline-block;padding:11px 16px;background:#0f5132;color:white;border-radius:8px;
+font-weight:700;text-decoration:none}.pp-preview .pp-preview-cta:focus-visible{outline:3px solid #367fc2;outline-offset:3px}
+.pp-preview .pp-preview-help{color:#637083;font-size:12px;max-width:48ch}
+.pp-preview details{margin-top:17px;border-top:1px solid #ebdfc7;padding-top:11px}
+.pp-preview summary{cursor:pointer;color:#586275;font-size:12px;font-weight:650}
+.pp-preview .pp-preview-detail{margin-top:9px;color:#586275;font-size:12px;overflow-wrap:anywhere}
+@media(max-width:600px){.pp-preview{padding:16px}.pp-preview h2{font-size:18px}.pp-preview .pp-preview-cta{width:100%;text-align:center;box-sizing:border-box}}
+</style><aside class="pp-preview ppme-ui" contenteditable="false" data-recovery-ready="1" role="note"><div class="pp-preview-tag">Publié en aperçu · qualité à compléter</div><h2>L’analyse doit être mieux étayée pour répondre aux questions de votre thèse.</h2><p>Réutiliser les recherches enregistrées pour réécrire le mémo, puis repasser le contrôle qualité.</p><div class="pp-preview-action"><a class="pp-preview-cta" href="https://proplace.co/cibles/go/?fund=Investment+Criteria&amp;company_name=Taurushq&amp;memo_recovery=resume" rel="noopener noreferrer" target="_blank">Reprendre le mémo →</a><span class="pp-preview-help">Choisissez et confirmez la suite dans votre espace. L’ouverture ne lance aucune analyse.</span></div><details><summary>Voir le détail du contrôle qualité</summary><p class="pp-preview-detail">Contrôle qualité : le juge final note : cohérence du raisonnement 1/4, réponses aux questions de la thèse 0/4, richesse de l'analyse 2/4 ; le juge final n'a pas pu appuyer 2 de ses avis sur une citation vérifiable : une relance suffit en général.</p></details><p class="pp-preview-detail">Une version validée le remplacera à cette même adresse.</p></aside><script>(function(){
+var script=document.currentScript,box=script&&script.previousElementSibling;
+if(!box)return;var a=box.querySelector('.pp-preview-cta');if(!a)return;var base=a.href;
+a.addEventListener('click',function(e){
+a.href=base;
+// A private preview already has a checked cockpit token in its own URL.
+// Reuse it only in this reader's navigation; never store it in public HTML.
+if(location.pathname==='/cibles/memo-held-preview'){
+var token=new URLSearchParams(location.search).get('token')||'';
+if(/^[A-Za-z0-9]{16}$/.test(token)){
+var source=new URL(base),dest=new URL('https://proplace.co/cibles/'+token+'/');
+['company_name','memo_recovery'].forEach(function(k){var v=source.searchParams.get(k);if(v)dest.searchParams.set(k,v);});
+var company=source.searchParams.get('company_name');if(company){dest.searchParams.set('sel',company);dest.searchParams.set('only',company);}
+a.href=dest.href;return;}}
+var s='',sj=window.StanJourney;
+try{if(sj&&typeof sj.session==='function')s=String(sj.session()||'');
+if(!s){var c=document.cookie.split('; ').find(function(v){return v.indexOf('proplace_auth=')===0;});
+if(c){var auth=JSON.parse(atob(decodeURIComponent(c.slice(14))));s=String(auth.member_session||'');}}}catch(_){}
+if(s){var u=new URL(a.href);u.searchParams.set('session',s);a.href=u.href;return;}
+if(sj&&typeof sj.login==='function'){e.preventDefault();sj.login();
+var note=box.querySelector('.pp-preview-help');if(note)note.textContent=document.documentElement.lang.indexOf('en')===0?
+'Sign in, then select this button again to continue.':'Connectez-vous, puis cliquez à nouveau sur ce bouton pour continuer.';}
+});})();</script><!--/pp-preview-->
+<div style="margin-bottom: 8px;">
+<span style="font-family: var(--pp-body,'Instrument Sans',system-ui,sans-serif); font-size:12px; color: #8FA0B8;">Mémo stratégique · version rapide · Taurushq</span>
+</div>
+<h1 style="font-family: var(--pp-body,'Instrument Sans',system-ui,sans-serif); font-size: 2.6rem; font-weight: 600; color: #0F1D33; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 8px;">Taurushq</h1>
+<h2 class="subtitle-category">FinTech ➜ Infrastructure logicielle de conservation, tokenisation et trading d'actifs numériques pour institutions financières en Suisse ➜ Digital Asset Infrastructure for Financial Institutions</h2>
+<div style="height: 1px; background: #e4e7ed; margin-bottom: 36px;"></div>
+<div class="cs-eval"><p class="cs-eval-h" data-i18n="memoAskTitle">Vous voulez un mémo détaillé et personnalisé sur cette société ?</p><button class="op-eval" data-c="Taurushq" data-h="" data-i="FinTech" data-i18n="memoAskBtn" data-u="https://proplace.co/analysis/taurushq/" type="button">⚡ Demander un mémo détaillé et personnalisé</button><div class="op-eval-panel" hidden=""></div></div><div class="section-container" id="identity"><h2 class="section-title">Identité et propriété</h2>
+<div class="table-container"><table class="synergies-table"><tbody><tr><td><strong>Entité juridique</strong></td><td>Taurus SA</td></tr><tr><td><strong>IDE (n° d'identification des entreprises)</strong></td><td>CHE-337.375.281 (Zefix, registre du commerce)</td></tr><tr><td><strong>Forme</strong></td><td>Société anonyme (SA)</td></tr><tr><td><strong>Statut</strong></td><td>Active</td></tr><tr><td><strong>Inscription au registre du commerce</strong></td><td>06/04/2018</td></tr><tr><td><strong>Fondation (selon la société)</strong></td><td>2020</td></tr><tr><td><strong>Siège</strong></td><td>Place Ruth-BÖSIGER 6, 1201 Genève</td></tr><tr><td><strong>Canton</strong></td><td>Genève (GE)</td></tr><tr><td><strong>But statutaire</strong></td><td>La société a pour but : l'exercice d'une activité de maison de titres, notamment le courtage, l'intermédiation financière et le commerce pour le compte de tiers ou pour son propre compte de toutes valeurs mobilières, de tous actifs numériques, de dérivés et de produits structurés ainsi que l'activité de teneur de march…<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-1" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Zefix (registre du commerce) — Taurus SA (CHE-337.375.281, Genève) : fiche d'identité">[1]</a></sup></td></tr><tr><td><strong>Capital</strong></td><td>CHF 5 137 884</td></tr><tr><td><strong>Anciennes raisons sociales</strong></td><td>Taurus Group SA<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-1" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Zefix (registre du commerce) — Taurus SA (CHE-337.375.281, Genève) : fiche d'identité">[1]</a></sup></td></tr><tr><td><strong>Site officiel</strong></td><td>https://www.taurushq.com/</td></tr></tbody></table></div><p class="note">Source : Zefix<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-1" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Zefix (registre du commerce) — Taurus SA (CHE-337.375.281, Genève) : fiche d'identité">[1]</a></sup> · site officiel<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-2" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Website Terms of Use">[2]</a></sup></p>
+<div class="identity-feasibility" data-feasibility="unknown" data-holding="unknown" data-months="" data-owner-kind="" data-ratio="" data-seller=""><h3>Propriété et faisabilité</h3><div class="table-container"><table class="synergies-table"><tbody><tr><td><strong>Conseil d'administration</strong></td><td>François Aegerter et Grégory Rossi nommés administrateurs le 13/10/2021<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-1" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Zefix (registre du commerce) — Taurus SA (CHE-337.375.281, Genève) : fiche d'identité">[1]</a></sup></td></tr><tr><td><strong>Publications légales récentes</strong></td><td>10/09/2026 : organes : dirigeants et signatures ; 11/05/2026 : statuts ; 05/09/2025 : organes : dirigeants et signatures ; 23/07/2025 : capital ; 13/05/2025 : statuts<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-3" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="FOSC/SHAB — Taurus SA (CHE-337.375.281, Genève) : publications du registre du commerce (organes, dirigeants en poste)">[3]</a></sup></td></tr><tr><td><strong>Interlocuteur opérationnel</strong></td><td>Oren Olivier Puder, président (nommé sur le site officiel ou inscrit au registre)</td></tr></tbody></table></div></div>
+<h3>Dirigeants en poste (registre du commerce)</h3><div class="table-container"><table class="synergies-table"><thead><tr><th>Nom</th><th>Fonction</th><th>Depuis</th></tr></thead><tbody><tr><td>Oren Olivier Puder</td><td>président · signature individuelle</td><td>06/04/2018</td></tr><tr><td>Jean-Blaise Conne</td><td>administrateur · vice-président</td><td>—</td></tr><tr><td>Lamine Brahimi</td><td>directeur général · signature collective à deux</td><td>06/04/2018</td></tr><tr><td>Sébastien Dessimoz</td><td>directeur général · signature collective à deux</td><td>06/04/2018</td></tr><tr><td>François Aegerter</td><td>directeur · signature collective à deux</td><td>13/10/2021</td></tr><tr><td>Victor Adrien Busson</td><td>directeur · signature collective à deux</td><td>28/09/2023</td></tr><tr><td>Lars Christian Gellerstad</td><td>administrateur · signature collective à deux</td><td>05/09/2025</td></tr><tr><td>Grégory Rossi</td><td>signature collective à deux</td><td>13/10/2021</td></tr></tbody></table></div><p class="note">Source : FOSC/SHAB<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-3" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="FOSC/SHAB — Taurus SA (CHE-337.375.281, Genève) : publications du registre du commerce (organes, dirigeants en poste)">[3]</a></sup> — composition au 10/09/2026</p><p class="note"><strong>Sortis (pouvoirs radiés) :</strong> Jean-Philippe Aumasson (—, radié le 10/09/2026) ; Sabih Behzad (administrateur, radié le 04/12/2024) ; Salvatore Iacangelo (administrateur, radié le 28/09/2023) ; Lars Christian Gellerstad (administrateur, radié le 16/02/2023)<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-3" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="FOSC/SHAB — Taurus SA (CHE-337.375.281, Genève) : publications du registre du commerce (organes, dirigeants en poste)">[3]</a></sup></p>
+<p class="note"><strong>Comptes annuels :</strong> Comptes annuels non publics en Suisse : une société non cotée n'a pas à les publier (art. 958e CO — seules les sociétés cotées ou émettrices d'emprunts y sont tenues) ; aucun registre ne les met à disposition : chiffre d'affaires et résultats sont à obtenir de la société elle-même.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-1" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Zefix (registre du commerce) — Taurus SA (CHE-337.375.281, Genève) : fiche d'identité">[1]</a></sup></p>
+<p class="note">Identité vérifiée — registre officiel + site officiel · résolue (97 %)</p></div>
+<div class="section-container" data-ms-split="" id="market-summary">
+<h2 class="section-title"><span class="i18n-fr">Résumé du marché</span><span class="i18n-en">Market summary</span></h2>
+<div class="split-container" style="display:block">
+<div class="text-col" style="max-width:none;width:auto">
+<h4 class="kicker">SCORE D'OPPORTUNITÉ DE MARCHÉ</h4>
+<p>FinTech &gt; Infrastructure logicielle de conservation, tokenisation et trading d'actifs numériques pour institutions financières en Suisse<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-4" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Taurus: Digital Asset Infrastructure for Financial Institutions">[4]</a><a href="#src-5" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Enterprise-grade Custody, Tokenization and Trading Platform">[5]</a></sup><br/>B2B &gt; SaaS</p>
+<div class="score-row sr-green"><span class="sr-label">LE MARCHÉ EST-IL ATTRACTIF ?</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">× 25% = 20.0 pts</span></div><div class="score-row sr-blue"><span class="sr-label">LE MARCHÉ EST-IL GAGNABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:75%"></span></span><span class="sr-val">75/100</span><span class="sr-note">× 25% = 18.75 pts</span></div><div class="score-row sr-green"><span class="sr-label">LE MARCHÉ EST-IL PÉNÉTRABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span><span class="sr-note">× 25% = 20.0 pts</span></div><div class="score-row sr-green"><span class="sr-label">LE MARCHÉ EST-IL RENTABLE ?</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span><span class="sr-note">× 25% = 21.25 pts</span></div>
+<div class="score-row sr-green sr-total"><span class="sr-label">SCORE TOTAL D'ATTRACTIVITÉ DU MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<p>Le marché de l'infrastructure d'actifs numériques en Suisse constitue un vent arrière puissant pour Taurus, soutenu par un cadre réglementaire au monde, malgré une concurrence locale intense.</p>
+<h4 class="kicker">DÉFINITION DU MARCHÉ</h4>
+<p>Le marché de l'infrastructure logicielle de conservation, tokenisation et trading d'actifs numériques pour les institutions financières en Suisse englobe la fourniture de technologies hautement sécurisées permettant aux banques de gérer des actifs numériques.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-4" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Taurus: Digital Asset Infrastructure for Financial Institutions">[4]</a><a href="#src-5" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Enterprise-grade Custody, Tokenization and Trading Platform">[5]</a></sup> La friction structurelle réside dans la complexité d'intégrer ces technologies de rupture dans des systèmes bancaires hérités (legacy) tout en respectant les exigences strictes de la FINMA. Ce marché se situe au cœur de la chaîne de valeur financière, faisant le pont entre la finance traditionnelle (TradFi) et la finance décentralisée (DeFi).</p>
+<h4 class="kicker">LECTURE DU MARCHÉ</h4>
+<p>Le marché suisse a franchi un cap décisif avec l'entrée en vigueur de la loi DLT le 1er août 2021, créant un cadre juridique clair pour les actifs tokenisés.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-6" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="DLT / blockchain / tokenisation">[6]</a><a href="#src-7" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="DLT / Blockchain / Tokenisierung">[7]</a></sup> Les acteurs traditionnels ne peuvent pas développer ces infrastructures en interne sans faire face à des coûts de développement prohibitifs et à des délais de mise sur le marché trop longs.</p>
+<p>L'angle d'attaque pour un nouvel entrant consiste à proposer une solution logicielle modulaire et conforme dès le départ. La fenêtre d'opportunité est actuellement grande ouverte alors que 54 banques sur 225 en Suisse sont déjà actives dans les actifs numériques, mais elle se refermera à mesure que les positions des grands dépositaires se consolideront.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-8" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Switzerland's Lead in Digital Assets Is Eroding">[8]</a></sup></p>
+<h4 class="kicker">EN SYNTHÈSE</h4>
+<p>La combinaison d'une attractivité de marché élevée et d'une concurrence intense en Suisse impose à Taurus de réussir rapidement son expansion internationale pour maintenir son avance et maximiser son profil de retour.</p>
+<h4 class="kicker">CONFIANCE DANS LES DONNÉES</h4>
+<p>Les données réglementaires et concurrentielles sont hautement fiables, tandis que les métriques financières précises nécessiteront un audit approfondi.</p>
+</div>
+</div>
+</div>
+<div class="section-container" id="market-sourced"><h2 class="section-title">Marché et concurrence — faits sourcés</h2>
+<p><strong>Périmètre :</strong> Le marché de l'infrastructure logicielle de conservation, tokenisation et trading d'actifs numériques pour les institutions financières en Suisse.</p>
+<h3>Chiffres du marché de la société</h3><div class="table-container"><table class="synergies-table"><thead><tr><th>Indicateur</th><th>Valeur</th><th>Périmètre</th><th>Année de la donnée</th></tr></thead><tbody><tr><td>Nombre de banques actives dans les actifs numériques</td><td><strong>54 sur 225</strong> <em>(d'après l'extrait cité par la source)</em><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-8" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Switzerland's Lead in Digital Assets Is Eroding">[8]</a></sup></td><td><span class="i18n-fr">Suisse</span><span class="i18n-en">Switzerland</span></td><td>année non précisée</td></tr></tbody></table></div>
+<h3>Données de contexte (autre zone ou périmètre plus large)</h3><p class="note">Ces chiffres situent le marché ; ils ne mesurent pas celui de la société.</p><div class="table-container"><table class="synergies-table"><thead><tr><th>Indicateur</th><th>Valeur</th><th>Périmètre</th><th>Année de la donnée</th></tr></thead><tbody><tr><td>Nombre d'entreprises dans le secteur fintech et blockchain</td><td><strong>plus de 1 000</strong><sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-6" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="DLT / blockchain / tokenisation">[6]</a></sup></td><td><span class="i18n-fr">Suisse</span><span class="i18n-en">Switzerland</span></td><td>année non précisée</td></tr></tbody></table></div>
+<h3>Ce qui structure le marché</h3><ul><li>La Suisse a mis en vigueur la loi DLT (Distributed Ledger Technology) le 1er août 2021 pour sécuriser les actifs tokenisés et les plateformes de négociation.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-6" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="DLT / blockchain / tokenisation">[6]</a><a href="#src-7" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="DLT / Blockchain / Tokenisierung">[7]</a></sup></li></ul>
+<h3>Concurrents et consolidateurs</h3><div class="table-container"><table class="synergies-table"><thead><tr><th>Acteur</th><th>Type</th><th>Groupe / actionnaire</th><th>Pourquoi il compte</th></tr></thead><tbody><tr><td><a href="https://www.sygnum.com" rel="noopener" target="_blank"><strong>Sygnum Bank</strong></a></td><td>Direct</td><td>—</td><td>Banque réglementée supervisée par la FINMA offrant des services de conservation, trading, staking et prêt d'actifs numériques pour les institutions et fonds.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-9" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Swiss Digital Asset Banking: Why Infrastructure Strategy ...">[9]</a><a href="#src-10" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Custody &amp; Digital Asset Banking for Funds">[10]</a><a href="#src-18" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Move your digital assets to a Swiss bank">[18]</a></sup></td></tr><tr><td><strong>Crypto Finance AG</strong></td><td>Direct</td><td>—</td><td>Fournisseur d'infrastructure B2B d'actifs numériques et de solutions de stockage sécurisé pour les intermédiaires financiers.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-9" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Swiss Digital Asset Banking: Why Infrastructure Strategy ...">[9]</a><a href="#src-11" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Crypto Finance AG - top100startup.ch">[11]</a></sup></td></tr><tr><td><strong>AMINA Bank AG</strong></td><td>Direct</td><td>—</td><td>—</td></tr><tr><td><a href="https://scrypt.swiss" rel="noopener" target="_blank"><strong>Scrypt</strong></a></td><td>Direct</td><td>—</td><td>—</td></tr></tbody></table></div>
+<p class="note">Liste incomplète : seuls 4 acteurs sont appuyés par une source lisible.</p>
+<h3>Opérations du secteur (24 derniers mois)</h3><div class="table-container"><table class="synergies-table"><thead><tr><th>Date</th><th>Acquéreur</th><th>Cible</th><th>Détail</th></tr></thead><tbody><tr><td>6 octobre 2026</td><td>Anchorage Digital</td><td>Routable</td><td>Acquisition unissant l'infrastructure de stablecoins réglementés aux rails de paiement fiat.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-16" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Anchorage Digital Acquires Routable, Extending Its ...">[16]</a></sup></td></tr><tr><td>25 février 2026</td><td>Fireblocks</td><td>TRES Finance</td><td>Acquisition combinant l'infrastructure sécurisée avec des données financières prêtes pour l'audit.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-19" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="The Future of Onchain Finance: What M&amp;A Activity ...">[19]</a></sup></td></tr></tbody></table></div>
+<h3>Données manquantes</h3><ul><li>Chiffre d'affaires précis du marché de l'infrastructure de conservation d'actifs numériques en Suisse</li><li>Volume total des actifs numériques sous conservation (Custody) en Suisse</li><li>Part de marché respective des différents acteurs technologiques (Taurus, Sygnum, Crypto Finance)</li></ul>
+<p class="note">Sources : voir la bibliographie. L'année indiquée est celle de la donnée, lue dans la phrase de la source qui porte le chiffre ; « année non précisée » signale une source qui ne la donne pas. Les données de plus de cinq ans, les estimations de cabinets d'études et les chiffres pris sur le site d'un acteur sont signalés comme tels. Un acteur « d'après son site » n'est désigné par aucune source tierce.</p></div>
+<div class="section-container" id="company">
+<h2 class="section-title"><span class="i18n-fr">Analyse approfondie de l'entreprise</span><span class="i18n-en">Company deep dive</span></h2><div id="company-mindmap"><h3 id="company-mindmap-title">Carte mentale — ce que fait Taurushq</h3><div class="cm-mindmap-wrap"><div class="markmap" style="width:100%;height:600px"><script type="text/template">
+---
+markmap:
+  colorFreezeLevel: 2
+  initialExpandLevel: 5
+  maxWidth: 340
+---
+# Taurushq
+- **Offre & Produit**
+  - Fournit une plateforme logicielle unifiée pour la gestion d'actifs numériques institutionnels.
+    - Inclut la **conservation**, la **tokenisation**, le **trading** et le **règlement** sur une seule base technologique.
+  - Propose des modules spécialisés pour couvrir le cycle de vie complet des actifs.
+    - **Taurus-PROTECT** pour la conservation sécurisée (chaud, tiède, froid, air-gapped).
+    - **Taurus-CAPITAL** pour la tokenisation d'actions, dettes et fonds.
+    - **Taurus-PRIME** pour le trading réglementé et OTC.
+    - **Taurus-NETWORK** pour le règlement interbancaire et gestion de collatéral.
+  - S'appuie sur une technologie de pointe pour la sécurité et l'intégration.
+    - Architecture **API-first**, cryptographie **MPC-CMP** et post-quantique.
+    - Supporte les contrats intelligents **EVM et non-EVM** et diverses blockchains.
+- **Clients & Cas d'Usage**
+  - Cible exclusivement les institutions financières réglementées et les infrastructures de marché.
+    - Inclut les **banques systémiques**, les néobanques, les courtiers et les dépositaires centraux.
+  - Résout la complexité de l'intégration des actifs numériques dans les systèmes existants.
+    - Permet la gestion de bout en bout des **cryptomonnaies**, des **titres tokenisés** et des **monnaies numériques**.
+  - Démontre une forte traction avec des clients de premier plan.
+    - Plus de **40 clients** dont State Street, Deutsche Bank, Swissquote, Credit Suisse.
+    - Exemple concret : gestion numérique des actions Alaïa par Credit Suisse via Taurus.
+- **Modèle Économique**
+  - Modèle B2B de fournisseur d'infrastructure et de SaaS d'entreprise.
+    - Vente de licences par **module** et frais de service pour les installations managées.
+  - Sources de revenus diversifiées basées sur les fonctionnalités de la plateforme.
+    - Revenus issus de la conservation, de la tokenisation, du trading et du règlement.
+  - Tarification non publique, négociée directement avec les institutions.
+    - Frais de mise en place et d'intégration potentiels pour les déploiements sur site.
+    - Les contrats sont négociés directement avec les institutions, reflétant des cycles de vente longs.
+- **Traction & Croissance**
+  - A levé **65 millions USD** en Série B en février 2023, menée par Credit Suisse, Arab Bank Switzerland et Pictet Group.
+    - Financement destiné au développement de la plateforme et à l'expansion internationale.
+  - Reconnaissance sectorielle et expansion géographique rapide.
+    - Lauréat du prix "**Growth Stage Start-Up of the Year**" aux Swiss FinTech Awards 2025.
+    - Expansion dans **14 bureaux mondiaux** (Genève, Paris, Londres, Dubaï, Singapour, New York, São Paulo).
+  - Validation forte par des partenariats stratégiques.
+    - Partenariat global signé avec **Deutsche Bank** en septembre 2023.
+- **Positionnement Marché & Avantages**
+  - Leader européen de l'infrastructure d'actifs numériques, comblant le fossé entre finance traditionnelle et numérique.
+    - Offre une solution intégrée qui évite aux banques de multiplier les fournisseurs technologiques.
+  - Forte conformité réglementaire et sécurité de niveau institutionnel.
+    - Licences **FINMA** (Suisse), **MiFID** (UE), conformité **DORA**, certifications **ISO 27001** et ISAE 3402 Type II.
+    - Sécurité cryptographique avancée (MPC-CMP, stockage à froid, cryptographie post-quantique).
+  - Barrière à l'entrée modérée mais significative pour les concurrents.
+    - Intégration de systèmes bancaires de premier niveau exige des années de certification et d'audits.
+    - La confiance institutionnelle établie crée un fort effet de verrouillage opérationnel.
+</script><img alt="Carte mentale — ce que fait Taurushq" class="cm-mindmap-png" loading="lazy" src="https://analysis.proplace.co/mindmaps/taurushq.png"/></div></div><div class="cm-summary"><p>Taurus SA est un fournisseur suisse d'infrastructure d'actifs numériques B2B, spécialisé pour les institutions financières réglementées. L'entreprise propose une plateforme logicielle unifiée et modulaire qui couvre la conservation (Taurus-PROTECT), la tokenisation (Taurus-CAPITAL), le trading réglementé (Taurus-PRIME) et le règlement interbancaire (Taurus-NETWORK) pour les cryptomonnaies, les titres tokenisés et les monnaies numériques.</p><p>La solution de Taurus vise à résoudre la friction opérationnelle des banques intégrant les actifs numériques, en offrant une plateforme sécurisée, conforme et évolutive. Elle s'appuie sur une architecture API-first et une cryptographie multi-parties (MPC-CMP). L'entreprise est licenciée FINMA en Suisse, conforme MiFID en UE et ISO 27001, ce qui lui confère une forte légitimité réglementaire.</p><p>Avec plus de <strong>40 clients institutionnels</strong>, dont Credit Suisse, Deutsche Bank et State Street, Taurus a levé <strong>65 millions USD</strong> en Série B en février 2023. Son modèle économique repose sur des licences logicielles modulaires et des frais de service, avec une approche de vente directe consultative. L'équipe, majoritairement composée d'ingénieurs et de doctorants, est en forte expansion internationale avec des bureaux dans 14 villes mondiales.</p></div><div class="cm-prospective"><h4>Synthèse prospective</h4><p>Taurus révèle l'importance cruciale de l'infrastructure technologique réglementée pour l'adoption institutionnelle des actifs numériques. Les banques recherchent des solutions intégrées et conformes pour naviguer dans ce nouvel environnement, créant un marché porteur pour les acteurs capables de combiner innovation deeptech et expertise réglementaire.</p><p class="cm-sub">Critères à surveiller</p><ul><li>Fournisseurs d'infrastructure d'actifs numériques (custody, tokenization, trading) B2B</li><li>Solutions visant les institutions financières réglementées (banques, CSD, brokers)</li><li>Entreprises avec des licences réglementaires ou des certifications de sécurité fortes (FINMA, MiFID, ISO 27001)</li><li>Acteurs avec une architecture technologique avancée (API-first, MPC, post-quantique)</li><li>Modèles économiques SaaS B2B avec des cycles de vente longs mais des contrats à forte valeur</li></ul><p class="cm-sub">Sociétés à évaluer</p><ul class="cm-comps"><li><strong>Sygnum Bank</strong> <span class="cm-stage">série B / C</span> — Également une banque d'actifs numériques réglementée en Suisse, offrant des services similaires aux institutions.</li><li><strong>Crypto Finance AG</strong> <span class="cm-stage">série B / C</span> — Une autre entreprise suisse fournissant des services d'infrastructure d'actifs numériques réglementés.</li><li><strong>Fireblocks</strong> <span class="cm-stage">série E</span> — Fournisseur d'infrastructure de portefeuille et de conservation pour les actifs numériques, très utilisé par les institutions.</li><li><strong>Metaco</strong> <span class="cm-stage">Acquired</span> — Spécialisé dans l'infrastructure de conservation d'actifs numériques pour les banques, acquis par Ripple.</li><li><strong>Ledger Enterprise Solutions</strong> <span class="cm-stage">Growth</span> — Offre des solutions de conservation d'actifs numériques pour les institutions, s'appuyant sur l'expertise de Ledger.</li></ul></div></div><script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.18.12/dist/browser/index.iife.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script>(function(){function boot(){try{var host=document.querySelector('#company-mindmap .markmap');if(!host||host.__mmDone)return;var tpl=host.querySelector('script[type="text/template"]');if(!tpl)return;var md=tpl.textContent.replace(/^\s*---[\s\S]*?---\s*/,'');var M=window.markmap;if(!M||!M.Transformer||!M.Markmap)return;var r=(new M.Transformer()).transform(md);host.innerHTML='<svg style="width:100%;height:600px;display:block"></svg>';var inst=M.Markmap.create(host.querySelector('svg'),{initialExpandLevel:5,maxWidth:340,colorFreezeLevel:2},r.root);host.__mmDone=1;var refit=function(){try{inst.fit()}catch(e){}};window.addEventListener('resize',refit);setTimeout(refit,300);setTimeout(refit,1200);setTimeout(refit,3000);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(refit);}catch(e){}}if(document.readyState==='complete')boot();else window.addEventListener('load',boot);setTimeout(boot,1500);setTimeout(boot,4000);})();</script>
+</div><div class="section-container cs-public" id="company-summary"><h2 class="section-title"><span class="i18n-fr">Résumé de l'entreprise</span><span class="i18n-en">Company overview</span></h2><div class="cs-disc">ⓘ <span class="i18n-fr">Ces scores reflètent souvent notre capacité à trouver de l'information publique en ligne (présence web), pas la réalité objective de l'entreprise. Un score faible — par ex. sur l'excellence de l'équipe — signifie souvent qu'on a trouvé peu d'informations, pas que l'entreprise est faible.</span><span class="i18n-en">These scores often reflect how much public information we could find online (web presence), not the company's objective reality. A low score — e.g. on team excellence — usually means little information was found, not that the company is weak.</span></div><div class="cs-body text-block" data-mn-p=""><ul><li>FinTech &gt; Infrastructure logicielle de conservation, tokenisation et trading d'actifs numériques pour institutions financières en Suisse</li><li>B2B &gt; SaaS</li><li>65 000 000$ levés auprès de Credit Suisse et Arab Bank Switzerland, Pictet Group (14 février 2023)</li></ul>
+<br/>
+<strong>SCORE DE PRÉSÉLECTION</strong><br/>
+Thèse : Investment Criteria
+<p>NOTE : Il s'agit d'un score de présélection brut. Les pondérations de la thèse sont appliquées en aval dans le pipeline de qualification synthétique du GP après détection de l'angle.<hr/></p><div class="score-row sr-green sr-head"><span class="sr-label">EXCELLENCE DE L'ÉQUIPE</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">OPPORTUNITÉ DE MARCHÉ</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div><div class="score-row sr-green sr-head"><span class="sr-label">INNOVATION PRODUIT</span><span class="sr-bar"><span class="sr-fill" style="width:90%"></span></span><span class="sr-val">90/100</span></div><p>
+MODÈLE D'AFFAIRES           non noté — donnée absente<br/>
+</p><div class="score-row sr-green sr-head"><span class="sr-label">TRACTION &amp; CROISSANCE</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div><p><hr/></p><div class="score-row sr-green sr-head"><span class="sr-label">SCORE DE PRÉSÉLECTION</span><span class="sr-bar"><span class="sr-fill" style="width:86%"></span></span><span class="sr-val">85.75/100</span><span class="sr-note">🟢 SIGNAL FORT (85-100) (sur 4 dimensions notées)</span></div><p><hr/><strong>❓ EN QUELQUES MOTS :</strong> Taurus SA est une infrastructure logicielle d'actifs numériques qui permet aux institutions financières réglementées de gérer de bout en bout le cycle de vie des cryptomonnaies et titres tokenisés en résolvant le problème de la fragmentation technologique et de la sécurité.</p>
+<h4 class="kicker">LE PROBLÈME</h4>
+<p>Les banques systémiques et institutions financières de premier rang font face à une friction opérationnelle majeure lorsqu'elles tentent d'intégrer des actifs numériques dans leur infrastructure existante, se heurtant à des systèmes de conservation cloisonnés, non conformes aux exigences de la FINMA et incapables de gérer simultanément la conservation, la tokenisation et le trading.</p>
+<h4 class="kicker">LA SOLUTION</h4>
+<p>Taurus propose une plateforme logicielle unique, modulaire et hautement sécurisée (Taurus-PROTECT, CAPITAL, PRIME) reposant sur une cryptographie multi-parties (MPC-CMP) et une architecture API-first qui unifie la conservation à froid ou à chaud, l'émission de titres et le négoce réglementé.</p>
+<h4 class="kicker">LE GTM</h4>
+<p>Le modèle de vente repose sur une approche de vente directe hautement consultative ciblant les banques systémiques et les dépositaires mondiaux (comme State Street ou Deutsche Bank), capitalisant sur l'obtention de licences réglementaires clés (FINMA, MiFID) pour lever les barrières de conformité dès le premier contact.<hr/></p><div class="score-row sr-green sr-head"><span class="sr-label">👨🏻 EXCELLENCE DE L'ÉQUIPE (25%)</span><span class="sr-bar"><span class="sr-fill" style="width:88%"></span></span><span class="sr-val">88/100</span></div>
+<p>L'équipe dirigeante présente une expertise technique et réglementaire exceptionnelle, parfaitement alignée avec les exigences du secteur bancaire suisse.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Adéquation Fondateur-Marché</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Oren Olivier Puder (président du conseil d'administration depuis 2018) et les cofondateurs Lamine Brahimi et Sébastien Dessimoz possèdent une profonde expérience de la finance réglementée et de la sécurité cryptographique en Suisse.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Historique des Fondateurs</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Les dirigeants affichent un parcours solide dans la structuration financière et la conformité réglementaire, validé par le soutien d'investisseurs stratégiques de premier plan.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Leadership</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'équipe s'appuie sur des profils de haut niveau comme Jean-Blaise Conne (vice-président) et François Aegerter (directeur), structurant une gouvernance robuste.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Complétude de l'Équipe</span><span class="sr-val">87/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Plus de 60 % de l'équipe est composée d'ingénieurs et de titulaires de doctorats, assurant une supériorité technique incontestable, bien que le développement commercial international reste à accélérer.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">🌊 OPPORTUNITÉ DE MARCHÉ (25%)</span><span class="sr-bar"><span class="sr-fill" style="width:80%"></span></span><span class="sr-val">80/100</span></div>
+<p>Le marché suisse de la conservation d'actifs numériques pour les banques est en pleine structuration réglementaire, offrant un terrain de jeu hautement qualitatif mais géographiquement délimité.</p>
+<ul><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Taille et Croissance</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Le marché de l'infrastructure logicielle de conservation, tokenisation et trading d'actifs numériques pour les institutions financières en Suisse compte environ 54 banques actives sur 225, représentant un segment de niche à haute valeur.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Alignement Temporel</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'entrée en vigueur de la loi DLT en Suisse le 1er août 2021 et l'évolution des réglementations européennes (MiCA) créent une urgence de mise en conformité pour les banques.</div></li><li class="sr-item"><div class="score-row sr-blue sr-sub"><span class="sr-label">Intensité Concurrentielle</span><span class="sr-val">75/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La concurrence est vive en Suisse avec des acteurs spécialisés comme Sygnum Bank, Crypto Finance AG, AMINA Bank AG et Scrypt, limitant les parts de marché facilement capturables.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Potentiel d'Expansion</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'expansion internationale est activement engagée avec l'ouverture récente de bureaux à New York, Londres, Paris, São Paulo et Singapour.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">💡 INNOVATION PRODUIT (25%)</span><span class="sr-bar"><span class="sr-fill" style="width:90%"></span></span><span class="sr-val">90/100</span></div>
+<p>Une suite logicielle modulaire de pointe, combinant sécurité de niveau militaire et flexibilité opérationnelle.</p>
+<ul><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Différenciation</span><span class="sr-val">92/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">La plateforme unifiée intègre nativement la conservation (Taurus-PROTECT), la tokenisation (Taurus-CAPITAL) et le trading (Taurus-PRIME) avec une cryptographie post-quantique.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Adéquation Produit-Marché</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Validée par plus de 40 clients institutionnels de premier plan, dont State Street, Deutsche Bank, CACEIS et Swissquote.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Évolutivité</span><span class="sr-val">88/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">L'architecture API-first prend en charge les contrats intelligents EVM et non-EVM, avec des déploiements flexibles (sur site, cloud ou hybride).</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Propriété Intellectuelle et Barrières</span><span class="sr-val">90/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Taurus bénéficie de certifications de sécurité majeures (ISO 27001, ISAE 3402 Type II, conformité DORA) et de licences réglementaires FINMA et MiFID difficiles à répliquer.</div></li></ul>
+<div class="score-row sr-na sr-head"><span class="sr-label">💼 MODÈLE D'AFFAIRES (25%)</span><span class="sr-bar"><span class="sr-fill" style="width:0%"></span></span><span class="sr-val">—</span><span class="sr-note">non noté — donnée absente</span></div>
+<p>Les données financières précises de tarification et de structure de coûts ne sont pas publiques en Suisse.</p>
+<ul><li class="sr-item"><div class="score-row sr-na sr-sub"><span class="sr-label">Économie Unitaire</span><span class="sr-val">—</span><span class="sr-note">non noté — donnée absente</span></div><div class="sr-desc">Les détails des frais de licence et d'intégration ne sont pas divulgués.</div></li><li class="sr-item"><div class="score-row sr-na sr-sub"><span class="sr-label">Modèle de Revenus</span><span class="sr-val">—</span><span class="sr-note">non noté — donnée absente</span></div><div class="sr-desc">Modèle SaaS d'entreprise basé sur des frais de licence modulaires et des frais de service, mais sans métriques chiffrées publiques.</div></li><li class="sr-item"><div class="score-row sr-na sr-sub"><span class="sr-label">Monétisation</span><span class="sr-val">—</span><span class="sr-note">non noté — donnée absente</span></div><div class="sr-desc">Les paliers de tarification et les chemins d'upsell restent confidentiels.</div></li><li class="sr-item"><div class="score-row sr-na sr-sub"><span class="sr-label">Efficacité du Capital</span><span class="sr-val">—</span><span class="sr-note">non noté — donnée absente</span></div><div class="sr-desc">Bien que la société ait levé 65 millions de dollars en Série B en 2023 et compte environ 14 bureaux mondiaux, les états financiers détaillés ne sont pas publics.</div></li></ul>
+<div class="score-row sr-green sr-head"><span class="sr-label">📈 TRACTION &amp; CROISSANCE (25%)</span><span class="sr-bar"><span class="sr-fill" style="width:85%"></span></span><span class="sr-val">85/100</span></div>
+<p>Une excellente dynamique commerciale portée par des partenariats mondiaux majeurs.</p>
+<ul><li class="sr-item"><div class="score-row sr-na sr-sub"><span class="sr-label">Croissance des Revenus</span><span class="sr-val">—</span><span class="sr-note">non noté — donnée absente</span></div><div class="sr-desc">Les chiffres d'affaires précis ne sont pas publics en Suisse.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Validation Client</span><span class="sr-val">95/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Des signatures de contrats mondiaux majeurs avec Deutsche Bank et State Street confirment la confiance des plus grands dépositaires mondiaux.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Progression des Indicateurs</span><span class="sr-val">85/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Expansion rapide de l'empreinte géographique et obtention du prix de la Growth Stage Start-Up of the Year aux Swiss FinTech Awards 2025.</div></li><li class="sr-item"><div class="score-row sr-green sr-sub"><span class="sr-label">Pénétration du Marché</span><span class="sr-val">80/100</span><span class="sr-note">× 25%</span></div><div class="sr-desc">Forte pénétration du marché bancaire suisse et européen, avec une expansion en cours sur les marchés américain et latino-américain.</div></li></ul>
+<hr/><strong>🔍 RISQUE À COUVRIR :</strong>
+<p>L'hypothèse critique réside dans la capacité de Taurus à s'imposer comme le standard technologique mondial face à des concurrents américains ou asiatiques disposant de capitaux plus importants, alors que ses comptes et sa rentabilité réelle restent non publics en Suisse.</p>
+<p>Ce risque est partiellement résoluble par une due diligence approfondie des contrats clients existants et de l'état de la trésorerie lors des phases d'audit privé.</p>
+<h4 class="kicker">AVANTAGES CONCURRENTIELS CLÉS</h4>
+<ul><li>Une plateforme logicielle unique et modulaire couvrant l'intégralité du cycle de vie des actifs (conservation, tokenisation, trading), évitant aux banques de multiplier les fournisseurs technologiques.</li><li>Une conformité réglementaire native et robuste, appuyée par une licence de maison de titres FINMA en Suisse et une conformité DORA/MiFID en Europe.</li><li>Une sécurité cryptographique de pointe combinant MPC-CMP, stockage à froid hautement sécurisé et préparation à la cryptographie post-quantique.</li></ul>
+<p><strong>🧱 BARRIÈRE À L'ENTRÉE :</strong> MODÉRÉE</p>
+<p>Le fossé technologique et sécuritaire créé par Taurus est difficile à franchir pour un nouvel entrant, car l'intégration de systèmes bancaires de premier niveau exige des années de certification et d'audits (ISO 27001, ISAE 3402). De plus, la confiance institutionnelle établie avec des géants comme Deutsche Bank ou State Street crée un effet de verrouillage opérationnel fort. Néanmoins, l'absence de brevets exclusifs bloquants ou d'effets de réseau propriétaires chiffrés maintient cette barrière au niveau modéré.</p>
+<h4 class="kicker">PARI ASYMÉTRIQUE</h4>
+<ul><li>Le scénario haussier : Taurus devient le système d'exploitation par défaut des actifs tokenisés pour les 100 plus grandes banques mondiales, capturant une part majoritaire des volumes de transaction et d'émission de titres à l'échelle globale.</li><li>Le scénario baissier : Les grandes institutions financières décident de développer leurs propres solutions internes ou se tournent vers des géants américains de la conservation, reléguant Taurus à un acteur régional européen de niche.</li></ul>
+<p><strong>🚩 POINTS DE VIGILANCE</strong></p>
+<ul><li>Risques universels : Le rythme d'adoption de la tokenisation par les banques traditionnelles reste plus lent que prévu, ce qui pourrait peser sur la croissance à long terme si les volumes de transaction ne décollent pas.</li><li>Incohérences avec la thèse : L'absence de visibilité sur les comptes annuels (non publics en Suisse) empêche de valider l'efficacité réelle du capital et la rentabilité opérationnelle à ce stade.</li></ul></div></div>
+<div class="section-container" id="swot">
+<h2 class="section-title"><span class="i18n-fr">Analyse SWOT</span><span class="i18n-en">SWOT analysis</span></h2>
+<div class="swot-grid">
+<div class="swot-item s-green"><h3><span class="i18n-fr">Forces</span><span class="i18n-en">Strengths</span></h3><ul><li>La plateforme modulaire couvre la conservation, la tokenisation, le trading et le règlement, ce qui permet à une banque de commencer par un seul module puis d'élargir.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-5" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Enterprise-grade Custody, Tokenization and Trading Platform">[5]</a></sup></li><li>Le site mentionne une licence de maison de titres FINMA et une licence MiFID, ce qui permet à Taurus d'opérer lui-même des activités réglementées.</li><li><strong>L'architecture technique répond aux exigences des banques:</strong> calcul multipartite (MPC), stockage froid isolé, cryptographie post-quantique et déploiement géré, sur site ou hybride.</li></ul></div>
+<div class="swot-item s-red"><h3><span class="i18n-fr">Faiblesses</span><span class="i18n-en">Weaknesses</span></h3><ul><li>Les déploiements sur site et hybrides exigent des intégrations lourdes, qui allongent les cycles de vente et pèsent sur la marge de services.</li><li>La clientèle est concentrée sur la finance traditionnelle, dont les budgets dédiés aux actifs numériques restent sensibles aux cycles de marché.</li><li>Taurus est à la fois éditeur de logiciels et opérateur réglementé de trading, ce qui peut créer des conflits de canal avec des banques clientes qui proposent elles-mêmes ces services.</li></ul></div>
+<div class="swot-item s-blue"><h3><span class="i18n-fr">Opportunités</span><span class="i18n-en">Opportunities</span></h3><ul><li>L'obtention de MiCA ouvrirait aux banques européennes un fournisseur couvrant à la fois la conservation et la tokenisation sous un même régime.</li><li>Selon une source dont l'année n'est pas précisée, 54 banques suisses sur 225 sont actives dans les actifs numériques, ce qui laisse environ 170 établissements à convaincre.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-8" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Switzerland's Lead in Digital Assets Is Eroding">[8]</a></sup></li></ul></div>
+<div class="swot-item s-orange"><h3><span class="i18n-fr">Menaces</span><span class="i18n-en">Threats</span></h3><ul><li>Les opérations récentes entre Fireblocks et TRES Finance (février 2026), puis entre Anchorage Digital et Routable (octobre 2026), montrent des plateformes mondiales qui élargissent leur périmètre fonctionnel.<sup class="pp-cite" style="font-size:.7em;line-height:0;margin-left:1px;white-space:nowrap"><a href="#src-16" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="Anchorage Digital Acquires Routable, Extending Its ...">[16]</a><a href="#src-19" style="color:#0E7F3F;text-decoration:none;font-weight:650" title="The Future of Onchain Finance: What M&amp;A Activity ...">[19]</a></sup></li><li>Les grandes banques clientes peuvent choisir d'internaliser la conservation une fois leur expertise acquise, ce qui réduirait la valeur d'une licence logicielle.</li><li>Des règles divergentes entre la Suisse, l'Union européenne et les États-Unis multiplient les coûts de conformité et retardent les lancements.</li><li>Un repli prolongé du marché des actifs numériques pourrait faire geler les projets pilotes des banques avant leur passage en production.</li></ul></div>
+</div>
+</div>
+<div class="section-container" id="strategie-croissance"><h2>Votre stratégie de croissance externe</h2><p>Ce mémo décrit Taurushq d'après les sources publiques. Proplace en déduit la stratégie de croissance externe ci-dessous : c'est elle qui pilote la recherche de cibles, leur tri (correspond / ne correspond pas) et leur analyse.</p><p><strong>Taurus Digital Asset Infrastructure – Expansion Stratégique</strong></p><h3>Les axes d'acquisition</h3><ul><li style="margin:0 0 10px"><strong>Conservation et tokenisation d'actifs numériques pour banques réglementées</strong> — Société B2B proposant une plateforme logicielle modulaire de conservation d'actifs numériques (MPC, HSM, stockage froid) et/ou de tokenisation de titres (actions, obligations, fonds) destinée à des banques systémiques, dépositaires globaux…</li><li style="margin:0 0 10px"><strong>Règlement interbancaire DLT et gestion de collatéral numérique</strong> — Société B2B proposant une infrastructure logicielle de règlement interbancaire sur DLT, de gestion de collatéral numérique ou de clearing d'actifs tokenisés destinée à des banques systémiques, FMI, CSD ou dépositaires centraux en Europe ou…</li><li style="margin:0 0 10px"><strong>Infrastructure CBDC et émission de stablecoins pour institutions réglementées</strong> — Société B2B fournissant une infrastructure logicielle d'émission, de gestion ou de distribution de CBDC ou de stablecoins institutionnels destinée à des banques centrales, banques de second rang, néobanques ou émetteurs réglementés en…</li><li style="margin:0 0 10px"><strong>Trading réglementé et prime brokerage d'actifs numériques institutionnel</strong> — Société B2B fournissant une plateforme de trading réglementé d'actifs numériques, de prime brokerage institutionnel ou de liquidité OTC pour des banques, broker-dealers et asset managers, disposant de licences MiFID ou équivalents, en…</li></ul><h3>Le périmètre</h3><ul><li><strong>Taille des cibles</strong> : EUR 2-50M ARR</li><li><strong>Profil</strong> : Series A, Series B, Series C, growth equity</li><li><strong>Zones</strong> : Europe, Switzerland, Middle East, North America, Asia-Pacific</li></ul><p style="margin:18px 0 6px"><a class="btn btn-primary" href="https://proplace.co/fr/compte?decouvrir=Taurushq" rel="noopener" target="_blank">Découvrir mes cibles →</a></p><p style="color:#64748b;font-size:13px">Votre stratégie est prête : relisez-la, ajustez-la si besoin, puis lancez la recherche de vos premières cibles depuis votre espace — en aperçu gratuit.</p></div>
+<div class="section-container" id="sources">
+<h2 class="section-title"><span class="i18n-fr">Sources et méthodologie</span><span class="i18n-en">Sources &amp; methodology</span></h2>
+<div class="source-list"><p style="font-style:italic;color:#4B5E78;margin:0 0 0.8em;">24 sources citées dans le texte. Sans renvoi numéroté : Analyse approfondie de l'entreprise (calculs du modèle, analyses ou contenus non vérifiés phrase à phrase). Sources : registres officiels, site de la société, presse et études sectorielles.</p>
+<ol style="margin:0.2em 0 0.9em 1.4em;padding:0;"><li id="src-1" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.zefix.ch/fr/search/entity/list/firm/1344239" rel="noopener nofollow" target="_blank">Zefix (registre du commerce) — Taurus SA (CHE-337.375.281, Genève) : fiche d'identité</a> <span style="color:#8FA0B8;font-size:0.85em;">— zefix.ch · registre officiel</span></li><li id="src-2" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.taurushq.com/legal/" rel="noopener nofollow" target="_blank">Website Terms of Use</a> <span style="color:#8FA0B8;font-size:0.85em;">— taurushq.com · site de la société</span></li><li id="src-3" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.shab.ch/api/v1/publications/f30c9821-e20c-49c9-827e-638edf78a314/xml" rel="noopener nofollow" target="_blank">FOSC/SHAB — Taurus SA (CHE-337.375.281, Genève) : publications du registre du commerce (organes, dirigeants en poste)</a> <span style="color:#8FA0B8;font-size:0.85em;">— shab.ch · 2026-09-10 · registre officiel</span></li><li id="src-4" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.taurushq.com/" rel="noopener nofollow" target="_blank">Taurus: Digital Asset Infrastructure for Financial Institutions</a> <span style="color:#8FA0B8;font-size:0.85em;">— taurushq.com</span></li><li id="src-5" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.taurushq.com/about/" rel="noopener nofollow" target="_blank">Enterprise-grade Custody, Tokenization and Trading Platform</a> <span style="color:#8FA0B8;font-size:0.85em;">— taurushq.com</span></li><li id="src-6" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.sif.admin.ch/en/dlt-blockchain-en" rel="noopener nofollow" target="_blank">DLT / blockchain / tokenisation</a> <span style="color:#8FA0B8;font-size:0.85em;">— sif.admin.ch</span></li><li id="src-7" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.sif.admin.ch/de/dlt-blockchain" rel="noopener nofollow" target="_blank">DLT / Blockchain / Tokenisierung</a> <span style="color:#8FA0B8;font-size:0.85em;">— sif.admin.ch</span></li><li id="src-8" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.finews.com/news/english-news/72956-switzerland-digitale-assets-knowhow-lidia-kurt-finance-place-commentary-digitalisation" rel="noopener nofollow" target="_blank">Switzerland's Lead in Digital Assets Is Eroding</a> <span style="color:#8FA0B8;font-size:0.85em;">— finews.com · 31 juil. 2026</span></li><li id="src-9" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.adnovum.com/blog/swiss-digital-asset-banking-why-infrastructure-strategy-matters-now" rel="noopener nofollow" target="_blank">Swiss Digital Asset Banking: Why Infrastructure Strategy ...</a> <span style="color:#8FA0B8;font-size:0.85em;">— adnovum.com · 22 avr. 2026</span></li><li id="src-10" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.sygnum.com/custody_digital_asset_banking_funds/" rel="noopener nofollow" target="_blank">Custody &amp; Digital Asset Banking for Funds</a> <span style="color:#8FA0B8;font-size:0.85em;">— sygnum.com</span></li><li id="src-11" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.top100startups.swiss/CryptoFinance" rel="noopener nofollow" target="_blank">Crypto Finance AG - top100startup.ch</a> <span style="color:#8FA0B8;font-size:0.85em;">— top100startups.swiss</span></li><li id="src-12" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.juliusbaer.com/ch/en/our-solutions/additional-services/digital-assets/" rel="noopener nofollow" target="_blank">Digital assets</a> <span style="color:#8FA0B8;font-size:0.85em;">— juliusbaer.com</span></li><li id="src-13" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://scrypt.swiss/custody" rel="noopener nofollow" target="_blank">Segregated Digital Asset Custody for Institutions</a> <span style="color:#8FA0B8;font-size:0.85em;">— scrypt.swiss</span></li><li id="src-14" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.taurushq.com/blog/taurus-raises-usd-65-million-from-strategic-investors/" rel="noopener nofollow" target="_blank">Taurus raises USD 65 million série B from strategic investors</a> <span style="color:#8FA0B8;font-size:0.85em;">— taurushq.com</span></li><li id="src-15" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.prnewswire.com/news-releases/taurus-raises-usd-65-million-to-further-develop-its-digital-asset-platform-and-fuel-international-expansion-301745621.html" rel="noopener nofollow" target="_blank">Taurus raises USD 65 million to further develop its digital ...</a> <span style="color:#8FA0B8;font-size:0.85em;">— prnewswire.com · 14 févr. 2023</span></li><li id="src-16" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.anchorage.com/press-room/anchorage-digital-acquires-routable-extending-its-institutional-platform-to-the-payment-rails-of-the-worlds-largest-companies" rel="noopener nofollow" target="_blank">Anchorage Digital Acquires Routable, Extending Its ...</a> <span style="color:#8FA0B8;font-size:0.85em;">— anchorage.com · 6 oct. 2026</span></li><li id="src-17" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.finma.ch/news/2025/03/20250318-mm-dlt-handelssystem/" rel="noopener nofollow" target="_blank">FINMA bewilligt erstes DLT-Handelssystem</a> <span style="color:#8FA0B8;font-size:0.85em;">— finma.ch · 18 mars 2025</span></li><li id="src-18" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.sygnum.com/move-your-digital-assets-to-a-swiss-bank-get-started-now/" rel="noopener nofollow" target="_blank">Move your digital assets to a Swiss bank</a> <span style="color:#8FA0B8;font-size:0.85em;">— sygnum.com</span></li><li id="src-19" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.fireblocks.com/blog/future-of-onchain-finance-merge-acquire-activity" rel="noopener nofollow" target="_blank">The Future of Onchain Finance: What M&amp;A Activity ...</a> <span style="color:#8FA0B8;font-size:0.85em;">— fireblocks.com · 25 févr. 2026</span></li><li id="src-20" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.taurushq.com/leadership/" rel="noopener nofollow" target="_blank">Leadership - Taurus SA</a> <span style="color:#8FA0B8;font-size:0.85em;">— taurushq.com</span></li><li id="src-21" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.taurushq.com/blog/taurus-named-growth-stage-start-up-of-the-year-at-the-2025-swiss-fintech-awards/" rel="noopener nofollow" target="_blank">Taurus Named Growth Stage Start-Up of the Year at the 2025 ...</a> <span style="color:#8FA0B8;font-size:0.85em;">— taurushq.com · 12 juin 2025</span></li><li id="src-22" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.taurushq.com/blog/taurus-announces-strategic-expansion-in-latin-america-with-the-opening-of-its-brazilian-office-in-s%C3%A3o-paulo/" rel="noopener nofollow" target="_blank">Taurus Announces Strategic Expansion in Latin America with ...</a> <span style="color:#8FA0B8;font-size:0.85em;">— taurushq.com · 9 sept. 2025</span></li><li id="src-23" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.taurushq.com/blog/taurus-expands-european-presence-with-new-offices-in-london-and-paris/" rel="noopener nofollow" target="_blank">Taurus Expands European Presence with New Offices in ...</a> <span style="color:#8FA0B8;font-size:0.85em;">— taurushq.com · 12 oct. 2023</span></li><li id="src-24" style="margin:0.25em 0;scroll-margin-top:24px"><a href="https://www.taurushq.com/security/" rel="noopener nofollow" target="_blank">Security &amp; Privacy | Taurus</a> <span style="color:#8FA0B8;font-size:0.85em;">— taurushq.com · site de la société</span></li></ol>
+</div>
+</div><div class="ppx-cta"><h3><span class="i18n-fr">Aller plus loin sur Taurushq ?</span><span class="i18n-en">Explore Taurushq further?</span></h3><p data-i18n="memoCtaP">Prenez un appel stratégique, ou suivez notre deal flow.</p><a class="b" data-i18n="memoCtaCall" href="https://calendar.app.google/yL2nSRV974Jqaybd8">Prendre un RDV stratégique</a><a class="b g" data-i18n="memoCtaFlow" href="https://proplace.co/newsletter">S'abonner au deal flow</a><p class="ppx-cta-sub" data-i18n="memoCtaSub">Actualité M&amp;A &amp; levées de fonds quotidiennes, selon votre secteur.</p></div><p class="ppx-disc"><span class="i18n-fr">Généré par Proplace.co — une IA qui peut se tromper. Contact : <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span><span class="i18n-en">Generated by Proplace.co. Proplace is an AI and may make mistakes. Contact us at <a href="mailto:alexandre@proplace.co">alexandre@proplace.co</a></span></p></div></div><footer class="ppf"><div class="ppf-in"><div class="ppf-brand"><a href="https://proplace.co/" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p data-i18n="tagline">Your AI Corporate Developer</p></div><nav class="ppf-nav"><a href="/actualites/" data-i18n="direct">Live</a><a href="/actualites/operations/secteurs/" data-i18n="marches">Veille sectorielle</a><a href="/fr/newsletter">Newsletter</a><a class="ppf-api" href="https://proplace.co/api/" target="_blank" rel="noopener">API</a></nav><div class="ppf-acct" id="ppf-auth"><a href="https://proplace.co/#login" data-i18n="login">Log in</a></div><span class="ppf-copy">© 2026 Proplace</span></div></footer><script>(function(){
+if(window.__ppChrome)return;window.__ppChrome=1;
+/* CSS auto-injecté → le chrome marche même sur les templates qui n'embarquent pas
+   PROPLACE_HEADER_CSS (ex. fiches mémo régénérées à mini-barre _pp_bar). */
+try{var st=document.createElement("style");st.textContent=
+".i18n-en{display:none}html[data-pplang=en] .i18n-en{display:inline}html[data-pplang=en] .i18n-fr{display:none}"+
+"html[data-pplang=en] a.i18n-en{display:inline-block}"+
+".pph-lang{display:inline-flex;align-items:center;border:1px solid #d9d9d3;border-radius:22px;overflow:hidden;background:#fff;vertical-align:middle}"+
+".pph-lang button{font:600 12px/1 Inter,system-ui,sans-serif;padding:5px 9px;background:none;border:none;color:#888;cursor:pointer}"+
+".pph-lang button:hover{color:#16233A}.pph-lang button.on{background:#0F1D33;color:#fff}"+
+/* Menu « My account » (remplace le bouton dashboard) — pastille + menu déroulant */
+/* flex:0 0 auto + nowrap : sans ça la pastille est le seul enfant compressible du
+   nav mobile → elle rétrécit à ~0 et « Mon compte » s'écrit à la verticale. */
+".pph-acct{position:relative;display:inline-flex;align-items:center;flex:0 0 auto;white-space:nowrap}"+
+".pph-acct-btn{display:inline-flex;align-items:center;gap:5px;cursor:pointer;flex:0 0 auto;white-space:nowrap;max-width:min(220px,46vw);overflow:hidden;text-overflow:ellipsis}"+
+".pph-acct-caret{font-size:10px;line-height:1}"+
+/* position:FIXED + coordonnées posées en JS via getBoundingClientRect, ET le menu est
+   DÉPLACÉ SOUS <body> à l'ouverture (voir wireAcct). Le fixed seul ne suffit pas :
+   .pph porte un backdrop-filter, ce qui en fait le bloc conteneur des descendants
+   fixed → le menu restait prisonnier du défileur overflow:auto de .pph nav et était
+   entièrement clippé en mobile (menu invisible). Sous <body>, aucun ancêtre filtré
+   ni défileur : le fixed est enfin relatif au viewport. */
+".pph-acct-menu{position:fixed;min-width:190px;background:#fff;border:1px solid #E3E8F0;border-radius:11px;box-shadow:0 14px 40px rgba(11,25,41,.16);padding:6px;z-index:1000;display:flex;flex-direction:column}"+
+".pph-acct-menu[hidden]{display:none}"+
+".pph-acct-menu a,.pph-acct-menu button{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:7px;font:500 13.5px/1.2 Inter,system-ui,sans-serif;color:#2a2a2a;text-decoration:none;white-space:nowrap;margin:0;background:none;border:none;cursor:pointer}"+
+".pph-acct-menu a:hover,.pph-acct-menu button:hover{background:#eef9f2;color:#0E7F3F}"+
+/* « Déconnexion » = dernière entrée, séparée du reste par un filet (demande CEO 20/07) */
+".pph-acct-sep{height:1px;background:#EFEFEB;margin:5px 6px}"+
+".pph-acct-menu .pph-acct-logout{color:#8a3a3a}"+
+".pph-acct-menu .pph-acct-logout:hover{background:#FDECEC;color:#C0353A}";
+document.head.appendChild(st);}catch(e){}
+var D={
+ en:{home:"Home",login:"Log in",news:"News",direct:"Live",marches:"Sector watch",marchesFooter:"Live by sector",dealflow:"My deal flow",analysis:"Analysis",research:"Research",mindmaps:"Mindmaps",dashboard:"Open dashboard",acct:"Connected",mSettings:"Settings",mPipeline:"My deal flow",mDashboard:"Dashboard",logout:"Log out",tagline:"Your AI Corporate Developer",insights:"Explore",account:"Account",legal:"Legal",terms:"Terms",privacy:"Privacy",bottom:"© 2026 Proplace",memoAskTitle:"Want a detailed, personalized memo on this company?",memoAskBtn:"⚡ Request a detailed, personalized memo",memoCtaP:"Get a strategy call, or follow our deal flow.",memoCtaCall:"Schedule a strategy call",memoCtaFlow:"Subscribe to deal flow",memoCtaSub:"Daily M&A deals & fundraises we assess, by sector.",ops:"Deals",allOps:"🌍 All deals",fundr:"Fundraisings",bySector:"🗂 By sector",dayAnalysis:"📰 Today's full deal analysis",subscribe:"📬 Subscribe",analysisOfDay:"Analysis of the day",seeAllOps:"→ See all of today's deals, sorted by sector",backAllNews:"← All news",backAllSectors:"← All sectors",allOpsArrow:"All deals →",allLbl:"All",mnaLbl:"Mergers & acquisitions",fundraisingsLbl:"Fundraisings"},
+ fr:{home:"Accueil",login:"Se connecter",news:"Actualités",direct:"Live",directFooter:"En direct",marches:"Veille sectorielle",marchesFooter:"En direct par secteur",dealflow:"Mon deal flow",analysis:"Analyses",research:"La recherche",mindmaps:"Mindmaps",dashboard:"Ouvrir le dashboard",acct:"Connecté",mSettings:"Paramètres",mPipeline:"Mon deal flow",mDashboard:"Tableau de bord",logout:"Se déconnecter",tagline:"Votre AI Corporate Developer",insights:"Explorer",account:"Compte",legal:"Légal",terms:"Conditions",privacy:"Confidentialité",bottom:"© 2026 Proplace",memoAskTitle:"Vous voulez un mémo détaillé et personnalisé sur cette société ?",memoAskBtn:"⚡ Demander un mémo détaillé et personnalisé",memoCtaP:"Prenez un appel stratégique, ou suivez notre deal flow.",memoCtaCall:"Prendre un RDV stratégique",memoCtaFlow:"S'abonner au deal flow",memoCtaSub:"Actualité M&A & levées de fonds quotidiennes, selon votre secteur.",ops:"Opérations",allOps:"🌍 Toutes les opérations",fundr:"Levées",bySector:"🗂 Par secteur",dayAnalysis:"📰 L'analyse de toutes les opérations du jour",subscribe:"📬 S'abonner",analysisOfDay:"Analyse du jour",seeAllOps:"→ Voir toutes les opérations du jour, classées par secteur",backAllNews:"← Toutes les actualités",backAllSectors:"← Tous les secteurs",allOpsArrow:"Toutes les opérations →",allLbl:"Tout",mnaLbl:"Fusions & acquisitions",fundraisingsLbl:"Levées de fonds"}
+};
+function getLang(){if(/^[/]en(?:[/]|$)/.test(location.pathname))return "en";
+if(/^[/]fr(?:[/]|$)/.test(location.pathname))return "fr";
+try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
+return "en";}
+function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
+var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
+if(s&&s.fund_type){
+// Header loggé : {fund} ▾ → {fund} deal flow (/cibles) · Paramètres (/compte).
+// La déconnexion vit uniquement dans le footer.
+var compte=(lang==="fr"?"/fr/compte":"/compte");
+var pipeline="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go?fund="+encodeURIComponent(s.fund_type||"")+(s.member_session?"&session="+encodeURIComponent(s.member_session):"");
+var who=String(s.fund_type||"").replace(/^member-/i,"").replace(/[-_]+/g," ").replace(/^\s+|\s+$/g,"");
+function escH(x){return String(x||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+var flowLbl=who?who+" deal flow":t.dealflow;
+var btnLbl=who||t.acct;
+var h='<div class="pph-acct"><button type="button" class="cta pph-acct-btn" aria-haspopup="true" aria-expanded="false" aria-label="'+escH(btnLbl)+'">'+escH(btnLbl)+' <span class="pph-acct-caret" aria-hidden="true">\u25be</span></button>'+
+'<div class="pph-acct-menu" role="menu" hidden>'+
+'<a role="menuitem" href="'+pipeline+'">'+escH(flowLbl)+"</a>"+
+'<a role="menuitem" href="'+compte+'">'+t.mSettings+"</a>"+
+"</div></div>";
+return {i:1,h:h,pipeline:pipeline,compte:compte,flowLbl:flowLbl};}
+return {i:0,h:'<a class="cta" href="/#login">'+t.login+"</a>"};}
+/* Pose les coordonnées du menu fixed sous (ou au-dessus si pas la place) la pastille,
+   aligné à droite du bouton, borné au viewport. */
+function positionAcct(b,menu){var r=b.getBoundingClientRect();
+var mw=menu.offsetWidth||200;
+// Toujours SOUS le bouton (menu court = Mon compte + Déco) — plus de flip au-dessus.
+var left=Math.min(r.right-mw,window.innerWidth-mw-8);if(left<8)left=8;
+var top=Math.max(8,Math.min(r.bottom+8,window.innerHeight-100));
+menu.style.left=left+"px";menu.style.top=top+"px";}
+/* Déconnexion partagée par le menu « Mon compte » et le lien du footer : purge le
+   cookie de session puis recharge (la page se re-rend en état déconnecté). */
+function doLogout(){try{document.cookie="proplace_auth=; domain=.proplace.co; path=/; max-age=0";}catch(e){}
+location.reload();}
+/* Historique Research → Mon compte (onglet Recherches). Enregistre chaque fiche consultée
+   dans localStorage (même clé que ComptePage). No-op hors /research/<slug>/. */
+(function recordResearchVisit(){
+try{
+ var p=(location.pathname||"").replace(/\/+$/,"")+"/";
+ if(!/\/(en\/)?research\/[^/]+\//.test(p))return;
+ if(/\/(en\/)?research\/?$/.test((location.pathname||"").replace(/\/+$/,"")))return;
+ var title="";
+ var h1=document.querySelector("main h1, .rp-head h1, h1");
+ if(h1&&h1.textContent)title=h1.textContent.trim();
+ if(!title)title=(document.title||"").split("|")[0].trim();
+ var url=location.pathname;
+ var key="proplace_research_history";
+ var arr=[];
+ try{arr=JSON.parse(localStorage.getItem(key)||"[]")||[];}catch(e){arr=[];}
+ if(!Array.isArray(arr))arr=[];
+ arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});
+ arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});
+ if(arr.length>40)arr=arr.slice(0,40);
+ localStorage.setItem(key,JSON.stringify(arr));
+}catch(e){}
+})();
+/* Menu « My account » : clic = ouvre/ferme, ferme les autres. Ré-appelé à chaque
+   apply() (le innerHTML est reconstruit au switch de langue) → garde __w anti-doublon. */
+function wireAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){
+if(b.__w)return;b.__w=1;
+/* Le menu est sorti du header et rattaché à <body> dès le câblage : c'est le seul
+   moyen que son position:fixed soit VRAIMENT relatif au viewport (cf. backdrop-filter
+   de .pph). Le lien bouton→menu passe donc par b.__menu, plus par le DOM parent. */
+var wrap=b.parentNode;var m0=wrap?wrap.querySelector(".pph-acct-menu"):null;
+if(m0){m0.setAttribute("hidden","");document.body.appendChild(m0);b.__menu=m0;m0.__btn=b;}
+b.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();
+var menu=b.__menu;if(!menu)return;
+var willOpen=menu.hasAttribute("hidden");
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){if(m!==menu)m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(o){if(o!==b)o.setAttribute("aria-expanded","false");});
+if(willOpen){menu.removeAttribute("hidden");positionAcct(b,menu);b.setAttribute("aria-expanded","true");}
+else{menu.setAttribute("hidden","");b.setAttribute("aria-expanded","false");}});
+});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-logout"),function(x){
+if(x.__w)return;x.__w=1;
+x.addEventListener("click",function(ev){ev.preventDefault();ev.stopPropagation();doLogout();});});}
+function closeAcct(){Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){m.setAttribute("hidden","");});
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-btn"),function(b){b.setAttribute("aria-expanded","false");});}
+/* Le scroll doit fermer le menu quand c'est LA PAGE qui défile — mais en mobile
+   .pph nav est lui-même un défileur horizontal, et le simple fait de taper
+   « Mon compte » le fait défiler pour amener le bouton à l'écran. Ce scroll-là
+   refermait le menu dans la foulée (menu inutilisable au doigt). On distingue donc :
+   scroll VENANT DU HEADER → on se contente de repositionner ; sinon → on ferme. */
+function onScrollAcct(e){var t=e&&e.target;
+var inHeader=t&&t.nodeType===1&&t.closest&&t.closest(".pph");
+if(!inHeader){closeAcct();return;}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-acct-menu"),function(m){
+if(!m.hasAttribute("hidden")&&m.__btn)positionAcct(m.__btn,m);});}
+function apply(lang){var t=D[lang];
+try{localStorage.setItem("proplace_lang",lang);}catch(e){}
+/* Keep shared navigation in the language of the article, including breadcrumbs. */
+Array.prototype.forEach.call(document.querySelectorAll('.pph a[href],.ppf a[href],.bcrumb a[href]'),function(a){
+try{var u=new URL(a.getAttribute('href'),location.href);if(u.origin!==location.origin)return;
+var p=u.pathname.replace(/^[/](?:en|fr)(?=[/]|$)/,'')||'/';
+if(/^[/](?:actualites|research)(?:[/]|$)/.test(p))p=(lang==='en'?'/en':'')+p;
+else if(p==='/'||/^[/](?:documentation|compte|terms|privacy)(?:[/]|$)/.test(p))p=(lang==='fr'?'/fr':'')+(p==='/'&&lang==='fr'?'':p);
+else return;
+a.setAttribute('href',p+u.search+u.hash);}catch(e){} });
+Array.prototype.forEach.call(document.querySelectorAll('.ppf-nav a[href*="newsletter"]'),function(a){
+a.setAttribute('href','/'+lang+'/newsletter');});
+try{document.documentElement.setAttribute("data-pplang",lang);}catch(e){}
+/* a11y/SEO : la langue DÉCLARÉE suit le contenu affiché — UNIQUEMENT sur les pages
+   dual-spans (marqueur data-pplang-sync posé par _head). Les pages au corps monolingue
+   (article du jour, fiches memo) gardent leur lang d'origine. */
+try{if(document.documentElement.hasAttribute("data-pplang-sync"))document.documentElement.lang=lang;}catch(e){}
+try{document.dispatchEvent(new CustomEvent("pplang",{detail:lang}));}catch(e){}
+var e=document.querySelectorAll("[data-i18n]");for(var i=0;i<e.length;i++){var k=e[i].getAttribute("data-i18n");if(t[k]!=null)e[i].textContent=t[k];}
+/* Les blocs auth sont reconstruits ci-dessous : on purge d'abord les menus déjà
+   déportés sous <body> par wireAcct, sinon le switch de langue en empile un de plus
+   à chaque clic (et les orphelins gardent l'ancienne langue). */
+Array.prototype.forEach.call(document.querySelectorAll("body > .pph-acct-menu"),function(m){
+if(m.parentNode)m.parentNode.removeChild(m);});
+var a=auth(lang);var ph=document.getElementById("pph-auth");if(ph)ph.innerHTML=a.h;
+var pf=document.getElementById("ppf-auth");if(pf){
+ if(a.i){pf.innerHTML='<a href="'+(a.pipeline||"/cibles")+'">'+(a.flowLbl||t.dealflow)+'</a>'
+  +'<a href="'+(a.compte||"/compte")+'">'+t.mSettings+"</a>"
+  +'<button type="button" id="ppf-logout">'+t.logout+"</button>";
+  var lo=document.getElementById("ppf-logout");if(lo)lo.onclick=function(ev){ev.preventDefault();doLogout();};}
+ else{pf.innerHTML='<a href="/#login">'+t.login+"</a>";}}
+Array.prototype.forEach.call(document.querySelectorAll(".ppf-api"),function(x){
+ if(a.i)x.classList.add("on");else x.classList.remove("on");});
+if(a.i){Array.prototype.forEach.call(document.querySelectorAll("a.ppf-gated"),function(x){var d=x.getAttribute("data-href");if(d)x.setAttribute("href",d);});}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.className=(b.getAttribute("data-lang")===lang)?"on":"";});
+wireAcct();}
+function altUrl(h){var a=document.querySelector('link[rel="alternate"][hreflang="'+h+'"]');
+var u=a?(a.href||""):"";return u?u.replace(/\/+$/,""):"";}
+function go(l){
+try{localStorage.setItem("proplace_lang",l);}catch(e){}
+var here=(location.origin+location.pathname).replace(/\/+$/,"");
+var alt=altUrl(l);
+if(alt&&alt!==here){location.href=alt;return;}
+apply(l);}
+function init(){var _pl=getLang();
+/* Respecte la préférence de langue DÈS LE CHARGEMENT : si CETTE page a une version dans la
+   langue choisie (link hreflang) à une AUTRE URL, on y va. Sans ça, arriver sur l'article FR
+   avec la préférence EN laissait le CORPS en français (seul le chrome basculait) — signalé le
+   26/07 (« je suis en EN et je vois l'article en français »). Les pages bilingues à span
+   (sans alternate distinct) ne redirigent pas : altUrl renvoie "" → apply() bascule les spans. */
+try{var _alt=altUrl(_pl);var _here=(location.origin+location.pathname).replace(/\/+$/,"");
+if(_alt&&_alt!==_here){location.replace(_alt);return;}}catch(e){}
+apply(_pl);
+if(!window.__ppAcctDoc){window.__ppAcctDoc=1;
+document.addEventListener("click",closeAcct);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"||e.keyCode===27)closeAcct();});
+window.addEventListener("resize",closeAcct);
+window.addEventListener("scroll",onScrollAcct,true);}
+Array.prototype.forEach.call(document.querySelectorAll(".pph-lang button"),function(b){b.addEventListener("click",function(){go(b.getAttribute("data-lang"));});});}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();</script><style>.ppx-lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:9999;cursor:zoom-out}.ppx-lb img{max-width:92vw;max-height:92vh;box-shadow:0 8px 40px rgba(0,0,0,.5)}</style><div class="ppx-lb" id="ppxlb" onclick="this.style.display='none'"><img alt=""></div><script>document.querySelectorAll(".main-wrapper img,.content-area img").forEach(function(im){im.style.cursor="zoom-in";im.addEventListener("click",function(){var lb=document.getElementById("ppxlb");lb.querySelector("img").src=this.src;lb.style.display="flex";});});</script><style>
+.op-eval{margin-top:8px;font-size:12px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:8px;padding:5px 13px;cursor:pointer;transition:opacity .15s}
+.op-eval:hover{opacity:.82}
+.op-comp{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-comp:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-comp-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « Coup d'après » par ligne (même module que l'article, style distinct pointillé accent) */
+.op-pros{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:700;color:var(--accent-dk);background:transparent;border:1px dashed var(--accent);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-pros:hover{background:var(--bg)}
+.op-pros-panel{margin-top:8px;border-left:2px dashed var(--accent);padding:4px 0 4px 12px}
+.op-pros-disc{font-size:11.5px;color:var(--mid);font-style:italic;margin:0 0 6px}
+.pros-row{font-size:13.5px;color:var(--ink);padding:5px 0;line-height:1.45;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pros-row strong{color:var(--accent-dk);font-weight:700}
+.comp-row{padding:5px 0}
+.comp-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.comp-row a:hover{color:var(--accent-dk)}
+.comp-m{display:block;font-size:12px;color:var(--mid);margin-top:1px}
+/* « Pourquoi c'est comparable » : petites puces en clair (même niche / type / taille…), zéro LLM */
+.comp-why{display:block;margin-top:3px}
+.comp-why .cw{display:inline-block;font-size:10.5px;font-weight:600;color:var(--accent-dk);
+background:rgba(18,161,80,.12);border-radius:5px;padding:1px 7px;margin:0 5px 3px 0}
+/* « Sources » par ligne : même opération vue par plusieurs médias, fusionnée en une ligne */
+.op-src{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s}
+.op-src:hover{border-color:var(--accent);color:var(--accent-dk)}
+.op-src-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 2px 12px}
+/* « ⋯ Détails » : LE bouton secondaire unique du board (sources + créneau + coup d'après). */
+.op-det{margin-top:8px;margin-left:8px;font-size:11.5px;font-weight:600;color:var(--sub);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;transition:all .12s;
+max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.op-det:hover{border-color:var(--accent);color:var(--accent-dk)}
+/* Preview du contenu du panneau, dans le bouton (une ligne, coupée à l'ellipsis) */
+.op-det-pv{font-weight:400;color:var(--mid)}
+.op-det:hover .op-det-pv{color:var(--accent-dk)}
+.op-det.on{border-color:var(--accent);color:var(--accent-dk);background:var(--bg)}
+.op-det-panel{margin-top:8px;border-left:2px solid var(--line);padding:2px 0 6px 12px}
+.op-det-h{font-size:12px;font-weight:600;color:var(--mid);margin:12px 0 5px}
+.op-det-h:first-child{margin-top:4px}
+.op-det-h em{font-style:normal;font-weight:600;text-transform:none;letter-spacing:0;color:var(--mid)}
+.src-row{padding:5px 0}
+.src-row a{font-size:13.5px;font-weight:600;color:var(--ink)}
+.src-row a:hover{color:var(--accent-dk)}
+.op-eval-panel{margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+background:var(--bg);font-size:13px}
+.ev-load{color:var(--mid)}
+.ev-v{font-weight:800;font-size:15px}
+.ev-yes{color:#047857}.ev-no{color:#C0353A}
+.ev-r{margin-top:5px;color:var(--sub);line-height:1.45}
+.ev-ok{font-weight:800;font-size:15px;color:#047857}
+.ev-cand{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;
+padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card,#fff)}
+.ev-cand span{font-size:12.5px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev-choose{flex:none;font-size:12px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:7px;padding:5px 11px;cursor:pointer;transition:opacity .15s}
+.ev-choose:hover{opacity:.82}
+.ev-cta{display:inline-block;margin-top:10px;font-weight:700;font-size:13px;color:#fff;
+background:var(--ink);padding:8px 14px;border-radius:9px;text-decoration:none}
+.ev-cta:hover{opacity:.82;text-decoration:none;color:#fff}
+/* #5 — bouton (pas lien) : lancer le mémo instant + ouvrir /cibles. */
+button.ev-cta{border:1px solid var(--ink);cursor:pointer;font-family:inherit}
+.ev-cta2{background:transparent;color:var(--accent-dk);border:1px solid var(--accent)}
+.ev-cta2:hover{background:var(--bg);color:var(--ink);opacity:1}
+/* #4 — domaine d'un candidat rendu cliquable (vérifier le site avant de choisir). */
+.ev-cand-lnk{color:var(--accent-dk);font-weight:600;text-decoration:none;border-bottom:1px dotted var(--accent)}
+.ev-cand-lnk:hover{color:var(--ink);border-bottom-color:var(--ink)}
+/* #3 — override d'un verdict NO MATCH → MATCH. */
+.ev-force-wrap{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ev-force{font-size:12px;font-weight:700;color:var(--ink);background:transparent;border:1px solid var(--line);
+border-radius:8px;padding:6px 12px;cursor:pointer;transition:all .15s;font-family:inherit}
+.ev-force:hover{border-color:var(--ink);background:var(--bg)}
+.ev-err{color:#C0353A}
+.ev-form .ev-lbl{font-weight:700;margin:0 0 8px;color:var(--ink)}
+.ev-form input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;
+font-size:13px;margin:0 0 7px;font-family:inherit}
+.ev-row{display:flex;gap:7px}
+.ev-submit{font-size:13px;font-weight:700;color:#fff;background:var(--ink);border:none;
+border-radius:8px;padding:8px 16px;cursor:pointer;transition:opacity .15s}
+.ev-submit:hover{opacity:.82}
+.ev-fine{font-size:11px;color:var(--mid);margin:8px 0 0}
+.ev-deeplink{margin:28px 0 24px;scroll-margin-top:90px;padding:14px 16px;border:1px solid var(--accent);border-radius:12px;background:var(--bg)}
+.ev-dl-h{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 8px}
+.ev-deeplink .op-eval-panel{margin-top:0}
+</style><script>(function(){/* pp-eval-credit-safe-v2 */
+var EV="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/evaluate-paste",LD="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound-lead",CAL="https://calendar.app.google/yL2nSRV974Jqaybd8",ES="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/inbound/evaluate-and-signup",MST="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v3/instant-memo/status/";
+function esc(s){return (s||"").replace(/[<>&"]/g,function(c){return ({"<":"&lt;",">":"&gt;","&":"&amp;","\"":"&quot;"})[c];});}
+// Bilingue (2026-07-16) : mêmes clé/priorités que le chrome partagé — le flux d'évaluation
+// était le dernier gros composant JS 100% FR quel que soit le choix de langue du visiteur.
+function EN(){try{var v=localStorage.getItem("proplace_lang");if(v==="en")return true;if(v==="fr")return false;}catch(e){}
+ return (navigator.language||"").toLowerCase().indexOf("fr")!==0;}
+function T(fr,en){return EN()?en:fr;}
+function auth(){try{var r=document.cookie.split("; ").find(function(x){return x.indexOf("proplace_auth=")===0;});if(!r)return null;return JSON.parse(atob(decodeURIComponent(r.split("=")[1])));}catch(e){return null;}}
+function ctaCal(){return '<a class="ev-cta" target="_blank" rel="noopener" href="'+CAL+'">'
+ +T("📅 Un deal flow personnalisé ? Planifiez un appel stratégique","📅 Want a tailored deal flow? Book a strategy call")+'</a>';}
+// Extraction souple (le résultat porte tantôt company/company_name/name, tantôt un
+// sous-objet lead) — partagé par le rendu MATCH, l'override (#3) et le lancement (#5).
+function coOf(res){return (res&&(res.company_name||res.company||res.name||(res.lead&&res.lead.company_name)))||"";}
+function webOf(res){return (res&&((res.lead&&(res.lead.website||res.lead.url))||res.url||res.website))||"";}
+function recOf(res){return (res&&((res.lead&&res.lead.airtable_id)||res.lead_record_id))||"";}
+// #5 — bouton (pas lien) : lance le mémo INSTANT (code, pas Make) puis ouvre la page
+// /cibles « À analyser ». Rendu sur un MATCH (verdict ou override).
+function matchCta(res,fund){
+ var co=coOf(res),web=webOf(res),rec=recOf(res);
+ return '<button type="button" class="ev-cta ev-launch" data-fund="'+esc(fund)+'" data-co="'+esc(co)
+  +'" data-web="'+esc(web)+'" data-rec="'+esc(rec)+'">'
+  +T("⚡ Lancer le mémo","⚡ Launch the memo")+'</button>';
+}
+function verdict(res,fund){
+ if(!res)return '<div class="ev-err">'+T("Évaluation indisponible.","Evaluation unavailable.")+'</div>';
+ if(res.error)return '<div class="ev-err">⚠ '+esc(res.error)+'</div>';
+ if(res.needs_disambiguation){
+  var cs=(res.candidates||[]).map(function(c){var raw=(c.url||c.website||"");
+   var dom=raw.replace(/^https?:\/\//,"").replace(/\/$/,"");
+   var href=raw?(raw.indexOf("http")===0?raw:"https://"+raw):"";
+   // #4 — domaine CLIQUABLE (nouvel onglet) pour vérifier le site AVANT de choisir.
+   var domHtml=dom?(' · '+(href?'<a class="ev-cand-lnk" href="'+esc(href)+'" target="_blank" rel="noopener">'+esc(dom.slice(0,42))+' ↗</a>':esc(dom.slice(0,42)))):'';
+   return '<div class="ev-cand"><span><b>'+esc(c.company_name||"—")+'</b>'+domHtml+'</span>'
+    +'<button type="button" class="ev-choose" data-nm="'+esc(c.company_name||"")+'" data-url="'+esc(c.url||c.website||"")+'" data-rec="'+esc(c.record_id||"")+'">'+T("Choisir →","Choose →")+'</button></div>';}).join("");
+  return '<div class="ev-r">🔀 '+esc(res.reasoning||T("Plusieurs sociétés correspondent — choisissez la bonne :","Several companies match — pick the right one:"))+'</div>'+(cs||'<div class="ev-fine">'+T("Aucun candidat — précisez l’URL exacte.","No candidate — provide the exact URL.")+'</div>');
+ }
+ var v=res.verdict,m=v==="MATCH",no=v==="NO MATCH",sc=res.score?(" · "+res.score+"/100"):"";
+ var o=m?'<div class="ev-v ev-yes">✅ MATCH'+sc+'</div>':(no?'<div class="ev-v ev-no">❌ NO MATCH'+sc+'</div>':'<div class="ev-v">'+T("📊 Analyse","📊 Analysis")+'</div>');
+ if(res.reasoning)o+='<div class="ev-r">'+esc(res.reasoning)+'</div>';
+ if(fund){
+  if(m){o+=matchCta(res,fund);}
+  else if(res.check_id){
+   // #3 — override : le dirigeant est sûr du contraire → force le check en MATCH,
+   // la justification est tracée dans le champ reasoning (endpoint force-match dédié).
+   o+='<div class="ev-force-wrap"><button type="button" class="ev-force" data-check="'+esc(res.check_id)
+     +'" data-fund="'+esc(fund)+'" data-co="'+esc(coOf(res))+'" data-web="'+esc(webOf(res))
+     +'" data-rec="'+esc(recOf(res))+'" data-orig="'+esc((res.reasoning||"").slice(0,600))+'">'
+     +T("↺ Je ne suis pas d’accord — forcer en MATCH","↺ I disagree — force to MATCH")+'</button>'
+     +'<span class="ev-fine">'+T("La décision est enregistrée (justification tracée).","The decision is saved (justification recorded).")+'</span></div>';
+  }
+ }
+ else{ o+=ctaCal(); }
+ return o;
+}
+function run(panel,company,fund,leadRec,logged){
+ panel.dataset.fund=fund;
+ panel.innerHTML='<div class="ev-load">'+T("⏳ Évaluation de "+esc(company)+" selon votre thèse "+esc(fund)+"…","⏳ Evaluating "+esc(company)+" against your "+esc(fund)+" thesis…")+'</div>';
+ var body={fund_slug:fund,companies:[{name_or_url:company}],force_reevaluate:false};
+ if(leadRec)body.companies[0].lead_record_id=leadRec;
+ fetch(EV,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+  .then(function(r){return r.json();}).then(function(j){panel.innerHTML=verdict((j.results||[])[0],logged);})
+  .catch(function(e){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+}
+function setAuth(email,fund){
+ try{
+  var s={email:(email||"").toLowerCase(),fund_type:fund||"",ts:Date.now()};
+  var v=encodeURIComponent(btoa(JSON.stringify(s)));
+  document.cookie="proplace_auth="+v+"; domain=.proplace.co; path=/; max-age="+(60*60*24*365)+"; secure; samesite=lax";
+ }catch(e){}
+}
+function pollMemo(panel,jobId,memoUrl,email){
+ var started=Date.now(),n=0;
+ function tick(){
+  n++;
+  var elapsed=Math.round((Date.now()-started)/1000);
+  var pct=Math.min(92,8+Math.round(elapsed/720*84));
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Mémo fast en cours…","⏳ Fast memo running…")
+   +' · '+pct+'% · '+elapsed+'s</div>'
+   +'<div class="ev-r">'+T("Vous recevrez le mémo par email même si vous fermez cette page.","You will get the memo by email even if you close this page.")+'</div>';
+  fetch(MST+encodeURIComponent(jobId)).then(function(r){return r.json();}).then(function(st){
+   if(st&&st.done){
+    var ok=st.result&&(st.result.status==="ok"||st.result.url);
+    var url=(st.result&&st.result.url)||memoUrl||"";
+    if(ok){
+     panel.innerHTML='<div class="ev-ok">✅ '+T("Mémo prêt","Memo ready")+'</div>'
+      +(url?'<a class="ev-cta" target="_blank" rel="noopener" href="'+esc(url)+'">'+T("→ Ouvrir le mémo","→ Open the memo")+'</a>':'')
+      +'<a class="ev-cta ev-cta2" href="https://proplace.co/'+(EN()?'':'fr/')+'compte">'+T("→ Mon compte","→ My account")+'</a>'
+      +ctaCal();
+    }else{
+     panel.innerHTML='<div class="ev-err">⚠ '+esc((st.result&&st.result.error)||T("Échec de l’analyse","Analysis failed"))+'</div>';
+    }
+    return;
+   }
+   if(n<90)setTimeout(tick,8000);
+   else panel.innerHTML='<div class="ev-r">'+T("L’analyse continue en arrière-plan — regardez votre boîte mail.","Analysis continues in the background — check your inbox.")+'</div>'
+    +(memoUrl?'<a class="ev-cta ev-cta2" target="_blank" rel="noopener" href="'+esc(memoUrl)+'">'+T("→ Lien mémo (dispo sous peu)","→ Memo link (soon)")+'</a>':'')
+    +ctaCal();
+  }).catch(function(){if(n<90)setTimeout(tick,10000);});
+ }
+ setTimeout(tick,6000);
+}
+function leadForm(panel,b){
+ // Formulaire natif evaluate-and-signup (remplace Fillout first-look + simple capture).
+ var co=b.dataset.c||b.dataset.u||"";
+ var web=b.dataset.u||"";
+ panel.innerHTML='<form class="ev-form">'
+ +'<p class="ev-lbl">'+T("Mémo fast de","Fast memo for")+' <b>'+esc(co)+'</b></p>'
+ +'<input name="email" type="email" placeholder="'+T("Email professionnel (first look ici)","Work email (first look here)")+'" required>'
+ +'<div class="ev-row"><input name="linkedin" placeholder="LinkedIn CEO (URL)"><input name="phone" placeholder="'+T("Téléphone (optionnel)","Phone (optional)")+'"></div>'
+ +'<input name="website" placeholder="'+T("Site web (si connu)","Website (if known)")+'" value="'+esc(web)+'">'
+ +'<p class="ev-fine">'+T("Analyse selon des critères investisseur standards · mémo Fast.","Analyzed against standard investor criteria · Fast memo.")+'</p>'
+ +'<button type="submit" class="ev-submit">'+T("Lancer l’analyse →","Start analysis →")+'</button>'
+ +'<p class="ev-fine">'+T("Déjà client ? <a href=\"https://proplace.co/#login\">Connectez-vous</a> pour évaluer selon VOTRE thèse.","Already a client? <a href=\"https://proplace.co/#login\">Log in</a> to evaluate against YOUR thesis.")+'</p></form>';
+ panel.querySelector(".ev-form").onsubmit=function(e){e.preventDefault();
+  var f=e.target;
+  var d={email:(f.email&&f.email.value||"").trim(),linkedin:(f.linkedin&&f.linkedin.value||"").trim(),
+   phone:(f.phone&&f.phone.value||"").trim(),website:(f.website&&f.website.value||"").trim()||web};
+  if(!d.email)return;
+  panel.innerHTML='<div class="ev-load">'+T("⏳ Création du compte + lancement du mémo…","⏳ Creating account + launching memo…")+'</div>';
+  fetch(ES,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+   company_name:co,website:d.website,email:d.email,linkedin:d.linkedin,phone:d.phone,
+   lang:EN()?"en":"fr"})})
+  .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+  .then(function(x){
+   if(!x.ok||!x.j||!x.j.job_id)throw new Error((x.j&&(x.j.detail||x.j.error))||"launch failed");
+   if(x.j.email&&x.j.fund_type)setAuth(x.j.email,x.j.fund_type);
+   pollMemo(panel,x.j.job_id,x.j.memo_url||"",d.email);
+  }).catch(function(err){panel.innerHTML='<div class="ev-err">⚠ '+esc(String(err.message||err))+'</div>';});
+ };
+}
+// Deep-link « ?eval=Société » : ouvre une évaluation express en HAUT de page (cible des
+// liens « ⚡ évaluer » de la newsletter / des emails). Réutilise run()/leadForm().
+function deeplink(){
+ try{
+  var m=location.search.match(/[?&]eval=([^&]+)/);if(!m)return;
+  var name=decodeURIComponent(m[1].replace(/\+/g," ")).trim();if(!name)return;
+  var host=document.querySelector("main")||document.body;
+  var box=document.createElement("div");box.className="ev-deeplink";
+  box.innerHTML='<div class="ev-dl-h">'+T("⚡ Évaluation express —","⚡ Express evaluation —")+' <b>'+esc(name)+'</b></div><div class="op-eval-panel ev-dl-p"></div>';
+  host.insertBefore(box,host.firstChild);
+  var panel=box.querySelector(".op-eval-panel");panel.hidden=false;
+  try{box.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){}
+  var a=auth();
+  if(a&&a.fund_type){run(panel,name,a.fund_type,null,a.fund_type);}else{leadForm(panel,{dataset:{c:name,u:"",h:"",i:""}});}
+ }catch(e){}
+}
+if(document.readyState!=="loading"){deeplink();}else{document.addEventListener("DOMContentLoaded",deeplink);}
+// Délégation d'événements (et PAS un binding par bouton au chargement) : les cartes
+// /analysis/ sont rendues CÔTÉ CLIENT et re-rendues à chaque filtrage → un binding au load
+// les raterait. Rétro-compatible avec les boutons statiques de /actualites/.
+document.addEventListener("click",function(ev){
+ var ch=(ev.target&&ev.target.closest)?ev.target.closest(".ev-choose"):null;
+ if(ch){var pn=ch.closest(".op-eval-panel");if(pn){var fd=pn.dataset.fund||"Investment Criteria";run(pn,ch.dataset.url||ch.dataset.nm,fd,ch.dataset.rec||null,fd);}return;}
+ // #5 — MATCH → funnel inbound. Une session ppin1 signée débite le
+ // membre ; le vieux cookie base64 seul reste au quota public, jamais au ledger.
+ var lb=(ev.target&&ev.target.closest)?ev.target.closest(".ev-launch"):null;
+ if(lb){
+  var lp=lb.closest(".op-eval-panel");if(!lp)return;
+  var lco=lb.dataset.co||"",lweb=lb.dataset.web||"";
+  var la=auth();
+  if(!la||!la.email){leadForm(lp,{dataset:{c:lco,u:lweb,h:"",i:""}});return;}
+  lp.innerHTML='<div class="ev-load">'+T("⚡ Lancement du mémo instant…","⚡ Launching instant memo…")+'</div>';
+  var pay={company_name:lco,website:lweb,email:String(la.email||"").toLowerCase(),
+   lang:EN()?"en":"fr"};
+  if(la.member_session)pay.session=la.member_session;
+  fetch(ES,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(pay)})
+   .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+   .then(function(x){
+    if(!x.ok||!x.j||!x.j.job_id)throw new Error((x.j&&(x.j.detail||x.j.error))||"launch failed");
+    pollMemo(lp,x.j.job_id,x.j.memo_url||"",pay.email);
+   }).catch(function(e){lp.innerHTML='<div class="ev-err">⚠ '+esc(String(e.message||e))+'</div>';});
+  return;
+ }
+ // #3 — override d'un NO MATCH (justification tracée, décision enregistrée).
+ var fb=(ev.target&&ev.target.closest)?ev.target.closest(".ev-force"):null;
+ if(fb){
+  var fp=fb.closest(".op-eval-panel");if(!fp)return;
+  var reason=window.prompt(T("Pourquoi cette société est-elle un MATCH selon vous ? (enregistré)","Why is this company a MATCH in your view? (recorded)"),T("Override manuel — connaissance directe de la société.","Manual override — direct knowledge of the company."));
+  if(reason===null)return;
+  reason=(reason||"").trim();if(!reason)reason=T("Override manuel.","Manual override.");
+  var fcheck=fb.dataset.check||"",ffund=fb.dataset.fund||"",fco=fb.dataset.co||"",fweb=fb.dataset.web||"",frec=fb.dataset.rec||"",forig=fb.dataset.orig||"";
+  fp.innerHTML='<div class="ev-load">'+T("⏳ Enregistrement de l’override…","⏳ Saving the override…")+'</div>';
+  fetch("https://alexandre-79537--airtable-bridge-fastapi-app.modal.run/sourcing-check/force-match",{method:"PATCH",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({check_id:fcheck,justification:reason,original_reasoning:forig})})
+   .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
+   .then(function(){
+    fp.innerHTML='<div class="ev-v ev-yes">✅ '+T("Forcé en MATCH","Forced to MATCH")+'</div>'
+      +'<div class="ev-r">'+T("Décision enregistrée.","Decision saved.")+'</div>'
+      +matchCta({company_name:fco,url:fweb,lead:{airtable_id:frec,company_name:fco,website:fweb},check_id:fcheck},ffund);
+   }).catch(function(e){fp.innerHTML='<div class="ev-err">⚠ '+esc(String(e))+'</div>';});
+  return;
+ }
+ var cb=(ev.target&&ev.target.closest)?ev.target.closest(".op-comp"):null;
+ if(cb){var cp=cb.nextElementSibling;if(cp&&cp.classList.contains("op-comp-panel"))cp.hidden=!cp.hidden;return;}
+ var sb=(ev.target&&ev.target.closest)?ev.target.closest(".op-src"):null;
+ if(sb){var sp=sb.nextElementSibling;if(sp&&sp.classList.contains("op-src-panel"))sp.hidden=!sp.hidden;return;}
+ var prb=(ev.target&&ev.target.closest)?ev.target.closest(".op-pros"):null;
+ if(prb){var prp=prb.nextElementSibling;if(prp&&prp.classList.contains("op-pros-panel"))prp.hidden=!prp.hidden;return;}
+ var db=(ev.target&&ev.target.closest)?ev.target.closest(".op-det"):null;
+ if(db){var dp=db.nextElementSibling;if(dp&&dp.classList.contains("op-det-panel")){dp.hidden=!dp.hidden;db.classList.toggle("on",!dp.hidden);}return;}
+ var b=(ev.target&&ev.target.closest)?ev.target.closest(".op-eval"):null;
+ if(!b)return;
+ var panel=b.nextElementSibling;
+ if(!panel||!panel.classList.contains("op-eval-panel"))return;
+ if(panel.hidden){panel.hidden=false;}else{panel.hidden=true;return;}
+ var a=auth();
+ if(a&&a.fund_type){run(panel,b.dataset.c||b.dataset.u,a.fund_type,null,a.fund_type);}else{leadForm(panel,b);}
+});
+})();</script><script>(function(){try{var p=(location.pathname||'').replace(/\/+$/,'')+'/';if(!/\/(en\/)?research\/[^/]+\//.test(p))return;if(/\/(en\/)?research\/?$/.test((location.pathname||'').replace(/\/+$/,'')))return;var title='';var h1=document.querySelector('main h1,.rp-head h1,h1');if(h1&&h1.textContent)title=h1.textContent.trim();if(!title)title=(document.title||'').split('|')[0].trim();var url=location.pathname,key='proplace_research_history',arr=[];try{arr=JSON.parse(localStorage.getItem(key)||'[]')||[];}catch(e){arr=[];}if(!Array.isArray(arr))arr=[];arr=arr.filter(function(x){return x&&x.url&&x.url!==url;});arr.unshift({title:(title||url).slice(0,140),url:url,ts:Date.now()});if(arr.length>40)arr=arr.slice(0,40);localStorage.setItem(key,JSON.stringify(arr));}catch(e){}})();</script><style>
+.lb-ov{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:none;
+align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lb-ov.on{display:flex}
+.lb-ov img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 12px 48px rgba(0,0,0,.5);cursor:default}
+.lb-x{position:fixed;top:10px;right:18px;font-size:38px;line-height:1;color:#fff;background:none;
+border:none;cursor:pointer;font-weight:700;padding:4px 10px}
+.lb-dl{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;
+color:#fff;background:rgba(255,255,255,.18);padding:8px 16px;border-radius:8px;text-decoration:none}
+.lb-dl:hover{background:rgba(255,255,255,.32);text-decoration:none;color:#fff}
+</style><script>(function(){
+var ov=document.createElement('div');ov.className='lb-ov';
+var _lbEN=false;try{var _l=localStorage.getItem('proplace_lang');
+_lbEN=_l==='en'||(!_l&&(navigator.language||'').toLowerCase().indexOf('fr')!==0);}catch(e){}
+ov.innerHTML='<button class="lb-x" aria-label="'+(_lbEN?'Close':'Fermer')+'">×</button><img alt=""><a class="lb-dl" download>'+(_lbEN?'⬇ Download':'⬇ Télécharger')+'</a>';
+document.body.appendChild(ov);
+var im=ov.querySelector('img'),dl=ov.querySelector('.lb-dl');
+function close(){ov.classList.remove('on');im.src='';}
+ov.addEventListener('click',function(e){if(e.target===ov||e.target.classList.contains('lb-x'))close();});
+im.addEventListener('click',function(e){e.stopPropagation();});
+dl.addEventListener('click',function(e){e.stopPropagation();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+document.addEventListener('click',function(e){
+ var a=e.target&&e.target.closest?e.target.closest('.type-viz-i,.art-secviz,.tm-hero-viz'):null;
+ if(!a)return;var i=a.querySelector('img');if(!i||!i.src)return;
+ e.preventDefault();im.src=i.src;dl.href=i.src;ov.classList.add('on');
+});
+})();</script><style>
+/* Étoile favori (★) en tête de la cellule Société — dorée dès l'état INACTIF (☆) pour être
+   repérable comme « à cliquer », pleine et vive à l'état actif (★). */
+.op-fav{display:inline-block;vertical-align:baseline;margin:0 7px 0 0;padding:0;font-size:17px;
+line-height:1;color:#d9b64a;background:none;border:none;cursor:pointer;
+transition:color .12s,transform .12s}
+.op-fav:hover{color:#e5a91c;transform:scale(1.2)}
+.op-fav.on{color:#e5a91c}
+.fav-count{font-variant-numeric:tabular-nums;font-weight:800}
+/* Page /actualites/favoris/ : état vide + encart « créez votre thèse ». */
+.fav-empty-box{margin:26px 0;padding:24px 20px;border:1px dashed var(--line);border-radius:12px;
+background:var(--bg);text-align:center;color:var(--sub);font-size:14px;line-height:1.55}
+.fav-empty-box a{color:var(--accent-dk);font-weight:700;text-decoration:none}
+.fav-empty-box a:hover{text-decoration:underline}
+.fav-tease{margin:22px 0 6px;padding:16px 18px;border:1px solid var(--accent);border-radius:12px;
+background:var(--bg)}
+.fav-tease-h{font-size:15px;font-weight:800;color:var(--ink);margin:0 0 6px}
+.fav-tease-p{font-size:13.5px;color:var(--sub);line-height:1.5;margin:0 0 10px}
+.fav-tease .tm-read{margin:0}
+/* Composeur de thèse in-browser + évaluation groupée (Phase B). */
+.fav-th-text{width:100%;min-height:64px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+font-family:inherit;font-size:13.5px;line-height:1.5;color:var(--ink);resize:vertical;margin:0 0 8px}
+.fav-th-text:focus{outline:none;border-color:var(--accent)}
+.fav-btn{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--ink);
+border:1px solid var(--ink);border-radius:9px;padding:9px 15px;cursor:pointer;transition:opacity .15s}
+.fav-btn:hover{opacity:.85}
+.fav-btn:disabled{opacity:.5;cursor:default}
+.fav-th-edit{margin-left:10px;font-size:12.5px;font-weight:600;color:var(--accent-dk);background:none;
+border:none;cursor:pointer;text-decoration:underline}
+.fav-th-label{font-size:13px;color:var(--sub);font-style:italic;margin:0 0 8px}
+.fav-th-hint{font-size:12px;color:#C0353A;margin:6px 0 0}
+/* Verdict d'un favori (plein largeur sous la ligne, comme .op-eval-panel). */
+.fav-verdict{grid-column:1/-1;margin-top:2px}
+.fav-verdict:empty{margin:0}
+.fav-v{display:inline-block;font-size:12.5px;font-weight:800;border-radius:8px;padding:3px 10px;margin-top:6px}
+.fav-v-yes{color:#047857;background:rgba(4,120,87,.10)}
+.fav-v-no{color:#C0353A;background:rgba(185,28,28,.08)}
+.fav-v-err{color:var(--mid);background:var(--bg)}
+.fav-v-load{color:var(--mid);font-size:12.5px;font-weight:600;margin-top:6px;display:inline-block}
+.fav-vr{display:block;font-size:12.5px;color:var(--sub);line-height:1.45;margin-top:4px}
+</style><script>(function(){
+var K="proplace_favoris";
+// Bridge « certain » vers /cibles/ : un ?cb=<token> dans l'URL (posé par le lien du /cibles/ du
+// client, ou un email Proplace) lie ce navigateur à CE client → chaque ★ est aussi reflétée dans
+// un store SERVEUR scopé au token, retrouvée ensuite dans son onglet Favoris même sur un autre
+// appareil. Sans token (visiteur anonyme), sync() est un no-op → comportement inchangé.
+var TKK="proplace_cb_token",SYNC="https://alexandre-79537--proplace-chat-proxy-fastapi-app.modal.run/cibles/fav-sync";
+function readTok(){try{return localStorage.getItem(TKK)||"";}catch(e){return "";}}
+function writeTok(t){try{localStorage.setItem(TKK,t);}catch(e){}}
+function captureTok(){var t="";try{t=((new URL(window.location.href)).searchParams.get("cb")||"").trim();}catch(e){}
+ if(/^[A-Za-z0-9]{16}$/.test(t)){writeTok(t);return t;}return readTok();}
+var TOK=captureTok();
+function sync(op,removed){if(!TOK)return;try{
+ fetch(SYNC,{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
+  body:JSON.stringify({token:TOK,remove:!!removed,op:op})}).catch(function(){});
+}catch(e){}}
+function EN(){try{var l=localStorage.getItem("proplace_lang");if(l)return l==="en";}catch(e){}
+ return (navigator.language||"").slice(0,2).toLowerCase()==="en";}
+function read(){try{return JSON.parse(localStorage.getItem(K)||"[]")||[];}catch(e){return [];}}
+function write(a){try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}}
+function normU(u){return (u||"").toLowerCase().trim().replace(/[#?].*$/,"").replace(/\/+$/,"");}
+function normN(n){return (n||"").toLowerCase().replace(/\s+/g," ").trim();}
+function keyOf(u,c){return normU(u)||normN(c);}
+function opFromBtn(b){var d=b.dataset,u=d.u||"",c=d.co||"";
+ // Le bouton ne porte plus que co+url (régime data-*) : le reste est DÉRIVÉ de la ligne
+ // .trow (data-v/date/t/amt/pays + cellules affichées). Les anciens data-* du bouton restent
+ // lus en PRIORITÉ (compat : lignes de la page /favoris reconstruites depuis localStorage).
+ var r=b.closest?b.closest(".trow"):null,rd=(r&&r.dataset)||{};
+ // Cellules Type/Date en dual-span depuis 2026-07-16 : lire le span .i18n-fr (libellé
+ // canonique FR stocké dans le favori), sinon le textContent brut (cellules mono-langue).
+ function cell(s){if(!r)return "";var e=r.querySelector(s+" .i18n-fr")||r.querySelector(s);
+  var v=e?e.textContent.trim():"";return v==="—"?"":v;}
+ // Headline : sous-ligne .th (co présent) SINON le titre-lien du strong (op sans société).
+ var hd=r?(r.querySelector(".tco .th a:not(.tm-mem)")||r.querySelector(".tco strong a")):null;
+ var pe=r?r.querySelector(".tpays"):null;
+ var vert=d.v||rd.v||"";
+ return {id:keyOf(u,c),co:c,url:u,
+  disp:d.disp||(hd?hd.textContent.trim().slice(0,200):""),
+  ind:d.i||vert,vert:vert,
+  amtD:d.amtd||cell(".tamt"),
+  amt:parseInt(d.amt||rd.amt||"0",10)||0,
+  pays:d.pays||rd.pays||"",
+  paysFull:d.paysfull||(pe?(pe.getAttribute("title")||""):""),
+  date:d.date||(rd.date||"").slice(0,10),
+  typeK:d.typek||rd.t||"",
+  typeFr:d.typefr||cell(".ttype"),
+  ts:Date.now()};}
+function idx(a,id){for(var i=0;i<a.length;i++)if(a[i].id===id)return i;return -1;}
+function paint(){var a=read(),ids={};a.forEach(function(o){ids[o.id]=1;});
+ [].slice.call(document.querySelectorAll(".op-fav")).forEach(function(b){
+  var id=keyOf(b.dataset.u||"",b.dataset.co||""),on=!!ids[id];
+  b.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false");
+  b.textContent=on?"★":"☆";
+  var t=on?(EN()?"Remove from favourites":"Retirer des favoris"):(EN()?"Add to favourites":"Mettre en favori");
+  b.title=t;b.setAttribute("aria-label",t);});
+ var n=a.length;[].slice.call(document.querySelectorAll(".fav-count")).forEach(function(e){e.textContent=String(n);});}
+window.__favPaint=paint;
+document.addEventListener("click",function(ev){
+ var b=ev.target&&ev.target.closest?ev.target.closest(".op-fav"):null;if(!b)return;
+ ev.preventDefault();ev.stopPropagation();
+ var a=read(),op=opFromBtn(b),k=idx(a,op.id),removed=k>=0;
+ if(k>=0)a.splice(k,1);else a.unshift(op);
+ write(a);paint();sync(op,removed);if(window.__favRender)window.__favRender();});
+window.addEventListener("storage",function(e){if(e.key===K){paint();if(window.__favRender)window.__favRender();}});
+if(document.readyState!=="loading")paint();else document.addEventListener("DOMContentLoaded",paint);
+})();</script><script id="memo-scrollspy">(function(){
+var items=document.querySelectorAll('.sidebar .nav-item[href^="#"]');
+if(!items.length||!('IntersectionObserver' in window))return;
+var map={};items.forEach(function(a){var id=(a.getAttribute('href')||'').slice(1);if(id)map[id]=a;});
+var current=null;
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){
+if(!e.isIntersecting)return;var a=map[e.target.id];if(!a||a===current)return;
+if(current)current.classList.remove('is-active');a.classList.add('is-active');current=a;});},
+{rootMargin:'-15% 0px -70% 0px'});
+Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)obs.observe(el);});
+})();</script></body></html>
