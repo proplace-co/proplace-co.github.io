@@ -2,32 +2,32 @@
 
 # Note de décision GP
 
-**Novalis Cyber Démo — Asteria Démo**
+**Dfns — [Client]**
 
 Document de travail préparé à partir des pièces du dossier. Aucune décision, signature, présentation ou communication n’est acquise par sa génération.
 
-Novalis fournit des services de cybersécurité B2B récurrents aux PME françaises : activité cohérente avec l’angle Asteria.
+Dfns fournit une infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains) : brique cohérente avec l’angle de [Client].
 
 ## Angles et exclusions
 
-Novalis fournit des services de cybersécurité B2B récurrents aux PME françaises : activité cohérente avec l’angle Asteria.
+Dfns fournit une infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains) : brique cohérente avec l’angle de [Client].
 
-Source : Thèse Asteria — exemple — « Acquéreur stratégique de services B2B récurrents. Cybersécurité managée pour PME en France. Coût du capital illustratif : 9 %. Vérifier la rentabilité sans synergies puis la sensib »
+Source : Thèse [Client] — exemple — « Acquéreur stratégique : infrastructure d’actifs numériques pour institutions réglementées. Brique étudiée : portefeuilles programmables et gestion de clés. Coût du capital illustra »
 
 ## Seuils de la thèse
 
-Trois points à confirmer : récurrence des revenus, concentration clients et autonomie de l’équipe.
+Trois points à confirmer : revenu réel face à l’ARR estimé de 1,1 M$, clients concurrents de l’acquéreur et droits d’un investisseur existant.
 
-Source : Thèse Asteria — exemple — « Acquéreur stratégique de services B2B récurrents. Cybersécurité managée pour PME en France. Coût du capital illustratif : 9 %. Vérifier la rentabilité sans synergies puis la sensib »
+Source : Thèse [Client] — exemple — « Acquéreur stratégique : infrastructure d’actifs numériques pour institutions réglementées. Brique étudiée : portefeuilles programmables et gestion de clés. Coût du capital illustra »
 
 ## Verdict proposé
 
 Décision proposée : poursuivre la DD ; le comité doit recevoir les preuves avant décision.
 
-Source : Thèse Asteria — exemple — « Acquéreur stratégique de services B2B récurrents. Cybersécurité managée pour PME en France. Coût du capital illustratif : 9 %. Vérifier la rentabilité sans synergies puis la sensib »
+Source : Thèse [Client] — exemple — « Acquéreur stratégique : infrastructure d’actifs numériques pour institutions réglementées. Brique étudiée : portefeuilles programmables et gestion de clés. Coût du capital illustra »
 
 ## Décision attendue
 
 Décision proposée : poursuivre la DD ; le comité doit recevoir les preuves avant décision.
 
-Source : Thèse Asteria — exemple — « Acquéreur stratégique de services B2B récurrents. Cybersécurité managée pour PME en France. Coût du capital illustratif : 9 %. Vérifier la rentabilité sans synergies puis la sensib »
+Source : Thèse [Client] — exemple — « Acquéreur stratégique : infrastructure d’actifs numériques pour institutions réglementées. Brique étudiée : portefeuilles programmables et gestion de clés. Coût du capital illustra »

@@ -2,26 +2,26 @@
 
 # Inventaire du dossier et pièces à compléter
 
-**Novalis Cyber Démo — Asteria Démo**
+**Dfns — [Client]**
 
 Document de travail préparé à partir des pièces du dossier. Aucune décision, signature, présentation ou communication n’est acquise par sa génération.
 
-Mémo détaillé et dossier comité disponibles : les réutiliser pour Novalis Cyber Démo.
+Mémo détaillé réel de Dfns disponible, client masqué : le réutiliser comme point de départ ; les pièces qui suivent sont des exemples fictifs.
 
 ## Documents disponibles
 
-Mémo détaillé et dossier comité disponibles : les réutiliser pour Novalis Cyber Démo.
+Mémo détaillé réel de Dfns disponible, client masqué : le réutiliser comme point de départ ; les pièces qui suivent sont des exemples fictifs.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## Contrôle qualité
 
-Contrôle de l’édition : vérifier l’identité, les chiffres et les réserves avant approbation.
+Contrôle de l’édition : vérifier l’identité, les chiffres et les réserves avant approbation. L’ARR de 1,1 M$ est une estimation tierce non vérifiée pour 88 salariés.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## Informations manquantes
 
-Décision proposée : poursuivre sous conditions. Comptes, références et revue juridique restent ouverts.
+Décision proposée : poursuivre sous conditions. Comptes, pacte d’actionnaires, clauses de changement de contrôle et références restent ouverts.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »

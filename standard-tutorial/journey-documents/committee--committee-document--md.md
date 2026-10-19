@@ -2,38 +2,38 @@
 
 # Synthèse comité en cinq parties
 
-**Novalis Cyber Démo — Asteria Démo**
+**Dfns — [Client]**
 
 Document de travail préparé à partir des pièces du dossier. Aucune décision, signature, présentation ou communication n’est acquise par sa génération.
 
-Décision demandée : autoriser la poursuite de la DD et la négociation, sous réserves documentées.
+Décision demandée : autoriser la poursuite de la DD et la négociation, sous réserves documentées. Décision proposée : poursuivre la DD sous conditions.
 
 ## 1. Décision demandée
 
-Décision demandée : autoriser la poursuite de la DD et la négociation, sous réserves documentées.
+Décision demandée : autoriser la poursuite de la DD et la négociation, sous réserves documentées. Décision proposée : poursuivre la DD sous conditions.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## 2. Entreprise et thèse
 
-Entreprise : services de cybersécurité récurrents pour PME françaises ; intérêt stratégique pour Asteria.
+Entreprise : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, MPC, API) ; intérêt stratégique pour [Client].
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## 3. Économie de l’opération
 
-Économie proposée : EV 4,5 M€, prix des titres 5,1 M€, scénarios à vérifier ; TRI du mémo 14 % sans et 22 % avec synergies.
+Économie d’exemple : EV 32 M€, prix des titres 35 M€ avant ajustements, scénarios à vérifier ; TRI 12 % sans et 24 % avec synergies à 100 %.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## 4. Risques et DD
 
-Risques : écart CL002 de 500 €, cap table, IP, références clients et couverture technique à compléter.
+Risques : écart DF-02 de 1 200 €, pacte d’actionnaires et droits de veto, clients concurrents et clauses de changement de contrôle, références et couverture technique à compléter.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## 5. Conditions et prochaines étapes
 
-Conditions : obtenir les pièces, lever les écarts et enregistrer les réserves du comité avant accords et closing.
+Conditions : rapprochement des revenus, pacte d’actionnaires, clauses de changement de contrôle et références avant accords et closing. Le comité n’a rien décidé.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »

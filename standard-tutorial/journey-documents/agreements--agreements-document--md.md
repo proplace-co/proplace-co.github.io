@@ -2,7 +2,7 @@
 
 # Dossier de comparaison des accords définitifs
 
-**Novalis Cyber Démo — Asteria Démo**
+**Dfns — [Client]**
 
 Document de travail préparé à partir des pièces du dossier. Aucune décision, signature, présentation ou communication n’est acquise par sa génération.
 
@@ -12,22 +12,22 @@ Comparer aux conditions négociées : prix des titres, dette nette, ajustement, 
 
 Comparer aux conditions négociées : prix des titres, dette nette, ajustement, périmètre et calendrier.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## Clauses de protection
 
 Protections à discuter : déclarations, garanties, remédiation des points de DD, limites de responsabilité et conditions suspensives.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## Autorisations
 
-Vérifier approbations sociales, agréments et financements requis ; l’avocat confirme leur nécessité.
+Vérifier approbations sociales, agréments prévus au pacte et financements requis ; l’avocat confirme leur nécessité.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## Versions et signatures
 
 Table de versions : document, version, date, auteur, modifications matérielles, revue et signatures. Aucun accord signé n’est disponible.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »

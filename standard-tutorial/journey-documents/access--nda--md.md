@@ -2,14 +2,14 @@
 
 # ACCORD DE CONFIDENTIALITÉ RÉCIPROQUE
 
-**Projet pour relecture — Novalis Cyber Démo / Asteria Démo.** 
+**Projet pour relecture — Dfns / [Client].** 
 
 Entre :
 
-1. **Novalis Cyber Démo SAS**, siège : 24 avenue des Exemples, 75002 Paris, France — adresse fictive, immatriculation DEMO-NOVALIS — immatriculation fictive, représentée par Camille Exemple — personne fictive, en qualité de Présidente, ci-après « la Société » ;
-2. **Asteria Démo SAS**, siège : 12 rue de la Démonstration, 75008 Paris, France — adresse fictive, immatriculation DEMO-ASTERIA — immatriculation fictive, représentée par Alexandre Martin — personne fictive, en qualité de Président, ci-après « l’Investisseur ».
+1. **Dfns SAS — exemple fictif, données à confirmer**, siège : adresse fictive, immatriculation à confirmer — exemple fictif, représentée par Représentant légal de Dfns — à confirmer (exemple fictif), en qualité de mandataire social à confirmer, ci-après « la Société » ;
+2. **[Client]**, siège : adresse masquée, immatriculation masquée, représentée par [Dirigeant du client] — exemple fictif, en qualité de dirigeant (fonction masquée), ci-après « l’Investisseur ».
 
-La Société et l’Investisseur, ensemble les « Parties », souhaitent étudier une acquisition stratégique concernant **Novalis Cyber Démo**. Le présent accord organise les informations qu’elles s’échangent exclusivement pour examiner et négocier ce projet (la « Finalité »).
+La Société et l’Investisseur, ensemble les « Parties », souhaitent étudier une acquisition stratégique concernant **Dfns**. Le présent accord organise les informations qu’elles s’échangent exclusivement pour examiner et négocier ce projet (la « Finalité »).
 
 ## 1. Informations protégées
 
@@ -47,11 +47,11 @@ Droit applicable proposé et confirmé : **Droit français**. Les Parties recher
 
 Toute modification doit être acceptée par écrit par les deux Parties. Le présent accord peut être signé en exemplaires séparés, selon un mode de signature convenu par les Parties permettant d’identifier les signataires et de conserver les exemplaires signés.
 
-Pour la Société : **Novalis Cyber Démo SAS**
-Nom : Camille Exemple — personne fictive — Qualité : Présidente
+Pour la Société : **Dfns SAS — exemple fictif, données à confirmer**
+Nom : Représentant légal de Dfns — à confirmer (exemple fictif) — Qualité : mandataire social à confirmer
 Date et signature : ____________________
 
-Pour l’Investisseur : **Asteria Démo SAS**
-Nom : Alexandre Martin — personne fictive — Qualité : Président
+Pour l’Investisseur : **[Client]**
+Nom : [Dirigeant du client] — exemple fictif — Qualité : dirigeant (fonction masquée)
 Date et signature : ____________________
 

@@ -2,7 +2,7 @@
 
 # Pack reporting, board et communication LP
 
-**Novalis Cyber Démo — Asteria Démo**
+**Dfns — [Client]**
 
 Document de travail préparé à partir des pièces du dossier. Aucune décision, signature, présentation ou communication n’est acquise par sa génération.
 
@@ -12,28 +12,28 @@ Indicateurs mensuels : revenu récurrent, marge, churn, trésorerie, balance âg
 
 Indicateurs mensuels : revenu récurrent, marge, churn, trésorerie, balance âgée, incidents, équipe et synergies.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## Reporting mensuel
 
 Format : réalisé, budget, écart, source, commentaire et action. Demander les comptes du mois avant consolidation.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## Premier board
 
 Ordre du jour du premier board : résultats, risques résiduels, plan 100 jours, ressources et décisions.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## Communication LP
 
 Message LP préparé : avancement, indicateurs disponibles, réserves et prochaines étapes ; valider le destinataire et l’envoi.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## Échéances et responsables
 
 Calendrier proposé : collecte mensuelle, responsable financier, revue équipe puis board ; adapter aux accords réels.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »

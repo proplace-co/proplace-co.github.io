@@ -1,13 +1,13 @@
 **DÉMONSTRATION — DONNÉES FICTIVES. Aucun document signé, envoyé ou validé.**
 
-# Message de remise du NDA et demande de pièces — Novalis Cyber Démo
+# Message de remise du NDA et demande de pièces — Dfns
 
-Destinataire : Camille Exemple — camille@novalis.example.invalid
-Objet : Novalis Cyber Démo — confidentialité et documents prioritaires
+Destinataire : Madame, Monsieur — contact@dfns.example.invalid
+Objet : Dfns — confidentialité et documents prioritaires
 
-Bonjour Camille Exemple,
+Bonjour Madame, Monsieur,
 
-Pour poursuivre l’étude de une acquisition stratégique concernant Novalis Cyber Démo, vous trouverez ci-joint notre projet d’accord de confidentialité réciproque. Merci de confirmer les informations des parties et de nous signaler les adaptations souhaitées avant signature.
+Pour poursuivre l’étude de une acquisition stratégique concernant Dfns, vous trouverez ci-joint notre projet d’accord de confidentialité réciproque. Merci de confirmer les informations des parties et de nous signaler les adaptations souhaitées avant signature.
 
 Après accord sur la confidentialité et les accès, pouvez-vous nous transmettre les documents prioritaires ci-dessous dans l’espace privé convenu ? Pour les pièces déjà présentes, nous vérifierons le périmètre avant de demander un complément.
 
@@ -22,6 +22,6 @@ Après accord sur la confidentialité et les accès, pouvez-vous nous transmettr
 Échéance proposée : 15/10/2026. Merci de désigner un interlocuteur finance, juridique et produit et d’indiquer les pièces indisponibles ou nécessitant un accès restreint. Évitons l’envoi de données personnelles non nécessaires ; un export agrégé peut suffire au premier contrôle.
 
 Merci,
-Alexandre Martin — personne fictive
-Asteria Démo SAS
+[Dirigeant du client] — exemple fictif
+[Client]
 

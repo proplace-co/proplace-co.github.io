@@ -2,32 +2,32 @@
 
 # Dossier d’opportunités complémentaires
 
-**Novalis Cyber Démo — Asteria Démo**
+**Dfns — [Client]**
 
 Document de travail préparé à partir des pièces du dossier. Aucune décision, signature, présentation ou communication n’est acquise par sa génération.
 
-Recherche optionnelle : acteurs français de cybersécurité managée pour PME, revenus récurrents, complémentarité géographique ou technique.
+Recherche optionnelle : acteurs complémentaires de technologie de portefeuilles ou de conservation pour institutions, revenus récurrents, complémentarité technique ou géographique.
 
 ## Critères de recherche
 
-Recherche optionnelle : acteurs français de cybersécurité managée pour PME, revenus récurrents, complémentarité géographique ou technique.
+Recherche optionnelle : acteurs complémentaires de technologie de portefeuilles ou de conservation pour institutions, revenus récurrents, complémentarité technique ou géographique.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## Candidats sourcés
 
 Aucun candidat réel n’est inventé. Utiliser les moteurs de sourcing existants, puis confirmer site, offre et dirigeants.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## Complémentarité
 
-Comparer services, clients, capacités 24/7, couverture et économies possibles ; expliciter les coûts d’intégration.
+Comparer offres, clients, blockchains couvertes, certifications et économies possibles ; expliciter les coûts d’intégration.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
 
 ## Prochaine vérification
 
-Préparer une fiche par candidat avec sources, intérêt, inconnues et prochaine vérification. Cette recherche ne bloque pas le closing Novalis.
+Préparer une fiche par candidat avec sources, intérêt, inconnues et prochaine vérification. Cette recherche ne bloque pas le closing de Dfns.
 
-Source : Mémo détaillé — Novalis — « Société fictive de cybersécurité B2B. Revenu récurrent 2025E : 3,3 M€. Le modèle illustre un CALL sous réserve de vérifier les comptes, les références et les conditions du deal. Un »
+Source : Mémo détaillé — Dfns — « Mémo réel, client masqué. Dfns : infrastructure de portefeuilles pour institutions (Wallet-as-a-Service, gestion de clés MPC, API, plus de 100 blockchains), 88 salariés, 13,5 M$ de »
