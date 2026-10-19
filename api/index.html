@@ -141,7 +141,7 @@
     <div class="lg:col-span-7">
       <div class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-full bg-accent-light text-accent-deep mb-6">
         <span class="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
-        v1.2 — Live · 24 endpoints · MCP & Custom GPT ready
+        v1.2 — Live · 26 endpoints · MCP & Custom GPT ready
       </div>
       <h1 class="text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-6">
         The <span class="text-accent">investment&nbsp;memo</span> API.
@@ -163,7 +163,7 @@
       <!-- Quick stats -->
       <div class="grid grid-cols-3 gap-6 max-w-lg">
         <div>
-          <div class="text-2xl font-bold">24</div>
+          <div class="text-2xl font-bold">26</div>
           <div class="text-xs text-neutral-500 uppercase tracking-wider">Endpoints</div>
         </div>
         <div>
@@ -413,7 +413,7 @@ console.log(await r.json());</code></pre>
     <!-- ── REFERENCE ──────────────────────────────────────────────────────── -->
     <section id="reference">
       <h2>API reference</h2>
-      <p>Twenty-four endpoints. The eight below are the core; the <a href="#more">phase 2 endpoints</a> (batch verdicts, targets, PDF, decks, skills, decisions, webhooks, news, thesis, briefs, financial models) follow. All under <code>https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1</code>. Full machine-readable spec: <a href="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json" target="_blank">openapi.json</a>.</p>
+      <p>Twenty-six endpoints. The eight below are the core; the <a href="#more">phase 2 endpoints</a> (batch verdicts, targets, PDF, decks, skills, decisions, webhooks, news, thesis, briefs, financial models) follow. All under <code>https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1</code>. Full machine-readable spec: <a href="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json" target="_blank">openapi.json</a>.</p>
 
       <!-- Endpoint: listFunds -->
       <div id="endpoint-list-funds" class="endpoint-card border border-neutral-200 rounded-xl p-6 my-6 not-prose">
@@ -852,7 +852,7 @@ Authentication:   API Key
   API Key:        YOUR_TOKEN
 Privacy Policy:   https://proplace.co/privacy</code></pre>
       </div>
-      <p>The 24 actions appear in the GPT (listFunds, getFund, getThesis, listFundDeals, screenTargets, addTargets, triggerMemo, getMemo, getMemoPdf, buildDeck, runSkill, recordDecision, buildModel…).</p>
+      <p>The 26 actions appear in the GPT (listFunds, getFund, getThesis, listFundDeals, screenTargets, addTargets, triggerMemo, getMemo, getMemoPdf, buildDeck, runSkill, recordDecision, buildModel…).</p>
       <p class="text-sm text-neutral-600">Sample prompt to test: <em>"List the funds I can target, then run a screen on Thrust Carbon for the first one."</em></p>
 
       <h3 id="recipe-mcp">Claude Desktop / Cursor / Windsurf (MCP)</h3>
@@ -867,7 +867,7 @@ Privacy Policy:   https://proplace.co/privacy</code></pre>
   }
 }</code></pre>
       </div>
-      <p>Restart your client. 18 tools are now callable in natural language — <code>get_me</code>, <code>list_funds</code>, <code>get_fund</code>, <code>get_thesis</code>, <code>list_fund_deals</code>, <code>screen_targets</code>, <code>add_targets</code>, <code>get_job</code>, <code>screen_deal</code>, <code>trigger_memo</code>, <code>get_memo_status</code>, <code>build_deck</code>, <code>run_skill</code>, <code>record_decision</code>, <code>get_news</code>, <code>get_brief</code>, <code>build_model</code>, <code>patch_memo</code>: <em>"Screen these ten websites for my fund, then write the LOI for the Atelier Morvan memo."</em></p>
+      <p>Restart your client. 20 tools are now callable in natural language — <code>get_me</code>, <code>create_fund</code>, <code>activate_fund</code>, <code>list_funds</code>, <code>get_fund</code>, <code>get_thesis</code>, <code>list_fund_deals</code>, <code>screen_targets</code>, <code>add_targets</code>, <code>get_job</code>, <code>screen_deal</code>, <code>trigger_memo</code>, <code>get_memo_status</code>, <code>build_deck</code>, <code>run_skill</code>, <code>record_decision</code>, <code>get_news</code>, <code>get_brief</code>, <code>build_model</code>, <code>patch_memo</code>: <em>"Screen these ten websites for my fund, then write the LOI for the Atelier Morvan memo."</em></p>
       <p class="text-sm text-neutral-500">Transport: streamable HTTP (JSON-RPC over POST), stateless, JSON responses. The MCP server forwards <em>your</em> token to the REST API: a tool can do exactly what your token's scopes allow, nothing more. Without a valid <code>Authorization</code> header the endpoint answers 401 / 403.</p>
     </section>
 
@@ -886,6 +886,7 @@ Privacy Policy:   https://proplace.co/privacy</code></pre>
           </thead>
           <tbody class="divide-y divide-neutral-100">
             <tr><td class="px-4 py-2 font-mono">GET /v1/me</td><td class="px-4 py-2">Key, fund, plan, quotas, credits, costs</td><td class="px-4 py-2">—</td></tr>
+            <tr><td class="px-4 py-2 font-mono">POST /v1/funds · POST /v1/funds/{fund_type}/activate</td><td class="px-4 py-2">Create a deal flow from your website (account key, 1 credit: Stan derives the thesis and a first memo on your company), then launch the first sourcing (phone required, 30–60 min, free)</td><td class="px-4 py-2"><code>{website, company_name, lang}</code> · <code>{phone}</code></td></tr>
             <tr><td class="px-4 py-2 font-mono">GET /v1/funds/{fund_type}/thesis</td><td class="px-4 py-2">The thesis as Stan applies it: gate, angles, what he looks for (full for the holder's key)</td><td class="px-4 py-2"><code>lang</code></td></tr>
             <tr><td class="px-4 py-2 font-mono">POST /v1/funds/{fund_type}/screen</td><td class="px-4 py-2">MATCH / NO MATCH / DATA_GAP with the written reason on up to 10 companies; nothing written</td><td class="px-4 py-2"><code>{companies:[{url}|{name, headline}], enrich}</code> · <code>wait</code></td></tr>
             <tr><td class="px-4 py-2 font-mono">POST /v1/funds/{fund_type}/targets</td><td class="px-4 py-2">Add up to 10 companies to the deal flow, judged and deduplicated</td><td class="px-4 py-2"><code>{companies:[{name_or_url}], force_reevaluate}</code> · <code>wait</code></td></tr>

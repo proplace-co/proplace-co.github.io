@@ -23,6 +23,7 @@ Docs: https://proplace.co/api/ (EN), https://proplace.co/fr/api/ (FR)
 
 - GET /me (getMe) — identity, plan, quotas, credits, costs
 - GET /funds (listFunds), GET /funds/{fund_type} (getFund), GET /funds/{fund_type}/thesis (getThesis)
+- POST /funds {website, company_name, lang} (createFund, account key, 1 credit) then POST /funds/{fund_type}/activate {phone} (activateFund) — create a deal flow from a website and launch its first sourcing
 - GET /funds/{fund_type}/deals?status=&limit= (listFundDeals) — enriched deal roster: verdict CALL/CONSIDER/MONITOR/PASS/NEW, conviction score, founder contact, memo links, CEO decision
 - POST /funds/{fund_type}/screen {companies:[{url}|{name,headline}], enrich} (screenTargets) — MATCH / NO MATCH / DATA_GAP with reason, up to 10, nothing written
 - POST /funds/{fund_type}/targets {companies:[{name_or_url}], force_reevaluate} (addTargets) — add to the deal flow, judged; 202 + job when slow
