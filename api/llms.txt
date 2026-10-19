@@ -1,0 +1,46 @@
+# Proplace API
+
+> Stan, Proplace's AI Corporate Developer, as an API: MATCH / NO MATCH verdicts on company lists, instant and detailed investment memos, committee PDFs and decks, financial models (VC, strategic acquirer, LBO), CEO decisions, CRM webhooks, market watch, daily and weekly briefs. For CEOs of SMEs and scale-ups, strategic acquirers, corporate venture, buy-and-build funds, seed and growth VCs, family offices.
+
+Base URL: https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1
+OpenAPI: https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json
+MCP (streamable HTTP, 18 tools): https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/mcp
+Docs: https://proplace.co/api/ (EN), https://proplace.co/fr/api/ (FR)
+
+## Authentication
+
+- Header `Authorization: Bearer <key>`. Keys are created from the account page (https://proplace.co/fr/compte) and are limited to one fund (`fund_type`); partner tokens are issued by email.
+- `GET /v1/me` returns the key's fund, plan, scopes, quotas and the credits balance.
+- Scopes: funds, screen, memos, patch, approach, enrich, export. Quotas: 60 req/min and 1,000/day (Trial), 300 / 10,000 (Standard), 1,000 / 50,000 (Enterprise). 429 carries `Retry-After`.
+
+## Credits
+
+- 1 credit = €2 excl. VAT. Instant memo 2, detailed memo 10, financial model 1; everything else is free and rate-limited.
+- `POST /v1/memos?dry_run=true` returns the cost without launching. Responses carry `X-Credits-Cost` and `X-Credits-Remaining`. Insufficient balance → 402 with the packs to buy.
+- A debit is kept only when the memo is delivered; otherwise it is refunded.
+
+## Endpoints (operationId)
+
+- GET /me (getMe) — identity, plan, quotas, credits, costs
+- GET /funds (listFunds), GET /funds/{fund_type} (getFund), GET /funds/{fund_type}/thesis (getThesis)
+- GET /funds/{fund_type}/deals?status=&limit= (listFundDeals) — enriched deal roster: verdict CALL/CONSIDER/MONITOR/PASS/NEW, conviction score, founder contact, memo links, CEO decision
+- POST /funds/{fund_type}/screen {companies:[{url}|{name,headline}], enrich} (screenTargets) — MATCH / NO MATCH / DATA_GAP with reason, up to 10, nothing written
+- POST /funds/{fund_type}/targets {companies:[{name_or_url}], force_reevaluate} (addTargets) — add to the deal flow, judged; 202 + job when slow
+- GET /jobs/{job_id} (getJob)
+- POST /screen {fund_type, company:{name, website}} (screenDeal) — financial pre-flight, ~10 s
+- POST /memos {fund_type, company:{name, website, …}, memo_type: instant|detailed} (triggerMemo) — 202, poll GET /memos/{slug} (getMemo) until ready; memo published at https://analysis.proplace.co/{slug}
+- GET /memos/{slug}/pdf (getMemoPdf); POST /memos/{slug}/deck {mode: vc|lbo|strategic} (buildDeck) then GET /memos/{slug}/deck?mode= (getDeckPdf)
+- GET /skills (listSkills); POST /memos/{slug}/skills/{key} (runSkill) — loi, redflag, callprep, techdd, kpi, board, 100days, lp-update, fairvalue, exec, market, email, competitive, techaudit, refcheck, custref, lp, slides
+- POST /memos/{slug}/patch (patchMemo)
+- POST /targets/{deal_id}/decision {decision: yes|no, note} (recordDecision); POST /targets/{deal_id}/thumb {kind: yes|no} (recordThumb)
+- GET|POST|DELETE /funds/{fund_type}/webhook {url} (getWebhook, setWebhook, deleteWebhook) — events validated, stage_changed, approach_prepared, memo.ready, memo.failed, test
+- POST /prepare-approach {fund_type, company, channel} (prepareApproach); POST /enrich-contact (enrichContact); POST /bulk-push (bulkPush)
+- GET /funds/{fund_type}/news?lang= (getNews); GET /funds/{fund_type}/brief?period=daily|weekly (getBrief)
+- POST /models {fund_type, company, mode: vc|strategic|lbo, deal_params} (buildModel) — ARR triangulation, projections, unit economics, returns, comparables, Excel URL
+
+## Conventions
+
+- Slugs: kebab-case of the company name + "-v2"; re-triggering a memo overwrites it.
+- Idempotency-Key on POST: the original response is replayed for 24 h.
+- Long calls: 202 with job_id/poll_url; poll every 60 s.
+- Errors: 400 (invalid input, lists available_funds), 401/403 (token, scope or fund), 402 (credits), 404, 409 (idempotency conflict, no deal-flow page yet), 429, 502 (upstream).

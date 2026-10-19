@@ -664,7 +664,7 @@ console.log(await r.json());</code></pre>
                 <tr><td><code>publish</code></td><td>string</td><td>—</td><td>Set to <code>"yes"</code> for the Open Deal Flow</td></tr>
                 <tr><td><code>motive</code></td><td>string</td><td>—</td><td>Strategic motive (free text)</td></tr>
                 <tr><td><code>source</code></td><td>string</td><td>—</td><td>Where the deal came from (twitter, linkedin, inbound…)</td></tr>
-                <tr><td><code>callback_url</code></td><td>string</td><td>—</td><td>Reserved — stored with the job, not called yet. Poll <code>GET /v1/memos/{slug}</code></td></tr>
+                <tr><td><code>callback_url</code></td><td>string</td><td>—</td><td>HTTPS URL on a public host, POSTed when the memo ends: <code>{event: memo.ready | memo.failed, fund, slug, company, memo_type, url, error, ts}</code>. The fund's CRM webhook gets the same event</td></tr>
               </tbody>
             </table>
           </div>
@@ -738,7 +738,7 @@ console.log(await r.json());</code></pre>
     <!-- ── INTEGRATION RECIPES ──────────────────────────────────────────── -->
     <section id="recipes">
       <h2>Integration recipes</h2>
-      <p>Eight ways to plug Proplace into your stack. Pick one, ship in 5 minutes.</p>
+      <p>Eight ways to plug Proplace into your stack. Pick one, ship in 5 minutes. Ready-made: an <a href="/api/templates/n8n-screen-then-memo.json">n8n workflow</a> (screen a list → instant memo on MATCH → PDF), a <a href="/api/templates/README.md">Make / Zapier recipe</a>, a dependency-free <a href="/api/proplace.py">Python client</a>, and <a href="/api/llms.txt">llms.txt</a> for agents.</p>
 
       <h3 id="recipe-curl">curl</h3>
       <p>The lowest common denominator. Runs from any shell, CI job, or server.</p>
@@ -895,7 +895,7 @@ Privacy Policy:   https://proplace.co/privacy</code></pre>
             <tr><td class="px-4 py-2 font-mono">GET /v1/skills · POST /v1/memos/{slug}/skills/{key}</td><td class="px-4 py-2">Stan's 18 skills on a memo: LOI, red flags, call prep, tech DD, KPI, board memo, 100-day plan, LP update…</td><td class="px-4 py-2"><code>{lang}</code></td></tr>
             <tr><td class="px-4 py-2 font-mono">POST /v1/targets/{deal_id}/decision</td><td class="px-4 py-2">CEO decision: yes (validated, DD starts, webhook fires) or no (ruled out); Stan learns from the note</td><td class="px-4 py-2"><code>{decision: yes|no, note}</code></td></tr>
             <tr><td class="px-4 py-2 font-mono">POST /v1/targets/{deal_id}/thumb</td><td class="px-4 py-2">Thumb up / down on Stan's verdict</td><td class="px-4 py-2"><code>{kind: yes|no, message}</code></td></tr>
-            <tr><td class="px-4 py-2 font-mono">GET · POST · DELETE /v1/funds/{fund_type}/webhook</td><td class="px-4 py-2">CRM webhook of the fund (events validated, stage_changed, approach_prepared, test)</td><td class="px-4 py-2"><code>{url}</code> · <code>test</code></td></tr>
+            <tr><td class="px-4 py-2 font-mono">GET · POST · DELETE /v1/funds/{fund_type}/webhook</td><td class="px-4 py-2">CRM webhook of the fund (events validated, stage_changed, approach_prepared, memo.ready, memo.failed, test)</td><td class="px-4 py-2"><code>{url}</code> · <code>test</code></td></tr>
             <tr><td class="px-4 py-2 font-mono">POST /v1/prepare-approach · /v1/enrich-contact · /v1/bulk-push</td><td class="px-4 py-2">Outreach sequence for a target, decision-maker contact, push of a whole tab to Instantly or a webhook (scopes approach / enrich / export)</td><td class="px-4 py-2">see openapi.json</td></tr>
             <tr><td class="px-4 py-2 font-mono">GET /v1/funds/{fund_type}/news</td><td class="px-4 py-2">Market watch for the thesis: content to read, recent M&amp;A and funding deals</td><td class="px-4 py-2"><code>lang</code></td></tr>
             <tr><td class="px-4 py-2 font-mono">GET /v1/funds/{fund_type}/brief</td><td class="px-4 py-2">The daily brief or the Monday review, as HTML</td><td class="px-4 py-2"><code>period: daily|weekly</code> · <code>lang</code></td></tr>

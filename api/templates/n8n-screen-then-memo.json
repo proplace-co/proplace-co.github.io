@@ -1,0 +1,178 @@
+{
+  "name": "Proplace — screen a list, memo on MATCH, PDF when ready",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a1",
+      "name": "When clicking ‘Execute workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Replace with your own list (CSV node, Google Sheets, CRM…)\nreturn [\n  { json: { url: 'https://exemple.fr' } },\n  { json: { name: 'Atelier Morvan', headline: 'Chaudronnerie industrielle, Grand Ouest' } }\n].slice(0, 10);"
+      },
+      "id": "a2",
+      "name": "Companies (≤ 10)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "companies",
+        "options": {}
+      },
+      "id": "a3",
+      "name": "Group into one list",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/funds/{{ $env.PROPLACE_FUND }}/screen",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ companies: $json.companies }) }}",
+        "options": { "timeout": 130000 }
+      },
+      "id": "a4",
+      "name": "Proplace · MATCH / NO MATCH",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [660, 0],
+      "credentials": {
+        "httpHeaderAuth": { "id": "REPLACE_WITH_YOUR_CREDENTIAL_ID", "name": "Proplace API key (Authorization: Bearer …)" }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "results",
+        "options": {}
+      },
+      "id": "a5",
+      "name": "One item per verdict",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [880, 0]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+          "conditions": [
+            { "id": "c1", "leftValue": "={{ $json.verdict }}", "rightValue": "MATCH", "operator": { "type": "string", "operation": "equals" } }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a6",
+      "name": "MATCH?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1100, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [ { "name": "Idempotency-Key", "value": "={{ $json.url || $json.company }}-{{ $today.toFormat('yyyyLLdd') }}" } ] },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ fund_type: $env.PROPLACE_FUND, memo_type: 'instant', company: { name: $json.company, website: $json.url || undefined } }) }}",
+        "options": {}
+      },
+      "id": "a7",
+      "name": "Proplace · instant memo (2 credits)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1320, -100],
+      "credentials": {
+        "httpHeaderAuth": { "id": "REPLACE_WITH_YOUR_CREDENTIAL_ID", "name": "Proplace API key (Authorization: Bearer …)" }
+      }
+    },
+    {
+      "parameters": { "amount": 60, "unit": "seconds" },
+      "id": "a8",
+      "name": "Wait 60 s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [1540, -100]
+    },
+    {
+      "parameters": {
+        "url": "=https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos/{{ $('Proplace · instant memo (2 credits)').item.json.slug }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "a9",
+      "name": "Proplace · memo status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1760, -100],
+      "credentials": {
+        "httpHeaderAuth": { "id": "REPLACE_WITH_YOUR_CREDENTIAL_ID", "name": "Proplace API key (Authorization: Bearer …)" }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+          "conditions": [
+            { "id": "c2", "leftValue": "={{ $json.status }}", "rightValue": "ready", "operator": { "type": "string", "operation": "equals" } }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a10",
+      "name": "Ready?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1980, -100]
+    },
+    {
+      "parameters": {
+        "url": "=https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos/{{ $json.slug }}/pdf",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": { "response": { "response": { "responseFormat": "file" } } }
+      },
+      "id": "a11",
+      "name": "Proplace · memo PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2200, -200],
+      "credentials": {
+        "httpHeaderAuth": { "id": "REPLACE_WITH_YOUR_CREDENTIAL_ID", "name": "Proplace API key (Authorization: Bearer …)" }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": { "main": [[{ "node": "Companies (≤ 10)", "type": "main", "index": 0 }]] },
+    "Companies (≤ 10)": { "main": [[{ "node": "Group into one list", "type": "main", "index": 0 }]] },
+    "Group into one list": { "main": [[{ "node": "Proplace · MATCH / NO MATCH", "type": "main", "index": 0 }]] },
+    "Proplace · MATCH / NO MATCH": { "main": [[{ "node": "One item per verdict", "type": "main", "index": 0 }]] },
+    "One item per verdict": { "main": [[{ "node": "MATCH?", "type": "main", "index": 0 }]] },
+    "MATCH?": { "main": [[{ "node": "Proplace · instant memo (2 credits)", "type": "main", "index": 0 }], []] },
+    "Proplace · instant memo (2 credits)": { "main": [[{ "node": "Wait 60 s", "type": "main", "index": 0 }]] },
+    "Wait 60 s": { "main": [[{ "node": "Proplace · memo status", "type": "main", "index": 0 }]] },
+    "Proplace · memo status": { "main": [[{ "node": "Ready?", "type": "main", "index": 0 }]] },
+    "Ready?": { "main": [[{ "node": "Proplace · memo PDF", "type": "main", "index": 0 }], [{ "node": "Wait 60 s", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "meta": {
+    "notes": "Set an environment variable PROPLACE_FUND (your fund_type, see GET /v1/me) and a Header Auth credential with name 'Authorization' and value 'Bearer <your key>' (created on https://proplace.co/fr/compte). Docs: https://proplace.co/api/"
+  }
+}
