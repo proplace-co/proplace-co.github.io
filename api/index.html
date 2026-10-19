@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Proplace API · The investment memo API</title>
-  <meta name="description" content="Compounding fund knowledge into 30-page IC memos in 8 minutes. REST + MCP + Custom GPT. Drop into Make, n8n, Claude Desktop, or any HTTP client." />
+  <meta name="description" content="Compounding fund knowledge into IC memos: a first-round memo in about 10 minutes, the full dossier in about 40. REST + MCP + Custom GPT. Drop into Make, n8n, Claude Desktop, or any HTTP client." />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
 
   <!-- Une seule famille pour tout le site : Instrument Sans (restyle v3).
@@ -141,13 +141,13 @@
     <div class="lg:col-span-7">
       <div class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-full bg-accent-light text-accent-deep mb-6">
         <span class="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
-        v1 — Live · 6 endpoints · MCP & Custom GPT ready
+        v1.1 — Live · 7 endpoints · MCP & Custom GPT ready
       </div>
       <h1 class="text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-6">
         The <span class="text-accent">investment&nbsp;memo</span> API.
       </h1>
       <p class="text-xl text-neutral-600 leading-relaxed max-w-2xl mb-8">
-        Compounding fund knowledge into 30-page IC memos in 8 minutes.
+        Compounding fund knowledge into IC memos: a first-round memo in about 10 minutes, the full dossier in about 40.
         Drop into Make, n8n, ChatGPT, Claude Desktop, Cursor or any HTTP client.
         Your fund_thesis stays at home — only verdicts ship.
       </p>
@@ -163,12 +163,12 @@
       <!-- Quick stats -->
       <div class="grid grid-cols-3 gap-6 max-w-lg">
         <div>
-          <div class="text-2xl font-bold">6</div>
+          <div class="text-2xl font-bold">7</div>
           <div class="text-xs text-neutral-500 uppercase tracking-wider">Endpoints</div>
         </div>
         <div>
-          <div class="text-2xl font-bold">~8 min</div>
-          <div class="text-xs text-neutral-500 uppercase tracking-wider">Detailed memo</div>
+          <div class="text-2xl font-bold">~10 min</div>
+          <div class="text-xs text-neutral-500 uppercase tracking-wider">Instant memo</div>
         </div>
         <div>
           <div class="text-2xl font-bold">MCP</div>
@@ -198,7 +198,7 @@
   "slug": "thrust-carbon-v2",
   "url": "https://analysis.proplace.co/thrust-carbon-v2",
   "status": "queued",
-  "estimated_seconds": 540,
+  "estimated_seconds": 2400,
   "poll_url": "/v1/memos/thrust-carbon-v2"
 }</code></pre>
       </div>
@@ -241,6 +241,7 @@
           <a href="#recipe-chatgpt" class="block py-0.5 hover:text-ink">ChatGPT GPT</a>
           <a href="#recipe-mcp" class="block py-0.5 hover:text-ink">Claude / MCP</a>
         </div>
+        <a href="#pricing" class="toc-link block py-1 hover:text-ink">Pricing & credits</a>
         <a href="#errors" class="toc-link block py-1 hover:text-ink">Errors & limits</a>
         <a href="#changelog" class="toc-link block py-1 hover:text-ink">Changelog</a>
       </nav>
@@ -261,7 +262,7 @@
     <!-- ── QUICKSTART ─────────────────────────────────────────────────────── -->
     <section id="quickstart">
       <h2>Quickstart — 60 seconds to your first memo</h2>
-      <p>Four steps. You'll have an institutional-grade investment memo at <code>analysis.proplace.co/&lt;slug&gt;</code> in roughly 8 minutes.</p>
+      <p>Four steps. You'll have an institutional-grade investment memo at <code>analysis.proplace.co/&lt;slug&gt;</code> in about 40 minutes (about 10 for an <code>instant</code> memo).</p>
 
       <ol class="list-none pl-0 space-y-6 not-prose mt-8">
         <li class="flex gap-4">
@@ -348,7 +349,7 @@ console.log(await r.json());</code></pre>
           <div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent-light text-accent-deep font-semibold flex items-center justify-center text-sm">4</div>
           <div class="flex-1">
             <div class="font-semibold mb-1">Poll, then read your memo</div>
-            <p class="text-neutral-600 text-sm mb-3">Poll every 30 seconds — when <code class="bg-paper px-1.5 py-0.5 rounded text-xs">status</code> flips to <code class="bg-paper px-1.5 py-0.5 rounded text-xs">ready</code>, the memo is published at <code class="bg-paper px-1.5 py-0.5 rounded text-xs">url</code>.</p>
+            <p class="text-neutral-600 text-sm mb-3">Poll every 60 seconds — when <code class="bg-paper px-1.5 py-0.5 rounded text-xs">status</code> flips to <code class="bg-paper px-1.5 py-0.5 rounded text-xs">ready</code>, the memo is published at <code class="bg-paper px-1.5 py-0.5 rounded text-xs">url</code>.</p>
             <div class="rounded-lg border border-neutral-200 overflow-hidden">
               <pre class="!m-0 !rounded-none"><code class="language-bash">curl -H "Authorization: Bearer $PROPLACE_TOKEN" \
   https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/memos/thrust-carbon-v2
@@ -363,7 +364,7 @@ console.log(await r.json());</code></pre>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent flex-shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
         <div>
           <div class="font-semibold text-ink mb-1">Pre-flight first with <code class="bg-white px-1.5 py-0.5 rounded text-sm">/v1/screen</code></div>
-          <p class="text-sm text-neutral-700 m-0">Get a verdict + thesis-fit score in 10 seconds before committing 8 minutes to a full memo.</p>
+          <p class="text-sm text-neutral-700 m-0">Get a verdict + thesis-fit score in 10 seconds before committing 40 minutes to a full memo.</p>
         </div>
       </div>
     </section>
@@ -377,18 +378,17 @@ console.log(await r.json());</code></pre>
       <p>Every memo is written through the lens of a specific fund. The <code>fund_type</code> identifier resolves (server-side) to the full fund thesis, sector profile, return hurdles, M&A acquirer context, and language preference. You never send the thesis itself — your IP stays at home. Discover available <code>fund_type</code>s with <a href="#endpoint-list-funds"><code>GET /v1/funds</code></a>.</p>
 
       <h3 id="concept-memo"><code>memo</code> — the artifact</h3>
-      <p>A memo is a 30-page institutional investment dossier (market sizing, value chain, competitive positioning, financial model, conviction, risk register, deal rationale). It runs three flavors:</p>
+      <p>A memo is an institutional investment dossier (market sizing, value chain, competitive positioning, financial model, conviction, risk register, deal rationale), written by the same workers as the Proplace product. It runs two tiers:</p>
       <ul class="not-prose space-y-2 my-4">
-        <li class="flex gap-3 items-start"><span class="font-mono text-xs px-2 py-1 rounded bg-paper">fast</span><span class="text-sm text-neutral-700">~3 min · executive summary + verdict only</span></li>
-        <li class="flex gap-3 items-start"><span class="font-mono text-xs px-2 py-1 rounded bg-paper">quick</span><span class="text-sm text-neutral-700">~5 min · core analysis without value-chain deep dive</span></li>
-        <li class="flex gap-3 items-start"><span class="font-mono text-xs px-2 py-1 rounded bg-paper">detailed</span><span class="text-sm text-neutral-700">~8 min · full pipeline (recommended)</span></li>
+        <li class="flex gap-3 items-start"><span class="font-mono text-xs px-2 py-1 rounded bg-paper">instant</span><span class="text-sm text-neutral-700">~10 min · first-round memo: identity, thesis fit, verdict, price order of magnitude (<code>fast</code> and <code>quick</code> are accepted as aliases)</span></li>
+        <li class="flex gap-3 items-start"><span class="font-mono text-xs px-2 py-1 rounded bg-paper">detailed</span><span class="text-sm text-neutral-700">~40 min · full dossier: market, value chain, scenarios, synergies, financial model (default)</span></li>
       </ul>
 
       <h3 id="concept-slug"><code>slug</code> — the URL key</h3>
       <p>The slug is derived deterministically from the company name (NFKD normalize → lowercase → kebab-case). A company called <em>"Thrust Carbon"</em> becomes <code>thrust-carbon-v2</code>, published at <code>analysis.proplace.co/thrust-carbon-v2</code>. The same company name will always produce the same slug — re-triggering overwrites the memo.</p>
 
       <h3 id="concept-verdict"><code>verdict</code> — the decision</h3>
-      <p>The synthetic GP returns one of: <code>MUST_CALL</code>, <code>CONSIDER</code>, <code>MONITOR</code>, <code>PASS</code>, <code>HARD_BLOCK</code>. The verdict is consistent across <a href="#endpoint-screen"><code>/screen</code></a> (10s pre-flight) and the full memo's <a href="#endpoint-get-memo"><code>/memos/{slug}</code></a> response.</p>
+      <p>The deal roster and the memo status return the fund's verdict: <code>CALL</code>, <code>CONSIDER</code>, <code>MONITOR</code>, <code>PASS</code> (or <code>NEW</code> before any analysis). <a href="#endpoint-screen"><code>/screen</code></a> is a financial pre-flight with its own, historical scale: <code>CALL</code>, <code>CONSIDER</code>, <code>MONITOR</code>, <code>PASS</code>, <code>HURDLES_PASSED</code>, <code>OUT_OF_HURDLE</code>, <code>HARD_BLOCK</code> — <code>MONITOR</code> with <code>valuation_status.computable = false</code> when the company publishes no financial data.</p>
     </section>
 
     <!-- ── AUTH ───────────────────────────────────────────────────────────── -->
@@ -398,7 +398,7 @@ console.log(await r.json());</code></pre>
       <div class="rounded-lg border border-neutral-200 overflow-hidden not-prose">
         <pre class="!m-0 !rounded-none"><code class="language-bash">Authorization: Bearer pk_live_3f4a...e9c2</code></pre>
       </div>
-      <p>Tokens are scoped to your fund(s) and rate-limited per token. Rotation: email us — we issue a new token, revoke the old one.</p>
+      <p>Tokens are rate-limited per token and carry scopes (<code>funds</code>, <code>screen</code>, <code>memos</code>, <code>patch</code>, plus <code>approach</code>, <code>enrich</code> and <code>export</code> for the outreach and CRM-push routes). Rotation: email us — we issue a new token, revoke the old one.</p>
       <h3>Token best practices</h3>
       <ul>
         <li><strong>Never commit tokens.</strong> Use environment variables or your secret manager.</li>
@@ -410,7 +410,7 @@ console.log(await r.json());</code></pre>
     <!-- ── REFERENCE ──────────────────────────────────────────────────────── -->
     <section id="reference">
       <h2>API reference</h2>
-      <p>Six endpoints. All under <code>https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1</code>. Full machine-readable spec: <a href="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json" target="_blank">openapi.json</a>.</p>
+      <p>Seven endpoints. All under <code>https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1</code>. Full machine-readable spec: <a href="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json" target="_blank">openapi.json</a>.</p>
 
       <!-- Endpoint: listFunds -->
       <div id="endpoint-list-funds" class="endpoint-card border border-neutral-200 rounded-xl p-6 my-6 not-prose">
@@ -481,7 +481,7 @@ console.log(await r.json());</code></pre>
               <div class="text-xs font-semibold text-neutral-500 uppercase mb-2">Request</div>
               <pre class="!m-0"><code class="language-bash">curl -s \
   "https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/funds/s4bt/deals?status=CALL&limit=50" \
-  -H "Authorization: Bearer $PROPLACE_API_KEY"</code></pre>
+  -H "Authorization: Bearer $PROPLACE_TOKEN"</code></pre>
             </div>
             <div>
               <div class="text-xs font-semibold text-neutral-500 uppercase mb-2">Response</div>
@@ -598,7 +598,7 @@ console.log(await r.json());</code></pre>
   "status": "queued",
   "fund_type": "s4bt",
   "memo_type": "detailed",
-  "estimated_seconds": 540,
+  "estimated_seconds": 2400,
   "poll_url": "/v1/memos/thrust-carbon-v2"
 }</code></pre>
             </div>
@@ -655,13 +655,13 @@ console.log(await r.json());</code></pre>
                 <tr><td><code>company.pitch_deck_url</code></td><td>string</td><td>—</td><td>Public PDF URL</td></tr>
                 <tr><td><code>company.product_url</code> / <code>pricing_url</code> / <code>team_url</code></td><td>string</td><td>—</td><td>Override deep-research targets</td></tr>
                 <tr><td><code>company.first_name</code> / <code>last_name</code></td><td>string</td><td>—</td><td>CEO name hint</td></tr>
-                <tr><td><code>memo_type</code></td><td>enum</td><td>—</td><td><code>fast</code> · <code>quick</code> · <code>detailed</code> (default)</td></tr>
+                <tr><td><code>memo_type</code></td><td>enum</td><td>—</td><td><code>instant</code> (~10 min) · <code>detailed</code> (~40 min, default) — <code>fast</code> and <code>quick</code> are aliases of <code>instant</code></td></tr>
                 <tr><td><code>lang</code></td><td>string</td><td>—</td><td>Defaults to <code>fund.lang</code></td></tr>
                 <tr><td><code>synergies_with</code></td><td>string</td><td>—</td><td>Airtable record_id of a portfolio company</td></tr>
                 <tr><td><code>publish</code></td><td>string</td><td>—</td><td>Set to <code>"yes"</code> for the Open Deal Flow</td></tr>
                 <tr><td><code>motive</code></td><td>string</td><td>—</td><td>Strategic motive (free text)</td></tr>
                 <tr><td><code>source</code></td><td>string</td><td>—</td><td>Where the deal came from (twitter, linkedin, inbound…)</td></tr>
-                <tr><td><code>callback_url</code></td><td>string</td><td>—</td><td>Experimental — POST'd when the memo is ready</td></tr>
+                <tr><td><code>callback_url</code></td><td>string</td><td>—</td><td>Reserved — stored with the job, not called yet. Poll <code>GET /v1/memos/{slug}</code></td></tr>
               </tbody>
             </table>
           </div>
@@ -735,7 +735,7 @@ console.log(await r.json());</code></pre>
     <!-- ── INTEGRATION RECIPES ──────────────────────────────────────────── -->
     <section id="recipes">
       <h2>Integration recipes</h2>
-      <p>Ten ways to plug Proplace into your stack. Pick one, ship in 5 minutes.</p>
+      <p>Eight ways to plug Proplace into your stack. Pick one, ship in 5 minutes.</p>
 
       <h3 id="recipe-curl">curl</h3>
       <p>The lowest common denominator. Runs from any shell, CI job, or server.</p>
@@ -849,7 +849,7 @@ Authentication:   API Key
   API Key:        YOUR_TOKEN
 Privacy Policy:   https://proplace.co/privacy</code></pre>
       </div>
-      <p>The 6 actions appear in the GPT: <code>listFunds</code>, <code>getFund</code>, <code>screenDeal</code>, <code>triggerMemo</code>, <code>getMemo</code>, <code>patchMemo</code>.</p>
+      <p>The 7 actions appear in the GPT: <code>listFunds</code>, <code>getFund</code>, <code>listFundDeals</code>, <code>screenDeal</code>, <code>triggerMemo</code>, <code>getMemo</code>, <code>patchMemo</code>.</p>
       <p class="text-sm text-neutral-600">Sample prompt to test: <em>"List the funds I can target, then run a screen on Thrust Carbon for the first one."</em></p>
 
       <h3 id="recipe-mcp">Claude Desktop / Cursor / Windsurf (MCP)</h3>
@@ -858,14 +858,58 @@ Privacy Policy:   https://proplace.co/privacy</code></pre>
         <pre class="!m-0 !rounded-none"><code class="language-json">{
   "mcpServers": {
     "proplace": {
-      "url": "https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/mcp/mcp",
+      "url": "https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/mcp",
       "headers": { "Authorization": "Bearer YOUR_TOKEN" }
     }
   }
 }</code></pre>
       </div>
-      <p>Restart your client. The 6 tools (<code>list_funds</code>, <code>get_fund</code>, <code>screen_deal</code>, <code>trigger_memo</code>, <code>get_memo_status</code>, <code>patch_memo</code>) are now callable in natural language: <em>"Trigger a detailed memo for Thrust Carbon under fund_type s4bt."</em></p>
-      <p class="text-sm text-neutral-500">Transport: streamable HTTP (JSON-RPC over POST). Protocol version: MCP 2024-11-05.</p>
+      <p>Restart your client. The 7 tools (<code>list_funds</code>, <code>get_fund</code>, <code>list_fund_deals</code>, <code>screen_deal</code>, <code>trigger_memo</code>, <code>get_memo_status</code>, <code>patch_memo</code>) are now callable in natural language: <em>"Trigger a detailed memo for Thrust Carbon under fund_type s4bt."</em></p>
+      <p class="text-sm text-neutral-500">Transport: streamable HTTP (JSON-RPC over POST), stateless, JSON responses. The MCP server forwards <em>your</em> token to the REST API: a tool can do exactly what your token's scopes allow, nothing more. Without a valid <code>Authorization</code> header the endpoint answers 401 / 403.</p>
+    </section>
+
+    <!-- ── PRICING & CREDITS ─────────────────────────────────────────────── -->
+    <section id="pricing">
+      <h2>Pricing & credits</h2>
+      <p>The API is not a separate product: it is a channel for the same three offers as <a href="https://proplace.co/#tarifs" target="_blank">proplace.co</a>, and it runs on the same credits as your Proplace account — <strong>1 credit = €2 excl. VAT</strong>. Reads are free and only rate-limited; calls that run AI or buy data cost credits.</p>
+      <div class="not-prose overflow-x-auto">
+        <table class="w-full text-sm border border-neutral-200 rounded-lg">
+          <thead class="bg-paper text-left">
+            <tr>
+              <th class="px-4 py-2 font-semibold border-b border-neutral-200">Call</th>
+              <th class="px-4 py-2 font-semibold border-b border-neutral-200">Credits</th>
+              <th class="px-4 py-2 font-semibold border-b border-neutral-200">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">listFunds · getFund · listFundDeals · getMemo</td><td class="px-4 py-2 border-b border-neutral-100">0</td><td class="px-4 py-2 border-b border-neutral-100">Rate-limited only</td></tr>
+            <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">screenDeal</td><td class="px-4 py-2 border-b border-neutral-100">0</td><td class="px-4 py-2 border-b border-neutral-100">Financial pre-flight, ~10 s, rate-limited</td></tr>
+            <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">triggerMemo · instant</td><td class="px-4 py-2 border-b border-neutral-100">2</td><td class="px-4 py-2 border-b border-neutral-100">First-round memo, ≈ 10 min</td></tr>
+            <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">triggerMemo · detailed</td><td class="px-4 py-2 border-b border-neutral-100">10</td><td class="px-4 py-2 border-b border-neutral-100">Full dossier, ≈ 40 min</td></tr>
+            <tr><td class="px-4 py-2 font-mono">patchMemo</td><td class="px-4 py-2">0</td><td class="px-4 py-2">Edits your own published memo</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="not-prose overflow-x-auto mt-6">
+        <table class="w-full text-sm border border-neutral-200 rounded-lg">
+          <thead class="bg-paper text-left">
+            <tr>
+              <th class="px-4 py-2 font-semibold border-b border-neutral-200"></th>
+              <th class="px-4 py-2 font-semibold border-b border-neutral-200">Trial · €0</th>
+              <th class="px-4 py-2 font-semibold border-b border-neutral-200">Standard · €25,000 / year</th>
+              <th class="px-4 py-2 font-semibold border-b border-neutral-200">Enterprise · €50,000 / year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="px-4 py-2 border-b border-neutral-100">API access</td><td class="px-4 py-2 border-b border-neutral-100">On request, one fund</td><td class="px-4 py-2 border-b border-neutral-100">Included</td><td class="px-4 py-2 border-b border-neutral-100">Included, one token per integration</td></tr>
+            <tr><td class="px-4 py-2 border-b border-neutral-100">Credits</td><td class="px-4 py-2 border-b border-neutral-100">3 free credits a day, packs of 5 / 20 / 50 / 100 at €2</td><td class="px-4 py-2 border-b border-neutral-100">1,000 credits a year included, then packs at €2</td><td class="px-4 py-2 border-b border-neutral-100">3,000 credits a year included, then packs at €2, priority queue</td></tr>
+            <tr><td class="px-4 py-2 border-b border-neutral-100">Rate limit per token</td><td class="px-4 py-2 border-b border-neutral-100">60 / min · 1,000 / day</td><td class="px-4 py-2 border-b border-neutral-100">60 / min · 1,000 / day, custom on request</td><td class="px-4 py-2 border-b border-neutral-100">Custom</td></tr>
+            <tr><td class="px-4 py-2 border-b border-neutral-100">MCP · Custom GPT · Make / n8n / Zapier</td><td class="px-4 py-2 border-b border-neutral-100">Yes</td><td class="px-4 py-2 border-b border-neutral-100">Yes</td><td class="px-4 py-2 border-b border-neutral-100">Yes, with integration help (CRM push, bulk evaluation)</td></tr>
+            <tr><td class="px-4 py-2">White-label memos & decks, custom memo template</td><td class="px-4 py-2">—</td><td class="px-4 py-2">—</td><td class="px-4 py-2">Yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-neutral-500 mt-4">Credit metering of API calls and self-service keys from your account page are rolling out. Until then, tokens are provisioned by email and memos launched through the API are reconciled with your account by hand. Prices excl. VAT; the yearly offers are invoiced by bank transfer.</p>
     </section>
 
     <!-- ── ERRORS & RATE LIMITS ──────────────────────────────────────────── -->
@@ -887,9 +931,9 @@ Privacy Policy:   https://proplace.co/privacy</code></pre>
             <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">400</td><td class="px-4 py-2 border-b border-neutral-100">Invalid <code>fund_type</code> or missing field</td><td class="px-4 py-2 border-b border-neutral-100">Check the <code>available_funds</code> field in the response body</td></tr>
             <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">401 / 403</td><td class="px-4 py-2 border-b border-neutral-100">Token missing or invalid</td><td class="px-4 py-2 border-b border-neutral-100">Verify your <code>Authorization</code> header</td></tr>
             <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">404</td><td class="px-4 py-2 border-b border-neutral-100">Slug or fund_type not found</td><td class="px-4 py-2 border-b border-neutral-100">Spelling — slug is case-sensitive, fund_type is not</td></tr>
-            <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">409</td><td class="px-4 py-2 border-b border-neutral-100">Idempotency-key replay</td><td class="px-4 py-2 border-b border-neutral-100">You're seeing the cached original response — safe</td></tr>
+            <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">202 (replay)</td><td class="px-4 py-2 border-b border-neutral-100">Idempotency-key replay</td><td class="px-4 py-2 border-b border-neutral-100">Same <code>Idempotency-Key</code> within 24 h: you get the original response again, with its original status — nothing is re-executed</td></tr>
             <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">429</td><td class="px-4 py-2 border-b border-neutral-100">Rate limit hit</td><td class="px-4 py-2 border-b border-neutral-100">Honor the <code>Retry-After</code> header</td></tr>
-            <tr><td class="px-4 py-2 font-mono">502</td><td class="px-4 py-2">Upstream (Make / GitHub / Airtable) failed</td><td class="px-4 py-2">Retry. If persistent, email us.</td></tr>
+            <tr><td class="px-4 py-2 font-mono">502</td><td class="px-4 py-2">Upstream (memo worker / GitHub / Airtable) failed</td><td class="px-4 py-2">Retry. If persistent, email us.</td></tr>
           </tbody>
         </table>
       </div>
@@ -912,6 +956,11 @@ Privacy Policy:   https://proplace.co/privacy</code></pre>
       <h2>Changelog</h2>
       <div class="not-prose space-y-4">
         <div class="border-l-2 border-accent pl-4">
+          <div class="text-xs text-neutral-500">v1.1.0 · 2026-10-19</div>
+          <div class="font-medium">Memos on Proplace's own workers, MCP with your token</div>
+          <p class="text-sm text-neutral-600 mt-1 mb-0"><code>triggerMemo</code> now runs the product's instant / detailed workers (no more Make.com webhook) and <code>memo_type</code> accepts <code>instant</code>; <code>getMemo</code> follows the job (queued → building → ready | failed). <code>listFundDeals</code> documented (7 endpoints). MCP served at <code>/mcp</code> with 7 tools, authenticated with <em>your</em> token. Scopes <code>approach</code>, <code>enrich</code>, <code>export</code> on the outreach and CRM routes. Realistic durations, pricing &amp; credits section.</p>
+        </div>
+        <div class="border-l-2 border-neutral-300 pl-4">
           <div class="text-xs text-neutral-500">v1.0.0 · launched</div>
           <div class="font-medium">Initial public release</div>
           <p class="text-sm text-neutral-600 mt-1 mb-0">Six endpoints (<code>listFunds</code>, <code>getFund</code>, <code>screenDeal</code>, <code>triggerMemo</code>, <code>getMemo</code>, <code>patchMemo</code>). MCP server live. ChatGPT Custom GPT compatible.</p>
