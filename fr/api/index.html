@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Proplace · Stan dans vos outils</title>
+  <meta name="description" content="L’API Proplace : verdicts MATCH / NO MATCH, mémos éclair et détaillés, PDF et decks de comité, modèles financiers, décisions et webhooks CRM. Clé depuis votre compte, crédits du compte, MCP pour Claude et ChatGPT." />
+  <link rel="canonical" href="https://proplace.co/fr/api/" />
+  <link rel="alternate" hreflang="en" href="https://proplace.co/api/" />
+  <link rel="alternate" hreflang="fr" href="https://proplace.co/fr/api/" />
+  <link rel="alternate" hreflang="x-default" href="https://proplace.co/api/" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta property="og:title" content="API Proplace · Stan dans vos outils" />
+  <meta property="og:description" content="Verdicts, mémos, PDF, decks, modèles financiers, décisions, webhooks : l’API Proplace, avec une clé créée depuis votre compte." />
+  <meta property="og:url" content="https://proplace.co/fr/api/" />
+  <meta property="og:image" content="https://proplace.co/logo.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { ink: '#0B1F33', paper: '#F6F8FB', accent: '#1F7A4D', 'accent-light': '#E3F3EA', 'accent-deep': '#145A38' } } } };
+  </script>
+  <style>
+    body { font-family: Archivo, "Helvetica Neue", Arial, sans-serif; }
+    code { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .92em; }
+    pre { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85rem; line-height: 1.5; }
+  </style>
+</head>
+<body class="bg-white text-ink">
+  <header class="border-b border-neutral-200">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <a href="/fr/" class="flex items-center gap-2"><img src="/logo.png" alt="Proplace" class="h-7" /></a>
+      <nav class="flex items-center gap-5 text-sm">
+        <a href="/api/" class="hover:text-accent">Référence complète (EN)</a>
+        <a href="/fr/compte" class="bg-ink text-white px-4 py-1.5 rounded-full hover:bg-accent transition">Créer ma clé</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6">
+    <section class="py-16 lg:py-20 grid lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-7">
+        <div class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-full bg-accent-light text-accent-deep mb-6">
+          <span class="w-1.5 h-1.5 bg-accent rounded-full"></span> v1.2 · 24 endpoints · MCP et Custom GPT
+        </div>
+        <h1 class="text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-5">Stan, votre AI Corporate Developer, <span class="text-accent">dans vos outils</span>.</h1>
+        <p class="text-lg text-neutral-600 leading-relaxed mb-8">Tout ce que Stan fait pour votre deal flow, appelable depuis n8n, Make, Zapier, votre CRM, ChatGPT ou Claude : verdicts MATCH / NO MATCH sur vos listes, mémos éclair et détaillés, PDF et decks de comité, modèles financiers VC / LBO / stratégique, décisions, webhooks. Votre thèse reste chez Proplace ; seuls les verdicts et les livrables sortent.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/fr/compte" class="bg-ink text-white px-6 py-3 rounded-full font-medium hover:bg-accent transition">Créer ma clé API</a>
+          <a href="/api/" class="px-6 py-3 rounded-full font-medium border border-neutral-300 hover:border-ink transition">Lire la référence (EN)</a>
+        </div>
+      </div>
+      <div class="lg:col-span-5">
+        <div class="rounded-xl border border-neutral-200 bg-ink text-white p-5 overflow-x-auto">
+<pre class="!m-0 text-neutral-100">curl -X POST \
+  https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/funds/mon-fonds/screen \
+  -H "Authorization: Bearer $PROPLACE_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"companies":[{"url":"https://exemple.fr"},
+                   {"name":"Atelier Morvan"}]}'
+
+# → {"results":[{"company":"Atelier Morvan",
+#     "verdict":"MATCH","score":82,
+#     "reasoning":"Mêmes clients agro… "}]}</pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 border-t border-neutral-200">
+      <h2 class="text-2xl font-bold mb-6">En quatre étapes</h2>
+      <ol class="grid md:grid-cols-4 gap-6 text-sm">
+        <li class="rounded-xl border border-neutral-200 p-5"><div class="text-accent font-bold text-lg mb-2">1</div><strong>Créez votre clé</strong> depuis <a class="underline" href="/fr/compte">votre compte</a> (titulaire ou membre de l’équipe). Elle est liée à votre fonds et à vos crédits.</li>
+        <li class="rounded-xl border border-neutral-200 p-5"><div class="text-accent font-bold text-lg mb-2">2</div><strong>Collez-la</strong> dans n8n, Make, Zapier (en-tête <code>Authorization: Bearer …</code>), dans un Custom GPT ou dans Claude via MCP.</li>
+        <li class="rounded-xl border border-neutral-200 p-5"><div class="text-accent font-bold text-lg mb-2">3</div><strong>Appelez</strong> <code>GET /v1/me</code> pour voir votre fonds, votre plan et vos crédits, puis les endpoints ci-dessous.</li>
+        <li class="rounded-xl border border-neutral-200 p-5"><div class="text-accent font-bold text-lg mb-2">4</div><strong>Les appels payants</strong> annoncent leur coût (<code>?dry_run=true</code>, en-tête <code>X-Credits-Cost</code>) et répondent 402 avec les packs si le solde manque.</li>
+      </ol>
+    </section>
+
+    <section class="py-12 border-t border-neutral-200">
+      <h2 class="text-2xl font-bold mb-2">Ce que vous pouvez automatiser</h2>
+      <p class="text-neutral-600 mb-6">Chaque ligne correspond à une promesse des pages <a class="underline" href="/fr/solutions/">« Vous êtes… »</a>. Base : <code>https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1</code>.</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border border-neutral-200 rounded-lg">
+          <thead class="bg-paper text-left">
+            <tr><th class="px-4 py-2 border-b border-neutral-200">Vous voulez…</th><th class="px-4 py-2 border-b border-neutral-200">Endpoint</th><th class="px-4 py-2 border-b border-neutral-200">Crédits</th></tr>
+          </thead>
+          <tbody class="divide-y divide-neutral-100">
+            <tr><td class="px-4 py-2">Savoir qui vous êtes, votre plan, vos crédits</td><td class="px-4 py-2 font-mono">GET /me</td><td class="px-4 py-2">0</td></tr>
+            <tr><td class="px-4 py-2">Lire votre thèse telle que Stan l’applique</td><td class="px-4 py-2 font-mono">GET /funds/{fund}/thesis</td><td class="px-4 py-2">0</td></tr>
+            <tr><td class="px-4 py-2">Un verdict MATCH / NO MATCH sur une liste (10 par appel)</td><td class="px-4 py-2 font-mono">POST /funds/{fund}/screen</td><td class="px-4 py-2">0</td></tr>
+            <tr><td class="px-4 py-2">Ajouter des cibles à votre deal flow (jugées, dédoublonnées)</td><td class="px-4 py-2 font-mono">POST /funds/{fund}/targets</td><td class="px-4 py-2">0</td></tr>
+            <tr><td class="px-4 py-2">Lire votre deal flow enrichi (verdict, score, contact, mémos)</td><td class="px-4 py-2 font-mono">GET /funds/{fund}/deals</td><td class="px-4 py-2">0</td></tr>
+            <tr><td class="px-4 py-2">Un mémo éclair (≈ 10 min)</td><td class="px-4 py-2 font-mono">POST /memos · memo_type instant</td><td class="px-4 py-2">2</td></tr>
+            <tr><td class="px-4 py-2">Un mémo détaillé (≈ 40 min)</td><td class="px-4 py-2 font-mono">POST /memos · memo_type detailed</td><td class="px-4 py-2">10</td></tr>
+            <tr><td class="px-4 py-2">Suivre un mémo, un job</td><td class="px-4 py-2 font-mono">GET /memos/{slug} · GET /jobs/{id}</td><td class="px-4 py-2">0</td></tr>
+            <tr><td class="px-4 py-2">Le PDF du mémo, le deck de comité (VC, LBO, stratégique)</td><td class="px-4 py-2 font-mono">GET /memos/{slug}/pdf · POST /memos/{slug}/deck</td><td class="px-4 py-2">0</td></tr>
+            <tr><td class="px-4 py-2">LOI, red flags, préparation d’appel, KPI, plan 100 jours, update LP…</td><td class="px-4 py-2 font-mono">POST /memos/{slug}/skills/{key}</td><td class="px-4 py-2">0</td></tr>
+            <tr><td class="px-4 py-2">Un modèle financier VC, stratégique (synergies) ou LBO, avec Excel</td><td class="px-4 py-2 font-mono">POST /models</td><td class="px-4 py-2">1</td></tr>
+            <tr><td class="px-4 py-2">Le pré-screen financier d’une société (10 s)</td><td class="px-4 py-2 font-mono">POST /screen</td><td class="px-4 py-2">0</td></tr>
+            <tr><td class="px-4 py-2">Décider OUI / NON, pouce sur un verdict (Stan apprend)</td><td class="px-4 py-2 font-mono">POST /targets/{id}/decision · /thumb</td><td class="px-4 py-2">0</td></tr>
+            <tr><td class="px-4 py-2">Le message d’approche, le contact du décideur, l’export vers Instantly ou un webhook</td><td class="px-4 py-2 font-mono">POST /prepare-approach · /enrich-contact · /bulk-push</td><td class="px-4 py-2">0 · 0 · 0</td></tr>
+            <tr><td class="px-4 py-2">Un webhook vers votre CRM à chaque cible validée</td><td class="px-4 py-2 font-mono">POST /funds/{fund}/webhook</td><td class="px-4 py-2">0</td></tr>
+            <tr><td class="px-4 py-2">La veille et les opérations de votre marché</td><td class="px-4 py-2 font-mono">GET /funds/{fund}/news</td><td class="px-4 py-2">0</td></tr>
+            <tr><td class="px-4 py-2">Le brief du jour, la revue du lundi</td><td class="px-4 py-2 font-mono">GET /funds/{fund}/brief</td><td class="px-4 py-2">0</td></tr>
+            <tr><td class="px-4 py-2">Corriger un mémo publié</td><td class="px-4 py-2 font-mono">POST /memos/{slug}/patch</td><td class="px-4 py-2">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-neutral-500 mt-4">1 crédit = 2 € HT. Les prix in-app (mémo éclair 1 crédit, détaillé 3) ne changent pas. Essai : 3 crédits offerts par jour et packs de 5 / 20 / 50 / 100. Standard (25 000 € HT/an) : 1 000 crédits inclus. Entreprise (50 000 € HT/an) : 3 000 crédits inclus, file prioritaire, marque blanche, aide à l’intégration.</p>
+    </section>
+
+    <section class="py-12 border-t border-neutral-200 grid lg:grid-cols-2 gap-10">
+      <div>
+        <h2 class="text-2xl font-bold mb-3">Claude, Cursor, Windsurf (MCP)</h2>
+        <p class="text-neutral-600 mb-4">Un serveur MCP expose 18 outils en langage naturel : « Passe ces dix sites au crible pour mon fonds », « Écris la LOI du mémo Atelier Morvan », « Quel est mon solde ? ». Le serveur transmet <em>votre</em> clé : il ne peut faire que ce qu’elle autorise.</p>
+<pre class="rounded-xl border border-neutral-200 bg-paper p-4 overflow-x-auto">{
+  "mcpServers": {
+    "proplace": {
+      "url": "https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/mcp",
+      "headers": { "Authorization": "Bearer VOTRE_CLE" }
+    }
+  }
+}</pre>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold mb-3">ChatGPT, n8n, Make, Zapier</h2>
+        <p class="text-neutral-600 mb-4">Custom GPT : importez le schéma <a class="underline" href="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json">openapi.json</a> avec une authentification Bearer. n8n / Make / Zapier : un nœud HTTP avec l’en-tête <code>Authorization</code>. Les appels longs (mémos, ajout de cibles) répondent 202 avec un <code>poll_url</code> à interroger toutes les 60 secondes.</p>
+        <p class="text-neutral-600">Scopes d’une clé : <code>funds</code>, <code>screen</code>, <code>memos</code>, <code>patch</code>, <code>approach</code>, <code>enrich</code>, <code>export</code>. Quotas par défaut : 60 requêtes / min et 1 000 / jour (300 et 10 000 en Standard, 1 000 et 50 000 en Entreprise).</p>
+      </div>
+    </section>
+
+    <section class="py-12 border-t border-neutral-200">
+      <div class="rounded-xl bg-ink text-white p-8">
+        <h2 class="text-xl font-semibold mb-2">Prêt à brancher Stan ?</h2>
+        <p class="text-neutral-300 mb-5">Créez votre clé depuis votre compte, puis suivez la référence complète (en anglais) pour chaque endpoint, ses champs et ses exemples curl, Python et Node.</p>
+        <a href="/fr/compte" class="inline-block bg-white text-ink px-5 py-2.5 rounded-full font-medium hover:bg-neutral-100 transition">Créer ma clé →</a>
+        <a href="/api/" class="inline-block ml-3 text-accent-light underline">Référence complète (EN)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-neutral-200 py-8 text-sm text-neutral-500">
+    <div class="max-w-6xl mx-auto px-6 flex flex-wrap gap-4 justify-between">
+      <span>© 2026 Proplace</span>
+      <nav class="flex gap-4"><a href="/fr/">Accueil</a><a href="/fr/solutions/">Vous êtes…</a><a href="/api/">API (EN)</a><a href="mailto:alexandre@proplace.co">Contact</a></nav>
+    </div>
+  </footer>
+</body>
+</html>

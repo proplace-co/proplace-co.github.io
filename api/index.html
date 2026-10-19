@@ -141,7 +141,7 @@
     <div class="lg:col-span-7">
       <div class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-full bg-accent-light text-accent-deep mb-6">
         <span class="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
-        v1.1 — Live · 7 endpoints · MCP & Custom GPT ready
+        v1.2 — Live · 24 endpoints · MCP & Custom GPT ready
       </div>
       <h1 class="text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-6">
         The <span class="text-accent">investment&nbsp;memo</span> API.
@@ -163,7 +163,7 @@
       <!-- Quick stats -->
       <div class="grid grid-cols-3 gap-6 max-w-lg">
         <div>
-          <div class="text-2xl font-bold">7</div>
+          <div class="text-2xl font-bold">24</div>
           <div class="text-xs text-neutral-500 uppercase tracking-wider">Endpoints</div>
         </div>
         <div>
@@ -241,6 +241,7 @@
           <a href="#recipe-chatgpt" class="block py-0.5 hover:text-ink">ChatGPT GPT</a>
           <a href="#recipe-mcp" class="block py-0.5 hover:text-ink">Claude / MCP</a>
         </div>
+        <a href="#more" class="toc-link block py-1 hover:text-ink">Phase 2 endpoints</a>
         <a href="#pricing" class="toc-link block py-1 hover:text-ink">Pricing & credits</a>
         <a href="#errors" class="toc-link block py-1 hover:text-ink">Errors & limits</a>
         <a href="#changelog" class="toc-link block py-1 hover:text-ink">Changelog</a>
@@ -248,7 +249,8 @@
 
       <div class="mt-8 p-4 rounded-lg bg-paper border border-neutral-200">
         <div class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Need a token?</div>
-        <p class="text-sm text-neutral-600 mb-3">Email to get provisioned in 5 minutes.</p>
+        <p class="text-sm text-neutral-600 mb-3">Create it from your account in one click, or email us for a partner token.</p>
+        <a href="https://proplace.co/fr/compte" class="inline-flex items-center gap-1 text-sm text-accent font-medium mb-2">proplace.co/fr/compte →</a><br />
         <a href="mailto:alexandre@proplace.co?subject=Proplace%20API%20token%20request" class="inline-flex items-center gap-1 text-sm text-accent font-medium">
           alexandre@proplace.co →
         </a>
@@ -398,7 +400,8 @@ console.log(await r.json());</code></pre>
       <div class="rounded-lg border border-neutral-200 overflow-hidden not-prose">
         <pre class="!m-0 !rounded-none"><code class="language-bash">Authorization: Bearer pk_live_3f4a...e9c2</code></pre>
       </div>
-      <p>Tokens are rate-limited per token and carry scopes (<code>funds</code>, <code>screen</code>, <code>memos</code>, <code>patch</code>, plus <code>approach</code>, <code>enrich</code> and <code>export</code> for the outreach and CRM-push routes). Rotation: email us — we issue a new token, revoke the old one.</p>
+      <p><strong>Create your key from your account</strong> (<a href="https://proplace.co/fr/compte">proplace.co/fr/compte</a> → « Brancher Stan à vos outils »): the holder or any team member of a fund can create up to five keys, each shown once, revocable any time. A key is limited to its fund, carries scopes (<code>funds</code>, <code>screen</code>, <code>memos</code>, <code>patch</code>, <code>approach</code>, <code>enrich</code>, <code>export</code>) and the quotas of the plan (60 / min and 1,000 / day on Trial, 300 / 10,000 on Standard, 1,000 / 50,000 on Enterprise). Integration tokens for partners are still issued by email.</p>
+      <p><code>GET /v1/me</code> tells you who you are: fund, plan, quotas, scopes and the credits balance of the fund holder. Paid calls (<code>triggerMemo</code>, <code>buildModel</code>) debit those credits: pass <code>?dry_run=true</code> to get the cost without launching anything, read <code>X-Credits-Cost</code> and <code>X-Credits-Remaining</code> on the response, and expect <code>402</code> with the available packs when the balance is too low. The debit is kept only if the memo is delivered; otherwise it is refunded.</p>
       <h3>Token best practices</h3>
       <ul>
         <li><strong>Never commit tokens.</strong> Use environment variables or your secret manager.</li>
@@ -410,7 +413,7 @@ console.log(await r.json());</code></pre>
     <!-- ── REFERENCE ──────────────────────────────────────────────────────── -->
     <section id="reference">
       <h2>API reference</h2>
-      <p>Seven endpoints. All under <code>https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1</code>. Full machine-readable spec: <a href="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json" target="_blank">openapi.json</a>.</p>
+      <p>Twenty-four endpoints. The eight below are the core; the <a href="#more">phase 2 endpoints</a> (batch verdicts, targets, PDF, decks, skills, decisions, webhooks, news, thesis, briefs, financial models) follow. All under <code>https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1</code>. Full machine-readable spec: <a href="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json" target="_blank">openapi.json</a>.</p>
 
       <!-- Endpoint: listFunds -->
       <div id="endpoint-list-funds" class="endpoint-card border border-neutral-200 rounded-xl p-6 my-6 not-prose">
@@ -849,7 +852,7 @@ Authentication:   API Key
   API Key:        YOUR_TOKEN
 Privacy Policy:   https://proplace.co/privacy</code></pre>
       </div>
-      <p>The 7 actions appear in the GPT: <code>listFunds</code>, <code>getFund</code>, <code>listFundDeals</code>, <code>screenDeal</code>, <code>triggerMemo</code>, <code>getMemo</code>, <code>patchMemo</code>.</p>
+      <p>The 24 actions appear in the GPT (listFunds, getFund, getThesis, listFundDeals, screenTargets, addTargets, triggerMemo, getMemo, getMemoPdf, buildDeck, runSkill, recordDecision, buildModel…).</p>
       <p class="text-sm text-neutral-600">Sample prompt to test: <em>"List the funds I can target, then run a screen on Thrust Carbon for the first one."</em></p>
 
       <h3 id="recipe-mcp">Claude Desktop / Cursor / Windsurf (MCP)</h3>
@@ -864,8 +867,43 @@ Privacy Policy:   https://proplace.co/privacy</code></pre>
   }
 }</code></pre>
       </div>
-      <p>Restart your client. The 7 tools (<code>list_funds</code>, <code>get_fund</code>, <code>list_fund_deals</code>, <code>screen_deal</code>, <code>trigger_memo</code>, <code>get_memo_status</code>, <code>patch_memo</code>) are now callable in natural language: <em>"Trigger a detailed memo for Thrust Carbon under fund_type s4bt."</em></p>
+      <p>Restart your client. 18 tools are now callable in natural language — <code>get_me</code>, <code>list_funds</code>, <code>get_fund</code>, <code>get_thesis</code>, <code>list_fund_deals</code>, <code>screen_targets</code>, <code>add_targets</code>, <code>get_job</code>, <code>screen_deal</code>, <code>trigger_memo</code>, <code>get_memo_status</code>, <code>build_deck</code>, <code>run_skill</code>, <code>record_decision</code>, <code>get_news</code>, <code>get_brief</code>, <code>build_model</code>, <code>patch_memo</code>: <em>"Screen these ten websites for my fund, then write the LOI for the Atelier Morvan memo."</em></p>
       <p class="text-sm text-neutral-500">Transport: streamable HTTP (JSON-RPC over POST), stateless, JSON responses. The MCP server forwards <em>your</em> token to the REST API: a tool can do exactly what your token's scopes allow, nothing more. Without a valid <code>Authorization</code> header the endpoint answers 401 / 403.</p>
+    </section>
+
+    <!-- ── MORE ENDPOINTS (v1.2) ─────────────────────────────────────────── -->
+    <section id="more">
+      <h2>Phase 2 endpoints — everything the product promises, callable</h2>
+      <p>Each endpoint is a thin facade over a function Stan already runs for your fund. Long calls return <code>202</code> with a <code>job_id</code> and <code>poll_url</code> (<code>GET /v1/jobs/{job_id}</code>) when they exceed ~110 s; pass <code>?wait=false</code> to get the job immediately.</p>
+      <div class="not-prose overflow-x-auto">
+        <table class="w-full text-sm border border-neutral-200 rounded-lg">
+          <thead class="bg-paper text-left">
+            <tr>
+              <th class="px-4 py-2 font-semibold border-b border-neutral-200">Endpoint</th>
+              <th class="px-4 py-2 font-semibold border-b border-neutral-200">What it does</th>
+              <th class="px-4 py-2 font-semibold border-b border-neutral-200">Body / query</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-neutral-100">
+            <tr><td class="px-4 py-2 font-mono">GET /v1/me</td><td class="px-4 py-2">Key, fund, plan, quotas, credits, costs</td><td class="px-4 py-2">—</td></tr>
+            <tr><td class="px-4 py-2 font-mono">GET /v1/funds/{fund_type}/thesis</td><td class="px-4 py-2">The thesis as Stan applies it: gate, angles, what he looks for (full for the holder's key)</td><td class="px-4 py-2"><code>lang</code></td></tr>
+            <tr><td class="px-4 py-2 font-mono">POST /v1/funds/{fund_type}/screen</td><td class="px-4 py-2">MATCH / NO MATCH / DATA_GAP with the written reason on up to 10 companies; nothing written</td><td class="px-4 py-2"><code>{companies:[{url}|{name, headline}], enrich}</code> · <code>wait</code></td></tr>
+            <tr><td class="px-4 py-2 font-mono">POST /v1/funds/{fund_type}/targets</td><td class="px-4 py-2">Add up to 10 companies to the deal flow, judged and deduplicated</td><td class="px-4 py-2"><code>{companies:[{name_or_url}], force_reevaluate}</code> · <code>wait</code></td></tr>
+            <tr><td class="px-4 py-2 font-mono">GET /v1/jobs/{job_id}</td><td class="px-4 py-2">State (running / done / error) and result of an asynchronous job</td><td class="px-4 py-2">—</td></tr>
+            <tr><td class="px-4 py-2 font-mono">GET /v1/memos/{slug}/pdf</td><td class="px-4 py-2">The memo as a committee-ready PDF (latest version)</td><td class="px-4 py-2">—</td></tr>
+            <tr><td class="px-4 py-2 font-mono">POST /v1/memos/{slug}/deck · GET …/deck?mode=</td><td class="px-4 py-2">Write the committee deck (vc, lbo, strategic), then download it (202 while building, ~30 s)</td><td class="px-4 py-2"><code>{mode}</code></td></tr>
+            <tr><td class="px-4 py-2 font-mono">GET /v1/skills · POST /v1/memos/{slug}/skills/{key}</td><td class="px-4 py-2">Stan's 18 skills on a memo: LOI, red flags, call prep, tech DD, KPI, board memo, 100-day plan, LP update…</td><td class="px-4 py-2"><code>{lang}</code></td></tr>
+            <tr><td class="px-4 py-2 font-mono">POST /v1/targets/{deal_id}/decision</td><td class="px-4 py-2">CEO decision: yes (validated, DD starts, webhook fires) or no (ruled out); Stan learns from the note</td><td class="px-4 py-2"><code>{decision: yes|no, note}</code></td></tr>
+            <tr><td class="px-4 py-2 font-mono">POST /v1/targets/{deal_id}/thumb</td><td class="px-4 py-2">Thumb up / down on Stan's verdict</td><td class="px-4 py-2"><code>{kind: yes|no, message}</code></td></tr>
+            <tr><td class="px-4 py-2 font-mono">GET · POST · DELETE /v1/funds/{fund_type}/webhook</td><td class="px-4 py-2">CRM webhook of the fund (events validated, stage_changed, approach_prepared, test)</td><td class="px-4 py-2"><code>{url}</code> · <code>test</code></td></tr>
+            <tr><td class="px-4 py-2 font-mono">POST /v1/prepare-approach · /v1/enrich-contact · /v1/bulk-push</td><td class="px-4 py-2">Outreach sequence for a target, decision-maker contact, push of a whole tab to Instantly or a webhook (scopes approach / enrich / export)</td><td class="px-4 py-2">see openapi.json</td></tr>
+            <tr><td class="px-4 py-2 font-mono">GET /v1/funds/{fund_type}/news</td><td class="px-4 py-2">Market watch for the thesis: content to read, recent M&amp;A and funding deals</td><td class="px-4 py-2"><code>lang</code></td></tr>
+            <tr><td class="px-4 py-2 font-mono">GET /v1/funds/{fund_type}/brief</td><td class="px-4 py-2">The daily brief or the Monday review, as HTML</td><td class="px-4 py-2"><code>period: daily|weekly</code> · <code>lang</code></td></tr>
+            <tr><td class="px-4 py-2 font-mono">POST /v1/models</td><td class="px-4 py-2">Financial model (Directive 07): ARR triangulation, projections, unit economics, returns, comparables, Excel — 1 credit</td><td class="px-4 py-2"><code>{fund_type, company:{name, website}, mode: vc|strategic|lbo, deal_params}</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-neutral-500 mt-4">Full request and response schemas: <a href="https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/v1/openapi.json" target="_blank">openapi.json</a> (operationIds <code>getMe</code>, <code>getThesis</code>, <code>screenTargets</code>, <code>addTargets</code>, <code>getJob</code>, <code>getMemoPdf</code>, <code>buildDeck</code>, <code>getDeckPdf</code>, <code>listSkills</code>, <code>runSkill</code>, <code>recordDecision</code>, <code>recordThumb</code>, <code>getWebhook</code>, <code>setWebhook</code>, <code>deleteWebhook</code>, <code>prepareApproach</code>, <code>enrichContact</code>, <code>bulkPush</code>, <code>getNews</code>, <code>getBrief</code>, <code>buildModel</code>).</p>
     </section>
 
     <!-- ── PRICING & CREDITS ─────────────────────────────────────────────── -->
@@ -886,6 +924,8 @@ Privacy Policy:   https://proplace.co/privacy</code></pre>
             <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">screenDeal</td><td class="px-4 py-2 border-b border-neutral-100">0</td><td class="px-4 py-2 border-b border-neutral-100">Financial pre-flight, ~10 s, rate-limited</td></tr>
             <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">triggerMemo · instant</td><td class="px-4 py-2 border-b border-neutral-100">2</td><td class="px-4 py-2 border-b border-neutral-100">First-round memo, ≈ 10 min</td></tr>
             <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">triggerMemo · detailed</td><td class="px-4 py-2 border-b border-neutral-100">10</td><td class="px-4 py-2 border-b border-neutral-100">Full dossier, ≈ 40 min</td></tr>
+            <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">buildModel</td><td class="px-4 py-2 border-b border-neutral-100">1</td><td class="px-4 py-2 border-b border-neutral-100">Financial model VC / strategic / LBO with Excel</td></tr>
+            <tr><td class="px-4 py-2 font-mono border-b border-neutral-100">screenTargets · addTargets · runSkill · decisions · webhooks · news · briefs · thesis · PDF · deck</td><td class="px-4 py-2 border-b border-neutral-100">0</td><td class="px-4 py-2 border-b border-neutral-100">Rate-limited only</td></tr>
             <tr><td class="px-4 py-2 font-mono">patchMemo</td><td class="px-4 py-2">0</td><td class="px-4 py-2">Edits your own published memo</td></tr>
           </tbody>
         </table>
@@ -909,7 +949,7 @@ Privacy Policy:   https://proplace.co/privacy</code></pre>
           </tbody>
         </table>
       </div>
-      <p class="text-sm text-neutral-500 mt-4">Credit metering of API calls and self-service keys from your account page are rolling out. Until then, tokens are provisioned by email and memos launched through the API are reconciled with your account by hand. Prices excl. VAT; the yearly offers are invoiced by bank transfer.</p>
+      <p class="text-sm text-neutral-500 mt-4">Account keys are metered; partner tokens issued by email are not. Prices excl. VAT; the yearly offers are invoiced by bank transfer.</p>
     </section>
 
     <!-- ── ERRORS & RATE LIMITS ──────────────────────────────────────────── -->
@@ -956,6 +996,11 @@ Privacy Policy:   https://proplace.co/privacy</code></pre>
       <h2>Changelog</h2>
       <div class="not-prose space-y-4">
         <div class="border-l-2 border-accent pl-4">
+          <div class="text-xs text-neutral-500">v1.2.0 · 2026-10-19</div>
+          <div class="font-medium">Account keys, credits, and the phase 2 endpoints</div>
+          <p class="text-sm text-neutral-600 mt-1 mb-0">Keys created from the account page, limited to a fund and metered on its credits (instant memo 2, detailed 10, financial model 1; <code>?dry_run=true</code>, <code>X-Credits-*</code> headers, 402 with packs). <code>GET /v1/me</code>. Batch MATCH / NO MATCH verdicts, targets added to the deal flow, jobs, memo PDF and committee decks, Stan's 18 skills, CEO decisions and thumbs, CRM webhooks, market news, daily / weekly briefs, financial models. Approach, contact and bulk-push routes documented behind their scopes. MCP: 18 tools. French presentation at <a href="https://proplace.co/fr/api/">/fr/api/</a>.</p>
+        </div>
+        <div class="border-l-2 border-neutral-300 pl-4">
           <div class="text-xs text-neutral-500">v1.1.0 · 2026-10-19</div>
           <div class="font-medium">Memos on Proplace's own workers, MCP with your token</div>
           <p class="text-sm text-neutral-600 mt-1 mb-0"><code>triggerMemo</code> now runs the product's instant / detailed workers (no more Make.com webhook) and <code>memo_type</code> accepts <code>instant</code>; <code>getMemo</code> follows the job (queued → building → ready | failed). <code>listFundDeals</code> documented (7 endpoints). MCP served at <code>/mcp</code> with 7 tools, authenticated with <em>your</em> token. Scopes <code>approach</code>, <code>enrich</code>, <code>export</code> on the outreach and CRM routes. Realistic durations, pricing &amp; credits section.</p>
