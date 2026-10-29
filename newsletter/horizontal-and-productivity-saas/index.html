@@ -1,4 +1,4 @@
-<!doctype html><html lang="fr" data-pplang-sync="1"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Newsletter Horizontal &amp; Productivity SaaS — M&amp;A &amp; levées de fonds | Proplace</title><meta name="description" content="Recevez chaque jour les opérations M&amp;A et levées de fonds du secteur Horizontal &amp; Productivity SaaS en France et en Europe — décryptées par Proplace…"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/newsletter/horizontal-and-productivity-saas/"><meta property="og:site_name" content="Proplace"><meta property="og:title" content="Newsletter Horizontal &amp; Productivity SaaS — M&amp;A &amp; levées de fonds | Proplace"><meta property="og:description" content="Recevez chaque jour les opérations M&amp;A et levées de fonds du secteur Horizontal &amp; Productivity SaaS en France et en Europe — décryptées par Proplace…"><meta property="og:url" content="https://proplace.co/newsletter/horizontal-and-productivity-saas/"><meta property="og:image" content="https://proplace.co/actualites/operations/cartes/pouls-horizontal-and-productivity-saas-2026-10-28.png"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Newsletter Horizontal &amp; Productivity SaaS — M&amp;A &amp; levées de fonds | Proplace"><meta name="twitter:description" content="Recevez chaque jour les opérations M&amp;A et levées de fonds du secteur Horizontal &amp; Productivity SaaS en France et en Europe — décryptées par Proplace…"><meta name="twitter:image" content="https://proplace.co/actualites/operations/cartes/pouls-horizontal-and-productivity-saas-2026-10-28.png"><link rel="icon" href="/favicon.png"><link rel="alternate" type="application/rss+xml" title="Proplace — M&amp;A &amp; levées de fonds" href="https://proplace.co/actualites/feed.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"><style>
+<!doctype html><html lang="fr" data-pplang-sync="1"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Newsletter Horizontal &amp; Productivity SaaS — M&amp;A &amp; levées de fonds | Proplace</title><meta name="description" content="Recevez chaque jour les opérations M&amp;A et levées de fonds du secteur Horizontal &amp; Productivity SaaS en France et en Europe — décryptées par Proplace…"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://proplace.co/newsletter/horizontal-and-productivity-saas/"><meta property="og:site_name" content="Proplace"><meta property="og:title" content="Newsletter Horizontal &amp; Productivity SaaS — M&amp;A &amp; levées de fonds | Proplace"><meta property="og:description" content="Recevez chaque jour les opérations M&amp;A et levées de fonds du secteur Horizontal &amp; Productivity SaaS en France et en Europe — décryptées par Proplace…"><meta property="og:url" content="https://proplace.co/newsletter/horizontal-and-productivity-saas/"><meta property="og:image" content="https://proplace.co/actualites/operations/cartes/pouls-horizontal-and-productivity-saas-2026-10-29.png"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Newsletter Horizontal &amp; Productivity SaaS — M&amp;A &amp; levées de fonds | Proplace"><meta name="twitter:description" content="Recevez chaque jour les opérations M&amp;A et levées de fonds du secteur Horizontal &amp; Productivity SaaS en France et en Europe — décryptées par Proplace…"><meta name="twitter:image" content="https://proplace.co/actualites/operations/cartes/pouls-horizontal-and-productivity-saas-2026-10-29.png"><link rel="icon" href="/favicon.png"><link rel="alternate" type="application/rss+xml" title="Proplace — M&amp;A &amp; levées de fonds" href="https://proplace.co/actualites/feed.xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"><style>
 :root{
 --pp-green:#12A150;--pp-green-h:#0E8A44;--pp-green-p:#0A6432;--pp-green-tx:#0E7F3F;
 --pp-green-bg:#E7F6EE;--pp-green-chip:#EAF6EF;--pp-green-bd:#BFE6CF;--pp-green-soft:#9ED9B8;
@@ -1036,9 +1036,14 @@ function getLang(){if(/^[/]en(?:[/]|$)/.test(location.pathname))return "en";
 if(/^[/]fr(?:[/]|$)/.test(location.pathname))return "fr";
 try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
 return "en";}
+/* 28/10 (Antoine) — le fonds ne s'affiche que si la session signée vit encore
+   (ppin1~email~fonds~drapeaux~exp~signature, 48 h) : un cookie d'un an faisait dire
+   « sforbt » au menu alors que relancer un mémo exigeait de se reconnecter. */
+function signedAlive(x){var p=String(x||"").split("~");
+return p.length===6&&p[0]==="ppin1"&&/^[0-9]+$/.test(p[4])&&(+p[4])*1000>Date.now()-120000;}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
-if(s&&s.fund_type){
+if(s&&s.fund_type&&signedAlive(s.member_session)){
 // Header loggé : {fund} ▾ → {fund} deal flow (/cibles) · Paramètres (/compte).
 // La déconnexion vit uniquement dans le footer.
 var compte=(lang==="fr"?"/fr/compte":"/compte");
@@ -1219,9 +1224,14 @@ function getLang(){if(/^[/]en(?:[/]|$)/.test(location.pathname))return "en";
 if(/^[/]fr(?:[/]|$)/.test(location.pathname))return "fr";
 try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
 return "en";}
+/* 28/10 (Antoine) — le fonds ne s'affiche que si la session signée vit encore
+   (ppin1~email~fonds~drapeaux~exp~signature, 48 h) : un cookie d'un an faisait dire
+   « sforbt » au menu alors que relancer un mémo exigeait de se reconnecter. */
+function signedAlive(x){var p=String(x||"").split("~");
+return p.length===6&&p[0]==="ppin1"&&/^[0-9]+$/.test(p[4])&&(+p[4])*1000>Date.now()-120000;}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
-if(s&&s.fund_type){
+if(s&&s.fund_type&&signedAlive(s.member_session)){
 // Header loggé : {fund} ▾ → {fund} deal flow (/cibles) · Paramètres (/compte).
 // La déconnexion vit uniquement dans le footer.
 var compte=(lang==="fr"?"/fr/compte":"/compte");
