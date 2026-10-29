@@ -1036,9 +1036,14 @@ function getLang(){if(/^[/]en(?:[/]|$)/.test(location.pathname))return "en";
 if(/^[/]fr(?:[/]|$)/.test(location.pathname))return "fr";
 try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
 return "en";}
+/* 28/10 (Antoine) — le fonds ne s'affiche que si la session signée vit encore
+   (ppin1~email~fonds~drapeaux~exp~signature, 48 h) : un cookie d'un an faisait dire
+   « sforbt » au menu alors que relancer un mémo exigeait de se reconnecter. */
+function signedAlive(x){var p=String(x||"").split("~");
+return p.length===6&&p[0]==="ppin1"&&/^[0-9]+$/.test(p[4])&&(+p[4])*1000>Date.now()-120000;}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
-if(s&&s.fund_type){
+if(s&&s.fund_type&&signedAlive(s.member_session)){
 // Header loggé : {fund} ▾ → {fund} deal flow (/cibles) · Paramètres (/compte).
 // La déconnexion vit uniquement dans le footer.
 var compte=(lang==="fr"?"/fr/compte":"/compte");
@@ -1219,9 +1224,14 @@ function getLang(){if(/^[/]en(?:[/]|$)/.test(location.pathname))return "en";
 if(/^[/]fr(?:[/]|$)/.test(location.pathname))return "fr";
 try{var v=localStorage.getItem("proplace_lang");if(v==="en"||v==="fr")return v;}catch(e){}
 return "en";}
+/* 28/10 (Antoine) — le fonds ne s'affiche que si la session signée vit encore
+   (ppin1~email~fonds~drapeaux~exp~signature, 48 h) : un cookie d'un an faisait dire
+   « sforbt » au menu alors que relancer un mémo exigeait de se reconnecter. */
+function signedAlive(x){var p=String(x||"").split("~");
+return p.length===6&&p[0]==="ppin1"&&/^[0-9]+$/.test(p[4])&&(+p[4])*1000>Date.now()-120000;}
 function auth(lang){var t=D[lang];var c;try{c=document.cookie.split("; ").filter(function(r){return r.indexOf("proplace_auth=")===0;})[0];}catch(e){}
 var s=null;if(c){try{s=JSON.parse(atob(decodeURIComponent(c.split("=")[1])));}catch(e){}}
-if(s&&s.fund_type){
+if(s&&s.fund_type&&signedAlive(s.member_session)){
 // Header loggé : {fund} ▾ → {fund} deal flow (/cibles) · Paramètres (/compte).
 // La déconnexion vit uniquement dans le footer.
 var compte=(lang==="fr"?"/fr/compte":"/compte");
