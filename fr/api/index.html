@@ -23,6 +23,38 @@
     code { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .92em; }
     pre { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85rem; line-height: 1.5; }
   </style>
+<style id="pp-gate-css">
+.ppf{display:block;background:#0F1D33;color:#c7d0db;font-family:"Instrument Sans",system-ui,-apple-system,sans-serif;margin-top:80px;padding:0;border-top:none}
+.ppf-in{max-width:1180px;margin:0 auto;padding:36px 24px 26px;display:flex;flex-wrap:wrap;gap:28px 56px;align-items:flex-start}
+.ppf-brand{flex:1 1 220px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.ppf-brand a{display:inline-block;flex:none}
+.ppf-brand img{height:24px;display:block;filter:brightness(0) invert(1);opacity:.95}
+.ppf-brand p{font-size:13.5px;color:#9fb0c4;margin:0;line-height:1.4}
+.ppf-cols{flex:3 1 560px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.ppf-col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.ppf-col h2{margin:0 0 4px;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#7FCDA0}
+.ppf-col a{font-size:14px;color:#c7d0db;text-decoration:none;line-height:1.35}
+.ppf-col a:hover{color:#fff}
+.ppf-bottom{max-width:1180px;margin:0 auto;padding:14px 24px 20px;border-top:1px solid #22344F;font-size:12.5px;color:#7d93ab}
+@media(max-width:760px){.ppf-in{padding:28px 18px 20px;gap:22px}.ppf-cols{grid-template-columns:repeat(2,minmax(0,1fr))}.ppf-bottom{padding:12px 18px 18px;text-align:center}}
+.pp-gate{display:none}
+html.pp-locked [data-pp-content]{display:none!important}
+html.pp-locked .pp-gate{display:flex;min-height:56vh;align-items:center;justify-content:center;padding:56px 16px;background:#F6F8FB;
+font-family:"Instrument Sans",system-ui,sans-serif;color:#0F1D33}
+.pp-gate-card{width:100%;max-width:620px;box-sizing:border-box;background:#fff;border:1px solid #E3E8F0;border-radius:20px;padding:30px;
+text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;box-shadow:0 18px 40px -28px rgba(15,29,51,.35)}
+.pp-gate-card .k{margin:0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0E7F3F}
+.pp-gate-card h1{margin:0;font-size:24px;line-height:1.25;letter-spacing:-.02em;font-weight:800}
+.pp-gate-card p.b{margin:0;font-size:15px;line-height:1.6;color:#4B5E78}
+.pp-gate-card .a{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:6px}
+.pp-gate-card .a a{display:inline-block;border:1px solid #D5DEE9;background:#fff;color:#0F1D33;border-radius:999px;padding:11px 20px;font-size:15px;font-weight:700;text-decoration:none}
+.pp-gate-card .a a.g{background:#12A150;border-color:#12A150;color:#fff}
+</style>
+<script>(function(){function ok(){try{var r=document.cookie.split('; ').filter(function(x){return x.indexOf('proplace_auth=')===0})[0];
+if(!r)return false;var s=JSON.parse(atob(decodeURIComponent(r.split('=')[1])));if(!s||!s.fund_type||!s.member_session)return false;
+var p=String(s.member_session).split('~');if(p.length!==6||p[0]!=='ppin1'||!/^\d+$/.test(p[4]))return true;
+return Number(p[4])*1000>Date.now()-120000;}catch(e){return false}}
+if(!ok())document.documentElement.classList.add('pp-locked');})();</script>
 </head>
 <body class="bg-white text-ink">
   <header class="border-b border-neutral-200">
@@ -35,7 +67,7 @@
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-6">
+  <main class="max-w-6xl mx-auto px-6" data-pp-content>
     <section class="py-16 lg:py-20 grid lg:grid-cols-12 gap-10 items-center">
       <div class="lg:col-span-7">
         <div class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-full bg-accent-light text-accent-deep mb-6">
@@ -138,11 +170,19 @@
     </section>
   </main>
 
-  <footer class="border-t border-neutral-200 py-8 text-sm text-neutral-500">
-    <div class="max-w-6xl mx-auto px-6 flex flex-wrap gap-4 justify-between">
-      <span>© 2026 Proplace</span>
-      <nav class="flex gap-4"><a href="/fr/">Accueil</a><a href="/fr/solutions/">Vous êtes…</a><a href="/api/">API (EN)</a><a href="mailto:alexandre@proplace.co">Contact</a></nav>
-    </div>
-  </footer>
+  <!-- 31/10 (Antoine) — l'API est réservée aux comptes connectés (essai, Standard, Entreprise) -->
+<section class="pp-gate" aria-labelledby="pp-gate-title"><div class="pp-gate-card">
+<p class="k">Réservé aux comptes Proplace</p><h1 id="pp-gate-title">L’API Proplace est ouverte aux comptes en essai, Standard ou Entreprise.</h1><p class="b">Connectez-vous avec l’email de votre compte. Pas encore de compte ? Indiquez votre site : Stan en déduit vos critères et ouvre votre essai.</p>
+<div class="a"><a class="g" href="/fr#login">Se connecter</a><a href="/fr#decouvrir">Créer mon compte</a></div>
+</div></section>
+<!-- 31/10 — le pied de page du site (miroir de Footer.tsx) -->
+<footer class="ppf"><div class="ppf-in">
+<div class="ppf-brand"><a href="/fr" aria-label="Proplace"><img src="/logo.png" alt="Proplace"></a><p>Votre AI Corporate Developer</p></div>
+<nav class="ppf-cols" aria-label="Proplace">
+<div class="ppf-col"><h2>Proplace</h2><a href="/fr/solutions/">Vous êtes…</a><a href="/actualites/">Opérations récentes</a><a href="/fr/demo">Démo du cockpit</a></div>
+<div class="ppf-col"><h2>La veille</h2><a href="/actualites/">Les opérations du jour</a><a href="/actualites/operations/secteurs/">Les 36 marchés</a><a href="/fr/newsletter">Newsletter</a></div>
+<div class="ppf-col"><h2>Données &amp; API</h2><a href="/fr/api/">API</a><a href="/fr/ai-data/">AI Data</a><a href="/fr/data-partners/">Data partners</a></div>
+<div class="ppf-col"><h2>Compte</h2><a href="/fr#login">Se connecter</a></div>
+</nav></div><div class="ppf-bottom"><span>© 2026 Proplace</span></div></footer>
 </body>
 </html>
