@@ -30,8 +30,31 @@
   <p>Vos cibles arrivent.</p>
 </div>
 <script>
-  location.replace('https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go'
-    + location.search);
+  // 14/11 — la session signée ne voyage plus dans l'adresse (historique, journaux, Referer) :
+  // elle est lue ici dans le cookie et envoyée dans le CORPS d'un POST ; un ancien lien qui la
+  // porte encore la voit retirée de l'historique tout de suite.
+  (function () {
+    var API = 'https://alexandre-79537--sourcing-agent-fastapi-app.modal.run/cibles/go';
+    var q = new URLSearchParams(location.search);
+    var sess = q.get('session') || '';
+    if (q.has('session')) {
+      q.delete('session');
+      try { history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q.toString() : '')); } catch (e) {}
+    }
+    if (!sess) {
+      try {
+        var c = document.cookie.split('; ').filter(function (r) { return r.indexOf('proplace_auth=') === 0; })[0];
+        if (c) { var s = JSON.parse(atob(decodeURIComponent(c.split('=')[1]))); sess = String((s && s.member_session) || ''); }
+      } catch (e) {}
+    }
+    var body = { session: sess };
+    q.forEach(function (v, k) { body[k] = v; });
+    var fallback = API + (q.toString() ? '?' + q.toString() : '');
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) { location.replace(j && j.url ? j.url : fallback); })
+      .catch(function () { location.replace(fallback); });
+  })();
 </script>
 </body>
 </html>

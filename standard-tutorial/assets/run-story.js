@@ -275,6 +275,9 @@
       var src = this.getAttribute('src');
       if (!src) return;
       var self = this, headers = {};
+      // 14/11 — la session signée part dans un en-tête, jamais dans l'adresse
+      var sess = this.getAttribute('session');
+      if (sess) headers['X-Member-Session'] = sess;
       if (this.hasAttribute('ops')) {
         try { var k = localStorage.getItem('pp:opskey'); if (k) headers['X-Ops-Key'] = k; } catch (e) { /* noop */ }
       }
